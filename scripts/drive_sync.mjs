@@ -10,10 +10,24 @@ function getMime(file) {
   return 'application/octet-stream';
 }
 
+function parseServiceAccount(raw) {
+  // 受け取った文字列がJSONでなければBASE64として再解釈する
+  try {
+    return JSON.parse(raw);
+  } catch (_) {
+    try {
+      const decoded = Buffer.from(raw, 'base64').toString('utf8');
+      return JSON.parse(decoded);
+    } catch (err) {
+      throw new Error('GDRIVE_SA_JSON is not valid JSON nor base64-encoded JSON');
+    }
+  }
+}
+
 async function driveClient() {
   const sa = process.env.GDRIVE_SA_JSON;
   if (!sa) throw new Error('Missing GDRIVE_SA_JSON');
-  const creds = JSON.parse(sa);
+  const creds = parseServiceAccount(sa);
   const auth = new google.auth.JWT(
     creds.client_email,
     undefined,
