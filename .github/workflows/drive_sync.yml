@@ -16,6 +16,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Preflight - check secrets and files
+        run: |
+          set -e
+          echo "Checking secrets presence (values are not printed)..."
+          [ -n "${GDRIVE_SA_JSON}" ] && echo "GDRIVE_SA_JSON: present" || (echo "GDRIVE_SA_JSON: MISSING" && exit 1)
+          [ -n "${GDRIVE_FOLDER_SSOT}" ] && echo "GDRIVE_FOLDER_SSOT: present" || (echo "GDRIVE_FOLDER_SSOT: MISSING" && exit 1)
+          [ -n "${GDRIVE_FOLDER_REPORTS}" ] && echo "GDRIVE_FOLDER_REPORTS: present" || (echo "GDRIVE_FOLDER_REPORTS: MISSING" && exit 1)
+          echo "Listing target files..."
+          ls -la docs/SSOT || true
+          ls -la reports || true
+        env:
+          GDRIVE_SA_JSON: ${{ secrets.GDRIVE_SA_JSON }}
+          GDRIVE_FOLDER_SSOT: ${{ secrets.GDRIVE_FOLDER_SSOT }}
+          GDRIVE_FOLDER_REPORTS: ${{ secrets.GDRIVE_FOLDER_REPORTS }}
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
