@@ -1,0 +1,6 @@
+
+# macOS
+.DS_Store
+docs/.DS_Store
+# nested repo
+ototheory-web/

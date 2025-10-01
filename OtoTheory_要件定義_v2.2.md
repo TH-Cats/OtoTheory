@@ -174,5 +174,5 @@
 ---
 
 ## 付録：コミット/配置方針
-- **パス**: `docs/spec/OtoTheory_要件定義_v2.2.md`  
+- **パス**: `docs/SSOT/OtoTheory_要件定義_v2.2.md`  
 - コード側: `globals.css`（共通トークン・クラス）、`find-chords/page.tsx`（構造移行）、`Fretboard.tsx`（Reset/Overlay合成）。

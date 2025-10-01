@@ -81,7 +81,7 @@
 ---
 
 ## Operational notes
-- **Docs**: update `docs/spec/OtoTheory_要件定義_v2.2.md` when exceptions (12px/6px) are applied.
+- **Docs**: update `docs/SSOT/OtoTheory_要件定義_v2.2.md` when exceptions (12px/6px) are applied.
 - **CSS**: keep page overrides at the **EOF** of `globals.css` to avoid collisions.
 - **Acceptance snippets** (safe version):
 ```js

@@ -126,11 +126,11 @@
 # 1) 新版SSOTの運用ガイド
 git switch -c feat/v3.0-ssot
 mkdir -p docs/spec
-git add docs/spec/OtoTheory_v3.0_SSOT.md
+git add docs/SSOT/OtoTheory_v3.0_SSOT.md
 git commit -m "docs: add OtoTheory v3.0 SSOT"
 
 # 2) 参照の衝突回避（任意）：
-#    旧版v2.4系を残す場合は 'docs/spec/legacy/' などへ移動し README に参照目的を明記
+#    旧版v2.4系を残す場合は 'docs/SSOT/legacy/' などへ移動し README に参照目的を明記
 
 # 3) PR 作成（テンプレのSSOT欄は「更新が必要」にチェック）
 git push -u origin feat/v3.0-ssot
