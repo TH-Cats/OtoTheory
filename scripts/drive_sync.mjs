@@ -39,10 +39,15 @@ async function driveClient() {
 }
 
 async function findByName(drive, folderId, name) {
+  const driveId = process.env.GDRIVE_DRIVE_ID; // Optional: Shared Drive ID
   const res = await drive.files.list({
     q: `name = '${name.replace(/'/g, "\\'")}' and '${folderId}' in parents and trashed = false`,
     fields: 'files(id,name)',
     pageSize: 1,
+    includeItemsFromAllDrives: true,
+    supportsAllDrives: true,
+    corpora: driveId ? 'drive' : 'user',
+    driveId: driveId || undefined,
   });
   return res.data.files?.[0] ?? null;
 }
@@ -53,13 +58,14 @@ async function upsertFile(drive, folderId, localPath) {
   const media = { mimeType, body: fs.createReadStream(localPath) };
   const existing = await findByName(drive, folderId, name);
   if (existing) {
-    await drive.files.update({ fileId: existing.id, media });
+    await drive.files.update({ fileId: existing.id, media, supportsAllDrives: true });
     console.log(`Updated: ${name}`);
   } else {
     await drive.files.create({
       requestBody: { name, parents: [folderId], mimeType },
       media,
       fields: 'id',
+      supportsAllDrives: true,
     });
     console.log(`Uploaded: ${name}`);
   }

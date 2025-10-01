@@ -46,5 +46,7 @@ jobs:
           GDRIVE_SA_JSON: ${{ secrets.GDRIVE_SA_JSON }}
           GDRIVE_FOLDER_SSOT: ${{ secrets.GDRIVE_FOLDER_SSOT }}
           GDRIVE_FOLDER_REPORTS: ${{ secrets.GDRIVE_FOLDER_REPORTS }}
+          # Optional: set when using a Shared Drive (Drive ID)
+          GDRIVE_DRIVE_ID: ${{ secrets.GDRIVE_DRIVE_ID }}
         run: node scripts/drive_sync.mjs
 
