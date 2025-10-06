@@ -1,6 +1,11 @@
 # ototheoryギターアプリについての話
 _Exported on 2025/9/15 at 23:32:32 JST from Cursor (1.5.11)_
 
+## Canonical Sources
+- 必ず参照: /Users/nh/App/OtoTheory/docs
+- 優先順位: /Users/nh/App/OtoTheory/OtoTheory v2.4 実装要件定義（最終版）.md を最優先
+- ルール: ドキュメント間で矛盾がある場合は上記を優先。SSOTは `docs/SSOT/` を主参照
+
 ---
 
 **User**

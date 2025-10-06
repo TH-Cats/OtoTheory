@@ -1,0 +1,149 @@
+import { diatonicTriads, romanOfTriad, triadToChordSym, type TriadQuality } from './diatonic';
+import { SCALE_INTERVALS, type ScaleType } from '@/lib/scales';
+import type { Pc } from '@/lib/theory';
+import { oneLiner } from './microcopy';
+
+export type SubstituteSuggestion = { from: string; to: string; fit: number; reason: string };
+export type ModulationSuggestion = { toKeyPc: Pc; toMode: 'major'|'minor'; score: number; handoff: { type: 'VofNew'|'commonChord'|'direct'; chord: string; reason: string } };
+
+export interface TheoryProvider {
+  suggestSubstitutions(ctx: { keyPc: Pc; mode: 'major'|'minor'; chord: string }): Promise<SubstituteSuggestion[]>;
+  suggestModulations(ctx: { keyPc: Pc; mode: 'major'|'minor'; progression?: string[] }): Promise<ModulationSuggestion[]>;
+}
+
+export const DefaultProvider: TheoryProvider = {
+  async suggestSubstitutions({ keyPc, mode, chord }) {
+    // Build diatonic triads for Ionian/Aeolian
+    const scale: ScaleType = mode === 'major' ? 'Ionian' : 'Aeolian';
+    const triads = diatonicTriads({ tonicPc: keyPc, scaleIntervals: (SCALE_INTERVALS as any)[scale] });
+    // Find current chord by root match (very simple symbol parse)
+    const rootMap: Record<string, number> = { C:0,'C#':1,D:2,Eb:3,E:4,F:5,'F#':6,G:7,Ab:8,A:9,Bb:10,B:11 };
+    const m = chord.match(/^([A-G](?:#|b)?)(m|dim|\+)?/);
+    const rootPc = m ? rootMap[m[1]] : triads[0].rootPc;
+    const baseQuality: TriadQuality = m?.[2]==='m' ? 'min' : m?.[2]==='dim' ? 'dim' : m?.[2]==='+' ? 'aug' : 'maj';
+
+    // Function groups: Tonic={I,vi,iii}, Subdominant={IV,ii}, Dominant={V,vii°}
+    const groupOf = (deg: 1|2|3|4|5|6|7) => deg===1||deg===6||deg===3 ? 'T' : deg===4||deg===2 ? 'SD' : 'D';
+    const sameRoot = triads.find(t => t.rootPc===rootPc);
+    const srcDeg = sameRoot?.degree ?? 1;
+    const srcGroup = groupOf(srcDeg);
+
+    // First group: same function alternatives (exclude self)
+    const g1 = triads.filter(t => groupOf(t.degree)===srcGroup && t.degree!==srcDeg).slice(0,3);
+    // Second group (advanced): simple tritone sub of V and borrowed iv (minor iv in major)
+    const adv: { to:string; fit:number; reason:string }[] = [];
+    // Tritone sub: if source is V, suggest bII7; otherwise if group D present, show its tritone
+    const V = triads.find(t => t.degree===5);
+    if (V) {
+      const bII = (V.rootPc + 6) % 12; // tritone above V root
+      const name = ['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B'][bII] + '7';
+      adv.push({ to: name, fit: 70, reason: 'Tritone sub of V: resolves by semitone to I' });
+    }
+    if (mode==='major') {
+      // borrowed iv (minor)
+      const iv = triads.find(t => t.degree===4);
+      if (iv) adv.push({ to: triadToChordSym({ rootPc: iv.rootPc, quality: 'min' }), fit: 60, reason: 'Borrowed iv from parallel minor for plagal color' });
+    }
+
+    // Compose unified list with capped ≤3; Free=first group only (advanced is for Pro)
+    const unify = (list: { to:string; fit:number; reason:string }[]) => list
+      .sort((a,b)=> b.fit - a.fit)
+      .slice(0,3);
+
+    const g1out = g1.map(t => ({
+      to: triadToChordSym(t),
+      fit: t.degree===1?100: t.degree===6?90: t.degree===3?85: t.degree===4?80: t.degree===2?78: t.degree===5?75:72,
+      reason: `${romanOfTriad(t.degree, t.quality, {case:'quality'})} shares function (${srcGroup}). Try as color or passing.`
+    }));
+
+    return unify([...g1out, ...adv]);
+  },
+  async suggestModulations({ keyPc, mode, progression }) {
+    // Base candidates: Fifth circle ±1/±2, Parallel, Relative
+    const rel = mode==='major' ? { keyPc: (keyPc+9)%12, mode:'minor' as const } : { keyPc:(keyPc+3)%12, mode:'major' as const };
+    const par = { keyPc, mode: mode==='major'?'minor' as const:'major' as const };
+    const plus1 = { keyPc:(keyPc+7)%12, mode };
+    const minus1 = { keyPc:(keyPc+5)%12, mode };
+    const plus2 = { keyPc:(keyPc+2)%12, mode };
+    const minus2 = { keyPc:(keyPc+10)%12, mode };
+    const pool = [plus1, minus1, plus2, minus2, rel, par];
+    const uniq = new Map<string, typeof pool[number]>();
+    pool.forEach(c => uniq.set(`${c.keyPc}-${c.mode}`, c));
+    const cand = Array.from(uniq.values());
+
+    // Score components
+    const fifthProx = (k: number) => {
+      const steps = Math.min((Math.abs(k - keyPc) + 12) % 12, (Math.abs(keyPc - k) + 12) % 12);
+      return steps===7?1: steps===5?0.9: steps===2||steps===10?0.7: 0.4;
+    };
+    const parallelRel = (m: 'major'|'minor') => (m===mode? 1 : 0.8);
+    const commonTones = (_k:number,_m:'major'|'minor') => 0.6; // TODO: quick approx; refine later
+    const cadenceFit = (_k:number,_m:'major'|'minor') => 0.6;  // TODO: placeholder for now
+
+    const scored = cand.map(c => {
+      const s = 0.4*fifthProx(c.keyPc) + 0.2*parallelRel(c.mode) + 0.2*commonTones(c.keyPc,c.mode) + 0.2*cadenceFit(c.keyPc,c.mode);
+      // handoff
+      const hand = c.keyPc=== (keyPc+7)%12 ? { type:'VofNew' as const, chord:'V', reason:'Move via dominant of new key' } : { type:'commonChord' as const, chord:'I/vi', reason:'Share tonic/relative chord' };
+      return { toKeyPc: c.keyPc, toMode: c.mode, score: s, handoff: hand };
+    });
+    scored.sort((a,b)=> b.score - a.score);
+    return scored.slice(0,3);
+  }
+};
+
+// === Public helper aligned to v2.4 instruction (key string API) =================
+const PC_TO_NAME = ['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B'] as const;
+const NAME_TO_PC: Record<string, number> = { C:0,'C#':1,D:2,Eb:3,E:4,F:5,'F#':6,G:7,Ab:8,A:9,Bb:10,B:11 };
+
+export async function suggestSubstitutions(c:{ key:string; mode:'major'|'minor'; chord:string; roman?:string }): Promise<
+  { from:string; to:string; reason:string; fit:number; kind:'function'|'tritone'|'borrowed'|'secondary' }[]
+>{
+  const keyPc = NAME_TO_PC[c.key] ?? 0;
+  const scale: ScaleType = c.mode==='major' ? 'Ionian' : 'Aeolian';
+  const triads = diatonicTriads({ tonicPc: keyPc, scaleIntervals: (SCALE_INTERVALS as any)[scale] });
+  // derive src degree via roman or chord root match
+  const m = c.chord.match(/^([A-G](?:#|b)?)/);
+  const rootPc = m ? NAME_TO_PC[m[1]] : triads[0].rootPc;
+  const sameRoot = triads.find(t => t.rootPc===rootPc);
+  const srcDeg = sameRoot?.degree ?? 1;
+  const groupOf = (deg: 1|2|3|4|5|6|7) => deg===1||deg===6||deg===3 ? 'T' : deg===4||deg===2 ? 'SD' : 'D';
+  const srcGroup = groupOf(srcDeg as 1|2|3|4|5|6|7);
+
+  // Group 1: same function
+  const g1 = triads.filter(t => groupOf(t.degree)===srcGroup && t.degree!==srcDeg).slice(0,3).map(t => ({
+    to: triadToChordSym(t),
+    fit: t.degree===1?100: t.degree===6?90: t.degree===3?85: t.degree===4?80: t.degree===2?78: t.degree===5?75:72,
+    kind: 'function' as const,
+    reason: `${romanOfTriad(t.degree, t.quality, {case:'quality'})} shares function (${srcGroup}). Try as color or passing.`
+  }));
+
+  // Group 2: advanced
+  const adv: Array<{ to:string; fit:number; reason:string; kind:'tritone'|'borrowed'|'secondary' }> = [];
+  // Tritone sub of V
+  const V = triads.find(t => t.degree===5);
+  if (V) {
+    const bII = (V.rootPc + 6) % 12;
+    adv.push({ to: `${PC_TO_NAME[bII]}7`, fit: 70, kind:'tritone', reason: 'Tritone sub of V → resolves by semitone to I' });
+  }
+  // Borrowed iv (major only)
+  if (c.mode==='major') {
+    const iv = triads.find(t => t.degree===4);
+    if (iv) adv.push({ to: triadToChordSym({ rootPc: iv.rootPc, quality:'min' }), fit: 60, kind:'borrowed', reason: 'Borrowed iv from parallel minor (plagal color)' });
+  }
+  // Secondary dominant V/vi (example)
+  if (c.mode==='major') {
+    const vi = triads.find(t => t.degree===6);
+    if (vi) {
+      const v_of_vi = (vi.rootPc + 7) % 12;
+      adv.push({ to: `${PC_TO_NAME[v_of_vi]}7`, fit: 70, kind:'secondary', reason: 'Secondary dominant targeting vi' });
+    }
+  }
+
+  const all = [...g1, ...adv]
+    .sort((a,b)=> b.fit-a.fit)
+    .slice(0,3)
+    .map(x => ({ ...x, reason: oneLiner(x.kind, c.roman ?? null, x.to, c.mode) }));
+  return all.map(x => ({ from: c.chord, to: x.to, reason: x.reason, fit: x.fit, kind: x.kind }));
+}
+
+
