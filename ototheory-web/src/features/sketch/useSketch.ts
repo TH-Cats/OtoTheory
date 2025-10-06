@@ -1,0 +1,31 @@
+// src/features/sketch/useSketch.ts
+import { useEffect, useRef, useState } from 'react';
+import { Sketch } from '@/types/sketch';
+import * as store from './storage';
+import * as t from '@/lib/telemetry';
+
+export const useSketch = (isPro: boolean) => {
+  const [sketch, setSketch] = useState<Sketch | null>(null);
+  const timer = useRef<number | null>(null);
+
+  const scheduleAutosave = () => {
+    if (timer.current) window.clearTimeout(timer.current);
+    timer.current = window.setTimeout(() => {
+      if (!sketch) return;
+      (async () => {
+        const r = isPro ? await store.saveCloudPro(sketch) : store.saveLocalFree(sketch);
+        if (!r.ok && r.reason === 'limit_exceeded') {
+          t.track('project_limit_warn', { page: 'chord_progression' });
+          // UI側で「3件まで」トースト表示
+        } else {
+          t.track('save_project', { page: 'chord_progression' });
+        }
+      })();
+    }, 3000); // 3秒アイドル
+  };
+
+  // 状態が変わるたびに自動保存を予約
+  useEffect(() => { scheduleAutosave(); /* eslint-disable-next-line */ }, [sketch]);
+
+  return { sketch, setSketch };
+};

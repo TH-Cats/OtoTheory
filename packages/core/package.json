@@ -1,0 +1,19 @@
+{
+  "name": "@ototheory/core",
+  "version": "1.0.0",
+  "description": "OtoTheory shared music theory logic",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": ["music", "theory", "chords", "scales"],
+  "author": "TH Quest",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
+

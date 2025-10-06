@@ -1,0 +1,737 @@
+/* Page gap: use --stack-gap tokens below (legacy overrides removed) */
+
+/* ---------- Tone colors (used via currentColor on ghost dots) ---------- */
+:root{ --tone-1:#ef4444; --tone-2:#14b8a6; --tone-3:#3b82f6; --tone-4:#8b5cf6; --tone-5:#22c55e; --tone-6:#ec4899; --tone-7:#f59e0b; --form-dot-fill: rgba(80,160,255,0.35); --form-dot-ring: rgba(80,160,255,0.95); --focus-ring: 0 0 0 2px rgba(88,155,255,.95); --focus-shadow: 0 0 0 4px rgba(88,155,255,.25); }
+.tone-1{ color: var(--tone-1) }
+.tone-3{ color: var(--tone-3) }
+.tone-5{ color: var(--tone-5) }
+.tone-7{ color: var(--tone-7) }
+
+/* ---------- Scale ghost dots: small, hollow, keep hue ---------- */
+.fret-dot--ghost{
+  width:13px; height:13px; border-radius:9999px;
+  background: transparent !important; box-shadow:none !important;
+  border:2px solid color-mix(in oklab, currentColor var(--ghost-ring-alpha, 55%), transparent);
+  opacity:1; transform: translate(-50%, -50%);
+  pointer-events: none; /* 装飾レイヤーの誤タップ防止 */
+}
+@media (max-width:640px){ .fret-dot--ghost{ width:12px; height:12px; border-width:1.5px } }
+.dark .fret-dot--ghost{ border-color: color-mix(in oklab, currentColor var(--ghost-ring-alpha, 72%), transparent) }
+
+/* 8音以上の時だけ少し細く小さくする */
+.fret-dot--ghost.ghost--dense{ border-width:1px; opacity:.9; width:12px; height:12px }
+@media (max-width:640px){ .fret-dot--ghost.ghost--dense{ width:11px; height:11px } }
+
+/* Fretboard cell pressed feedback */
+.fb-pressed{ animation: fb-press .18s ease-out 1; }
+@keyframes fb-press{
+  0% { box-shadow: inset 0 0 0 0 rgba(16,185,129,.0), 0 0 0 0 rgba(16,185,129,.0); transform: translateZ(0); }
+  40%{ box-shadow: inset 0 0 0 2px rgba(16,185,129,.5), 0 0 0 4px rgba(16,185,129,.12); transform: translateZ(0); }
+  100%{ box-shadow: inset 0 0 0 0 rgba(16,185,129,.0), 0 0 0 0 rgba(16,185,129,.0); transform: translateZ(0); }
+}
+
+/* Preview button visibility in dark mode */
+.preview-chord{ color: #065f46; display:inline-flex; align-items:center; justify-content:center; }
+.dark .preview-chord{ color: #ecfdf5; border-color: rgba(16,185,129,.85); background: rgba(6,95,70,.38); }
+.dark .preview-chord:hover{ background: rgba(6,95,70,.48); border-color: rgba(16,185,129,1); }
+.preview-chord .i-mdi\:play{ width: 18px; height: 18px; display:inline-block; }
+.dark .preview-chord .i-mdi\:play{ filter: drop-shadow(0 0 2px rgba(0,0,0,.85)); }
+
+/* Progression chip press feedback */
+.chip-pressable{ transition: transform .05s ease, background-color .12s ease; }
+.chip-pressable:active{ transform: translateY(1px) scale(.99); background-color: rgba(16,185,129,.10); }
+.dark .chip-pressable:active{ background-color: rgba(52,211,153,.18); }
+
+/* Ad Placeholder look */
+.ad-placeholder{ height:96px; display:grid; place-items:center; color:var(--muted,#6b7280); background:color-mix(in oklab, var(--surface) 95%, transparent); }
+
+/* M3.5: Mobile sticky CTA animation */
+@keyframes slide-up{
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.animate-slide-up{ animation: slide-up .3s ease-out; }
+
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #ff2d55; /* UIアクセント（録音バー/スピナー等） */
+  --danger: #E03131;  /* 録音系の強調色 */
+  --brand-primary: #FF6B6B; /* Coral Red */
+  --brand-secondary: #4ECDC4; /* Teal */
+  --brand-accent: #FFE66D; /* Warm Yellow */
+  --brand-dark: #2D3436; /* Charcoal */
+  --brand-light: #F5F5F5; /* Off White */
+  --chip-h: 40px; /* Rootボタンと揃える */
+  --chip-mw: 52px; /* 互換維持用 */
+  --chip-minw: 52px; /* 最小幅（推奨） */
+  --chip-fz: 14px;
+  --chip-br: 12px;
+  --chip-bc: #ddd;
+  --chip-bg: #fff;
+  --chip-active-bc: #10b981;
+  --chip-active-bg: #ecfdf5;
+  --chip-gap: 4px;
+  /* ghost tokens */
+  --ghost-size: 13px;
+  --ghost-ring-alpha: 55%; /* light default */
+  /* --- Theme tokens (bridge) --- */
+  --bg:      #F8FAFC;  /* page background */
+  --surface: #FFFFFF;  /* card surface    */
+  --line:    #E5E7EB;  /* hairline        */
+  --form-dot-fill: rgba(80, 160, 255, 0.35);
+  --form-dot-ring: rgba(80, 160, 255, 0.95);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--brand-primary);
+  --color-secondary: var(--brand-secondary);
+  --color-accent: var(--brand-accent);
+  --color-dark: var(--brand-dark);
+  --color-light: var(--brand-light);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --primary: #ff2d55; /* darkでも同値で可視性を確保 */
+    --danger: #E03131;
+    /* bridge tokens for dark */
+    --bg:#0B1220; --surface:#111827; --line:#334155;
+    --chip-bc: #374151;
+    --chip-bg: #1f2937;
+    --chip-active-bc: #10b981;
+    --chip-active-bg: #064e3b;
+    --border-color: var(--line);
+    --card-bg: var(--surface);
+    --text-muted: #9ca3af;
+    --text-secondary: #6b7280;
+    /* ghost tokens (dark override) */
+    --ghost-ring-alpha: 72%;
+  }
+}
+body.dark{ --form-dot-fill: rgba(120,180,255,0.30); --form-dot-ring: rgba(160,210,255,1.00); --focus-ring: 0 0 0 2px rgba(160,210,255,1); --focus-shadow: 0 0 0 4px rgba(160,210,255,.35); }
+
+/* 高さは自然（auto）。sticky/スクロール破壊を回避 */
+html, body {
+  height: auto;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--foreground);
+}
+
+/* Explicit theme override hook */
+[data-theme="dark"] { --bg:#0B1220; --surface:#111827; --line:#334155; --border-color:var(--line); }
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* brand-gradient: inlined on Home hero via style attr; class removed */
+
+/* chips (Safari差分もリセット) */
+button.chip{
+  all: unset;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--chip-h) !important;
+  min-width: var(--chip-minw) !important;
+  width: auto !important;
+  padding: 0 12px !important;
+  border: 1px solid var(--chip-bc) !important;
+  border-radius: var(--chip-br) !important;
+  background: var(--chip-bg);
+  font: inherit;
+  font-size: var(--chip-fz);
+  line-height: 1;
+  white-space: nowrap;
+}
+button.chip.chip--active{border-color:var(--chip-active-bc);background:var(--chip-active-bg)}
+button.chip.chip--disabled{opacity:.45;pointer-events:none;cursor:not-allowed}
+
+/* Chips（Degrees/Names/Reset を同一寸法に） */
+.chip{display:inline-flex;align-items:center;gap:.5rem;padding:.375rem .75rem;border-radius:9999px;font-size:.875rem;border:1px solid var(--line);background:var(--surface)}
+.chip--on{background:rgba(16,185,129,.1);border-color:#10b981}
+/* a11y: focus-visible ring with high contrast */
+.chip:focus-visible, .btn-ghost:focus-visible, button:focus-visible, [role="tab"]:focus-visible, [data-roving="item"]:focus-visible{
+  outline: none;
+  box-shadow: var(--focus-ring), var(--focus-shadow);
+  border-radius: 6px;
+}
+
+/* 共通カード（Find Key/Scale と同値） */
+.card{border-radius:16px;border:1px solid var(--line);background:var(--surface);padding:1rem}
+@media (min-width:768px){.card{padding:1.5rem}}
+
+/* ========== Page & Card Rhythm (canonical) ========== */
+.ot-page{ max-width:64rem; margin-inline:auto; padding-inline:1rem; }
+@media (min-width:768px){ .ot-page{ padding-inline:1.5rem } }
+
+/* セクション間の縦リズム：24 / 32 px */
+.ot-stack{ display:flex; flex-direction:column; gap: var(--stack-gap, 1.5rem); }
+@media (min-width:768px){ .ot-stack{ gap: var(--stack-gap, 2rem) } }
+
+/* === tight stack: gap=12px (SP/MDとも) ======================= */
+.ot-stack--tight { gap: .75rem !important; }
+@media (min-width: 768px) { .ot-stack--tight { gap: .75rem !important; } }
+
+/* (removed conflicting earlier page-scoped overrides) */
+
+/* === Page-scoped rhythm via token (SSOT) ===================== */
+main[data-page="find-key"]{ --stack-gap: 6px; }
+main[data-page="find-chords"]{ --stack-gap: 6px; }
+main[data-page="analyze"]{ --stack-gap: 6px; }
+/* stray margin 打ち消し（gap 主導） */
+main.ot-page.ot-stack[data-page="find-key"] > * { margin-block: 0 !important; }
+main.ot-page.ot-stack[data-page="find-chords"] > * { margin-block: 0 !important; }
+/* マージン崩壊防止（念のため） */
+main.ot-page.ot-stack[data-page="find-key"] > .two-col,
+main.ot-page.ot-stack[data-page="find-key"] > .ot-card,
+main.ot-page.ot-stack[data-page="find-chords"] > .two-col,
+main.ot-page.ot-stack[data-page="find-chords"] > .ot-card { overflow: hidden; }
+
+/* カード：角丸16px + 1px実線ボーダー + 背景 */
+.ot-card{
+  border-radius:16px;
+  border:1px solid var(--border-color, var(--line));
+  background:var(--card-bg, var(--surface));
+  padding:1rem;
+}
+@media (min-width:768px){ .ot-card{ padding:1.5rem } }
+
+.ot-h1{ font-weight:700; letter-spacing:-.01em; font-size:24px; line-height:34px; margin:0 }
+@media (min-width:768px){ .ot-h1{ font-size:28px; line-height:34px } }
+/* H2: 20/28 → 24/32 */
+.ot-h2{ font-weight:600; letter-spacing:-.01em; font-size:20px; line-height:28px; }
+@media (min-width:768px){ .ot-h2{ font-size:24px; line-height:32px } }
+.ot-h3{ font-weight:600; font-size:18px; line-height:26px; margin-bottom:.5rem }
+
+/* Key chips should size to content (override fixed chip width) */
+.chip--key{white-space:nowrap;padding:0 10px !important;gap:6px}
+
+.btn-primary{height:40px;padding:0 14px;border-radius:10px;background:#ff6b6b;color:#fff}
+
+/* Root/Quick rows */
+.chips-row{display:flex;flex-wrap:wrap;gap:var(--chip-gap)}
+
+/* Advanced left-aligned dense layout */
+.adv-grid{display:flex;flex-wrap:wrap;gap:var(--chip-gap);justify-content:flex-start}
+
+/* tight chip rows */
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* Progression chip styles */
+.ot-chip-add, .ot-chip-remove {
+  padding: 2px 6px;
+  font-size: 12px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  margin-left: 4px;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ot-chip-add:hover, .ot-chip-remove:hover {
+  background: var(--chip-active-bg);
+  border-color: var(--chip-active-bc);
+  color: var(--chip-active-bc);
+}
+.ot-chip-remove {
+  margin-left: 0;
+  margin-right: 4px;
+}
+
+/* Two-column responsive layout */
+.two-col{display:block;margin-bottom:0 !important}
+.left-sticky{position:static}
+@media (min-width: 1024px){
+  .two-col{display:grid;grid-template-columns:minmax(420px,1fr) minmax(420px,1fr);align-items:start;column-gap:24px}
+  .left-col{align-self:start}
+  .left-sticky{
+    position: sticky;
+    top: 16px;
+    align-self: start;
+    z-index: 1;
+    background: var(--card-bg, #fff);
+    margin-bottom: 0 !important;
+  }
+  .panel-scroll{
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+
+@media (max-width:1023px){
+  .two-col{grid-template-columns:1fr}
+  /* モバイルでは Progression を sticky にしない */
+  .left-sticky{position:static; top:auto; z-index:auto; background:transparent}
+  /* Reduce excessive blank space below preview on small screens */
+  .right-panel{min-height:auto}
+}
+
+/* Sticky preview row */
+.preview-sticky{position:sticky;bottom:0;background:var(--card-bg, #fff);border-top:1px solid var(--border-color, #eee);padding:6px 8px}
+
+/* One-liner and example */
+.one-liner{position:relative;display:flex;align-items:center;gap:6px;line-height:1.35;margin-bottom:4px}
+.one-liner.has-info{padding-right:28px}
+.one-liner-text{display:inline}
+.one-liner.has-info .one-liner-info{position:absolute !important; right:0 !important; top:0 !important; z-index:10}
+.btn-ghost{padding:6px 10px;border-radius:10px;border:1px solid var(--border-color, #e5e7eb);background:var(--card-bg, #fff);color:var(--text-secondary, #374151)}
+.btn-ghost:disabled{opacity:.45;cursor:not-allowed}
+.example-copy{color:var(--text-muted, #9ca3af);font-size:11px;margin:0 0 6px 0}
+
+/* Info dot + popover */
+.info-dot{
+  width:20px;height:20px;border-radius:9999px;
+  border:1px solid var(--border-color, #e5e7eb);background:var(--card-bg, #fff);color:var(--text-secondary, #6b7280);
+  font-size:11px;display:inline-flex;align-items:center;justify-content:center;
+  -webkit-appearance:none;appearance:none;
+  -webkit-tap-highlight-color:transparent;
+  padding:0;line-height:1;touch-action:manipulation;cursor:pointer;
+}
+.info-card{position:absolute;top:24px;right:0;z-index:20;width:260px;padding:8px 10px;background:var(--card-bg, #fff);border:1px solid var(--border-color, #e5e7eb);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.08);font-size:12px;color:var(--text-secondary, #374151);white-space:pre-line}
+.info-card a{font-weight:600;text-decoration:underline}
+
+/* Fret dots base + emphasis (ToneOverlay v2.1) */
+.fret-dot{ position:relative; width:22px; height:22px; border-radius:9999px; display:grid; place-items:center; transition:transform .12s ease; }
+.fret-dot--main{ box-shadow: 0 2px 0 rgba(0,0,0,.15); }
+/* Compare visuals were removed for Find Chords simplification */
+
+/* horizontal chip scroller */
+.no-scrollbar::-webkit-scrollbar{ display:none }
+.no-scrollbar{ -ms-overflow-style:none; scrollbar-width:none }
+
+/* Diatonic cells: pressed effect and selection state */
+.tapfx:active{ transform: scale(.98); opacity:.9 }
+.dia-cell--active{ outline:2px solid var(--brand-secondary); background: color-mix(in oklab, var(--brand-secondary) 14%, transparent); }
+.dia-cell--idle{ outline:1px solid var(--border-color, #e5e7eb); }
+
+/* Busy state for Show Chords */
+.btn-primary--busy{ opacity:.85; transform: translateY(1px); transition: transform 120ms ease, opacity 120ms ease; }
+
+/* ghost button (Reset scale) */
+.btn-ghost{padding:6px 10px;border-radius:9999px;border:1px solid var(--border-color,#e5e7eb);background:transparent;color:var(--foreground);transition:transform .12s ease}
+.btn-ghost:active{transform:scale(.98)}
+/* a11y: ensure contrast on dark */
+.dark .btn-ghost{ color: #e5e7eb }
+/* Reset button emphasis */
+.btn-reset{ border-color:#10b981 !important; border-width:2px !important; color:#065f46 !important; }
+.btn-reset:hover{ background:rgba(16,185,129,.08) !important }
+.dark .btn-reset{ border-color:#34d399 !important; color:#ecfdf5 !important }
+/* Advanced toggle border visibility (light/dark) */
+.adv-toggle{ border-width:2px !important; border-color:#9ca3af !important; }
+.dark .adv-toggle{ border-color:#6b7280 !important; }
+
+/* Scale ghost dots (compat note): unify to tokens + color-mix with fallback */
+@supports not (color: color-mix(in oklab, red, white)) {
+  .fret-dot--ghost { border-color: rgba(100,100,100,.45); }
+  .dark .fret-dot--ghost { border-color: rgba(200,200,200,.55); }
+}
+@media (prefers-contrast: more){
+  .fret-dot--ghost{ border-width: calc(2px + .5px); }
+}
+@media (forced-colors: active){
+  .fret-dot--ghost{ border-color: CanvasText; }
+}
+
+/* Preview strong */
+.preview-chord{font-size:22px;font-weight:700;color:#059669}
+
+/* Advanced toggle */
+.adv-toggle{
+  display:inline-flex !important;align-items:center !important;gap:10px !important;padding:8px 12px !important;
+  border:1px solid var(--border-color, #e5e7eb) !important;border-radius:9999px !important;background:var(--card-bg, #fff) !important;
+  cursor:pointer !important;user-select:none;touch-action:manipulation;
+  box-shadow: 0 0 0 0 rgba(16,185,129,.35);
+  transition: box-shadow .15s ease, transform .12s ease, background-color .12s ease;
+}
+.adv-toggle:hover{ box-shadow: 0 0 0 3px rgba(16,185,129,.25); background: color-mix(in oklab, var(--card-bg) 92%, #10b981 8%); }
+.adv-toggle:active{ transform: translateY(1px); }
+.adv-toggle{ box-shadow:0 0 0 2px transparent; transition: box-shadow .15s ease }
+.adv-toggle:active{ box-shadow:0 0 0 2px rgba(0,0,0,.05) }
+.adv-toggle:hover{background:var(--background, #f9fafb)}
+.adv-toggle .caret{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--text-secondary, #6b7280);transition:transform .15s ease}
+.adv-toggle.is-open .caret{transform:rotate(180deg)}
+.adv-toggle .label{font-weight:600}
+.adv-toggle .spark{color:#10b981}
+.dark .adv-toggle .spark{color:#34d399}
+.badge-pro{display:none}
+.hint{display:none}
+
+@media (max-width: 640px){
+  .adv-toggle::after{content:"  Tap to open";font-size:11px;color:var(--text-secondary, #6b7280)}
+  .adv-toggle.is-open::after{content:"  Tap to close"}
+}
+
+/* Compact left card */
+.prog-compact{padding:12px 1.5rem !important}
+.prog-compact h2{margin-bottom:6px !important}
+.prog-compact .chips-row{gap:4px}
+/* Ensure progression card height stays tight */
+#progression{ min-height:auto !important; height:auto !important; padding-top:12px; padding-bottom:12px; }
+#progression .prog-slots{ margin-top:8px; }
+
+/* Result blocks */
+.result-block{margin-bottom:14px}
+.result-head{font-weight:600;margin-bottom:6px}
+/* duplicate removed */
+.chip--key .chip-sub{margin-left:6px;font-size:12px;color:var(--text-secondary, #6b7280)}
+@media (prefers-color-scheme: dark){
+  .chip--key .chip-sub{ color:#fff }
+}
+.ot-chip{ position: relative; }
+.ot-chip-badge{ margin-left:.4rem; padding:.05rem .35rem; font-size:11px; border-radius:999px; box-shadow: inset 0 0 0 1px var(--line); opacity:.9 }
+.chip--scale{display:flex;flex-direction:column;align-items:flex-start}
+.chip--scale .chip-main{font-weight:500}
+.chip--scale .chip-meter{width:100%;height:4px;background:var(--background, #f3f4f6);border-radius:9999px;margin-top:4px;overflow:hidden}
+.chip--scale .chip-meter>span{display:block;height:100%;background:#ef4444}
+
+/* Fretboard full-width + 横スクロール */
+.fret-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.fret-inner{min-width:960px}
+@media (min-width:1280px){.fret-inner{min-width:1100px}}
+@media (orientation:landscape){.fret-inner{min-width:100%}}
+
+
+/* --- Scales: vertical list (mobile 1col / desktop 2col) --- */
+.scales-list{display:grid;grid-template-columns:1fr;gap:8px}
+@media (min-width: 1024px){.scales-list{grid-template-columns:1fr 1fr}}
+button.chip.chip--scale{width:auto !important;min-width:0 !important;padding:10px 12px !important;display:flex;align-items:center;gap:10px}
+.chip--scale .chip-main{order:1;font-weight:600}
+.chip--scale .chip-pct{order:2;width:44px;text-align:right;font-size:12px;color:var(--text-secondary, #6b7280)}
+.chip--scale .chip-meter{order:3;flex:1;height:6px;background:var(--background, #f3f4f6);border-radius:9999px;position:relative;overflow:hidden}
+.chip--scale .chip-meter>span{position:absolute;right:0;left:auto;height:100%;background:var(--brand-primary)}
+
+/* (削除) HOTFIXは競合の原因になるため撤去 */
+
+/* === Sticky/Overflow 基本ルール（統合版） ===================== */
+html, body, main, main.container, .two-col, .right-panel {
+  overflow: visible !important;
+}
+html, body, main, main.container { height: auto !important; }
+.panel-scroll { max-height: calc(100vh - 112px); overflow: auto; }
+@media (min-width: 1024px) {
+  .left-sticky { position: sticky; top: 12px; }
+}
+
+/* Compact style for small landscape devices (Capo diatonic table) */
+@media (orientation: landscape) and (max-width: 900px) {
+  .capo-compact table th,
+  .capo-compact table td {
+    padding: 4px 6px; /* ~px-1.5 */
+    font-size: 12px; /* text-[12px] */
+    line-height: 1.2;
+  }
+  .capo-compact table col:first-child {
+    width: 64px; /* w-16 */
+  }
+}
+
+/* Extra-tight for small landscape devices */
+@media (orientation: landscape) and (max-width: 740px) {
+  .capo-compact--tight table {
+    border-radius: 10px;
+  }
+  .capo-compact--tight table th,
+  .capo-compact--tight table td {
+    padding: 3px 5px;
+    font-size: 11px;
+    line-height: 1.15;
+  }
+  .capo-compact--tight table col:first-child {
+    width: 56px;
+  }
+  .capo-compact--tight .section-title,
+  .capo-compact--tight h3 {
+    margin-bottom: 6px;
+  }
+}
+
+/* Fretboard compact gutters */
+.ot-fb-compact .ot-fb-left { width: 16px; }
+.ot-fb-compact .ot-fb-right { width: 6px; }
+@media (min-width: 768px) {
+  .ot-fb-compact .ot-fb-left { width: 20px; }
+  .ot-fb-compact .ot-fb-right { width: 8px; }
+}
+.ot-fretboard .string-name { padding-left: 2px; padding-right: 2px; }
+
+/* Fallback: enforce chip styles for fretboard toggle even if radios + labels are used */
+/* Fallback for fretboard toggle (supports aria-selected, data-state, and peer radios) */
+/* ACTIVE (light) */
+.fretboard-toggle [aria-selected="true"]:not(.chip),
+.fretboard-toggle [data-state="on"]:not(.chip),
+.fretboard-toggle .peer:checked + label:not(.chip) {
+  box-shadow: none !important;
+  border-radius: 9999px !important; /* rounded-full */
+  padding: 6px 12px !important;     /* px-3 py-1.5 */
+  font-size: 0.875rem !important;   /* md:text-sm fallback */
+  line-height: 1.25rem !important;
+  background-color: rgb(209 250 229 / 1) !important; /* emerald-100 */
+  border: 1px solid rgb(110 231 183 / 1) !important; /* emerald-300 */
+  color: rgb(6 95 70 / 1) !important;                /* emerald-900 */
+}
+/* ACTIVE (dark) */
+.dark .fretboard-toggle [aria-selected="true"]:not(.chip),
+.dark .fretboard-toggle [data-state="on"]:not(.chip),
+.dark .fretboard-toggle .peer:checked + label:not(.chip) {
+  background-color: rgba(6, 95, 70, 0.3) !important; /* emerald-900/30 */
+  border-color: rgb(5 150 105 / 1) !important;       /* emerald-600 */
+  color: rgb(240 253 244 / 1) !important;            /* emerald-100 */
+}
+/* INACTIVE (light) */
+.fretboard-toggle [aria-selected="false"]:not(.chip),
+.fretboard-toggle [data-state="off"]:not(.chip),
+.fretboard-toggle .peer:not(:checked) + label:not(.chip) {
+  border-radius: 9999px !important;
+  padding: 6px 12px !important;
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+  background-color: #fff !important;
+  border: 1px solid rgb(212 212 212 / 1) !important; /* neutral-300 */
+  color: rgb(55 65 81 / 1) !important;               /* neutral-700 */
+}
+/* INACTIVE (dark) */
+.dark .fretboard-toggle [aria-selected="false"]:not(.chip),
+.dark .fretboard-toggle [data-state="off"]:not(.chip),
+.dark .fretboard-toggle .peer:not(:checked) + label:not(.chip) {
+  background-color: rgba(23,23,23,.3) !important;    /* neutral-900/30 */
+  border-color: rgb(64 64 64 / 1) !important;        /* neutral-700 */
+  color: rgb(212 212 212 / 1) !important;            /* neutral-300 */
+}
+.fretboard-toggle * { box-shadow: none !important; }
+
+/* === desktop: sticky が手前で止まるのを防ぐ === */
+@media (min-width:1024px){
+  .two-col{
+    overflow:visible !important;
+    padding-bottom:0 !important;
+    margin-bottom:0 !important;
+    align-items:start !important;
+  }
+  .left-col{
+    overflow:visible !important;
+    padding-bottom:0 !important;
+    margin-bottom:0 !important;
+    height:auto !important;
+  }
+  .left-sticky{
+    position:sticky;
+    top:12px;
+    margin-bottom:0 !important;
+  }
+}
+
+/* モバイル: ProgressionとSelectionの間をSelection-Resultと同じに */
+@media (max-width: 1023px) {
+  .two-col { display: block; }
+  .left-col { margin-bottom: 0 !important; padding-bottom: 0 !important; }
+  .left-col + .right-panel { margin-top: 8px; }
+  /* #result は .two-col の直後の兄弟要素なのでこちらを狙う */
+  /* v2.2 rhythm uses .ot-stack gap only */
+  /* .two-col + #result { margin-top: 10px !important; } */
+  /* Result とその次の Ad ボックスの間を少し空ける */
+  #result + div { margin-top: 12px !important; }
+}
+
+/* --- sticky(左カラム)が効かないデスクトップ対策 --- */
+@media (min-width: 768px) {
+  html, body, #__next, main.container {
+    /* Safariでcomputedがautoになる祖先を丸ごと可視化に固定 */
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+  }
+
+  /* 念のため高さ制約も外す（autoスクロール化の副作用を防ぐ） */
+  html, body, #__next, main.container {
+    height: auto !important;
+  }
+
+  /* 左カラム sticky 本体 */
+  .left-sticky {
+    position: sticky;
+    top: calc(var(--header-h, 56px) + 12px);
+    align-self: start;
+  }
+  .left-sticky .card {
+    /* 右パネルより先に尽きないよう上限だけ与える */
+    max-height: calc(100vh - (var(--header-h, 56px) + 24px));
+    overflow: auto;
+  }
+}
+
+/* (duplicate page gap rules removed; use tokens above) */
+
+/* Roman highlight */
+.roman-mark{
+  background: rgba(252, 211, 77, 0.35); /* amber-300/35 */
+  padding: 0 .15em;
+  border-radius: 6px;
+}
+.dark .roman-mark{
+  background: rgba(252, 211, 77, 0.25);
+}
+
+/* === Substitute (minimal styles) === */
+.ot-sub-card .row{display:flex; gap:.75rem; align-items:flex-start; padding:.5rem 0; border-top:1px solid var(--line)}
+.ot-sub-card .row:first-child{border-top:none}
+.ot-sub-card .label{display:flex; align-items:center; gap:.5rem}
+.ot-sub-card .pro-lock{font-size:12px; padding:.1rem .4rem; border:1px solid var(--line); border-radius:999px}
+.ot-sub-card .fit{height:6px; background:var(--line); border-radius:99px; overflow:hidden; margin:.25rem 0}
+.ot-sub-card .fit>span{display:block; height:100%}
+@media(prefers-color-scheme:dark){ .ot-sub-card .fit>span{ background: var(--brand-primary, #10b981) } }
+
+/* Advice-only popover + Diatonic table (grid-aligned, header and rows share same grid) */
+.ot-dia-wrap{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.ot-dia{
+  --dia-cols: 96px repeat(7, minmax(72px, 1fr));
+  min-width: 640px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.ot-dia-row{
+  display: grid;
+  grid-template-columns: var(--dia-cols);
+  align-items: center;
+  border-top: 1px solid var(--line);
+  background: var(--background);
+}
+.ot-dia-row:first-child{ border-top: none; background: var(--panel) }
+.ot-dia-th, .ot-dia-cell{
+  padding: .5rem .6rem;
+  text-align: center;
+}
+.ot-dia-row .ot-dia-th:first-child{
+  text-align: left;
+  font-weight: 600;
+}
+.ot-dia-row:first-child .ot-dia-th{
+  font-weight: 600;
+}
+.ot-dia-cell{
+  display: flex;
+  justify-content: center;
+}
+.ot-dia-chip{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  height: 34px;
+  padding: 0 .6rem;
+  border: 1px solid var(--line);
+  border-radius: .75rem;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.ot-dia-chip:focus-visible, .ot-hint-btn:focus-visible{ outline:none; box-shadow: var(--focus-ring), var(--focus-shadow); border-radius: 999px; }
+/* hint/popover styles removed per scope trim */
+
+/* Recording/Playback progress */
+.ot-prog{ display:flex; flex-direction:column; gap:.4rem }
+.ot-prog-head{ display:flex; justify-content:space-between; font-size:12px; opacity:.9 }
+.ot-prog-rail{ position:relative; height:8px; width:100%; background:var(--line); border-radius:99px; overflow:hidden }
+.ot-prog-fill{ position:absolute; inset:0 auto 0 0; width:0; background:#ff2d55; opacity:1 }
+.ot-rec-dot{ width:10px; height:10px; border-radius:50%; background:#e00; margin-right:.5rem; animation:ot-blink 1s infinite }
+@keyframes ot-blink{ 0%,100%{opacity:.25} 50%{opacity:1} }
+.sr-only{ position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0 }
+
+/* Analyzing indicator */
+.ot-analyzing{ display:flex; align-items:center; gap:.6rem; padding:.5rem .6rem; background:var(--panel); border-radius:.5rem; margin:.5rem 0 }
+.ot-spinner{ width:16px; height:16px; border:2px solid var(--line); border-top-color:var(--primary); border-radius:50%; animation:ot-spin 1s linear infinite }
+@keyframes ot-spin{ to{ transform: rotate(360deg) } }
+.ot-anlz-title{ font-weight:600; font-size:13px }
+.ot-anlz-sub{ font-size:12px; opacity:.9 }
+.ot-badge{ font-size:12px; padding:.1rem .5rem; border:1px solid var(--line); border-radius:999px }
+.ot-badge-upd{ background:rgba(18,184,134,.10) }
+
+/* AI scanning animation (analyzing) */
+.ot-ai-scan{ flex:1; display:flex; justify-content:flex-end }
+.ot-ai-bars{ display:flex; align-items:flex-end; gap:3px; height:20px }
+.ot-ai-bars>span{ display:block; width:4px; height:8px; background:var(--primary); border-radius:2px; animation:ai-pulse 900ms ease-in-out infinite }
+@keyframes ai-pulse{ 0%,100%{ transform:scaleY(.3); opacity:.5 } 50%{ transform:scaleY(1); opacity:1 } }
+
+/* ---- Controls: 音ON/OFFスイッチ / RECボタン / ステータス ---- */
+.ot-switch { --h:28px; --w:58px; width:var(--w); height:var(--h); border-radius:999px; background:var(--line); position:relative; cursor:pointer; box-shadow:inset 0 0 0 1px var(--line); -webkit-appearance:none; appearance:none; border:none; padding:0; display:inline-block; overflow:hidden }
+.ot-switch.ot-switch--sm{ --h:24px; --w:48px }
+.ot-switch.ot-switch--xs{ --h:20px; --w:40px }
+.ot-switch[data-checked="true"]{ background: var(--primary) }
+.ot-switch .knob{ position:absolute; top:2px; left:2px; width:calc(var(--h) - 4px); height:calc(var(--h) - 4px); border-radius:50%; background:#fff; display:block; box-shadow:0 1px 2px rgba(0,0,0,.25); border:1px solid rgba(0,0,0,.06); transition: transform 120ms cubic-bezier(.2,.7,.2,1) }
+.ot-switch[data-checked="true"] .knob{ transform: translateX(calc(var(--w) - var(--h))) }
+.ot-switch:focus-visible{ outline:none; box-shadow: var(--focus-ring), var(--focus-shadow); border-radius: 999px; }
+
+.ot-audio-toggle{ display:flex; align-items:center; gap:.5rem }
+.ot-audio-label{ font-size:12px; opacity:.9; min-width:3.5rem }
+
+/* ===== REC controls ===== */
+.ot-recbar{ display:flex; align-items:center; gap:.6rem; flex-wrap:wrap }
+.ot-btn-rec, .ot-btn-stop{ display:inline-flex; align-items:center; gap:.5rem; height:40px; padding:0 1rem; border-radius:12px; font-weight:700; user-select:none; cursor:pointer; transition: background-color 120ms, color 120ms, filter 120ms }
+/* 録音前：白地＋赤アウトライン／点滅なし */
+.ot-btn-rec--idle{ background:#fff; color:var(--danger); box-shadow: inset 0 0 0 2px var(--danger) }
+.ot-btn-rec--idle .dot{ width:10px; height:10px; border-radius:50%; background:var(--danger) }
+/* 録音中：赤塗り＋白文字／ドットのみ点滅 */
+.ot-btn-rec--active{ background:var(--danger); color:#fff; box-shadow: inset 0 0 0 2px var(--danger) }
+.ot-btn-rec--active .dot{ width:10px; height:10px; border-radius:50%; background:#fff; animation: rec-blink 1s infinite }
+@keyframes rec-blink{ 0%,100%{opacity:.28} 50%{opacity:1} }
+/* Stopはニュートラル */
+.ot-btn-stop{ background:#fff; color:var(--foreground); box-shadow: inset 0 0 0 1px var(--line) }
+/* prefers-color-scheme: dark で Stop の文字色を濃色にして可読性を上げる */
+@media (prefers-color-scheme: dark){
+  .ot-btn-stop{ color:#111827; }
+  .ot-btn-stop:disabled{ color:#6b7280; } /* 念のため */
+}
+.ot-btn-rec:focus-visible, .ot-btn-stop:focus-visible{ outline:none; box-shadow: var(--focus-ring), var(--focus-shadow); border-radius: 999px; }
+.ot-rec-label{ display:flex; align-items:center; gap:.4rem; font-weight:600 }
+.ot-rec-pill{ height:26px; padding:0 .55rem; border-radius:999px; font-size:12px; box-shadow: inset 0 0 0 1px var(--line) }
+
+/* 見出し右側にインラインで配置 */
+.ot-analyze-head{ display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:8px }
+.ot-audio-inline{ display:flex; align-items:center; gap:1rem }
+.ot-audio-ctrl{ display:flex; flex-direction:column; align-items:center; justify-content:center; row-gap:4px; height:44px }
+.ot-audio-ctrl input[type=range]{ display:block }
+.ot-audio-label{ font-size:11px; opacity:.85; display:flex; align-items:center; justify-content:center; height:20px; line-height:20px; margin:0; padding:0 }
+
+.ot-chip-status{ display:inline-flex; align-items:center; gap:.35rem; height:26px; padding:0 .5rem; border-radius:999px; font-size:12px; box-shadow: inset 0 0 0 1px var(--line) }
+.ot-chip-status[data-state="ready"]{ background: rgba(18,184,134,.1) }
+.ot-chip-status[data-state="denied"]{ background: rgba(224,49,49,.08) }
+
+/* Sections layout (Result / Tools) */
+.ot-section{ display:flex; flex-direction:column; gap:.9rem }
+.ot-section-title{ font-size:18px; font-weight:700 }
+.ot-section-head{ display:flex; align-items:center; justify-content:space-between }
+.ot-block{ display:flex; flex-direction:column; gap:.5rem }
+.ot-section + .ot-section { margin-top: .9rem }
+@media (max-width: 480px){ .ot-section + .ot-section { margin-top: .7rem } }
+
+.fret-dot--form{ width:18px; height:18px; border-radius:9999px; background:var(--form-dot-fill); outline:2px solid var(--form-dot-ring); outline-offset:1px; transform:translate(-50%, -50%); box-shadow:none !important; }

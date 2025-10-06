@@ -2,5 +2,7 @@
 # macOS
 .DS_Store
 docs/.DS_Store
-# nested repo
-ototheory-web/
+
+# Large audio files (iOS only, not needed in repo)
+*.sf2
+*.sf3

@@ -1,0 +1,113 @@
+// Roman numeral utilities for chord degree display
+// Mode and functions are intentionally minimal and self-contained.
+
+import { PITCHES, noteToPc } from "../theory";
+
+export type Mode = "major" | "minor";
+
+// Ionian/Aeolian degree maps → roman index
+const DEGREE_TO_INDEX_MAJOR: Record<number, number> = {
+  0: 0, // I
+  2: 1, // ii
+  4: 2, // iii
+  5: 3, // IV
+  7: 4, // V
+  9: 5, // vi
+  11: 6, // vii°
+};
+
+const DEGREE_TO_INDEX_MINOR: Record<number, number> = {
+  0: 0,  // i
+  2: 1,  // ii°
+  3: 2,  // III
+  5: 3,  // iv
+  7: 4,  // v
+  8: 5,  // VI
+  10: 6, // VII
+};
+
+export const ROMAN_NUMERALS_MAJOR = ["I", "ii", "iii", "IV", "V", "vi", "vii°"] as const;
+export const ROMAN_NUMERALS_MINOR = ["i", "ii°", "III", "iv", "v", "VI", "VII"] as const;
+
+function isMaj7(sym: string): boolean {
+  return /maj7|M7/.test(sym);
+}
+
+function hasGeneric7(sym: string): boolean {
+  // append "7" for dominant/mi7 etc. but avoid maj7 and m7b5/dim7
+  if (isMaj7(sym)) return false;
+  if (/m7b5|ø|dim7/.test(sym)) return false;
+  return /(\b|[^a-zA-Z])7(?![b#0-9])/i.test(sym) || /\bm7\b/i.test(sym);
+}
+
+function normalizePcName(input: string): string {
+  const pc = noteToPc(input);
+  return PITCHES[pc] ?? input;
+}
+
+type RomanOptions = {
+  showQuality?: boolean; // append M7/7 markers
+  accidentalsForNonDiatonic?: boolean; // prefer bII/#iv instead of (F#)
+  uppercase?: boolean; // force uppercase numerals
+};
+
+export function toRoman(chordSym: string, keyRoot: string, mode: Mode, opts: RomanOptions = {}): string {
+  // Default: prefer diatonic mapping; only use accidentals when明示
+  const { showQuality = true, accidentalsForNonDiatonic = false } = opts;
+  if (!chordSym || !keyRoot) return "";
+  const keyPc = noteToPc(keyRoot);
+
+  // Parse root (head of symbol, before slash)
+  const head = chordSym.split("/")[0];
+  const m = head.match(/^([A-G](?:#|b)?)(.*)$/i);
+  if (!m) return chordSym;
+  const chordRoot = normalizePcName(m[1].toUpperCase());
+  const rest = (m[2] || "");
+
+  const deg = (noteToPc(chordRoot) - keyPc + 12) % 12;
+
+  const degreeTable = mode === "major" ? DEGREE_TO_INDEX_MAJOR : DEGREE_TO_INDEX_MINOR;
+  const romanBase = mode === "major" ? ROMAN_NUMERALS_MAJOR : ROMAN_NUMERALS_MINOR;
+  const romanUpper = ["I","II","III","IV","V","VI","VII"] as const;
+  const idx = degreeTable[deg as keyof typeof degreeTable] as number | undefined;
+
+  if (idx !== undefined) {
+    let roman = (opts.uppercase ? romanUpper[idx] : romanBase[idx]) as string;
+    // preserve diminished mark when forcing uppercase
+    if (opts.uppercase) {
+      if ((mode === "major" && idx === 6) || (mode === "minor" && idx === 1)) {
+        roman += "°";
+      }
+    }
+    if (!showQuality) return roman;
+    if (isMaj7(rest)) return roman + "M7";
+    if (hasGeneric7(rest)) return roman + "7";
+    return roman;
+  }
+
+  // Try single-step accidentals (# or b) relative to scale degrees
+  if (accidentalsForNonDiatonic) {
+    const scale = mode === "major" ? [0,2,4,5,7,9,11] : [0,2,3,5,7,8,10];
+    for (let j = 0; j < scale.length; j++) {
+      const s = scale[j];
+      if ((s + 1) % 12 === deg) {
+        return "#" + romanBase[j];
+      }
+      if ((s + 11) % 12 === deg) { // s - 1
+        return "b" + romanBase[j];
+      }
+    }
+  }
+  // Fallback: actual root
+  return `(${chordRoot})`;
+}
+
+export function progressionToRoman(
+  chords: string[],
+  keyRoot: string,
+  mode: Mode
+): string[] {
+  return chords.map((c) => toRoman(c, keyRoot, mode));
+}
+
+
