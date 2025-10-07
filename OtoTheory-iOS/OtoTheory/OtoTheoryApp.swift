@@ -9,6 +9,10 @@ import SwiftUI
 
 @main
 struct OtoTheoryApp: App {
+    init() {
+        audioTrace("BOOT mark — app did launch")
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

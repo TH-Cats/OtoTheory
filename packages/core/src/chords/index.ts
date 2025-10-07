@@ -4,6 +4,7 @@
  */
 
 export * from './types';
+import { getDiatonicChordSymbols } from '../theory/diatonic';
 
 /**
  * 簡易コードパーサー（iOS Bridge用）
@@ -25,17 +26,11 @@ export function parseChord(symbol: string): { root: string; quality: string; bas
 }
 
 /**
- * ダイアトニックコード生成（簡易版）
+ * ダイアトニックコード生成
  * @param key キー（例: "C"）
- * @param scale スケール（例: "ionian"）
+ * @param scale スケール（例: "ionian", "major", "dorian"）
  */
 export function getDiatonicChords(key: string, scale: string): string[] {
-  // 簡易実装: C Ionian の場合
-  if (key === 'C' && scale === 'ionian') {
-    return ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'Bdim'];
-  }
-  
-  // TODO: 他のキー・スケールに対応
-  return [];
+  return getDiatonicChordSymbols(key, scale);
 }
 

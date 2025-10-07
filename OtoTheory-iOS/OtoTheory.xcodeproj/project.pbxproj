@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EDE222372E91490100C1D4EA /* ototheory-core.js in Resources */ = {isa = PBXBuildFile; fileRef = EDE222362E91490100C1D4EA /* ototheory-core.js */; };
+		EDE222512E91E3F800C1D4EA /* FluidR3_GM.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = EDE222502E91E3F800C1D4EA /* FluidR3_GM.sf2 */; };
+		EDE222552E92656600C1D4EA /* AudioTrace.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE222542E92655700C1D4EA /* AudioTrace.swift.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		EDE23A832E90E7E00055D129 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +30,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EDE222362E91490100C1D4EA /* ototheory-core.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "ototheory-core.js"; path = "../ototheory-ios-resources/ototheory-core.js"; sourceTree = "<group>"; };
+		EDE222502E91E3F800C1D4EA /* FluidR3_GM.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = FluidR3_GM.sf2; sourceTree = "<group>"; };
+		EDE222542E92655700C1D4EA /* AudioTrace.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTrace.swift.swift; sourceTree = "<group>"; };
 		EDE23A752E90E7DF0055D129 /* OtoTheory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OtoTheory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE23A822E90E7E00055D129 /* OtoTheoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OtoTheoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE23A8C2E90E7E00055D129 /* OtoTheoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OtoTheoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +84,9 @@
 		EDE23A6C2E90E7DF0055D129 = {
 			isa = PBXGroup;
 			children = (
+				EDE222542E92655700C1D4EA /* AudioTrace.swift.swift */,
+				EDE222502E91E3F800C1D4EA /* FluidR3_GM.sf2 */,
+				EDE222362E91490100C1D4EA /* ototheory-core.js */,
 				EDE23A772E90E7DF0055D129 /* OtoTheory */,
 				EDE23A852E90E7E00055D129 /* OtoTheoryTests */,
 				EDE23A8F2E90E7E00055D129 /* OtoTheoryUITests */,
@@ -212,6 +224,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDE222372E91490100C1D4EA /* ototheory-core.js in Resources */,
+				EDE222512E91E3F800C1D4EA /* FluidR3_GM.sf2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDE222552E92656600C1D4EA /* AudioTrace.swift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +410,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6NPLMPKFJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -422,6 +438,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X6NPLMPKFJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
