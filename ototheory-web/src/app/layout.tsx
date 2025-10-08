@@ -65,6 +65,8 @@ export default function RootLayout({
             <nav className="flex items-center justify-center gap-3 flex-wrap">
               <Link href="/privacy" className="hover:underline">Privacy</Link>
               <span>•</span>
+              <Link href="/terms" className="hover:underline">Terms</Link>
+              <span>•</span>
               <Link href="/faq" className="hover:underline">FAQ</Link>
               <span>•</span>
               <a href="mailto:support@ototheory.com" className="hover:underline">support@ototheory.com</a>
