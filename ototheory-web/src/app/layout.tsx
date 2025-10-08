@@ -63,6 +63,8 @@ export default function RootLayout({
           <div className="container space-y-3">
             <FooterCta />
             <nav className="flex items-center justify-center gap-3 flex-wrap">
+              <Link href="/about" className="hover:underline">About</Link>
+              <span>•</span>
               <Link href="/privacy" className="hover:underline">Privacy</Link>
               <span>•</span>
               <Link href="/terms" className="hover:underline">Terms</Link>
