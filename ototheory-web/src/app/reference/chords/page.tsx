@@ -7,7 +7,7 @@ export default function ChordReferencePage() {
     'Csus4','Dsus4','Asus4','Asus2'
   ];
   return (
-    <div className="flex flex-col gap-6">
+    <div className="ot-page ot-stack">
       <h1 className="text-xl font-semibold">Chord Reference</h1>
       <nav className="text-sm opacity-80">
         <a href="#cadences" className="underline">Cadences</a>
