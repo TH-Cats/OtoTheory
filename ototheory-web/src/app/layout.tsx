@@ -60,8 +60,13 @@ export default function RootLayout({
           {children}
         </main>
         <footer className="mt-16 py-8 text-center text-xs text-black/60 dark:text-white/60 border-t border-black/10 dark:border-white/10">
-          <div className="container">
+          <div className="container space-y-3">
             <FooterCta />
+            <nav className="flex items-center justify-center gap-3 flex-wrap">
+              <Link href="/privacy" className="hover:underline">Privacy</Link>
+              <span>•</span>
+              <a href="mailto:support@ototheory.com" className="hover:underline">support@ototheory.com</a>
+            </nav>
             <div>© {new Date().getFullYear()} OtoTheory</div>
           </div>
         </footer>
