@@ -11,7 +11,7 @@
 
 # 料金プラン
 
-OtoTheoryは、無料で始められます。  
+OtoTheoryは、基本機能のみのご利用は無料です。 
 より高度な機能が必要な場合は、Pro版をご利用ください。
 
 ---
@@ -27,6 +27,7 @@ OtoTheoryは、無料で始められます。
 - ✅ **ビジュアルフレットボード** - スケールとコードの2層表示
 - ✅ **カポ提案** - Top2のカポ位置を提案
 - ✅ **コード進行作成** - 最大12コード
+- ✅ **コード選択** - 基本コード（メジャー、マイナー、7thなど）
 - ✅ **20種のプリセット** - 定番の進行パターン
 - ✅ **自動再生** - 作成した進行を即座に試聴
 
@@ -47,6 +48,7 @@ OtoTheoryは、無料で始められます。
 #### Free版のすべて ＋ 以下の機能
 
 #### プロ機能
+- ⭐ **高度なコード選択** - テンション、オンコード（分数コード）など複雑なコード
 - ⭐ **50種のプリセット** - Free 20種 ＋ Pro限定 30種
 - ⭐ **セクション編集** - Verse/Chorus/Bridge など、楽曲構成を管理
 - ⭐ **MIDI出力** - コードトラック・セクションマーカー・ガイドトーン付き
@@ -69,6 +71,7 @@ OtoTheoryは、無料で始められます。
 | **ビジュアルフレットボード** | ✅ | ✅ |
 | **カポ提案（Top2）** | ✅ | ✅ |
 | **コード進行作成** | 最大12コード | 最大12コード |
+| **コード選択** | 基本コードのみ | **複雑なコード・オンコード** |
 | **プリセットパターン** | 20種 | **50種** |
 | **セクション編集** | ❌ | **✅** |
 | **スケッチ保存** | 3件（ローカル） | **無制限（クラウド）** |
@@ -197,6 +200,7 @@ Upgrade to Pro when you need more advanced features.
 - ✅ **Visual Fretboard** - Two-layer display (scales + chords)
 - ✅ **Capo Suggestions** - Top 2 capo positions
 - ✅ **Build Progressions** - Up to 12 chords
+- ✅ **Chord Selection** - Basic chords (major, minor, 7th, etc.)
 - ✅ **20 Presets** - Common progression patterns
 - ✅ **Auto-playback** - Hear your progressions instantly
 
@@ -217,6 +221,7 @@ Upgrade to Pro when you need more advanced features.
 #### Everything in Free ＋ These Features
 
 #### Pro Features
+- ⭐ **Advanced Chord Selection** - Tensions, slash chords (e.g., C/G), and complex voicings
 - ⭐ **50 Presets** - Free 20 + Pro-exclusive 30
 - ⭐ **Section Editing** - Organize Verse/Chorus/Bridge structures
 - ⭐ **MIDI Export** - Chord tracks, section markers, and guide tones
@@ -239,6 +244,7 @@ Upgrade to Pro when you need more advanced features.
 | **Visual Fretboard** | ✅ | ✅ |
 | **Capo Suggestions (Top 2)** | ✅ | ✅ |
 | **Build Progressions** | Up to 12 chords | Up to 12 chords |
+| **Chord Selection** | Basic chords only | **Complex & slash chords** |
 | **Preset Patterns** | 20 | **50** |
 | **Section Editing** | ❌ | **✅** |
 | **Sketch Saves** | 3 (local) | **Unlimited (cloud)** |
