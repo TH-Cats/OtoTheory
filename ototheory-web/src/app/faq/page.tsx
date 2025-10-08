@@ -1,0 +1,70 @@
+export default function FaqPage() {
+  const faqs = [
+    {
+      question: "How do I cancel my subscription?",
+      answer: "Go to Apple ID > Subscriptions > OtoTheory and cancel from there. Your subscription will remain active until the end of the current billing period."
+    },
+    {
+      question: "How do I delete my account?",
+      answer: "In the app, go to Settings > Delete Account. Your account and all cloud data will be permanently deleted within 30 days."
+    },
+    {
+      question: "How long is my data retained?",
+      answer: "Sketches are kept until you delete your account. Usage logs and diagnostic data are kept for 90 days and then deleted or anonymized."
+    },
+    {
+      question: "What is the difference between Shaped and Sounding?",
+      answer: "Sounding shows the actual pitches you hear. Shaped shows the chord shapes you play with a capo. For example, with Capo 3, an Am shape sounds as Cm."
+    },
+    {
+      question: "Can I export my progressions?",
+      answer: "Yes! You can export as PNG images. Pro users can also export MIDI files with chord symbols, markers, and guide tones."
+    },
+    {
+      question: "What does the 7-day free trial include?",
+      answer: "The free trial gives you full access to all Pro features: unlimited cloud saves, MIDI export, and section editing. You can cancel anytime during the trial period."
+    },
+    {
+      question: "How is key detection performed?",
+      answer: "Our algorithm analyzes the pitch class profile (PCP) of your recording and compares it against major and minor key templates using correlation scoring."
+    },
+    {
+      question: "Why use a capo?",
+      answer: "A capo helps you: adjust vocal range, use more open strings for richer sound, and make chord shapes easier to play. Keys like C, G, D, A, and E are guitar-friendly."
+    },
+    {
+      question: "Can I use OtoTheory offline?",
+      answer: "Yes! Core features work offline. Cloud sync and account features require an internet connection."
+    },
+    {
+      question: "How do I contact support?",
+      answer: "Email us at support@ototheory.com. We typically respond within 2 business days."
+    }
+  ];
+
+  return (
+    <div className="ot-page ot-stack">
+      <h1 className="text-2xl font-semibold">Frequently Asked Questions</h1>
+      
+      <section className="space-y-4">
+        {faqs.map((faq, index) => (
+          <div key={index} className="ot-card">
+            <h2 className="font-semibold mb-2">{faq.question}</h2>
+            <p className="text-sm leading-relaxed opacity-90">{faq.answer}</p>
+          </div>
+        ))}
+      </section>
+
+      <div className="ot-card text-center">
+        <p className="text-sm mb-2">Still have questions?</p>
+        <a 
+          href="mailto:support@ototheory.com" 
+          className="text-sm underline hover:no-underline"
+        >
+          Contact us at support@ototheory.com
+        </a>
+      </div>
+    </div>
+  );
+}
+
