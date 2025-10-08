@@ -11,7 +11,7 @@
 **タイトル**: OtoTheory — 音楽理論を、もっと気軽に
 
 **サブタイトル**:  
-ギタリストのための音楽理論ツール。  
+ギタリストのための音楽理論を活用した作曲を支援するツール。制作をしながら理論を学ぶこともできます。 
 コード、進行、キー、スケールを視覚的に理解し、  
 難しい理論書とにらめっこすることなく、すぐに演奏に活かせます。
 
@@ -25,7 +25,7 @@ OtoTheoryは、ギタリストのために設計された実用的な音楽理�
 - はじめてコード進行を学ぶとき
 - オリジナル曲を作曲したいとき
 - どのコードが一緒に使えるか知りたいとき
-- 適切なカポの位置がわからないとき
+- メロディやソロで使える音を知りたいとき
 
 OtoTheoryは、インタラクティブなギターフレットボード、自動コード提案、スマートなカポ推奨機能で、すぐに答えを見つけられます。
 
@@ -63,13 +63,13 @@ OtoTheoryは、インタラクティブなギターフレットボード、自�
 理論書を暗記せずに、どのコードが一緒に使えるかを学べます。
 
 ### ✍️ 作曲家・ソングライター
-進行を素早く試し、新鮮なコードの組み合わせを発見できます。
+進行を素早く試し、新鮮なコードの組み合わせを発見できます。また、どの音を使えばコードにマッチしやすのかが視覚的にわかります。
 
 ### 🎓 独学で学ぶ方
 インタラクティブな視覚化を通じて、実践的な理論を理解できます。
 
 ### 🎸 すべてのレベルのギタリスト
-「次はどのコード？」「カポはどこに置けばいい？」という疑問に即答。
+「次はどのコード？」「どの音でソロを弾けばいい？」という疑問に即答。
 
 ---
 
@@ -141,5 +141,128 @@ OtoTheoryは、「音楽を作りたい」という想いと、「何から始�
 
 ---
 
-**次のステップ**: このドキュメントをブラッシュアップしてから、英語版を作成し、最終的に `/app/about/page.tsx` として実装
+## 🇬🇧 English Version
+
+# About Page Content Draft
+
+**Created**: 2025-10-08  
+**Status**: Draft - In progress  
+**Purpose**: Content for ototheory.com/about page
+
+---
+
+## Section 1: Headline
+
+**Title**: OtoTheory — Use Theory Without Tears
+
+**Subtitle**:  
+A music theory-powered composition tool for guitarists.  
+Learn theory while you create.  
+Understand chords, progressions, keys, and scales visually,  
+without struggling through dense theory books.
+
+---
+
+## Section 2: What is OtoTheory?
+
+OtoTheory is a practical music theory tool designed specifically for guitarists.
+
+**Use it when you want to**:
+- Learn your first chord progressions
+- Compose original songs
+- Find out which chords work together
+- Discover which notes to use for melodies and solos
+
+OtoTheory provides instant answers with interactive guitar fretboards, automatic chord suggestions, and smart capo recommendations.
+
+No music theory degree required.  
+Just bring your curiosity and your guitar.
+
+---
+
+## Section 3: Key Features
+
+### 🎸 Find Chords from Key & Scale
+Enter any key and scale to instantly see which chords work together.  
+Visualized on guitar fretboard with both open and barre forms.
+
+### 🎵 Build Chord Progressions
+Create and listen to progressions with automatic playback.  
+Choose from 20+ preset patterns (Free) or 50+ with Pro.
+
+### 🎯 Capo Suggestions
+Get smart capo recommendations that make difficult keys easier to play.  
+See both "Shaped" (what you finger) and "Sounding" (what you hear) notation.
+
+### 🎨 Visual Fretboard Overlay
+Two-layer display shows scales (outline) and chords (filled) simultaneously.  
+Toggle between note names and scale degrees.
+
+### 📤 Export & Share
+Export progressions as PNG images (Free) or MIDI files with chord tracks, section markers, and guide tones (Pro).
+
+---
+
+## Section 4: Who is it for?
+
+### 📚 Beginners
+Learn which chords belong together without memorizing theory books.
+
+### ✍️ Songwriters & Composers
+Experiment with progressions quickly and discover fresh chord combinations. Visualize which notes match your chords for better melodies and solos.
+
+### 🎓 Self-learners
+Understand practical theory concepts through interactive visualization.
+
+### 🎸 Guitarists of All Levels
+Get instant answers to "What chord comes next?" and "Which notes should I use for my solo?"
+
+---
+
+## Section 5: Our Philosophy
+
+Music theory should be a tool, not a barrier.
+
+We believe that understanding keys, scales, and chord progressions shouldn't require years of formal training.
+
+OtoTheory was created to bridge the gap between "I want to create music" and "I don't know where to start."
+
+Our goal is simple:  
+Help you make music with confidence, whether you're writing your first song or your hundredth.
+
+---
+
+## Section 6: Free vs Pro
+
+### 🆓 Free (Web & iOS)
+- Find chords from any key/scale
+- Build progressions (up to 12 chords)
+- 20 preset patterns
+- PNG export
+- 3 saved sketches (local)
+
+### 💎 Pro (iOS, ¥490/month)
+- 50 preset patterns
+- Section editing (Verse/Chorus/Bridge)
+- MIDI export with chord tracks & markers
+- Unlimited cloud-saved sketches
+- 7-day free trial
+
+→ Learn more on the [Pricing page](/pricing)
+
+---
+
+## Section 7: Get Started
+
+Ready to explore?
+
+### 🌐 Try it now on the web (free, no signup required)
+[Open Chord Progression tool](/find-key)
+
+### 📱 Get the full experience on iOS
+[Download on App Store] (link)
+
+---
+
+**Next Step**: After finalizing this draft, implement as `/app/about/page.tsx`
 
