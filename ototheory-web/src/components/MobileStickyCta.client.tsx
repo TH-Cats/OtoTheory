@@ -66,13 +66,12 @@ export default function MobileStickyCta() {
           <div className="text-xs text-white/60 truncate">{CTA_MESSAGES.sticky.subtitle}</div>
         </div>
         <a
-          href={APP_STORE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-shrink-0 px-4 py-2 text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+          href="/ios-coming-soon"
+          className="flex-shrink-0 px-3 py-2 text-xs font-medium bg-gradient-to-r from-purple-600 to-blue-600 hover:opacity-90 text-white rounded-lg transition-opacity relative"
           onClick={handleClick}
         >
-          {CTA_MESSAGES.sticky.button}
+          <span className="block">{CTA_MESSAGES.sticky.button}</span>
+          <span className="block text-[10px] font-bold text-yellow-400">Soon</span>
         </a>
         <button
           onClick={handleDismiss}

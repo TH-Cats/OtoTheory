@@ -1,26 +1,24 @@
 "use client";
+import Link from 'next/link';
 import AppleIcon from '@/components/ui/AppleIcon';
-import { useCtaTracking } from '@/hooks/useCtaTracking';
-import { APP_STORE_URL, CTA_MESSAGES } from '@/lib/constants/cta';
+import { CTA_MESSAGES } from '@/lib/constants/cta';
 
 /**
  * M3.5: Header CTA component (desktop only)
- * Displays App Store link in the header navigation
+ * Displays iOS Coming Soon link in the header navigation
  */
 export default function HeaderCta() {
-  const { trackClick } = useCtaTracking();
-
   return (
-    <a
-      href={APP_STORE_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors"
-      onClick={() => trackClick('header')}
+    <Link
+      href="/ios-coming-soon"
+      className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-gradient-to-r from-purple-600 to-blue-600 hover:opacity-90 text-white rounded-md transition-opacity relative"
     >
       <AppleIcon className="w-3.5 h-3.5" />
-      {CTA_MESSAGES.header}
-    </a>
+      <span>{CTA_MESSAGES.header}</span>
+      <span className="ml-1 px-1.5 py-0.5 text-[10px] font-bold bg-yellow-400 text-black rounded">
+        Soon
+      </span>
+    </Link>
   );
 }
 
