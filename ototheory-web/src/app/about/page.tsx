@@ -156,6 +156,14 @@ export default function AboutPage() {
             </ul>
           </div>
         </div>
+        <div className="text-center mt-4">
+          <Link 
+            href="/pricing" 
+            className="inline-block text-sm underline hover:no-underline"
+          >
+            View detailed pricing comparison →
+          </Link>
+        </div>
       </section>
 
       {/* Get Started */}
