@@ -169,6 +169,14 @@ export default function AboutPage() {
       {/* Get Started */}
       <section className="ot-card text-center">
         <h2 className="text-xl font-semibold mb-4">Ready to explore?</h2>
+        <div className="mb-4">
+          <Link 
+            href="/getting-started" 
+            className="inline-block text-sm underline hover:no-underline mb-3"
+          >
+            📖 Read Getting Started Guide →
+          </Link>
+        </div>
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
           <Link 
             href="/find-key" 
@@ -176,14 +184,17 @@ export default function AboutPage() {
           >
             🌐 Try it now on the web
           </Link>
-          <a 
-            href="https://apps.apple.com/app/ototheory" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 rounded-lg border-2 border-black/20 dark:border-white/20 font-semibold hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-          >
-            📱 Download on iOS
-          </a>
+          <div className="relative">
+            <button 
+              disabled
+              className="px-6 py-3 rounded-lg border-2 border-black/20 dark:border-white/20 font-semibold opacity-50 cursor-not-allowed"
+            >
+              📱 Download iOS App
+            </button>
+            <span className="absolute -top-2 -right-2 px-2 py-0.5 text-xs font-bold bg-yellow-400 text-black rounded-full">
+              Coming Soon
+            </span>
+          </div>
         </div>
         <p className="text-sm opacity-70 mt-4">Free, no signup required for web version</p>
       </section>

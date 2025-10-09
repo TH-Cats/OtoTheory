@@ -362,7 +362,7 @@ export default function FindKeyPage() {
         message: '8+ chords recommended for better accuracy. Want unlimited? Get iOS Pro!',
         type: 'info',
         ctaText: 'Get Pro',
-        ctaHref: 'https://apps.apple.com/app/ototheory',
+        ctaHref: '/ios-coming-soon',
         ctaPlace: 'limit_toast'
       });
       trackToast('limit_warn', { page: 'chord_progression', chordCount: filledCount });
@@ -372,7 +372,7 @@ export default function FindKeyPage() {
         message: '12 chord limit reached (Web Lite). Upgrade to iOS Pro for unlimited!',
         type: 'warning',
         ctaText: 'Get Pro',
-        ctaHref: 'https://apps.apple.com/app/ototheory',
+        ctaHref: '/ios-coming-soon',
         ctaPlace: 'limit_toast'
       });
       trackToast('limit_block', { page: 'chord_progression', chordCount: filledCount });
@@ -418,7 +418,7 @@ export default function FindKeyPage() {
           message: 'PNG exported! Want MIDI export? Get iOS Pro for full DAW integration!',
           type: 'success',
           ctaText: 'Get Pro',
-          ctaHref: 'https://apps.apple.com/app/ototheory',
+          ctaHref: '/ios-coming-soon',
           ctaPlace: 'png_toast'
         });
         toastShownRef.current.add('png_export');
@@ -444,7 +444,7 @@ export default function FindKeyPage() {
             message: '3 sketch limit reached! Delete a sketch or upgrade to iOS Pro for unlimited sketches.',
             type: 'warning',
             ctaText: 'Get Pro',
-            ctaHref: 'https://apps.apple.com/app/ototheory',
+            ctaHref: '/ios-coming-soon',
             ctaPlace: 'limit_toast'
           });
           trackToast('limit_block', { page: 'chord_progression', context: 'sketch_limit' });

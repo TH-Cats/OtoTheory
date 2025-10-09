@@ -115,14 +115,17 @@ export default function PricingPage() {
             </div>
           </div>
 
-          <a 
-            href="https://apps.apple.com/app/ototheory" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full text-center px-4 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold hover:opacity-90 transition-opacity"
-          >
-            Download on iOS
-          </a>
+          <div className="relative">
+            <button 
+              disabled
+              className="block w-full text-center px-4 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold opacity-50 cursor-not-allowed"
+            >
+              Download on iOS
+            </button>
+            <span className="absolute -top-2 -right-2 px-2 py-0.5 text-xs font-bold bg-yellow-400 text-black rounded-full">
+              Coming Soon
+            </span>
+          </div>
         </div>
       </section>
 
@@ -220,14 +223,17 @@ export default function PricingPage() {
             <li>✓ Cancel at least 24 hours before trial ends to avoid any charges</li>
           </ul>
         </div>
-        <a 
-          href="https://apps.apple.com/app/ototheory" 
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold hover:opacity-90 transition-opacity"
-        >
-          Start Free Trial
-        </a>
+        <div className="relative inline-block">
+          <button 
+            disabled
+            className="px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold opacity-50 cursor-not-allowed"
+          >
+            Start Free Trial
+          </button>
+          <span className="absolute -top-2 -right-2 px-2 py-0.5 text-xs font-bold bg-yellow-400 text-black rounded-full whitespace-nowrap">
+            Coming Soon
+          </span>
+        </div>
       </section>
 
       {/* Which Plan */}
