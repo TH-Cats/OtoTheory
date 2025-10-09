@@ -21,38 +21,22 @@ OtoTheoryを使えば、音楽理論の知識がなくても、
 
 ## 🎯 3ステップで始めよう
 
-### ステップ1️⃣：キーとスケールを選ぶ
+### ステップ1️⃣：コード進行を作る
 
-**Chord Progressionページで、曲のキーとスケールを選びます。**
-
-1. メニューから「Chord Progression」をクリック
-2. 画面上部の**Key（キー）**を選択（例：C、G、Am など）
-3. **Scale（スケール）**を選択（例：Major、Natural Minor など）
-
-💡 **初心者へのヒント**：
-- わからない場合は「**C Major**」から始めてみましょう
-- Major（メジャー）は明るい曲、Minor（マイナー）は暗い曲に使います
-- キーとスケールはいつでも変更できます
-
-**🖼️ スクリーンショット挿入位置：キー・スケール選択画面**
-
----
-
-### ステップ2️⃣：コード進行を作る
-
-**プリセットから選ぶか、空の進行から作り始めます。**
+**Chord Progressionページで、プリセットから進行を作り始めます。**
 
 #### スタート方法
 
 **方法1：プリセットから始める（おすすめ）**
-1. 「Presets」セクションを開く
-2. 好きなパターンをタップ（例：「I - V - vi - IV」）
-3. 選んだキーで自動的にコードが挿入され、再生されます
+1. メニューから「Chord Progression」をクリック
+2. 「Presets」セクションを開く
+3. 好きなパターンをタップ（例：「I - V - vi - IV」）
+4. コードが挿入され、自動再生されます
 
 **方法2：空の進行から手動で作る**
-1. 「**+ Add**」ボタンをタップ
-2. 使えるコード一覧から選ぶ
-3. コードが追加され、自動再生されます
+1. メニューから「Chord Progression」をクリック
+2. 「**+ Add**」ボタンをタップ
+3. 好きなコードを選んで追加
 
 💡 **初心者へのヒント**：
 - まずはプリセット「**I - V - vi - IV**」を試してみましょう（定番の進行）
@@ -61,36 +45,61 @@ OtoTheoryを使えば、音楽理論の知識がなくても、
 
 **🖼️ スクリーンショット挿入位置：プリセット選択と進行エディタ**
 
-#### コードの追加方法
+#### Resultボタンでキー・スケール候補を表示
 
-**「+ Add」ボタンからコードを選ぶ**
-1. 進行エディタの「**+ Add**」ボタンをタップ
-2. 使えるコード一覧が表示されます
-   - **ダイアトニックコード**：そのキーで基本となるコード
-   - **その他のコード**：より複雑な響き（Pro版ではテンション、オンコードも）
-3. 好きなコードをタップ
-4. 進行に追加され、自動再生されます
+**作った進行に合うキーとスケールを自動で見つけます。**
 
-**Find Chordsページから探す**
-1. 「Find Chords」タブに切り替え
-2. キーとスケールを選択
-3. ダイアトニックコードやフレットボード表示で確認
-4. **+ Add to Progression** で進行に追加
+1. コード進行を作ったら、**「Result」ボタン**をタップ
+2. その進行に**適合度が高いキー・スケールの候補**が表示されます
+3. 複数の候補から選べます
 
-💡 **初心者へのヒント**：
-- ダイアトニックコードから選べば、自然な響きになります
-- コードをタップすると音が鳴るので、聴き比べてから選べます
-- わからない場合は、表示されているコードから順に試してみましょう
+💡 **ポイント**：
+- コード進行から自動的にキーを検出してくれます
+- 音楽理論の知識がなくても、適切なキー・スケールがわかります
 
-**🖼️ スクリーンショット挿入位置：コード追加メニューと選択画面**
+**🖼️ スクリーンショット挿入位置：Resultボタンとキー・スケール候補表示**
 
 ---
 
-### ステップ3️⃣：進行を編集・保存・出力する
+### ステップ2️⃣：キーとスケールを選ぶ
 
-**作った進行を調整したり、保存したり、共有したりします。**
+**候補の中から、曲に合ったキーとスケールを選択します。**
 
-#### 進行の編集
+#### キーの選択
+1. **Result**で表示されたキー候補の中から選ぶ
+2. 選んだキーによって、**スケールの選択肢が変化**します
+
+#### スケールの選択
+1. キーに応じたスケール候補から選ぶ
+2. Major（明るい）、Minor（暗い）などから選択
+
+💡 **ポイント**：
+- **適合度が高い順**に表示されています
+- わからない場合は、一番上に表示されているものを選びましょう
+
+#### フレットボード表示
+
+**キーとスケールを選ぶと、使える音が視覚的にわかります。**
+
+キーとスケールを選択すると：
+- **フレットボードにスケールの音が表示**されます
+- **どの音を選ぶと良いのか視覚的にわかります**
+- コード進行に合わせて、メロディやソロが作りやすくなります
+
+💡 **使いどころ**：
+- コード進行に合うメロディを考えるとき
+- ギターソロで使える音を探すとき
+- スケールの形を視覚的に覚えたいとき
+
+**🖼️ スクリーンショット挿入位置：キー・スケール選択とフレットボード表示**
+
+---
+
+### ステップ3️⃣：保存と出力
+
+**作った進行を保存したり、共有したりします。**
+
+#### 進行の編集（保存前に調整）
 - **ドラッグ&ドロップ**で並べ替え
 - コードをタップして削除
 - コードを長押しして置き換え
@@ -103,20 +112,21 @@ OtoTheoryを使えば、音楽理論の知識がなくても、
 
 #### 保存（Sketch）
 - **保存ボタン**でスケッチとして保存
+- **進行・キー・スケール・フレットボード表示をまとめて保存**
 - Free版：3つまでローカル保存
 - Pro版：無制限でクラウド保存
 
 #### 出力
 - **PNG画像**：進行を画像として保存（SNS共有などに）
-- **テキスト**：コード名をコピー＆ペースト
-- **MIDI**：DAWで編集可能（Pro版のみ）
+- **テキスト**：コード名・キー・スケール情報をコピー＆ペースト
+- **MIDI**：DAWで編集可能（Pro版のみ、コードトラック・マーカー付き）
 
 💡 **初心者へのヒント**：
 - 気に入った進行はすぐに保存しましょう
 - PNG出力で、バンドメンバーと共有できます
-- 何度も聴いて、雰囲気を確認してから保存しましょう
+- 保存したスケッチは後から開いて、続きを作れます
 
-**🖼️ スクリーンショット挿入位置：進行エディタ、保存・出力メニュー**
+**🖼️ スクリーンショット挿入位置：保存・出力メニュー**
 
 ---
 
@@ -238,38 +248,22 @@ This guide will walk you through the basics in 3 simple steps.
 
 ## 🎯 Get Started in 3 Steps
 
-### Step 1️⃣: Choose a Key and Scale
+### Step 1️⃣: Build a Chord Progression
 
-**On the Chord Progression page, select the key and scale for your song.**
-
-1. Click "Chord Progression" from the menu
-2. Select a **Key** at the top (e.g., C, G, Am, etc.)
-3. Select a **Scale** (e.g., Major, Natural Minor, etc.)
-
-💡 **Beginner Tip**:
-- If unsure, start with "**C Major**"
-- Major = bright/happy songs, Minor = dark/sad songs
-- You can change key and scale anytime
-
-**🖼️ Screenshot Position: Key & Scale Selection**
-
----
-
-### Step 2️⃣: Build a Chord Progression
-
-**Choose from presets or start from scratch.**
+**On the Chord Progression page, start building your progression from presets.**
 
 #### How to Start
 
 **Method 1: Use Presets (Recommended)**
-1. Open the "Presets" section
-2. Tap a pattern you like (e.g., "I - V - vi - IV")
-3. Chords are automatically inserted in your chosen key and played
+1. Click "Chord Progression" from the menu
+2. Open the "Presets" section
+3. Tap a pattern you like (e.g., "I - V - vi - IV")
+4. Chords are inserted and auto-play
 
 **Method 2: Build Manually**
-1. Tap the **+ Add** button
-2. Select from available chords
-3. Chord is added and auto-plays
+1. Click "Chord Progression" from the menu
+2. Tap the **+ Add** button
+3. Select and add chords you like
 
 💡 **Beginner Tip**:
 - Try the preset "**I - V - vi - IV**" first (very popular progression)
@@ -278,36 +272,61 @@ This guide will walk you through the basics in 3 simple steps.
 
 **🖼️ Screenshot Position: Preset Selection and Progression Editor**
 
-#### How to Add Chords
+#### Get Key & Scale Suggestions with Result Button
 
-**Use the "+ Add" Button**
-1. Tap the **+ Add** button in the progression editor
-2. Available chords are displayed
-   - **Diatonic Chords**: Core chords for your key
-   - **Other Chords**: More complex sounds (Pro includes tensions, slash chords)
-3. Tap your favorite chord
-4. It's added to progression and auto-plays
+**Automatically find keys and scales that fit your progression.**
 
-**Find from Find Chords Page**
-1. Switch to "Find Chords" tab
-2. Select key and scale
-3. View diatonic chords and fretboard display
-4. **+ Add to Progression** to add to your progression
+1. After creating your progression, tap the **"Result" button**
+2. **Key and scale candidates with high compatibility** are displayed
+3. Choose from multiple candidates
 
-💡 **Beginner Tip**:
-- Choosing from diatonic chords creates natural-sounding progressions
-- Tap chords to hear them before adding
-- If unsure, try chords in order and listen
+💡 **Key Point**:
+- Keys are automatically detected from your chord progression
+- No music theory knowledge needed to find the right key & scale
 
-**🖼️ Screenshot Position: Add Chord Menu and Selection Screen**
+**🖼️ Screenshot Position: Result Button and Key/Scale Candidates**
 
 ---
 
-### Step 3️⃣: Edit, Save & Export Progressions
+### Step 2️⃣: Choose a Key and Scale
 
-**Adjust your progression, save it, and share it.**
+**Select the key and scale that fits your song from the candidates.**
 
-#### Edit Progression
+#### Select a Key
+1. Choose from the key candidates shown in **Result**
+2. **Scale options change** based on the selected key
+
+#### Select a Scale
+1. Choose from scale candidates for your key
+2. Select Major (bright), Minor (dark), etc.
+
+💡 **Key Point**:
+- Displayed in **order of compatibility**
+- If unsure, choose the top candidate
+
+#### Fretboard Display
+
+**When you choose a key and scale, you can visually see which notes to use.**
+
+After selecting key and scale:
+- **Scale notes are displayed on the fretboard**
+- **You can visually see which notes work well**
+- Makes it easier to create melodies and solos that fit your chord progression
+
+💡 **When to Use**:
+- When creating melodies for your chord progression
+- When finding notes for guitar solos
+- When learning scale patterns visually
+
+**🖼️ Screenshot Position: Key/Scale Selection and Fretboard Display**
+
+---
+
+### Step 3️⃣: Save and Export
+
+**Save and share your progression.**
+
+#### Edit Progression (Before Saving)
 - **Drag & drop** to reorder
 - Tap a chord to delete
 - Long-press to replace
@@ -320,20 +339,21 @@ This guide will walk you through the basics in 3 simple steps.
 
 #### Save (Sketch)
 - **Save button** to save as sketch
+- **Saves progression, key, scale, and fretboard display together**
 - Free: Up to 3 local saves
 - Pro: Unlimited cloud saves
 
 #### Export
 - **PNG Image**: Save progression as image (for sharing on SNS)
-- **Text**: Copy & paste chord names
-- **MIDI**: Edit in DAW (Pro only)
+- **Text**: Copy & paste chord names, key, and scale info
+- **MIDI**: Edit in DAW (Pro only, with chord tracks & markers)
 
 💡 **Beginner Tip**:
 - Save progressions you like immediately
 - PNG export lets you share with band members
-- Listen repeatedly before saving
+- Saved sketches can be reopened to continue working
 
-**🖼️ Screenshot Position: Progression Editor, Save & Export Menu**
+**🖼️ Screenshot Position: Save & Export Menu**
 
 ---
 
