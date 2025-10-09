@@ -8,6 +8,8 @@ import AudioUnlocker from "./AudioUnlocker.client";
 import MobileStickyCta from "@/components/MobileStickyCta.client";
 import HeaderCta from "@/components/HeaderCta.client";
 import FooterCta from "@/components/FooterCta.client";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { GoogleTagManagerHead, GoogleTagManagerBody } from "@/components/GoogleTagManager";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,7 +45,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <GoogleTagManagerHead />
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <GoogleTagManagerBody />
         <AudioUnlocker />
         <MobileStickyCta />
         <ProProvider>
@@ -77,18 +81,7 @@ export default function RootLayout({
           </div>
         </footer>
 
-        {/* GA placeholder */}
-        {process.env.NEXT_PUBLIC_GA_ID ? (
-          <>
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}></script>
-            <script
-              id="ga-init"
-              dangerouslySetInnerHTML={{
-                __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');`,
-              }}
-            />
-          </>
-        ) : null}
+        <GoogleAnalytics />
         </ProProvider>
       </body>
     </html>
