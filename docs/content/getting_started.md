@@ -12,7 +12,8 @@
 # はじめてのOtoTheory
 
 OtoTheoryを使えば、音楽理論の知識がなくても、  
-すぐにコード進行を作ったり、使えるコードを見つけたりできます。
+すぐにコード進行を作ったり、コードに合わせて使える音を見つけたりできます。  
+使いながら自然と音楽理論も身に付くようになっています。
 
 このガイドでは、基本的な使い方を3つのステップで説明します。
 
@@ -20,74 +21,109 @@ OtoTheoryを使えば、音楽理論の知識がなくても、
 
 ## 🎯 3ステップで始めよう
 
-### ステップ1️⃣：キーとスケールを選ぶ
+### ステップ1️⃣：コード進行を始める
 
-**Find Chordsページで、作りたい曲のキーとスケールを選びます。**
+**Chord Progressionページで、進行を作り始めます。**
 
-1. メニューから「Find Chords」をクリック
-2. **Key（キー）** を選択（例：C、G、Amなど）
-3. **Scale（スケール）** を選択（例：Major、Natural Minorなど）
+#### スタート方法
+
+**方法1：プリセットから始める（おすすめ）**
+1. メニューから「Chord Progression」をクリック
+2. 「Presets」セクションを開く
+3. 好きなパターンをタップ（例：「I - V - vi - IV」）
+4. 自動的にコードが挿入され、再生されます
+
+**方法2：空の進行から始める**
+1. メニューから「Chord Progression」をクリック
+2. 空の状態から、好きなコードを追加していきます
 
 💡 **初心者へのヒント**：
-- わからない場合は「**C Major**」から始めてみましょう
-- Major（メジャー）は明るい曲、Minor（マイナー）は暗い曲に使います
+- まずはプリセット「**I - V - vi - IV**」を試してみましょう（定番の進行）
+- プリセットは20種類（Pro版は50種類）から選べます
+- すぐに音が鳴るので、どんな響きか確認できます
 
-**🖼️ スクリーンショット挿入位置：キー・スケール選択画面**
+**🖼️ スクリーンショット挿入位置：Chord Progressionページとプリセット選択**
 
 ---
 
-### ステップ2️⃣：使えるコードを確認する
+### ステップ2️⃣：コードを追加・変更する
 
-**選んだキー・スケールで使えるコードが自動的に表示されます。**
+**プリセットをカスタマイズしたり、新しいコードを追加したりします。**
 
-#### ダイアトニックコード
-- そのキー・スケールで「基本となるコード」が表示されます
-- 各コードをタップすると音が鳴ります
-- **+ Add**ボタンで進行に追加できます
+#### コードの追加方法
 
-#### フレットボード表示
-- ギターの指板上で、スケールの音（輪郭）とコードの音（塗り）が表示されます
-- **Degrees / Names** でトグル切り替え
-- **Reset** ボタンでコード表示をクリア
+**「+ Add」ボタンからコードを選ぶ**
+1. 進行エディタの「**+ Add**」ボタンをタップ
+2. 使えるコード一覧が表示されます
+   - **ダイアトニックコード**：そのキーで基本となるコード
+   - **その他のコード**：より複雑な響き（Pro版ではテンション、オンコードも）
+3. 好きなコードをタップ
+4. 進行に追加され、自動再生されます
+
+**Find Chordsページから探す**
+1. 「Find Chords」タブに切り替え
+2. キーとスケールを選択
+3. ダイアトニックコードやフレットボード表示で確認
+4. **+ Add to Progression** で進行に追加
 
 💡 **初心者へのヒント**：
-- まずはダイアトニックコードから選ぶのがおすすめ
-- コードをタップして、音を聴き比べてみましょう
+- ダイアトニックコードから選べば、自然な響きになります
+- コードをタップすると音が鳴るので、聴き比べてから選べます
+- わからない場合は、表示されているコードから順に試してみましょう
 
-**🖼️ スクリーンショット挿入位置：ダイアトニックコード表示とフレットボード**
+**🖼️ スクリーンショット挿入位置：コード追加メニューと選択画面**
 
 ---
 
-### ステップ3️⃣：コード進行を作る
+### ステップ3️⃣：進行を編集・保存・出力する
 
-**気に入ったコードを組み合わせて、進行を作ります。**
-
-#### 進行の作り方
-
-**方法1：プリセットから選ぶ**
-1. 「Presets」セクションを開く
-2. 好きなパターンをタップ（例：I - V - vi - IV）
-3. 自動的にコードが挿入され、再生されます
-
-**方法2：手動で追加する**
-1. ダイアトニックコードから好きなコードをタップ
-2. **+ Add**ボタンをタップ
-3. 進行に追加され、自動再生されます
+**作った進行を調整したり、保存したり、共有したりします。**
 
 #### 進行の編集
 - **ドラッグ&ドロップ**で並べ替え
 - コードをタップして削除
+- コードを長押しして置き換え
 - 最大12コードまで追加可能（Free版）
 
-💡 **初心者へのヒント**：
-- まずはプリセット「I - V - vi - IV」を試してみましょう（定番の進行）
-- コードを追加したら、自動で再生されるのでどんな響きか確認できます
+#### 再生コントロール
+- **再生ボタン**で進行をループ再生
+- **BPM**を調整して速さを変更
+- 自動ループで何度も聴いて確認
 
-**🖼️ スクリーンショット挿入位置：プリセット選択と進行エディタ**
+#### 保存（Sketch）
+- **保存ボタン**でスケッチとして保存
+- Free版：3つまでローカル保存
+- Pro版：無制限でクラウド保存
+
+#### 出力
+- **PNG画像**：進行を画像として保存（SNS共有などに）
+- **テキスト**：コード名をコピー＆ペースト
+- **MIDI**：DAWで編集可能（Pro版のみ）
+
+💡 **初心者へのヒント**：
+- 気に入った進行はすぐに保存しましょう
+- PNG出力で、バンドメンバーと共有できます
+- 何度も聴いて、雰囲気を確認してから保存しましょう
+
+**🖼️ スクリーンショット挿入位置：進行エディタ、保存・出力メニュー**
 
 ---
 
 ## 🎸 便利な機能
+
+### Find Chords（コード探索）
+
+**キーとスケールを選んで、使えるコードを詳しく調べられます。**
+
+1. 「Find Chords」タブをクリック
+2. キーとスケールを選択
+3. ダイアトニックコード、フレットボード表示、カポ提案が表示されます
+4. 気に入ったコードを **+ Add to Progression** で進行に追加
+
+💡 **使いどころ**：
+- どのコードが一緒に使えるか知りたいとき
+- フレットボードでコードの押さえ方を確認したいとき
+- スケールの音を視覚的に理解したいとき
 
 ### カポ提案（Capo Suggestions）
 
@@ -101,22 +137,7 @@ OtoTheoryを使えば、音楽理論の知識がなくても、
 - 難しいキー（例：D♭、F♯）を簡単な形（例：C、G）で弾きたいとき
 - オープンコードを使いたいとき
 
-**🖼️ スクリーンショット挿入位置：カポ提案表示**
-
----
-
-### 進行を保存・出力する
-
-#### 保存（Sketch）
-- **Free版**：3つまでローカル保存
-- **Pro版**：無制限でクラウド保存
-
-#### 出力
-- **PNG画像**：進行を画像として保存（Free版でも可能）
-- **テキスト**：コピー＆ペースト
-- **MIDI**：DAWで編集可能（Pro版のみ）
-
-**🖼️ スクリーンショット挿入位置：保存・出力メニュー**
+**🖼️ スクリーンショット挿入位置：Find Chordsページとカポ提案**
 
 ---
 
@@ -142,22 +163,25 @@ OtoTheoryを使えば、音楽理論の知識がなくても、
 ## 💡 おすすめの使い方
 
 ### 初心者の方
-1. **C Majorから始める**
-2. **プリセット「I - V - vi - IV」を試す**
-3. **コードの音を聴き比べる**
-4. **慣れてきたら他のキー・スケールを試す**
+1. **プリセット「I - V - vi - IV」から始める**
+2. **再生して響きを確認する**
+3. **1つずつコードを変えてみる**
+4. **気に入った進行を保存する**
+5. **慣れてきたら他のプリセットや、空の進行から作ってみる**
 
 ### 作曲する方
-1. **曲の雰囲気からキー・スケールを選ぶ**
-2. **ダイアトニックコードから進行を組み立てる**
-3. **カポを使って演奏しやすい形を見つける**
-4. **MIDIで出力してDAWで編集**（Pro版）
+1. **プリセットから近い雰囲気を選ぶ**
+2. **コードを追加・変更してカスタマイズ**
+3. **Find Chordsでダイアトニックコードを確認しながら進行を組み立てる**
+4. **セクション編集で曲構成を作る**（Pro版）
+5. **MIDIで出力してDAWで編集**（Pro版）
 
 ### 練習する方
-1. **好きな曲のキーを調べる**
-2. **そのキーのダイアトニックコードを確認**
-3. **フレットボード表示で押さえ方を学ぶ**
-4. **プリセットで定番の進行パターンを覚える**
+1. **好きな曲のコード進行を探す**
+2. **OtoTheoryで同じ進行を作ってみる**
+3. **プリセットで定番の進行パターンを覚える**
+4. **カポ提案で演奏しやすい形を見つける**
+5. **フレットボード表示で押さえ方を学ぶ**
 
 ---
 
@@ -182,7 +206,7 @@ OtoTheoryを使えば、音楽理論の知識がなくても、
 
 **さあ、早速試してみましょう！**
 
-🌐 [Web版を開く（無料）](/find-chords)  
+🌐 [Web版を開く（無料）](/find-key)  
 📱 [iOS版をダウンロード](https://apps.apple.com/app/ototheory)
 
 ---
@@ -193,8 +217,9 @@ OtoTheoryを使えば、音楽理論の知識がなくても、
 
 # Getting Started with OtoTheory
 
-With OtoTheory, you can create chord progressions and find usable chords  
-immediately, even without music theory knowledge.
+With OtoTheory, you can create chord progressions and find notes that fit your chords  
+immediately, even without music theory knowledge.  
+You'll naturally learn music theory as you use it.
 
 This guide will walk you through the basics in 3 simple steps.
 
@@ -202,74 +227,109 @@ This guide will walk you through the basics in 3 simple steps.
 
 ## 🎯 Get Started in 3 Steps
 
-### Step 1️⃣: Choose a Key and Scale
+### Step 1️⃣: Start a Chord Progression
 
-**On the Find Chords page, select the key and scale for your song.**
+**On the Chord Progression page, begin creating your progression.**
 
-1. Click "Find Chords" from the menu
-2. Select a **Key** (e.g., C, G, Am, etc.)
-3. Select a **Scale** (e.g., Major, Natural Minor, etc.)
+#### How to Start
+
+**Method 1: Use Presets (Recommended)**
+1. Click "Chord Progression" from the menu
+2. Open the "Presets" section
+3. Tap a pattern you like (e.g., "I - V - vi - IV")
+4. Chords are automatically inserted and played
+
+**Method 2: Start from Scratch**
+1. Click "Chord Progression" from the menu
+2. Start with an empty progression and add chords yourself
 
 💡 **Beginner Tip**:
-- If unsure, start with "**C Major**"
-- Major = bright/happy songs, Minor = dark/sad songs
+- Try the preset "**I - V - vi - IV**" first (very popular progression)
+- Choose from 20 presets (50 in Pro)
+- Sound plays immediately so you can hear how it sounds
 
-**🖼️ Screenshot Position: Key & Scale Selection**
+**🖼️ Screenshot Position: Chord Progression Page and Preset Selection**
 
 ---
 
-### Step 2️⃣: View Available Chords
+### Step 2️⃣: Add and Modify Chords
 
-**Chords that work with your chosen key/scale are automatically displayed.**
+**Customize presets or add new chords to your progression.**
 
-#### Diatonic Chords
-- Shows the "core chords" for your key/scale
-- Tap any chord to hear how it sounds
-- Use the **+ Add** button to add to your progression
+#### How to Add Chords
 
-#### Fretboard Display
-- Shows scale notes (outline) and chord notes (filled) on guitar fretboard
-- Toggle between **Degrees / Names**
-- **Reset** button clears chord highlights
+**Use the "+ Add" Button**
+1. Tap the **+ Add** button in the progression editor
+2. Available chords are displayed
+   - **Diatonic Chords**: Core chords for your key
+   - **Other Chords**: More complex sounds (Pro includes tensions, slash chords)
+3. Tap your favorite chord
+4. It's added to progression and auto-plays
+
+**Find from Find Chords Page**
+1. Switch to "Find Chords" tab
+2. Select key and scale
+3. View diatonic chords and fretboard display
+4. **+ Add to Progression** to add to your progression
 
 💡 **Beginner Tip**:
-- Start with diatonic chords – they sound natural together
-- Tap chords to hear and compare their sound
+- Choosing from diatonic chords creates natural-sounding progressions
+- Tap chords to hear them before adding
+- If unsure, try chords in order and listen
 
-**🖼️ Screenshot Position: Diatonic Chords and Fretboard Display**
+**🖼️ Screenshot Position: Add Chord Menu and Selection Screen**
 
 ---
 
-### Step 3️⃣: Build a Progression
+### Step 3️⃣: Edit, Save & Export Progressions
 
-**Combine your favorite chords to create a progression.**
+**Adjust your progression, save it, and share it.**
 
-#### How to Build
-
-**Method 1: Use Presets**
-1. Open the "Presets" section
-2. Tap a pattern you like (e.g., I - V - vi - IV)
-3. Chords are automatically inserted and played
-
-**Method 2: Add Manually**
-1. Tap a chord from the diatonic chords
-2. Tap the **+ Add** button
-3. Chord is added to progression and auto-plays
-
-#### Edit Your Progression
+#### Edit Progression
 - **Drag & drop** to reorder
 - Tap a chord to delete
+- Long-press to replace
 - Add up to 12 chords (Free plan)
 
-💡 **Beginner Tip**:
-- Try the preset "I - V - vi - IV" first (popular progression)
-- When you add chords, they auto-play so you can hear how they sound
+#### Playback Controls
+- **Play button** to loop progression
+- Adjust **BPM** to change speed
+- Auto-loop to listen repeatedly
 
-**🖼️ Screenshot Position: Preset Selection and Progression Editor**
+#### Save (Sketch)
+- **Save button** to save as sketch
+- Free: Up to 3 local saves
+- Pro: Unlimited cloud saves
+
+#### Export
+- **PNG Image**: Save progression as image (for sharing on SNS)
+- **Text**: Copy & paste chord names
+- **MIDI**: Edit in DAW (Pro only)
+
+💡 **Beginner Tip**:
+- Save progressions you like immediately
+- PNG export lets you share with band members
+- Listen repeatedly before saving
+
+**🖼️ Screenshot Position: Progression Editor, Save & Export Menu**
 
 ---
 
 ## 🎸 Useful Features
+
+### Find Chords (Chord Explorer)
+
+**Choose a key and scale to explore available chords in detail.**
+
+1. Click the "Find Chords" tab
+2. Select key and scale
+3. View diatonic chords, fretboard display, and capo suggestions
+4. Add your favorite chord with **+ Add to Progression**
+
+💡 **When to Use**:
+- To learn which chords work together
+- To check chord fingerings on fretboard
+- To understand scale notes visually
 
 ### Capo Suggestions
 
@@ -283,22 +343,7 @@ This guide will walk you through the basics in 3 simple steps.
 - To play difficult keys (e.g., D♭, F♯) with easy shapes (C, G)
 - To use more open string chords
 
-**🖼️ Screenshot Position: Capo Suggestions Display**
-
----
-
-### Save & Export Progressions
-
-#### Save (Sketch)
-- **Free**: Up to 3 local saves
-- **Pro**: Unlimited cloud saves
-
-#### Export
-- **PNG Image**: Save progression as image (available in Free)
-- **Text**: Copy & paste
-- **MIDI**: Edit in DAW (Pro only)
-
-**🖼️ Screenshot Position: Save & Export Menu**
+**🖼️ Screenshot Position: Find Chords Page and Capo Suggestions**
 
 ---
 
@@ -324,22 +369,25 @@ A device attached to guitar fret to raise pitch. Makes difficult keys playable w
 ## 💡 Recommended Workflows
 
 ### For Beginners
-1. **Start with C Major**
-2. **Try preset "I - V - vi - IV"**
-3. **Listen and compare chord sounds**
-4. **Experiment with other keys/scales when ready**
+1. **Start with preset "I - V - vi - IV"**
+2. **Play and listen to the sound**
+3. **Try changing one chord at a time**
+4. **Save progressions you like**
+5. **When ready, try other presets or start from scratch**
 
 ### For Songwriters
-1. **Choose key/scale based on song mood**
-2. **Build progressions from diatonic chords**
-3. **Find easy capo positions**
-4. **Export as MIDI for DAW editing** (Pro)
+1. **Choose a preset with a similar mood**
+2. **Customize by adding/changing chords**
+3. **Use Find Chords to check diatonic chords while building**
+4. **Use section editing for song structure** (Pro)
+5. **Export as MIDI for DAW editing** (Pro)
 
 ### For Practice
-1. **Find the key of a favorite song**
-2. **Check diatonic chords for that key**
-3. **Learn fingerings from fretboard display**
-4. **Memorize common progressions from presets**
+1. **Find chord progressions of favorite songs**
+2. **Try recreating them in OtoTheory**
+3. **Memorize common progression patterns from presets**
+4. **Find easy capo positions**
+5. **Learn fingerings from fretboard display**
 
 ---
 
@@ -364,7 +412,7 @@ Once you understand the basics, check out:
 
 **Ready to start? Let's go!**
 
-🌐 [Open Web Version (Free)](/find-chords)  
+🌐 [Open Web Version (Free)](/find-key)  
 📱 [Download iOS App](https://apps.apple.com/app/ototheory)
 
 ---
