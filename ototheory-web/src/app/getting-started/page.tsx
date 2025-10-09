@@ -1,4 +1,10 @@
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Getting Started – OtoTheory",
+  description: "Learn how to use OtoTheory to create chord progressions, find keys and scales, and save your work.",
+};
 
 export default function GettingStartedPage() {
   return (
