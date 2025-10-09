@@ -21,34 +21,45 @@ OtoTheoryを使えば、音楽理論の知識がなくても、
 
 ## 🎯 3ステップで始めよう
 
-### ステップ1️⃣：コード進行を始める
+### ステップ1️⃣：キーとスケールを選ぶ
 
-**Chord Progressionページで、進行を作り始めます。**
+**Chord Progressionページで、曲のキーとスケールを選びます。**
+
+1. メニューから「Chord Progression」をクリック
+2. 画面上部の**Key（キー）**を選択（例：C、G、Am など）
+3. **Scale（スケール）**を選択（例：Major、Natural Minor など）
+
+💡 **初心者へのヒント**：
+- わからない場合は「**C Major**」から始めてみましょう
+- Major（メジャー）は明るい曲、Minor（マイナー）は暗い曲に使います
+- キーとスケールはいつでも変更できます
+
+**🖼️ スクリーンショット挿入位置：キー・スケール選択画面**
+
+---
+
+### ステップ2️⃣：コード進行を作る
+
+**プリセットから選ぶか、空の進行から作り始めます。**
 
 #### スタート方法
 
 **方法1：プリセットから始める（おすすめ）**
-1. メニューから「Chord Progression」をクリック
-2. 「Presets」セクションを開く
-3. 好きなパターンをタップ（例：「I - V - vi - IV」）
-4. 自動的にコードが挿入され、再生されます
+1. 「Presets」セクションを開く
+2. 好きなパターンをタップ（例：「I - V - vi - IV」）
+3. 選んだキーで自動的にコードが挿入され、再生されます
 
-**方法2：空の進行から始める**
-1. メニューから「Chord Progression」をクリック
-2. 空の状態から、好きなコードを追加していきます
+**方法2：空の進行から手動で作る**
+1. 「**+ Add**」ボタンをタップ
+2. 使えるコード一覧から選ぶ
+3. コードが追加され、自動再生されます
 
 💡 **初心者へのヒント**：
 - まずはプリセット「**I - V - vi - IV**」を試してみましょう（定番の進行）
 - プリセットは20種類（Pro版は50種類）から選べます
 - すぐに音が鳴るので、どんな響きか確認できます
 
-**🖼️ スクリーンショット挿入位置：Chord Progressionページとプリセット選択**
-
----
-
-### ステップ2️⃣：コードを追加・変更する
-
-**プリセットをカスタマイズしたり、新しいコードを追加したりします。**
+**🖼️ スクリーンショット挿入位置：プリセット選択と進行エディタ**
 
 #### コードの追加方法
 
@@ -227,34 +238,45 @@ This guide will walk you through the basics in 3 simple steps.
 
 ## 🎯 Get Started in 3 Steps
 
-### Step 1️⃣: Start a Chord Progression
+### Step 1️⃣: Choose a Key and Scale
 
-**On the Chord Progression page, begin creating your progression.**
+**On the Chord Progression page, select the key and scale for your song.**
+
+1. Click "Chord Progression" from the menu
+2. Select a **Key** at the top (e.g., C, G, Am, etc.)
+3. Select a **Scale** (e.g., Major, Natural Minor, etc.)
+
+💡 **Beginner Tip**:
+- If unsure, start with "**C Major**"
+- Major = bright/happy songs, Minor = dark/sad songs
+- You can change key and scale anytime
+
+**🖼️ Screenshot Position: Key & Scale Selection**
+
+---
+
+### Step 2️⃣: Build a Chord Progression
+
+**Choose from presets or start from scratch.**
 
 #### How to Start
 
 **Method 1: Use Presets (Recommended)**
-1. Click "Chord Progression" from the menu
-2. Open the "Presets" section
-3. Tap a pattern you like (e.g., "I - V - vi - IV")
-4. Chords are automatically inserted and played
+1. Open the "Presets" section
+2. Tap a pattern you like (e.g., "I - V - vi - IV")
+3. Chords are automatically inserted in your chosen key and played
 
-**Method 2: Start from Scratch**
-1. Click "Chord Progression" from the menu
-2. Start with an empty progression and add chords yourself
+**Method 2: Build Manually**
+1. Tap the **+ Add** button
+2. Select from available chords
+3. Chord is added and auto-plays
 
 💡 **Beginner Tip**:
 - Try the preset "**I - V - vi - IV**" first (very popular progression)
 - Choose from 20 presets (50 in Pro)
 - Sound plays immediately so you can hear how it sounds
 
-**🖼️ Screenshot Position: Chord Progression Page and Preset Selection**
-
----
-
-### Step 2️⃣: Add and Modify Chords
-
-**Customize presets or add new chords to your progression.**
+**🖼️ Screenshot Position: Preset Selection and Progression Editor**
 
 #### How to Add Chords
 
