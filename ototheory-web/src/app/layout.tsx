@@ -24,11 +24,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "OtoTheory – Use Theory Without Tears",
   description: "Guitar-focused key/scale analyzer and chord explorer.",
-  metadataBase: new URL("https://ototheory.app"),
+  metadataBase: new URL("https://www.ototheory.com"),
   openGraph: {
     title: "OtoTheory",
     description: "Find keys, scales, chords, and capo suggestions for guitar.",
-    url: "https://ototheory.app",
+    url: "https://www.ototheory.com",
     siteName: "OtoTheory",
     images: [
       { url: "/og.png", width: 1200, height: 630, alt: "OtoTheory" },
