@@ -21,6 +21,14 @@ final class GuitarBounceService {
     private var cacheOrder: [CacheKey] = []
     
     private let sampleRate: Double = 44100.0
+    private let sf2URL: URL
+    
+    // MARK: - Init
+    
+    init(sf2URL: URL) throws {
+        self.sf2URL = sf2URL
+        print("✅ GuitarBounceService initialized with \(sf2URL.lastPathComponent)")
+    }
     
     // MARK: - Public API
     
@@ -29,13 +37,13 @@ final class GuitarBounceService {
     ///   - key: キャッシュキー（chord, program, bpm）
     ///   - sf2URL: SoundFont ファイルのURL
     ///   - strumMs: ストラム遅延（デフォルト15ms）
-    ///   - releaseMs: フェードアウト時間（デフォルト120ms）
+    ///   - releaseMs: フェードアウト時間（デフォルト200ms）
     /// - Returns: 2.0秒のPCMバッファ（44.1kHz, 2ch）
     func buffer(
         for key: CacheKey,
         sf2URL: URL,
         strumMs: Double = 15.0,
-        releaseMs: Double = 120.0
+        releaseMs: Double = 200.0
     ) throws -> AVAudioPCMBuffer {
         
         // キャッシュヒット
@@ -79,8 +87,8 @@ final class GuitarBounceService {
             try sampler.loadSoundBankInstrument(
                 at: sf2URL,
                 program: key.program,
-                bankMSB: 0x00,
-                bankLSB: 0x00
+                bankMSB: UInt8(kAUSampler_DefaultMelodicBankMSB),
+                bankLSB: UInt8(kAUSampler_DefaultBankLSB)
             )
             print("✅ GuitarBounce: SF2 loaded successfully")
         } catch {
@@ -119,13 +127,33 @@ final class GuitarBounceService {
         
         // A案: イベント駆動レンダーループ + Scratch→Accum 方式
         
-        // 1. イベントリスト作成（ノート開始位置）
+        // 1. イベントリスト作成（4拍分のストラム）
         let strumFrames = AVAudioFramePosition(strumMs / 1000.0 * sampleRate)
-        var events: [(frame: AVAudioFramePosition, note: UInt8)] = []
-        for (i, note) in midiNotes.enumerated() {
-            let startFrame = AVAudioFramePosition(i) * strumFrames
-            events.append((frame: startFrame, note: note))
+        let beatFrames = AVAudioFramePosition((60.0 / key.bpm) * sampleRate)  // 1拍のフレーム数
+        let noteDuration = beatFrames * 70 / 100  // 拍の70%で切る（フェード領域を確保）
+        
+        var events: [(frame: AVAudioFramePosition, note: UInt8, isNoteOn: Bool)] = []
+        
+        // 4拍分のストラムを生成
+        for beat in 0..<4 {
+            let beatStart = AVAudioFramePosition(beat) * beatFrames
+            
+            // ストラム（ノートオン）
+            for (i, note) in midiNotes.enumerated() {
+                let startFrame = beatStart + AVAudioFramePosition(i) * strumFrames
+                events.append((frame: startFrame, note: note, isNoteOn: true))
+            }
+            
+            // ノートオフ（拍の70%後、4拍目は75%で緩やかに）
+            let adjustedDuration = (beat == 3) ? (beatFrames * 75 / 100) : noteDuration
+            for note in midiNotes {
+                let offFrame = beatStart + adjustedDuration
+                events.append((frame: offFrame, note: note, isNoteOn: false))
+            }
         }
+        
+        // イベントをフレーム順にソート
+        events.sort { $0.frame < $1.frame }
         
         // 2. Scratch バッファ（小さなブロック用）
         let blockSize = engine.manualRenderingMaximumFrameCount
@@ -193,18 +221,23 @@ final class GuitarBounceService {
                 framesRendered += framesToRender
             }
             
-            // イベント発火（フレーム位置が一致した瞬間にノート開始）
+            // イベント発火（フレーム位置が一致した瞬間にノートオン/オフ）
             while nextEventIndex < events.count && events[nextEventIndex].frame <= AVAudioFramePosition(framesRendered) {
-                let note = events[nextEventIndex].note
-                sampler.startNote(note, withVelocity: 80, onChannel: 0)
-                print("🎵 Note On: \(note) at frame \(framesRendered)")
+                let event = events[nextEventIndex]
+                if event.isNoteOn {
+                    sampler.startNote(event.note, withVelocity: 80, onChannel: 0)
+                    print("🎵 Note On: \(event.note) at frame \(event.frame)")
+                } else {
+                    sampler.stopNote(event.note, onChannel: 0)
+                    print("🎵 Note Off: \(event.note) at frame \(event.frame)")
+                }
                 nextEventIndex += 1
             }
         }
         
         engine.stop()
         
-        // 5. 末尾120msを線形フェード（accumBuffer に適用）
+        // 5. 末尾200msを線形フェード（accumBuffer に適用）
         applyFadeOut(to: accumBuffer, durationMs: releaseMs)
         
         // 6. 検証: 末尾が -90dB 以下か確認
@@ -222,7 +255,7 @@ final class GuitarBounceService {
     
     // MARK: - Private Helpers
     
-    /// 末尾を線形フェードアウト（120ms → 0.0）
+    /// 末尾を線形フェードアウト（200ms → 0.0）
     private func applyFadeOut(to buffer: AVAudioPCMBuffer, durationMs: Double) {
         guard let floatData = buffer.floatChannelData else { return }
         

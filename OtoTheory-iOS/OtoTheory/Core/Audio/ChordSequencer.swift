@@ -19,7 +19,7 @@ final class ChordSequencer: ObservableObject {
     
     // SSOT準拠：軽ストラム/Release
     private let strumMs: Double = 15       // 10–20ms
-    private let fadeMs: Double = 120       // 80–150ms（Release相当）
+    private let fadeMs: Double = 80        // 80ms（10ms × 8ステップ）
     private let maxVoices = 6
     
     private let sf2URL: URL
@@ -28,6 +28,10 @@ final class ChordSequencer: ObservableObject {
     private var isPlaying = false
     private var playbackTask: Task<Void, Never>?
     private var currentBusIsA = true  // A/B交互切替用
+    
+    // destination を保持（正しいフェーダー制御）
+    private var destA: AVAudioMixingDestination!
+    private var destB: AVAudioMixingDestination!
     
     init(sf2URL: URL) throws {
         self.sf2URL = sf2URL
@@ -44,14 +48,22 @@ final class ChordSequencer: ObservableObject {
         engine.connect(subMixA, to: engine.mainMixerNode, format: nil)
         engine.connect(subMixB, to: engine.mainMixerNode, format: nil)
         
-        // 初期ボリューム
-        subMixA.outputVolume = 1.0
-        subMixB.outputVolume = 0.0  // Bは最初ミュート
+        // destination を取得・保持（一度だけ、接続完了後）
+        guard let destA = subMixA.destination(forMixer: engine.mainMixerNode, bus: 0),
+              let destB = subMixB.destination(forMixer: engine.mainMixerNode, bus: 1) else {
+            throw NSError(domain: "ChordSequencer", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to get destination"])
+        }
+        self.destA = destA
+        self.destB = destB
+        
+        // 初期ボリューム（destination.volume のみ使用）
+        destA.volume = 1.0
+        destB.volume = 0.0  // Bは最初ミュート
         
         audioTrace("Graph ready — samplerA→subMixA, samplerB→subMixB, main connected")
         audioTrace("Conn samplerA→ \(engine.outputConnectionPoints(for: samplerA, outputBus: 0).map{ $0.node }.description)")
         audioTrace("Conn samplerB→ \(engine.outputConnectionPoints(for: samplerB, outputBus: 0).map{ $0.node }.description)")
-        logger.info("[Graph] post-connect  A->main[0], B->main[1]  (A.out=\(self.subMixA.outputVolume, privacy: .public)  B.out=\(self.subMixB.outputVolume, privacy: .public))")
+        logger.info("[Graph] post-connect  A->main[0], B->main[1]")
         
         // 両方のサンプラーに同じSF2をロード
         for sampler in [samplerA, samplerB] {
@@ -85,10 +97,6 @@ final class ChordSequencer: ObservableObject {
         try engine.start()
         
         logger.info("🔎 [OSLOG] ChordSequencer initialized - engine started")
-        dumpGraph("post-connect")
-        dumpConnections(engine)
-        dumpMainInputs()
-        logger.info("🔎 [OSLOG] Graph dump completed")
         
         print("✅ ChordSequencer initialized (2-Bus Fade-out method)")
     }
@@ -129,14 +137,21 @@ final class ChordSequencer: ObservableObject {
                 if !isPlaying { return }
             }
             
-            // 最初のコードはA
+            // 最初のコードはA（destination版 - 保持済みのプロパティを使用）
             currentBusIsA = true
-            subMixA.outputVolume = 1.0
-            subMixB.outputVolume = 0.0
+            destA.volume = 1.0
+            destB.volume = 0.0
+            
+            // タイマーをクリア（2回目の再生対策）
+            xfadeTimer?.cancel()
+            xfadeTimer = nil
             
             // 基準時刻（単調クロック）
             let t0 = CACurrentMediaTime()
             var barIndex = 0
+            
+            // strumDelay は使用しないため削除（警告対策）
+            // let strumDelay = strumMs / 1000.0
             
             // コード進行（ループ）
             while isPlaying {
@@ -154,61 +169,66 @@ final class ChordSequencer: ObservableObject {
                     onBarChange(bar)
                     let midiChord = chordToMidi(symbol)
                     
-                    // 今回使うサンプラーとノード
-                    let nextSampler = currentBusIsA ? samplerA : samplerB
-                    let nextSub = currentBusIsA ? subMixA : subMixB
-                    let prevSampler = currentBusIsA ? samplerB : samplerA
-                    let prevSub = currentBusIsA ? subMixB : subMixA
+                    // ① 小節頭で参照を確定（キャプチャ）- currentBusIsA を確定して以降は触らない
+                    let useA = currentBusIsA
+                    let nextSampler = useA ? samplerA : samplerB
+                    let prevSampler = useA ? samplerB : samplerA
+                    let nextDest = useA ? destA! : destB!  // 保持済みの destination を使用（非オプショナル）
+                    let prevDest = useA ? destB! : destA!  // 保持済みの destination を使用（非オプショナル）
                     
-                    // c) 小節頭：並行で仕込む（flush → 0→1フェード → 発音）
-                    dumpAB("bar-head (before xfade)")
-                    dumpAndNudgeGains(tag: "bar-head before xfade")
-                    audioTrace("NEXT bus:\(currentBusIsA ? "A" : "B")  PREV bus:\(currentBusIsA ? "B" : "A")")
+                    // ログ：確定値を出す
+                    audioTrace(String(format: "[Bar %d] next=%.2f prev=%.2f", bar, nextDest.volume, prevDest.volume))
                     
-                    // [TEST] 強制ミュート試験
-                    subMixA.outputVolume = 0.0; subMixB.outputVolume = 0.0
-                    audioTrace(String(format:"[TEST] forced mute A,B → A:%.2f B:%.2f", subMixA.outputVolume, subMixB.outputVolume))
+                    // ② 新バスは即時1.0（1拍目が軽くならない）
+                    nextDest.volume = 1.0
+                    audioTrace(String(format: "destNext.volume = %.2f (full gain)", nextDest.volume))
                     
-                    // 再利用する側を掃除（flush）
-                    flushSampler(nextSampler)
+                    // 発音（ストラム）- 即座に開始
+                    audioTrace("Playing chord: \(symbol) bus:\(useA ? "A" : "B") (4 beats)")
+                    let playedNotes = Array(midiChord.prefix(maxVoices))
                     
-                    // to側は必ず0から
-                    nextSub.outputVolume = 0.0
-                    
-                    // 対称フェード開始（並行）
-                    audioTrace("Symmetric cross-fade start: 120ms  from:\(currentBusIsA ? "B" : "A") to:\(currentBusIsA ? "A" : "B")")
-                    crossFadeSym(from: prevSub, to: nextSub, ms: fadeMs)
-                    
-                    // ストラムは"待たずに"非同期で予約（小節内で時間を消費しない）
-                    audioTrace("Playing chord: \(symbol) bus:\(currentBusIsA ? "A" : "B")")
-                    audioTrace("Playing chord: \(symbol)  notes:\(midiChord)  bus:\(currentBusIsA ? "A" : "B")")
-                    let playedNotes = Array(midiChord.prefix(maxVoices))  // Phase B-Lite: ノートを保存
-                    for (i, note) in playedNotes.enumerated() {
-                        let d = (Double(i) * strumMs / 1000.0)
-                        xfadeQ.asyncAfter(deadline: .now() + d) { [weak nextSampler] in
-                            nextSampler?.startNote(note, withVelocity: 80, onChannel: 0)
+                    // 4) 4拍分のストラムを予約（直列キュー）
+                    for beat in 0..<4 {
+                        let beatDelay = Double(beat) * beatSec
+                        
+                        // 各拍でストラム（診断ログ付き）
+                        for (i, note) in playedNotes.enumerated() {
+                            let d = beatDelay + (Double(i) * strumMs / 1000.0)
+                            xfadeQ.asyncAfter(deadline: .now() + d) { [weak self, weak nextSampler, bar] in
+                                if beat == 0 && i == 0 {
+                                    self?.audioTrace("startNote: first note of bar \(bar)")
+                                }
+                                nextSampler?.startNote(note, withVelocity: 80, onChannel: 0)
+                            }
+                        }
+                        
+                        // 各拍の音を短く切る（全て同じ長さ）
+                        let noteDuration = beatSec * 0.85  // 拍の85%で切る
+                        xfadeQ.asyncAfter(deadline: .now() + beatDelay + noteDuration) { [weak nextSampler] in
+                            for note in playedNotes {
+                                nextSampler?.stopNote(note, onChannel: 0)
+                            }
                         }
                     }
                     
-                    // Phase B-Lite: Note Duration を制限（60% = 1.2秒）
-                    // SF2 の Release が長いため、さらに短くする
-                    let noteDuration = barSec * 0.6
-                    print("🎵 Phase B-Lite: Note Duration = \(noteDuration)s (60% of \(barSec)s)")
-                    xfadeQ.asyncAfter(deadline: .now() + noteDuration) { [weak nextSampler] in
-                        print("⏹️ Phase B-Lite: Stopping notes after \(noteDuration)s")
-                        // 明示的に Note Off
-                        for note in playedNotes {
-                            nextSampler?.stopNote(note, onChannel: 0)
+                    // ③ 旧バスのフェードアウトは「小節の最後にだけ」実行（キャプチャした prevDest を使用）
+                    let fadeStartSec = barSec - (fadeMs / 1000.0)  // 2.0 - 0.08 = 1.92s
+                    xfadeQ.asyncAfter(deadline: .now() + fadeStartSec) { [weak self, prevDest, prevSampler] in
+                        guard let self = self else { return }
+                        audioTrace("Fade-out start: 80ms (prevDest)")
+                        
+                        // fadeOutDestination を使用（片側フェードアウトのみ）
+                        self.fadeOutDestination(prevDest, ms: self.fadeMs)
+                        
+                        // フェード完了後に CC64 を送る（Sustain Off のみ、reset は呼ばない）
+                        let ccDelay = (self.fadeMs / 1000.0) + 0.010
+                        self.xfadeQ.asyncAfter(deadline: .now() + ccDelay) { [weak self] in
+                            guard let self = self else { return }
+                            for ch: UInt8 in 0...1 {
+                                prevSampler.sendController(64, withValue: 0, onChannel: ch)
+                            }
+                            self.audioTrace("CC64 sent (Sustain Off only, no reset)")
                         }
-                        // CC120: All Sound Off
-                        nextSampler?.sendController(120, withValue: 0, onChannel: 0)
-                        nextSampler?.sendController(123, withValue: 0, onChannel: 0)
-                        print("✅ Phase B-Lite: Notes stopped, CC120/123 sent")
-                    }
-                    
-                    // フェード完了 +10ms で旧サンプラーを kill（1回だけ）
-                    xfadeQ.asyncAfter(deadline: .now() + (fadeMs/1000.0) + 0.010) { [weak self] in
-                        self?.hardKillSampler(prevSampler)
                     }
                     
                     // d) 小節終了目標まで"残りだけ"待つ（2.000sに揃う）
@@ -236,9 +256,17 @@ final class ChordSequencer: ObservableObject {
             flushSampler(sampler)
         }
         
-        // ボリュームをリセット
-        subMixA.outputVolume = 1.0
-        subMixB.outputVolume = 0.0
+        // ✅ 最終停止時のみ reset() を実行（再生中は呼ばない）
+        for sampler in [samplerA, samplerB] {
+            sampler.auAudioUnit.reset()
+        }
+        
+        // ボリュームをリセット（destination版）
+        if let destA = subMixA.destination(forMixer: engine.mainMixerNode, bus: 0),
+           let destB = subMixB.destination(forMixer: engine.mainMixerNode, bus: 1) {
+            destA.volume = 1.0
+            destB.volume = 0.0
+        }
         currentBusIsA = true
         
         print("⏹️ Playback stopped")
@@ -300,29 +328,30 @@ final class ChordSequencer: ObservableObject {
         audioTrace("Sampler hard-kill (CCs + AU reset)")
     }
     
-    /// 対称クロスフェード（from: 1→0, to: 0→1）
-    private func crossFadeSym(from: AVAudioMixerNode, to: AVAudioMixerNode, ms: Double) {
-        xfadeTimer?.cancel()
-        let steps = 30
-        let dt = (ms / 1000.0) / Double(steps)
-
-        let fromStart = max(0, min(1, from.outputVolume))
-        from.outputVolume = fromStart
-        to.outputVolume   = 0.0                        // to側は必ず0から
-
+    /// 直列キューで線形フェード（別タイマーを作らない、6段階・20ms刻み）
+    /// フェードアウト専用（片側のみ、新側は即 1.0）
+    private func fadeOutDestination(_ dest: AVAudioMixingDestination, ms: Double) {
+        let steps = 4          // 20ms × 4 = 80ms（バッファ10ms環境で競合しづらい）
+        let interval = ms / Double(steps) / 1000.0
+        
+        let start = dest.volume
         var i = 0
-        let t = DispatchSource.makeTimerSource(queue: xfadeQ)
-        t.schedule(deadline: .now(), repeating: dt, leeway: .milliseconds(1))
-        t.setEventHandler { [weak from, weak to] in
+        let timer = DispatchSource.makeTimerSource(queue: xfadeQ)
+        timer.setEventHandler { [weak self] in
             i += 1
-            let p = min(1.0, Float(i)/Float(steps))
-            from?.outputVolume = fromStart * (1.0 - p) // 1→0
-            to?.outputVolume   = p                     // 0→1
-            if i >= steps { t.cancel() }
+            let t = Float(i) / Float(steps)
+            dest.volume = max(0, start * (1 - t))
+            if i >= steps {
+                timer.cancel()
+                if let self = self {
+                    audioTrace(String(format: "Fade complete: dest.volume = %.2f", dest.volume))
+                }
+            }
         }
-        xfadeTimer = t
-        t.resume()
+        timer.schedule(deadline: .now(), repeating: interval)
+        timer.resume()
     }
+    
     
     // MARK: - Chord to MIDI
     
@@ -371,119 +400,4 @@ final class ChordSequencer: ObservableObject {
         return intervals.map { root + UInt8($0) }
     }
     
-    // ★ 追加：バー頭でのゲインを1行で出す（A/Bの数値）
-    private func dumpAB(_ tag: String) {
-        let a = String(format: "%.2f", subMixA.volume)
-        let b = String(format: "%.2f", subMixB.volume)
-        let ms = Int(CACurrentMediaTime() * 1000) % 100_000
-        print("[\(ms)ms] [Gain] \(tag)  A:\(a)  B:\(b)")
-    }
-    
-    private func dumpAndNudgeGains(tag: String) {
-        let oa = subMixA.outputVolume
-        let ob = subMixB.outputVolume
-        let va = subMixA.volume
-        let vb = subMixB.volume
-        let da = subMixA.destination(forMixer: engine.mainMixerNode, bus: 0)?.volume ?? -1
-        let db = subMixB.destination(forMixer: engine.mainMixerNode, bus: 0)?.volume ?? -1
-        print("🔎 [\(tag)] A: out=\(String(format:"%.2f",oa)) vol=\(String(format:"%.2f",va)) dest=\(String(format:"%.2f",da)) | B: out=\(String(format:"%.2f",ob)) vol=\(String(format:"%.2f",vb)) dest=\(String(format:"%.2f",db))")
-
-        // --- ここが「効くノブ」を一撃で見つける肝 ---
-        // 300msだけ全ミュート→自動で戻す
-        if let dA = subMixA.destination(forMixer: engine.mainMixerNode, bus: 0),
-           let dB = subMixB.destination(forMixer: engine.mainMixerNode, bus: 0) {
-            dA.volume = 0.0
-            dB.volume = 0.0
-            print("🧪 [\(tag)] set dest volumes to 0.0 (muting 300ms)")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-                dA.volume = 1.0
-                dB.volume = 1.0
-                print("🧪 [\(tag)] restore dest volumes to 1.0")
-            }
-        } else {
-            // フォールバック：nodeのout/volumeも0→1にしてみる
-            subMixA.outputVolume = 0.0; subMixB.outputVolume = 0.0
-            subMixA.volume = 0.0;       subMixB.volume = 0.0
-            print("🧪 [\(tag)] set node out/vol to 0.0 (muting 300ms)")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-                guard let self = self else { return }
-                self.subMixA.outputVolume = 1.0; self.subMixB.outputVolume = 1.0
-                self.subMixA.volume = 1.0;       self.subMixB.volume = 1.0
-                print("🧪 [\(tag)] restore node out/vol to 1.0")
-            }
-        }
-    }
-    
-    private func dumpMainInputs() {
-        func name(_ n: AVAudioNode?) -> String {
-            guard let n = n else { return "nil" }
-            return String(describing: type(of: n))
-        }
-        let main = engine.mainMixerNode
-        logger.info("🔎 [OSLOG] dumpMainInputs - checking \(main.numberOfInputs) buses")
-        for bus in 0..<max(2, main.numberOfInputs) { // 0/1だけでOK
-            if let point = engine.inputConnectionPoint(for: main, inputBus: bus) {
-                let nodeName = name(point.node)
-                logger.info("🔌 [OSLOG] Main in \(bus): \(nodeName) → main[\(bus)] (src bus:\(point.bus))")
-                print("🔌 [Main in \(bus)] 1 source")
-                print("   - \(nodeName) → main[\(bus)] (src bus:\(point.bus))")
-            }
-        }
-    }
-    
-    func dumpConnections(_ engine: AVAudioEngine) {
-        func name(_ n: AVAudioNode?) -> String {
-            guard let n = n else { return "nil" }
-            switch n {
-            case is AVAudioMixerNode: return "MainMixer"
-            case is AVAudioUnitSampler: return "Sampler"
-            case is AVAudioPlayerNode: return "Player"
-            default: return String(describing: type(of: n))
-            }
-        }
-        func show(_ from: AVAudioNode) {
-            let outs = engine.outputConnectionPoints(for: from, outputBus: 0)
-            for cp in outs {
-                print("🔌 \(from) -> \(name(cp.node)) bus:\(cp.bus)")
-            }
-        }
-        print("🔎 [Dump] after connect")
-        show(samplerA)
-        show(samplerB)
-        show(subMixA)
-        show(subMixB)
-        // MainMixer への入力側も確認
-        for b in 0..<engine.mainMixerNode.numberOfInputs {
-            if let src = engine.inputConnectionPoint(for: engine.mainMixerNode, inputBus: b) {
-                print("↪️ MainMixer bus:\(b) <- \(name(src.node))")
-            }
-        }
-    }
-    
-    private func dumpGraph(_ tag: String) {
-        func name(_ n: AVAudioNode) -> String {
-            switch n {
-            case is AVAudioUnitSampler: return "AUSampler"
-            case is AVAudioMixerNode:   return "Mixer"
-            default: return String(describing: type(of: n))
-            }
-        }
-        print("🔎 [Graph] \(tag)")
-        for (label, node) in [("samplerA", samplerA as AVAudioNode),
-                              ("samplerB", samplerB as AVAudioNode),
-                              ("subMixA",  subMixA  as AVAudioNode),
-                              ("subMixB",  subMixB  as AVAudioNode),
-                              ("main",     engine.mainMixerNode as AVAudioNode)] {
-            let outs = engine.outputConnectionPoints(for: node, outputBus: 0)
-            if outs.isEmpty {
-                print(" - \(label) (\(name(node))) → (no outputs)")
-            } else {
-                for o in outs {
-                    if let destNode = o.node {
-                        print(" - \(label) → \(name(destNode)) bus:\(o.bus)")
-                    }
-                }
-            }
-        }
-    }
 }

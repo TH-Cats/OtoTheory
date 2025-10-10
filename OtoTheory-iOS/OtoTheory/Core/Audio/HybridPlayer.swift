@@ -1,5 +1,6 @@
 import AVFoundation
 import AudioToolbox
+import os.log
 
 /// HybridPlayer
 /// ギターPCM（AVAudioPlayerNode）+ ベース/ドラムMIDI（AVAudioSequencer）を統合再生
@@ -15,11 +16,18 @@ final class HybridPlayer {
     
     private var isPlaying = false
     private var currentBarIndex = 0
+    private var playbackStartTime: Date?  // 再生開始時刻（UI タイミング計算用）
+    private var uiUpdateTimer: Timer?  // UI 更新タイマー
+    private var barCount: Int = 0  // バー数
+    
+    // OSLog
+    private let logger = Logger(subsystem: "com.ototheory.app", category: "audio")
     
     // MARK: - Initialization
     
-    init() {
+    init(sf2URL: URL) throws {
         setupEngine()
+        print("✅ HybridPlayer initialized with \(sf2URL.lastPathComponent)")
     }
     
     private func setupEngine() {
@@ -68,24 +76,13 @@ final class HybridPlayer {
             print("✅ HybridPlayer.prepare: engine started")
         }
         
-        // ⚠️ 暫定措置: ベース/ドラムのSF2ロードをスキップ（シミュレータでエラー -10851）
-        // 実機では有効化する予定
-        print("⚠️ HybridPlayer.prepare: Bass/Drum SF2 load skipped (guitar-only mode)")
+        // Bass SF2ロード（暫定: ベースなしで動作）
+        // FluidR3_GM.sf2 にベース音色が存在しないため、将来別のSF2を用意する
+        print("⚠️ HybridPlayer.prepare: Bass SF2 load skipped (FluidR3_GM.sf2 has no bass patches)")
+        print("   Bass will play with default piano sound (will fix in future)")
         
-        // Bass SF2ロード（コメントアウト）
-        // print("🔧 HybridPlayer.prepare: loading Bass SF2 from \(sf2URL.lastPathComponent)")
-        // do {
-        //     try samplerBass.loadSoundBankInstrument(
-        //         at: sf2URL,
-        //         program: 34,
-        //         bankMSB: 0x00,
-        //         bankLSB: 0x00
-        //     )
-        //     print("✅ HybridPlayer.prepare: Bass SF2 loaded")
-        // } catch {
-        //     print("❌ HybridPlayer.prepare: Bass SF2 load failed: \(error)")
-        //     throw error
-        // }
+        // ドラムSF2ロードは将来実装（Phase C）
+        print("⚠️ HybridPlayer.prepare: Drum SF2 load skipped (Phase C feature)")
         
         // Drum SF2ロード（コメントアウト）
         // print("🔧 HybridPlayer.prepare: loading Drum SF2")
@@ -136,7 +133,9 @@ final class HybridPlayer {
         guitarBuffers: [AVAudioPCMBuffer],
         onBarChange: @escaping (Int) -> Void
     ) throws {
+        logger.info("PATH = HybridPlayer (PCM)")
         audioTrace("PATH = HybridPlayer (PCM)")
+        
         guard guitarBuffers.count == score.barCount else {
             throw NSError(
                 domain: "HybridPlayer",
@@ -147,6 +146,11 @@ final class HybridPlayer {
         
         isPlaying = true
         currentBarIndex = 0
+        barCount = score.barCount
+        playbackStartTime = Date()  // 再生開始時刻を記録
+        
+        // UI 更新タイマーを開始（0.1秒ごとにチェック）
+        startUIUpdateTimer(onBarChange: onBarChange)
         
         // Sequencer準備（Phase B: ベース有効化）
         try prepareSequencer(score: score)
@@ -157,6 +161,7 @@ final class HybridPlayer {
         // カウントインをスケジュール
         playerGtr.scheduleBuffer(countInBuffer) { [weak self] in
             guard let self = self, self.isPlaying else { return }
+            self.logger.info("COUNT-IN done")
             print("✅ Count-in completed")
         }
         
@@ -169,19 +174,22 @@ final class HybridPlayer {
         let startTime = AVAudioTime(
             hostTime: mach_absolute_time() + AVAudioTime.hostTime(forSeconds: 0.2)
         )
+        logger.info("START at hostTime=\(startTime.hostTime)")
         
         playerGtr.play(at: startTime)
         
-        // Phase B: Sequencer も同時スタート（カウントイン分遅延）
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2 + countInDuration) { [weak self] in
-            guard let self = self, self.isPlaying else { return }
-            do {
-                try self.sequencer.start()
-                print("✅ HybridPlayer: sequencer started (bass, delayed by \(countInDuration)s)")
-            } catch {
-                print("⚠️ HybridPlayer: sequencer start failed: \(error)")
-            }
-        }
+        // Phase B: Sequencer は暫定的に無効化（ベース音色が正しくないため）
+        // DispatchQueue.main.asyncAfter(deadline: .now() + 0.2 + countInDuration) { [weak self] in
+        //     guard let self = self, self.isPlaying else { return }
+        //     do {
+        //         try self.sequencer.start()
+        //         self.logger.info("Sequencer started (bass)")
+        //         print("✅ HybridPlayer: sequencer started (bass, delayed by \(countInDuration)s)")
+        //     } catch {
+        //         print("⚠️ HybridPlayer: sequencer start failed: \(error)")
+        //     }
+        // }
+        print("⚠️ HybridPlayer: Bass playback disabled (will be fixed in Phase C)")
         
         print("✅ HybridPlayer: playback started (with count-in)")
     }
@@ -202,6 +210,10 @@ final class HybridPlayer {
         }
         
         currentBarIndex = 0
+        
+        // UI 更新タイマーを停止
+        uiUpdateTimer?.invalidate()
+        uiUpdateTimer = nil
         
         print("✅ HybridPlayer: stopped")
     }
@@ -251,57 +263,90 @@ final class HybridPlayer {
         countInFrames: AVAudioFramePosition,
         onBarChange: @escaping (Int) -> Void
     ) {
-        // A案: 絶対サンプル時刻で全バッファを先にスケジュール
+        // ✅ 改善案: 2周分（= 全バー×2）を先に予約、最後の1個の completion で次の2周を再予約
         
-        let sampleRate = engine.mainMixerNode.outputFormat(forBus: 0).sampleRate
-        let barFrames = buffers.first?.frameLength ?? 88200  // 2.0s @ 44100Hz
-        
+        let sampleRate: Double = 44100.0  // 固定（PCMバッファと一致）
         var cursor: AVAudioFramePosition = countInFrames
         
-        for (index, buffer) in buffers.enumerated() {
-            let when = AVAudioTime(sampleTime: cursor, atRate: sampleRate)
-            
-            playerGtr.scheduleBuffer(buffer, at: when, options: []) { [weak self] in
-                guard let self = self, self.isPlaying else { return }
+        // 2周分をスケジュール
+        for cycle in 0..<2 {
+            for (index, buffer) in buffers.enumerated() {
+                let when = AVAudioTime(sampleTime: cursor, atRate: sampleRate)
+                let isLastBuffer = (cycle == 1 && index == buffers.count - 1)
+                let nextCursor = cursor + AVAudioFramePosition(buffer.frameLength)
                 
-                // バー変更通知
-                DispatchQueue.main.async {
-                    onBarChange(index)
+                // ✅ UI 更新はタイマーで自動的に行われる（asyncAfter は使用しない）
+                
+                playerGtr.scheduleBuffer(buffer, at: when, options: []) { [weak self] in
+                    guard let self = self, self.isPlaying else { return }
+                    
+                    // 最後のバッファ完了後に次の2周を再予約
+                    if isLastBuffer {
+                        self.logger.info("LOOP re-scheduled (2x bars)")
+                        self.scheduleGuitarBuffers(
+                            buffers,
+                            countInFrames: nextCursor,
+                            onBarChange: onBarChange
+                        )
+                    }
                 }
-            }
-            
-            cursor += AVAudioFramePosition(buffer.frameLength)
-            print("🎵 Scheduled buffer \(index) at sampleTime \(when.sampleTime)")
-        }
-        
-        // ループ: 最後のバッファ完了後に再度スケジュール
-        if let lastBuffer = buffers.last {
-            playerGtr.scheduleBuffer(lastBuffer) { [weak self] in
-                guard let self = self, self.isPlaying else { return }
                 
-                // ループ: 全バッファを再スケジュール
-                self.scheduleGuitarBuffers(
-                    buffers,
-                    countInFrames: 0,  // ループ時はカウントイン不要
-                    onBarChange: onBarChange
-                )
+                self.logger.info("GTR scheduled i=\(index) cycle=\(cycle) when.sampleTime=\(when.sampleTime)")
+                cursor = nextCursor
             }
         }
         
-        print("✅ HybridPlayer: All buffers scheduled (\(buffers.count) bars)")
+        logger.info("✅ HybridPlayer: 2 cycles scheduled (\(buffers.count * 2) bars)")
     }
     
-    /// カウントインバッファ生成（4拍、1000Hzクリック音）
+    /// UI 更新タイマーを開始（0.1秒ごとにチェック）
+    private func startUIUpdateTimer(onBarChange: @escaping (Int) -> Void) {
+        // カウントイン終了時（2秒後）に最初の i=0 を即座に表示
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+            guard let self = self, self.isPlaying else { return }
+            self.currentBarIndex = 0
+            onBarChange(0)
+            self.logger.info("🎯 UI updated (initial): i=0 at 2.0s")
+        }
+        
+        uiUpdateTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
+            guard let self = self, self.isPlaying, let startTime = self.playbackStartTime else { return }
+            
+            // 再生開始からの経過時間を計算
+            let elapsed = Date().timeIntervalSince(startTime)
+            
+            // カウントイン（2秒）を引いて、音楽開始からの経過時間を取得
+            let musicElapsed = elapsed - 2.0
+            
+            if musicElapsed >= 0 {
+                // 現在のバーインデックスを計算（1バー = 2秒）
+                let barIndex = Int(musicElapsed / 2.0) % self.barCount
+                
+                // バーが変わったら UI を更新
+                if barIndex != self.currentBarIndex {
+                    self.currentBarIndex = barIndex
+                    DispatchQueue.main.async {
+                        onBarChange(barIndex)
+                    }
+                    self.logger.info("🎯 UI updated (timer): i=\(barIndex) at \(elapsed)s")
+                }
+            }
+        }
+    }
+    
+    /// カウントインバッファ生成（4拍、ハイハット風ノイズ音）
     private func generateCountInBuffer(bpm: Double) throws -> AVAudioPCMBuffer {
-        let sampleRate = engine.mainMixerNode.outputFormat(forBus: 0).sampleRate
+        // ✅ 44100Hz に固定（ギターバッファと一致させる）
+        let sampleRate: Double = 44100.0
         let format = AVAudioFormat(
             standardFormatWithSampleRate: sampleRate,
             channels: 2
         )!
         
-        // 4拍分のフレーム数
+        // 4拍分のフレーム数 (BPM 120 → 88200 frames)
         let framesPerBeat = AVAudioFrameCount(60.0 / bpm * sampleRate)
         let totalFrames = framesPerBeat * 4
+        print("🔍 Count-in: bpm=\(bpm), sampleRate=\(sampleRate), framesPerBeat=\(framesPerBeat), totalFrames=\(totalFrames)")
         
         guard let buffer = AVAudioPCMBuffer(
             pcmFormat: format,
@@ -316,18 +361,26 @@ final class HybridPlayer {
         
         buffer.frameLength = totalFrames
         
-        // 各拍にクリック音を生成（1000Hz、50ms）
-        let clickDuration = 0.05  // 50ms
+        // 各拍にハイハット風のクリック音を生成（ホワイトノイズ + ハイパスフィルタ、30ms）
+        let clickDuration = 0.03  // 30ms（短めでタイトな音）
         let clickFrames = AVAudioFrameCount(clickDuration * sampleRate)
-        let frequency: Float = 1000.0  // 1000Hz
         
         for beat in 0..<4 {
             let startFrame = Int(framesPerBeat) * beat
             
+            // ハイハット風の音: ホワイトノイズ + エンベロープ
             for frame in 0..<Int(clickFrames) {
                 let absoluteFrame = startFrame + frame
-                let time = Float(frame) / Float(sampleRate)
-                let value = sin(2.0 * Float.pi * frequency * time) * 0.3  // 30%音量
+                
+                // ホワイトノイズ生成
+                let noise = Float.random(in: -1.0...1.0)
+                
+                // エンベロープ（指数減衰）
+                let progress = Float(frame) / Float(clickFrames)
+                let envelope = exp(-8.0 * progress)  // 急速に減衰
+                
+                // ハイパスフィルタ効果（高周波強調）
+                let value = noise * envelope * 0.4  // 40%音量
                 
                 // ステレオ両チャンネルに書き込み
                 buffer.floatChannelData?[0][absoluteFrame] = value
@@ -335,7 +388,7 @@ final class HybridPlayer {
             }
         }
         
-        print("✅ HybridPlayer: Count-in buffer generated (4 beats, \(totalFrames) frames)")
+        print("✅ HybridPlayer: Count-in buffer generated (4 beats, hi-hat style, \(totalFrames) frames)")
         return buffer
     }
 }

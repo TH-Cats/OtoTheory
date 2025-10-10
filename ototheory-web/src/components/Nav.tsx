@@ -8,7 +8,7 @@ export default function Nav() {
   const links = [
     { href: "/find-key", label: "Chord Progression", aria: "Build Chord Progressions" },
     { href: "/find-chords", label: "Find Chords", aria: "Find Chord" },
-    { href: "/reference/chords", label: "Reference", aria: "Reference" },
+    { href: "/reference", label: "Reference", aria: "Reference" },
   ];
   const isActive = (href: string) => pathname?.startsWith(href);
 

@@ -77,7 +77,7 @@ final class SequencerBuilder {
             var rootNote = MIDINoteMessage(
                 channel: 0,
                 note: bassNote,
-                velocity: 80,
+                velocity: 100,  // ベースは強めに
                 releaseVelocity: 0,
                 duration: 1.0  // 1拍分
             )
@@ -87,7 +87,7 @@ final class SequencerBuilder {
             var fifthNote = MIDINoteMessage(
                 channel: 0,
                 note: bassNote + 7,  // 完全5度上
-                velocity: 80,
+                velocity: 100,  // ベースは強めに
                 releaseVelocity: 0,
                 duration: 1.0
             )

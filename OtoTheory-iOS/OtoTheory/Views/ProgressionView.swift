@@ -25,10 +25,11 @@ struct ProgressionView: View {
     
     private let instruments = [
         ("Acoustic Steel", 25),
-        ("Acoustic Nylon", 24),
+        ("Acoustic Nylon ⚠️", 24),  // ⚠️ 2拍目・3拍目にドラム音が混入
         ("Electric Clean", 27),
-        ("Distortion", 30),
-        ("Over Drive", 29),
+        // ⚠️ 一時的に除外（ワウペダル効果の問題）
+        // ("Distortion", 30),
+        // ("Over Drive", 29),
         ("Electric Muted", 28),
         ("Piano", 0)
     ]
@@ -94,8 +95,8 @@ struct ProgressionView: View {
     // MARK: - Init
     
     init() {
-        // ⚠️ 暫定: ChordSequencer に戻す（HybridPlayer は iOS の制限でオフラインレンダリング不可）
-        // エラー -10851: AVAudioUnitSampler は enableManualRenderingMode(.offline) と互換性なし
+        // ✅ HybridPlayer を常用（Phase B 最終版）
+        audioTrace("PATH = Hybrid (fixed)")
         
         let candidates = [
             ("FluidR3_GM", "sf2"),
@@ -105,21 +106,29 @@ struct ProgressionView: View {
         for (name, ext) in candidates {
             if let url = Bundle.main.url(forResource: name, withExtension: ext) {
                 do {
+                    // HybridPlayer を初期化
+                    let hybrid = try HybridPlayer(sf2URL: url)
+                    _hybridPlayer = State(initialValue: hybrid)
+                    
+                    // GuitarBounceService を初期化
+                    let bounce = try GuitarBounceService(sf2URL: url)
+                    _bounceService = State(initialValue: bounce)
+                    
+                    // ChordSequencer はクリック専用（フォールバック）
                     let seq = try ChordSequencer(sf2URL: url)
                     _sequencer = State(initialValue: seq)
-                    print("✅ ChordSequencer initialized with \(name).\(ext) (fallback from HybridPlayer)")
                     
-                    // HybridPlayer は無効化
-                    _hybridPlayer = State(initialValue: nil)
-                    _bounceService = State(initialValue: nil)
+                    print("✅ HybridPlayer initialized with \(name).\(ext)")
+                    print("✅ GuitarBounceService initialized")
+                    print("✅ ChordSequencer initialized (click-only)")
                     return
                 } catch {
-                    print("❌ Failed to initialize ChordSequencer with \(name).\(ext): \(error)")
+                    print("❌ Failed to initialize HybridPlayer with \(name).\(ext): \(error)")
                 }
             }
         }
         
-        print("❌ SF2 not found for ChordSequencer initialization")
+        print("❌ SF2 not found for HybridPlayer initialization")
         _sequencer = State(initialValue: nil)
         _hybridPlayer = State(initialValue: nil)
         _bounceService = State(initialValue: nil)
@@ -810,19 +819,15 @@ struct ProgressionView: View {
         let chords = slots.compactMap { $0 }
         guard !chords.isEmpty else { return }
         
-        // ⚠️ 暫定: ChordSequencer にフォールバック
-        if let seq = sequencer {
-            let program = UInt8(instruments[selectedInstrument].1)
-            isPlaying = true
-            seq.play(chords: chords, program: program, bpm: bpm) { [self] barIndex in
-                Task { @MainActor in
-                    currentSlotIndex = barIndex
-                }
-            }
-            print("✅ Playback started (ChordSequencer)")
-        } else {
-            print("❌ No playback engine available")
+        // ✅ HybridPlayer を常用
+        guard let hybrid = hybridPlayer, let bounce = bounceService else {
+            print("❌ HybridPlayer or BounceService not available")
+            assertionFailure("HybridPlayer must be initialized")
+            return
         }
+        
+        audioTrace("Playback started (HybridPlayer)")
+        playWithHybridPlayer(chords: chords, player: hybrid, bounce: bounce)
     }
     
     private func playWithHybridPlayer(chords: [String], player: HybridPlayer, bounce: GuitarBounceService) {
@@ -869,7 +874,9 @@ struct ProgressionView: View {
                         bpm: bpm
                     )
                     print("🔧 Bouncing: \(bar.chord)...")
-                    let buffer = try bounce.buffer(for: key, sf2URL: sf2URL)
+                    // ✅ strumMs を 0.0 に設定（完全同時発音）
+                    // ✅ releaseMs を 80 に設定（自然な余韻）
+                    let buffer = try bounce.buffer(for: key, sf2URL: sf2URL, strumMs: 0.0, releaseMs: 80.0)
                     guitarBuffers.append(buffer)
                 }
                 

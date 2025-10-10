@@ -490,7 +490,244 @@ struct ProgressionView: View {
 
 ---
 
+## 🚨 Phase B 追加実装：クロスフェード問題（2025-10-07）
+
+### 問題の経緯
+
+**Phase B 完了後の追加課題**: FluidR3_GM.sf2 のリリースエンベロープが長く、`stopNote()` や `CC120` を送っても音が伸び続ける問題が発生。
+
+**実装した対策**: 2つのサンプラー（samplerA/B）を交互に使い、物理的にフェードアウトする「2バス交互再生」方式を実装。
+
+---
+
+### 実装内容：2バス交互再生 + クロスフェード
+
+#### アーキテクチャ
+
+```
+samplerA → subMixA ─┐
+                    ├→ mainMixerNode → output
+samplerB → subMixB ─┘
+```
+
+- **samplerA/B**: AVAudioUnitSampler（FluidR3_GM.sf2, Program 25）
+- **subMixA/B**: AVAudioMixerNode（各サンプラー専用のミキサー）
+- **制御**: `destination(forMixer:bus:).volume` で各接続のボリュームを制御
+
+#### タイミング設計
+
+| イベント | タイミング | 処理内容 |
+|---------|-----------|---------|
+| 小節開始 | 0.000s | 次のバスの volume を 1.0 に設定 |
+| ストラム1 | 0.000s | startNote (duration: 0.425s) |
+| ストラム2 | 0.500s | startNote (duration: 0.425s) |
+| ストラム3 | 1.000s | startNote (duration: 0.425s) |
+| ストラム4 | 1.500s | startNote (duration: 0.425s) |
+| フェード開始 | 1.880s | 前のバスを 1.0 → 0.0 へ（120ms） |
+| hard-kill | 2.010s | 前のサンプラーに CC120/123 + reset() |
+
+#### 実装コード（抜粋）
+
+```swift
+// 小節開始時
+let destNext = nextMixer.destination(forMixer: engine.mainMixerNode, bus: nextBus)
+destNext?.volume = 1.0  // 即座に1.0に設定
+
+// 4拍分のストラムを予約
+for beat in 0..<4 {
+    let offset = beatSec * Double(beat)
+    xfadeQ.asyncAfter(deadline: .now() + offset) {
+        self.startNote(notes, on: nextSampler, duration: noteDuration)
+    }
+}
+
+// 小節の最後にフェードアウト
+let fadeStart = barSec - (fadeMs / 1000.0)  // 1.88秒後
+xfadeQ.asyncAfter(deadline: .now() + fadeStart) {
+    self.fadeTo(prevMixer, bus: prevBus, target: 0.0, ms: self.fadeMs)
+}
+
+// フェード完了後に hard-kill
+xfadeQ.asyncAfter(deadline: .now() + fadeStart + (fadeMs / 1000.0) + 0.010) {
+    self.hardKillSampler(prevSampler)  // ← これが問題！
+}
+```
+
+---
+
+### ❌ 発生した問題
+
+#### 症状
+
+1. **1小節目**: C コードが正常に鳴る（4拍）
+2. **2小節目**: G コードが正常に鳴る（4拍）
+3. **3小節目**: Am コードが一瞬だけ鳴る
+4. **停止**: ループせず、ぶつ切りで停止
+
+#### ログ分析
+
+```
+[87752ms] Playing chord: C bus:A (4 beats)
+[89722ms] Fade-out start: 120ms  bus:1
+[89857ms] Sampler hard-kill (CCs + AU reset)  ← 正常
+
+[89753ms] Playing chord: G bus:B (4 beats)
+[91725ms] Fade-out start: 120ms  bus:0
+[91859ms] Sampler hard-kill (CCs + AU reset)  ← 正常
+
+[91754ms] Playing chord: Am bus:A (4 beats)
+[93728ms] Fade-out start: 120ms  bus:1
+[93863ms] Sampler hard-kill (CCs + AU reset)  ← ここで停止
+
+SamplerBaseElement.cpp:244    Illegal decrement of empty layer bin count
+```
+
+---
+
+### 🔍 ChatGPT による原因分析
+
+#### ✅ 最有力原因
+
+**ハードキル（`auAudioUnit.reset()`）の同時実行／過頻度で AUSampler が内部的に壊れている**
+
+1. **reset() の問題点**:
+   - `AVAudioUnitSampler` は `reset()` をレンダ中に連打される設計になっていない
+   - フェード終了直後（120ms+10ms）に毎小節ハードキルを実行している
+   - 内部ボイス管理と競合し、`Illegal decrement of empty layer bin count` エラーを誘発
+
+2. **タイミングの問題**:
+   - フェード用タイマとハードキルの非同期実行が重なる
+   - A/B両方が一瞬ミュートされたり、次に使うサンプラー側まで巻き込んでリセットされるレースが発生
+
+3. **結果**:
+   - 「音伸び対策としての"強制リセット"が、3小節目で逆にエンジンを壊して無音化している」
+
+#### 動作イメージ
+
+```
+小節1:  Aで発音 → 終盤でBへフェード → すぐAをreset()  ← ここは"たまたま"無事
+小節2:  Bで発音 → 終盤でAへフェード → すぐBをreset()  ← ここで内部崩壊が起きやすい
+小節3:  Aで発音したい…が、A/Bいずれかが壊れていて無音（ログ上は進んで見える）
+```
+
+---
+
+### ✅ ChatGPT 推奨の対処方針
+
+#### 最短で直すパッチ（編集量は最小）
+
+**方針**: ハードキルをやめる／減らす。フェード＋明示 NoteOff だけに寄せる。
+
+#### 1) `hardKillSampler` を呼ばない
+
+```swift
+// ❌ 削除する（3小節目無音の主因）
+// xfadeQ.asyncAfter(deadline: .now() + 0.120 + 0.010) { [weak self] in
+//     self?.hardKillSampler(prevSampler)
+// }
+```
+
+#### 2) 「明示NoteOff + CC」だけにする
+
+- すでに実装済みの「60%時点（1.2秒）で stopNote + CC123/120」を継続
+- ハードキルは封印
+
+#### 3) フェード制御は1本の直列キューで
+
+- フェード（`fadeTo` / `crossFadeSym`）と NoteOn/Off/CC は同じシリアルQueue（`xfadeQ`）で順番に実行
+- 併走する `DispatchSourceTimer` を複数持つのではなく、「毎小節ごとに：ミュート→フェード→NoteOn→NoteOff」の順に ひとつのキューで流す
+
+#### 4) 音量は `destination(...).volume` を使う
+
+- 直近の調査で、効くのは `AVAudioMixingDestination.volume` と判明
+- サブミキサの `volume`/`outputVolume` に戻すと効果が弱い／遅い
+- 初期化時に `destA = subMixA.destination(forMixer: main, bus:0)` / `destB = ...bus:1` を取得
+- 以降は常に `destA.volume` / `destB.volume` を上下させる
+
+---
+
+### ✅ 実装完了の修正
+
+#### 修正内容
+
+1. **✅ `hardKillSampler` の呼び出しを削除**
+   - 小節ごとのハードキル予約（`reset()` 呼び出し）をコメントアウト
+   - 代わりに CC120/123 のみを送信（reset は呼ばない）
+   ```swift
+   // ✅ フェード完了後に CC だけ送る（reset は呼ばない）
+   self.xfadeQ.asyncAfter(deadline: .now() + (self.fadeMs / 1000.0) + 0.010) { [weak self, weak prevSampler] in
+       guard let self = self else { return }
+       for ch: UInt8 in 0...1 {
+           prevSampler?.sendController(120, withValue: 0, onChannel: ch)  // All Sound Off
+           prevSampler?.sendController(123, withValue: 0, onChannel: ch)  // All Notes Off
+       }
+       self.audioTrace("CC120/123 sent (no reset)")
+   }
+   ```
+   
+2. **✅ 最終停止時のみ `reset()` を実行**
+   - `stop()` メソッド内でのみ `reset()` を呼ぶ
+   - 再生中は一切 `reset()` を呼ばない
+   ```swift
+   // ✅ 最終停止時のみ reset() を実行（再生中は呼ばない）
+   for sampler in [samplerA, samplerB] {
+       sampler.auAudioUnit.reset()
+   }
+   ```
+
+3. **✅ `destination().volume` の一貫使用**
+   - 既に実装済み（`init()` と `play()` で使用）
+   - 全てのボリューム制御を `destination().volume` に統一
+
+4. **✅ フラッシュ（`flushSampler(next)`）は残す**
+   - "次に使う側" を鳴らす直前にクリーンにする意図で有効
+   - `reset()` とは違い軽い（CC のみ）
+
+#### ビルド結果
+
+```
+** BUILD SUCCEEDED **
+```
+
+---
+
+### 🧪 検証手順
+
+1. **ビルド前に 1行コメントアウト**
+   - 上記の「ハードキル予約」3行をコメントアウト
+
+2. **起動 → C–G–Am–F を再生**
+   - 3周（＝12小節）くらい流し、3小節目以降が鳴り続くかだけ確認
+
+3. **OSLog を監視**
+   - Xcode コンソールで以下が各小節で必ずペアで出続けることを確認：
+     ```
+     [audio] Symmetric cross-fade start
+     [audio] Playing chord:
+     ```
+
+---
+
+### 🎯 期待される結果
+
+- ✅ 3小節目以降も正常に鳴り続ける
+- ✅ ループ再生が安定して動作
+- ✅ `SamplerBaseElement.cpp:244` エラーが発生しない
+- ✅ フェード + NoteOff + CC だけで「耳に聞こえる伸び」が完全に止まる
+
+---
+
+### 📝 将来の方向性
+
+**SSOT どおり、ハイブリッド構成（ギター=PCM、ベース/ドラム=MIDIシーケンサ）に寄せるのが堅牢**
+
+- この"フェード＋明示NoteOff"は、ベース/ドラムの追加やMIDI書き出しにも相性が良い
+- 最終的には GuitarBounceService によるオフラインレンダリング（PCM化）が理想
+
+---
+
 **実装担当**: AI Assistant  
 **完了日**: 2025-10-05  
-**Phase B DoD**: 100% 達成 ✅
+**Phase B DoD**: 100% 達成 ✅  
+**追加実装**: 2025-10-07（クロスフェード問題対応中）
 

@@ -215,7 +215,7 @@ export default function GettingStartedPage() {
         
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
           <Link href="/faq" className="underline hover:no-underline">FAQ</Link>
-          <Link href="/reference/chords" className="underline hover:no-underline">Chord Reference</Link>
+          <Link href="/reference" className="underline hover:no-underline">Reference</Link>
           <Link href="/about" className="underline hover:no-underline">About OtoTheory</Link>
           <Link href="/pricing" className="underline hover:no-underline">Pricing</Link>
         </div>
