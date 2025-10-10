@@ -18,12 +18,12 @@ OtoTheory – Guitar Music Theory Made Easy
 
 **Description:**
 ```
-Free guitar chord finder, key analyzer, and music theory tool. Build chord progressions, discover scales, and find the perfect chords for your songs.
+Free guitar chord finder, key analyzer, and music theory tool. Build chord progressions, discover scales, and support composition and guitar improvisation theoretically.
 ```
 
 **Keywords:**
 ```
-guitar chords, chord finder, music theory, chord progression, guitar scales, key finder
+guitar chords, chord finder, music theory, chord progression, scales, composition, guitar improvisation
 ```
 
 ### 日本語版
@@ -34,12 +34,12 @@ OtoTheory – ギター音楽理論ツール
 
 **Description:**
 ```
-無料のギターコード検索、キー分析、音楽理論ツール。コード進行の構築、スケールの発見、楽曲に最適なコードを見つけましょう。
+無料のギターコード検索、キー分析、音楽理論ツール。コード進行の構築、スケールの発見、作曲やギターソロのアドリブを理論的に支援。
 ```
 
 **Keywords:**
 ```
-ギターコード, コード検索, 音楽理論, コード進行, ギタースケール, キー検索
+ギターコード, コード検索, 音楽理論, コード進行, スケール, 作曲, ギターアドリブ
 ```
 
 ---
@@ -54,12 +54,12 @@ Chord Progression Builder & Key Analyzer – OtoTheory
 
 **Description:**
 ```
-Build chord progressions and instantly analyze the key. See Roman numeral analysis, diatonic chords, and discover perfect chord sequences for guitar.
+Build chord progressions and instantly analyze the key. See Roman numeral analysis, diatonic chords, and discover perfect chord sequences.
 ```
 
 **Keywords:**
 ```
-chord progression, chord builder, key analyzer, roman numerals, diatonic chords, guitar progression
+chord progression, chord builder, key analyzer, roman numerals, diatonic chords, scales
 ```
 
 ### 日本語版
@@ -70,12 +70,12 @@ chord progression, chord builder, key analyzer, roman numerals, diatonic chords,
 
 **Description:**
 ```
-コード進行を構築し、即座にキーを分析。ローマ数字分析、ダイアトニックコード、ギターに最適なコード進行を発見できます。
+コード進行を構築し、即座にキーを分析。ローマ数字分析、ダイアトニックコード、最適なコード進行を発見できます。
 ```
 
 **Keywords:**
 ```
-コード進行, コード構築, キー分析, ローマ数字, ダイアトニックコード, ギター進行
+コード進行, コード構築, キー分析, ローマ数字, ダイアトニックコード, スケール
 ```
 
 ---
@@ -394,6 +394,7 @@ OtoTheoryの利用規約をお読みいただき、音楽理論ツールを使�
 | 日付 | バージョン | 変更内容 | 担当者 |
 |------|------------|----------|--------|
 | 2025-10-10 | 1.0 | 初版作成 | AI Assistant |
+| 2025-10-10 | 1.1 | 日本語版修正・英語版反映・実装完了 | User & AI |
 
 ---
 

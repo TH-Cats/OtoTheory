@@ -22,12 +22,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OtoTheory – Use Theory Without Tears",
-  description: "Guitar-focused key/scale analyzer and chord explorer.",
+  title: "OtoTheory – Guitar Music Theory Made Easy",
+  description: "Free guitar chord finder, key analyzer, and music theory tool. Build chord progressions, discover scales, and support composition and guitar improvisation theoretically.",
+  keywords: ["guitar chords", "chord finder", "music theory", "chord progression", "scales", "composition", "guitar improvisation"],
   metadataBase: new URL("https://www.ototheory.com"),
   openGraph: {
-    title: "OtoTheory",
-    description: "Find keys, scales, chords, and capo suggestions for guitar.",
+    title: "OtoTheory – Guitar Music Theory Made Easy",
+    description: "Free guitar chord finder, key analyzer, and music theory tool. Build chord progressions, discover scales, and support composition and guitar improvisation.",
     url: "https://www.ototheory.com",
     siteName: "OtoTheory",
     images: [
