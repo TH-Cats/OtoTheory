@@ -26,7 +26,25 @@ export interface ChordEntry {
 
 export type Root =
   | 'C'|'C#'|'D'|'D#'|'E'|'F'|'F#'|'G'|'G#'|'A'|'A#'|'B';
-export type Quality = 'Major'|'m'|'M7'|'dim'|'aug'|'sus4';
+export type Quality = 
+  | 'M' | 'm'  // Basic triads
+  | '6' | 'm6'  // Sixth chords
+  | '7' | 'M7' | 'm7' | 'mM7'  // Seventh chords
+  | 'dim' | 'dim7' | 'm7b5' | 'm7♭5'  // Diminished variants
+  | 'aug' | 'aug7'  // Augmented
+  | 'sus2' | 'sus4'  // Suspended
+  | '7sus4'  // Dominant suspended
+  | '9' | 'M9' | 'm9'  // Ninths
+  | '7b9' | '7#9' | '7(♭9)' | '7(9)' | '7(#9)'  // Altered ninths
+  | '7b5' | '7#5' | '7(♭5)' | '7(#5)'  // Altered fifths
+  | 'm7(#5)'  // Minor altered
+  | 'add9' | 'madd9'  // Added ninths
+  | '6/9'  // Six-nine
+  | '7(11)' | '7(13)'  // Dominant extensions
+  | 'M7(9)' | 'M7(13)'  // Major extensions
+  | 'm6(9)' | 'm7(9)' | 'm7(11)' | 'mM7(9)'  // Minor extensions
+  | '11' | 'M11'  // Elevenths
+  | '13' | 'M13';  // Thirteenths
 
 const NOTE_INDEX: Record<Root, number> = {
   C:0,'C#':1,D:2,'D#':3,E:4,F:5,'F#':6,G:7,'G#':8,A:9,'A#':10,B:11
@@ -196,14 +214,54 @@ const OPEN_PRESETS: Record<string, {frets:[Fret,Fret,Fret,Fret,Fret,Fret]; finge
 };
 
 export function buildSymbol(root: Root, quality: Quality): {symbol:string, display:string} {
-  switch (quality) {
-    case 'Major': return { symbol: root, display: `${root} Major` };
-    case 'm':     return { symbol: `${root}m`, display: `${root} m` };
-    case 'M7':    return { symbol: `${root}maj7`, display: `${root} M7` };
-    case 'dim':   return { symbol: `${root}dim`, display: `${root} dim` };
-    case 'aug':   return { symbol: `${root}aug`, display: `${root} aug` };
-    case 'sus4':  return { symbol: `${root}sus4`, display: `${root} sus4` };
-  }
+  const symbolMap: Partial<Record<Quality, {symbol: string, display: string}>> = {
+    'M': { symbol: root, display: `${root}` },
+    'm': { symbol: `${root}m`, display: `${root}m` },
+    '6': { symbol: `${root}6`, display: `${root}6` },
+    'm6': { symbol: `${root}m6`, display: `${root}m6` },
+    '7': { symbol: `${root}7`, display: `${root}7` },
+    'M7': { symbol: `${root}maj7`, display: `${root}M7` },
+    'm7': { symbol: `${root}m7`, display: `${root}m7` },
+    'mM7': { symbol: `${root}mM7`, display: `${root}mM7` },
+    'dim': { symbol: `${root}dim`, display: `${root}dim` },
+    'dim7': { symbol: `${root}dim7`, display: `${root}dim7` },
+    'm7b5': { symbol: `${root}m7♭5`, display: `${root}m7♭5` },
+    'm7♭5': { symbol: `${root}m7♭5`, display: `${root}m7♭5` },
+    'aug': { symbol: `${root}aug`, display: `${root}aug` },
+    'aug7': { symbol: `${root}aug7`, display: `${root}aug7` },
+    'sus2': { symbol: `${root}sus2`, display: `${root}sus2` },
+    'sus4': { symbol: `${root}sus4`, display: `${root}sus4` },
+    '7sus4': { symbol: `${root}7sus4`, display: `${root}7sus4` },
+    '9': { symbol: `${root}9`, display: `${root}9` },
+    'M9': { symbol: `${root}M9`, display: `${root}M9` },
+    'm9': { symbol: `${root}m9`, display: `${root}m9` },
+    '7b9': { symbol: `${root}7♭9`, display: `${root}7♭9` },
+    '7(♭9)': { symbol: `${root}7♭9`, display: `${root}7(♭9)` },
+    '7(9)': { symbol: `${root}7(9)`, display: `${root}7(9)` },
+    '7#9': { symbol: `${root}7#9`, display: `${root}7#9` },
+    '7(#9)': { symbol: `${root}7#9`, display: `${root}7(#9)` },
+    '7b5': { symbol: `${root}7♭5`, display: `${root}7♭5` },
+    '7(♭5)': { symbol: `${root}7♭5`, display: `${root}7(♭5)` },
+    '7#5': { symbol: `${root}7#5`, display: `${root}7#5` },
+    '7(#5)': { symbol: `${root}7#5`, display: `${root}7(#5)` },
+    'm7(#5)': { symbol: `${root}m7#5`, display: `${root}m7(#5)` },
+    'add9': { symbol: `${root}add9`, display: `${root}add9` },
+    'madd9': { symbol: `${root}madd9`, display: `${root}madd9` },
+    '6/9': { symbol: `${root}6/9`, display: `${root}6/9` },
+    '7(11)': { symbol: `${root}7(11)`, display: `${root}7(11)` },
+    '7(13)': { symbol: `${root}7(13)`, display: `${root}7(13)` },
+    'M7(9)': { symbol: `${root}M7(9)`, display: `${root}M7(9)` },
+    'M7(13)': { symbol: `${root}M7(13)`, display: `${root}M7(13)` },
+    'm6(9)': { symbol: `${root}m6(9)`, display: `${root}m6(9)` },
+    'm7(9)': { symbol: `${root}m7(9)`, display: `${root}m7(9)` },
+    'm7(11)': { symbol: `${root}m7(11)`, display: `${root}m7(11)` },
+    'mM7(9)': { symbol: `${root}mM7(9)`, display: `${root}mM7(9)` },
+    '11': { symbol: `${root}11`, display: `${root}11` },
+    'M11': { symbol: `${root}M11`, display: `${root}M11` },
+    '13': { symbol: `${root}13`, display: `${root}13` },
+    'M13': { symbol: `${root}M13`, display: `${root}M13` }
+  };
+  return symbolMap[quality] || { symbol: `${root}${quality}`, display: `${root}${quality}` };
 }
 
 export function generateChord(root: Root, quality: Quality): ChordEntry {
@@ -228,24 +286,51 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
     first = shapeCompactMajorFromA(s);
   }
 
+  // For second shape, prefer E-form barre variants
   let second: ChordShape;
-  switch (quality) {
-    case 'Major': second = shapeE_Major(r); break;
-    case 'm':     second = shapeE_Minor(r); break;
-    case 'M7':    second = shapeA_Maj7(s); break;
-    case 'sus4':  second = shapeE_Sus4(r); break;
-    case 'aug':   second = shapeE_Aug(r); break;
-    case 'dim':   second = shapeE_Dim(r); break;
+  const majorFamily = ['M', '6', 'add9', '6/9', 'M7(9)', 'M7(13)'];
+  const minorFamily = ['m', 'm6', 'madd9', 'm6(9)', 'm7(9)', 'm7(11)'];
+  const majSevenFamily = ['M7', 'M9', 'M11', 'M13', 'mM7', 'mM7(9)'];
+  const susFamily = ['sus2', 'sus4', '7sus4'];
+  const augFamily = ['aug', 'aug7', '7#5', '7(#5)'];
+  const dimFamily = ['dim', 'dim7', 'm7b5', 'm7♭5', '7b5', '7(♭5)'];
+  
+  if (majorFamily.includes(quality)) {
+    second = shapeE_Major(r);
+  } else if (minorFamily.includes(quality)) {
+    second = shapeE_Minor(r);
+  } else if (majSevenFamily.includes(quality)) {
+    second = shapeA_Maj7(s);
+  } else if (susFamily.includes(quality)) {
+    second = shapeE_Sus4(r);
+  } else if (augFamily.includes(quality)) {
+    second = shapeE_Aug(r);
+  } else if (dimFamily.includes(quality)) {
+    second = shapeE_Dim(r);
+  } else {
+    // Default for 7, m7, 9, m9, extended chords
+    second = shapeE_Major(r);
+    second.label = `Barre (E-shape, ${quality})`;
   }
 
+  // For third shape, prefer A-form barre variants
   let third: ChordShape;
-  switch (quality) {
-    case 'Major': third = shapeA_Major(s); break;
-    case 'm':     third = shapeA_Minor(s); break;
-    case 'M7':    third = shapeA_Major(s); third.label='Barre (A-shape alt)'; break;
-    case 'sus4':  third = shapeA_Sus4(s); break;
-    case 'aug':   third = shapeA_Aug(s); break;
-    case 'dim':   third = shapeA_Dim(s); break;
+  if (majorFamily.includes(quality)) {
+    third = shapeA_Major(s);
+  } else if (minorFamily.includes(quality)) {
+    third = shapeA_Minor(s);
+  } else if (majSevenFamily.includes(quality)) {
+    third = shapeA_Maj7(s);
+  } else if (susFamily.includes(quality)) {
+    third = shapeA_Sus4(s);
+  } else if (augFamily.includes(quality)) {
+    third = shapeA_Aug(s);
+  } else if (dimFamily.includes(quality)) {
+    third = shapeA_Dim(s);
+  } else {
+    // Default for 7, m7, 9, m9, extended chords
+    third = shapeA_Major(s);
+    third.label = `Barre (A-shape, ${quality})`;
   }
 
   return { symbol, display, shapes:[first, second, third] as [ChordShape,ChordShape,ChordShape] };
@@ -263,5 +348,16 @@ export function getCachedChord(root: Root, quality: Quality): ChordEntry {
 }
 
 export const ROOTS: Root[] = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
-export const QUALITIES: Quality[] = ['Major','m','M7','dim','aug','sus4'];
+export const QUALITIES: Quality[] = [
+  'M', 'm', 'aug', 'dim', 'sus4',  // Basic
+  '6', '7', 'M7', 'm6', 'm7', 'mM7',  // Sixths & Sevenths
+  'aug7', 'dim7', '7sus4', '7(♭5)', '7(#5)',  // Extended dominants
+  'm7♭5', 'm7(#5)', '6/9',  // Altered sevenths
+  '7(♭9)', '7(9)', '7(#9)', '7(11)', '7(13)',  // Dominant extensions
+  'M7(9)', 'M7(13)', 'm6(9)', 'm7(9)', 'm7(11)',  // Other extensions
+  'mM7(9)', 'add9', 'madd9',  // Added notes
+  'sus2', '9', 'M9', 'm9',  // Ninths
+  '11', 'M11', '13', 'M13'  // Elevenths & Thirteenths
+];
+
 

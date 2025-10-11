@@ -30,7 +30,7 @@ export default function Client() {
       <header className={styles['chord-page__header']}>
         <h1>Chord Library</h1>
         <p className={styles['sub']}>
-          Choose a Root and Quality to see <strong>3 chord forms side by side</strong> (with finger numbers). 
+          Choose a Root and Quality to see <strong>3 chord forms side by side</strong> with horizontal fretboard layout. 
           Hear them with <strong>▶ Play</strong> (strum) and <strong>Arp</strong> (arpeggio).
         </p>
 
@@ -60,7 +60,7 @@ export default function Client() {
 
         <div
           ref={qualWrapRef}
-          className={styles['row']}
+          className={`${styles['row']} ${styles['row--scroll']}`}
           role="radiogroup"
           aria-label="Choose quality"
           onKeyDown={(e) => {
