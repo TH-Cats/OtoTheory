@@ -18,12 +18,9 @@ export default function ResourcesPage() {
         >
           <div className="flex items-start gap-3 mb-3">
             <span className="text-2xl">📚</span>
-            <div>
-              <h2 className="text-lg font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                Glossary
-              </h2>
-              <p className="text-xs text-black/60 dark:text-white/60">用語解説</p>
-            </div>
+            <h2 className="text-lg font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              Glossary
+            </h2>
           </div>
           <p className="text-sm text-black/70 dark:text-white/70 leading-relaxed">
             Quick reference for music theory terms. One-line definitions with guitar-specific notes and examples.
@@ -40,12 +37,9 @@ export default function ResourcesPage() {
         >
           <div className="flex items-start gap-3 mb-3">
             <span className="text-2xl">🎸</span>
-            <div>
-              <h2 className="text-lg font-semibold group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                Music Theory
-              </h2>
-              <p className="text-xs text-black/60 dark:text-white/60">理論解説</p>
-            </div>
+            <h2 className="text-lg font-semibold group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+              Music Theory
+            </h2>
           </div>
           <p className="text-sm text-black/70 dark:text-white/70 leading-relaxed">
             Complete theory guide for guitarists. Learn by numbers with practical 30-second recipes for immediate application.
@@ -62,12 +56,9 @@ export default function ResourcesPage() {
         >
           <div className="flex items-start gap-3 mb-3">
             <span className="text-2xl">🎼</span>
-            <div>
-              <h2 className="text-lg font-semibold group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
-                Chord Library
-              </h2>
-              <p className="text-xs text-black/60 dark:text-white/60">コード集</p>
-            </div>
+            <h2 className="text-lg font-semibold group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+              Chord Library
+            </h2>
           </div>
           <p className="text-sm text-black/70 dark:text-white/70 leading-relaxed">
             Visual reference for essential guitar chords with diagrams and fingering patterns.
