@@ -125,7 +125,7 @@ const DEGREE_MAP_MINOR = {0:"i",2:"ii",3:"III",5:"iv",7:"v",8:"VI",10:"VII"} as 
 
 export function scoreKeyCandidates(prog: ChordSym[]): KeyCandidate[] {
   const ranked = rankKeys(prog);
-  const top = ranked.slice(0,3);
+  const top = ranked.slice(0,5);  // v3.1: 3→5候補に拡張（iOS UI改善）
   return top.map((r)=>{
     const key = { tonic: r.keyRoot, mode: r.mode } as const;
     const cad = detectCadence(prog, key);

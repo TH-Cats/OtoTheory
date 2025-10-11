@@ -1,0 +1,278 @@
+/* /app/resources/chord-library/chords.module.css */
+:root {
+  --chord-bg: #0f1114;
+  --chord-panel: #161a1f;
+  --chord-text: #e8e8ea;
+  --chord-muted: #9aa0a6;
+  --chord-accent: #2dd4bf;
+  --chord-line: #2a2f35;
+}
+
+.chord-page {
+  color: var(--chord-text);
+  background: var(--chord-bg);
+  padding: 16px 16px 60px;
+  min-height: 100vh;
+}
+
+.chord-page__header h1 {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.sub {
+  color: var(--chord-muted);
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.row--scroll {
+  overflow-x: auto;
+  padding-bottom: 4px;
+  flex-wrap: nowrap;
+}
+
+.chip {
+  background: #1b1f25;
+  color: var(--chord-text);
+  border: 1px solid var(--chord-line);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.chip:hover {
+  border-color: var(--chord-accent);
+}
+
+.chip--on {
+  border-color: var(--chord-accent);
+  box-shadow: 0 0 0 1px var(--chord-accent) inset;
+  background: rgba(45, 212, 191, 0.1);
+}
+
+.sel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+  padding: 12px 0;
+}
+
+.sel__symbol {
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.2px;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toggle__label {
+  font-size: 14px;
+  color: var(--chord-muted);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #2a2f35;
+  border-radius: 999px;
+  transition: background 0.2s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.switch input:checked + .slider {
+  background: var(--chord-accent);
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+.snap-wrap {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 92%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 12px;
+  padding: 8px 0;
+  margin: 16px 0;
+}
+
+.snap-item {
+  scroll-snap-align: start;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+@media (max-width: 900px) {
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chord-card {
+  background: var(--chord-panel);
+  border: 1px solid var(--chord-line);
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chord-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.chord-card__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.chord-card__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  background: var(--chord-accent);
+  color: #052d29;
+  border: none;
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn:hover:not(:disabled) {
+  background: #26c4ad;
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--chord-text);
+  border: 1px solid var(--chord-line);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--chord-accent);
+  transform: translateY(-1px);
+}
+
+.chord-card__tips {
+  margin: 8px 6px 0;
+  padding-left: 16px;
+  color: var(--chord-muted);
+  font-size: 13px;
+  line-height: 1.6;
+  list-style: none;
+}
+
+.chord-card__tips li {
+  margin: 4px 0;
+}
+
+.chord-page__footer {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--chord-line);
+}
+
+.hint {
+  color: var(--chord-muted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .chord-page {
+    background: var(--chord-bg);
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .chord-page {
+    padding: 12px 12px 48px;
+  }
+
+  .chord-page__header h1 {
+    font-size: 20px;
+  }
+
+  .sub {
+    font-size: 13px;
+  }
+
+  .chord-card__title {
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+}
+

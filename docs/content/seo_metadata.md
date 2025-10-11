@@ -591,6 +591,7 @@ Description: あらゆる状況に対応するダイアグラムと運指パタ�
 | 2025-10-10 | 1.1 | 日本語版修正・英語版反映・実装完了 | User & AI |
 | 2025-10-11 | 1.2 | Guitarist Referenceページ追加 | AI Assistant |
 | 2025-10-11 | 2.0 | Resources構造にリブランド（Glossary/Music Theory/Chord Library） | AI Assistant |
+| 2025-10-11 | 2.1 | Chord Library完全実装（インタラクティブ図、音声再生、3フォーム表示） | AI Assistant |
 
 ---
 
