@@ -274,16 +274,18 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
   const aShift = placeForWindow([s, s+3]);
   r += eShift; s += aShift;
 
-  let first: ChordShape | null = null;
+  // First shape: Open or Compact
   const openKey = symbol in OPEN_PRESETS ? symbol : (symbol==='F' ? 'F-mini' : '');
+  let first: ChordShape;
   if (openKey && OPEN_PRESETS[openKey]) {
     const p = OPEN_PRESETS[openKey];
     first = {
-      id:`open-${symbol}`, label:'Open',
+      id:`open-${root}-${quality}`, label:'Open',
       frets:p.frets, fingers:p.fingers, tips:p.tips
     };
   } else {
     first = shapeCompactMajorFromA(s);
+    first.id = `compact-${root}-${quality}`;
   }
 
   // For second shape, prefer E-form barre variants
@@ -312,6 +314,7 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
     second = shapeE_Major(r);
     second.label = `Barre (E-shape, ${quality})`;
   }
+  second.id = `e-${root}-${quality}`;
 
   // For third shape, prefer A-form barre variants
   let third: ChordShape;
@@ -332,6 +335,7 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
     third = shapeA_Major(s);
     third.label = `Barre (A-shape, ${quality})`;
   }
+  third.id = `a-${root}-${quality}`;
 
   return { symbol, display, shapes:[first, second, third] as [ChordShape,ChordShape,ChordShape] };
 }

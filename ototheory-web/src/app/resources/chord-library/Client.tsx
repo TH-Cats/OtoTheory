@@ -87,9 +87,9 @@ export default function Client() {
         </div>
       </header>
 
-      <section className={styles['grid-3']} aria-label="Chord forms">
-        {entry.shapes.map((shape) => (
-          <div className={styles['grid-3__col']} key={shape.id}>
+      <section key={`${root}-${quality}`} className={styles['grid-3']} aria-label="Chord forms">
+        {entry.shapes.map((shape, index) => (
+          <div className={styles['grid-3__col']} key={`${root}-${quality}-${index}`}>
             <ChordCard symbol={entry.symbol} shape={shape} />
           </div>
         ))}
