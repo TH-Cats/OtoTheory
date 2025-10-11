@@ -16,9 +16,9 @@ export default function Home() {
           <h2 className="font-semibold mb-1">Find Chords</h2>
           <p className="text-sm opacity-80">See chords from key &amp; scale</p>
         </Link>
-        <Link href="/reference" className="ot-card hover:bg-black/5 dark:hover:bg-white/5">
-          <h2 className="font-semibold mb-1">Reference</h2>
-          <p className="text-sm opacity-80">Chords, cadences, and capo guide</p>
+        <Link href="/resources" className="ot-card hover:bg-black/5 dark:hover:bg-white/5">
+          <h2 className="font-semibold mb-1">Resources</h2>
+          <p className="text-sm opacity-80">Theory, glossary, and chord library</p>
         </Link>
       </section>
       <div className="ot-card text-center text-sm opacity-70 ad-placeholder">

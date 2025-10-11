@@ -1414,7 +1414,7 @@ export default function FindKeyPage() {
                       if (!cur) return null;
                       const notesInC = getScalePitchesById(0, cur.id).map(pc => PITCHES[pc]).join(' ');
                       return (
-                        <InfoDot title={cur.display.en} className="ml-1" linkHref="/reference#scales" linkLabel="Reference">
+                        <InfoDot title={cur.display.en} className="ml-1" linkHref="/resources/glossary" linkLabel="Glossary">
                           <div className="text-sm">
                             <div className="mb-1"><b>Degrees:</b> {cur.degrees.join(' ')}</div>
                             <div className="mb-1"><b>Notes in C:</b> {notesInC}</div>
@@ -1519,8 +1519,8 @@ export default function FindKeyPage() {
                     <InfoDot
                       className="ml-1"
                       title="Diatonic chords"
-                      linkHref="/reference#diatonic"
-                      linkLabel="Reference"
+                      linkHref="/resources/glossary"
+                      linkLabel="Glossary"
                     >
                       <p className="text-sm">Chords built only from the key’s scale tones (I–ii–iii–IV–V–vi–vii°).</p>
                       <ul className="mt-2 list-disc pl-5 space-y-1 text-sm">

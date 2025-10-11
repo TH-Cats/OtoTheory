@@ -13,7 +13,7 @@ export function ScaleTable({
   rootPc: number; // 0=C,...11=B
   onPreviewScale: (scaleId: string)=>void; // 下地だけ切替（プレビュー）
   onResetPreview: ()=>void;                // Reset（プレビュー解除）
-  openGlossary: (scaleId: string)=>void; // /reference#scales
+  openGlossary: (scaleId: string)=>void; // /resources/glossary
   activeScaleId?: string | null;          // 現在プレビュー中のスケール
 }) {
   const { scales } = suggestScalesForChord(chordQuality);

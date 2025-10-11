@@ -53,12 +53,12 @@ export default function NotFound() {
           </Link>
 
           <Link 
-            href="/reference"
+            href="/resources"
             className="p-4 rounded-lg border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
           >
             <div className="text-2xl mb-2">📚</div>
-            <h3 className="font-semibold mb-1">Reference</h3>
-            <p className="text-sm opacity-70">Chords, cadences, capo guide</p>
+            <h3 className="font-semibold mb-1">Resources</h3>
+            <p className="text-sm opacity-70">Theory, glossary, chord library</p>
           </Link>
 
           <Link 

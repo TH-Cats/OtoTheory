@@ -187,7 +187,7 @@ function FindChordsContent() {
               const notesInC = getScalePitchesById(0, cur.id).map(pc => PC_NAMES[pc]).join(' ');
               const defaultAbout = `${cur.group} scale — ${cur.degrees.length}-note pattern.`;
               return (
-                <InfoDot title={cur.display.en} className="ml-2" linkHref="/reference#scales" linkLabel="Reference">
+                <InfoDot title={cur.display.en} className="ml-2" linkHref="/resources/glossary" linkLabel="Glossary">
                   <div className="text-sm">
                     <div className="mb-1"><b>Degrees:</b> {cur.degrees.join(' ')}</div>
                     <div className="mb-1"><b>Notes in C:</b> {notesInC}</div>
@@ -230,7 +230,7 @@ function FindChordsContent() {
         <div className="ot-stack">
           <div>
             <h3 className="ot-h3 flex items-center gap-2"><span>Diatonic</span>
-              <InfoDot title="Diatonic chords" linkHref="/reference#diatonic" linkLabel="Reference">
+              <InfoDot title="Diatonic chords" linkHref="/resources/glossary" linkLabel="Glossary">
                 <p className="text-sm">Chords built only from the key’s scale tones (I–ii–iii–IV–V–vi–vii°).</p>
                 <p className="text-sm mt-2">Capo rows show the shapes you fret. The sounding chord tones on the fretboard are the same as the Open row.</p>
                 <p className="text-xs mt-1">See details in Reference → Capo &amp; Shapes</p>
@@ -263,7 +263,7 @@ function FindChordsContent() {
                 rootPc={scaleRootPc as any}
                 onPreviewScale={(id)=>{ setPreviewScaleId(id as any); }}
                 onResetPreview={()=>{ setPreviewScaleId(null); resetToScale(); }}
-                openGlossary={(id)=>{ try{ window.open('/reference#scales','_blank'); }catch{} }}
+                openGlossary={(id)=>{ try{ window.open('/resources/glossary','_blank'); }catch{} }}
                 activeScaleId={previewScaleId as any}
               />
             </div>

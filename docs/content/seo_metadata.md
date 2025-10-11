@@ -389,12 +389,208 @@ OtoTheoryの利用規約をお読みいただき、音楽理論ツールを使�
 
 ---
 
+## 9. Resources (/resources)
+
+### 英語版
+**Title:**
+```
+Guitar Resources – Theory, Glossary & Chord Library | OtoTheory
+```
+
+**Description:**
+```
+Comprehensive guitar resources: music theory guide, terminology glossary, and chord library. Learn theory by numbers with practical recipes and quick reference tools.
+```
+
+**Keywords:**
+```
+guitar resources, music theory, guitar glossary, chord library, guitar theory guide, music terms, guitar reference
+```
+
+**OpenGraph:**
+```
+Title: Guitar Resources – Theory, Glossary & Chord Library
+Description: Complete guitar resources hub with theory, terminology, and chord references.
+```
+
+### 日本語版
+**Title:**
+```
+ギターリソース – 理論・用語・コード集 | OtoTheory
+```
+
+**Description:**
+```
+包括的なギターリソース：音楽理論ガイド、用語解説、コードライブラリ。数字で考える理論と実践的レシピ、クイックリファレンスツール。
+```
+
+**Keywords:**
+```
+ギターリソース, 音楽理論, ギター用語, コード集, ギター理論ガイド, 音楽用語, ギターリファレンス
+```
+
+**OpenGraph:**
+```
+Title: ギターリソース – 理論・用語・コード集
+Description: 理論、用語、コードリファレンスを備えた完全なギターリソースハブ。
+```
+
+---
+
+## 10. Resources - Glossary (/resources/glossary)
+
+### 英語版
+**Title:**
+```
+Guitar Glossary – Quick Music Theory Terms | OtoTheory
+```
+
+**Description:**
+```
+Quick reference glossary for guitarists. One-line definitions + guitar-specific notes + examples. Covering scale degrees, chords, progressions, and practical techniques.
+```
+
+**Keywords:**
+```
+guitar glossary, music terms, scale degrees, chord terminology, music theory glossary, guitar terms, interval definitions
+```
+
+**OpenGraph:**
+```
+Title: Guitar Glossary – Quick Music Theory Terms
+Description: Quick reference glossary with guitar-focused definitions and practical examples.
+```
+
+### 日本語版
+**Title:**
+```
+ギター用語解説 – 音楽理論クイックリファレンス | OtoTheory
+```
+
+**Description:**
+```
+ギタリスト向けクイックリファレンス用語集。1行の定義＋ギター的メモ＋実例。度数、コード、進行、実践テクニックをカバー。
+```
+
+**Keywords:**
+```
+ギター用語, 音楽用語, 度数, コード用語, 音楽理論用語集, ギター専門用語, 音程定義
+```
+
+**OpenGraph:**
+```
+Title: ギター用語解説 – 音楽理論クイックリファレンス
+Description: ギター視点の定義と実例を備えたクイックリファレンス用語集。
+```
+
+---
+
+## 11. Resources - Music Theory (/resources/music-theory)
+
+### 英語版
+**Title:**
+```
+Guitar Music Theory – Learn by Numbers | OtoTheory
+```
+
+**Description:**
+```
+Complete music theory guide for guitarists. Learn degrees, chord construction, progressions, voicings, and advanced techniques. Each section includes practical 30-second recipes.
+```
+
+**Keywords:**
+```
+guitar music theory, scale degrees, chord theory, progressions, voicings, music theory for guitar, practical theory, guitar harmony
+```
+
+**OpenGraph:**
+```
+Title: Guitar Music Theory – Learn by Numbers
+Description: Complete theory guide with practical recipes for immediate application on guitar.
+```
+
+### 日本語版
+**Title:**
+```
+ギター音楽理論 – 数字で学ぶ | OtoTheory
+```
+
+**Description:**
+```
+ギタリスト向け完全音楽理論ガイド。度数、コード構成、進行、ボイシング、応用テクニックを学ぶ。各セクションに実践的な30秒レシピ付き。
+```
+
+**Keywords:**
+```
+ギター音楽理論, 度数, コード理論, 進行, ボイシング, ギターの音楽理論, 実践的理論, ギターハーモニー
+```
+
+**OpenGraph:**
+```
+Title: ギター音楽理論 – 数字で学ぶ
+Description: ギターですぐに応用できる実践的レシピ付き完全理論ガイド。
+```
+
+---
+
+## 12. Resources - Chord Library (/resources/chord-library)
+
+> **Note**: Coming soon - このセクションは準備中
+
+### 英語版
+**Title:**
+```
+Guitar Chord Library – Forms & Voicings | OtoTheory
+```
+
+**Description:**
+```
+Comprehensive guitar chord library with diagrams, voicings, and fingering patterns. Find the perfect chord shape for any progression.
+```
+
+**Keywords:**
+```
+guitar chords, chord library, chord diagrams, guitar voicings, chord shapes, fingering patterns, chord forms
+```
+
+**OpenGraph:**
+```
+Title: Guitar Chord Library – Forms & Voicings
+Description: Complete chord library with diagrams and fingering patterns for every situation.
+```
+
+### 日本語版
+**Title:**
+```
+ギターコードライブラリ – フォーム＆ボイシング | OtoTheory
+```
+
+**Description:**
+```
+包括的なギターコードライブラリ。ダイアグラム、ボイシング、運指パターン付き。どんな進行にも最適なコードフォームを見つけられます。
+```
+
+**Keywords:**
+```
+ギターコード, コードライブラリ, コードダイアグラム, ギターボイシング, コードフォーム, 運指パターン, コード押さえ方
+```
+
+**OpenGraph:**
+```
+Title: ギターコードライブラリ – フォーム＆ボイシング
+Description: あらゆる状況に対応するダイアグラムと運指パターンを備えた完全コードライブラリ。
+```
+
+---
+
 ## 更新履歴
 
 | 日付 | バージョン | 変更内容 | 担当者 |
 |------|------------|----------|--------|
 | 2025-10-10 | 1.0 | 初版作成 | AI Assistant |
 | 2025-10-10 | 1.1 | 日本語版修正・英語版反映・実装完了 | User & AI |
+| 2025-10-11 | 1.2 | Guitarist Referenceページ追加 | AI Assistant |
+| 2025-10-11 | 2.0 | Resources構造にリブランド（Glossary/Music Theory/Chord Library） | AI Assistant |
 
 ---
 
