@@ -8,7 +8,7 @@ export default function Home() {
         <p className="opacity-90">Use Theory Without Tears</p>
       </section>
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        <Link href="/find-key" className="ot-card hover:bg-black/5 dark:hover:bg-white/5">
+        <Link href="/chord-progression" className="ot-card hover:bg-black/5 dark:hover:bg-white/5">
           <h2 className="font-semibold mb-1">Chord Progression</h2>
           <p className="text-sm opacity-80">Build chord progressions</p>
         </Link>

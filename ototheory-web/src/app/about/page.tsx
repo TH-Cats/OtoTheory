@@ -179,7 +179,7 @@ export default function AboutPage() {
         </div>
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
           <Link 
-            href="/find-key" 
+            href="/chord-progression" 
             className="px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold hover:opacity-90 transition-opacity"
           >
             🌐 Try it now on the web

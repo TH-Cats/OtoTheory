@@ -226,7 +226,7 @@ export default function GettingStartedPage() {
         <h2 className="text-xl font-semibold mb-4">Ready to start? Let&apos;s go!</h2>
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
           <Link 
-            href="/find-key" 
+            href="/chord-progression" 
             className="px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold hover:opacity-90 transition-opacity"
           >
             🌐 Open Web Version (Free)

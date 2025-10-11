@@ -35,7 +35,7 @@ export default function NotFound() {
           </Link>
 
           <Link 
-            href="/find-key"
+            href="/chord-progression"
             className="p-4 rounded-lg border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
           >
             <div className="text-2xl mb-2">🎵</div>

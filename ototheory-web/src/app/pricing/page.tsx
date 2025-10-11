@@ -62,7 +62,7 @@ export default function PricingPage() {
           </div>
 
           <Link 
-            href="/find-key" 
+            href="/chord-progression" 
             className="block w-full text-center px-4 py-3 rounded-lg border-2 border-black/20 dark:border-white/20 font-semibold hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
           >
             Try Web Version

@@ -30,13 +30,18 @@ const nextConfig: NextConfig = {
       },
       // Legacy URL redirects
       {
+        source: '/find-key',
+        destination: '/chord-progression',
+        permanent: true,
+      },
+      {
         source: '/progression',
-        destination: '/find-key',
+        destination: '/chord-progression',
         permanent: true,
       },
       {
         source: '/analyze',
-        destination: '/find-key',
+        destination: '/chord-progression',
         permanent: true,
       },
     ];

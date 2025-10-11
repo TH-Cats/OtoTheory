@@ -6,7 +6,7 @@ export default function Nav() {
   const pathname = usePathname();
   // M3.5: Analyze (録音) メニュー撤去
   const links = [
-    { href: "/find-key", label: "Chord Progression", aria: "Build Chord Progressions" },
+    { href: "/chord-progression", label: "Chord Progression", aria: "Build Chord Progressions" },
     { href: "/find-chords", label: "Find Chords", aria: "Find Chord" },
     { href: "/resources", label: "Resources", aria: "Resources" },
   ];
@@ -17,7 +17,7 @@ export default function Nav() {
       {links.map((l) => (
         <div key={l.href} className="relative">
           <Link prefetch href={l.href} aria-label={l.aria} className="hover:underline whitespace-pre md:whitespace-nowrap">
-            {l.href === '/find-key' ? (
+            {l.href === '/chord-progression' ? (
               <>
                 <span className="block leading-none md:inline">Chord </span>
                 <span className="block leading-tight md:inline">Progression</span>
