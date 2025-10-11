@@ -8,7 +8,6 @@ import { ChordCard } from '@/components/chords/ChordCard';
 export default function Client() {
   const [root, setRoot] = useState<Root>('C');
   const [quality, setQuality] = useState<Quality>('Major');
-  const [compare, setCompare] = useState(false);
 
   const entry = useMemo(() => getCachedChord(root, quality), [root, quality]);
 
@@ -31,7 +30,7 @@ export default function Client() {
       <header className={styles['chord-page__header']}>
         <h1>Chord Library</h1>
         <p className={styles['sub']}>
-          Choose a Root and Quality to see <strong>3 chord forms</strong> (with finger numbers). 
+          Choose a Root and Quality to see <strong>3 chord forms side by side</strong> (with finger numbers). 
           Hear them with <strong>▶ Play</strong> (strum) and <strong>Arp</strong> (arpeggio).
         </p>
 
@@ -85,37 +84,16 @@ export default function Client() {
 
         <div className={styles['sel']}>
           <div className={styles['sel__symbol']}>{entry.display}</div>
-          <div className={styles['toggle']}>
-            <label className={styles['switch']}>
-              <input
-                type="checkbox"
-                checked={compare}
-                onChange={(e) => setCompare(e.target.checked)}
-              />
-              <span className={styles['slider']} />
-            </label>
-            <span className={styles['toggle__label']}>Compare 3</span>
-          </div>
         </div>
       </header>
 
-      {!compare ? (
-        <section className={styles['snap-wrap']} id="forms-snap" aria-label="Chord forms carousel">
-          {entry.shapes.map((shape) => (
-            <div className={styles['snap-item']} key={shape.id}>
-              <ChordCard symbol={entry.symbol} shape={shape} />
-            </div>
-          ))}
-        </section>
-      ) : (
-        <section className={styles['grid-3']} aria-label="Chord forms compare">
-          {entry.shapes.map((shape) => (
-            <div className={styles['grid-3__col']} key={shape.id}>
-              <ChordCard symbol={entry.symbol} shape={shape} />
-            </div>
-          ))}
-        </section>
-      )}
+      <section className={styles['grid-3']} aria-label="Chord forms">
+        {entry.shapes.map((shape) => (
+          <div className={styles['grid-3__col']} key={shape.id}>
+            <ChordCard symbol={entry.symbol} shape={shape} />
+          </div>
+        ))}
+      </section>
 
       <footer className={styles['chord-page__footer']}>
         <p className={styles['hint']}>
