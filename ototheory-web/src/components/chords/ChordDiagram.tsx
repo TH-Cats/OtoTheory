@@ -30,8 +30,8 @@ export function ChordDiagram({ frets, fingers, barres = [], width = 320, maxFret
     const rel = abs - baseFret + 1;
     return PAD.left + fretW * (rel - 0.5);
   };
-  // Strings go top to bottom (6th string at top)
-  const yForString = (sIdx:number) => PAD.top + stringH * sIdx;
+  // Strings go top to bottom (1st string at top, 6th string at bottom)
+  const yForString = (sIdx:number) => PAD.top + stringH * (5 - sIdx);
 
   const grid: JSX.Element[] = [];
   // Draw strings (horizontal lines)
