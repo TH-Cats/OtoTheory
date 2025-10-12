@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BreadcrumbStructuredData, SoftwareApplicationStructuredData } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   title: "Find Chords by Key & Scale – Diatonic Chord Finder",
@@ -15,6 +16,20 @@ export default function FindChordsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <BreadcrumbStructuredData 
+        items={[
+          { name: "Home", url: "https://www.ototheory.com" },
+          { name: "Find Chords", url: "https://www.ototheory.com/find-chords" }
+        ]}
+      />
+      <SoftwareApplicationStructuredData
+        name="Find Chords by Key & Scale"
+        description="Discover all diatonic chords for any key and scale"
+        category="Music"
+      />
+      {children}
+    </>
+  );
 }
-

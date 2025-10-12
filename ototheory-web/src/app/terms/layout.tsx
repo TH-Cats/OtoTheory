@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BreadcrumbStructuredData } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   title: "Terms of Service – OtoTheory",
@@ -15,6 +16,17 @@ export default function TermsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <BreadcrumbStructuredData 
+        items={[
+          { name: "Home", url: "https://www.ototheory.com" },
+          { name: "Terms of Service", url: "https://www.ototheory.com/terms" }
+        ]}
+      />
+      {children}
+    </>
+  );
 }
+
 

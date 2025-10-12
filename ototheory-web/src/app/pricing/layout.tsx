@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BreadcrumbStructuredData } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   title: "Pricing – OtoTheory Pro Features & iOS App",
@@ -15,6 +16,17 @@ export default function PricingLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <BreadcrumbStructuredData 
+        items={[
+          { name: "Home", url: "https://www.ototheory.com" },
+          { name: "Pricing", url: "https://www.ototheory.com/pricing" }
+        ]}
+      />
+      {children}
+    </>
+  );
 }
+
 

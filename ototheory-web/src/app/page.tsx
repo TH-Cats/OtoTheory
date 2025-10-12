@@ -1,8 +1,16 @@
 import Link from "next/link";
+import { WebApplicationStructuredData, OrganizationStructuredData } from "@/components/StructuredData";
 
 export default function Home() {
   return (
-    <main className="ot-page ot-stack">
+    <>
+      <WebApplicationStructuredData 
+        name="OtoTheory"
+        description="Free guitar chord finder, key analyzer, and music theory tool. Build chord progressions, discover scales, and support composition and guitar improvisation theoretically."
+        url="https://www.ototheory.com"
+      />
+      <OrganizationStructuredData />
+      <main className="ot-page ot-stack">
       <section className="ot-card text-white" style={{background: 'linear-gradient(90deg, var(--brand-primary), var(--brand-secondary))'}}>
         <h1 className="text-2xl font-semibold">OtoTheory</h1>
         <p className="opacity-90">Use Theory Without Tears</p>
@@ -25,5 +33,6 @@ export default function Home() {
         Ad Placeholder
       </div>
     </main>
+    </>
   );
 }
