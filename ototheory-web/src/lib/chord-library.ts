@@ -110,6 +110,16 @@ function shapeE_Minor7(r:number): ChordShape {
   };
 }
 
+function shapeE_6th(r:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = [r, r+2, r+2, r+1, r+2, r];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [1,3,4,2,4,1];
+  return {
+    id:`e-6th-${r}`, label:'Barre (E-shape, 6)',
+    frets, fingers, barres:[{fret:r, fromString:6, toString:1, finger:1}],
+    tips:['Bright 6th sound.', 'Jazz and vintage pop.', 'Sweet resolution chord.']
+  };
+}
+
 function shapeE_Dom7(r:number): ChordShape {
   const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = [r, r+2, r, r+1, r, r];
   const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [1,3,1,2,1,1];
@@ -167,6 +177,26 @@ function shapeA_Minor(s:number): ChordShape {
     id:`a-minor-${s}`, label:'Barre (A-shape, m)',
     frets, fingers, barres:[{fret:s, fromString:5, toString:1, finger:1}],
     tips:['Subtle depth and calm.', 'Won\'t interfere with melody.']
+  };
+}
+
+function shapeA_6th(s:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = ['x', s, s+2, s+2, s+2, s+2];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [null,1,2,3,4,4];
+  return {
+    id:`a-6th-${s}`, label:'Barre (A-shape, 6)',
+    frets, fingers,
+    tips:['Bright 6th chord.', 'All high strings = barre.', 'Great for ending phrases.']
+  };
+}
+
+function shapeA_Minor6(s:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = ['x', s, s+2, s+2, s+1, s+2];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [null,1,2,3,1,4];
+  return {
+    id:`a-minor6-${s}`, label:'Barre (A-shape, m6)',
+    frets, fingers, barres:[{fret:s, fromString:5, toString:2, finger:1}],
+    tips:['Sophisticated minor sound.', 'Bossa nova classic.', 'Melancholic beauty.']
   };
 }
 
@@ -230,13 +260,104 @@ function shapeA_Dim(s:number): ChordShape {
   };
 }
 
-function shapeCompactMajorFromA(s:number): ChordShape {
-  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = ['x','x', s+2, s+2, s+1, 'x'];
-  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [null,null,3,4,2,null];
+// Compact shapes for each quality (top 3-4 strings only)
+function shapeCompactMajor(s:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = ['x','x', s+2, s+2, s+2, s];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [null,null,2,3,4,1];
   return {
     id:`compact-major-${s}`, label:'Compact (Top 4)',
     frets, fingers,
-    tips:['Top-note design friendly.', 'Mini form that won\'t muddy vocals.', 'Mute 5th & 6th strings.']
+    tips:['Bright highs, clear voicing.', 'Mini form that won\'t muddy vocals.', 'Mute 5th & 6th strings.']
+  };
+}
+
+function shapeCompactMinor(s:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = ['x','x', s+2, s+2, s+1, s];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [null,null,2,4,3,1];
+  return {
+    id:`compact-minor-${s}`, label:'Compact (Top 4, m)',
+    frets, fingers,
+    tips:['Sweet minor sound.', 'Easy fingering.', 'Mute 5th & 6th strings.']
+  };
+}
+
+function shapeCompact6th(s:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = ['x','x', s+2, s+2, s+2, s+2];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [null,null,1,1,1,1];
+  return {
+    id:`compact-6th-${s}`, label:'Compact (Top 4, 6)',
+    frets, fingers, barres:[{fret:s+2, fromString:4, toString:1, finger:1}],
+    tips:['Simple 6th voicing.', 'Easy barre on top 4 strings.', 'Mute 5th & 6th strings.']
+  };
+}
+
+function shapeCompactMinor6(s:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = ['x','x', s+2, s+2, s+1, s+2];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [null,null,1,2,1,3];
+  return {
+    id:`compact-minor6-${s}`, label:'Compact (Top 4, m6)',
+    frets, fingers, barres:[{fret:s+2, fromString:4, toString:2, finger:1}],
+    tips:['Sophisticated m6.', 'Bossa nova feel.', 'Mute 5th & 6th strings.']
+  };
+}
+
+function shapeCompactDom7(s:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = ['x','x', s+2, s, s+2, s];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [null,null,2,1,3,1];
+  return {
+    id:`compact-dom7-${s}`, label:'Compact (Top 4, 7)',
+    frets, fingers, barres:[{fret:s, fromString:4, toString:1, finger:1}],
+    tips:['Compact 7th voicing.', 'Easy barre form.', 'Mute 5th & 6th strings.']
+  };
+}
+
+function shapeCompactMinor7(s:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = ['x','x', s+2, s, s+1, s];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [null,null,3,1,2,1];
+  return {
+    id:`compact-minor7-${s}`, label:'Compact (Top 4, m7)',
+    frets, fingers, barres:[{fret:s, fromString:4, toString:1, finger:1}],
+    tips:['Mellow m7 sound.', 'Jazz-friendly voicing.', 'Mute 5th & 6th strings.']
+  };
+}
+
+function shapeCompactMaj7(s:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = ['x','x', s+2, s+1, s+2, s];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [null,null,2,1,3,1];
+  return {
+    id:`compact-maj7-${s}`, label:'Compact (Top 4, M7)',
+    frets, fingers, barres:[{fret:s, fromString:4, toString:1, finger:1}],
+    tips:['Soft M7 voicing.', 'Dreamy atmosphere.', 'Mute 5th & 6th strings.']
+  };
+}
+
+function shapeCompactSus4(s:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = ['x','x', s, s+2, s+3, s];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [null,null,1,2,4,1];
+  return {
+    id:`compact-sus4-${s}`, label:'Compact (Top 4, sus4)',
+    frets, fingers, barres:[{fret:s, fromString:4, toString:1, finger:1}],
+    tips:['Suspended tension.', 'Wants to resolve.', 'Mute 5th & 6th strings.']
+  };
+}
+
+function shapeCompactAug(s:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = ['x','x', s+3, s+2, s+2, s+1];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [null,null,4,2,3,1];
+  return {
+    id:`compact-aug-${s}`, label:'Compact (Top 4, aug)',
+    frets, fingers,
+    tips:['Floating #5 feel.', 'Short accent moments.', 'Mute 5th & 6th strings.']
+  };
+}
+
+function shapeCompactDim(s:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = ['x','x', s+1, s+2, s+1, s-1];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [null,null,2,4,3,1];
+  return {
+    id:`compact-dim-${s}`, label:'Compact (Top 4, dim)',
+    frets, fingers,
+    tips:['Anxious diminished.', 'One-beat bridge.', 'Mute 5th & 6th strings.']
   };
 }
 
@@ -332,36 +453,76 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
       frets:p.frets, fingers:p.fingers, tips:p.tips
     };
   } else {
-    first = shapeCompactMajorFromA(s);
+    // Choose compact shape based on quality
+    const majorFamily = ['M', 'add9', 'M7(9)', 'M7(13)'];
+    const sixthFamily = ['6', '6/9'];
+    const minorFamily = ['m', 'madd9'];
+    const minorSixthFamily = ['m6', 'm6(9)'];
+    const domSevenFamily = ['7', '7(9)', '7(11)', '7(13)'];
+    const minorSevenFamily = ['m7', 'm7(9)', 'm7(11)'];
+    const majSevenFamily = ['M7', 'M9', 'M11', 'M13', 'mM7', 'mM7(9)'];
+    const susFamily = ['sus2', 'sus4', '7sus4'];
+    const augFamily = ['aug', 'aug7', '7#5', '7(#5)'];
+    const dimFamily = ['dim', 'dim7', 'm7b5', 'm7♭5', '7b5', '7(♭5)'];
+
+    if (majorFamily.includes(quality)) {
+      first = shapeCompactMajor(s);
+    } else if (sixthFamily.includes(quality)) {
+      first = shapeCompact6th(s);
+    } else if (minorFamily.includes(quality)) {
+      first = shapeCompactMinor(s);
+    } else if (minorSixthFamily.includes(quality)) {
+      first = shapeCompactMinor6(s);
+    } else if (domSevenFamily.includes(quality)) {
+      first = shapeCompactDom7(s);
+    } else if (minorSevenFamily.includes(quality)) {
+      first = shapeCompactMinor7(s);
+    } else if (majSevenFamily.includes(quality)) {
+      first = shapeCompactMaj7(s);
+    } else if (susFamily.includes(quality)) {
+      first = shapeCompactSus4(s);
+    } else if (augFamily.includes(quality)) {
+      first = shapeCompactAug(s);
+    } else if (dimFamily.includes(quality)) {
+      first = shapeCompactDim(s);
+    } else {
+      first = shapeCompactMajor(s); // Default fallback
+    }
     first.id = `compact-${root}-${quality}`;
   }
 
   // For second shape, prefer E-form barre variants
   let second: ChordShape;
-  const majorFamily = ['M', '6', 'add9', '6/9', 'M7(9)', 'M7(13)'];
-  const minorFamily = ['m', 'm6', 'madd9', 'm6(9)'];
-  const majSevenFamily = ['M7', 'M9', 'M11', 'M13', 'mM7', 'mM7(9)'];
-  const domSevenFamily = ['7', '7(9)', '7(11)', '7(13)'];
-  const minorSevenFamily = ['m7', 'm7(9)', 'm7(11)'];
-  const susFamily = ['sus2', 'sus4', '7sus4'];
-  const augFamily = ['aug', 'aug7', '7#5', '7(#5)'];
-  const dimFamily = ['dim', 'dim7', 'm7b5', 'm7♭5', '7b5', '7(♭5)'];
+  const majorFamilyE = ['M', 'add9', 'M7(9)', 'M7(13)'];
+  const sixthFamilyE = ['6', '6/9'];
+  const minorFamilyE = ['m', 'madd9', 'm6(9)'];
+  const minorSixthFamilyE = ['m6'];
+  const majSevenFamilyE = ['M7', 'M9', 'M11', 'M13', 'mM7', 'mM7(9)'];
+  const domSevenFamilyE = ['7', '7(9)', '7(11)', '7(13)'];
+  const minorSevenFamilyE = ['m7', 'm7(9)', 'm7(11)'];
+  const susFamilyE = ['sus2', 'sus4', '7sus4'];
+  const augFamilyE = ['aug', 'aug7', '7#5', '7(#5)'];
+  const dimFamilyE = ['dim', 'dim7', 'm7b5', 'm7♭5', '7b5', '7(♭5)'];
   
-  if (majorFamily.includes(quality)) {
+  if (majorFamilyE.includes(quality)) {
     second = shapeE_Major(r);
-  } else if (minorFamily.includes(quality)) {
+  } else if (sixthFamilyE.includes(quality)) {
+    second = shapeE_6th(r);
+  } else if (minorFamilyE.includes(quality)) {
     second = shapeE_Minor(r);
-  } else if (domSevenFamily.includes(quality)) {
+  } else if (minorSixthFamilyE.includes(quality)) {
+    second = shapeE_Minor(r); // Use minor shape for m6 (no dedicated E-shape m6)
+  } else if (domSevenFamilyE.includes(quality)) {
     second = shapeE_Dom7(r);
-  } else if (minorSevenFamily.includes(quality)) {
+  } else if (minorSevenFamilyE.includes(quality)) {
     second = shapeE_Minor7(r);
-  } else if (majSevenFamily.includes(quality)) {
+  } else if (majSevenFamilyE.includes(quality)) {
     second = shapeA_Maj7(s);
-  } else if (susFamily.includes(quality)) {
+  } else if (susFamilyE.includes(quality)) {
     second = shapeE_Sus4(r);
-  } else if (augFamily.includes(quality)) {
+  } else if (augFamilyE.includes(quality)) {
     second = shapeE_Aug(r);
-  } else if (dimFamily.includes(quality)) {
+  } else if (dimFamilyE.includes(quality)) {
     second = shapeE_Dim(r);
   } else {
     // Default for 9, extended chords
@@ -372,21 +533,36 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
 
   // For third shape, prefer A-form barre variants
   let third: ChordShape;
-  if (majorFamily.includes(quality)) {
+  const majorFamilyA = ['M', 'add9', 'M7(9)', 'M7(13)'];
+  const sixthFamilyA = ['6', '6/9'];
+  const minorFamilyA = ['m', 'madd9', 'm6(9)'];
+  const minorSixthFamilyA = ['m6'];
+  const majSevenFamilyA = ['M7', 'M9', 'M11', 'M13', 'mM7', 'mM7(9)'];
+  const domSevenFamilyA = ['7', '7(9)', '7(11)', '7(13)'];
+  const minorSevenFamilyA = ['m7', 'm7(9)', 'm7(11)'];
+  const susFamilyA = ['sus2', 'sus4', '7sus4'];
+  const augFamilyA = ['aug', 'aug7', '7#5', '7(#5)'];
+  const dimFamilyA = ['dim', 'dim7', 'm7b5', 'm7♭5', '7b5', '7(♭5)'];
+  
+  if (majorFamilyA.includes(quality)) {
     third = shapeA_Major(s);
-  } else if (minorFamily.includes(quality)) {
+  } else if (sixthFamilyA.includes(quality)) {
+    third = shapeA_6th(s);
+  } else if (minorFamilyA.includes(quality)) {
     third = shapeA_Minor(s);
-  } else if (domSevenFamily.includes(quality)) {
+  } else if (minorSixthFamilyA.includes(quality)) {
+    third = shapeA_Minor6(s);
+  } else if (domSevenFamilyA.includes(quality)) {
     third = shapeA_Dom7(s);
-  } else if (minorSevenFamily.includes(quality)) {
+  } else if (minorSevenFamilyA.includes(quality)) {
     third = shapeA_Minor7(s);
-  } else if (majSevenFamily.includes(quality)) {
+  } else if (majSevenFamilyA.includes(quality)) {
     third = shapeA_Maj7(s);
-  } else if (susFamily.includes(quality)) {
+  } else if (susFamilyA.includes(quality)) {
     third = shapeA_Sus4(s);
-  } else if (augFamily.includes(quality)) {
+  } else if (augFamilyA.includes(quality)) {
     third = shapeA_Aug(s);
-  } else if (dimFamily.includes(quality)) {
+  } else if (dimFamilyA.includes(quality)) {
     third = shapeA_Dim(s);
   } else {
     // Default for 9, extended chords

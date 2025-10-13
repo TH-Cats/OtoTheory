@@ -38,7 +38,7 @@ function getRoman(noteName: string, root: Root): string {
   const rootIdx = NOTE_INDEX[root];
   const noteIdx = NOTE_INDEX[noteName];
   const interval = (noteIdx - rootIdx + 12) % 12;
-  const romans = ['I', '♭II', 'II', '♭III', 'III', 'IV', '♭V', 'V', '♭VI', 'VI', '♭VII', 'VII'];
+  const romans = ['I', '♭II', 'II', '♭III', 'III', 'IV', '♭V', 'V', '#V', 'VI', '♭VII', 'VII'];
   return romans[interval];
 }
 
