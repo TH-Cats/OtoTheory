@@ -100,6 +100,26 @@ function shapeE_Minor(r:number): ChordShape {
   };
 }
 
+function shapeE_Minor7(r:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = [r, r+2, r, r, r, r];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [1,3,1,1,1,1];
+  return {
+    id:`e-minor7-${r}`, label:'Barre (E-shape, m7)',
+    frets, fingers, barres:[{fret:r, fromString:6, toString:1, finger:1}],
+    tips:['Smooth minor 7th.', 'Jazz and soul foundation.', 'Relaxed, mellow vibe.']
+  };
+}
+
+function shapeE_Dom7(r:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = [r, r+2, r, r+1, r, r];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [1,3,1,2,1,1];
+  return {
+    id:`e-dom7-${r}`, label:'Barre (E-shape, 7)',
+    frets, fingers, barres:[{fret:r, fromString:6, toString:1, finger:1}],
+    tips:['Classic dominant 7th sound.', 'Tension that wants to resolve.', 'Blues and jazz staple.']
+  };
+}
+
 function shapeE_Sus4(r:number): ChordShape {
   const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = [r, r+2, r+2, r+2, r, r];
   const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [1,3,4,2,1,1];
@@ -147,6 +167,26 @@ function shapeA_Minor(s:number): ChordShape {
     id:`a-minor-${s}`, label:'Barre (A-shape, m)',
     frets, fingers, barres:[{fret:s, fromString:5, toString:1, finger:1}],
     tips:['Subtle depth and calm.', 'Won\'t interfere with melody.']
+  };
+}
+
+function shapeA_Minor7(s:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = ['x', s, s+2, s, s+1, s];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [null,1,3,1,2,1];
+  return {
+    id:`a-minor7-${s}`, label:'Barre (A-shape, m7)',
+    frets, fingers, barres:[{fret:s, fromString:5, toString:1, finger:1}],
+    tips:['Sweet minor 7th.', 'R&B and neo-soul favorite.', 'Easy to transition from.']
+  };
+}
+
+function shapeA_Dom7(s:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = ['x', s, s+2, s, s+2, s];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [null,1,3,1,4,1];
+  return {
+    id:`a-dom7-${s}`, label:'Barre (A-shape, 7)',
+    frets, fingers, barres:[{fret:s, fromString:5, toString:1, finger:1}],
+    tips:['Bright dominant 7th.', 'Great for blues and funk.', 'Easier fingering than E-shape.']
   };
 }
 
@@ -210,7 +250,15 @@ const OPEN_PRESETS: Record<string, {frets:[Fret,Fret,Fret,Fret,Fret,Fret]; finge
   'Dm':     { frets:['x','x',0,2,3,1], fingers:[null,null,null,2,3,1], tips:['Top 3 string calm depth.'] },
   'F-mini': { frets:['x','x',3,2,1,1], fingers:[null,null,3,2,1,1], tips:['Gentle F (partial barre).'] },
   'Cmaj7':  { frets:['x',3,2,0,0,0], fingers:[null,3,2,null,null,null], tips:['Soft dissolve.'] },
-  'Dmaj7':  { frets:['x','x',0,2,2,2], fingers:[null,null,null,1,2,3], tips:['Top 3 bright afterglow.'] }
+  'Dmaj7':  { frets:['x','x',0,2,2,2], fingers:[null,null,null,1,2,3], tips:['Top 3 bright afterglow.'] },
+  'C7':     { frets:['x',3,2,3,1,0], fingers:[null,3,2,4,1,null], tips:['Classic blues sound.','Wants to resolve to F.'] },
+  'D7':     { frets:['x','x',0,2,1,2], fingers:[null,null,null,2,1,3], tips:['Bright dominant 7th.','Top 3 strings ring clearly.'] },
+  'E7':     { frets:[0,2,0,1,0,0], fingers:[null,2,null,1,null,null], tips:['Easy open E7.','Blues standard.'] },
+  'G7':     { frets:[3,2,0,0,0,1], fingers:[3,2,null,null,null,1], tips:['Full-bodied dominant.','Adds tension.'] },
+  'A7':     { frets:['x',0,2,0,2,0], fingers:[null,null,2,null,3,null], tips:['Fingerpicking-friendly 7th.','Open strings resonate.'] },
+  'Am7':    { frets:['x',0,2,0,1,0], fingers:[null,null,2,null,1,null], tips:['Smooth minor 7th.','Jazz and soul staple.'] },
+  'Dm7':    { frets:['x','x',0,2,1,1], fingers:[null,null,null,2,1,1], tips:['Mellow depth.','Easy barre on 1st fret.'] },
+  'Em7':    { frets:[0,2,0,0,0,0], fingers:[null,2,null,null,null,null], tips:['One-finger wonder.','Dreamy resonance.'] }
 };
 
 export function buildSymbol(root: Root, quality: Quality): {symbol:string, display:string} {
@@ -291,8 +339,10 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
   // For second shape, prefer E-form barre variants
   let second: ChordShape;
   const majorFamily = ['M', '6', 'add9', '6/9', 'M7(9)', 'M7(13)'];
-  const minorFamily = ['m', 'm6', 'madd9', 'm6(9)', 'm7(9)', 'm7(11)'];
+  const minorFamily = ['m', 'm6', 'madd9', 'm6(9)'];
   const majSevenFamily = ['M7', 'M9', 'M11', 'M13', 'mM7', 'mM7(9)'];
+  const domSevenFamily = ['7', '7(9)', '7(11)', '7(13)'];
+  const minorSevenFamily = ['m7', 'm7(9)', 'm7(11)'];
   const susFamily = ['sus2', 'sus4', '7sus4'];
   const augFamily = ['aug', 'aug7', '7#5', '7(#5)'];
   const dimFamily = ['dim', 'dim7', 'm7b5', 'm7♭5', '7b5', '7(♭5)'];
@@ -301,6 +351,10 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
     second = shapeE_Major(r);
   } else if (minorFamily.includes(quality)) {
     second = shapeE_Minor(r);
+  } else if (domSevenFamily.includes(quality)) {
+    second = shapeE_Dom7(r);
+  } else if (minorSevenFamily.includes(quality)) {
+    second = shapeE_Minor7(r);
   } else if (majSevenFamily.includes(quality)) {
     second = shapeA_Maj7(s);
   } else if (susFamily.includes(quality)) {
@@ -310,7 +364,7 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
   } else if (dimFamily.includes(quality)) {
     second = shapeE_Dim(r);
   } else {
-    // Default for 7, m7, 9, m9, extended chords
+    // Default for 9, extended chords
     second = shapeE_Major(r);
     second.label = `Barre (E-shape, ${quality})`;
   }
@@ -322,6 +376,10 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
     third = shapeA_Major(s);
   } else if (minorFamily.includes(quality)) {
     third = shapeA_Minor(s);
+  } else if (domSevenFamily.includes(quality)) {
+    third = shapeA_Dom7(s);
+  } else if (minorSevenFamily.includes(quality)) {
+    third = shapeA_Minor7(s);
   } else if (majSevenFamily.includes(quality)) {
     third = shapeA_Maj7(s);
   } else if (susFamily.includes(quality)) {
@@ -331,7 +389,7 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
   } else if (dimFamily.includes(quality)) {
     third = shapeA_Dim(s);
   } else {
-    // Default for 7, m7, 9, m9, extended chords
+    // Default for 9, extended chords
     third = shapeA_Major(s);
     third.label = `Barre (A-shape, ${quality})`;
   }
