@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct OtoTheoryApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     init() {
         audioTrace("BOOT mark — app did launch")
     }

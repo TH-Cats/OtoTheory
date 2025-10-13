@@ -173,3 +173,4 @@ description: "ギタリストのための音楽用語ミニ辞典。1行の定�
 - **進行を移したい** → [/resources/music-theory#key-roman](/resources/music-theory#key-roman)  
 - **色を足したい** → [/resources/music-theory#color](/resources/music-theory#color)
 
+

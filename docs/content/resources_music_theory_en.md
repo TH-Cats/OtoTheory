@@ -203,3 +203,4 @@ A. **Degrees = single note numbers**, **Roman numerals = chords built on those n
 - Check terms quickly → [/resources/glossary](/resources/glossary)  
 - Find chord fingerings → (Coming soon) **Chord Library** `/resources/chord-library`
 
+

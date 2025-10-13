@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Guitar Resources – Theory, Glossary & Chord Library | OtoTheory",
   description: "Comprehensive guitar resources: music theory guide, terminology glossary, and chord library. Learn theory by numbers with practical recipes and quick reference tools.",
-  keywords: ["guitar resources", "music theory", "guitar glossary", "chord library", "guitar theory guide", "music terms", "guitar reference"],
   alternates: {
     canonical: "/resources",
   },

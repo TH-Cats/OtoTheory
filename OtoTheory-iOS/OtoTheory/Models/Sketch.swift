@@ -7,6 +7,7 @@ struct Sketch: Identifiable, Codable {
     var key: String?
     var scale: String?
     var bpm: Double
+    var sections: [Section]  // Phase 2: Song structure (Pro feature)
     var lastModified: Date
     
     init(
@@ -16,6 +17,7 @@ struct Sketch: Identifiable, Codable {
         key: String? = nil,
         scale: String? = nil,
         bpm: Double = 120,
+        sections: [Section] = [],
         lastModified: Date = Date()
     ) {
         self.id = id
@@ -24,6 +26,7 @@ struct Sketch: Identifiable, Codable {
         self.key = key
         self.scale = scale
         self.bpm = bpm
+        self.sections = sections
         self.lastModified = lastModified
     }
 }

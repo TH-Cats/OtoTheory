@@ -1,0 +1,60 @@
+{
+  "identifier" : "9DC7E823",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6738765432",
+    "_developerTeamID" : "YOUR_TEAM_ID",
+    "_lastSynchronizedDate" : 760377600.0
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "21512894",
+      "localizations" : [
+
+      ],
+      "name" : "Pro Subscription",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "490",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6738987654",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "すべてのプロ機能が利用可能になります",
+              "displayName" : "OtoTheory Pro",
+              "locale" : "ja"
+            },
+            {
+              "description" : "Unlock all Pro features",
+              "displayName" : "OtoTheory Pro",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.ototheory.pro.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Pro Monthly",
+          "subscriptionGroupID" : "21512894",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}
+

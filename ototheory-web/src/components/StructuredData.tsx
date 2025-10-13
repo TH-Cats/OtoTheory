@@ -142,14 +142,9 @@ export function SoftwareApplicationStructuredData({
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "127",
-      "bestRating": "5",
-      "worstRating": "1"
     }
+    // aggregateRating removed: Only include when real user reviews exist
+    // per Google's structured data policy
   };
 
   return (

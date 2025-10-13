@@ -4,7 +4,6 @@ import { BreadcrumbStructuredData } from "@/components/StructuredData";
 export const metadata: Metadata = {
   title: "Terms of Service – OtoTheory",
   description: "Read OtoTheory's terms of service to understand your rights and responsibilities when using our music theory tool.",
-  keywords: ["terms of service", "user agreement", "legal terms", "conditions"],
   alternates: {
     canonical: "/terms",
   },

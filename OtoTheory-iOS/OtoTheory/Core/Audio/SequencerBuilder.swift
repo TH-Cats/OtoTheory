@@ -8,9 +8,24 @@ final class SequencerBuilder {
     // MARK: - Public API
     
     /// ScoreからMusicSequenceを構築
+    /// 
+    /// **MusicSequence 構造**:
+    /// - Track 0: テンポトラック
+    /// - Track 1: ベーストラック（includeBass = true の場合）
+    /// - Track 2: ドラムトラック（includeDrums = true の場合）
+    /// 
+    /// **タイミング構造**:
+    /// - 時刻 0.0 - 4.0 beats: カウントイン（無音、将来のクリック音用）
+    /// - 時刻 4.0 beats 以降: 実際のコード進行
+    /// 
+    /// **MIDI エクスポート対応**:
+    /// - この MusicSequence は MIDI ファイルとして直接エクスポート可能
+    /// - 実行時のタイミング調整は行わず、MusicSequence の絶対時刻を保つ
+    /// 
     /// Phase A: テンポトラックのみ
     /// Phase B: ベース基本形（Root/5th）を追加
     /// Phase C: ドラムパターンを追加
+    /// Phase D: ギタートラックを追加（将来）
     static func build(
         score: Score,
         includeBass: Bool = false,
@@ -69,32 +84,41 @@ final class SequencerBuilder {
             )
         }
         
-        for (barIndex, bar) in score.bars.enumerated() {
-            let bassNote = chordToBassRoot(bar.chord)
-            let beatTime = MusicTimeStamp(barIndex * 4)  // 小節頭（4拍/小節）
-            
-            // Root on beat 1（1拍目）
-            var rootNote = MIDINoteMessage(
-                channel: 0,
-                note: bassNote,
-                velocity: 100,  // ベースは強めに
-                releaseVelocity: 0,
-                duration: 1.0  // 1拍分
-            )
-            MusicTrackNewMIDINoteEvent(bassTrack, beatTime, &rootNote)
-            
-            // 5th on beat 3（3拍目）
-            var fifthNote = MIDINoteMessage(
-                channel: 0,
-                note: bassNote + 7,  // 完全5度上
-                velocity: 100,  // ベースは強めに
-                releaseVelocity: 0,
-                duration: 1.0
-            )
-            MusicTrackNewMIDINoteEvent(bassTrack, beatTime + 2.0, &fifthNote)
+        // ✅ カウントイン = 4拍（1小節分）を考慮
+        let countInBeats: MusicTimeStamp = 4.0
+        
+        // ✅ 十分な長さ（10サイクル = 40小節分）を生成してループをカバー
+        let cycleCount = 10
+        
+        for cycle in 0..<cycleCount {
+            for (barIndex, bar) in score.bars.enumerated() {
+                let bassNote = chordToBassRoot(bar.chord)
+                // ✅ カウントイン後 + サイクルオフセット + 小節頭タイミング
+                let beatTime = countInBeats + MusicTimeStamp(cycle * score.bars.count * 4 + barIndex * 4)
+                
+                // Root on beat 1（1拍目）
+                var rootNote = MIDINoteMessage(
+                    channel: 0,
+                    note: bassNote,
+                    velocity: 100,  // ベースは強めに
+                    releaseVelocity: 0,
+                    duration: 1.0  // 1拍分
+                )
+                MusicTrackNewMIDINoteEvent(bassTrack, beatTime, &rootNote)
+                
+                // 5th on beat 3（3拍目）
+                var fifthNote = MIDINoteMessage(
+                    channel: 0,
+                    note: bassNote + 7,  // 完全5度上
+                    velocity: 100,  // ベースは強めに
+                    releaseVelocity: 0,
+                    duration: 1.0
+                )
+                MusicTrackNewMIDINoteEvent(bassTrack, beatTime + 2.0, &fifthNote)
+            }
         }
         
-        print("✅ SequencerBuilder: Bass track added (\(score.bars.count) bars)")
+        print("✅ SequencerBuilder: Bass track added (\(score.bars.count) bars × \(cycleCount) cycles)")
     }
     
     /// コードシンボルからベースルート音を抽出（C3 = 48 ベース）

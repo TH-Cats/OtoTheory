@@ -100,6 +100,12 @@ struct SketchRow: View {
     let onRename: () -> Void
     let onDelete: () -> Void
     
+    @State private var showExportMenu = false
+    @State private var exportError: String?
+    @State private var showError = false
+    @State private var shareURL: URL?
+    @State private var showShareSheet = false
+    
     var body: some View {
         Button(action: onLoad) {
             VStack(alignment: .leading, spacing: 8) {
@@ -112,6 +118,10 @@ struct SketchRow: View {
                     
                     // Context Menu Button
                     Menu {
+                        Button(action: { showExportMenu = true }) {
+                            Label("Export", systemImage: "square.and.arrow.up")
+                        }
+                        
                         Button(action: onRename) {
                             Label("Rename", systemImage: "pencil")
                         }
@@ -166,6 +176,113 @@ struct SketchRow: View {
             .padding(.vertical, 4)
         }
         .buttonStyle(.plain)
+        .confirmationDialog("Export Sketch", isPresented: $showExportMenu) {
+            Button("Export as PNG") {
+                exportAsPNG()
+            }
+            
+            Button("Export as MIDI (Pro)") {
+                exportAsMIDI()
+            }
+            
+            Button("Cancel", role: .cancel) {}
+        }
+        .alert("Export Error", isPresented: $showError) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(exportError ?? "Unknown error")
+        }
+        .sheet(isPresented: $showShareSheet) {
+            if let url = shareURL {
+                ActivityViewController(activityItems: [url])
+            }
+        }
+    }
+    
+    // MARK: - Export Functions
+    
+    private func exportAsPNG() {
+        // TODO: PNG export implementation (Phase 3.5)
+        exportError = "PNG export is not yet implemented"
+        showError = true
+    }
+    
+    private func exportAsMIDI() {
+        let chords = sketch.chords.compactMap { $0 }
+        
+        guard !chords.isEmpty else {
+            exportError = "No chords to export"
+            showError = true
+            return
+        }
+        
+        // Check Pro status
+        guard ProManager.shared.isProUser else {
+            exportError = "MIDI export is a Pro feature"
+            showError = true
+            return
+        }
+        
+        let service = MIDIExportService()
+        
+        // Debug: Log sketch info
+        print("📋 MIDI Export Debug:")
+        print("  - Chords: \(chords)")
+        print("  - Key: \(sketch.key ?? "C")")
+        print("  - Scale: \(sketch.scale ?? "nil")")
+        print("  - BPM: \(sketch.bpm)")
+        
+        do {
+            let midiData = try service.exportToMIDI(
+                chords: chords,
+                sections: sketch.sections,
+                key: sketch.key ?? "C",
+                scale: sketch.scale, // Pass scale for Scale Guide Track
+                bpm: sketch.bpm
+            )
+            
+            // Save to temporary file
+            let tempURL = FileManager.default.temporaryDirectory
+                .appendingPathComponent("\(sketch.name)_\(Date().timeIntervalSince1970).mid")
+            
+            try midiData.write(to: tempURL)
+            
+            // Show share sheet
+            shareURL = tempURL
+            showShareSheet = true
+            
+            // Track telemetry
+            TelemetryService.shared.track(.midiExport, payload: [
+                "chord_count": chords.count,
+                "section_count": sketch.sections.count,
+                "has_sections": !sketch.sections.isEmpty,
+                "from_sketch": true
+            ])
+            
+            print("✅ MIDI exported from sketch: \(sketch.name)")
+        } catch {
+            exportError = error.localizedDescription
+            showError = true
+            print("❌ MIDI export failed: \(error)")
+        }
+    }
+}
+
+// MARK: - ActivityViewController (UIKit wrapper for Share Sheet)
+
+struct ActivityViewController: UIViewControllerRepresentable {
+    let activityItems: [Any]
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(
+            activityItems: activityItems,
+            applicationActivities: nil
+        )
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        // No update needed
     }
 }
 

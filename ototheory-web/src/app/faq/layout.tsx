@@ -4,7 +4,6 @@ import { BreadcrumbStructuredData, FAQStructuredData } from "@/components/Struct
 export const metadata: Metadata = {
   title: "FAQ – Frequently Asked Questions | OtoTheory",
   description: "Find answers to common questions about OtoTheory. Learn how to use chord progression builder, find chords, and more.",
-  keywords: ["ototheory faq", "how to use", "help", "guitar tool questions"],
   alternates: {
     canonical: "/faq",
   },

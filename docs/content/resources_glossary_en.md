@@ -173,3 +173,4 @@ description: "Quick music theory reference for guitarists. One-line definitions 
 - **How to transpose progressions?** → [/resources/music-theory#key-roman](/resources/music-theory#key-roman)  
 - **Want to add color?** → [/resources/music-theory#color](/resources/music-theory#color)
 
+

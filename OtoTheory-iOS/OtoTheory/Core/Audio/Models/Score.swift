@@ -13,9 +13,9 @@ struct Score {
     
     /// 既存のslotsから Score を生成
     static func from(slots: [String?], bpm: Double = 120.0) -> Score {
-        let bars: [Bar] = slots.compactMap { chord -> Bar? in
+        let bars: [Bar] = slots.enumerated().compactMap { (index, chord) -> Bar? in
             guard let chord = chord, !chord.isEmpty else { return nil }
-            return Bar(chord: chord)
+            return Bar(chord: chord, slotIndex: index)
         }
         return Score(bpm: bpm, bars: bars)
     }
@@ -33,12 +33,14 @@ struct Score {
 }
 
 /// SSOT: 小節（1小節分）
-/// コードシンボルのみを保持
+/// コードシンボルと元のスロットインデックスを保持
 struct Bar {
     var chord: String  // "C", "Am7", "G/B" など
+    var slotIndex: Int  // 元のスロットインデックス（UI更新用）
     
-    init(chord: String) {
+    init(chord: String, slotIndex: Int = 0) {
         self.chord = chord
+        self.slotIndex = slotIndex
     }
 }
 

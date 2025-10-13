@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Chord Progression Builder & Key Analyzer – OtoTheory",
   description: "Build chord progressions and instantly analyze the key. See Roman numeral analysis, diatonic chords, and discover perfect chord sequences.",
-  keywords: ["chord progression", "chord builder", "key analyzer", "roman numerals", "diatonic chords", "scales"],
   alternates: {
     canonical: "/chord-progression",
   },

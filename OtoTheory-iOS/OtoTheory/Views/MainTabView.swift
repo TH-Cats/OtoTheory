@@ -17,11 +17,23 @@ struct MainTabView: View {
                 }
                 .tag(1)
             
-            ReferenceView()
+            SketchTabView()
                 .tabItem {
-                    Label("Reference", systemImage: "book")
+                    Label("Sketches", systemImage: "music.note")
                 }
                 .tag(2)
+            
+            ReferenceView()
+                .tabItem {
+                    Label("Resources", systemImage: "book")
+                }
+                .tag(3)
+            
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape.fill")
+                }
+                .tag(4)
         }
     }
 }

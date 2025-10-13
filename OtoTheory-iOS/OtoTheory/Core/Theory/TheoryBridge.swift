@@ -121,12 +121,30 @@ class TheoryBridge {
         return array
     }
     
-    func analyzeProgression(_ chords: [String]) -> [KeyCandidate] {
+    // Phase E-5: Analyze with optional section weights
+    func analyzeProgression(_ chords: [String], sections: [SectionInfo]? = nil) -> [KeyCandidate] {
         let chordsJSON = chords.map { "\"\($0)\"" }.joined(separator: ",")
+        
+        // Build options object with sections if provided
+        var optsJSON = "{}"
+        if let sections = sections, !sections.isEmpty {
+            let sectionsJSON = sections.map { sec in
+                """
+                {
+                  "name": "\(sec.type.rawValue)",
+                  "start": \(sec.startIndex),
+                  "end": \(sec.endIndex),
+                  "repeat": \(sec.repeatCount)
+                }
+                """
+            }.joined(separator: ",")
+            optsJSON = "{ \"sections\": [\(sectionsJSON)] }"
+        }
+        
         let script = """
         (function() {
             try {
-                const result = OtoCore.analyzeProgression([\(chordsJSON)]);
+                const result = OtoCore.analyzeProgression([\(chordsJSON)], \(optsJSON));
                 return JSON.stringify(result);
             } catch (e) {
                 return JSON.stringify({ error: e.message });
@@ -203,4 +221,12 @@ struct ScaleCandidate {
     let root: String
     let type: String
     let score: Int
+}
+
+// Phase E-5: Section info for weighted analysis
+struct SectionInfo {
+    let type: SectionType
+    let startIndex: Int  // 0-based index in combined progression
+    let endIndex: Int    // inclusive
+    let repeatCount: Int
 }
