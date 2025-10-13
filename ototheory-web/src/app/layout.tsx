@@ -77,14 +77,24 @@ export default function RootLayout({
         <MobileStickyCta />
         <ProProvider>
         <header className="border-b border-black/10 dark:border-white/10">
-          <div className="container flex items-center justify-between h-14">
+          <div className="container flex items-center justify-between h-16">
             <Link href="/" className="flex items-center gap-2">
+              {/* Light mode logo - hidden in dark mode */}
+              <Image 
+                src="/logo/logo-horizontal-light.png" 
+                alt="OtoTheory" 
+                width={160} 
+                height={48}
+                className="h-10 w-auto dark:hidden"
+                priority
+              />
+              {/* Dark mode logo - hidden in light mode */}
               <Image 
                 src="/logo/logo-horizontal.png" 
                 alt="OtoTheory" 
-                width={120} 
-                height={32}
-                className="h-8 w-auto"
+                width={160} 
+                height={48}
+                className="h-10 w-auto hidden dark:block"
                 priority
               />
             </Link>
