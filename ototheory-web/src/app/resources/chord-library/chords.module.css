@@ -286,6 +286,18 @@
   margin: 0;
 }
 
+.chord-page__ad {
+  margin-top: 24px;
+  padding: 16px;
+  background: var(--chord-panel);
+  border: 1px solid var(--chord-line);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+}
+
 /* Dark mode adjustments */
 @media (prefers-color-scheme: dark) {
   .chord-page {

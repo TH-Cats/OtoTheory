@@ -8,6 +8,7 @@ export default function Nav() {
   const links = [
     { href: "/chord-progression", label: "Chord Progression", aria: "Build Chord Progressions" },
     { href: "/find-chords", label: "Find Chords", aria: "Find Chord" },
+    { href: "/resources/chord-library", label: "Chord Library", aria: "Chord Library" },
     { href: "/resources", label: "Resources", aria: "Resources" },
   ];
   const isActive = (href: string) => pathname?.startsWith(href);
@@ -25,6 +26,11 @@ export default function Nav() {
             ) : l.href === '/find-chords' ? (
               <>
                 <span className="block leading-tight md:inline">Find Chords</span>
+              </>
+            ) : l.href === '/resources/chord-library' ? (
+              <>
+                <span className="block leading-none md:inline">Chord </span>
+                <span className="block leading-tight md:inline">Library</span>
               </>
             ) : (
               l.label

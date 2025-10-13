@@ -4,6 +4,7 @@ import React, { useMemo, useState, useRef } from 'react';
 import styles from './chords.module.css';
 import { ROOTS, QUALITIES, type Root, type Quality, getCachedChord } from '@/lib/chord-library';
 import { ChordCard } from '@/components/chords/ChordCard';
+import AdSlot from '@/components/AdSlot.client';
 
 export type DisplayMode = 'finger' | 'roman' | 'note';
 
@@ -129,6 +130,10 @@ export default function Client() {
           Tip: Forms with <strong>×</strong> on 1st or 6th string should not be strummed there, or lightly muted with your fretting hand.
         </p>
       </footer>
+
+      <section className={styles['chord-page__ad']} aria-label="Advertisement">
+        <AdSlot page="chord_library" format="horizontal" />
+      </section>
     </main>
   );
 }

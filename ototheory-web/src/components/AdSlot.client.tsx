@@ -56,7 +56,7 @@ export default function AdSlot({
         <ins
           className="adsbygoogle"
           style={{ display: "block", ...style }}
-          data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX" // ここにあなたのAdSenseパブリッシャーIDを入力
+          data-ad-client="ca-pub-9662479821167655"
           data-ad-slot={slot}
           data-ad-format={format}
           data-full-width-responsive="true"

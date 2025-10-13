@@ -12,18 +12,18 @@ OtoTheory Web版にGoogle AdSense広告を統合するための設定手順で�
 
 ## 2. コード設定
 
-### 2.1 パブリッシャーIDの設定
+### 2.1 パブリッシャーIDの設定 ✅ 完了
 
-以下の2つのファイルで `ca-pub-XXXXXXXXXXXXXXXXX` を実際のパブリッシャーIDに置き換えてください：
+パブリッシャーID `ca-pub-9662479821167655` は既に以下のファイルに設定済みです：
 
 **ファイル1**: `src/app/layout.tsx` (行54)
 ```typescript
-src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXXX"
+src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9662479821167655"
 ```
 
 **ファイル2**: `src/components/AdSlot.client.tsx` (行59)
 ```typescript
-data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+data-ad-client="ca-pub-9662479821167655"
 ```
 
 ### 2.2 広告スロットIDの設定（オプション）
@@ -48,6 +48,10 @@ data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
 
 3. **Find Chordsページ** (`src/app/find-chords/page.tsx`)
    - メインコンテンツの下に横長フォーマット
+
+4. **Chord Libraryページ** (`src/app/resources/chord-library/Client.tsx`)
+   - フッターの下に横長フォーマット
+   - カスタムスタイリング（ダークテーマに合わせたパネルデザイン）
 
 ## 4. Pro版での広告非表示機能
 
