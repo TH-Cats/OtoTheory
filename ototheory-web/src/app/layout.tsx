@@ -27,6 +27,9 @@ export const metadata: Metadata = {
   description: "Free guitar chord finder, key analyzer, and music theory tool. Build chord progressions, discover scales, and support composition and guitar improvisation theoretically.",
   keywords: ["guitar chords", "chord finder", "music theory", "chord progression", "scales", "composition", "guitar improvisation"],
   metadataBase: new URL("https://www.ototheory.com"),
+  other: {
+    "google-adsense-account": "ca-pub-9662479821167655",
+  },
   openGraph: {
     title: "OtoTheory – Guitar Music Theory Made Easy",
     description: "Free guitar chord finder, key analyzer, and music theory tool. Build chord progressions, discover scales, and support composition and guitar improvisation.",
