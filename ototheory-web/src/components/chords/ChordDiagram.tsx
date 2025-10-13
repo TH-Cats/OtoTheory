@@ -13,7 +13,7 @@ type Props = {
   maxFrets?: number;
 };
 
-const PAD = { left: 16, right: 16, top: 16, bottom: 32 };
+const PAD = { left: 28, right: 16, top: 16, bottom: 32 };
 
 // Note names in chromatic order
 const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
@@ -33,12 +33,12 @@ function getNoteName(stringIdx: number, fret: number): string {
   return NOTE_NAMES[noteIdx];
 }
 
-// Get Roman numeral for a note relative to root
+// Get Roman numeral for a note relative to root (R = Root instead of I)
 function getRoman(noteName: string, root: Root): string {
   const rootIdx = NOTE_INDEX[root];
   const noteIdx = NOTE_INDEX[noteName];
   const interval = (noteIdx - rootIdx + 12) % 12;
-  const romans = ['I', '♭II', 'II', '♭III', 'III', 'IV', '♭V', 'V', '#V', 'VI', '♭VII', 'VII'];
+  const romans = ['R', '♭II', 'II', '♭III', 'III', 'IV', '♭V', 'V', '#V', 'VI', '♭VII', 'VII'];
   return romans[interval];
 }
 
@@ -105,7 +105,39 @@ export function ChordDiagram({ frets, fingers, barres = [], root, displayMode, w
     if (f === 'x') {
       markers.push(<text key={`x${s}`} x={PAD.left-10} y={y+4} fill="#ef4444" fontSize="14" textAnchor="middle">×</text>);
     } else if (f === 0) {
-      markers.push(<circle key={`o${s}`} cx={PAD.left-12} cy={y} r={6} fill="none" stroke="#a6a7aa" strokeWidth={1.5} />);
+      // Open string - show circle with optional Roman/Note inside
+      if (displayMode === 'finger') {
+        // Just show the circle
+        markers.push(<circle key={`o${s}`} cx={PAD.left-14} cy={y} r={6} fill="none" stroke="#a6a7aa" strokeWidth={1.5} />);
+      } else {
+        // Show Roman or Note inside the circle
+        const noteName = getNoteName(s, 0);
+        let displayText = '';
+        let fontSize = 9;
+        if (displayMode === 'note') {
+          displayText = noteName;
+          fontSize = 8;
+        } else if (displayMode === 'roman') {
+          displayText = getRoman(noteName, root);
+          fontSize = 7;
+        }
+        markers.push(<circle key={`o${s}`} cx={PAD.left-14} cy={y} r={9} fill="#2a2d32" stroke="#a6a7aa" strokeWidth={1.5} />);
+        if (displayText) {
+          markers.push(
+            <text 
+              key={`ot${s}`} 
+              x={PAD.left-14} 
+              y={y+3} 
+              fontSize={fontSize} 
+              fill="#e7e7ea" 
+              textAnchor="middle" 
+              fontWeight={600}
+            >
+              {displayText}
+            </text>
+          );
+        }
+      }
     } else if (typeof f === 'number') {
       const x = xForFret(f);
       markers.push(<circle key={`p${s}`} cx={x} cy={y} r={11} fill="#1f2328" stroke="#3b3f45" />);
