@@ -18,3 +18,4 @@ export default function GlossaryLayout({
   return children;
 }
 
+

@@ -5,9 +5,12 @@ import styles from './chords.module.css';
 import { ROOTS, QUALITIES, type Root, type Quality, getCachedChord } from '@/lib/chord-library';
 import { ChordCard } from '@/components/chords/ChordCard';
 
+export type DisplayMode = 'finger' | 'roman' | 'note';
+
 export default function Client() {
   const [root, setRoot] = useState<Root>('C');
-  const [quality, setQuality] = useState<Quality>('Major');
+  const [quality, setQuality] = useState<Quality>('M');
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('finger');
 
   const entry = useMemo(() => getCachedChord(root, quality), [root, quality]);
 
@@ -84,13 +87,39 @@ export default function Client() {
 
         <div className={styles['sel']}>
           <div className={styles['sel__symbol']}>{entry.display}</div>
+          <div className={styles['display-mode']}>
+            <span className={styles['display-mode__label']}>Display:</span>
+            <div className={styles['display-mode__buttons']}>
+              <button
+                className={`${styles['mode-btn']} ${displayMode === 'finger' ? styles['mode-btn--active'] : ''}`}
+                onClick={() => setDisplayMode('finger')}
+                aria-pressed={displayMode === 'finger'}
+              >
+                Finger
+              </button>
+              <button
+                className={`${styles['mode-btn']} ${displayMode === 'roman' ? styles['mode-btn--active'] : ''}`}
+                onClick={() => setDisplayMode('roman')}
+                aria-pressed={displayMode === 'roman'}
+              >
+                Roman
+              </button>
+              <button
+                className={`${styles['mode-btn']} ${displayMode === 'note' ? styles['mode-btn--active'] : ''}`}
+                onClick={() => setDisplayMode('note')}
+                aria-pressed={displayMode === 'note'}
+              >
+                Note
+              </button>
+            </div>
+          </div>
         </div>
       </header>
 
       <section key={`${root}-${quality}`} className={styles['grid-3']} aria-label="Chord forms">
         {entry.shapes.map((shape, index) => (
           <div className={styles['grid-3__col']} key={`${root}-${quality}-${index}`}>
-            <ChordCard symbol={entry.symbol} shape={shape} />
+            <ChordCard symbol={entry.symbol} shape={shape} root={root} displayMode={displayMode} />
           </div>
         ))}
       </section>

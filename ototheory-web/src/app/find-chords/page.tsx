@@ -1,5 +1,6 @@
 "use client";
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import AdSlot from "@/components/AdSlot.client";
 import { getDiatonicChordsFor, type NoteLetter } from "@/lib/music-theory";
 import { toRoman, type Mode } from "@/lib/theory/roman";
 import { useSearchParams } from "next/navigation";
@@ -324,7 +325,9 @@ function FindChordsContent() {
       </section>
 
       {/* Ad Placeholder (card participates in page rhythm) */}
-      <section className="ot-card ad-placeholder" aria-label="Ad">Ad Placeholder</section>
+      <section className="ot-card ad-placeholder" aria-label="Ad">
+        <AdSlot page="find_chords" format="horizontal" />
+      </section>
       {formsPop && (
         <ChordFormsPopover
           at={formsPop.at}

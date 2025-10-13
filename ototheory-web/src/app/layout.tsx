@@ -10,6 +10,7 @@ import HeaderCta from "@/components/HeaderCta.client";
 import FooterCta from "@/components/FooterCta.client";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { GoogleTagManagerHead, GoogleTagManagerBody } from "@/components/GoogleTagManager";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +48,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GoogleTagManagerHead />
+      {/* Google AdSense */}
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXXX"
+        crossOrigin="anonymous"
+        strategy="afterInteractive"
+      />
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <GoogleTagManagerBody />
         <AudioUnlocker />

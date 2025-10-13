@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { WebApplicationStructuredData, OrganizationStructuredData } from "@/components/StructuredData";
+import AdSlot from "@/components/AdSlot.client";
 
 export default function Home() {
   return (
@@ -29,8 +30,8 @@ export default function Home() {
           <p className="text-sm opacity-80">Theory, glossary, and chord library</p>
         </Link>
       </section>
-      <div className="ot-card text-center text-sm opacity-70 ad-placeholder">
-        Ad Placeholder
+      <div className="ot-card">
+        <AdSlot page="home" format="horizontal" />
       </div>
     </main>
     </>

@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import AdSlot from "@/components/AdSlot.client";
 import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useRovingTabs } from "@/hooks/useRovingTabs";
 import Fretboard from "@/components/Fretboard";
@@ -1693,7 +1694,9 @@ export default function FindKeyPage() {
               {/* link to open in chords removed per spec */}
                 </div>
         </section>
-      <section className="ot-card" aria-label="Ad">Ad Placeholder</section>
+      <section className="ot-card" aria-label="Ad">
+        <AdSlot page="chord_progression" format="horizontal" />
+      </section>
       
       {/* Preset Popup */}
       {showPresetPopup && (

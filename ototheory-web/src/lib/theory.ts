@@ -1,4 +1,3 @@
-import { Key } from "tonal";
 // PITCHESは lib/music/constants.ts に移行しました
 export { PC_NAMES as PITCHES, PC_NAMES } from './music/constants';
 // 内部で使用するためにインポート

@@ -20,3 +20,4 @@ export default async function GlossaryPage() {
   return <ResourceContent enContent={enContent} jaContent={jaContent} backLink="/resources" />;
 }
 
+

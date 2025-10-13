@@ -1,18 +1,48 @@
 // /components/chords/ChordDiagram.tsx
 import React from 'react';
-import type { Barre, Fret, Finger } from '@/lib/chord-library';
+import type { Barre, Fret, Finger, Root } from '@/lib/chord-library';
+import type { DisplayMode } from '@/app/resources/chord-library/Client';
 
 type Props = {
   frets: [Fret, Fret, Fret, Fret, Fret, Fret];
   fingers?: [Finger, Finger, Finger, Finger, Finger, Finger];
   barres?: Barre[];
+  root: Root;
+  displayMode: DisplayMode;
   width?: number;
   maxFrets?: number;
 };
 
 const PAD = { left: 16, right: 16, top: 16, bottom: 32 };
 
-export function ChordDiagram({ frets, fingers, barres = [], width = 320, maxFrets = 5 }: Props) {
+// Note names in chromatic order
+const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+const NOTE_INDEX: Record<string, number> = {
+  'C': 0, 'C#': 1, 'D': 2, 'D#': 3, 'E': 4, 'F': 5,
+  'F#': 6, 'G': 7, 'G#': 8, 'A': 9, 'A#': 10, 'B': 11
+};
+
+// Open strings (E A D G B E)
+const OPEN_STRINGS = ['E', 'A', 'D', 'G', 'B', 'E'];
+
+// Get note name for a fret on a string
+function getNoteName(stringIdx: number, fret: number): string {
+  const openNote = OPEN_STRINGS[stringIdx];
+  const openIdx = NOTE_INDEX[openNote];
+  const noteIdx = (openIdx + fret) % 12;
+  return NOTE_NAMES[noteIdx];
+}
+
+// Get Roman numeral for a note relative to root
+function getRoman(noteName: string, root: Root): string {
+  const rootIdx = NOTE_INDEX[root];
+  const noteIdx = NOTE_INDEX[noteName];
+  const interval = (noteIdx - rootIdx + 12) % 12;
+  const romans = ['I', '♭II', 'II', '♭III', 'III', 'IV', '♭V', 'V', '♭VI', 'VI', '♭VII', 'VII'];
+  return romans[interval];
+}
+
+export function ChordDiagram({ frets, fingers, barres = [], root, displayMode, width = 320, maxFrets = 5 }: Props) {
   const height = 160;
   const innerW = width - PAD.left - PAD.right;
   const innerH = height - PAD.top - PAD.bottom;
@@ -79,7 +109,36 @@ export function ChordDiagram({ frets, fingers, barres = [], width = 320, maxFret
     } else if (typeof f === 'number') {
       const x = xForFret(f);
       markers.push(<circle key={`p${s}`} cx={x} cy={y} r={11} fill="#1f2328" stroke="#3b3f45" />);
-      if (finger) markers.push(<text key={`t${s}`} x={x} y={y+4} fontSize="12" fill="#ffffff" textAnchor="middle" fontWeight={700}>{finger}</text>);
+      
+      // Display content based on mode
+      let displayText = '';
+      let fontSize = 12;
+      if (displayMode === 'finger' && finger) {
+        displayText = finger.toString();
+      } else if (displayMode === 'note') {
+        displayText = getNoteName(s, f);
+        fontSize = 10;
+      } else if (displayMode === 'roman') {
+        const noteName = getNoteName(s, f);
+        displayText = getRoman(noteName, root);
+        fontSize = 9;
+      }
+      
+      if (displayText) {
+        markers.push(
+          <text 
+            key={`t${s}`} 
+            x={x} 
+            y={y+4} 
+            fontSize={fontSize} 
+            fill="#ffffff" 
+            textAnchor="middle" 
+            fontWeight={700}
+          >
+            {displayText}
+          </text>
+        );
+      }
     }
   }
 

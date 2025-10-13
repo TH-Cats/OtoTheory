@@ -16,11 +16,63 @@ export type ScaleCandidate = { scale: ScaleMeta; score: number };
 export type AnalysisResult = {
   keyCandidates: KeyCandidate[];
   recommendedScales: ScaleCandidate[];
+  perSection?: SectionAnalysis[];
 };
+
+// Phase E-5: Section-weighted analysis
+export type SectionName =
+  | "Intro" | "Verse" | "PreChorus" | "Chorus" | "PostChorus"
+  | "Bridge" | "Solo" | "Interlude" | "Outro" | "Breakdown" | "Custom";
+
+export interface SectionDef {
+  name: SectionName;
+  start: number;     // inclusive (0-based index in chords[])
+  end: number;       // inclusive
+  repeat?: number;   // default 1
+  weightMul?: number; // optional override
+}
+
+export interface SectionAnalysis {
+  section: SectionDef;
+  best: KeyCandidate;
+  ranking: KeyCandidate[];
+}
+
+export interface AnalyzeOpts {
+  sections?: SectionDef[];
+  weights?: Partial<{
+    section: Partial<Record<SectionName, number>>;
+    songHead: number; // default 1.2
+    songTail: number; // default 1.3
+    sectionEdge: number; // default 1.1
+  }>;
+  cadence?: boolean; // enable cadence detection (future)
+}
 
 const ALL_TONICS: NoteLetter[] = [
   "C", "C#", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B",
 ];
+
+// Phase E-5: Default section weights (based on musical importance)
+const DEFAULT_SECTION_WEIGHTS: Record<SectionName, number> = {
+  Intro: 0.8,
+  Verse: 1.0,
+  PreChorus: 1.2,
+  Chorus: 1.6,      // サビは最重要
+  PostChorus: 1.3,
+  Bridge: 0.9,
+  Solo: 1.0,
+  Interlude: 0.8,
+  Outro: 0.9,
+  Breakdown: 0.9,
+  Custom: 1.0,
+};
+
+const DEFAULT_WEIGHTS = {
+  songHead: 1.2,  // 既存の先頭重み
+  songTail: 1.3,  // 既存の末尾重み
+  sectionEdge: 1.1, // セクション先頭/末尾の補正
+};
 
 const SCALE_DEFS: Record<ScaleId, ScaleMeta> = {
   major: { id: "major", name: "Major Scale", tier: "free" },
@@ -110,14 +162,21 @@ function isSubdominantMinorOrbVII(chord: ParsedChord, key: KeySignature): boolea
   return !!(isIvMinor || isB7);
 }
 
-function scoreForKey(chords: ParsedChord[], key: KeySignature): { score: number; reasons: string[] } {
+function scoreForKey(
+  chords: ParsedChord[],
+  key: KeySignature,
+  weights?: number[]
+): { score: number; reasons: string[] } {
   const diatonic = getDiatonicChords(key);
   let reasons: string[] = [];
-  const weights = chords.map((_, i) => (i === 0 ? 1.2 : i === chords.length - 1 ? 1.3 : 1));
-  const total = weights.reduce((a, b) => a + b, 0);
+  
+  // Phase E-5: Use provided weights or fall back to legacy position weights
+  const W = weights || chords.map((_, i) => (i === 0 ? 1.2 : i === chords.length - 1 ? 1.3 : 1));
+  const total = W.reduce((a, b) => a + b, 0);
+  
   let acc = 0;
   chords.forEach((ch, i) => {
-    const w = weights[i];
+    const w = W[i];
     if (isDiatonicMatch(ch, diatonic)) {
       acc += w * 1.0; // 100%
     } else if (isSecondaryDominant(ch, key)) {
@@ -173,24 +232,88 @@ function recommendScales(topKey: KeySignature, chords: ParsedChord[]): ScaleCand
   return scaleScores.slice(0, 5);
 }
 
-export function analyzeChordProgression(rawTokens: string[]): AnalysisResult {
+// Phase E-5: Compute weights for each chord based on sections
+function computeWeights(chordCount: number, opts: AnalyzeOpts): number[] {
+  const W = new Array(chordCount).fill(1.0);
+  const sections = opts.sections || [];
+  
+  const sectionWeights = { ...DEFAULT_SECTION_WEIGHTS, ...(opts.weights?.section ?? {}) };
+  const songHead = opts.weights?.songHead ?? DEFAULT_WEIGHTS.songHead;
+  const songTail = opts.weights?.songTail ?? DEFAULT_WEIGHTS.songTail;
+  const sectionEdge = opts.weights?.sectionEdge ?? DEFAULT_WEIGHTS.sectionEdge;
+  
+  // Apply section weights
+  for (const s of sections) {
+    const repeat = s.repeat ?? 1;
+    const base = (s.weightMul ?? sectionWeights[s.name] ?? 1.0) * Math.sqrt(repeat);
+    
+    for (let i = s.start; i <= s.end && i < chordCount; i++) {
+      W[i] *= base;
+    }
+    
+    // Section edge bonus
+    if (s.start < chordCount) W[s.start] *= sectionEdge;
+    if (s.end < chordCount) W[s.end] *= sectionEdge;
+  }
+  
+  // Song-level head/tail bonus (legacy compatibility)
+  if (chordCount > 0) W[0] *= songHead;
+  if (chordCount > 1) W[chordCount - 1] *= songTail;
+  
+  // Normalize (Σ W = 1)
+  const sumW = W.reduce((a, b) => a + b, 0) || 1;
+  return W.map(w => w / sumW);
+}
+
+export function analyzeChordProgression(
+  rawTokens: string[],
+  opts: AnalyzeOpts = {}
+): AnalysisResult {
   const chords = rawTokens
     .map((t) => t.trim())
     .filter(Boolean)
     .map(parseChordToken)
     .filter((c): c is ParsedChord => !!c);
 
+  // Phase E-5: Compute weights with section awareness
+  const weights = computeWeights(chords.length, opts);
+  
   const candidates: KeyCandidate[] = [];
   for (const tonic of ALL_TONICS) {
     for (const quality of ["major", "minor"] as const) {
-      const { score, reasons } = scoreForKey(chords, { tonic: tonic as NoteLetter, quality });
+      const { score, reasons } = scoreForKey(
+        chords,
+        { tonic: tonic as NoteLetter, quality },
+        weights
+      );
       candidates.push({ key: { tonic: tonic as NoteLetter, quality }, confidence: score, reasons });
     }
   }
   candidates.sort((a, b) => b.confidence - a.confidence);
-  const keyCandidates = candidates.slice(0, 3);
+  const keyCandidates = candidates.slice(0, 5); // v3.1: 3→5候補に拡張（iOS UI改善）
   const recommendedScales = recommendScales(keyCandidates[0].key, chords);
-  return { keyCandidates, recommendedScales };
+  
+  // Phase E-5: Per-section analysis (optional)
+  let perSection: SectionAnalysis[] | undefined;
+  if (opts.sections && opts.sections.length > 0) {
+    perSection = opts.sections.map(sec => {
+      const slice = rawTokens.slice(sec.start, Math.min(sec.end + 1, rawTokens.length));
+      // Analyze section without section weights (just the chords themselves)
+      const local = analyzeChordProgression(slice, {
+        weights: {
+          songHead: 1.0, // No global position bias for local analysis
+          songTail: 1.0,
+        }
+      });
+      return {
+        section: sec,
+        best: local.keyCandidates[0],
+        ranking: local.keyCandidates
+      };
+    });
+  }
+  
+  return { keyCandidates, recommendedScales, perSection };
 }
 
 export type DiatonicRequest = {

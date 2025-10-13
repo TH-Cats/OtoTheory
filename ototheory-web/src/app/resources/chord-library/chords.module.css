@@ -70,12 +70,52 @@
   justify-content: space-between;
   margin-top: 6px;
   padding: 12px 0;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .sel__symbol {
   font-weight: 700;
   font-size: 18px;
   letter-spacing: 0.2px;
+}
+
+.display-mode {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.display-mode__label {
+  font-size: 13px;
+  color: var(--chord-muted);
+}
+
+.display-mode__buttons {
+  display: flex;
+  gap: 4px;
+}
+
+.mode-btn {
+  background: #1b1f25;
+  color: var(--chord-text);
+  border: 1px solid var(--chord-line);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mode-btn:hover {
+  border-color: var(--chord-accent);
+}
+
+.mode-btn--active {
+  background: var(--chord-accent);
+  color: #052d29;
+  border-color: var(--chord-accent);
 }
 
 .toggle {
