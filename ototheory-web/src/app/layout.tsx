@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import Image from "next/image";
 import Nav from "@/components/Nav";
 import { ProProvider } from "@/components/ProProvider";
 import AudioUnlocker from "./AudioUnlocker.client";
@@ -77,7 +78,16 @@ export default function RootLayout({
         <ProProvider>
         <header className="border-b border-black/10 dark:border-white/10">
           <div className="container flex items-center justify-between h-14">
-            <Link href="/" className="font-semibold tracking-tight">OtoTheory</Link>
+            <Link href="/" className="flex items-center gap-2">
+              <Image 
+                src="/logo/logo-horizontal.png" 
+                alt="OtoTheory" 
+                width={120} 
+                height={32}
+                className="h-8 w-auto"
+                priority
+              />
+            </Link>
             <div className="flex items-center gap-4">
               <Nav />
               <HeaderCta />
