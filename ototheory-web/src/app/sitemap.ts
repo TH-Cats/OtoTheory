@@ -86,6 +86,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.5,
     },
+    {
+      url: `${baseUrl}/sitemap-page`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.4,
+    },
     
     // 法的ページ - 低優先度
     {
