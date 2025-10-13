@@ -102,13 +102,14 @@ export function ChordDiagram({ frets, fingers, barres = [], root, displayMode, w
     const f = frets[s];
     const finger = fingers?.[s] ?? null;
     const y = yForString(s);
+    const openX = PAD.left - 19; // Position for open strings and muted strings
     if (f === 'x') {
-      markers.push(<text key={`x${s}`} x={PAD.left-10} y={y+4} fill="#ef4444" fontSize="14" textAnchor="middle">×</text>);
+      markers.push(<text key={`x${s}`} x={openX} y={y+4} fill="#ef4444" fontSize="14" textAnchor="middle">×</text>);
     } else if (f === 0) {
-      // Open string - show circle with optional Roman/Note inside
+      // Open string - show circle with optional Roman/Note inside (moved left to avoid overlapping with nut)
       if (displayMode === 'finger') {
         // Just show the circle
-        markers.push(<circle key={`o${s}`} cx={PAD.left-14} cy={y} r={6} fill="none" stroke="#a6a7aa" strokeWidth={1.5} />);
+        markers.push(<circle key={`o${s}`} cx={openX} cy={y} r={6} fill="none" stroke="#a6a7aa" strokeWidth={1.5} />);
       } else {
         // Show Roman or Note inside the circle
         const noteName = getNoteName(s, 0);
@@ -121,12 +122,12 @@ export function ChordDiagram({ frets, fingers, barres = [], root, displayMode, w
           displayText = getRoman(noteName, root);
           fontSize = 7;
         }
-        markers.push(<circle key={`o${s}`} cx={PAD.left-14} cy={y} r={9} fill="#2a2d32" stroke="#a6a7aa" strokeWidth={1.5} />);
+        markers.push(<circle key={`o${s}`} cx={openX} cy={y} r={9} fill="#2a2d32" stroke="#a6a7aa" strokeWidth={1.5} />);
         if (displayText) {
           markers.push(
             <text 
               key={`ot${s}`} 
-              x={PAD.left-14} 
+              x={openX} 
               y={y+3} 
               fontSize={fontSize} 
               fill="#e7e7ea" 
