@@ -74,10 +74,40 @@
   gap: 12px;
 }
 
+.sel__left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .sel__symbol {
   font-weight: 700;
   font-size: 18px;
   letter-spacing: 0.2px;
+}
+
+.sel__notes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--chord-muted);
+}
+
+.sel__notes-intervals {
+  color: var(--chord-accent);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.sel__notes-separator {
+  color: var(--chord-line);
+  font-weight: 300;
+}
+
+.sel__notes-actual {
+  color: var(--chord-text);
+  font-weight: 500;
 }
 
 .display-mode {

@@ -382,6 +382,87 @@ const OPEN_PRESETS: Record<string, {frets:[Fret,Fret,Fret,Fret,Fret,Fret]; finge
   'Em7':    { frets:[0,2,0,0,0,0], fingers:[null,2,null,null,null,null], tips:['One-finger wonder.','Dreamy resonance.'] }
 };
 
+// Get intervals for each quality (R = Root)
+export function getIntervals(quality: Quality): string[] {
+  const intervalMap: Partial<Record<Quality, string[]>> = {
+    'M': ['R', 'III', 'V'],
+    'm': ['R', '♭III', 'V'],
+    '6': ['R', 'III', 'V', 'VI'],
+    'm6': ['R', '♭III', 'V', 'VI'],
+    '7': ['R', 'III', 'V', '♭VII'],
+    'M7': ['R', 'III', 'V', 'VII'],
+    'm7': ['R', '♭III', 'V', '♭VII'],
+    'mM7': ['R', '♭III', 'V', 'VII'],
+    'dim': ['R', '♭III', '♭V'],
+    'dim7': ['R', '♭III', '♭V', '♭♭VII'],
+    'm7b5': ['R', '♭III', '♭V', '♭VII'],
+    'm7♭5': ['R', '♭III', '♭V', '♭VII'],
+    'aug': ['R', 'III', '#V'],
+    'aug7': ['R', 'III', '#V', '♭VII'],
+    'sus2': ['R', 'II', 'V'],
+    'sus4': ['R', 'IV', 'V'],
+    '7sus4': ['R', 'IV', 'V', '♭VII'],
+    '9': ['R', 'III', 'V', '♭VII', 'IX'],
+    'M9': ['R', 'III', 'V', 'VII', 'IX'],
+    'm9': ['R', '♭III', 'V', '♭VII', 'IX'],
+    '7b9': ['R', 'III', 'V', '♭VII', '♭IX'],
+    '7(♭9)': ['R', 'III', 'V', '♭VII', '♭IX'],
+    '7(9)': ['R', 'III', 'V', '♭VII', 'IX'],
+    '7#9': ['R', 'III', 'V', '♭VII', '#IX'],
+    '7(#9)': ['R', 'III', 'V', '♭VII', '#IX'],
+    '7b5': ['R', 'III', '♭V', '♭VII'],
+    '7(♭5)': ['R', 'III', '♭V', '♭VII'],
+    '7#5': ['R', 'III', '#V', '♭VII'],
+    '7(#5)': ['R', 'III', '#V', '♭VII'],
+    'm7(#5)': ['R', '♭III', '#V', '♭VII'],
+    'add9': ['R', 'III', 'V', 'IX'],
+    'madd9': ['R', '♭III', 'V', 'IX'],
+    '6/9': ['R', 'III', 'V', 'VI', 'IX'],
+    '7(11)': ['R', 'III', 'V', '♭VII', 'XI'],
+    '7(13)': ['R', 'III', 'V', '♭VII', 'XIII'],
+    'M7(9)': ['R', 'III', 'V', 'VII', 'IX'],
+    'M7(13)': ['R', 'III', 'V', 'VII', 'XIII'],
+    'm6(9)': ['R', '♭III', 'V', 'VI', 'IX'],
+    'm7(9)': ['R', '♭III', 'V', '♭VII', 'IX'],
+    'm7(11)': ['R', '♭III', 'V', '♭VII', 'XI'],
+    'mM7(9)': ['R', '♭III', 'V', 'VII', 'IX'],
+    '11': ['R', 'III', 'V', '♭VII', 'IX', 'XI'],
+    'M11': ['R', 'III', 'V', 'VII', 'IX', 'XI'],
+    '13': ['R', 'III', 'V', '♭VII', 'IX', 'XI', 'XIII'],
+    'M13': ['R', 'III', 'V', 'VII', 'IX', 'XI', 'XIII']
+  };
+  return intervalMap[quality] || ['R', 'III', 'V'];
+}
+
+// Convert interval string to semitones from root
+function intervalToSemitones(interval: string): number {
+  const map: Record<string, number> = {
+    'R': 0,
+    '♭II': 1, 'II': 2,
+    '♭III': 3, 'III': 4,
+    'IV': 5, '#IV': 6,
+    '♭V': 6, 'V': 7, '#V': 8,
+    '♭VI': 8, 'VI': 9,
+    '♭VII': 10, 'VII': 11, '♭♭VII': 9,
+    'IX': 2, '♭IX': 1, '#IX': 3,
+    'XI': 5, '#XI': 6,
+    'XIII': 9
+  };
+  return map[interval] ?? 0;
+}
+
+// Get actual note names for a chord
+export function getChordNotes(root: Root, quality: Quality): string[] {
+  const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+  const rootIdx = notes.indexOf(root);
+  const intervals = getIntervals(quality);
+  
+  return intervals.map(interval => {
+    const semitones = intervalToSemitones(interval);
+    return notes[(rootIdx + semitones) % 12];
+  });
+}
+
 export function buildSymbol(root: Root, quality: Quality): {symbol:string, display:string} {
   const symbolMap: Partial<Record<Quality, {symbol: string, display: string}>> = {
     'M': { symbol: root, display: `${root}` },

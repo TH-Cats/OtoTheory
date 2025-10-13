@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState, useRef } from 'react';
 import styles from './chords.module.css';
-import { ROOTS, QUALITIES, type Root, type Quality, getCachedChord } from '@/lib/chord-library';
+import { ROOTS, QUALITIES, type Root, type Quality, getCachedChord, getIntervals, getChordNotes } from '@/lib/chord-library';
 import { ChordCard } from '@/components/chords/ChordCard';
 import AdSlot from '@/components/AdSlot.client';
 
@@ -14,6 +14,8 @@ export default function Client() {
   const [displayMode, setDisplayMode] = useState<DisplayMode>('finger');
 
   const entry = useMemo(() => getCachedChord(root, quality), [root, quality]);
+  const intervals = useMemo(() => getIntervals(quality), [quality]);
+  const notes = useMemo(() => getChordNotes(root, quality), [root, quality]);
 
   const rootIdx = ROOTS.indexOf(root);
   const qualIdx = QUALITIES.indexOf(quality);
@@ -87,7 +89,18 @@ export default function Client() {
         </div>
 
         <div className={styles['sel']}>
-          <div className={styles['sel__symbol']}>{entry.display}</div>
+          <div className={styles['sel__left']}>
+            <div className={styles['sel__symbol']}>{entry.display}</div>
+            <div className={styles['sel__notes']}>
+              <span className={styles['sel__notes-intervals']}>
+                {intervals.join(' · ')}
+              </span>
+              <span className={styles['sel__notes-separator']}>|</span>
+              <span className={styles['sel__notes-actual']}>
+                {notes.join(' · ')}
+              </span>
+            </div>
+          </div>
           <div className={styles['display-mode']}>
             <span className={styles['display-mode__label']}>Display:</span>
             <div className={styles['display-mode__buttons']}>
