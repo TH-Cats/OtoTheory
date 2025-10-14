@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { WebApplicationStructuredData, OrganizationStructuredData } from "@/components/StructuredData";
+import AdSlot from "@/components/AdSlot.client";
 
 export const metadata = {
   title: "OtoTheory – ギター音楽理論をもっと簡単に",
@@ -54,6 +55,9 @@ export default function HomeJa() {
             <p className="text-sm opacity-80">理論ガイドと用語集</p>
           </Link>
         </section>
+        <div className="ot-card">
+          <AdSlot page="home" format="horizontal" />
+        </div>
       </main>
     </>
   );
