@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { ChordDiagram } from './ChordDiagram';
 import { ChordAudio } from './ChordAudio';
+import { useLocale } from '@/lib/i18n/chordLibrary';
 import type { ChordShape, Root } from '@/lib/chord-library';
 import type { DisplayMode } from '@/app/chord-library/Client';
 import styles from '@/app/chord-library/chords.module.css';
@@ -16,6 +17,7 @@ type Props = {
 export function ChordCard({ symbol, shape, root, displayMode }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const locale = useLocale();
 
   const onPlay = async (mode:'strum'|'arp') => {
     setIsPlaying(true); setError(null);
@@ -30,10 +32,10 @@ export function ChordCard({ symbol, shape, root, displayMode }: Props) {
         <h3 className={styles['chord-card__title']}>{symbol} — {shape.label}</h3>
         <div className={styles['chord-card__actions']}>
           <button className={styles['btn']} onClick={() => onPlay('strum')} aria-label="Play strum" disabled={isPlaying}>
-            {isPlaying ? '…' : '▶'} Play
+            {isPlaying ? '…' : '▶'} {locale==='ja' ? 'Play' : 'Play'}
           </button>
           <button className={`${styles['btn']} ${styles['btn--ghost']}`} onClick={() => onPlay('arp')} aria-label="Play arpeggio" disabled={isPlaying}>
-            Arp
+            {locale==='ja' ? 'Arp' : 'Arp'}
           </button>
         </div>
       </header>

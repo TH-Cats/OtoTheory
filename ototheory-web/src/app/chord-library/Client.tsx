@@ -2,8 +2,7 @@
 
 import React, { useMemo, useState, useRef } from 'react';
 import styles from './chords.module.css';
-import { usePathname } from 'next/navigation';
-import { messages, type Locale } from '@/lib/i18n/messages';
+import { messages } from '@/lib/i18n/messages';
 import { 
   ROOTS, QUALITIES, ADVANCED_QUALITIES, 
   type Root, type Quality, type AdvancedQuality,
@@ -11,18 +10,17 @@ import {
 } from '@/lib/chord-library';
 import { ChordCard } from '@/components/chords/ChordCard';
 import AdSlot from '@/components/AdSlot.client';
+import { useLocale, tTip, tLabel } from '@/lib/i18n/chordLibrary';
 
 export type DisplayMode = 'finger' | 'roman' | 'note';
 
 export default function Client() {
-  const pathname = usePathname() || '/';
-  const isJa = pathname.startsWith('/ja');
-  const locale: Locale = isJa ? 'ja' : 'en';
-  const t = messages[locale].chordLibrary;
   const [root, setRoot] = useState<Root>('C');
   const [quality, setQuality] = useState<Quality | AdvancedQuality>('M');
   const [displayMode, setDisplayMode] = useState<DisplayMode>('finger');
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const locale = useLocale();
+  const t = messages[locale].chordLibrary;
 
   const entry = useMemo(() => getCachedChord(root, quality), [root, quality]);
   const intervals = useMemo(() => getIntervals(quality), [quality]);
@@ -163,16 +161,17 @@ export default function Client() {
       <section key={`${root}-${quality}`} className={styles['grid-3']} aria-label="Chord forms">
         {entry.shapes.map((shape, index) => (
           <div className={styles['grid-3__col']} key={`${root}-${quality}-${index}`}>
-            <ChordCard symbol={entry.symbol} shape={shape} root={root} displayMode={displayMode} />
+            <ChordCard 
+              symbol={entry.symbol} 
+              shape={{...shape, tips: shape.tips.map(t=>tTip(t, locale)), label: tLabel(shape.label, locale)}} 
+              root={root} 
+              displayMode={displayMode} 
+            />
           </div>
         ))}
       </section>
 
-      <footer className={styles['chord-page__footer']}>
-        <p className={styles['hint']}>
-          {t.tip}
-        </p>
-      </footer>
+      {/* footer hint removed per JP UX: avoid extra message at bottom */}
 
       <section className={styles['chord-page__ad']} aria-label="Advertisement">
         <AdSlot page="chord_library" format="horizontal" />
