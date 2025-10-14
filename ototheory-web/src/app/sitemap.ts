@@ -2,8 +2,9 @@ import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.ototheory.com';
-  const lastModified = new Date('2025-10-14'); // Chord Library 独立化
+  const lastModified = new Date('2025-10-14'); // 多言語対応 + Chord Library 独立化
 
+  // 全ページのパス定義（英語・日本語の両方を自動生成）
   const pages = [
     { path: '/', changeFrequency: 'weekly' as const, priority: 1.0 },
     { path: '/chord-progression', changeFrequency: 'weekly' as const, priority: 0.95 },
@@ -21,13 +22,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/terms', changeFrequency: 'yearly' as const, priority: 0.3 },
   ];
 
+  // 英語版（デフォルト）と日本語版（/ja）の両方を生成
   return pages.flatMap(p => ([
+    // 英語版
     {
       url: `${baseUrl}${p.path}`,
       lastModified,
       changeFrequency: p.changeFrequency,
       priority: p.priority,
     },
+    // 日本語版
     {
       url: `${baseUrl}/ja${p.path === '/' ? '' : p.path}`,
       lastModified,

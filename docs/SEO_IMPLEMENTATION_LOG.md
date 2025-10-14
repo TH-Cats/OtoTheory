@@ -2,7 +2,7 @@
 
 **最終更新日:** 2025-10-14  
 **対象サイト:** https://www.ototheory.com  
-**ステータス:** フェーズ1完了 → 専門家レビュー対応完了 → URL構造最適化完了
+**ステータス:** フェーズ1完了 → 専門家レビュー対応完了 → URL構造最適化完了 → **多言語SEO対応完了**
 
 ---
 
@@ -552,6 +552,7 @@ https://search.google.com/search-console
 | 2025-10-12 | 2.2 | 実装ログ統合版作成 | AI Assistant |
 | 2025-10-13 | 3.0 | **SEO専門家レビュー対応**：架空評価削除、keywords削除、INP対応 | AI Assistant |
 | 2025-10-14 | 3.1 | **URL構造最適化**：Chord Libraryをトップレベルに独立化 | AI Assistant |
+| 2025-10-14 | 4.0 | **多言語SEO実装**：日本語版サイト（/ja）の完全対応 | AI Assistant |
 
 ---
 
@@ -624,6 +625,239 @@ Chord Library を Resources 配下から独立させ、メインツールとし�
 #### **リダイレクト**
 - 実装なし（ユーザー要望により不要）
 - 旧URL `/resources/chord-library` は 404 になる
+
+---
+
+## 🌐 多言語SEO実装（2025-10-14）
+
+### 背景
+日本語版サイトの公開に伴い、国際SEO（hreflang、sitemap、構造化データ）を完全実装。
+
+### 実装内容
+
+#### **1. URL構造**
+| 言語 | URL構造 | 例 |
+|------|---------|-----|
+| **英語（デフォルト）** | `ototheory.com/[page]` | `ototheory.com/chord-progression` |
+| **日本語** | `ototheory.com/ja/[page]` | `ototheory.com/ja/chord-progression` |
+
+#### **2. hreflang タグの実装**
+全ページで以下の hreflang を設定：
+
+```typescript
+alternates: {
+  canonical: "/ja/chord-progression",
+  languages: {
+    en: "/chord-progression",
+    "ja-JP": "/ja/chord-progression",
+    "x-default": "/chord-progression"
+  },
+}
+```
+
+**実装箇所:**
+- ✅ 英語版: `src/app/layout.tsx` + 各ページの `layout.tsx`
+- ✅ 日本語版: `src/app/ja/layout.tsx` + 各ページの `layout.tsx`
+
+**Google への効果:**
+- 言語別に適切なページを検索結果に表示
+- 地域ターゲティングの向上
+- 重複コンテンツとして扱われない
+
+#### **3. sitemap.xml の多言語対応**
+全14ページ × 2言語 = **28 URL** を sitemap.xml に含める：
+
+```typescript
+// 自動生成ロジック
+pages.flatMap(p => ([
+  { url: `${baseUrl}${p.path}` },           // 英語版
+  { url: `${baseUrl}/ja${p.path}` },        // 日本語版
+]))
+```
+
+**含まれる日本語ページ（14ページ）:**
+- `/ja` (トップページ)
+- `/ja/chord-progression`
+- `/ja/find-chords`
+- `/ja/chord-library`
+- `/ja/resources`, `/ja/resources/music-theory`, `/ja/resources/glossary`
+- `/ja/getting-started`, `/ja/about`, `/ja/pricing`, `/ja/faq`, `/ja/support`
+- `/ja/privacy`, `/ja/terms`
+
+**配信URL:**
+```
+https://www.ototheory.com/sitemap.xml
+```
+
+#### **4. Open Graph の多言語対応**
+各言語で適切な locale を設定：
+
+| 言語 | locale | 例 |
+|------|--------|-----|
+| 英語 | `en_US` | `<meta property="og:locale" content="en_US">` |
+| 日本語 | `ja_JP` | `<meta property="og:locale" content="ja_JP">` |
+
+**SNSシェア時の効果:**
+- 適切な言語でシェアカードが表示される
+- ユーザーの言語設定に応じた表示
+
+#### **5. 構造化データの多言語対応**
+以下の構造化データを日本語版でも実装：
+
+**A. WebApplication スキーマ**
+```typescript
+<WebApplicationStructuredData 
+  name="OtoTheory"
+  description="無料のギター向け音楽理論ツール。コード進行の作成、キー判定、スケール探索をサポート。"
+  url="https://www.ototheory.com/ja"
+  lang="ja"
+/>
+```
+
+**B. Organization スキーマ**
+```typescript
+<OrganizationStructuredData lang="ja" />
+```
+
+**C. BreadcrumbList スキーマ**
+```typescript
+<BreadcrumbStructuredData
+  lang="ja"
+  items={[
+    { name: "Home", url: "https://www.ototheory.com/ja" },
+    { name: "Find Chords", url: "https://www.ototheory.com/ja/find-chords" }
+  ]}
+/>
+```
+
+**D. FAQPage スキーマ**
+```typescript
+<FAQStructuredData 
+  faqs={[
+    { question: "解約方法は？", answer: "Apple ID > サブスクリプション..." },
+    // ... 日本語のFAQ
+  ]} 
+  lang="ja" 
+/>
+```
+
+#### **6. メタデータの日本語最適化**
+全ページで日本語の title、description、keywords を設定：
+
+**例（トップページ）:**
+```typescript
+export const metadata = {
+  title: "OtoTheory – ギター音楽理論をもっと簡単に",
+  description: "無料のギター向け音楽理論ツール。コード進行の作成、キー判定、スケール探索をサポート。",
+  openGraph: {
+    locale: "ja_JP",
+    // ...
+  },
+}
+```
+
+#### **7. フォントの最適化**
+日本語版で Noto Sans JP を使用：
+
+```typescript
+import { Noto_Sans_JP } from "next/font/google";
+const noto = Noto_Sans_JP({ subsets: ["latin"], weight: ["400","500","700"] });
+```
+
+**効果:**
+- 日本語テキストの可読性向上
+- ブランドの一貫性維持
+
+---
+
+### SEO効果
+
+#### **🎯 検索エンジン最適化**
+- **日本からのアクセス:** Google.co.jp で日本語ページが優先表示
+- **海外からのアクセス:** Google.com で英語ページが優先表示
+- **hreflang による適切なターゲティング:** 言語・地域に応じた最適なページを提案
+
+#### **📊 トラフィック向上の期待**
+| 項目 | 期待効果 |
+|------|----------|
+| **日本語検索クエリ** | 「ギター コード進行 ツール」などでヒット |
+| **英語検索クエリ** | 「guitar chord progression builder」でヒット |
+| **オーガニックトラフィック** | 2言語対応で潜在的なリーチが2倍 |
+| **CTR向上** | 各言語に最適化されたメタデータで改善 |
+
+#### **🚀 将来の拡張性**
+- 3言語目（韓国語、中国語など）の追加が容易
+- sitemap.ts の `pages` 配列に言語を追加するだけ
+- hreflang テンプレートが既に整備済み
+
+---
+
+### 実装統計
+
+| 項目 | 件数 |
+|------|------|
+| **日本語ページ数** | 14ページ |
+| **sitemap エントリ数** | 28 URL（英語14 + 日本語14） |
+| **hreflang 設定済みページ** | 28ページ |
+| **構造化データ（日本語）** | 4種類（WebApp / Organization / Breadcrumb / FAQ） |
+| **Open Graph locale 設定** | 28ページ |
+| **最適化されたメタデータ** | 28ページ |
+
+---
+
+### 検証項目
+
+#### **1. sitemap.xml の確認**
+```bash
+# 英語版と日本語版の両方が含まれているか
+https://www.ototheory.com/sitemap.xml
+```
+
+**確認ポイント:**
+- ✅ `/ja` のURLが全ページ分含まれている
+- ✅ 優先度・更新頻度が英語版と同じ
+
+#### **2. hreflang の確認**
+```bash
+# ページのソースを表示（Cmd + Option + U）
+# <link rel="alternate" hreflang="ja-JP" href="/ja/chord-progression" />
+```
+
+**確認ポイント:**
+- ✅ 各ページに `hreflang="en"` と `hreflang="ja-JP"` がある
+- ✅ `x-default` が設定されている
+
+#### **3. Google Search Console**
+デプロイ後、以下を実施：
+1. **新しいサイトマップを送信:**
+   - https://www.ototheory.com/sitemap.xml を再送信
+   - 日本語ページがインデックスされるのを確認
+
+2. **International Targeting 確認:**
+   - 設定 > International Targeting
+   - hreflang エラーがないことを確認
+
+3. **URL検査:**
+   - 日本語主要ページ（`/ja`, `/ja/chord-progression` など）を検査
+   - インデックス登録をリクエスト
+
+#### **4. Rich Results Test**
+```bash
+# 日本語ページの構造化データを検証
+https://search.google.com/test/rich-results
+```
+
+**確認ポイント:**
+- ✅ FAQPage スキーマが日本語で認識される
+- ✅ BreadcrumbList が正しく表示される
+
+---
+
+### 参考リンク
+
+- [Google - Tell Google about localized versions of your page](https://developers.google.com/search/docs/specialty/international/localized-versions)
+- [Google - Managing multi-regional and multilingual sites](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites)
+- [Next.js - Internationalization](https://nextjs.org/docs/app/building-your-application/routing/internationalization)
 
 ---
 

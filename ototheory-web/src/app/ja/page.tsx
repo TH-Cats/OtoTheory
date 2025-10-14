@@ -45,6 +45,10 @@ export default function HomeJa() {
             <h2 className="font-semibold mb-1">Find Chords</h2>
             <p className="text-sm opacity-80">キーとスケールからコードを見る</p>
           </Link>
+          <Link href="/ja/chord-library" className="ot-card hover:bg-black/5 dark:hover:bg-white/5">
+            <h2 className="font-semibold mb-1">コードライブラリ</h2>
+            <p className="text-sm opacity-80">インタラクティブなコード図と音声</p>
+          </Link>
           <Link href="/ja/resources" className="ot-card hover:bg-black/5 dark:hover:bg-white/5">
             <h2 className="font-semibold mb-1">リソース</h2>
             <p className="text-sm opacity-80">理論ガイドと用語集</p>
