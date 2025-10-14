@@ -25,43 +25,43 @@ export default function iOSComingSoonPage() {
           <div className="flex items-start gap-2">
             <span className="text-purple-600 dark:text-purple-400">★</span>
             <div>
-              <p className="font-semibold">Advanced Chord Selection</p>
-              <p className="opacity-80">Tensions, slash chords, complex voicings</p>
+              <p className="font-semibold">5-Track MIDI Export (SMF Type-1)</p>
+              <p className="opacity-80">Guitar, Bass, Scale Guide×2, Guide Tones</p>
             </div>
           </div>
           <div className="flex items-start gap-2">
             <span className="text-purple-600 dark:text-purple-400">★</span>
             <div>
-              <p className="font-semibold">50 Presets</p>
-              <p className="opacity-80">Free 20 + Pro-exclusive 30</p>
+              <p className="font-semibold">Section Markers & Arrangements</p>
+              <p className="opacity-80">Export song structure directly to your DAW</p>
             </div>
           </div>
           <div className="flex items-start gap-2">
             <span className="text-purple-600 dark:text-purple-400">★</span>
             <div>
-              <p className="font-semibold">Section Editing</p>
-              <p className="opacity-80">Verse/Chorus/Bridge structures</p>
+              <p className="font-semibold">50 Genre-Specific Presets</p>
+              <p className="opacity-80">Pop, Rock, Jazz, Blues, R&amp;B/Soul, Acoustic</p>
             </div>
           </div>
           <div className="flex items-start gap-2">
             <span className="text-purple-600 dark:text-purple-400">★</span>
             <div>
-              <p className="font-semibold">MIDI Export</p>
-              <p className="opacity-80">Chord tracks, section markers, guide tones</p>
+              <p className="font-semibold">Advanced Voicings & Alterations</p>
+              <p className="opacity-80">7♭9, 7#9, 7#11, 13th, slash chords</p>
             </div>
           </div>
           <div className="flex items-start gap-2">
             <span className="text-purple-600 dark:text-purple-400">★</span>
             <div>
-              <p className="font-semibold">Unlimited Cloud Saves</p>
-              <p className="opacity-80">Sync across all your devices</p>
+              <p className="font-semibold">Guide Tone Track for Improv</p>
+              <p className="opacity-80">3rd/7th melodic line to guide solos</p>
             </div>
           </div>
           <div className="flex items-start gap-2">
             <span className="text-purple-600 dark:text-purple-400">★</span>
             <div>
-              <p className="font-semibold">Priority Support</p>
-              <p className="opacity-80">Get help faster</p>
+              <p className="font-semibold">Unlimited Cloud Projects</p>
+              <p className="opacity-80">Seamless sync across iPhone, iPad, Mac</p>
             </div>
           </div>
         </div>
