@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.ototheory.com';
-  const lastModified = new Date('2025-10-12'); // 構造化データ実装日
+  const lastModified = new Date('2025-10-14'); // Chord Library 独立化
   
   return [
     // トップページ - 最高優先度
@@ -26,6 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.95,
     },
+    {
+      url: `${baseUrl}/chord-library`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
     
     // リソースセクション
     {
@@ -33,12 +39,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/chord-library`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.75,
     },
     {
       url: `${baseUrl}/resources/music-theory`,

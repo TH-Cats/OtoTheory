@@ -1,8 +1,8 @@
 # OtoTheory SEO実装ログ
 
-**最終更新日:** 2025-10-13  
+**最終更新日:** 2025-10-14  
 **対象サイト:** https://www.ototheory.com  
-**ステータス:** フェーズ1完了 → 専門家レビュー対応完了
+**ステータス:** フェーズ1完了 → 専門家レビュー対応完了 → URL構造最適化完了
 
 ---
 
@@ -145,8 +145,8 @@ OtoTheoryウェブサイトのSEO最適化を実施。検索エンジンでの�
 | 1.00 | `/` | weekly | トップページ |
 | 0.95 | `/chord-progression` | weekly | コード進行ビルダー |
 | 0.95 | `/find-chords` | weekly | コード検索ツール |
+| 0.95 | `/chord-library` | weekly | **コードライブラリ（2025-10-14: 独立化）** |
 | 0.80 | `/resources` | monthly | リソースハブ |
-| 0.75 | `/resources/chord-library` | monthly | コードライブラリ |
 | 0.75 | `/resources/music-theory` | monthly | 音楽理論ガイド |
 | 0.75 | `/resources/glossary` | monthly | 用語集 |
 | 0.70 | `/getting-started` | monthly | 使い方ガイド |
@@ -551,6 +551,7 @@ https://search.google.com/search-console
 | 2025-10-12 | 2.1 | Canonical URL追加、SEO監査実施 | AI Assistant |
 | 2025-10-12 | 2.2 | 実装ログ統合版作成 | AI Assistant |
 | 2025-10-13 | 3.0 | **SEO専門家レビュー対応**：架空評価削除、keywords削除、INP対応 | AI Assistant |
+| 2025-10-14 | 3.1 | **URL構造最適化**：Chord Libraryをトップレベルに独立化 | AI Assistant |
 
 ---
 
@@ -577,7 +578,56 @@ https://search.google.com/search-console
 
 ---
 
-**最終更新:** 2025-10-13  
+## 🔄 URL構造最適化（2025-10-14）
+
+### 背景
+Chord Library を Resources 配下から独立させ、メインツールとして扱うことで SEO 強化を実施。
+
+### 変更内容
+
+#### **URL構造の変更**
+- **変更前:** `/resources/chord-library`
+- **変更後:** `/chord-library`
+- **ステータス:** トップレベルの独立コンテンツ
+
+#### **SEO最適化**
+| 項目 | 変更前 | 変更後 |
+|------|--------|--------|
+| **URL階層** | Resources 配下 | トップレベル |
+| **優先度** | 0.75 | 0.95 ⬆️ |
+| **更新頻度** | monthly | weekly ⬆️ |
+| **分類** | リソースセクション | メインツール |
+
+#### **実装内容**
+1. ✅ ディレクトリ移動: `/app/resources/chord-library` → `/app/chord-library`
+2. ✅ Canonical URL 更新: `/chord-library`
+3. ✅ sitemap.xml 更新（優先度・更新頻度を上昇）
+4. ✅ ナビゲーション更新（Nav.tsx）
+5. ✅ ホームページにカード追加
+6. ✅ Resources ページからカード削除
+7. ✅ 全import パス更新
+
+#### **SEO効果**
+- 🎯 **URL短縮化:** 階層が浅くなり、検索エンジンがより重要と認識
+- 🎯 **優先度向上:** sitemap で priority 0.95（最高レベル）に設定
+- 🎯 **視認性向上:** ホームページに直接表示され、ユーザー導線が改善
+- 🎯 **ブランディング強化:** 独立コンテンツとして認識される
+
+#### **修正ファイル数**
+- ディレクトリ移動: 1
+- layout/page.tsx: 4ファイル
+- コンポーネント: 2ファイル
+- ナビゲーション: 1ファイル
+- sitemap.ts: 1ファイル
+- **合計:** 10ファイル
+
+#### **リダイレクト**
+- 実装なし（ユーザー要望により不要）
+- 旧URL `/resources/chord-library` は 404 になる
+
+---
+
+**最終更新:** 2025-10-14  
 **次回レビュー予定:** 2025-11-13（1ヶ月後）
 
 ---
