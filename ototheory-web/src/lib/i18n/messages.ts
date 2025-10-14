@@ -19,6 +19,11 @@ export const messages = {
       note: 'Note',
       tip: 'Tip: Forms with × on 1st or 6th string should not be strummed there, or lightly muted with your fretting hand.',
     },
+    chordBuilder: {
+      proOnlyToast: 'Pro only: This chord type can\'t be added. Get iOS Pro for unlimited + MIDI.',
+      proOnlyToastCta: 'Get Pro',
+      eleventhWarning: '11 clashes with the 3rd on maj/dom. Consider #11 or sus4.',
+    },
   },
   ja: {
     nav: {
@@ -39,6 +44,11 @@ export const messages = {
       roman: 'ローマ',
       note: '音名',
       tip: 'ヒント：1弦または6弦に×が付くフォームは、その弦を弾かないか、左手で軽くミュートしてください。',
+    },
+    chordBuilder: {
+      proOnlyToast: 'Pro専用：このコードタイプは追加できません。iOS Proで無制限＋MIDI出力。',
+      proOnlyToastCta: 'Proを入手',
+      eleventhWarning: '11はmaj/domでは3rdと衝突しがち。#11またはsus4を検討',
     },
   },
 } as const;

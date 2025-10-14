@@ -1,6 +1,6 @@
 import { ChordSpec, ChordContext } from './types';
 
-export function normalizeChordSpec(input: ChordSpec, ctx: ChordContext){
+export function normalizeChordSpec(input: ChordSpec, ctx: ChordContext, options: {autoCorrect11th?: boolean} = {}){
   const spec: ChordSpec = JSON.parse(JSON.stringify(input));
   const warnings: string[] = [];
 
@@ -31,10 +31,36 @@ export function normalizeChordSpec(input: ChordSpec, ctx: ChordContext){
   if (spec.sus === 'sus2' && input.sus === 'sus4') spec.sus = 'sus4';
   if (spec.sus === 'sus4' && input.sus === 'sus2') spec.sus = 'sus2';
 
-  // maj/dom の 11 は回避警告
+  // maj/dom の 11 は回避警告（オプションで自動是正）
   if (spec.ext.eleven) {
-    if (spec.family === 'maj') warnings.push('11 is avoid on maj; consider #11 (Lydian).');
-    if (spec.family === 'dom') warnings.push('11 clashes with 3 on dom; use #11 or sus4.');
+    if (spec.family === 'maj') {
+      if (options.autoCorrect11th) {
+        // 自動是正: 11 → #11 (Lydian)
+        spec.ext.eleven = false;
+        if (spec.alt) {
+          spec.alt.sharpEleven = true;
+        } else {
+          spec.alt = { sharpEleven: true };
+        }
+        warnings.push('11 → #11 に自動調整しました（メジャーではavoid音のため）。');
+      } else {
+        warnings.push('メジャーでの11は3度と濁ります。#11（Lydian）を検討してください。');
+      }
+    }
+    if (spec.family === 'dom') {
+      if (options.autoCorrect11th) {
+        // 自動是正: 11 → #11 または sus4 の提案（ここでは#11を選択）
+        spec.ext.eleven = false;
+        if (spec.alt) {
+          spec.alt.sharpEleven = true;
+        } else {
+          spec.alt = { sharpEleven: true };
+        }
+        warnings.push('11 → #11 に自動調整しました（ドミナントでは3度と衝突するため）。');
+      } else {
+        warnings.push('ドミナントでの11は3度と衝突します。#11 または sus4 を検討してください。');
+      }
+    }
   }
 
   // 非 dom で Alterations は無効

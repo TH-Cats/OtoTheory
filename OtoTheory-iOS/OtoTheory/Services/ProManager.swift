@@ -200,6 +200,45 @@ class ProManager: ObservableObject {
         }
     }
     
+    // MARK: - Advanced Chord Guard
+    
+    /// Pro-only chord qualities that require subscription
+    private static let proOnlyQualities: Set<String> = [
+        // Altered Dominant
+        "7b9", "7#9", "7#11", "7b13", "7alt",
+        // 13th extensions
+        "13", "M13", "m13"
+    ]
+    
+    /// Check if a chord quality can be added to progression
+    /// - Parameters:
+    ///   - quality: The chord quality string (e.g., "7b9", "M13")
+    ///   - hasSlash: Whether the chord has slash/on-bass notation
+    /// - Returns: true if chord can be added, false if Pro subscription required
+    func canAddQuality(_ quality: String, hasSlash: Bool = false) -> Bool {
+        // Pro users can add everything
+        if isProUser {
+            return true
+        }
+        
+        // Slash/On-Bass requires Pro
+        if hasSlash {
+            return false
+        }
+        
+        // Check if quality is in Pro-only set
+        return !Self.proOnlyQualities.contains(quality)
+    }
+    
+    /// Check if a chord quality should show Pro badge
+    /// - Parameters:
+    ///   - quality: The chord quality string
+    ///   - hasSlash: Whether the chord has slash/on-bass notation
+    /// - Returns: true if Pro badge should be shown
+    func shouldShowProBadge(_ quality: String, hasSlash: Bool = false) -> Bool {
+        return Self.proOnlyQualities.contains(quality) || hasSlash
+    }
+    
     // MARK: - Transaction Listener
     
     /// Listen for transactions (e.g., purchases made on another device)

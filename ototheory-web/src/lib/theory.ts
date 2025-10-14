@@ -13,9 +13,13 @@ export const SCALESETS = {
   mixolydian: [0,2,4,5,7,9,10],
   aeolian:    [0,2,3,5,7,8,10],
   locrian:    [0,1,3,5,6,8,10],
+  locrianNat2: [0,2,3,5,6,8,10], // Locrian ♮2 (Melodic Minor 6th mode)
   majPent:    [0,2,4,7,9],
   minPent:    [0,3,5,7,10],
   bluesMin:   [0,3,5,6,7,10],
+  dimWholeHalf: [0,2,3,5,6,8,9,11], // Whole-Half diminished scale
+  dimHalfWhole: [0,1,3,4,6,7,9,10], // Half-Whole diminished scale
+  altered:    [0,1,3,4,6,8,10], // Altered scale (Super Locrian)
 } as const;
 
 // Quality aliases: シンボルの表記ゆれを正規化キーへ統一
@@ -105,7 +109,7 @@ export const QUALITY_TONES: Record<string, number[]> = {
   "7#9":   [0,4,7,10,15],  // Dominant 7 sharp 9
   "7#11":  [0,4,7,10,18],  // Dominant 7 sharp 11 (Lydian dominant)
   "7b13":  [0,4,7,10,20],  // Dominant 7 flat 13
-  "7alt":  [0,4,7,10,13,15,18,20], // Altered (上限集合: ♭9,#9,#11,♭13)
+  "7alt":  [0,4,7,10,13,15,18], // Altered (代表構成: ♭9,#9,#11 - 実用的な組み合わせに固定)
 };
 
 export const noteToPc = (n: string): Pc => {
@@ -115,6 +119,37 @@ export const noteToPc = (n: string): Pc => {
   const up = flatMap[n] ?? n;
   return PITCHES_INTERNAL.indexOf(up as any) as number;
 };
+
+/**
+ * pcToNoteName: Pitch class → 音名変換（キーの調号に応じて♯/♭を選択）
+ * @param pc - Pitch class (0-11)
+ * @param keyRoot - キーのルート音（Pc: 0-11）
+ * @param mode - Major or Minor
+ * @returns 音名（例: "Eb", "F#"）
+ */
+export function pcToNoteName(pc: Pc, keyRoot?: Pc, mode?: Mode): string {
+  if (keyRoot === undefined) {
+    // キー情報がない場合は♭優先（Chord Libraryと同じ）
+    const flatPreferred = ["C", "C#", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"];
+    return flatPreferred[pc];
+  }
+  
+  // ♯系キーと♭系キーを判定
+  const sharpKeys = [7, 2, 9, 4, 11, 6, 1]; // G, D, A, E, B, F#, C#
+  const flatKeys = [5, 10, 3, 8, 1, 6, 11]; // F, Bb, Eb, Ab, Db, Gb, Cb
+  
+  const isSharpKey = sharpKeys.includes(keyRoot);
+  
+  if (isSharpKey) {
+    // ♯系キー: C, C#, D, D#, E, F, F#, G, G#, A, A#, B
+    const sharpNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+    return sharpNames[pc];
+  } else {
+    // ♭系キー（またはC): C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B
+    const flatNames = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
+    return flatNames[pc];
+  }
+}
 
 export const transpose = (pc: Pc, by: number) => (pc + by + 12) % 12;
 
@@ -187,6 +222,45 @@ export function rankKeys(chords: ChordSym[]): RankItem[] {
 }
 
 export type ScaleRank = { keyRoot: Pc; name: string; label: string; pct: number; set: number[] };
+
+/**
+ * getRecommendedScalesForQuality: 品質に応じた推奨スケールを返す
+ * @param quality - コード品質（例: "m7b5", "dim7", "7b9"）
+ * @returns 推奨スケール名の配列（優先順）
+ */
+export function getRecommendedScalesForQuality(quality: string): Array<{name: string; scaleKey: keyof typeof SCALESETS}> {
+  const q = resolveQuality(quality);
+  
+  switch (q) {
+    case 'm7b5': // Half-diminished: Locrian ♮2 優先
+      return [
+        {name: "Locrian ♮2", scaleKey: "locrianNat2"},
+        {name: "Locrian", scaleKey: "locrian"}
+      ];
+    case 'dim':
+    case 'dim7': // Diminished: Whole-Half 優先
+      return [
+        {name: "Diminished (W-H)", scaleKey: "dimWholeHalf"}
+      ];
+    case '7b9': // Dominant b9: Half-Whole 優先
+      return [
+        {name: "Diminished (H-W)", scaleKey: "dimHalfWhole"},
+        {name: "Mixolydian ♭9♭13", scaleKey: "altered"} // 近似
+      ];
+    case '7alt': // Altered dominant
+      return [
+        {name: "Altered", scaleKey: "altered"}
+      ];
+    case '7': // Dominant 7th
+      return [
+        {name: "Mixolydian", scaleKey: "mixolydian"},
+        {name: "Lydian Dominant (Mixolydian ♯11)", scaleKey: "lydian"}, // 近似
+        {name: "Altered", scaleKey: "altered"}
+      ];
+    default:
+      return [];
+  }
+}
 
 export function rankScales(chords: ChordSym[], baseKey: {root:Pc; mode:Mode}): ScaleRank[] {
   const tones = Array.from(new Set(chords.map(parseChord).flatMap(c=>c.tones)));
@@ -343,12 +417,92 @@ export function romanToChordSymbol(roman: string, keyRoot: Pc, mode: Mode): stri
   // 明示的品質がない場合、ダイアトニック品質を補完
   const quality = explicitQual !== null ? explicitQual : defaultQualityForDegree(deg, mode);
   
-  // ルート音を計算
+  // ルート音を計算（キーの調号に応じて♯/♭を選択）
   const rootPc = (keyRoot + deg) % 12;
-  const rootName = PITCHES_INTERNAL[rootPc];
+  const rootName = pcToNoteName(rootPc, keyRoot, mode);
   
   // コードシンボルを組み立て
   return `${rootName}${quality}`;
+}
+
+/**
+ * formatRomanForDisplay: 度数と品質から正しいRoman表記を生成（SSOT準拠: I, ii, iii, IV, V, vi, vii°）
+ * @param degree - 度数（0-11）
+ * @param quality - コード品質（例: "", "m", "7", "m7", "dim", "m7b5"）
+ * @param mode - Major or Minor
+ * @param keyRoot - キーのルート（表記方針の決定に使用）
+ * @returns 表示用Roman numeral（例: "ii", "V7", "vii°"）
+ */
+export function formatRomanForDisplay(degree: number, quality: string, mode: Mode, keyRoot?: Pc): string {
+  // 度数をdiatonic度数にマッピング（0,2,4,5,7,9,11 のみ）
+  const diatonicDegrees: Record<number, number> = {
+    0: 1, 2: 2, 4: 3, 5: 4, 7: 5, 9: 6, 11: 7
+  };
+  
+  const romanNum = diatonicDegrees[degree];
+  if (!romanNum) {
+    // 非ダイアトニック度数（借用和音など）は変化記号付きで表示
+    if (degree === 1) return '♭Ⅱ' + quality; // ♭II
+    if (degree === 3) return '♭Ⅲ' + quality; // ♭III
+    if (degree === 6) return '♯Ⅳ' + quality; // #IV
+    if (degree === 8) return '♭Ⅵ' + quality; // ♭VI
+    if (degree === 10) return '♭Ⅶ' + quality; // ♭VII
+    return '?'; // 不明
+  }
+  
+  // 品質から大文字/小文字を決定
+  const isMinor = quality.startsWith('m') && !quality.startsWith('maj');
+  const isDim = quality.includes('dim') || quality.includes('°') || quality === 'm7b5' || quality === 'ø';
+  
+  // ダイアトニック品質を参照して大文字/小文字を決定
+  const table = mode === "Major" ? DEG_QUAL_MAJOR : DEG_QUAL_MINOR;
+  const expectedQuals = table[degree];
+  const isDiatonicMinor = expectedQuals?.some(q => q === 'm' || q === 'm7');
+  const isDiatonicDim = expectedQuals?.some(q => q === 'dim' || q === 'm7b5');
+  
+  // Roman数字の基本形
+  const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
+  let romanBase = romanNumerals[romanNum - 1];
+  
+  // SSOT準拠: I, ii, iii, IV, V, vi, vii°
+  // Major key: I, ii, iii, IV, V, vi, vii°
+  // Minor key: i, ii°, III, iv, v/V, VI, VII
+  
+  if (mode === "Major") {
+    // I, IV, V は大文字、ii, iii, vi は小文字、vii° は小文字+°
+    if ([1, 4, 5].includes(romanNum) && !isMinor && !isDim) {
+      romanBase = romanBase; // 大文字のまま
+    } else if (isDim || isDiatonicDim) {
+      romanBase = romanBase.toLowerCase() + '°'; // vii°
+    } else {
+      romanBase = romanBase.toLowerCase(); // ii, iii, vi
+    }
+  } else {
+    // Minor key: i, ii°, III, iv, v/V, VI, VII
+    if ([3, 6, 7].includes(romanNum) && !isMinor && !isDim) {
+      romanBase = romanBase; // III, VI, VII は大文字
+    } else if (romanNum === 5) {
+      // v と V の両方あり（harmonic minor の V）
+      romanBase = isMinor ? 'v' : 'V';
+    } else if (isDim || isDiatonicDim) {
+      romanBase = romanBase.toLowerCase() + '°'; // ii°
+    } else {
+      romanBase = romanBase.toLowerCase(); // i, iv
+    }
+  }
+  
+  // 7thなどの拡張を追加（dim以外）
+  let extension = '';
+  if (!isDim && quality && quality !== 'm' && quality !== '') {
+    // 7, M7, m7, sus4などをそのまま付加
+    extension = quality.replace('m', '').replace('M', 'maj'); // m7 → 7, M7 → maj7
+    if (isMinor && extension.startsWith('7')) {
+      // マイナーコードの場合、m7 → 7 と表示（既に小文字で示されているため）
+      extension = extension;
+    }
+  }
+  
+  return romanBase + extension;
 }
 
 

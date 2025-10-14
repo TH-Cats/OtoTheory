@@ -128,6 +128,16 @@ function shapeE_Dom7(r:number): ChordShape {
   };
 }
 
+function shapeE_Maj7(r:number): ChordShape {
+  const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = [r, r+2, r+1, r+1, r, r];
+  const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [1,3,2,2,1,1];
+  return {
+    id:`e-maj7-${r}`, label:'Barre (E-shape, M7)',
+    frets, fingers, barres:[{fret:r, fromString:6, toString:1, finger:1}],
+    tips:['Jazzy, sophisticated M7 sound.', 'Common in R&B and neo-soul.', 'Add light vibrato on high E for shimmer.']
+  };
+}
+
 function shapeE_Sus4(r:number): ChordShape {
   const frets:[Fret,Fret,Fret,Fret,Fret,Fret] = [r, r+2, r+2, r+2, r, r];
   const fingers:[Finger, Finger, Finger, Finger, Finger, Finger] = [1,3,4,2,1,1];
@@ -591,7 +601,7 @@ export function generateChord(root: Root, quality: Quality | AdvancedQuality): C
   } else if (minorSevenFamilyE.includes(quality)) {
     second = shapeE_Minor7(r);
   } else if (majSevenFamilyE.includes(quality)) {
-    second = shapeA_Maj7(s);
+    second = shapeE_Maj7(r);
   } else if (susFamilyE.includes(quality)) {
     second = shapeE_Sus4(r);
   } else if (augFamilyE.includes(quality)) {
