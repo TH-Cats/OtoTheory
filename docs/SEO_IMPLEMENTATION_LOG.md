@@ -2,7 +2,7 @@
 
 **最終更新日:** 2025-10-14  
 **対象サイト:** https://www.ototheory.com  
-**ステータス:** フェーズ1完了 → 専門家レビュー対応完了 → URL構造最適化完了 → **多言語SEO対応完了**
+**ステータス:** フェーズ1完了 → 専門家レビュー対応完了 → URL構造最適化完了 → **多言語SEO対応完了 → AdSense多言語対応完了**
 
 ---
 
@@ -71,7 +71,75 @@ OtoTheoryウェブサイトのSEO最適化を実施。検索エンジンでの�
 
 ---
 
-### 3. **構造化データ (JSON-LD) 実装**
+### 3. **Google AdSense 導入**
+**実施日:** 2025-10-12（初回）→ 2025-10-14（日本語対応）  
+**目的:** ウェブサイトの収益化、広告表示による収益獲得
+
+#### 実装内容:
+- ✅ AdSense アカウント登録完了
+- ✅ Publisher ID: `ca-pub-9662479821167655`
+- ✅ AdSense スクリプトをグローバル配置（`layout.tsx`）
+- ✅ `AdSlot.client.tsx` コンポーネント作成
+- ✅ 主要ページに広告枠配置
+
+#### AdSense スクリプト配置:
+```typescript
+// src/app/layout.tsx
+<Script
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9662479821167655"
+  crossOrigin="anonymous"
+  strategy="afterInteractive"
+/>
+```
+
+#### 広告枠配置（AdSlot コンポーネント）:
+
+| ページ | AdSlot 配置 | format | page ID |
+|--------|------------|--------|---------|
+| **英語版トップ** `/` | ✅ | horizontal | home |
+| **英語版 Chord Progression** `/chord-progression` | ✅ | horizontal | chord_progression |
+| **英語版 Find Chords** `/find-chords` | ✅ | horizontal | find_chords |
+| **英語版 Chord Library** `/chord-library` | ✅ | horizontal | chord_library |
+| **日本語版トップ** `/ja` | ✅ | horizontal | home |
+| **日本語版 Chord Progression** `/ja/chord-progression` | ✅ | horizontal | chord_progression |
+| **日本語版 Find Chords** `/ja/find-chords` | ✅ | horizontal | find_chords |
+| **日本語版 Chord Library** `/ja/chord-library` | ✅ | horizontal | chord_library |
+
+**実装方法:**
+- 日本語版の `/chord-progression`, `/find-chords`, `/chord-library` は英語版コンポーネントを再利用
+- 日本語トップページ（`/ja`）のみ新規実装
+
+#### メタデータでの宣言:
+```typescript
+// src/app/layout.tsx
+export const metadata: Metadata = {
+  other: {
+    "google-adsense-account": "ca-pub-9662479821167655",
+  },
+};
+```
+
+#### ファイル:
+- `/ototheory-web/src/components/AdSlot.client.tsx`
+- `/ototheory-web/src/app/layout.tsx`
+- `/ototheory-web/src/app/page.tsx`
+- `/ototheory-web/src/app/ja/page.tsx`
+
+#### 動作確認:
+- ✅ AdSense スクリプトが全ページで読み込まれる
+- ✅ 英語版4ページに広告枠配置済み
+- ✅ 日本語版4ページに広告枠配置済み
+- ⏳ Google による審査・承認待ち
+
+#### 期待効果:
+- 💰 トラフィックから広告収益が発生
+- 🌐 英語・日本語で同等の収益化が可能
+- 📈 ユーザー体験を損なわない水平レイアウト
+
+---
+
+### 4. **構造化データ (JSON-LD) 実装**
 **実施日:** 2025-10-12  
 **目的:** リッチスニペット表示、検索エンジンの理解向上
 
@@ -129,7 +197,7 @@ OtoTheoryウェブサイトのSEO最適化を実施。検索エンジンでの�
 
 ---
 
-### 4. **XML Sitemap (sitemap.xml)**
+### 5. **XML Sitemap (sitemap.xml)**
 **実施日:** 2025-10-10（初回）→ 2025-10-12（更新）  
 **目的:** 検索エンジンクローラーへのページ一覧提供
 
@@ -171,7 +239,7 @@ https://www.ototheory.com/sitemap.xml
 
 ---
 
-### 5. **robots.txt 設定**
+### 6. **robots.txt 設定**
 **実施日:** 2025-10-10  
 **目的:** クローラーへのクロール許可明示
 
@@ -197,7 +265,7 @@ https://www.ototheory.com/robots.txt
 
 ---
 
-### 6. **Canonical URL の設定**
+### 7. **Canonical URL の設定**
 **実施日:** 2025-10-12  
 **目的:** 重複コンテンツ防止、正規URL明示
 
@@ -227,7 +295,7 @@ export const metadata: Metadata = {
 
 ---
 
-### 7. **SEOメタデータの最適化**
+### 8. **SEOメタデータの最適化**
 **実施日:** 2025-10-10（初回）→ 2025-10-12（更新）  
 **目的:** 検索結果での表示最適化、CTR向上
 
@@ -289,7 +357,7 @@ scales, composition, guitar improvisation
 
 ---
 
-### 8. **Google Search Console 設定**
+### 9. **Google Search Console 設定**
 **実施日:** 2025-10-12  
 **目的:** サイトの検索パフォーマンス監視
 
@@ -511,6 +579,7 @@ https://search.google.com/search-console
 - Google Tag Manager
 - Google Analytics 4
 - Google Search Console
+- Google AdSense
 
 ### **実装パターン:**
 - Server-Side Rendering (SSR)
@@ -529,6 +598,7 @@ https://search.google.com/search-console
 | Structured Data Guide | 構造化データ実装ガイド | `/ototheory-web/STRUCTURED_DATA_GUIDE.md` |
 | SEO Audit Report | SEO監査レポート | `/ototheory-web/SEO_AUDIT_REPORT.md` |
 | SEO Metadata | メタデータ定義 | `/docs/content/seo_metadata.md` |
+| Multilingual SEO Guide | 多言語SEO完全ガイド | `/docs/MULTILINGUAL_SEO_GUIDE.md` |
 
 ---
 
@@ -553,6 +623,7 @@ https://search.google.com/search-console
 | 2025-10-13 | 3.0 | **SEO専門家レビュー対応**：架空評価削除、keywords削除、INP対応 | AI Assistant |
 | 2025-10-14 | 3.1 | **URL構造最適化**：Chord Libraryをトップレベルに独立化 | AI Assistant |
 | 2025-10-14 | 4.0 | **多言語SEO実装**：日本語版サイト（/ja）の完全対応 | AI Assistant |
+| 2025-10-14 | 4.1 | **AdSense 多言語対応**：日本語ページへの広告枠追加完了 | AI Assistant |
 
 ---
 
@@ -561,12 +632,15 @@ https://search.google.com/search-console
 ### **実装完了項目:**
 - [x] Google Tag Manager 導入
 - [x] Google Analytics 4 設定
+- [x] Google AdSense 導入（英語・日本語）
 - [x] 構造化データ実装（5種類）
 - [x] XML Sitemap 作成・更新
 - [x] robots.txt 設定
 - [x] Canonical URL 設定（全ページ）
 - [x] SEOメタデータ最適化（全ページ）
 - [x] Google Search Console 所有権確認
+- [x] 多言語SEO実装（hreflang、sitemap、構造化データ）
+- [x] AdSense 多言語対応（日本語ページ）
 
 ### **未完了・要対応項目:**
 - [ ] og.png 画像作成・配置
