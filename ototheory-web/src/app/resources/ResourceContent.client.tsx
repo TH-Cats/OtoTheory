@@ -160,3 +160,4 @@ export default function ResourceContent({ enContent, jaContent, backLink = '/res
 }
 
 
+

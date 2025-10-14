@@ -46,6 +46,11 @@ struct SectionManagementView: View {
                                 }
                             )
                         }
+                        .onDelete { indexSet in
+                            for index in indexSet {
+                                store.deleteSection(id: store.sectionDefinitions[index].id)
+                            }
+                        }
                     }
                 } header: {
                     Text("Section Definitions")

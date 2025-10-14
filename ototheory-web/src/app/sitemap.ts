@@ -3,103 +3,37 @@ import { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.ototheory.com';
   const lastModified = new Date('2025-10-14'); // Chord Library 独立化
-  
-  return [
-    // トップページ - 最高優先度
-    {
-      url: baseUrl,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 1.0,
-    },
-    
-    // メインツール - 高優先度
-    {
-      url: `${baseUrl}/chord-progression`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/find-chords`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/chord-library`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.95,
-    },
-    
-    // リソースセクション
-    {
-      url: `${baseUrl}/resources`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/resources/music-theory`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/resources/glossary`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.75,
-    },
-    
-    // 情報ページ - 中優先度
-    {
-      url: `${baseUrl}/getting-started`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/pricing`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.65,
-    },
-    {
-      url: `${baseUrl}/faq`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    
-    // サポートページ
-    {
-      url: `${baseUrl}/support`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
-    
-    // 法的ページ - 低優先度
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
+
+  const pages = [
+    { path: '/', changeFrequency: 'weekly' as const, priority: 1.0 },
+    { path: '/chord-progression', changeFrequency: 'weekly' as const, priority: 0.95 },
+    { path: '/find-chords', changeFrequency: 'weekly' as const, priority: 0.95 },
+    { path: '/chord-library', changeFrequency: 'weekly' as const, priority: 0.95 },
+    { path: '/resources', changeFrequency: 'monthly' as const, priority: 0.8 },
+    { path: '/resources/music-theory', changeFrequency: 'monthly' as const, priority: 0.75 },
+    { path: '/resources/glossary', changeFrequency: 'monthly' as const, priority: 0.75 },
+    { path: '/getting-started', changeFrequency: 'monthly' as const, priority: 0.7 },
+    { path: '/about', changeFrequency: 'monthly' as const, priority: 0.6 },
+    { path: '/pricing', changeFrequency: 'monthly' as const, priority: 0.65 },
+    { path: '/faq', changeFrequency: 'monthly' as const, priority: 0.6 },
+    { path: '/support', changeFrequency: 'monthly' as const, priority: 0.5 },
+    { path: '/privacy', changeFrequency: 'yearly' as const, priority: 0.3 },
+    { path: '/terms', changeFrequency: 'yearly' as const, priority: 0.3 },
   ];
+
+  return pages.flatMap(p => ([
+    {
+      url: `${baseUrl}${p.path}`,
+      lastModified,
+      changeFrequency: p.changeFrequency,
+      priority: p.priority,
+    },
+    {
+      url: `${baseUrl}/ja${p.path === '/' ? '' : p.path}`,
+      lastModified,
+      changeFrequency: p.changeFrequency,
+      priority: p.priority,
+    },
+  ]));
 }
 

@@ -19,7 +19,7 @@ struct ProgressionView: View {
     
     // Phase A: Hybrid Audio Architecture
     @StateObject private var audioPlayer = AudioPlayer()
-    @StateObject private var sketchManager = SketchManager()
+    @StateObject private var sketchManager = SketchManager.shared
     @StateObject private var proManager = ProManager.shared  // Phase 1: Pro feature management
     @State private var sequencer: ChordSequencer?  // 旧実装（Phase Bで削除予定）
     @State private var hybridPlayer: HybridPlayer?
@@ -72,10 +72,12 @@ struct ProgressionView: View {
     @State private var showSectionManagement = false
     
     // Sketch state
-    @State private var showSketchList = false
     @State private var showSaveDialog = false
     @State private var sketchName: String = ""
     @State private var currentSketchId: String?
+    
+    // Convert to Section state
+    @State private var showConvertSheet = false
     
     // Analysis state
     @State private var keyCandidates: [KeyCandidate] = []
@@ -230,11 +232,11 @@ struct ProgressionView: View {
         .sheet(isPresented: $showSectionManagement) {
             SectionManagementView(store: progressionStore)
         }
-        .sheet(isPresented: $showSketchList) {
-            SketchListView(
-                sketchManager: sketchManager,
-                onLoad: { sketch in
-                    loadSketch(sketch)
+        .sheet(isPresented: $showConvertSheet) {
+            ConvertToSectionSheet(
+                progressionStore: progressionStore,
+                onConvert: { sectionType, sectionName in
+                    performConvertToSections(type: sectionType, name: sectionName)
                 }
             )
         }
@@ -287,6 +289,16 @@ struct ProgressionView: View {
             Button("Save") {
                 saveCurrentSketch()
             }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .loadSketch)) { notification in
+            // Load sketch from notification
+            guard let sketchId = notification.userInfo?["sketchId"] as? String,
+                  let sketch = sketchManager.sketches.first(where: { $0.id == sketchId }) else {
+                print("⚠️ Sketch not found")
+                return
+            }
+            
+            loadSketch(sketch)
         }
     }
     
@@ -386,89 +398,107 @@ struct ProgressionView: View {
                             .fontWeight(.semibold)
                             .padding(.horizontal)
                         
-                        // Buttons - 1 row with Pro-conditional Sections button
-                        HStack(spacing: 8) {
-                            // Preset Button
-                            Button(action: { showPresetPicker = true }) {
-                                HStack(spacing: 4) {
-                                    Image(systemName: "music.note.list")
-                                    Text("Preset")
-                                }
-                                .font(.subheadline)
-                                .frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(.bordered)
-                            
-                            // Sections Button (Pro only - Phase E-5)
-                            #if DEBUG
-                            // Always show in DEBUG mode for testing
-                            Button(action: {
-                                if !progressionStore.useSectionMode {
-                                    progressionStore.enableSectionMode()
-                                }
-                                showSectionManagement = true
-                            }) {
-                                HStack(spacing: 4) {
-                                    Image(systemName: progressionStore.useSectionMode ? "square.grid.3x2.fill" : "square.grid.3x2")
-                                    Text("Sections")
-                                    if progressionStore.useSectionMode && !progressionStore.sectionDefinitions.isEmpty {
-                                        Text("(\(progressionStore.sectionDefinitions.count))")
-                                            .font(.caption)
+                        // Buttons - 2 rows for better readability
+                        VStack(spacing: 8) {
+                            // First row: Preset, Sections, Reset
+                            HStack(spacing: 8) {
+                                // Preset Button
+                                Button(action: { showPresetPicker = true }) {
+                                    VStack(spacing: 2) {
+                                        Image(systemName: "music.note.list")
+                                            .font(.title3)
+                                        Text("Preset")
+                                            .font(.caption2)
                                     }
+                                    .frame(maxWidth: .infinity)
                                 }
-                                .font(.subheadline)
-                                .frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(.bordered)
-                            .background(progressionStore.useSectionMode ? Color.blue.opacity(0.1) : Color.clear)
-                            .cornerRadius(8)
-                            #else
-                            // Production: Pro only
-                            if proManager.isProUser {
+                                .buttonStyle(.bordered)
+                            
+                                // Sections Button (Pro only - Phase E-5)
+                                #if DEBUG
+                                // Always show in DEBUG mode for testing
                                 Button(action: {
                                     if !progressionStore.useSectionMode {
                                         progressionStore.enableSectionMode()
                                     }
                                     showSectionManagement = true
                                 }) {
-                                    HStack(spacing: 4) {
+                                    VStack(spacing: 2) {
                                         Image(systemName: progressionStore.useSectionMode ? "square.grid.3x2.fill" : "square.grid.3x2")
-                                        Text("Sections")
-                                        if progressionStore.useSectionMode && !progressionStore.sectionDefinitions.isEmpty {
-                                            Text("(\(progressionStore.sectionDefinitions.count))")
-                                                .font(.caption)
+                                            .font(.title3)
+                                        HStack(spacing: 2) {
+                                            Text("Section")
+                                            if progressionStore.useSectionMode && !progressionStore.sectionDefinitions.isEmpty {
+                                                Text("(\(progressionStore.sectionDefinitions.count))")
+                                            }
                                         }
+                                        .font(.caption2)
                                     }
-                                    .font(.subheadline)
                                     .frame(maxWidth: .infinity)
                                 }
                                 .buttonStyle(.bordered)
                                 .background(progressionStore.useSectionMode ? Color.blue.opacity(0.1) : Color.clear)
                                 .cornerRadius(8)
-                            }
-                            #endif
-                            
-                            // Reset Button
-                            Button(action: resetProgression) {
-                                HStack(spacing: 4) {
-                                    Image(systemName: "arrow.counterclockwise")
-                                    Text("Reset")
+                                #else
+                                // Production: Pro only
+                                if proManager.isProUser {
+                                    Button(action: {
+                                        if !progressionStore.useSectionMode {
+                                            progressionStore.enableSectionMode()
+                                        }
+                                        showSectionManagement = true
+                                    }) {
+                                        VStack(spacing: 2) {
+                                            Image(systemName: progressionStore.useSectionMode ? "square.grid.3x2.fill" : "square.grid.3x2")
+                                                .font(.title3)
+                                            HStack(spacing: 2) {
+                                                Text("Section")
+                                                if progressionStore.useSectionMode && !progressionStore.sectionDefinitions.isEmpty {
+                                                    Text("(\(progressionStore.sectionDefinitions.count))")
+                                                }
+                                            }
+                                            .font(.caption2)
+                                        }
+                                        .frame(maxWidth: .infinity)
+                                    }
+                                    .buttonStyle(.bordered)
+                                    .background(progressionStore.useSectionMode ? Color.blue.opacity(0.1) : Color.clear)
+                                    .cornerRadius(8)
                                 }
-                                .font(.subheadline)
-                                .frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(.bordered)
-                            
-                            // Sketches Button
-                            Button(action: { showSketchList = true }) {
-                                HStack(spacing: 4) {
-                                    Image(systemName: "folder")
-                                    Text("Sketches")
+                                #endif
+                                
+                                // Reset Button
+                                Button(action: resetProgression) {
+                                    VStack(spacing: 2) {
+                                        Image(systemName: "arrow.counterclockwise")
+                                            .font(.title3)
+                                        Text("Reset")
+                                            .font(.caption2)
+                                    }
+                                    .frame(maxWidth: .infinity)
                                 }
-                                .font(.subheadline)
-                                .frame(maxWidth: .infinity)
+                                .buttonStyle(.bordered)
                             }
-                            .buttonStyle(.bordered)
+                            
+                            // Second row: Enable Sections (conditional), Sketches
+                            HStack(spacing: 8) {
+                                // Enable Sections Button (only show if not in section mode and has chords)
+                                if !progressionStore.useSectionMode && progressionStore.slots.compactMap({ $0 }).count > 0 {
+                                    Button(action: { showConvertSheet = true }) {
+                                        VStack(spacing: 2) {
+                                            Image(systemName: "square.grid.2x2")
+                                                .font(.title3)
+                                            Text("Enable\nSections")
+                                                .font(.caption2)
+                                                .multilineTextAlignment(.center)
+                                                .lineLimit(2)
+                                                .minimumScaleFactor(0.7)
+                                        }
+                                        .frame(maxWidth: .infinity)
+                                    }
+                                    .buttonStyle(.borderedProminent)
+                                }
+                            }
                         }
                         .padding(.horizontal)
                 }
@@ -750,26 +780,6 @@ struct ProgressionView: View {
                 if isAnalyzed && selectedScale != nil {
                     toolsSection
                 }
-                
-                // Save Button (after Tools)
-                if isAnalyzed && selectedScale != nil {
-                    Button(action: {
-                        sketchName = sketchManager.generateDefaultName()
-                        showSaveDialog = true
-                    }) {
-                        HStack {
-                            Image(systemName: "square.and.arrow.down")
-                            Text("Save Sketch")
-                                .fontWeight(.semibold)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 12)
-                        .background(Color.green)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                    }
-                    .padding(.horizontal)
-                }
         }
     }
     
@@ -954,6 +964,9 @@ struct ProgressionView: View {
             
             // Cadence Section (after Patterns)
             cadenceSection
+            
+            // Save Button Section
+            saveButtonSection
         }
     }
     
@@ -1168,30 +1181,45 @@ struct ProgressionView: View {
     
     @ViewBuilder
     private var patternsSection: some View {
-        if let _ = selectedScale, let _ = selectedKey {
+        if let key = selectedKey, let scale = selectedScale {
             let slots = progressionStore.useSectionMode ? progressionStore.combinedProgression : progressionStore.slots
             let chords = slots.compactMap { $0 }
             
             if !chords.isEmpty {
-                VStack(alignment: .leading, spacing: 8) {
-                    HStack(alignment: .center, spacing: 8) {
+                let patterns = detectPatterns(chords: chords, key: key, scale: scale)
+                
+                if !patterns.isEmpty {
+                    VStack(alignment: .leading, spacing: 12) {
                         Text("Patterns")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
+                            .font(.headline)
+                            .padding(.horizontal)
                         
-                        // Pattern detection placeholder
-                        Text("Doo-wop (I–vi–IV–V)")
-                            .font(.caption)
-                            .fontWeight(.medium)
-                            .foregroundColor(.blue)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
-                            .background(Color.blue.opacity(0.1))
-                            .cornerRadius(4)
-                        
-                        Spacer()
+                        VStack(alignment: .leading, spacing: 8) {
+                            ForEach(patterns, id: \.name) { pattern in
+                                HStack(spacing: 8) {
+                                    Text(pattern.name)
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.blue)
+                                    
+                                    Text("(\(pattern.romanPattern))")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                    
+                                    Spacer()
+                                    
+                                    Text("Bars \(pattern.startIndex + 1)-\(pattern.endIndex + 1)")
+                                        .font(.caption2)
+                                        .foregroundColor(.secondary)
+                                }
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 8)
+                                .background(Color.blue.opacity(0.1))
+                                .cornerRadius(8)
+                            }
+                        }
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
                 }
             }
         }
@@ -1201,28 +1229,81 @@ struct ProgressionView: View {
     
     @ViewBuilder
     private var cadenceSection: some View {
-        if let _ = selectedScale, let _ = selectedKey {
+        if let key = selectedKey, let scale = selectedScale {
             let slots = progressionStore.useSectionMode ? progressionStore.combinedProgression : progressionStore.slots
             let chords = slots.compactMap { $0 }
             
             if !chords.isEmpty {
-                VStack(alignment: .leading, spacing: 8) {
-                    HStack(alignment: .center, spacing: 8) {
+                let cadences = detectCadences(chords: chords, key: key, scale: scale)
+                
+                if !cadences.isEmpty {
+                    VStack(alignment: .leading, spacing: 12) {
                         Text("Cadence")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
+                            .font(.headline)
+                            .padding(.horizontal)
                         
-                        // Cadence detection placeholder
-                        Text("Perfect Cadence (V→I)")
-                            .font(.caption)
-                            .fontWeight(.medium)
-                            .foregroundColor(.purple)
-                        
-                        Spacer()
+                        VStack(alignment: .leading, spacing: 8) {
+                            ForEach(cadences, id: \.name) { cadence in
+                                HStack(spacing: 8) {
+                                    Text(cadence.name)
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.purple)
+                                    
+                                    Text("(\(cadence.romanPattern))")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                    
+                                    Spacer()
+                                    
+                                    Text("Bars \(cadence.startIndex + 1)-\(cadence.endIndex + 1)")
+                                        .font(.caption2)
+                                        .foregroundColor(.secondary)
+                                }
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 8)
+                                .background(Color.purple.opacity(0.1))
+                                .cornerRadius(8)
+                            }
+                        }
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
-                    .padding(.bottom, 8)
                 }
+            }
+        }
+    }
+    
+    // MARK: - Save Button Section
+    
+    @ViewBuilder
+    private var saveButtonSection: some View {
+        let hasChords = progressionStore.useSectionMode 
+            ? progressionStore.sectionDefinitions.contains(where: { $0.hasChords })
+            : progressionStore.slots.compactMap({ $0 }).count > 0
+        
+        if hasChords {
+            VStack(spacing: 16) {
+                Divider()
+                    .padding(.horizontal)
+                
+                Button {
+                    // Generate default name
+                    sketchName = sketchManager.generateDefaultName()
+                    showSaveDialog = true
+                } label: {
+                    HStack {
+                        Image(systemName: "square.and.arrow.down")
+                        Text("Save Sketch")
+                            .fontWeight(.semibold)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+                }
+                .padding(.horizontal)
+                .padding(.bottom, 20)
             }
         }
     }
@@ -1230,9 +1311,18 @@ struct ProgressionView: View {
     // MARK: - Roman Numeral Helper
     
     private func getRomanNumeral(for chord: String, key: KeyCandidate, scale: ScaleCandidate) -> String {
-        // Simple Roman numeral conversion
-        // Parse chord root
-        let chordRoot = String(chord.prefix(chord.count > 1 && (chord[chord.index(chord.startIndex, offsetBy: 1)] == "#" || chord[chord.index(chord.startIndex, offsetBy: 1)] == "b") ? 2 : 1))
+        // Parse chord root (handle # and b)
+        var chordRoot = ""
+        if chord.count > 1 {
+            let secondChar = chord[chord.index(chord.startIndex, offsetBy: 1)]
+            if secondChar == "#" || secondChar == "♯" || secondChar == "b" || secondChar == "♭" {
+                chordRoot = String(chord.prefix(2))
+            } else {
+                chordRoot = String(chord.prefix(1))
+            }
+        } else {
+            chordRoot = String(chord.prefix(1))
+        }
         
         // Get pitch classes
         let keyPitchClass = keyToPitchClass(key.tonic)
@@ -1244,17 +1334,45 @@ struct ProgressionView: View {
         // Get quality (major/minor/dim)
         let isMinor = chord.contains("m") && !chord.contains("maj")
         let isDim = chord.contains("dim") || chord.contains("°")
+        let isAug = chord.contains("aug") || chord.contains("+")
         
-        // Roman numerals based on interval
-        let romans = ["I", "II", "III", "IV", "V", "VI", "VII"]
-        let romanIndex = [0, 2, 4, 5, 7, 9, 11].firstIndex(of: interval) ?? 0
-        var roman = romans[romanIndex]
+        // Roman numerals for all 12 chromatic intervals
+        let diatonicIntervals = [0, 2, 4, 5, 7, 9, 11]
+        let romanNumerals = ["I", "II", "III", "IV", "V", "VI", "VII"]
+        
+        // Find closest diatonic degree
+        var roman = ""
+        if let index = diatonicIntervals.firstIndex(of: interval) {
+            // Exact diatonic match
+            roman = romanNumerals[index]
+        } else {
+            // Chromatic note - find nearest diatonic and add accidental
+            let nearestLower = diatonicIntervals.filter { $0 < interval }.max() ?? 0
+            let nearestUpper = diatonicIntervals.filter { $0 > interval }.min() ?? 12
+            
+            let distToLower = interval - nearestLower
+            let distToUpper = nearestUpper - interval
+            
+            if distToLower <= distToUpper {
+                // Use lower with sharp
+                if let lowerIndex = diatonicIntervals.firstIndex(of: nearestLower) {
+                    roman = "♯" + romanNumerals[lowerIndex]
+                }
+            } else {
+                // Use upper with flat
+                if let upperIndex = diatonicIntervals.firstIndex(of: nearestUpper) {
+                    roman = "♭" + romanNumerals[upperIndex]
+                }
+            }
+        }
         
         // Apply quality
         if isMinor {
             roman = roman.lowercased()
         } else if isDim {
             roman = roman.lowercased() + "°"
+        } else if isAug {
+            roman = roman + "+"
         }
         
         // Add quality suffix
@@ -1265,6 +1383,163 @@ struct ProgressionView: View {
         }
         
         return roman
+    }
+    
+    // MARK: - Pattern & Cadence Detection
+    
+    struct ProgressionPattern: Identifiable {
+        let id = UUID()
+        let name: String
+        let romanPattern: String
+        let startIndex: Int
+        let endIndex: Int
+    }
+    
+    struct CadencePattern: Identifiable {
+        let id = UUID()
+        let name: String
+        let romanPattern: String
+        let startIndex: Int
+        let endIndex: Int
+    }
+    
+    private func detectPatterns(chords: [String], key: KeyCandidate, scale: ScaleCandidate) -> [ProgressionPattern] {
+        guard chords.count >= 4 else { return [] }
+        
+        var patterns: [ProgressionPattern] = []
+        let romans = chords.map { getRomanNumeral(for: $0, key: key, scale: scale) }
+        
+        // Canon progression (I-V-vi-IV)
+        for i in 0...(chords.count - 4) {
+            let slice = Array(romans[i..<(i+4)])
+            
+            if matchesPattern(slice, ["I", "V", "vi", "IV"]) {
+                patterns.append(ProgressionPattern(
+                    name: "Canon Progression",
+                    romanPattern: "I-V-vi-IV",
+                    startIndex: i,
+                    endIndex: i + 3
+                ))
+            }
+            else if matchesPattern(slice, ["I", "vi", "IV", "V"]) {
+                patterns.append(ProgressionPattern(
+                    name: "Doo-wop",
+                    romanPattern: "I-vi-IV-V",
+                    startIndex: i,
+                    endIndex: i + 3
+                ))
+            }
+            else if matchesPattern(slice, ["I", "IV", "V", "IV"]) {
+                patterns.append(ProgressionPattern(
+                    name: "Blues I-IV-V",
+                    romanPattern: "I-IV-V-IV",
+                    startIndex: i,
+                    endIndex: i + 3
+                ))
+            }
+            else if matchesPattern(slice, ["vi", "IV", "I", "V"]) {
+                patterns.append(ProgressionPattern(
+                    name: "Pop Progression",
+                    romanPattern: "vi-IV-I-V",
+                    startIndex: i,
+                    endIndex: i + 3
+                ))
+            }
+        }
+        
+        // ii-V-I (Jazz, 3 chords)
+        for i in 0...(chords.count - 3) {
+            let slice = Array(romans[i..<(i+3)])
+            if matchesPattern(slice, ["ii", "V", "I"]) {
+                patterns.append(ProgressionPattern(
+                    name: "ii-V-I (Jazz)",
+                    romanPattern: "ii-V-I",
+                    startIndex: i,
+                    endIndex: i + 2
+                ))
+            }
+        }
+        
+        // 50s progression (I-vi-ii-V)
+        for i in 0...(chords.count - 4) {
+            let slice = Array(romans[i..<(i+4)])
+            if matchesPattern(slice, ["I", "vi", "ii", "V"]) {
+                patterns.append(ProgressionPattern(
+                    name: "50s Progression",
+                    romanPattern: "I-vi-ii-V",
+                    startIndex: i,
+                    endIndex: i + 3
+                ))
+            }
+        }
+        
+        return patterns
+    }
+    
+    private func detectCadences(chords: [String], key: KeyCandidate, scale: ScaleCandidate) -> [CadencePattern] {
+        guard chords.count >= 2 else { return [] }
+        
+        var cadences: [CadencePattern] = []
+        let romans = chords.map { getRomanNumeral(for: $0, key: key, scale: scale) }
+        
+        for i in 0...(chords.count - 2) {
+            let current = romans[i]
+            let next = romans[i + 1]
+            
+            // Perfect Cadence (V-I)
+            if matchesPattern([current, next], ["V", "I"]) {
+                cadences.append(CadencePattern(
+                    name: "Perfect Cadence",
+                    romanPattern: "V→I",
+                    startIndex: i,
+                    endIndex: i + 1
+                ))
+            }
+            // Plagal Cadence (IV-I)
+            else if matchesPattern([current, next], ["IV", "I"]) {
+                cadences.append(CadencePattern(
+                    name: "Plagal Cadence",
+                    romanPattern: "IV→I",
+                    startIndex: i,
+                    endIndex: i + 1
+                ))
+            }
+            // Deceptive Cadence (V-vi)
+            else if matchesPattern([current, next], ["V", "vi"]) {
+                cadences.append(CadencePattern(
+                    name: "Deceptive Cadence",
+                    romanPattern: "V→vi",
+                    startIndex: i,
+                    endIndex: i + 1
+                ))
+            }
+        }
+        
+        // Half Cadence (ending on V)
+        if romans.count > 0 && romans.last == "V" {
+            cadences.append(CadencePattern(
+                name: "Half Cadence",
+                romanPattern: "...→V",
+                startIndex: max(0, romans.count - 2),
+                endIndex: romans.count - 1
+            ))
+        }
+        
+        return cadences
+    }
+    
+    private func matchesPattern(_ romanNumerals: [String], _ pattern: [String]) -> Bool {
+        guard romanNumerals.count == pattern.count else { return false }
+        for (roman, expected) in zip(romanNumerals, pattern) {
+            // Remove quality suffixes for matching (e.g., "V7" matches "V")
+            let cleanRoman = roman.replacingOccurrences(of: "7", with: "")
+                                   .replacingOccurrences(of: "maj", with: "")
+                                   .replacingOccurrences(of: "°", with: "")
+            if cleanRoman != expected {
+                return false
+            }
+        }
+        return true
     }
     
     private func keyToPitchClass(_ note: String) -> Int {
@@ -1405,18 +1680,14 @@ struct ProgressionView: View {
     }
     
     private func resetProgression() {
-        if progressionStore.useSectionMode {
-            // Clear current section's chords
-            if let sectionId = progressionStore.currentSectionId,
-               let index = progressionStore.sectionDefinitions.firstIndex(where: { $0.id == sectionId }) {
-                var section = progressionStore.sectionDefinitions[index]
-                section.chords = Array(repeating: nil, count: 12)
-                progressionStore.sectionDefinitions[index] = section
-                progressionStore.objectWillChange.send()
-            }
-        } else {
-            slots = Array(repeating: nil, count: 12)
-        }
+        // Exit section mode completely
+        progressionStore.useSectionMode = false
+        progressionStore.sectionDefinitions.removeAll()
+        progressionStore.playbackOrder = PlaybackOrder()
+        progressionStore.currentSectionId = nil
+        
+        // Clear all slots
+        slots = Array(repeating: nil, count: 12)
         
         cursorIndex = 0
         selectedChords.removeAll()
@@ -1429,6 +1700,60 @@ struct ProgressionView: View {
         selectedScaleIndex = nil
         isAnalyzed = false
         isAnalyzing = false
+    }
+    
+    private func generateUniqueSectionName(baseName: String) -> String {
+        let existingNames = progressionStore.sectionDefinitions.map { $0.name }
+        
+        // If base name is unique, use it
+        if !existingNames.contains(baseName) {
+            return baseName
+        }
+        
+        // Find the next available number
+        var counter = 1
+        var uniqueName = "\(baseName) (\(counter))"
+        
+        while existingNames.contains(uniqueName) {
+            counter += 1
+            uniqueName = "\(baseName) (\(counter))"
+        }
+        
+        return uniqueName
+    }
+    
+    private func performConvertToSections(type: SectionType, name: String) {
+        // Convert current progression to section mode
+        let currentChords = progressionStore.slots
+        
+        // Generate unique name if needed
+        let uniqueName = generateUniqueSectionName(baseName: name)
+        
+        // Create a section with user's choice
+        let newSection = progressionStore.createSection(name: uniqueName, type: type)
+        
+        // Copy chords to the new section
+        if let index = progressionStore.sectionDefinitions.firstIndex(where: { $0.id == newSection }) {
+            progressionStore.sectionDefinitions[index].chords = currentChords
+        }
+        
+        // Enable section mode
+        progressionStore.useSectionMode = true
+        progressionStore.currentSectionId = newSection
+        
+        // Clear original slots
+        progressionStore.slots = Array(repeating: nil, count: 12)
+        
+        // Close the sheet
+        showConvertSheet = false
+        
+        // Show success toast
+        toastMessage = "Converted to section mode"
+        toastIcon = "music.note.list"
+        toastColor = .blue
+        showToast = true
+        
+        print("✅ Converted to section mode: \(currentChords.compactMap { $0 }.count) chords")
     }
     
     private func deleteChord(at index: Int) {
@@ -1676,37 +2001,120 @@ struct ProgressionView: View {
     // MARK: - Sketch Functions
     
     private func saveCurrentSketch() {
-        guard let key = selectedKey, let scale = selectedScale else {
-            print("⚠️ No key or scale selected")
-            return
-        }
+        let key = selectedKey
+        let scale = selectedScale
         
         let sketch = Sketch(
             id: currentSketchId ?? UUID().uuidString,
             name: sketchName,
-            chords: slots,
-            key: "\(key.tonic) \(key.mode)",
-            scale: "\(key.tonic) \(scaleTypeToDisplayName(scale.type))",
-            bpm: bpm
+            chords: progressionStore.slots,
+            key: key.map { "\($0.tonic) \($0.mode)" },
+            scale: scale.map { scaleTypeToDisplayName($0.type) },
+            bpm: bpm,
+            fretboardDisplay: fbDisplay == .degrees ? .degrees : .names,
+            sectionDefinitions: progressionStore.sectionDefinitions,
+            playbackOrder: progressionStore.playbackOrder,
+            useSectionMode: progressionStore.useSectionMode
         )
         
         sketchManager.save(sketch)
         currentSketchId = sketch.id
+        
+        // Show success toast
+        toastMessage = "Sketch saved: \(sketchName)"
+        toastIcon = "checkmark.circle.fill"
+        toastColor = .green
+        showToast = true
+        
+        print("✅ Sketch saved: \(sketchName)")
     }
     
     private func loadSketch(_ sketch: Sketch) {
-        slots = sketch.chords
+        // Load basic progression
+        progressionStore.slots = sketch.chords
         bpm = sketch.bpm
         currentSketchId = sketch.id
         cursorIndex = sketch.chords.firstIndex(where: { $0 == nil }) ?? 0
         
-        // Clear analysis state (user needs to re-analyze if needed)
-        keyCandidates = []
-        selectedKeyIndex = nil
-        scaleCandidates = []
-        selectedScaleIndex = nil
-        isAnalyzed = false
-        isAnalyzing = false
+        // Load Fretboard display mode
+        fbDisplay = sketch.fretboardDisplay == .degrees ? .degrees : .names
+        
+        // Load section mode (if available)
+        progressionStore.useSectionMode = sketch.useSectionMode
+        progressionStore.sectionDefinitions = sketch.sectionDefinitions
+        progressionStore.playbackOrder = sketch.playbackOrder
+        
+        // If in section mode and has sections, select the first one
+        if progressionStore.useSectionMode && !progressionStore.sectionDefinitions.isEmpty {
+            progressionStore.currentSectionId = progressionStore.sectionDefinitions.first?.id
+        }
+        
+        // Clear UI state
+        selectedDiatonicChord = nil
+        overlayChordNotes = []
+        
+        // Auto-analyze if there are chords
+        let chordsToAnalyze = progressionStore.useSectionMode 
+            ? progressionStore.combinedProgression.compactMap { $0 }
+            : progressionStore.slots.compactMap { $0 }
+        
+        if !chordsToAnalyze.isEmpty {
+            // Store saved key/scale for later restoration
+            let savedKey = sketch.key
+            let savedScale = sketch.scale
+            
+            // Analyze progression
+            analyzeProgression()
+            
+            // Wait for analysis to complete, then restore saved selections
+            Task {
+                // Wait for analysis to complete (same delay as analyzeProgression)
+                try? await Task.sleep(nanoseconds: 2_500_000_000)
+                
+                await MainActor.run {
+                    // Try to restore saved key/scale selection
+                    if let savedKey = savedKey {
+                        // Parse saved key (format: "F Major" or "D Minor")
+                        let components = savedKey.split(separator: " ")
+                        if components.count >= 2 {
+                            let tonic = String(components[0])
+                            let mode = String(components[1])
+                            
+                            // Find matching key in candidates
+                            if let index = keyCandidates.firstIndex(where: { $0.tonic == tonic && $0.mode == mode }) {
+                                selectedKeyIndex = index
+                                
+                                // Select scale if available
+                                if let savedScale = savedScale, let bridge = theoryBridge {
+                                    let scaleCands = bridge.scoreScales(chordsToAnalyze, key: tonic, mode: mode)
+                                    scaleCandidates = Array(scaleCands.prefix(5))
+                                    
+                                    // Find matching scale
+                                    if let scaleIndex = scaleCands.firstIndex(where: { scaleTypeToDisplayName($0.type) == savedScale }) {
+                                        selectedScaleIndex = scaleIndex
+                                        print("✅ Restored saved key/scale: \(tonic) \(mode) - \(savedScale)")
+                                    } else if !scaleCands.isEmpty {
+                                        // Fallback to first scale
+                                        selectedScaleIndex = 0
+                                        print("⚠️ Saved scale '\(savedScale)' not found, using first scale")
+                                    }
+                                }
+                            } else {
+                                print("⚠️ Saved key '\(tonic) \(mode)' not found in candidates")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        print("✅ Sketch loaded: \(sketch.name)")
+        
+        // Show success toast
+        toastMessage = "Loaded: \(sketch.name)"
+        toastIcon = "checkmark.circle.fill"
+        toastColor = .blue
+        showToast = true
     }
     
     // MARK: - Playback Functions (Phase B: HybridPlayer)
@@ -2196,6 +2604,101 @@ struct SectionChip: View {
             .foregroundColor(isSelected ? .white : .primary)
             .cornerRadius(8)
         }
+    }
+}
+
+// MARK: - Convert to Section Sheet
+
+struct ConvertToSectionSheet: View {
+    @ObservedObject var progressionStore: ProgressionStore
+    let onConvert: (SectionType, String) -> Void
+    @Environment(\.dismiss) private var dismiss
+    
+    @State private var selectedType: SectionType = .verse
+    @State private var sectionName: String = ""
+    
+    private let sectionTypes: [SectionType] = [.intro, .verse, .preChorus, .chorus, .postChorus, .bridge, .outro]
+    
+    var body: some View {
+        NavigationView {
+            contentView
+                .navigationTitle("Enable Sections")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Cancel") {
+                            dismiss()
+                        }
+                    }
+                }
+                .onAppear {
+                    sectionName = selectedType.displayName
+                }
+                .onChange(of: selectedType) {
+                    sectionName = selectedType.displayName
+                }
+        }
+    }
+    
+    @ViewBuilder
+    private var contentView: some View {
+        VStack(spacing: 20) {
+            typePickerSection
+            nameInputSection
+            Spacer()
+            convertButton
+        }
+        .padding(.top, 20)
+    }
+    
+    @ViewBuilder
+    private var typePickerSection: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Section Type")
+                .font(.headline)
+                .foregroundColor(.secondary)
+            
+            Picker("Type", selection: $selectedType) {
+                ForEach(sectionTypes, id: \.self) { type in
+                    Text(type.displayName).tag(type)
+                }
+            }
+            .pickerStyle(.menu)
+        }
+        .padding(.horizontal)
+    }
+    
+    @ViewBuilder
+    private var nameInputSection: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Section Name")
+                .font(.headline)
+                .foregroundColor(.secondary)
+            
+            TextField("Name", text: $sectionName)
+                .textFieldStyle(.roundedBorder)
+                .autocorrectionDisabled()
+        }
+        .padding(.horizontal)
+    }
+    
+    @ViewBuilder
+    private var convertButton: some View {
+        Button(action: {
+            onConvert(selectedType, sectionName)
+            dismiss()
+        }) {
+            Text("Convert to Section")
+                .font(.headline)
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(sectionName.isEmpty ? Color.gray : Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+        }
+        .disabled(sectionName.isEmpty)
+        .padding(.horizontal)
+        .padding(.bottom, 20)
     }
 }
 

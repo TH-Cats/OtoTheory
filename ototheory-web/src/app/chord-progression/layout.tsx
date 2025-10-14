@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description: "Build chord progressions and instantly analyze the key. See Roman numeral analysis, diatonic chords, and discover perfect chord sequences.",
   alternates: {
     canonical: "/chord-progression",
+    languages: { en: "/chord-progression", "ja-JP": "/ja/chord-progression", "x-default": "/chord-progression" },
   },
   openGraph: {
     title: "Chord Progression Builder & Key Analyzer",

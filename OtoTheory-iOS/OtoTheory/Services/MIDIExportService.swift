@@ -24,7 +24,8 @@ class MIDIExportService {
     /// - Returns: Data of the MIDI file (SMF Type-1)
     func exportToMIDI(
         chords: [String],
-        sections: [Section] = [],
+        sectionDefinitions: [SectionDefinition] = [],
+        playbackOrder: PlaybackOrder = PlaybackOrder(),
         key: String = "C",
         scale: String? = nil,
         bpm: Double = 120
@@ -42,6 +43,9 @@ class MIDIExportService {
               let tempo = tempoTrack else {
             throw MIDIExportError.tempoTrackCreationFailed
         }
+        
+        // Add track name to tempo track (visible in DAW)
+        addTrackName(track: tempo, name: "Markers & Chords")
         
         MusicTrackNewExtendedTempoEvent(tempo, 0, bpm)
         
@@ -99,10 +103,10 @@ class MIDIExportService {
         addProgramChange(track: track2, program: 33, channel: 1) // Electric Bass (finger)
         
         // Add chord symbols to tempo track (as markers for DAW visibility)
-        addChordSymbols(to: tempo, chords: chords)
+        addChordSymbols(to: tempo, chords: chords, key: key, scale: scale)
         
         // Add section markers to tempo track
-        addSectionMarkers(to: tempo, sections: sections, barDuration: 8.0)
+        addSectionMarkers(to: tempo, sectionDefinitions: sectionDefinitions, playbackOrder: playbackOrder, barDuration: 4.0)
         
         // Generate chord events (now includes full voicing + rhythm)
         try addChordEvents(to: track1, chords: chords, key: key)
@@ -175,10 +179,19 @@ class MIDIExportService {
     
     // MARK: - Section Markers
     
-    private func addSectionMarkers(to track: MusicTrack, sections: [Section], barDuration: MusicTimeStamp) {
-        for section in sections.sortedByRange {
-            let timestamp = MusicTimeStamp(section.range.lowerBound) * barDuration
-            let markerText = "\(section.name.displayName) (\(section.repeatCount)x)"
+    private func addSectionMarkers(to track: MusicTrack, sectionDefinitions: [SectionDefinition], playbackOrder: PlaybackOrder, barDuration: MusicTimeStamp) {
+        guard !sectionDefinitions.isEmpty && !playbackOrder.items.isEmpty else { return }
+        
+        var currentBarIndex = 0
+        
+        for playbackItem in playbackOrder.items {
+            guard let section = sectionDefinitions.first(where: { $0.id == playbackItem.sectionId }) else {
+                continue
+            }
+            
+            // Add marker at the start of this section occurrence (only once, not per repeat)
+            let timestamp = MusicTimeStamp(currentBarIndex) * barDuration
+            let markerText = section.name
             let markerData = markerText.data(using: .utf8) ?? Data()
             
             var metaEvent = MIDIMetaEvent()
@@ -196,13 +209,19 @@ class MIDIExportService {
             }
             
             MusicTrackNewMetaEvent(track, timestamp, &metaEvent)
+            
+            // Advance bar index by the number of NON-EMPTY chords (not total slots)
+            let filledCount = section.chords.compactMap { $0 }.count
+            currentBarIndex += filledCount * playbackItem.repeatCount
+            
+            print("  📍 Section marker: '\(section.name)' at bar \(currentBarIndex - filledCount * playbackItem.repeatCount), length: \(filledCount) chords × \(playbackItem.repeatCount)x = \(filledCount * playbackItem.repeatCount) bars")
         }
     }
     
     // MARK: - Chord Events (Full Voicing + Rhythm)
     
     private func addChordEvents(to track: MusicTrack, chords: [String], key: String) throws {
-        let barDuration: MusicTimeStamp = 8.0 // 1 bar = 8 beats (4/4 at 480 ticks per quarter note)
+        let barDuration: MusicTimeStamp = 4.0 // 1 bar = 4 quarter notes (4/4 time signature)
         
         var previousVoicing: [UInt8]? = nil
         
@@ -250,27 +269,30 @@ class MIDIExportService {
     ///   - key: Key name
     ///   - channel: MIDI channel
     private func addGuideTones(to track: MusicTrack, chords: [String], key: String, channel: UInt8) throws {
-        let barDuration: MusicTimeStamp = 8.0
+        let barDuration: MusicTimeStamp = 4.0
         
         for (index, chord) in chords.enumerated() {
             guard !chord.isEmpty else { continue }
             
             let barStart = MusicTimeStamp(index) * barDuration
-            let duration = barDuration * 0.95
+            let duration = barDuration * 0.5  // Shorter duration for guide tones (to avoid overlap with guitar)
             
             // Extract 3rd and 7th from chord
             let guideTones = extractGuideTones(chord, key: key)
             
-            // Add guide tones as ghost notes (low velocity)
+            // Add guide tones as simultaneous shell voicing (2-note chord)
+            // Lower velocity and shorter duration to avoid interfering with main guitar track
             for midiNote in guideTones {
                 var note = MIDINoteMessage(
                     channel: channel,
                     note: midiNote,
-                    velocity: 30,  // Low velocity for guide tones
+                    velocity: 25,  // Low velocity for guide tones (reduced from 30 for less prominence)
                     releaseVelocity: 0,
                     duration: Float32(duration)
                 )
                 
+                // All guide tones play simultaneously at the start of the bar
+                // This creates a "shell voicing" that highlights the chord quality (major/minor, 7th)
                 MusicTrackNewMIDINoteEvent(track, barStart, &note)
             }
         }
@@ -312,8 +334,8 @@ class MIDIExportService {
     // MARK: - Bass Line Events (Rhythm Pattern)
     
     private func addBassLineEvents(to track: MusicTrack, chords: [String], key: String) throws {
-        let barDuration: MusicTimeStamp = 8.0
-        let quarterNote: MusicTimeStamp = 2.0
+        let barDuration: MusicTimeStamp = 4.0
+        let quarterNote: MusicTimeStamp = 1.0
         
         for (index, chord) in chords.enumerated() {
             guard !chord.isEmpty else { continue }
@@ -360,8 +382,9 @@ class MIDIExportService {
     ///   - channel: MIDI channel (default 2)
     ///   - use2Octaves: If true, generates 2-octave pattern (for middle range)
     private func addScaleGuide(to track: MusicTrack, chords: [String], key: String, scale: String, octaveOffset: Int = 0, channel: UInt8 = 2, use2Octaves: Bool = false) throws {
-        let barDuration: MusicTimeStamp = 8.0
+        let barDuration: MusicTimeStamp = 4.0
         let noteInterval: MusicTimeStamp = 0.25 // 125ms between notes
+        let noteDuration: MusicTimeStamp = 0.5 // 16th note equivalent (120 ticks at 480 PPQ)
         
         // Get scale degrees from scale name
         let scaleDegrees = getScaleDegrees(scaleName: scale)
@@ -411,7 +434,7 @@ class MIDIExportService {
                     note: midiNote,
                     velocity: 20, // Ghost note (very quiet)
                     releaseVelocity: 0,
-                    duration: Float32(noteInterval * 0.7) // Slightly shorter for clarity
+                    duration: Float32(noteDuration) // 16th note equivalent for better visibility in DAW
                 )
                 MusicTrackNewMIDINoteEvent(track, timestamp, &note)
             }
@@ -428,7 +451,7 @@ class MIDIExportService {
                         note: midiNote,
                         velocity: 20, // Same velocity for descending
                         releaseVelocity: 0,
-                        duration: Float32(noteInterval * 0.7)
+                        duration: Float32(noteDuration) // 16th note equivalent
                     )
                     MusicTrackNewMIDINoteEvent(track, timestamp, &note)
                 }
@@ -526,14 +549,17 @@ class MIDIExportService {
     // MARK: - Chord Symbols (Markers for DAW Timeline)
     
     /// Add chord symbol markers (visible in DAW timeline)
-    private func addChordSymbols(to track: MusicTrack, chords: [String]) {
-        let barDuration: MusicTimeStamp = 8.0
+    private func addChordSymbols(to track: MusicTrack, chords: [String], key: String, scale: String?) {
+        let barDuration: MusicTimeStamp = 4.0
         
         for (index, chord) in chords.enumerated() {
             guard !chord.isEmpty else { continue }
             
+            // Convert chord to enharmonic spelling based on key signature
+            let normalizedChord = normalizeChordSpelling(chord, key: key, scale: scale)
+            
             let timestamp = MusicTimeStamp(index) * barDuration
-            let chordData = chord.data(using: .utf8) ?? Data()
+            let chordData = normalizedChord.data(using: .utf8) ?? Data()
             
             var metaEvent = MIDIMetaEvent()
             metaEvent.metaEventType = 6 // Marker (displayed in DAW timeline)
@@ -550,6 +576,95 @@ class MIDIExportService {
             }
             
             MusicTrackNewMetaEvent(track, timestamp, &metaEvent)
+        }
+    }
+    
+    /// Normalize chord spelling to match key signature (e.g., A# → Bb in F major)
+    /// - Parameters:
+    ///   - chord: Original chord symbol (e.g., "A#m7")
+    ///   - key: Key name (e.g., "F")
+    ///   - scale: Scale name (optional)
+    /// - Returns: Normalized chord symbol (e.g., "Bbm7")
+    private func normalizeChordSpelling(_ chord: String, key: String, scale: String?) -> String {
+        // Extract root note from chord (handle slash chords)
+        var root = ""
+        var suffix = ""
+        var bassNote = ""
+        
+        if chord.contains("/") {
+            let parts = chord.split(separator: "/", maxSplits: 1)
+            let mainChord = String(parts[0])
+            bassNote = parts.count > 1 ? String(parts[1]) : ""
+            
+            // Extract root from main chord
+            if mainChord.count >= 2 && (mainChord.dropFirst().prefix(1) == "#" || mainChord.dropFirst().prefix(1) == "b") {
+                root = String(mainChord.prefix(2))
+                suffix = String(mainChord.dropFirst(2))
+            } else {
+                root = String(mainChord.prefix(1))
+                suffix = String(mainChord.dropFirst())
+            }
+        } else {
+            // No slash chord
+            if chord.count >= 2 && (chord.dropFirst().prefix(1) == "#" || chord.dropFirst().prefix(1) == "b") {
+                root = String(chord.prefix(2))
+                suffix = String(chord.dropFirst(2))
+            } else {
+                root = String(chord.prefix(1))
+                suffix = String(chord.dropFirst())
+            }
+        }
+        
+        // Determine if key prefers sharps or flats
+        let keyComponents = key.split(separator: " ")
+        let tonic = String(keyComponents.first ?? "C")
+        
+        let sharpKeys = ["G", "D", "A", "E", "B", "F#", "C#", "E Minor", "B Minor", "F# Minor", "C# Minor", "G# Minor", "D# Minor", "A# Minor"]
+        let flatKeys = ["F", "Bb", "Eb", "Ab", "Db", "Gb", "Cb", "D Minor", "G Minor", "C Minor", "F Minor", "Bb Minor", "Eb Minor", "Ab Minor"]
+        
+        let prefersFlats = flatKeys.contains(key) || flatKeys.contains(tonic)
+        let prefersSharps = sharpKeys.contains(key) || sharpKeys.contains(tonic)
+        
+        // Check scale for additional context
+        if let scale = scale {
+            let scaleLower = scale.lowercased()
+            // Flat-based modes
+            if scaleLower.contains("phrygian") || scaleLower.contains("locrian") {
+                // These modes often use flats
+            }
+        }
+        
+        // Enharmonic conversion map
+        let sharpToFlat: [String: String] = [
+            "C#": "Db", "D#": "Eb", "F#": "Gb", "G#": "Ab", "A#": "Bb"
+        ]
+        let flatToSharp: [String: String] = [
+            "Db": "C#", "Eb": "D#", "Gb": "F#", "Ab": "G#", "Bb": "A#"
+        ]
+        
+        // Normalize root
+        var normalizedRoot = root
+        if prefersFlats && sharpToFlat.keys.contains(root) {
+            normalizedRoot = sharpToFlat[root] ?? root
+        } else if prefersSharps && flatToSharp.keys.contains(root) {
+            normalizedRoot = flatToSharp[root] ?? root
+        }
+        
+        // Normalize bass note if present
+        var normalizedBass = bassNote
+        if !bassNote.isEmpty {
+            if prefersFlats && sharpToFlat.keys.contains(bassNote) {
+                normalizedBass = sharpToFlat[bassNote] ?? bassNote
+            } else if prefersSharps && flatToSharp.keys.contains(bassNote) {
+                normalizedBass = flatToSharp[bassNote] ?? bassNote
+            }
+        }
+        
+        // Reconstruct chord
+        if !normalizedBass.isEmpty {
+            return "\(normalizedRoot)\(suffix)/\(normalizedBass)"
+        } else {
+            return "\(normalizedRoot)\(suffix)"
         }
     }
     

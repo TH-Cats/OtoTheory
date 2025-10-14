@@ -5,11 +5,13 @@ import { usePathname } from "next/navigation";
 export default function Nav() {
   const pathname = usePathname();
   // M3.5: Analyze (録音) メニュー撤去
+  const isJa = pathname?.startsWith('/ja');
+  const base = isJa ? '/ja' : '';
   const links = [
-    { href: "/chord-progression", label: "Chord Progression", aria: "Build Chord Progressions" },
-    { href: "/find-chords", label: "Find Chords", aria: "Find Chord" },
-    { href: "/chord-library", label: "Chord Library", aria: "Chord Library" },
-    { href: "/resources", label: "Resources", aria: "Resources" },
+    { href: `${base}/chord-progression`, label: "Chord Progression", aria: "Build Chord Progressions" },
+    { href: `${base}/find-chords`, label: "Find Chords", aria: "Find Chord" },
+    { href: `${base}/chord-library`, label: "Chord Library", aria: "Chord Library" },
+    { href: `${base}/resources`, label: "Resources", aria: "Resources" },
   ];
   const isActive = (href: string) => pathname?.startsWith(href);
 

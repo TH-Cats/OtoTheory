@@ -56,14 +56,66 @@ struct PresetPickerView: View {
                 .padding()
                 .background(Color(.systemGroupedBackground))
                 
-                // Category Picker
-                Picker("Category", selection: $selectedCategory) {
-                    ForEach(PresetCategory.allCases, id: \.self) { category in
-                        Text(category.rawValue).tag(category)
+                // Category Selector (Chip Style)
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Genre")
+                        .font(.headline)
+                        .padding(.horizontal)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 12) {
+                            ForEach(PresetCategory.allCases, id: \.self) { category in
+                                let count = Preset.byCategory(category).count
+                                let freeCount = Preset.byCategory(category).filter { $0.isFree }.count
+                                let proCount = count - freeCount
+                                
+                                Button(action: {
+                                    selectedCategory = category
+                                }) {
+                                    VStack(spacing: 4) {
+                                        Text(category.rawValue)
+                                            .font(.subheadline)
+                                            .fontWeight(.semibold)
+                                        
+                                        if proManager.isProUser {
+                                            Text("\(count)")
+                                                .font(.caption2)
+                                                .foregroundColor(selectedCategory == category ? .white : .secondary)
+                                        } else {
+                                            HStack(spacing: 2) {
+                                                Text("\(freeCount)")
+                                                    .font(.caption2)
+                                                if proCount > 0 {
+                                                    Text("+\(proCount)")
+                                                        .font(.caption2)
+                                                    Image(systemName: "lock.fill")
+                                                        .font(.system(size: 8))
+                                                }
+                                            }
+                                            .foregroundColor(selectedCategory == category ? .white : .secondary)
+                                        }
+                                    }
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 10)
+                                    .background(
+                                        selectedCategory == category
+                                            ? Color.blue
+                                            : Color.gray.opacity(0.15)
+                                    )
+                                    .foregroundColor(
+                                        selectedCategory == category
+                                            ? .white
+                                            : .primary
+                                    )
+                                    .cornerRadius(12)
+                                }
+                            }
+                        }
+                        .padding(.horizontal)
                     }
                 }
-                .pickerStyle(.segmented)
-                .padding()
+                .padding(.vertical, 8)
+                .background(Color(.systemGroupedBackground))
                 
                 // Preset List
                 List {
@@ -103,16 +155,22 @@ struct PresetPickerView: View {
                     
                     // Pro-only Presets (locked for Free users)
                     if !proManager.isProUser && !proOnlyPresets.isEmpty {
-                        SwiftUI.Section(header: Text("Pro Only")) {
+                        SwiftUI.Section {
                             ForEach(proOnlyPresets) { preset in
                                 Button(action: {
                                     onProRequired()
                                 }) {
                                     HStack {
                                         VStack(alignment: .leading, spacing: 4) {
-                                            Text(preset.name)
-                                                .font(.headline)
-                                                .foregroundColor(.secondary)
+                                            HStack {
+                                                Text(preset.name)
+                                                    .font(.headline)
+                                                    .foregroundColor(.secondary)
+                                                
+                                                Image(systemName: "star.fill")
+                                                    .font(.caption2)
+                                                    .foregroundColor(.yellow)
+                                            }
                                             
                                             Text(preset.romanNumerals.joined(separator: " → "))
                                                 .font(.subheadline)
@@ -125,11 +183,24 @@ struct PresetPickerView: View {
                                         
                                         Spacer()
                                         
-                                        Image(systemName: "lock.fill")
-                                            .foregroundColor(.gray)
+                                        VStack(spacing: 4) {
+                                            Image(systemName: "lock.fill")
+                                                .font(.title3)
+                                                .foregroundColor(.blue)
+                                            Text("Pro")
+                                                .font(.caption2)
+                                                .foregroundColor(.blue)
+                                        }
                                     }
                                     .padding(.vertical, 4)
                                 }
+                            }
+                        } header: {
+                            HStack {
+                                Image(systemName: "star.circle.fill")
+                                    .foregroundColor(.yellow)
+                                Text("Pro Only — Unlock \(proOnlyPresets.count) More Presets")
+                                    .fontWeight(.semibold)
                             }
                         }
                     }

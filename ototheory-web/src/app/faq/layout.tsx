@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description: "Find answers to common questions about OtoTheory. Learn how to use chord progression builder, find chords, and more.",
   alternates: {
     canonical: "/faq",
+    languages: { en: "/faq", "ja-JP": "/ja/faq", "x-default": "/faq" },
   },
   openGraph: {
     title: "OtoTheory FAQ",

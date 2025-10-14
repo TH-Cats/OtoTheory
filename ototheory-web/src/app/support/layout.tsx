@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description: "Get help with OtoTheory. Contact our support team for questions, feedback, or technical issues. We're here to help!",
   alternates: {
     canonical: "/support",
+    languages: { en: "/support", "ja-JP": "/ja/support", "x-default": "/support" },
   },
   openGraph: {
     title: "OtoTheory Support",

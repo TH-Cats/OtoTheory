@@ -1,12 +1,15 @@
 import SwiftUI
 
 struct SketchListView: View {
-    @ObservedObject var sketchManager: SketchManager
+    @StateObject private var sketchManager = SketchManager.shared
+    @StateObject private var proManager = ProManager.shared
     @Environment(\.dismiss) private var dismiss
-    let onLoad: (Sketch) -> Void
+    var onLoad: ((Sketch) -> Void)? = nil
+    var showCloseButton: Bool = false
     
     @State private var editingSketch: Sketch?
     @State private var newName: String = ""
+    @State private var showProUpgrade: Bool = false
     
     var body: some View {
         NavigationView {
@@ -36,8 +39,13 @@ struct SketchListView: View {
                             SketchRow(
                                 sketch: sketch,
                                 onLoad: {
-                                    onLoad(sketch)
-                                    dismiss()
+                                    if let onLoad = onLoad {
+                                        onLoad(sketch)
+                                        dismiss()
+                                    } else {
+                                        // Default behavior: load sketch via notification
+                                        loadSketchIntoProgression(sketch)
+                                    }
                                 },
                                 onRename: {
                                     editingSketch = sketch
@@ -52,29 +60,89 @@ struct SketchListView: View {
                     .listStyle(.plain)
                     
                     // Footer Info
-                    VStack(spacing: 8) {
-                        Text("\(sketchManager.sketches.count) / \(3) sketches")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
+                    VStack(spacing: 12) {
+                        // Sketch count
+                        if proManager.isProUser {
+                            Text("\(sketchManager.sketches.count) sketches")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        } else {
+                            Text("\(sketchManager.sketches.count) / \(sketchManager.maxSketches) sketches")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            
+                            if !sketchManager.canAddMore {
+                                Text("⚠️ Limit reached. Oldest will be replaced.")
+                                    .font(.caption2)
+                                    .foregroundColor(.orange)
+                            }
+                        }
                         
-                        if !sketchManager.canAddMore {
-                            Text("⚠️ Limit reached. Oldest will be replaced.")
-                                .font(.caption2)
-                                .foregroundColor(.orange)
+                        // Cloud Sync (Pro only)
+                        if proManager.isProUser {
+                            Divider()
+                            
+                            Button(action: {
+                                Task {
+                                    await sketchManager.syncWithCloud()
+                                }
+                            }) {
+                                HStack {
+                                    Image(systemName: sketchManager.isSyncing ? "icloud.slash" : "icloud.and.arrow.up")
+                                    Text(sketchManager.isSyncing ? "Syncing..." : "Sync with iCloud")
+                                    if sketchManager.isSyncing {
+                                        ProgressView()
+                                            .scaleEffect(0.7)
+                                    }
+                                }
+                                .font(.caption)
+                                .foregroundColor(.blue)
+                            }
+                            .disabled(sketchManager.isSyncing)
+                            
+                            if let lastSync = sketchManager.lastSyncDate {
+                                Text("Last synced: \(formatRelativeDate(lastSync))")
+                                    .font(.caption2)
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            if let error = sketchManager.syncError {
+                                Text("⚠️ \(error)")
+                                    .font(.caption2)
+                                    .foregroundColor(.red)
+                                    .multilineTextAlignment(.center)
+                            }
+                        } else {
+                            Divider()
+                            
+                            Button(action: { showProUpgrade = true }) {
+                                HStack {
+                                    Image(systemName: "icloud")
+                                    Text("Unlock Unlimited + iCloud Sync")
+                                }
+                                .font(.caption)
+                                .foregroundColor(.blue)
+                            }
                         }
                     }
-                    .padding(.vertical, 8)
+                    .padding(.vertical, 12)
+                    .padding(.horizontal)
                     .background(Color(.systemGroupedBackground))
                 }
             }
             .navigationTitle("Sketches")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Close") {
-                        dismiss()
+                if showCloseButton {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Close") {
+                            dismiss()
+                        }
                     }
                 }
+            }
+            .sheet(isPresented: $showProUpgrade) {
+                PaywallView()
             }
             .alert("Rename Sketch", isPresented: .constant(editingSketch != nil)) {
                 TextField("Sketch name", text: $newName)
@@ -89,6 +157,37 @@ struct SketchListView: View {
                 }
             }
         }
+    }
+    
+    // MARK: - Helper
+    
+    private func formatRelativeDate(_ date: Date) -> String {
+        let seconds = Date().timeIntervalSince(date)
+        
+        if seconds < 60 {
+            return "just now"
+        } else if seconds < 3600 {
+            let minutes = Int(seconds / 60)
+            return "\(minutes)m ago"
+        } else if seconds < 86400 {
+            let hours = Int(seconds / 3600)
+            return "\(hours)h ago"
+        } else {
+            let days = Int(seconds / 86400)
+            return days == 1 ? "1 day ago" : "\(days) days ago"
+        }
+    }
+    
+    private func loadSketchIntoProgression(_ sketch: Sketch) {
+        // Store the sketch to load
+        UserDefaults.standard.set(sketch.id, forKey: "pendingSketchLoad")
+        
+        // Post notification to switch tab and load
+        NotificationCenter.default.post(
+            name: .loadSketch,
+            object: nil,
+            userInfo: ["sketchId": sketch.id]
+        )
     }
 }
 
@@ -235,7 +334,8 @@ struct SketchRow: View {
         do {
             let midiData = try service.exportToMIDI(
                 chords: chords,
-                sections: sketch.sections,
+                sectionDefinitions: sketch.useSectionMode ? sketch.sectionDefinitions : [],
+                playbackOrder: sketch.useSectionMode ? sketch.playbackOrder : PlaybackOrder(),
                 key: sketch.key ?? "C",
                 scale: sketch.scale, // Pass scale for Scale Guide Track
                 bpm: sketch.bpm
@@ -254,8 +354,8 @@ struct SketchRow: View {
             // Track telemetry
             TelemetryService.shared.track(.midiExport, payload: [
                 "chord_count": chords.count,
-                "section_count": sketch.sections.count,
-                "has_sections": !sketch.sections.isEmpty,
+                "section_count": sketch.useSectionMode ? sketch.sectionDefinitions.count : 0,
+                "has_sections": sketch.useSectionMode,
                 "from_sketch": true
             ])
             
@@ -287,19 +387,7 @@ struct ActivityViewController: UIViewControllerRepresentable {
 }
 
 #Preview {
-    SketchListView(
-        sketchManager: {
-            let manager = SketchManager()
-            manager.sketches = [
-                Sketch(name: "My Song", chords: ["C", "Am", "F", "G", nil, nil, nil, nil, nil, nil, nil, nil], key: "C", bpm: 120),
-                Sketch(name: "Blues Jam", chords: ["C", "C", "C", "C", "F", "F", "C", "C", "G", "F", "C", "G"], key: "C", bpm: 90)
-            ]
-            return manager
-        }(),
-        onLoad: { sketch in
-            print("Load: \(sketch.name)")
-        }
-    )
+    SketchListView()
 }
 
 

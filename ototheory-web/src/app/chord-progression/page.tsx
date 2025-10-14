@@ -43,8 +43,10 @@ import { track, trackToast } from "@/lib/telemetry";
 import { exportPng } from "@/lib/export/png";
 import { chordToMidi } from "@/lib/music/chordParser";
 import Toast from "@/components/Toast.client";
+import { useCtaMessages } from "@/hooks/useCtaMessages";
 
 export default function FindKeyPage() {
+  const CTA_MESSAGES = useCtaMessages();
   const rootRowRef = useRef<HTMLDivElement | null>(null);
   useRovingTabs(rootRowRef, { orientation: "horizontal" });
   const fbToggleRef = useRef<HTMLDivElement | null>(null);
@@ -360,9 +362,9 @@ export default function FindKeyPage() {
     const filledCount = slots.filter(s => s !== "").length;
     if (filledCount === 9 && !toastShownRef.current.has('limit_warn')) {
       setToastConfig({
-        message: '8+ chords recommended for better accuracy. Want unlimited? Get iOS Pro!',
+        message: CTA_MESSAGES.toast.limitWarn,
         type: 'info',
-        ctaText: 'Get Pro',
+        ctaText: CTA_MESSAGES.toast.ctaButton,
         ctaHref: '/ios-coming-soon',
         ctaPlace: 'limit_toast'
       });
@@ -370,9 +372,9 @@ export default function FindKeyPage() {
       toastShownRef.current.add('limit_warn');
     } else if (filledCount === 12 && !toastShownRef.current.has('limit_block')) {
       setToastConfig({
-        message: '12 chord limit reached (Web Lite). Upgrade to iOS Pro for unlimited!',
+        message: CTA_MESSAGES.toast.limitBlock,
         type: 'warning',
-        ctaText: 'Get Pro',
+        ctaText: CTA_MESSAGES.toast.ctaButton,
         ctaHref: '/ios-coming-soon',
         ctaPlace: 'limit_toast'
       });
@@ -416,9 +418,9 @@ export default function FindKeyPage() {
       // M3.5: Show toast after PNG export
       if (!toastShownRef.current.has('png_export')) {
         setToastConfig({
-          message: 'PNG exported! Want MIDI export? Get iOS Pro for full DAW integration!',
+          message: CTA_MESSAGES.toast.pngExport,
           type: 'success',
-          ctaText: 'Get Pro',
+          ctaText: CTA_MESSAGES.toast.ctaButton,
           ctaHref: '/ios-coming-soon',
           ctaPlace: 'png_toast'
         });
@@ -442,9 +444,9 @@ export default function FindKeyPage() {
           setShowNamePrompt(false);
           setNameInput("");
           setToastConfig({
-            message: '3 sketch limit reached! Delete a sketch or upgrade to iOS Pro for unlimited sketches.',
+            message: CTA_MESSAGES.toast.sketchLimit,
             type: 'warning',
-            ctaText: 'Get Pro',
+            ctaText: CTA_MESSAGES.toast.ctaButton,
             ctaHref: '/ios-coming-soon',
             ctaPlace: 'limit_toast'
           });

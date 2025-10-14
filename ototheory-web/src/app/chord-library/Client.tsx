@@ -2,7 +2,11 @@
 
 import React, { useMemo, useState, useRef } from 'react';
 import styles from './chords.module.css';
-import { ROOTS, QUALITIES, type Root, type Quality, getCachedChord, getIntervals, getChordNotes } from '@/lib/chord-library';
+import { 
+  ROOTS, QUALITIES, ADVANCED_QUALITIES, 
+  type Root, type Quality, type AdvancedQuality,
+  getCachedChord, getIntervals, getChordNotes, getVoicingNote 
+} from '@/lib/chord-library';
 import { ChordCard } from '@/components/chords/ChordCard';
 import AdSlot from '@/components/AdSlot.client';
 
@@ -10,15 +14,18 @@ export type DisplayMode = 'finger' | 'roman' | 'note';
 
 export default function Client() {
   const [root, setRoot] = useState<Root>('C');
-  const [quality, setQuality] = useState<Quality>('M');
+  const [quality, setQuality] = useState<Quality | AdvancedQuality>('M');
   const [displayMode, setDisplayMode] = useState<DisplayMode>('finger');
+  const [showAdvanced, setShowAdvanced] = useState(false);
 
   const entry = useMemo(() => getCachedChord(root, quality), [root, quality]);
   const intervals = useMemo(() => getIntervals(quality), [quality]);
   const notes = useMemo(() => getChordNotes(root, quality), [root, quality]);
+  const voicingNote = useMemo(() => getVoicingNote(quality), [quality]);
 
+  const allQualitiesDisplay = showAdvanced ? [...QUALITIES, ...ADVANCED_QUALITIES] : QUALITIES;
   const rootIdx = ROOTS.indexOf(root);
-  const qualIdx = QUALITIES.indexOf(quality);
+  const qualIdx = allQualitiesDisplay.indexOf(quality as Quality | AdvancedQuality);
   const rootWrapRef = useRef<HTMLDivElement>(null);
   const qualWrapRef = useRef<HTMLDivElement>(null);
 
@@ -27,8 +34,8 @@ export default function Client() {
     setRoot(ROOTS[next]);
   };
   const moveQuality = (dir: -1 | 1) => {
-    const next = (qualIdx + dir + QUALITIES.length) % QUALITIES.length;
-    setQuality(QUALITIES[next]);
+    const next = (qualIdx + dir + allQualitiesDisplay.length) % allQualitiesDisplay.length;
+    setQuality(allQualitiesDisplay[next]);
   };
 
   return (
@@ -37,6 +44,7 @@ export default function Client() {
         <h1>Chord Library</h1>
         <p className={styles['sub']}>
           Choose a Root and Quality to see <strong>3 chord forms side by side</strong> with horizontal fretboard layout. 
+          Supports <strong>Eb, Ab, Bb</strong> and other practical keys. 
           Hear them with <strong>▶ Play</strong> (strum) and <strong>Arp</strong> (arpeggio).
         </p>
 
@@ -64,28 +72,40 @@ export default function Client() {
           ))}
         </div>
 
-        <div
-          ref={qualWrapRef}
-          className={`${styles['row']} ${styles['row--scroll']}`}
-          role="radiogroup"
-          aria-label="Choose quality"
-          onKeyDown={(e) => {
-            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') moveQuality(1);
-            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') moveQuality(-1);
-          }}
-        >
-          {QUALITIES.map((q) => (
+        <div className={styles['quality-section']}>
+          <div className={styles['quality-header']}>
+            <span className={styles['quality-label']}>Quality:</span>
             <button
-              key={q}
-              role="radio"
-              aria-checked={quality === q}
-              tabIndex={quality === q ? 0 : -1}
-              className={`${styles['chip']} ${quality === q ? styles['chip--on'] : ''}`}
-              onClick={() => setQuality(q)}
+              className={`${styles['advanced-toggle']} ${showAdvanced ? styles['advanced-toggle--on'] : ''}`}
+              onClick={() => setShowAdvanced(!showAdvanced)}
+              aria-pressed={showAdvanced}
             >
-              {q}
+              {showAdvanced ? 'Hide Advanced' : 'Show Advanced'}
             </button>
-          ))}
+          </div>
+          <div
+            ref={qualWrapRef}
+            className={`${styles['row']} ${styles['row--scroll']}`}
+            role="radiogroup"
+            aria-label="Choose quality"
+            onKeyDown={(e) => {
+              if (e.key === 'ArrowRight' || e.key === 'ArrowDown') moveQuality(1);
+              if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') moveQuality(-1);
+            }}
+          >
+            {allQualitiesDisplay.map((q) => (
+              <button
+                key={q}
+                role="radio"
+                aria-checked={quality === q}
+                tabIndex={quality === q ? 0 : -1}
+                className={`${styles['chip']} ${quality === q ? styles['chip--on'] : ''}`}
+                onClick={() => setQuality(q)}
+              >
+                {q}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className={styles['sel']}>
@@ -100,6 +120,12 @@ export default function Client() {
                 {notes.join(' · ')}
               </span>
             </div>
+            {voicingNote && (
+              <div className={styles['voicing-note']}>
+                <span className={styles['voicing-note__icon']}>ⓘ</span>
+                <span className={styles['voicing-note__text']}>{voicingNote}</span>
+              </div>
+            )}
           </div>
           <div className={styles['display-mode']}>
             <span className={styles['display-mode__label']}>Display:</span>

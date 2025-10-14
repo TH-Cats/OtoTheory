@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description: "Read OtoTheory's privacy policy to understand how we collect, use, and protect your personal information.",
   alternates: {
     canonical: "/privacy",
+    languages: { en: "/privacy", "ja-JP": "/ja/privacy", "x-default": "/privacy" },
   },
   openGraph: {
     title: "OtoTheory Privacy Policy",

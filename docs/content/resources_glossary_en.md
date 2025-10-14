@@ -174,3 +174,4 @@ description: "Quick music theory reference for guitarists. One-line definitions 
 - **Want to add color?** → [/resources/music-theory#color](/resources/music-theory#color)
 
 
+

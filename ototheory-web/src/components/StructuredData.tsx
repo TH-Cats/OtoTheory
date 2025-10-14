@@ -21,14 +21,16 @@ export function WebApplicationStructuredData({
   description, 
   url,
   applicationCategory = "MusicApplication",
-  offers = { price: "0", priceCurrency: "USD" }
-}: WebApplicationSchema) {
+  offers = { price: "0", priceCurrency: "USD" },
+  lang = 'en',
+}: WebApplicationSchema & { lang?: 'en'|'ja' }) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": name,
     "url": url,
     "description": description,
+    "inLanguage": lang === 'ja' ? 'ja-JP' : 'en-US',
     "applicationCategory": applicationCategory,
     "operatingSystem": "Web Browser",
     "offers": {
@@ -54,10 +56,11 @@ export function WebApplicationStructuredData({
   );
 }
 
-export function BreadcrumbStructuredData({ items }: { items: BreadcrumbItem[] }) {
+export function BreadcrumbStructuredData({ items, lang = 'en' }: { items: BreadcrumbItem[]; lang?: 'en'|'ja' }) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "inLanguage": lang === 'ja' ? 'ja-JP' : 'en-US',
     "itemListElement": items.map((item, index) => ({
       "@type": "ListItem",
       "position": index + 1,
@@ -75,12 +78,13 @@ export function BreadcrumbStructuredData({ items }: { items: BreadcrumbItem[] })
   );
 }
 
-export function FAQStructuredData({ faqs }: { 
-  faqs: Array<{ question: string; answer: string }> 
+export function FAQStructuredData({ faqs, lang = 'en' }: { 
+  faqs: Array<{ question: string; answer: string }>, lang?: 'en'|'ja' 
 }) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "inLanguage": lang === 'ja' ? 'ja-JP' : 'en-US',
     "mainEntity": faqs.map(faq => ({
       "@type": "Question",
       "name": faq.question,
@@ -100,7 +104,7 @@ export function FAQStructuredData({ faqs }: {
   );
 }
 
-export function OrganizationStructuredData() {
+export function OrganizationStructuredData({ lang = 'en' }: { lang?: 'en'|'ja' } = {}) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -108,6 +112,7 @@ export function OrganizationStructuredData() {
     "url": "https://www.ototheory.com",
     "logo": "https://www.ototheory.com/og.png",
     "description": "Free guitar music theory tool for chord progressions, key analysis, and scale exploration",
+    "inLanguage": lang === 'ja' ? 'ja-JP' : 'en-US',
     "sameAs": [
       // 将来的にSNSアカウントを追加
     ]
@@ -126,10 +131,12 @@ export function SoftwareApplicationStructuredData({
   name,
   description,
   category = "Music",
+  lang = 'en',
 }: {
   name: string;
   description: string;
   category?: string;
+  lang?: 'en'|'ja';
 }) {
   const schema = {
     "@context": "https://schema.org",
@@ -138,6 +145,7 @@ export function SoftwareApplicationStructuredData({
     "description": description,
     "applicationCategory": category,
     "operatingSystem": "Any",
+    "inLanguage": lang === 'ja' ? 'ja-JP' : 'en-US',
     "offers": {
       "@type": "Offer",
       "price": "0",

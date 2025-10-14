@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState, useCallback } from 'react';
 import { useCtaTracking } from '@/hooks/useCtaTracking';
-import { APP_STORE_URL, CTA_MESSAGES } from '@/lib/constants/cta';
+import { APP_STORE_URL } from '@/lib/constants/cta';
+import { useCtaMessages } from '@/hooks/useCtaMessages';
 
 const DISMISS_KEY = 'ot-mobile-cta-dismissed';
 const SHOW_DELAY_MS = 3000;
@@ -13,6 +14,7 @@ const SCROLL_THRESHOLD = 200;
  * Dismissible for the current session
  */
 export default function MobileStickyCta() {
+  const CTA_MESSAGES = useCtaMessages();
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);

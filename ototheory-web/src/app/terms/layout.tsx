@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description: "Read OtoTheory's terms of service to understand your rights and responsibilities when using our music theory tool.",
   alternates: {
     canonical: "/terms",
+    languages: { en: "/terms", "ja-JP": "/ja/terms", "x-default": "/terms" },
   },
   openGraph: {
     title: "OtoTheory Terms of Service",

@@ -1,13 +1,14 @@
 "use client";
 import Link from 'next/link';
 import AppleIcon from '@/components/ui/AppleIcon';
-import { CTA_MESSAGES } from '@/lib/constants/cta';
+import { useCtaMessages } from '@/hooks/useCtaMessages';
 
 /**
  * M3.5: Header CTA component (desktop only)
  * Displays iOS Coming Soon link in the header navigation
  */
 export default function HeaderCta() {
+  const CTA_MESSAGES = useCtaMessages();
   return (
     <Link
       href="/ios-coming-soon"

@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description: "Explore OtoTheory Pro features including MIDI export, unlimited sketches, and section editing. Available on iOS app (coming soon).",
   alternates: {
     canonical: "/pricing",
+    languages: { en: "/pricing", "ja-JP": "/ja/pricing", "x-default": "/pricing" },
   },
   openGraph: {
     title: "OtoTheory Pricing – Pro Features",

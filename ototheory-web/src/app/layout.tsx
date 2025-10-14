@@ -12,6 +12,8 @@ import FooterCta from "@/components/FooterCta.client";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { GoogleTagManagerHead, GoogleTagManagerBody } from "@/components/GoogleTagManager";
 import Script from "next/script";
+import LangToggle from "@/components/LangToggle";
+import FooterNav from "@/components/FooterNav.client";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -101,6 +103,7 @@ export default function RootLayout({
             <div className="flex items-center gap-4">
               <Nav />
               <HeaderCta />
+              <LangToggle />
             </div>
           </div>
         </header>
@@ -110,17 +113,7 @@ export default function RootLayout({
         <footer className="mt-16 py-8 text-center text-xs text-black/60 dark:text-white/60 border-t border-black/10 dark:border-white/10">
           <div className="container space-y-3">
             <FooterCta />
-            <nav className="flex items-center justify-center gap-3 flex-wrap">
-              <Link href="/about" className="hover:underline">About</Link>
-              <span>•</span>
-              <Link href="/privacy" className="hover:underline">Privacy</Link>
-              <span>•</span>
-              <Link href="/terms" className="hover:underline">Terms</Link>
-              <span>•</span>
-              <Link href="/faq" className="hover:underline">FAQ</Link>
-              <span>•</span>
-              <Link href="/support" className="hover:underline">Support</Link>
-            </nav>
+            <FooterNav />
             <div>© {new Date().getFullYear()} OtoTheory</div>
           </div>
         </footer>

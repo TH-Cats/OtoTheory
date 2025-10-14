@@ -3,11 +3,17 @@ import Foundation
 struct Sketch: Identifiable, Codable {
     let id: String
     var name: String
-    var chords: [String?] // 12 slots, nil = empty
+    var chords: [String?] // 12 slots, nil = empty (used when not in section mode)
     var key: String?
     var scale: String?
     var bpm: Double
-    var sections: [Section]  // Phase 2: Song structure (Pro feature)
+    var fretboardDisplay: FretboardDisplayMode  // Degrees or Names
+    
+    // Section Mode (Pro feature)
+    var sectionDefinitions: [SectionDefinition]
+    var playbackOrder: PlaybackOrder
+    var useSectionMode: Bool
+    
     var lastModified: Date
     
     init(
@@ -17,7 +23,10 @@ struct Sketch: Identifiable, Codable {
         key: String? = nil,
         scale: String? = nil,
         bpm: Double = 120,
-        sections: [Section] = [],
+        fretboardDisplay: FretboardDisplayMode = .degrees,
+        sectionDefinitions: [SectionDefinition] = [],
+        playbackOrder: PlaybackOrder = PlaybackOrder(),
+        useSectionMode: Bool = false,
         lastModified: Date = Date()
     ) {
         self.id = id
@@ -26,22 +35,50 @@ struct Sketch: Identifiable, Codable {
         self.key = key
         self.scale = scale
         self.bpm = bpm
-        self.sections = sections
+        self.fretboardDisplay = fretboardDisplay
+        self.sectionDefinitions = sectionDefinitions
+        self.playbackOrder = playbackOrder
+        self.useSectionMode = useSectionMode
         self.lastModified = lastModified
     }
+}
+
+// MARK: - Fretboard Display Mode
+
+enum FretboardDisplayMode: String, Codable {
+    case degrees = "Degrees"
+    case names = "Names"
 }
 
 // MARK: - Sketch Manager
 
 @MainActor
 class SketchManager: ObservableObject {
-    @Published var sketches: [Sketch] = []
+    static let shared = SketchManager()
     
-    private let maxSketches = 3 // Free tier limit
+    @Published var sketches: [Sketch] = []
+    @Published var isSyncing: Bool = false
+    @Published var lastSyncDate: Date?
+    @Published var syncError: String?
+    
+    private let maxSketchesFree = 3 // Free tier limit
     private let storageKey = "OtoTheory.Sketches"
     
-    init() {
+    private let proManager = ProManager.shared
+    private let cloudKitManager = CloudKitManager.shared
+    
+    private init() {
         loadSketches()
+    }
+    
+    // MARK: - Pro Features
+    
+    var maxSketches: Int {
+        proManager.isProUser ? Int.max : maxSketchesFree
+    }
+    
+    var canUseCloudSync: Bool {
+        proManager.isProUser
     }
     
     // MARK: - Load
@@ -69,7 +106,7 @@ class SketchManager: ObservableObject {
             sketches[index] = updatedSketch
             print("📝 Updated existing sketch: \(sketch.name) (ID: \(sketch.id))")
         } else {
-            // New sketch - apply LRU if at limit
+            // New sketch - apply LRU if at limit (Free tier only)
             if sketches.count >= maxSketches {
                 let removed = sketches.removeLast()
                 print("🗑️ Removed oldest sketch (LRU): \(removed.name)")
@@ -83,7 +120,26 @@ class SketchManager: ObservableObject {
         
         print("💾 Total sketches: \(sketches.count)/\(maxSketches)")
         
+        // Persist locally first
         persistSketches()
+        
+        // Upload to iCloud if Pro user
+        if canUseCloudSync {
+            Task {
+                do {
+                    try await cloudKitManager.saveSketch(updatedSketch)
+                    await MainActor.run {
+                        self.lastSyncDate = Date()
+                        self.syncError = nil
+                    }
+                } catch {
+                    print("⚠️ Failed to sync to iCloud: \(error)")
+                    await MainActor.run {
+                        self.syncError = error.localizedDescription
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - Delete
@@ -91,6 +147,24 @@ class SketchManager: ObservableObject {
     func delete(_ sketch: Sketch) {
         sketches.removeAll { $0.id == sketch.id }
         persistSketches()
+        
+        // Delete from iCloud if Pro user
+        if canUseCloudSync {
+            Task {
+                do {
+                    try await cloudKitManager.deleteSketch(withID: sketch.id)
+                    await MainActor.run {
+                        self.lastSyncDate = Date()
+                        self.syncError = nil
+                    }
+                } catch {
+                    print("⚠️ Failed to delete from iCloud: \(error)")
+                    await MainActor.run {
+                        self.syncError = error.localizedDescription
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - Rename
@@ -104,6 +178,64 @@ class SketchManager: ObservableObject {
         sketches.sort { $0.lastModified > $1.lastModified }
         
         persistSketches()
+        
+        // Upload to iCloud if Pro user
+        if canUseCloudSync {
+            let updatedSketch = sketches[index]
+            Task {
+                do {
+                    try await cloudKitManager.saveSketch(updatedSketch)
+                    await MainActor.run {
+                        self.lastSyncDate = Date()
+                        self.syncError = nil
+                    }
+                } catch {
+                    print("⚠️ Failed to sync renamed sketch: \(error)")
+                    await MainActor.run {
+                        self.syncError = error.localizedDescription
+                    }
+                }
+            }
+        }
+    }
+    
+    // MARK: - Cloud Sync
+    
+    func syncWithCloud() async {
+        guard canUseCloudSync else {
+            print("⚠️ Cloud sync not available (not a Pro user)")
+            return
+        }
+        
+        isSyncing = true
+        syncError = nil
+        
+        do {
+            // Check iCloud availability
+            let isAvailable = await cloudKitManager.checkiCloudStatus()
+            guard isAvailable else {
+                syncError = "iCloud is not available. Please check your iCloud settings."
+                isSyncing = false
+                return
+            }
+            
+            // Sync all sketches
+            let mergedSketches = try await cloudKitManager.syncAll(localSketches: sketches)
+            
+            // Update local storage
+            sketches = mergedSketches
+            persistSketches()
+            
+            lastSyncDate = Date()
+            syncError = nil
+            
+            print("✅ Cloud sync completed: \(sketches.count) sketches")
+        } catch {
+            print("❌ Cloud sync failed: \(error)")
+            syncError = error.localizedDescription
+        }
+        
+        isSyncing = false
     }
     
     // MARK: - Helpers

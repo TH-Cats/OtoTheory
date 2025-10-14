@@ -64,6 +64,45 @@
   background: rgba(45, 212, 191, 0.1);
 }
 
+.quality-section {
+  margin: 12px 0;
+}
+
+.quality-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.quality-label {
+  font-size: 13px;
+  color: var(--chord-muted);
+  font-weight: 500;
+}
+
+.advanced-toggle {
+  background: #1b1f25;
+  color: var(--chord-text);
+  border: 1px solid var(--chord-line);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.advanced-toggle:hover {
+  border-color: var(--chord-accent);
+}
+
+.advanced-toggle--on {
+  background: var(--chord-accent);
+  color: #052d29;
+  border-color: var(--chord-accent);
+}
+
 .sel {
   display: flex;
   align-items: center;
@@ -108,6 +147,31 @@
 .sel__notes-actual {
   color: var(--chord-text);
   font-weight: 500;
+}
+
+.voicing-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  padding: 6px 10px;
+  background: rgba(45, 212, 191, 0.08);
+  border-left: 2px solid var(--chord-accent);
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--chord-text);
+  line-height: 1.4;
+}
+
+.voicing-note__icon {
+  color: var(--chord-accent);
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.voicing-note__text {
+  color: var(--chord-muted);
 }
 
 .display-mode {

@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description: "Learn about OtoTheory, a free web-based music theory tool designed for guitarists. Discover our mission to make music theory accessible to everyone.",
   alternates: {
     canonical: "/about",
+    languages: { en: "/about", "ja-JP": "/ja/about", "x-default": "/about" },
   },
   openGraph: {
     title: "About OtoTheory",

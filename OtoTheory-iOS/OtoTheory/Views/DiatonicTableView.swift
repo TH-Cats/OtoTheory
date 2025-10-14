@@ -144,6 +144,14 @@ struct DiatonicTableView: View {
             diatonicChords = getLocrianDiatonicChords(root: key)
             print("✅ Loaded \(diatonicChords.count) diatonic chords for Locrian")
         }
+        else if scaleLower == "harmonicminor" || scaleLower == "harmonic minor" {
+            diatonicChords = getHarmonicMinorDiatonicChords(root: key)
+            print("✅ Loaded \(diatonicChords.count) diatonic chords for HarmonicMinor")
+        }
+        else if scaleLower == "melodicminor" || scaleLower == "melodic minor" {
+            diatonicChords = getMelodicMinorDiatonicChords(root: key)
+            print("✅ Loaded \(diatonicChords.count) diatonic chords for MelodicMinor")
+        }
         // Web版仕様: Pentatonic scales use their parent mode's diatonic chords
         else if scaleLower == "majorpentatonic" {
             // MajorPentatonic → Ionian (Major)
@@ -341,6 +349,48 @@ struct DiatonicTableView: View {
         }
     }
     
+    private func getHarmonicMinorDiatonicChords(root: String) -> [DiatonicChord] {
+        let notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+        let keyMap: [String: String] = ["Db": "C#", "Eb": "D#", "Gb": "F#", "Ab": "G#", "Bb": "A#"]
+        let normalizedRoot = keyMap[root] ?? root
+        guard let rootIndex = notes.firstIndex(of: normalizedRoot) else { return [] }
+        
+        let intervals = [0, 2, 3, 5, 7, 8, 11]  // Harmonic minor intervals
+        let qualities: [DiatonicChord.ChordQuality] = [.minor, .diminished, .augmented, .minor, .major, .major, .diminished]
+        let romanNumerals = ["i", "ii°", "III+", "iv", "V", "VI", "vii°"]
+        
+        return intervals.enumerated().map { index, interval in
+            let noteIndex = (rootIndex + interval) % 12
+            return DiatonicChord(
+                degree: index + 1,
+                romanNumeral: romanNumerals[index],
+                chordName: notes[noteIndex] + qualities[index].symbol,
+                quality: qualities[index]
+            )
+        }
+    }
+    
+    private func getMelodicMinorDiatonicChords(root: String) -> [DiatonicChord] {
+        let notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+        let keyMap: [String: String] = ["Db": "C#", "Eb": "D#", "Gb": "F#", "Ab": "G#", "Bb": "A#"]
+        let normalizedRoot = keyMap[root] ?? root
+        guard let rootIndex = notes.firstIndex(of: normalizedRoot) else { return [] }
+        
+        let intervals = [0, 2, 3, 5, 7, 9, 11]  // Melodic minor intervals (ascending)
+        let qualities: [DiatonicChord.ChordQuality] = [.minor, .minor, .augmented, .major, .major, .diminished, .diminished]
+        let romanNumerals = ["i", "ii", "III+", "IV", "V", "vi°", "vii°"]
+        
+        return intervals.enumerated().map { index, interval in
+            let noteIndex = (rootIndex + interval) % 12
+            return DiatonicChord(
+                degree: index + 1,
+                romanNumeral: romanNumerals[index],
+                chordName: notes[noteIndex] + qualities[index].symbol,
+                quality: qualities[index]
+            )
+        }
+    }
+    
     private func getCapoSuggestions(key: String) -> [CapoSuggestion] {
         // Calculate best capo positions (prefer easy open chord shapes)
         // C, G, D, A, E are the easiest open chord shapes
@@ -403,10 +453,30 @@ struct DiatonicTableView: View {
         let shapedRootIndex = (rootIndex - capoFret + 12) % 12
         let shapedKey = notes[shapedRootIndex]
         
-        // Get diatonic chords for the shaped key
-        if scale.lowercased().contains("major") || scale == "Ionian" {
+        // Get diatonic chords for the shaped key based on the current scale
+        let scaleLower = scale.lowercased()
+        
+        if scaleLower == "major" || scaleLower == "ionian" || scaleLower == "major scale" {
             return getMajorDiatonicChords(root: shapedKey)
-        } else if scale.lowercased().contains("minor") || scale == "Aeolian" {
+        } else if scaleLower == "minor" || scaleLower == "aeolian" || scaleLower == "natural minor" {
+            return getMinorDiatonicChords(root: shapedKey)
+        } else if scaleLower == "dorian" {
+            return getDorianDiatonicChords(root: shapedKey)
+        } else if scaleLower == "phrygian" {
+            return getPhrygianDiatonicChords(root: shapedKey)
+        } else if scaleLower == "lydian" {
+            return getLydianDiatonicChords(root: shapedKey)
+        } else if scaleLower == "mixolydian" {
+            return getMixolydianDiatonicChords(root: shapedKey)
+        } else if scaleLower == "locrian" {
+            return getLocrianDiatonicChords(root: shapedKey)
+        } else if scaleLower == "harmonicminor" || scaleLower == "harmonic minor" {
+            return getHarmonicMinorDiatonicChords(root: shapedKey)
+        } else if scaleLower == "melodicminor" || scaleLower == "melodic minor" {
+            return getMelodicMinorDiatonicChords(root: shapedKey)
+        } else if scaleLower == "majorpentatonic" {
+            return getMajorDiatonicChords(root: shapedKey)
+        } else if scaleLower == "minorpentatonic" {
             return getMinorDiatonicChords(root: shapedKey)
         } else {
             return []

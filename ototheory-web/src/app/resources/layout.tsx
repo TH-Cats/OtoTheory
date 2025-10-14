@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description: "Comprehensive guitar resources: music theory guide, terminology glossary, and chord library. Learn theory by numbers with practical recipes and quick reference tools.",
   alternates: {
     canonical: "/resources",
+    languages: { en: "/resources", "ja-JP": "/ja/resources", "x-default": "/resources" },
   },
   openGraph: {
     title: "Guitar Resources – Theory, Glossary & Chord Library",

@@ -1,5 +1,10 @@
 import SwiftUI
 
+// MARK: - Notification Extension
+extension Notification.Name {
+    static let loadSketch = Notification.Name("loadSketch")
+}
+
 struct MainTabView: View {
     @State private var selectedTab = 0
     
@@ -17,7 +22,7 @@ struct MainTabView: View {
                 }
                 .tag(1)
             
-            SketchTabView()
+            SketchListView()
                 .tabItem {
                     Label("Sketches", systemImage: "music.note")
                 }
@@ -34,6 +39,10 @@ struct MainTabView: View {
                     Label("Settings", systemImage: "gearshape.fill")
                 }
                 .tag(4)
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .loadSketch)) { _ in
+            // Switch to Chord Progression tab when loading a sketch
+            selectedTab = 0
         }
     }
 }

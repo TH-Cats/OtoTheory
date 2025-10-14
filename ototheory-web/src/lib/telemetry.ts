@@ -75,6 +75,7 @@ export function track(ev: OtEvent, payload: Record<string, unknown> = {}) {
     page: normalizePageName(payload.page as string || "analyze"), // payloadで指定がない場合はanalyze、正規化適用
     keyPc: (typeof window!=="undefined" && (window as any).__OT_STATE__?.keyPc) ?? undefined,
     scaleId: (typeof window!=="undefined" && (window as any).__OT_STATE__?.scaleId) ?? undefined,
+    page_language: (typeof window!=="undefined" && window.location?.pathname?.startsWith?.("/ja")) ? "ja" : "en",
     ts: Date.now(),
   };
   const rec: Record<string, unknown> = { ev, ...base, ...payload };

@@ -204,3 +204,4 @@ A. **度数=単音の番号**、**ローマ数字=その番号で作るコード
 - 押さえ方を探す → （準備中）**Chord Library** `/resources/chord-library`
 
 
+

@@ -10,11 +10,13 @@ struct Preset: Identifiable {
 }
 
 enum PresetCategory: String, CaseIterable {
-    case rock = "Rock"
     case pop = "Pop"
+    case rock = "Rock"
+    case jazz = "Jazz"
     case blues = "Blues"
     case ballad = "Ballad"
-    case jazz = "Jazz"
+    case rnb = "R&B / Soul"
+    case acoustic = "Acoustic"
 }
 
 // MARK: - Preset Library
@@ -235,7 +237,258 @@ extension Preset {
             description: "Exotic chromatic movement",
             isFree: false
         ),
-        // TODO: Add 25 more Pro-only presets in Phase 5
+        
+        // ======== PRO ONLY: Pop (10 presets) ========
+        Preset(
+            id: "I-V-vi-IV-I-V-IV-V",
+            name: "I–V–vi–IV–I–V–IV–V (8-bar Ballad)",
+            romanNumerals: ["I", "V", "vi", "IV", "I", "V", "IV", "V"],
+            category: .pop,
+            description: "Extended ballad with key change setup",
+            isFree: false
+        ),
+        Preset(
+            id: "I-III-IV-iv",
+            name: "I–III–IV–iv (Beatles)",
+            romanNumerals: ["I", "III", "IV", "iv"],
+            category: .pop,
+            description: "Beatles-style chromatic movement",
+            isFree: false
+        ),
+        Preset(
+            id: "vi-I-III-VII",
+            name: "vi–I–III–VII (Synth Pop)",
+            romanNumerals: ["vi", "I", "III", "VII"],
+            category: .pop,
+            description: "80s synth pop progression",
+            isFree: false
+        ),
+        Preset(
+            id: "I-V-IV-V",
+            name: "I–V–IV–V (Teen Pop)",
+            romanNumerals: ["I", "V", "IV", "V"],
+            category: .pop,
+            description: "Upbeat teen pop sound",
+            isFree: false
+        ),
+        Preset(
+            id: "vi-IV-I-V-bVI-bVII-I",
+            name: "vi–IV–I–V–♭VI–♭VII–I (Power Ballad)",
+            romanNumerals: ["vi", "IV", "I", "V", "bVI", "bVII", "I"],
+            category: .pop,
+            description: "Power ballad with chromatic climax",
+            isFree: false
+        ),
+        Preset(
+            id: "I-vi-iii-IV",
+            name: "I–vi–iii–IV (Japanese Pop)",
+            romanNumerals: ["I", "vi", "iii", "IV"],
+            category: .pop,
+            description: "J-Pop typical progression",
+            isFree: false
+        ),
+        Preset(
+            id: "IV-V-iii-vi",
+            name: "IV–V–iii–vi (K-Pop)",
+            romanNumerals: ["IV", "V", "iii", "vi"],
+            category: .pop,
+            description: "K-Pop chord sequence",
+            isFree: false
+        ),
+        Preset(
+            id: "I-bVII-bVI-bVII",
+            name: "I–♭VII–♭VI–♭VII (Indie Pop)",
+            romanNumerals: ["I", "bVII", "bVI", "bVII"],
+            category: .pop,
+            description: "Indie/Alternative feel",
+            isFree: false
+        ),
+        Preset(
+            id: "I-V-vi-iii-IV-I-II-V",
+            name: "I–V–vi–iii–IV–I–II–V (Epic 8-bar)",
+            romanNumerals: ["I", "V", "vi", "iii", "IV", "I", "II", "V"],
+            category: .pop,
+            description: "Epic 8-bar with Phrygian touch",
+            isFree: false
+        ),
+        Preset(
+            id: "vi-V-IV-III",
+            name: "vi–V–IV–III (Descending Pop)",
+            romanNumerals: ["vi", "V", "IV", "III"],
+            category: .pop,
+            description: "Descending pop progression",
+            isFree: false
+        ),
+        
+        // ======== PRO ONLY: Rock (5 presets) ========
+        Preset(
+            id: "I-IV-V-IV",
+            name: "I–IV–V–IV (Rock Anthem)",
+            romanNumerals: ["I", "IV", "V", "IV"],
+            category: .rock,
+            description: "Stadium rock anthem",
+            isFree: false
+        ),
+        Preset(
+            id: "iv-I-V-vi",
+            name: "iv–I–V–vi (Alternative Rock)",
+            romanNumerals: ["iv", "I", "V", "vi"],
+            category: .rock,
+            description: "Alt-rock with minor IV",
+            isFree: false
+        ),
+        Preset(
+            id: "I-bIII-IV-V",
+            name: "I–♭III–IV–V (Hard Rock)",
+            romanNumerals: ["I", "bIII", "IV", "V"],
+            category: .rock,
+            description: "Hard rock power progression",
+            isFree: false
+        ),
+        Preset(
+            id: "I-bVI-bVII-I",
+            name: "I–♭VI–♭VII–I (Aeolian Rock)",
+            romanNumerals: ["I", "bVI", "bVII", "I"],
+            category: .rock,
+            description: "Natural minor rock vamp",
+            isFree: false
+        ),
+        Preset(
+            id: "I-V-bVII-IV",
+            name: "I–V–♭VII–IV (Brit Rock)",
+            romanNumerals: ["I", "V", "bVII", "IV"],
+            category: .rock,
+            description: "British rock style. Wonderwall",
+            isFree: false
+        ),
+        
+        // ======== PRO ONLY: Jazz (7 presets) ========
+        Preset(
+            id: "I-IV-vii-iii-vi-ii-V-I",
+            name: "I–IV–vii–iii–vi–ii–V–I (Coltrane Changes)",
+            romanNumerals: ["I", "IV", "vii", "iii", "vi", "ii", "V", "I"],
+            category: .jazz,
+            description: "Giant Steps inspired sequence",
+            isFree: false
+        ),
+        Preset(
+            id: "ii-bII-I",
+            name: "ii–♭II–I (Tritone Sub)",
+            romanNumerals: ["ii", "bII", "I"],
+            category: .jazz,
+            description: "Jazz tritone substitution",
+            isFree: false
+        ),
+        Preset(
+            id: "I-bII-I-bII",
+            name: "I–♭II–I–♭II (Bossa Nova)",
+            romanNumerals: ["I", "bII", "I", "bII"],
+            category: .jazz,
+            description: "Bossa nova vamp",
+            isFree: false
+        ),
+        Preset(
+            id: "ii-V-iii-VI-ii-V-I",
+            name: "ii–V–iii–VI–ii–V–I (Modal Jazz)",
+            romanNumerals: ["ii", "V", "iii", "VI", "ii", "V", "I"],
+            category: .jazz,
+            description: "Modal jazz turnaround",
+            isFree: false
+        ),
+        Preset(
+            id: "I-IVmaj7-V-iii",
+            name: "I–IVmaj7–V–iii (Smooth Jazz)",
+            romanNumerals: ["I", "IVmaj7", "V", "iii"],
+            category: .jazz,
+            description: "Smooth jazz with major 7th",
+            isFree: false
+        ),
+        Preset(
+            id: "I-vi-IV-V",
+            name: "I–vi–IV–V (Gospel)",
+            romanNumerals: ["I", "vi", "IV", "V"],
+            category: .jazz,
+            description: "Gospel chord progression",
+            isFree: false
+        ),
+        Preset(
+            id: "I-III-vi-IV",
+            name: "I–III–vi–IV (Jazz Ballad)",
+            romanNumerals: ["I", "III", "vi", "IV"],
+            category: .jazz,
+            description: "Jazz ballad with chromatic III",
+            isFree: false
+        ),
+        
+        // ======== PRO ONLY: Blues (2 presets) ========
+        Preset(
+            id: "i-iv-i-V",
+            name: "i–iv–i–V (Minor Blues)",
+            romanNumerals: ["i", "iv", "i", "V"],
+            category: .blues,
+            description: "Minor blues progression",
+            isFree: false
+        ),
+        Preset(
+            id: "I-IV-I-I-IV-IV-I-I-V-V-I-I",
+            name: "I–IV–I–I–IV–IV–I–I–V–V–I–I (Slow Blues)",
+            romanNumerals: ["I", "IV", "I", "I", "IV", "IV", "I", "I", "V", "V", "I", "I"],
+            category: .blues,
+            description: "Slow 12-bar blues with extended changes",
+            isFree: false
+        ),
+        
+        // ======== PRO ONLY: R&B / Soul (3 presets) ========
+        Preset(
+            id: "i-bVII-bVI-V",
+            name: "i–♭VII–♭VI–V (R&B Soul)",
+            romanNumerals: ["i", "bVII", "bVI", "V"],
+            category: .rnb,
+            description: "Classic R&B soul progression",
+            isFree: false
+        ),
+        Preset(
+            id: "I-IVmaj7-Vmaj7-iii",
+            name: "I–IVmaj7–Vmaj7–iii (Neo Soul)",
+            romanNumerals: ["I", "IVmaj7", "Vmaj7", "iii"],
+            category: .rnb,
+            description: "Modern neo-soul with extended chords",
+            isFree: false
+        ),
+        Preset(
+            id: "ii-V-I-VI",
+            name: "ii–V–I–VI (Motown)",
+            romanNumerals: ["ii", "V", "I", "VI"],
+            category: .rnb,
+            description: "Motown classic sound",
+            isFree: false
+        ),
+        
+        // ======== PRO ONLY: Acoustic (3 presets) ========
+        Preset(
+            id: "I-IV-I-V",
+            name: "I–IV–I–V (Folk Ballad)",
+            romanNumerals: ["I", "IV", "I", "V"],
+            category: .acoustic,
+            description: "Simple folk ballad",
+            isFree: false
+        ),
+        Preset(
+            id: "i-bVII-bVI-bVII",
+            name: "i–♭VII–♭VI–♭VII (Celtic)",
+            romanNumerals: ["i", "bVII", "bVI", "bVII"],
+            category: .acoustic,
+            description: "Celtic modal progression",
+            isFree: false
+        ),
+        Preset(
+            id: "I-ii-iii-IV",
+            name: "I–ii–iii–IV (Fingerstyle)",
+            romanNumerals: ["I", "ii", "iii", "IV"],
+            category: .acoustic,
+            description: "Ascending fingerstyle pattern",
+            isFree: false
+        ),
     ]
     
     static func byCategory(_ category: PresetCategory) -> [Preset] {

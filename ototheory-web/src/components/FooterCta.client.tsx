@@ -1,13 +1,14 @@
 "use client";
 import Link from 'next/link';
 import AppleIcon from '@/components/ui/AppleIcon';
-import { CTA_MESSAGES } from '@/lib/constants/cta';
+import { useCtaMessages } from '@/hooks/useCtaMessages';
 
 /**
  * M3.5: Footer CTA component
  * Displays iOS Coming Soon link in the footer
  */
 export default function FooterCta() {
+  const CTA_MESSAGES = useCtaMessages();
   return (
     <div className="mb-6 flex flex-col items-center gap-3">
       <div className="text-sm font-medium text-black/80 dark:text-white/80">

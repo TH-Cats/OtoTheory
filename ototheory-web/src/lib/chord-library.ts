@@ -25,29 +25,27 @@ export interface ChordEntry {
 }
 
 export type Root =
-  | 'C'|'C#'|'D'|'D#'|'E'|'F'|'F#'|'G'|'G#'|'A'|'A#'|'B';
+  | 'C'|'C#'|'D'|'Eb'|'E'|'F'|'F#'|'G'|'Ab'|'A'|'Bb'|'B';
+
+// Core set of practical chord qualities (15-20 types)
 export type Quality = 
   | 'M' | 'm'  // Basic triads
-  | '6' | 'm6'  // Sixth chords
-  | '7' | 'M7' | 'm7' | 'mM7'  // Seventh chords
-  | 'dim' | 'dim7' | 'm7b5' | 'm7♭5'  // Diminished variants
-  | 'aug' | 'aug7'  // Augmented
+  | 'aug' | 'dim'  // Altered triads
   | 'sus2' | 'sus4'  // Suspended
-  | '7sus4'  // Dominant suspended
+  | '6' | 'm6'  // Sixth chords
+  | '7' | 'M7' | 'm7'  // Essential sevenths
+  | 'dim7' | 'm7b5'  // Diminished sevenths
   | '9' | 'M9' | 'm9'  // Ninths
-  | '7b9' | '7#9' | '7(♭9)' | '7(9)' | '7(#9)'  // Altered ninths
-  | '7b5' | '7#5' | '7(♭5)' | '7(#5)'  // Altered fifths
-  | 'm7(#5)'  // Minor altered
-  | 'add9' | 'madd9'  // Added ninths
-  | '6/9'  // Six-nine
-  | '7(11)' | '7(13)'  // Dominant extensions
-  | 'M7(9)' | 'M7(13)'  // Major extensions
-  | 'm6(9)' | 'm7(9)' | 'm7(11)' | 'mM7(9)'  // Minor extensions
-  | '11' | 'M11'  // Elevenths
-  | '13' | 'M13';  // Thirteenths
+  | 'add9' | '6/9' | '7sus4';  // Added notes & suspensions
+
+// Advanced extensions (optional, can be toggled)
+export type AdvancedQuality = 
+  | '7b9' | '7#9'  // Altered ninths
+  | '7b5' | '7#5'  // Altered fifths
+  | '11' | '13';  // Upper extensions
 
 const NOTE_INDEX: Record<Root, number> = {
-  C:0,'C#':1,D:2,'D#':3,E:4,F:5,'F#':6,G:7,'G#':8,A:9,'A#':10,B:11
+  C:0,'C#':1,D:2,'Eb':3,E:4,F:5,'F#':6,G:7,'Ab':8,A:9,'Bb':10,B:11
 };
 const OPEN_IDX = [4,9,2,7,11,4];
 
@@ -383,59 +381,60 @@ const OPEN_PRESETS: Record<string, {frets:[Fret,Fret,Fret,Fret,Fret,Fret]; finge
 };
 
 // Get intervals for each quality (R = Root)
-export function getIntervals(quality: Quality): string[] {
-  const intervalMap: Partial<Record<Quality, string[]>> = {
+// Note: Extended chords (11, 13) typically omit certain notes in practical voicings
+export function getIntervals(quality: Quality | AdvancedQuality): string[] {
+  const intervalMap: Partial<Record<Quality | AdvancedQuality, string[]>> = {
+    // Basic triads
     'M': ['R', 'III', 'V'],
     'm': ['R', '♭III', 'V'],
+    'aug': ['R', 'III', '#V'],
+    'dim': ['R', '♭III', '♭V'],
+    // Suspended
+    'sus2': ['R', 'II', 'V'],
+    'sus4': ['R', 'IV', 'V'],
+    // Sixth chords
     '6': ['R', 'III', 'V', 'VI'],
     'm6': ['R', '♭III', 'V', 'VI'],
+    // Essential sevenths
     '7': ['R', 'III', 'V', '♭VII'],
     'M7': ['R', 'III', 'V', 'VII'],
     'm7': ['R', '♭III', 'V', '♭VII'],
-    'mM7': ['R', '♭III', 'V', 'VII'],
-    'dim': ['R', '♭III', '♭V'],
+    // Diminished sevenths
     'dim7': ['R', '♭III', '♭V', '♭♭VII'],
     'm7b5': ['R', '♭III', '♭V', '♭VII'],
-    'm7♭5': ['R', '♭III', '♭V', '♭VII'],
-    'aug': ['R', 'III', '#V'],
-    'aug7': ['R', 'III', '#V', '♭VII'],
-    'sus2': ['R', 'II', 'V'],
-    'sus4': ['R', 'IV', 'V'],
-    '7sus4': ['R', 'IV', 'V', '♭VII'],
+    // Ninths
     '9': ['R', 'III', 'V', '♭VII', 'IX'],
     'M9': ['R', 'III', 'V', 'VII', 'IX'],
     'm9': ['R', '♭III', 'V', '♭VII', 'IX'],
-    '7b9': ['R', 'III', 'V', '♭VII', '♭IX'],
-    '7(♭9)': ['R', 'III', 'V', '♭VII', '♭IX'],
-    '7(9)': ['R', 'III', 'V', '♭VII', 'IX'],
-    '7#9': ['R', 'III', 'V', '♭VII', '#IX'],
-    '7(#9)': ['R', 'III', 'V', '♭VII', '#IX'],
-    '7b5': ['R', 'III', '♭V', '♭VII'],
-    '7(♭5)': ['R', 'III', '♭V', '♭VII'],
-    '7#5': ['R', 'III', '#V', '♭VII'],
-    '7(#5)': ['R', 'III', '#V', '♭VII'],
-    'm7(#5)': ['R', '♭III', '#V', '♭VII'],
+    // Added notes & suspensions
     'add9': ['R', 'III', 'V', 'IX'],
-    'madd9': ['R', '♭III', 'V', 'IX'],
     '6/9': ['R', 'III', 'V', 'VI', 'IX'],
-    '7(11)': ['R', 'III', 'V', '♭VII', 'XI'],
-    '7(13)': ['R', 'III', 'V', '♭VII', 'XIII'],
-    'M7(9)': ['R', 'III', 'V', 'VII', 'IX'],
-    'M7(13)': ['R', 'III', 'V', 'VII', 'XIII'],
-    'm6(9)': ['R', '♭III', 'V', 'VI', 'IX'],
-    'm7(9)': ['R', '♭III', 'V', '♭VII', 'IX'],
-    'm7(11)': ['R', '♭III', 'V', '♭VII', 'XI'],
-    'mM7(9)': ['R', '♭III', 'V', 'VII', 'IX'],
-    '11': ['R', 'III', 'V', '♭VII', 'IX', 'XI'],
-    'M11': ['R', 'III', 'V', 'VII', 'IX', 'XI'],
-    '13': ['R', 'III', 'V', '♭VII', 'IX', 'XI', 'XIII'],
-    'M13': ['R', 'III', 'V', 'VII', 'IX', 'XI', 'XIII']
+    '7sus4': ['R', 'IV', 'V', '♭VII'],
+    // Advanced: Altered ninths
+    '7b9': ['R', 'III', 'V', '♭VII', '♭IX'],
+    '7#9': ['R', 'III', 'V', '♭VII', '#IX'],
+    // Advanced: Altered fifths
+    '7b5': ['R', 'III', '♭V', '♭VII'],
+    '7#5': ['R', 'III', '#V', '♭VII'],
+    // Advanced: Upper extensions (note: practical voicings omit 3rd for 11, omit 11 for 13)
+    '11': ['R', '(III)', 'V', '♭VII', 'IX', 'XI'],  // 3rd typically omitted
+    '13': ['R', 'III', 'V', '♭VII', 'IX', '(XI)', 'XIII']  // 11th typically omitted
   };
   return intervalMap[quality] || ['R', 'III', 'V'];
 }
 
+// Get voicing notes (what's actually commonly played)
+export function getVoicingNote(quality: Quality | AdvancedQuality): string | null {
+  const voicingNotes: Partial<Record<Quality | AdvancedQuality, string>> = {
+    '11': 'Guitar voicing: 3rd usually omitted (sounds sus4-like)',
+    '13': 'Guitar voicing: 11th usually omitted, often 5th too'
+  };
+  return voicingNotes[quality] || null;
+}
+
 // Convert interval string to semitones from root
 function intervalToSemitones(interval: string): number {
+  const cleaned = interval.replace(/[()]/g, ''); // Remove parentheses for optional notes
   const map: Record<string, number> = {
     'R': 0,
     '♭II': 1, 'II': 2,
@@ -448,73 +447,66 @@ function intervalToSemitones(interval: string): number {
     'XI': 5, '#XI': 6,
     'XIII': 9
   };
-  return map[interval] ?? 0;
+  return map[cleaned] ?? 0;
 }
 
-// Get actual note names for a chord
-export function getChordNotes(root: Root, quality: Quality): string[] {
-  const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+// Get actual note names for a chord (using ♭-preferred notation)
+export function getChordNotes(root: Root, quality: Quality | AdvancedQuality): string[] {
+  // Use ♭-preferred notation (Eb, Ab, Bb instead of D#, G#, A#)
+  const notes = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
   const rootIdx = notes.indexOf(root);
   const intervals = getIntervals(quality);
   
-  return intervals.map(interval => {
-    const semitones = intervalToSemitones(interval);
-    return notes[(rootIdx + semitones) % 12];
-  });
+  return intervals
+    .filter(interval => !interval.includes('(')) // Skip optional notes in display
+    .map(interval => {
+      const semitones = intervalToSemitones(interval);
+      return notes[(rootIdx + semitones) % 12];
+    });
 }
 
-export function buildSymbol(root: Root, quality: Quality): {symbol:string, display:string} {
-  const symbolMap: Partial<Record<Quality, {symbol: string, display: string}>> = {
+export function buildSymbol(root: Root, quality: Quality | AdvancedQuality): {symbol:string, display:string} {
+  const symbolMap: Partial<Record<Quality | AdvancedQuality, {symbol: string, display: string}>> = {
+    // Basic triads
     'M': { symbol: root, display: `${root}` },
     'm': { symbol: `${root}m`, display: `${root}m` },
+    'aug': { symbol: `${root}aug`, display: `${root}aug` },
+    'dim': { symbol: `${root}dim`, display: `${root}dim` },
+    // Suspended
+    'sus2': { symbol: `${root}sus2`, display: `${root}sus2` },
+    'sus4': { symbol: `${root}sus4`, display: `${root}sus4` },
+    // Sixth chords
     '6': { symbol: `${root}6`, display: `${root}6` },
     'm6': { symbol: `${root}m6`, display: `${root}m6` },
+    // Essential sevenths
     '7': { symbol: `${root}7`, display: `${root}7` },
     'M7': { symbol: `${root}maj7`, display: `${root}M7` },
     'm7': { symbol: `${root}m7`, display: `${root}m7` },
-    'mM7': { symbol: `${root}mM7`, display: `${root}mM7` },
-    'dim': { symbol: `${root}dim`, display: `${root}dim` },
+    // Diminished sevenths
     'dim7': { symbol: `${root}dim7`, display: `${root}dim7` },
     'm7b5': { symbol: `${root}m7♭5`, display: `${root}m7♭5` },
-    'm7♭5': { symbol: `${root}m7♭5`, display: `${root}m7♭5` },
-    'aug': { symbol: `${root}aug`, display: `${root}aug` },
-    'aug7': { symbol: `${root}aug7`, display: `${root}aug7` },
-    'sus2': { symbol: `${root}sus2`, display: `${root}sus2` },
-    'sus4': { symbol: `${root}sus4`, display: `${root}sus4` },
-    '7sus4': { symbol: `${root}7sus4`, display: `${root}7sus4` },
+    // Ninths
     '9': { symbol: `${root}9`, display: `${root}9` },
     'M9': { symbol: `${root}M9`, display: `${root}M9` },
     'm9': { symbol: `${root}m9`, display: `${root}m9` },
-    '7b9': { symbol: `${root}7♭9`, display: `${root}7♭9` },
-    '7(♭9)': { symbol: `${root}7♭9`, display: `${root}7(♭9)` },
-    '7(9)': { symbol: `${root}7(9)`, display: `${root}7(9)` },
-    '7#9': { symbol: `${root}7#9`, display: `${root}7#9` },
-    '7(#9)': { symbol: `${root}7#9`, display: `${root}7(#9)` },
-    '7b5': { symbol: `${root}7♭5`, display: `${root}7♭5` },
-    '7(♭5)': { symbol: `${root}7♭5`, display: `${root}7(♭5)` },
-    '7#5': { symbol: `${root}7#5`, display: `${root}7#5` },
-    '7(#5)': { symbol: `${root}7#5`, display: `${root}7(#5)` },
-    'm7(#5)': { symbol: `${root}m7#5`, display: `${root}m7(#5)` },
+    // Added notes & suspensions
     'add9': { symbol: `${root}add9`, display: `${root}add9` },
-    'madd9': { symbol: `${root}madd9`, display: `${root}madd9` },
     '6/9': { symbol: `${root}6/9`, display: `${root}6/9` },
-    '7(11)': { symbol: `${root}7(11)`, display: `${root}7(11)` },
-    '7(13)': { symbol: `${root}7(13)`, display: `${root}7(13)` },
-    'M7(9)': { symbol: `${root}M7(9)`, display: `${root}M7(9)` },
-    'M7(13)': { symbol: `${root}M7(13)`, display: `${root}M7(13)` },
-    'm6(9)': { symbol: `${root}m6(9)`, display: `${root}m6(9)` },
-    'm7(9)': { symbol: `${root}m7(9)`, display: `${root}m7(9)` },
-    'm7(11)': { symbol: `${root}m7(11)`, display: `${root}m7(11)` },
-    'mM7(9)': { symbol: `${root}mM7(9)`, display: `${root}mM7(9)` },
+    '7sus4': { symbol: `${root}7sus4`, display: `${root}7sus4` },
+    // Advanced: Altered ninths
+    '7b9': { symbol: `${root}7♭9`, display: `${root}7♭9` },
+    '7#9': { symbol: `${root}7#9`, display: `${root}7#9` },
+    // Advanced: Altered fifths
+    '7b5': { symbol: `${root}7♭5`, display: `${root}7♭5` },
+    '7#5': { symbol: `${root}7#5`, display: `${root}7#5` },
+    // Advanced: Upper extensions
     '11': { symbol: `${root}11`, display: `${root}11` },
-    'M11': { symbol: `${root}M11`, display: `${root}M11` },
-    '13': { symbol: `${root}13`, display: `${root}13` },
-    'M13': { symbol: `${root}M13`, display: `${root}M13` }
+    '13': { symbol: `${root}13`, display: `${root}13` }
   };
   return symbolMap[quality] || { symbol: `${root}${quality}`, display: `${root}${quality}` };
 }
 
-export function generateChord(root: Root, quality: Quality): ChordEntry {
+export function generateChord(root: Root, quality: Quality | AdvancedQuality): ChordEntry {
   const {symbol, display} = buildSymbol(root, quality);
 
   let r = baseFretFor(root, 0);
@@ -535,16 +527,17 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
     };
   } else {
     // Choose compact shape based on quality
-    const majorFamily = ['M', 'add9', 'M7(9)', 'M7(13)'];
+    const majorFamily = ['M', 'add9'];
     const sixthFamily = ['6', '6/9'];
-    const minorFamily = ['m', 'madd9'];
-    const minorSixthFamily = ['m6', 'm6(9)'];
-    const domSevenFamily = ['7', '7(9)', '7(11)', '7(13)'];
-    const minorSevenFamily = ['m7', 'm7(9)', 'm7(11)'];
-    const majSevenFamily = ['M7', 'M9', 'M11', 'M13', 'mM7', 'mM7(9)'];
+    const minorFamily = ['m'];
+    const minorSixthFamily = ['m6'];
+    const domSevenFamily = ['7', '7b9', '7#9', '7b5', '7#5'];
+    const minorSevenFamily = ['m7'];
+    const majSevenFamily = ['M7', 'M9'];
     const susFamily = ['sus2', 'sus4', '7sus4'];
-    const augFamily = ['aug', 'aug7', '7#5', '7(#5)'];
-    const dimFamily = ['dim', 'dim7', 'm7b5', 'm7♭5', '7b5', '7(♭5)'];
+    const augFamily = ['aug'];
+    const dimFamily = ['dim', 'dim7', 'm7b5'];
+    const extensionFamily = ['9', 'm9', '11', '13'];
 
     if (majorFamily.includes(quality)) {
       first = shapeCompactMajor(s);
@@ -554,7 +547,7 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
       first = shapeCompactMinor(s);
     } else if (minorSixthFamily.includes(quality)) {
       first = shapeCompactMinor6(s);
-    } else if (domSevenFamily.includes(quality)) {
+    } else if (domSevenFamily.includes(quality) || extensionFamily.includes(quality)) {
       first = shapeCompactDom7(s);
     } else if (minorSevenFamily.includes(quality)) {
       first = shapeCompactMinor7(s);
@@ -574,16 +567,16 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
 
   // For second shape, prefer E-form barre variants
   let second: ChordShape;
-  const majorFamilyE = ['M', 'add9', 'M7(9)', 'M7(13)'];
+  const majorFamilyE = ['M', 'add9'];
   const sixthFamilyE = ['6', '6/9'];
-  const minorFamilyE = ['m', 'madd9', 'm6(9)'];
+  const minorFamilyE = ['m'];
   const minorSixthFamilyE = ['m6'];
-  const majSevenFamilyE = ['M7', 'M9', 'M11', 'M13', 'mM7', 'mM7(9)'];
-  const domSevenFamilyE = ['7', '7(9)', '7(11)', '7(13)'];
-  const minorSevenFamilyE = ['m7', 'm7(9)', 'm7(11)'];
+  const majSevenFamilyE = ['M7', 'M9'];
+  const domSevenFamilyE = ['7', '9', '7b9', '7#9', '7b5', '7#5', '11', '13'];
+  const minorSevenFamilyE = ['m7', 'm9'];
   const susFamilyE = ['sus2', 'sus4', '7sus4'];
-  const augFamilyE = ['aug', 'aug7', '7#5', '7(#5)'];
-  const dimFamilyE = ['dim', 'dim7', 'm7b5', 'm7♭5', '7b5', '7(♭5)'];
+  const augFamilyE = ['aug'];
+  const dimFamilyE = ['dim', 'dim7', 'm7b5'];
   
   if (majorFamilyE.includes(quality)) {
     second = shapeE_Major(r);
@@ -606,7 +599,7 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
   } else if (dimFamilyE.includes(quality)) {
     second = shapeE_Dim(r);
   } else {
-    // Default for 9, extended chords
+    // Default fallback
     second = shapeE_Major(r);
     second.label = `Barre (E-shape, ${quality})`;
   }
@@ -614,16 +607,16 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
 
   // For third shape, prefer A-form barre variants
   let third: ChordShape;
-  const majorFamilyA = ['M', 'add9', 'M7(9)', 'M7(13)'];
+  const majorFamilyA = ['M', 'add9'];
   const sixthFamilyA = ['6', '6/9'];
-  const minorFamilyA = ['m', 'madd9', 'm6(9)'];
+  const minorFamilyA = ['m'];
   const minorSixthFamilyA = ['m6'];
-  const majSevenFamilyA = ['M7', 'M9', 'M11', 'M13', 'mM7', 'mM7(9)'];
-  const domSevenFamilyA = ['7', '7(9)', '7(11)', '7(13)'];
-  const minorSevenFamilyA = ['m7', 'm7(9)', 'm7(11)'];
+  const majSevenFamilyA = ['M7', 'M9'];
+  const domSevenFamilyA = ['7', '9', '7b9', '7#9', '7b5', '7#5', '11', '13'];
+  const minorSevenFamilyA = ['m7', 'm9'];
   const susFamilyA = ['sus2', 'sus4', '7sus4'];
-  const augFamilyA = ['aug', 'aug7', '7#5', '7(#5)'];
-  const dimFamilyA = ['dim', 'dim7', 'm7b5', 'm7♭5', '7b5', '7(♭5)'];
+  const augFamilyA = ['aug'];
+  const dimFamilyA = ['dim', 'dim7', 'm7b5'];
   
   if (majorFamilyA.includes(quality)) {
     third = shapeA_Major(s);
@@ -646,7 +639,7 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
   } else if (dimFamilyA.includes(quality)) {
     third = shapeA_Dim(s);
   } else {
-    // Default for 9, extended chords
+    // Default fallback
     third = shapeA_Major(s);
     third.label = `Barre (A-shape, ${quality})`;
   }
@@ -656,7 +649,7 @@ export function generateChord(root: Root, quality: Quality): ChordEntry {
 }
 
 const CHORD_CACHE = new Map<string, ChordEntry>();
-export function getCachedChord(root: Root, quality: Quality): ChordEntry {
+export function getCachedChord(root: Root, quality: Quality | AdvancedQuality): ChordEntry {
   const key = `${root}-${quality}`;
   let hit = CHORD_CACHE.get(key);
   if (!hit) {
@@ -666,17 +659,31 @@ export function getCachedChord(root: Root, quality: Quality): ChordEntry {
   return hit;
 }
 
-export const ROOTS: Root[] = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+// Roots in ♭-preferred notation (matching real-world usage)
+export const ROOTS: Root[] = ['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B'];
+
+// Core practical qualities (18 types) - optimized for guitarists
 export const QUALITIES: Quality[] = [
-  'M', 'm', 'aug', 'dim', 'sus4',  // Basic
-  '6', '7', 'M7', 'm6', 'm7', 'mM7',  // Sixths & Sevenths
-  'aug7', 'dim7', '7sus4', '7(♭5)', '7(#5)',  // Extended dominants
-  'm7♭5', 'm7(#5)', '6/9',  // Altered sevenths
-  '7(♭9)', '7(9)', '7(#9)', '7(11)', '7(13)',  // Dominant extensions
-  'M7(9)', 'M7(13)', 'm6(9)', 'm7(9)', 'm7(11)',  // Other extensions
-  'mM7(9)', 'add9', 'madd9',  // Added notes
-  'sus2', '9', 'M9', 'm9',  // Ninths
-  '11', 'M11', '13', 'M13'  // Elevenths & Thirteenths
+  'M', 'm', 'aug', 'dim',  // Basic triads (4)
+  'sus2', 'sus4',  // Suspended (2)
+  '6', 'm6',  // Sixth chords (2)
+  '7', 'M7', 'm7',  // Essential sevenths (3)
+  'dim7', 'm7b5',  // Diminished sevenths (2)
+  '9', 'M9', 'm9',  // Ninths (3)
+  'add9', '6/9', '7sus4'  // Added notes & suspensions (3)
+];
+
+// Advanced qualities (6 types) - for experienced players
+export const ADVANCED_QUALITIES: AdvancedQuality[] = [
+  '7b9', '7#9',  // Altered ninths (2)
+  '7b5', '7#5',  // Altered fifths (2)
+  '11', '13'  // Upper extensions (2)
+];
+
+// Combined list for compatibility
+export const ALL_QUALITIES: (Quality | AdvancedQuality)[] = [
+  ...QUALITIES,
+  ...ADVANCED_QUALITIES
 ];
 
 

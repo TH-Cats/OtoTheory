@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description: "Discover all diatonic chords for any key and scale. Perfect tool for guitarists to find the right chords and understand music theory instantly.",
   alternates: {
     canonical: "/find-chords",
+    languages: { en: "/find-chords", "ja-JP": "/ja/find-chords", "x-default": "/find-chords" },
   },
   openGraph: {
     title: "Find Chords by Key & Scale",
