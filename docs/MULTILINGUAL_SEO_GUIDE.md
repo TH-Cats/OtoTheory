@@ -351,9 +351,9 @@ site:www.ototheory.com/ja
 - x-default が設定されていない
 
 **対処法:**
-1. Google Search Console の「International Targeting」を確認
-2. hreflang エラーを修正
-3. 各ページのソースコードで hreflang タグを確認
+1. URL検査ツールで hreflang タグを確認
+2. ページソースコードで hreflang タグを検証
+3. 外部ツール（Aleyda Solis）で双方向リンクを確認
 
 ---
 
@@ -375,7 +375,7 @@ site:www.ototheory.com/ja
 ### **公式ドキュメント:**
 - [Google - ローカライズ版ページの検索エンジン最適化](https://developers.google.com/search/docs/specialty/international/localized-versions?hl=ja)
 - [Google - 多地域、多言語のサイトの管理](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites?hl=ja)
-- [Google Search Console ヘルプ - International Targeting](https://support.google.com/webmasters/answer/62399?hl=ja)
+- [Google Search Console ヘルプ - hreflang タグ](https://developers.google.com/search/docs/specialty/international/localized-versions?hl=ja)
 
 ### **検証ツール:**
 - [Google Search Console](https://search.google.com/search-console)
@@ -395,7 +395,7 @@ site:www.ototheory.com/ja
 
 ### **1週間以内:**
 - [ ] `site:www.ototheory.com/ja` で日本語ページがヒットすることを確認
-- [ ] Google Search Console の「International Targeting」で hreflang エラーがないか確認
+- [ ] URL検査ツールで hreflang タグが検出されることを確認
 - [ ] Rich Results Test で日本語ページの構造化データを検証
 
 ### **2〜4週間以内:**
