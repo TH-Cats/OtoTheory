@@ -31,6 +31,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.ototheory.com"),
   alternates: {
     canonical: "/",
+    languages: { en: "/", "ja-JP": "/ja", "x-default": "/" },
   },
   icons: {
     icon: [

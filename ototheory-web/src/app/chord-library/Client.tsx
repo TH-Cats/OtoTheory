@@ -2,6 +2,8 @@
 
 import React, { useMemo, useState, useRef } from 'react';
 import styles from './chords.module.css';
+import { usePathname } from 'next/navigation';
+import { messages, type Locale } from '@/lib/i18n/messages';
 import { 
   ROOTS, QUALITIES, ADVANCED_QUALITIES, 
   type Root, type Quality, type AdvancedQuality,
@@ -13,6 +15,10 @@ import AdSlot from '@/components/AdSlot.client';
 export type DisplayMode = 'finger' | 'roman' | 'note';
 
 export default function Client() {
+  const pathname = usePathname() || '/';
+  const isJa = pathname.startsWith('/ja');
+  const locale: Locale = isJa ? 'ja' : 'en';
+  const t = messages[locale].chordLibrary;
   const [root, setRoot] = useState<Root>('C');
   const [quality, setQuality] = useState<Quality | AdvancedQuality>('M');
   const [displayMode, setDisplayMode] = useState<DisplayMode>('finger');
@@ -41,11 +47,9 @@ export default function Client() {
   return (
     <main className={styles['chord-page']}>
       <header className={styles['chord-page__header']}>
-        <h1>Chord Library</h1>
+        <h1>{t.title}</h1>
         <p className={styles['sub']}>
-          Choose a Root and Quality to see <strong>3 chord forms side by side</strong> with horizontal fretboard layout. 
-          Supports <strong>Eb, Ab, Bb</strong> and other practical keys. 
-          Hear them with <strong>▶ Play</strong> (strum) and <strong>Arp</strong> (arpeggio).
+          {t.sub}
         </p>
 
         <div
@@ -74,13 +78,13 @@ export default function Client() {
 
         <div className={styles['quality-section']}>
           <div className={styles['quality-header']}>
-            <span className={styles['quality-label']}>Quality:</span>
+            <span className={styles['quality-label']}>{t.quality}</span>
             <button
               className={`${styles['advanced-toggle']} ${showAdvanced ? styles['advanced-toggle--on'] : ''}`}
               onClick={() => setShowAdvanced(!showAdvanced)}
               aria-pressed={showAdvanced}
             >
-              {showAdvanced ? 'Hide Advanced' : 'Show Advanced'}
+              {showAdvanced ? t.hideAdvanced : t.showAdvanced}
             </button>
           </div>
           <div
@@ -128,28 +132,28 @@ export default function Client() {
             )}
           </div>
           <div className={styles['display-mode']}>
-            <span className={styles['display-mode__label']}>Display:</span>
+            <span className={styles['display-mode__label']}>{t.display}</span>
             <div className={styles['display-mode__buttons']}>
               <button
                 className={`${styles['mode-btn']} ${displayMode === 'finger' ? styles['mode-btn--active'] : ''}`}
                 onClick={() => setDisplayMode('finger')}
                 aria-pressed={displayMode === 'finger'}
               >
-                Finger
+                {t.finger}
               </button>
               <button
                 className={`${styles['mode-btn']} ${displayMode === 'roman' ? styles['mode-btn--active'] : ''}`}
                 onClick={() => setDisplayMode('roman')}
                 aria-pressed={displayMode === 'roman'}
               >
-                Roman
+                {t.roman}
               </button>
               <button
                 className={`${styles['mode-btn']} ${displayMode === 'note' ? styles['mode-btn--active'] : ''}`}
                 onClick={() => setDisplayMode('note')}
                 aria-pressed={displayMode === 'note'}
               >
-                Note
+                {t.note}
               </button>
             </div>
           </div>
@@ -166,7 +170,7 @@ export default function Client() {
 
       <footer className={styles['chord-page__footer']}>
         <p className={styles['hint']}>
-          Tip: Forms with <strong>×</strong> on 1st or 6th string should not be strummed there, or lightly muted with your fretting hand.
+          {t.tip}
         </p>
       </footer>
 

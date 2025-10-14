@@ -1,8 +1,23 @@
-import { redirect } from "next/navigation";
+import type { Metadata } from 'next';
+import Client from '../../chord-library/Client';
+
+export const metadata: Metadata = {
+  title: 'ギター・コードライブラリ – フォームとフィンガリング | OtoTheory',
+  description:
+    '1つのコードに3つのフォーム。指番号つきのインタラクティブなダイアグラム、ストラム/アルペジオのプレビュー、比較表示に対応。',
+  alternates: { canonical: '/ja/chord-library', languages: { en: '/chord-library', 'ja-JP': '/ja/chord-library', 'x-default': '/chord-library' } },
+  openGraph: {
+    title: 'ギター・コードライブラリ – OtoTheory',
+    description:
+      '視覚的ダイアグラムと音のプレビュー、要点のヒント。各コードを3フォームで学べます。',
+    url: '/ja/chord-library',
+    type: 'website',
+    locale: 'ja_JP',
+  },
+};
 
 export default function Page() {
-  // 一時対応: JP版は改修完了までEN版へ誘導
-  redirect("/chord-library");
+  return <Client />;
 }
 
 

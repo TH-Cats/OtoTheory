@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from
 import { useRovingTabs } from "@/hooks/useRovingTabs";
 import Fretboard from "@/components/Fretboard";
 import CapoFold from "@/components/CapoFold";
-import { rankKeys, rankScales, type ScaleRank, PITCHES, detectCadence } from "@/lib/theory";
+import { rankKeys, rankScales, type ScaleRank, PITCHES, detectCadence, noteToPc, romanToChordSymbol, type Mode } from "@/lib/theory";
 import { getScalePitchesById, getScalePitches, scaleTypeLabel, SCALE_INTERVALS, parentModeOf } from "@/lib/scales";
 import { diatonicTriads, triadToChordSym } from "@/lib/theory/diatonic";
 import { SCALE_CATALOG } from "@/lib/scaleCatalog";
@@ -521,34 +521,15 @@ export default function FindKeyPage() {
   
   // Preset helper: Roman numerals to actual chords based on key
   const applyPreset = (presetName: string, romans: string[], key: string) => {
-    const CHROMATIC = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-    const keyIdx = CHROMATIC.indexOf(key);
-    if (keyIdx === -1) return;
+    const keyPc = noteToPc(key);
+    if (keyPc === undefined || keyPc < 0 || keyPc > 11) return;
     
-    const romanToChord = (roman: string): string => {
-      const map: Record<string, {offset: number, quality: string}> = {
-        'Ⅰ': {offset: 0, quality: ''},
-        'Ⅱ': {offset: 2, quality: ''},
-        'Ⅱm': {offset: 2, quality: 'm'},
-        '♭Ⅲ': {offset: 3, quality: ''},
-        'Ⅲ': {offset: 4, quality: ''},
-        'Ⅲm': {offset: 4, quality: 'm'},
-        'Ⅳ': {offset: 5, quality: ''},
-        'Ⅳm': {offset: 5, quality: 'm'},
-        'Ⅴ': {offset: 7, quality: ''},
-        'Ⅵ': {offset: 9, quality: ''},
-        'Ⅵm': {offset: 9, quality: 'm'},
-        '♭Ⅵ': {offset: 8, quality: ''},
-        '♭Ⅶ': {offset: 10, quality: ''},
-        'Ⅶ': {offset: 11, quality: ''},
-      };
-      const info = map[roman];
-      if (!info) return roman;
-      const root = CHROMATIC[(keyIdx + info.offset) % 12];
-      return root + info.quality;
-    };
+    // プリセットは基本的にMajor keyで定義されている
+    // （将来的にMinorプリセットを追加する場合は、ここで判定ロジックを追加）
+    const mode: Mode = "Major";
     
-    const chords = romans.map(romanToChord);
+    // theory.tsのromanToChordSymbol関数を使用（文脈化された変換）
+    const chords = romans.map(roman => romanToChordSymbol(roman, keyPc, mode));
     
     // Append to existing progression (find first empty slot)
     setSlots(prev => {

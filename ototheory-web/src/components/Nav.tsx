@@ -1,17 +1,20 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { messages, type Locale } from "@/lib/i18n/messages";
 
 export default function Nav() {
   const pathname = usePathname();
   // M3.5: Analyze (録音) メニュー撤去
   const isJa = pathname?.startsWith('/ja');
   const base = isJa ? '/ja' : '';
+  const locale: Locale = isJa ? 'ja' : 'en';
+  const t = messages[locale];
   const links = [
-    { href: `${base}/chord-progression`, label: "Chord Progression", aria: "Build Chord Progressions" },
-    { href: `${base}/find-chords`, label: "Find Chords", aria: "Find Chord" },
-    { href: `${base}/chord-library`, label: "Chord Library", aria: "Chord Library" },
-    { href: `${base}/resources`, label: "Resources", aria: "Resources" },
+    { href: `${base}/chord-progression`, label: t.nav.chordProgression, aria: "Build Chord Progressions" },
+    { href: `${base}/find-chords`, label: t.nav.findChords, aria: "Find Chord" },
+    { href: `${base}/chord-library`, label: t.nav.chordLibrary, aria: "Chord Library" },
+    { href: `${base}/resources`, label: t.nav.resources, aria: "Resources" },
   ];
   const isActive = (href: string) => pathname?.startsWith(href);
 
@@ -20,19 +23,19 @@ export default function Nav() {
       {links.map((l) => (
         <div key={l.href} className="relative">
           <Link prefetch href={l.href} aria-label={l.aria} className="hover:underline whitespace-pre md:whitespace-nowrap">
-            {l.href === '/chord-progression' ? (
+            {l.href === `${base}/chord-progression` ? (
               <>
-                <span className="block leading-none md:inline">Chord </span>
-                <span className="block leading-tight md:inline">Progression</span>
+                <span className="block leading-none md:inline">{isJa ? 'コード' : 'Chord'} </span>
+                <span className="block leading-tight md:inline">{isJa ? '進行' : 'Progression'}</span>
               </>
-            ) : l.href === '/find-chords' ? (
+            ) : l.href === `${base}/find-chords` ? (
               <>
-                <span className="block leading-tight md:inline">Find Chords</span>
+                <span className="block leading-tight md:inline">{t.nav.findChords}</span>
               </>
-            ) : l.href === '/chord-library' ? (
+            ) : l.href === `${base}/chord-library` ? (
               <>
-                <span className="block leading-none md:inline">Chord </span>
-                <span className="block leading-tight md:inline">Library</span>
+                <span className="block leading-none md:inline">{isJa ? 'Chord ' : 'Chord '}</span>
+                <span className="block leading-tight md:inline">{isJa ? 'Library' : 'Library'}</span>
               </>
             ) : (
               l.label

@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description: "Comprehensive guitar chord library with diagrams, voicings, and fingering patterns. Find the perfect chord shape for any progression.",
   alternates: {
     canonical: "/chord-library",
+    languages: { en: "/chord-library", "ja-JP": "/ja/chord-library", "x-default": "/chord-library" },
   },
   openGraph: {
     title: "Guitar Chord Library – Forms & Voicings",

@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description: "Quick reference glossary for guitarists. One-line definitions + guitar-specific notes + examples. Covering scale degrees, chords, progressions, and practical techniques.",
   alternates: {
     canonical: "/resources/glossary",
+    languages: { en: "/resources/glossary", "ja-JP": "/ja/resources/glossary", "x-default": "/resources/glossary" },
   },
   openGraph: {
     title: "Guitar Glossary – Quick Music Theory Terms",
