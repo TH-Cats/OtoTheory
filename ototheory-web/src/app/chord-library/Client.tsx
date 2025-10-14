@@ -10,7 +10,8 @@ import {
 } from '@/lib/chord-library';
 import { ChordCard } from '@/components/chords/ChordCard';
 import AdSlot from '@/components/AdSlot.client';
-import { useLocale, tTip, tLabel } from '@/lib/i18n/chordLibrary';
+import { tTip, tLabel } from '@/lib/i18n/chordLibrary';
+import { useLocale } from '@/lib/i18n/locale';
 
 export type DisplayMode = 'finger' | 'roman' | 'note';
 

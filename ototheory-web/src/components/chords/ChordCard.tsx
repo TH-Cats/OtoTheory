@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { ChordDiagram } from './ChordDiagram';
 import { ChordAudio } from './ChordAudio';
-import { useLocale } from '@/lib/i18n/chordLibrary';
+import { useLocale } from '@/lib/i18n/locale';
 import type { ChordShape, Root } from '@/lib/chord-library';
 import type { DisplayMode } from '@/app/chord-library/Client';
 import styles from '@/app/chord-library/chords.module.css';

@@ -1,11 +1,4 @@
-import { usePathname } from 'next/navigation';
-
-export type Locale = 'en' | 'ja';
-
-export function useLocale(): Locale {
-  const pathname = usePathname() || '/';
-  return pathname.startsWith('/ja') ? 'ja' : 'en';
-}
+import type { Locale } from './locale';
 
 const tipMap: Record<string, string> = {
   'Versatile barre form for any key.': 'どのキーでも使える汎用的なバレー・フォーム。',
@@ -136,11 +129,6 @@ export function tTip(text: string, locale: Locale): string {
 
 export function tLabel(text: string, locale: Locale): string {
   if (locale === 'ja') return labelMap[text] || text;
-  return text;
-}
-
-export function tButton(text: 'Play'|'Arp', locale: Locale): string {
-  if (locale === 'ja') return text === 'Play' ? 'Play' : 'Arp';
   return text;
 }
 
