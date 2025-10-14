@@ -25,9 +25,13 @@ export default function Home() {
           <h2 className="font-semibold mb-1">Find Chords</h2>
           <p className="text-sm opacity-80">See chords from key &amp; scale</p>
         </Link>
+        <Link href="/chord-library" className="ot-card hover:bg-black/5 dark:hover:bg-white/5">
+          <h2 className="font-semibold mb-1">Chord Library</h2>
+          <p className="text-sm opacity-80">Interactive chord diagrams &amp; audio</p>
+        </Link>
         <Link href="/resources" className="ot-card hover:bg-black/5 dark:hover:bg-white/5">
           <h2 className="font-semibold mb-1">Resources</h2>
-          <p className="text-sm opacity-80">Theory, glossary, and chord library</p>
+          <p className="text-sm opacity-80">Theory guide &amp; glossary</p>
         </Link>
       </section>
       <div className="ot-card">

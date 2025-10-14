@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { ChordDiagram } from './ChordDiagram';
 import { ChordAudio } from './ChordAudio';
 import type { ChordShape, Root } from '@/lib/chord-library';
-import type { DisplayMode } from '@/app/resources/chord-library/Client';
-import styles from '@/app/resources/chord-library/chords.module.css';
+import type { DisplayMode } from '@/app/chord-library/Client';
+import styles from '@/app/chord-library/chords.module.css';
 
 type Props = { 
   symbol: string; 

@@ -1,7 +1,7 @@
 // /components/chords/ChordDiagram.tsx
 import React from 'react';
 import type { Barre, Fret, Finger, Root } from '@/lib/chord-library';
-import type { DisplayMode } from '@/app/resources/chord-library/Client';
+import type { DisplayMode } from '@/app/chord-library/Client';
 
 type Props = {
   frets: [Fret, Fret, Fret, Fret, Fret, Fret];

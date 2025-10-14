@@ -49,24 +49,6 @@ export default function ResourcesPage() {
           </div>
         </Link>
 
-        {/* Chord Library */}
-        <Link 
-          href="/resources/chord-library"
-          className="group rounded-lg border p-5 hover:border-green-500 dark:hover:border-green-400 transition-all hover:shadow-lg"
-        >
-          <div className="flex items-start gap-3 mb-3">
-            <span className="text-2xl">🎼</span>
-            <h2 className="text-lg font-semibold group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
-              Chord Library
-            </h2>
-          </div>
-          <p className="text-sm text-black/70 dark:text-white/70 leading-relaxed">
-            Visual reference for essential guitar chords with diagrams and fingering patterns.
-          </p>
-          <div className="mt-3 text-sm text-green-600 dark:text-green-400 group-hover:underline">
-            View chords →
-          </div>
-        </Link>
       </div>
 
       {/* Quick Reference Section */}

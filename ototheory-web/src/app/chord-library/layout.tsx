@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: "Guitar Chord Library – Forms & Voicings | OtoTheory",
   description: "Comprehensive guitar chord library with diagrams, voicings, and fingering patterns. Find the perfect chord shape for any progression.",
   alternates: {
-    canonical: "/resources/chord-library",
+    canonical: "/chord-library",
   },
   openGraph: {
     title: "Guitar Chord Library – Forms & Voicings",
