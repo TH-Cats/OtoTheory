@@ -102,20 +102,50 @@ SNSシェア時に適切な言語が表示されるよう設定されていま�
 
 ### **ステップ2: hreflang の確認**
 
-#### **A. International Targeting の確認**
+**注意:** Google Search Console の「International Targeting」メニューは廃止されました。代わりに以下の方法で確認します。
 
-1. **左メニューから「設定」→「International Targeting」を選択**
+#### **A. URL検査ツールで確認（推奨）**
 
-2. **「言語」タブを確認:**
-   - hreflang タグのエラーがないことを確認
-   - 英語（en）と日本語（ja-JP）が検出されているか確認
+1. **Google Search Console の上部検索バーにURLを入力:**
+   ```
+   https://www.ototheory.com/ja/chord-progression
+   ```
 
-3. **もしエラーがある場合:**
-   - エラー内容を確認
-   - hreflang タグの形式が正しいか検証
-   - 双方向のリンクが設定されているか確認
+2. **「公開URLをテスト」をクリック**
 
-#### **B. hreflang エラーの種類と対処法**
+3. **「クロール済みのページを表示」→「その他の情報」タブを確認:**
+   - 「言語と地域」セクションで hreflang タグを確認
+   - 英語版（en）と日本語版（ja-JP）のリンクが表示されるか確認
+
+#### **B. ページソースコードで直接確認**
+
+1. **ブラウザでページを開く:**
+   ```
+   https://www.ototheory.com/ja/chord-progression
+   ```
+
+2. **右クリック → 「ページのソースを表示」（`Cmd + Option + U`）**
+
+3. **`hreflang` で検索（`Cmd + F`）して以下を確認:**
+   ```html
+   <link rel="alternate" hreflang="en" href="..." />
+   <link rel="alternate" hreflang="ja-JP" href="..." />
+   <link rel="alternate" hreflang="x-default" href="..." />
+   ```
+
+#### **C. 外部ツールで検証**
+
+**Aleyda Solis の hreflang Testing Tool:**
+```
+https://www.aleydasolis.com/english/international-seo-tools/hreflang-tags-generator/
+```
+
+1. URLを入力
+2. 「Test hreflang Tags」をクリック
+3. エラーがないか確認
+4. 双方向のリンクが設定されているか確認
+
+#### **D. hreflang エラーの種類と対処法**
 
 | エラー内容 | 原因 | 対処法 |
 |-----------|------|--------|
