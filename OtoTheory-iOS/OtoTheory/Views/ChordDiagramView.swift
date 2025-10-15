@@ -101,9 +101,10 @@ struct ChordDiagramView: View {
                 }
                 
                 // Draw markers
+                // frets array: [6th, 5th, 4th, 3rd, 2nd, 1st]
+                // yForString: sIdx=0 → bottom (6th), sIdx=5 → top (1st)
                 for (stringIndex, fretStr) in shape.frets.enumerated() {
-                    let reversedStringIdx = 5 - stringIndex // Reverse: 6弦=0, 1弦=5
-                    let y = yForString(reversedStringIdx)
+                    let y = yForString(stringIndex)
                     
                     if fretStr == "x" {
                         // Muted (X)
@@ -205,7 +206,7 @@ struct ChordDiagramView: View {
                 label: "Open",
                 frets: [.muted, .fretted(3), .fretted(2), .open, .fretted(1), .open],
                 fingers: [nil, .three, .two, nil, .one, nil],
-                tips: "C major open chord"
+                tips: ["C major open chord"]
             ),
             root: .C,
             displayMode: .finger
@@ -225,7 +226,7 @@ struct ChordDiagramView: View {
                 ],
                 fingers: [.one, .three, .four, .two, .one, .one],
                 barres: [ChordBarre(fret: 3, fromString: 1, toString: 6, finger: .one)],
-                tips: "G major barre chord"
+                tips: ["G major barre chord"]
             ),
             root: .G,
             displayMode: .roman

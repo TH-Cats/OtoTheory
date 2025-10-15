@@ -98,7 +98,7 @@ enum ChordLibraryQuality: String, CaseIterable, Identifiable {
     var id: String { rawValue }
     
     var displayName: String {
-        rawValue.isEmpty ? "M" : rawValue
+        rawValue  // Empty string for Major, otherwise use rawValue
     }
     
     /// Pro-only qualities (for Progression Add restriction)
@@ -241,10 +241,10 @@ struct ChordShape: Identifiable, Codable {
     let id: UUID
     let kind: String  // ShapeKind.rawValue
     let label: String // "Open", "3fr", "5fr"
-    let frets: [String]  // 6 strings, ["3", "2", "0", "0", "x", "x"]
-    let fingers: [Int?]  // 6 strings, [3, 2, nil, nil, nil, nil]
+    let frets: [String]  // 6 strings (6th to 1st), ["3", "2", "0", "0", "x", "x"]
+    let fingers: [Int?]  // 6 strings (6th to 1st), [3, 2, nil, nil, nil, nil]
     let barres: [ChordBarre]
-    let tips: String
+    let tips: [String]  // Multiple tips
     
     init(
         kind: ShapeKind,
@@ -252,7 +252,7 @@ struct ChordShape: Identifiable, Codable {
         frets: [ChordFret],
         fingers: [ChordFinger?],
         barres: [ChordBarre] = [],
-        tips: String = ""
+        tips: [String] = []
     ) {
         self.id = UUID()
         self.kind = kind.rawValue

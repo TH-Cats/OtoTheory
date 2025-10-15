@@ -60,7 +60,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.muted, .fretted(3), .fretted(2), .open, .fretted(1), .open],
                 fingers: [nil, .three, .two, nil, .one, nil],
-                tips: "Classic C major open chord"
+                tips: ["Mute 6th string.", "Open 1st rings beautifully."]
             )
         case (.C, .m):
             return ChordShape(
@@ -69,7 +69,7 @@ class ChordShapeGenerator {
                 frets: [.muted, .fretted(3), .fretted(1), .open, .fretted(1), .fretted(3)],
                 fingers: [nil, .three, .one, nil, .one, .four],
                 barres: [ChordBarre(fret: 1, fromString: 2, toString: 4, finger: .one)],
-                tips: "Cm open voicing"
+                tips: ["Cm open voicing", "Dark minor sound"]
             )
         case (.C, .seven):
             return ChordShape(
@@ -77,7 +77,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.muted, .fretted(3), .fretted(2), .fretted(3), .fretted(1), .open],
                 fingers: [nil, .three, .two, .four, .one, nil],
-                tips: "C7 with 7th on 4th string"
+                tips: ["C7 with 7th on 4th string"]
             )
         case (.C, .M7):
             return ChordShape(
@@ -85,7 +85,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.muted, .fretted(3), .fretted(2), .open, .open, .open],
                 fingers: [nil, .three, .two, nil, nil, nil],
-                tips: "Rich Cmaj7 open voicing"
+                tips: ["Rich Cmaj7 open voicing", "Jazzy and sophisticated"]
             )
         
         // D Major family
@@ -95,7 +95,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.muted, .muted, .open, .fretted(2), .fretted(3), .fretted(2)],
                 fingers: [nil, nil, nil, .one, .three, .two],
-                tips: "Classic D major open chord"
+                tips: ["Classic D major open chord"]
             )
         case (.D, .m):
             return ChordShape(
@@ -103,7 +103,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.muted, .muted, .open, .fretted(2), .fretted(3), .fretted(1)],
                 fingers: [nil, nil, nil, .two, .three, .one],
-                tips: "Dm open voicing"
+                tips: ["Dm open voicing"]
             )
         case (.D, .seven):
             return ChordShape(
@@ -111,7 +111,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.muted, .muted, .open, .fretted(2), .fretted(1), .fretted(2)],
                 fingers: [nil, nil, nil, .two, .one, .three],
-                tips: "D7 open chord"
+                tips: ["D7 open chord"]
             )
         case (.D, .M7):
             return ChordShape(
@@ -119,7 +119,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.muted, .muted, .open, .fretted(2), .fretted(2), .fretted(2)],
                 fingers: [nil, nil, nil, .one, .two, .three],
-                tips: "Dmaj7 open voicing"
+                tips: ["Dmaj7 open voicing"]
             )
         
         // E Major family
@@ -129,7 +129,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.open, .fretted(2), .fretted(2), .fretted(1), .open, .open],
                 fingers: [nil, .two, .three, .one, nil, nil],
-                tips: "Classic E major open chord"
+                tips: ["Classic E major open chord"]
             )
         case (.E, .m):
             return ChordShape(
@@ -137,7 +137,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.open, .fretted(2), .fretted(2), .open, .open, .open],
                 fingers: [nil, .two, .three, nil, nil, nil],
-                tips: "Em open chord - very common"
+                tips: ["Em open chord - very common"]
             )
         case (.E, .seven):
             return ChordShape(
@@ -145,7 +145,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.open, .fretted(2), .fretted(0), .fretted(1), .open, .open],
                 fingers: [nil, .two, nil, .one, nil, nil],
-                tips: "E7 open voicing"
+                tips: ["E7 open voicing"]
             )
         case (.E, .M7):
             return ChordShape(
@@ -153,7 +153,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.open, .fretted(2), .fretted(1), .fretted(1), .open, .open],
                 fingers: [nil, .three, .one, .two, nil, nil],
-                tips: "Emaj7 open chord"
+                tips: ["Emaj7 open chord"]
             )
         
         // G Major family
@@ -163,7 +163,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.fretted(3), .fretted(2), .open, .open, .open, .fretted(3)],
                 fingers: [.three, .one, nil, nil, nil, .four],
-                tips: "Classic G major open chord"
+                tips: ["Classic G major open chord"]
             )
         case (.G, .m):
             return ChordShape(
@@ -171,7 +171,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.fretted(3), .fretted(1), .open, .open, .fretted(3), .fretted(3)],
                 fingers: [.two, .one, nil, nil, .three, .four],
-                tips: "Gm open voicing"
+                tips: ["Gm open voicing"]
             )
         case (.G, .seven):
             return ChordShape(
@@ -179,7 +179,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.fretted(3), .fretted(2), .open, .open, .open, .fretted(1)],
                 fingers: [.three, .two, nil, nil, nil, .one],
-                tips: "G7 open chord"
+                tips: ["G7 open chord"]
             )
         
         // A Major family
@@ -189,7 +189,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.muted, .open, .fretted(2), .fretted(2), .fretted(2), .open],
                 fingers: [nil, nil, .one, .two, .three, nil],
-                tips: "Classic A major open chord"
+                tips: ["Classic A major open chord"]
             )
         case (.A, .m):
             return ChordShape(
@@ -197,7 +197,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.muted, .open, .fretted(2), .fretted(2), .fretted(1), .open],
                 fingers: [nil, nil, .two, .three, .one, nil],
-                tips: "Am open chord - very common"
+                tips: ["Am open chord - very common"]
             )
         case (.A, .seven):
             return ChordShape(
@@ -205,7 +205,7 @@ class ChordShapeGenerator {
                 label: "Open",
                 frets: [.muted, .open, .fretted(2), .open, .fretted(2), .open],
                 fingers: [nil, nil, .two, nil, .one, nil],
-                tips: "A7 open voicing"
+                tips: ["A7 open voicing"]
             )
         
         default:
@@ -234,7 +234,7 @@ class ChordShapeGenerator {
                 ],
                 fingers: [.one, .three, .four, .two, .one, .one],
                 barres: [ChordBarre(fret: rootFret, fromString: 1, toString: 6, finger: .one)],
-                tips: "E-shape major barre chord"
+                tips: ["E-shape major barre chord"]
             )
         case .m:
             return ChordShape(
@@ -250,7 +250,7 @@ class ChordShapeGenerator {
                 ],
                 fingers: [.one, .three, .four, .one, .one, .one],
                 barres: [ChordBarre(fret: rootFret, fromString: 1, toString: 6, finger: .one)],
-                tips: "E-shape minor barre chord"
+                tips: ["E-shape minor barre chord"]
             )
         case .seven:
             return ChordShape(
@@ -266,7 +266,7 @@ class ChordShapeGenerator {
                 ],
                 fingers: [.one, .three, .one, .two, .one, .one],
                 barres: [ChordBarre(fret: rootFret, fromString: 1, toString: 6, finger: .one)],
-                tips: "E-shape dominant 7th barre"
+                tips: ["E-shape dominant 7th barre"]
             )
         case .M7:
             return ChordShape(
@@ -282,7 +282,7 @@ class ChordShapeGenerator {
                 ],
                 fingers: [.one, .four, .two, .three, .one, .one],
                 barres: [ChordBarre(fret: rootFret, fromString: 1, toString: 6, finger: .one)],
-                tips: "E-shape major 7th barre"
+                tips: ["E-shape major 7th barre"]
             )
         case .m7:
             return ChordShape(
@@ -298,7 +298,7 @@ class ChordShapeGenerator {
                 ],
                 fingers: [.one, .two, .one, .one, .one, .one],
                 barres: [ChordBarre(fret: rootFret, fromString: 1, toString: 6, finger: .one)],
-                tips: "E-shape minor 7th barre"
+                tips: ["E-shape minor 7th barre"]
             )
         case .six:
             return ChordShape(
@@ -314,7 +314,7 @@ class ChordShapeGenerator {
                 ],
                 fingers: [.one, .two, .three, .one, .four, .one],
                 barres: [ChordBarre(fret: rootFret, fromString: 1, toString: 6, finger: .one)],
-                tips: "E-shape 6th chord"
+                tips: ["E-shape 6th chord"]
             )
         default:
             // Default to major shape
@@ -331,7 +331,7 @@ class ChordShapeGenerator {
                 ],
                 fingers: [.one, .three, .four, .two, .one, .one],
                 barres: [ChordBarre(fret: rootFret, fromString: 1, toString: 6, finger: .one)],
-                tips: "E-shape barre chord"
+                tips: ["E-shape barre chord"]
             )
         }
     }
@@ -360,7 +360,7 @@ class ChordShapeGenerator {
                     ChordBarre(fret: rootFret, fromString: 2, toString: 6, finger: .one),
                     ChordBarre(fret: rootFret + 2, fromString: 3, toString: 5, finger: .three)
                 ],
-                tips: "A-shape major barre chord"
+                tips: ["A-shape major barre chord"]
             )
         case .m:
             return ChordShape(
@@ -376,7 +376,7 @@ class ChordShapeGenerator {
                 ],
                 fingers: [nil, .one, .three, .four, .two, .one],
                 barres: [ChordBarre(fret: rootFret, fromString: 2, toString: 6, finger: .one)],
-                tips: "A-shape minor barre chord"
+                tips: ["A-shape minor barre chord"]
             )
         case .seven:
             return ChordShape(
@@ -392,7 +392,7 @@ class ChordShapeGenerator {
                 ],
                 fingers: [nil, .one, .three, .one, .two, .one],
                 barres: [ChordBarre(fret: rootFret, fromString: 2, toString: 6, finger: .one)],
-                tips: "A-shape dominant 7th barre"
+                tips: ["A-shape dominant 7th barre"]
             )
         case .M7:
             return ChordShape(
@@ -408,7 +408,7 @@ class ChordShapeGenerator {
                 ],
                 fingers: [nil, .one, .three, .two, .four, .one],
                 barres: [ChordBarre(fret: rootFret, fromString: 2, toString: 6, finger: .one)],
-                tips: "A-shape major 7th barre"
+                tips: ["A-shape major 7th barre"]
             )
         case .m7:
             return ChordShape(
@@ -424,7 +424,7 @@ class ChordShapeGenerator {
                 ],
                 fingers: [nil, .one, .three, .one, .two, .one],
                 barres: [ChordBarre(fret: rootFret, fromString: 2, toString: 6, finger: .one)],
-                tips: "A-shape minor 7th barre"
+                tips: ["A-shape minor 7th barre"]
             )
         default:
             // Default to major shape
@@ -444,7 +444,7 @@ class ChordShapeGenerator {
                     ChordBarre(fret: rootFret, fromString: 2, toString: 6, finger: .one),
                     ChordBarre(fret: rootFret + 2, fromString: 3, toString: 5, finger: .three)
                 ],
-                tips: "A-shape barre chord"
+                tips: ["A-shape barre chord"]
             )
         }
     }
@@ -468,7 +468,7 @@ class ChordShapeGenerator {
                     .fretted(rootFret + 1)
                 ],
                 fingers: [nil, nil, .one, .three, .four, .two],
-                tips: "Compact major voicing on upper strings"
+                tips: ["Compact major voicing on upper strings"]
             )
         case .m:
             return ChordShape(
@@ -483,7 +483,7 @@ class ChordShapeGenerator {
                     .fretted(rootFret + 1)
                 ],
                 fingers: [nil, nil, .one, .four, .two, .three],
-                tips: "Compact minor voicing"
+                tips: ["Compact minor voicing"]
             )
         case .seven:
             return ChordShape(
@@ -498,7 +498,7 @@ class ChordShapeGenerator {
                     .fretted(rootFret + 3)
                 ],
                 fingers: [nil, nil, .one, .two, .one, .four],
-                tips: "Compact 7th chord"
+                tips: ["Compact 7th chord"]
             )
         case .M7:
             return ChordShape(
@@ -513,7 +513,7 @@ class ChordShapeGenerator {
                     .fretted(rootFret + 2)
                 ],
                 fingers: [nil, nil, .one, .two, .three, .four],
-                tips: "Compact maj7 voicing"
+                tips: ["Compact maj7 voicing"]
             )
         default:
             return ChordShape(
@@ -528,7 +528,7 @@ class ChordShapeGenerator {
                     .fretted(rootFret + 1)
                 ],
                 fingers: [nil, nil, .one, .three, .four, .two],
-                tips: "Compact voicing on upper strings"
+                tips: ["Compact voicing on upper strings"]
             )
         }
     }
@@ -555,7 +555,7 @@ class ChordShapeGenerator {
                 ],
                 fingers: [nil, .one, .two, .three, .one, .four],
                 barres: [ChordBarre(fret: rootFret, fromString: 2, toString: 5, finger: .one)],
-                tips: "add9 voicing for rich color"
+                tips: ["add9 voicing for rich color"]
             )
         case .seven:
             // 9th chord
@@ -572,7 +572,7 @@ class ChordShapeGenerator {
                 ],
                 fingers: [nil, .one, .three, .one, .one, .four],
                 barres: [ChordBarre(fret: rootFret, fromString: 2, toString: 5, finger: .one)],
-                tips: "9th chord for jazzy color"
+                tips: ["9th chord for jazzy color"]
             )
         case .M7, .m7:
             // 6/9 voicing
@@ -589,7 +589,7 @@ class ChordShapeGenerator {
                 ],
                 fingers: [nil, .one, .two, .one, .three, .four],
                 barres: [ChordBarre(fret: rootFret, fromString: 2, toString: 4, finger: .one)],
-                tips: "6/9 voicing for smooth color"
+                tips: ["6/9 voicing for smooth color"]
             )
         default:
             // sus2 as default color
@@ -606,7 +606,7 @@ class ChordShapeGenerator {
                 ],
                 fingers: [nil, .one, .three, .four, .one, .one],
                 barres: [ChordBarre(fret: rootFret, fromString: 2, toString: 6, finger: .one)],
-                tips: "sus2 voicing for open color"
+                tips: ["sus2 voicing for open color"]
             )
         }
     }

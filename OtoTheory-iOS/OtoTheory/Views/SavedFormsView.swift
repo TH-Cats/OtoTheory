@@ -236,11 +236,15 @@ struct ChordDetailSheet: View {
                 
                 // Tips
                 if !shape.tips.isEmpty {
-                    Text(shape.tips)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding()
+                    VStack(alignment: .leading, spacing: 2) {
+                        ForEach(shape.tips, id: \.self) { tip in
+                            Text("• \(tip)")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    .multilineTextAlignment(.leading)
+                    .padding()
                 }
                 
                 // Play buttons

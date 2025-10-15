@@ -304,76 +304,160 @@ struct ChordFormFullCard: View {
     let onPlayArpeggio: () -> Void
     let onToggleSave: () -> Void
     
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    
+    var isLandscape: Bool {
+        verticalSizeClass == .compact
+    }
+    
     var body: some View {
-        VStack(spacing: 12) {
-            // Shape label
-            HStack {
-                Text(shape.kind)
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                Spacer()
-                Text(shape.label)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-            }
-            .padding(.horizontal)
-            
-            // Diagram (large, horizontal)
-            ChordDiagramView(
-                shape: shape,
-                root: root,
-                displayMode: displayMode
-            )
-            .frame(height: 280) // Larger for better visibility
-            
-            // Tips (if available)
-            if !shape.tips.isEmpty {
-                Text("• \(shape.tips)")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+        GeometryReader { geometry in
+            if isLandscape {
+                // Landscape: Compact layout to fit everything
+                HStack(spacing: 16) {
+                    // Left: Diagram (larger)
+                    ChordDiagramView(
+                        shape: shape,
+                        root: root,
+                        displayMode: displayMode
+                    )
+                    .frame(width: geometry.size.width * 0.6, height: geometry.size.height * 0.8)
+                    
+                    // Right: Info + Actions
+                    VStack(alignment: .leading, spacing: 8) {
+                        // Shape label
+                        HStack {
+                            Text(shape.kind)
+                                .font(.headline)
+                                .fontWeight(.semibold)
+                            Spacer()
+                            Text(shape.label)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        // Tips (compact)
+                        if !shape.tips.isEmpty {
+                            VStack(alignment: .leading, spacing: 2) {
+                                ForEach(shape.tips.prefix(2), id: \.self) { tip in
+                                    Text("• \(tip)")
+                                        .font(.caption2)
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        
+                        Spacer()
+                        
+                        // Action buttons (compact)
+                        HStack(spacing: 12) {
+                            Button(action: onPlayStrum) {
+                                VStack(spacing: 2) {
+                                    Image(systemName: "play.circle.fill")
+                                        .font(.title2)
+                                    Text("Play")
+                                        .font(.caption2)
+                                }
+                            }
+                            
+                            Button(action: onPlayArpeggio) {
+                                VStack(spacing: 2) {
+                                    Image(systemName: "music.note.list")
+                                        .font(.title2)
+                                    Text("Arp")
+                                        .font(.caption2)
+                                }
+                            }
+                            
+                            Button(action: onToggleSave) {
+                                VStack(spacing: 2) {
+                                    Image(systemName: isSaved ? "star.fill" : "star")
+                                        .font(.title2)
+                                        .foregroundColor(isSaved ? .yellow : .primary)
+                                    Text(isSaved ? "Saved" : "Save")
+                                        .font(.caption2)
+                                }
+                            }
+                        }
+                    }
+                    .frame(width: geometry.size.width * 0.35)
+                    .padding(.trailing)
+                }
+                .padding()
+            } else {
+                // Portrait: Vertical layout
+                VStack(spacing: 12) {
+                    // Shape label
+                    HStack {
+                        Text(shape.kind)
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                        Spacer()
+                        Text(shape.label)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
                     .padding(.horizontal)
+                    
+                    // Diagram
+                    ChordDiagramView(
+                        shape: shape,
+                        root: root,
+                        displayMode: displayMode
+                    )
+                    .frame(height: min(280, geometry.size.height * 0.5))
+                    
+                    // Tips
+                    if !shape.tips.isEmpty {
+                        VStack(alignment: .leading, spacing: 2) {
+                            ForEach(shape.tips, id: \.self) { tip in
+                                Text("• \(tip)")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal)
+                    }
+                    
+                    // Action buttons
+                    HStack(spacing: 20) {
+                        Button(action: onPlayStrum) {
+                            VStack {
+                                Image(systemName: "play.circle.fill")
+                                    .font(.system(size: 44))
+                                Text("Play")
+                                    .font(.caption)
+                            }
+                        }
+                        
+                        Button(action: onPlayArpeggio) {
+                            VStack {
+                                Image(systemName: "music.note.list")
+                                    .font(.system(size: 44))
+                                Text("Arp")
+                                    .font(.caption)
+                            }
+                        }
+                        
+                        Button(action: onToggleSave) {
+                            VStack {
+                                Image(systemName: isSaved ? "star.fill" : "star")
+                                    .font(.system(size: 44))
+                                    .foregroundColor(isSaved ? .yellow : .primary)
+                                Text(isSaved ? "Saved" : "Save")
+                                    .font(.caption)
+                            }
+                        }
+                    }
+                    .padding()
+                    
+                    Spacer(minLength: 0)
+                }
+                .padding()
             }
-            
-            // Action buttons
-            HStack(spacing: 20) {
-                // Play (Strum)
-                Button(action: onPlayStrum) {
-                    VStack {
-                        Image(systemName: "play.circle.fill")
-                            .font(.system(size: 44))
-                        Text("Play")
-                            .font(.caption)
-                    }
-                }
-                
-                // Arp (Arpeggio)
-                Button(action: onPlayArpeggio) {
-                    VStack {
-                        Image(systemName: "music.note.list")
-                            .font(.system(size: 44))
-                        Text("Arp")
-                            .font(.caption)
-                    }
-                }
-                
-                // Save to My Forms
-                Button(action: onToggleSave) {
-                    VStack {
-                        Image(systemName: isSaved ? "star.fill" : "star")
-                            .font(.system(size: 44))
-                            .foregroundColor(isSaved ? .yellow : .primary)
-                        Text(isSaved ? "Saved" : "Save")
-                            .font(.caption)
-                    }
-                }
-            }
-            .padding()
-            
-            Spacer(minLength: 0)
         }
-        .padding()
         .background(Color(.systemBackground))
     }
 }
