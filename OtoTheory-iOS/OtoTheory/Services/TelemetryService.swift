@@ -36,6 +36,12 @@ enum TelemetryEvent: String {
     case projectDelete = "project_delete"
     case projectLimitWarn = "project_limit_warn"
     case projectLimitBlock = "project_limit_block"
+    
+    // My Forms (Chord Library)
+    case formSaved = "form_saved"
+    case formDeleted = "form_deleted"
+    case formsViewOpen = "forms_view_open"
+    case chordFormShown = "chord_form_shown"
 }
 
 /// Telemetry service for iOS

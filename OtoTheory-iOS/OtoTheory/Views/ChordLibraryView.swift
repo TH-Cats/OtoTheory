@@ -11,12 +11,14 @@ import SwiftUI
 struct ChordLibraryView: View {
     @StateObject private var audioPlayer = ChordLibraryAudioPlayer.shared
     @StateObject private var libraryManager = ChordLibraryManager.shared
+    @StateObject private var savedFormsManager = SavedFormsManager.shared
     
     @State private var selectedRoot: ChordRoot = .C
     @State private var selectedQuality: ChordLibraryQuality = .M
     @State private var displayMode: ChordDisplayMode = .finger
     @State private var showAdvanced: Bool = false
     @State private var currentShapeIndex: Int = 0
+    @State private var showMyForms: Bool = false
     
     // Orientation detection
     @State private var isLandscape: Bool = false
@@ -25,6 +27,24 @@ struct ChordLibraryView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
+                    // My Forms button
+                    Button(action: {
+                        showMyForms = true
+                        TelemetryService.shared.track(.formsViewOpen)
+                    }) {
+                        HStack {
+                            Image(systemName: "star.fill")
+                            Text("My Forms (\(savedFormsManager.savedForms.count))")
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        .padding()
+                        .background(Color.blue.opacity(0.1))
+                        .cornerRadius(8)
+                    }
+                    .sheet(isPresented: $showMyForms) {
+                        SavedFormsView()
+                    }
                     // Landscape hint (show in portrait)
                     if !isLandscape {
                         landscapeHint
@@ -234,16 +254,43 @@ struct ChordLibraryView: View {
                     ChordFormCard(
                         shape: shape,
                         root: selectedRoot,
+                        quality: selectedQuality,
                         displayMode: displayMode,
+                        isSaved: savedFormsManager.isSaved(
+                            root: selectedRoot.rawValue,
+                            quality: selectedQuality.rawValue,
+                            shapeKind: shape.kind
+                        ),
                         onPlayStrum: {
                             audioPlayer.playStrum(shape: shape, root: selectedRoot)
                         },
                         onPlayArpeggio: {
                             audioPlayer.playArpeggio(shape: shape, root: selectedRoot)
                         },
-                        onSave: {
-                            // TODO: Implement My Forms save
-                            print("Save form: \(shape.kind)")
+                        onToggleSave: {
+                            if savedFormsManager.isSaved(
+                                root: selectedRoot.rawValue,
+                                quality: selectedQuality.rawValue,
+                                shapeKind: shape.kind
+                            ) {
+                                // Remove from saved forms
+                                if let savedForm = savedFormsManager.savedForms.first(where: {
+                                    $0.root == selectedRoot.rawValue &&
+                                    $0.quality == selectedQuality.rawValue &&
+                                    $0.shapeKind == shape.kind
+                                }) {
+                                    savedFormsManager.delete(savedForm)
+                                }
+                            } else {
+                                // Save to My Forms
+                                let newForm = SavedForm(
+                                    root: selectedRoot.rawValue,
+                                    quality: selectedQuality.rawValue,
+                                    shapeKind: shape.kind,
+                                    symbol: libraryManager.buildSymbol(root: selectedRoot, quality: selectedQuality)
+                                )
+                                savedFormsManager.save(newForm)
+                            }
                         }
                     )
                     .tag(index)
@@ -273,10 +320,12 @@ struct ChordLibraryView: View {
 struct ChordFormCard: View {
     let shape: ChordShape
     let root: ChordRoot
+    let quality: ChordLibraryQuality
     let displayMode: ChordDisplayMode
+    let isSaved: Bool
     let onPlayStrum: () -> Void
     let onPlayArpeggio: () -> Void
-    let onSave: () -> Void
+    let onToggleSave: () -> Void
     
     var body: some View {
         VStack(spacing: 16) {
@@ -331,11 +380,12 @@ struct ChordFormCard: View {
                 }
                 
                 // Save to My Forms
-                Button(action: onSave) {
+                Button(action: onToggleSave) {
                     VStack {
-                        Image(systemName: "star")
+                        Image(systemName: isSaved ? "star.fill" : "star")
                             .font(.largeTitle)
-                        Text("Save")
+                            .foregroundColor(isSaved ? .yellow : .primary)
+                        Text(isSaved ? "Saved" : "Save")
                             .font(.caption)
                     }
                 }
