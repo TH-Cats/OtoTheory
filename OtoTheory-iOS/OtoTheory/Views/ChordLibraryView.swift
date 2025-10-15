@@ -314,77 +314,92 @@ struct ChordFormFullCard: View {
         GeometryReader { geometry in
             if isLandscape {
                 // Landscape: Compact layout to fit everything
-                HStack(spacing: 16) {
-                    // Left: Diagram (larger)
+                HStack(spacing: 8) {
+                    // Left: Diagram (optimized size)
                     ChordDiagramView(
                         shape: shape,
                         root: root,
                         displayMode: displayMode
                     )
-                    .frame(width: geometry.size.width * 0.6, height: geometry.size.height * 0.8)
+                    .frame(width: geometry.size.width * 0.55, height: geometry.size.height * 0.85)
+                    .padding(.leading, 8)
                     
                     // Right: Info + Actions
-                    VStack(alignment: .leading, spacing: 8) {
+                    VStack(alignment: .leading, spacing: 4) {
                         // Shape label
                         HStack {
                             Text(shape.kind)
-                                .font(.headline)
+                                .font(.subheadline)
                                 .fontWeight(.semibold)
                             Spacer()
                             Text(shape.label)
-                                .font(.caption)
+                                .font(.caption2)
                                 .foregroundColor(.secondary)
                         }
                         
-                        // Tips (compact)
+                        // Tips (compact - max 2 lines)
                         if !shape.tips.isEmpty {
-                            VStack(alignment: .leading, spacing: 2) {
+                            VStack(alignment: .leading, spacing: 1) {
                                 ForEach(shape.tips.prefix(2), id: \.self) { tip in
                                     Text("• \(tip)")
-                                        .font(.caption2)
+                                        .font(.system(size: 10))
                                         .foregroundColor(.secondary)
+                                        .lineLimit(1)
                                 }
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         
-                        Spacer()
+                        Spacer(minLength: 4)
                         
-                        // Action buttons (compact)
-                        HStack(spacing: 12) {
+                        // Action buttons (compact, vertical)
+                        VStack(spacing: 8) {
                             Button(action: onPlayStrum) {
-                                VStack(spacing: 2) {
+                                HStack(spacing: 4) {
                                     Image(systemName: "play.circle.fill")
-                                        .font(.title2)
+                                        .font(.title3)
                                     Text("Play")
-                                        .font(.caption2)
+                                        .font(.caption)
                                 }
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 6)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(6)
                             }
                             
                             Button(action: onPlayArpeggio) {
-                                VStack(spacing: 2) {
+                                HStack(spacing: 4) {
                                     Image(systemName: "music.note.list")
-                                        .font(.title2)
+                                        .font(.title3)
                                     Text("Arp")
-                                        .font(.caption2)
+                                        .font(.caption)
                                 }
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 6)
+                                .background(Color.gray.opacity(0.2))
+                                .cornerRadius(6)
                             }
                             
                             Button(action: onToggleSave) {
-                                VStack(spacing: 2) {
+                                HStack(spacing: 4) {
                                     Image(systemName: isSaved ? "star.fill" : "star")
-                                        .font(.title2)
+                                        .font(.title3)
                                         .foregroundColor(isSaved ? .yellow : .primary)
                                     Text(isSaved ? "Saved" : "Save")
-                                        .font(.caption2)
+                                        .font(.caption)
                                 }
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 6)
+                                .background(Color.gray.opacity(0.2))
+                                .cornerRadius(6)
                             }
                         }
                     }
                     .frame(width: geometry.size.width * 0.35)
-                    .padding(.trailing)
+                    .padding(.trailing, 8)
                 }
-                .padding()
+                .frame(width: geometry.size.width, height: geometry.size.height)
             } else {
                 // Portrait: Vertical layout
                 VStack(spacing: 12) {
