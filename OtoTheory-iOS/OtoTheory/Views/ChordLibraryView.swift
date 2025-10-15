@@ -19,6 +19,8 @@ struct ChordLibraryView: View {
     @State private var showAdvanced: Bool = false
     @State private var currentShapeIndex: Int = 0
     @State private var showMyForms: Bool = false
+    @State private var showFullscreen: Bool = false
+    @StateObject private var orientationManager = OrientationManager.shared
     
     var body: some View {
         NavigationView {
@@ -53,7 +55,7 @@ struct ChordLibraryView: View {
                     if let chordEntry = libraryManager.getChord(root: selectedRoot, quality: selectedQuality) {
                         chordInfoAndDisplaySection(chordEntry)
                         
-                        // Page indicator hint
+                        // Page indicator hint + Fullscreen button
                         HStack {
                             Spacer()
                             Text("\(currentShapeIndex + 1) / \(chordEntry.shapes.count)")
@@ -63,6 +65,24 @@ struct ChordLibraryView: View {
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                             Spacer()
+                            
+                            // Fullscreen button
+                            Button {
+                                showFullscreen = true
+                                orientationManager.lockToLandscape()
+                            } label: {
+                                HStack(spacing: 4) {
+                                    Image(systemName: "arrow.up.left.and.arrow.down.right")
+                                        .font(.caption)
+                                    Text("Fullscreen")
+                                        .font(.caption)
+                                }
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 6)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                            }
                         }
                         .padding(.vertical, 4)
                         
@@ -80,6 +100,22 @@ struct ChordLibraryView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .fullScreenCover(isPresented: $showFullscreen) {
+            if let chordEntry = libraryManager.getChord(root: selectedRoot, quality: selectedQuality),
+               currentShapeIndex < chordEntry.shapes.count {
+                ChordLibraryFullscreenView(
+                    chordEntry: chordEntry,
+                    currentShapeIndex: $currentShapeIndex,
+                    displayMode: $displayMode,
+                    selectedRoot: selectedRoot,
+                    selectedQuality: selectedQuality,
+                    onClose: {
+                        showFullscreen = false
+                        orientationManager.unlock()
+                    }
+                )
+            }
+        }
     }
     
     // MARK: - Root Selector
@@ -474,6 +510,261 @@ struct ChordFormFullCard: View {
             }
         }
         .background(Color(.systemBackground))
+    }
+}
+
+// MARK: - Fullscreen View (Landscape optimized)
+
+struct ChordLibraryFullscreenView: View {
+    let chordEntry: ChordEntry
+    @Binding var currentShapeIndex: Int
+    @Binding var displayMode: ChordDisplayMode
+    let selectedRoot: ChordRoot
+    let selectedQuality: ChordLibraryQuality
+    let onClose: () -> Void
+    
+    @StateObject private var audioPlayer = ChordLibraryAudioPlayer.shared
+    @StateObject private var savedFormsManager = SavedFormsManager.shared
+    @StateObject private var libraryManager = ChordLibraryManager.shared
+    
+    private var currentShape: ChordShape {
+        chordEntry.shapes[currentShapeIndex]
+    }
+    
+    private var isSaved: Bool {
+        savedFormsManager.isSaved(
+            root: selectedRoot.rawValue,
+            quality: selectedQuality.rawValue,
+            shapeKind: currentShape.kind
+        )
+    }
+    
+    var body: some View {
+        ZStack {
+            Color.black.ignoresSafeArea()
+            
+            VStack(spacing: 0) {
+                // Top bar
+                HStack {
+                    // Close button
+                    Button {
+                        onClose()
+                    } label: {
+                        HStack(spacing: 4) {
+                            Image(systemName: "xmark.circle.fill")
+                                .font(.title2)
+                            Text("Close")
+                        }
+                        .foregroundColor(.white)
+                    }
+                    
+                    Spacer()
+                    
+                    // Chord name and info
+                    VStack(spacing: 2) {
+                        Text(chordEntry.display)
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                        
+                        HStack(spacing: 4) {
+                            Text(chordEntry.intervals)
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                            Text("|")
+                                .foregroundColor(.gray)
+                            Text(chordEntry.notes)
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    // Display Mode
+                    HStack(spacing: 4) {
+                        ForEach(ChordDisplayMode.allCases) { mode in
+                            Button(action: {
+                                displayMode = mode
+                            }) {
+                                Text(mode.rawValue.lowercased())
+                                    .font(.caption)
+                                    .fontWeight(displayMode == mode ? .bold : .regular)
+                                    .frame(width: 50, height: 24)
+                                    .background(displayMode == mode ? Color.blue : Color.gray.opacity(0.3))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(4)
+                            }
+                        }
+                    }
+                }
+                .padding()
+                .background(Color.black.opacity(0.8))
+                
+                // Main content
+                GeometryReader { geometry in
+                    HStack(spacing: 16) {
+                        // Left: Fretboard (60%)
+                        VStack {
+                            ChordDiagramView(
+                                shape: currentShape,
+                                root: selectedRoot,
+                                displayMode: displayMode
+                            )
+                            
+                            // Shape info
+                            HStack {
+                                Text(currentShape.kind)
+                                    .font(.title3)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.white)
+                                Spacer()
+                                Text(currentShape.label)
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                            .padding(.horizontal)
+                        }
+                        .frame(width: geometry.size.width * 0.6)
+                        
+                        // Right: Tips + Actions (40%)
+                        VStack(alignment: .leading, spacing: 12) {
+                            // Tips
+                            if !currentShape.tips.isEmpty {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("Tips:")
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                    
+                                    ForEach(currentShape.tips, id: \.self) { tip in
+                                        Text("• \(tip)")
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
+                                    }
+                                }
+                            }
+                            
+                            Spacer()
+                            
+                            // Action buttons
+                            VStack(spacing: 12) {
+                                Button(action: {
+                                    audioPlayer.playStrum(shape: currentShape, root: selectedRoot)
+                                }) {
+                                    HStack {
+                                        Image(systemName: "play.circle.fill")
+                                            .font(.title2)
+                                        Text("Play (Strum)")
+                                            .font(.body)
+                                            .fontWeight(.semibold)
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                }
+                                
+                                Button(action: {
+                                    audioPlayer.playArpeggio(shape: currentShape, root: selectedRoot)
+                                }) {
+                                    HStack {
+                                        Image(systemName: "music.note.list")
+                                            .font(.title2)
+                                        Text("Arpeggio")
+                                            .font(.body)
+                                            .fontWeight(.semibold)
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(Color.gray.opacity(0.3))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                }
+                                
+                                Button(action: {
+                                    toggleSave()
+                                }) {
+                                    HStack {
+                                        Image(systemName: isSaved ? "star.fill" : "star")
+                                            .font(.title2)
+                                            .foregroundColor(isSaved ? .yellow : .white)
+                                        Text(isSaved ? "Saved" : "Save to My Forms")
+                                            .font(.body)
+                                            .fontWeight(.semibold)
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(Color.gray.opacity(0.3))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                }
+                            }
+                            
+                            // Navigation
+                            HStack(spacing: 16) {
+                                Button(action: {
+                                    if currentShapeIndex > 0 {
+                                        currentShapeIndex -= 1
+                                    }
+                                }) {
+                                    Image(systemName: "chevron.left.circle.fill")
+                                        .font(.title)
+                                        .foregroundColor(currentShapeIndex > 0 ? .white : .gray)
+                                }
+                                .disabled(currentShapeIndex == 0)
+                                
+                                Text("\(currentShapeIndex + 1) / \(chordEntry.shapes.count)")
+                                    .font(.title3)
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity)
+                                
+                                Button(action: {
+                                    if currentShapeIndex < chordEntry.shapes.count - 1 {
+                                        currentShapeIndex += 1
+                                    }
+                                }) {
+                                    Image(systemName: "chevron.right.circle.fill")
+                                        .font(.title)
+                                        .foregroundColor(currentShapeIndex < chordEntry.shapes.count - 1 ? .white : .gray)
+                                }
+                                .disabled(currentShapeIndex == chordEntry.shapes.count - 1)
+                            }
+                            .padding(.top)
+                        }
+                        .frame(width: geometry.size.width * 0.35)
+                        .padding()
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+            }
+        }
+    }
+    
+    private func toggleSave() {
+        if savedFormsManager.isSaved(
+            root: selectedRoot.rawValue,
+            quality: selectedQuality.rawValue,
+            shapeKind: currentShape.kind
+        ) {
+            // Remove
+            if let savedForm = savedFormsManager.savedForms.first(where: {
+                $0.root == selectedRoot.rawValue &&
+                $0.quality == selectedQuality.rawValue &&
+                $0.shapeKind == currentShape.kind
+            }) {
+                savedFormsManager.delete(savedForm)
+            }
+        } else {
+            // Save
+            let newForm = SavedForm(
+                root: selectedRoot.rawValue,
+                quality: selectedQuality.rawValue,
+                shapeKind: currentShape.kind,
+                symbol: libraryManager.buildSymbol(root: selectedRoot, quality: selectedQuality)
+            )
+            savedFormsManager.save(newForm)
+        }
     }
 }
 
