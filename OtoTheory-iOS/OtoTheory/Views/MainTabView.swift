@@ -22,23 +22,29 @@ struct MainTabView: View {
                 }
                 .tag(1)
             
+            ChordLibraryView()
+                .tabItem {
+                    Label("Chord Library", systemImage: "guitars.fill")
+                }
+                .tag(2)
+            
             SketchListView()
                 .tabItem {
                     Label("Sketches", systemImage: "music.note")
                 }
-                .tag(2)
+                .tag(3)
             
             ReferenceView()
                 .tabItem {
                     Label("Resources", systemImage: "book")
                 }
-                .tag(3)
+                .tag(4)
             
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
                 }
-                .tag(4)
+                .tag(5)
         }
         .onReceive(NotificationCenter.default.publisher(for: .loadSketch)) { _ in
             // Switch to Chord Progression tab when loading a sketch
