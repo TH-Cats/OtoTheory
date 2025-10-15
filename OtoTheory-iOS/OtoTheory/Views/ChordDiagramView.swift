@@ -2,8 +2,8 @@
 //  ChordDiagramView.swift
 //  OtoTheory
 //
-//  Canvas-based chord diagram renderer
-//  Draws fretboard, strings, frets, fingers, and markers
+//  Canvas-based chord diagram renderer (Horizontal layout - Web version style)
+//  Frets go left-right, strings go top-bottom (1st string at top)
 //
 
 import SwiftUI
@@ -14,115 +14,133 @@ struct ChordDiagramView: View {
     let displayMode: ChordDisplayMode
     
     private let stringCount = 6
-    private let fretCount = 4
-    private let stringSpacing: CGFloat = 30
-    private let fretHeight: CGFloat = 40
+    private let fretCount = 5
     
     var body: some View {
-        Canvas { context, size in
-            let width = size.width
-            let height = size.height
-            let startX: CGFloat = 40
-            let startY: CGFloat = 30
-            let fretboardWidth = stringSpacing * CGFloat(stringCount - 1)
-            let fretboardHeight = fretHeight * CGFloat(fretCount)
-            
-            // Draw strings (vertical lines)
-            for i in 0..<stringCount {
-                let x = startX + CGFloat(i) * stringSpacing
-                let path = Path { p in
-                    p.move(to: CGPoint(x: x, y: startY))
-                    p.addLine(to: CGPoint(x: x, y: startY + fretboardHeight))
-                }
-                context.stroke(path, with: .color(.gray), lineWidth: 1)
-            }
-            
-            // Draw frets (horizontal lines)
-            for i in 0...fretCount {
-                let y = startY + CGFloat(i) * fretHeight
-                let path = Path { p in
-                    p.move(to: CGPoint(x: startX, y: y))
-                    p.addLine(to: CGPoint(x: startX + fretboardWidth, y: y))
-                }
-                // Nut is thicker
-                let lineWidth: CGFloat = (i == 0 && shape.label == "Open") ? 3 : 1
-                context.stroke(path, with: .color(.gray), lineWidth: lineWidth)
-            }
-            
-            // Draw fret number (if not open)
-            if shape.label != "Open", let fretNum = extractFretNumber(from: shape.label) {
-                let text = Text("\(fretNum)fr")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                context.draw(text, at: CGPoint(x: startX - 20, y: startY + fretHeight / 2))
-            }
-            
-            // Draw barre lines
-            for barre in shape.barres {
-                let fromString = barre.fromString - 1
-                let toString = barre.toString - 1
-                let x1 = startX + CGFloat(fromString) * stringSpacing
-                let x2 = startX + CGFloat(toString) * stringSpacing
-                let y = startY + (CGFloat(barre.fret) - 0.5) * fretHeight + fretHeight / 2
+        GeometryReader { geometry in
+            Canvas { context, size in
+                let width = size.width
+                let height = size.height
                 
-                let barrePath = Path { p in
-                    p.move(to: CGPoint(x: x1, y: y))
-                    p.addLine(to: CGPoint(x: x2, y: y))
-                }
-                context.stroke(barrePath, with: .color(.blue.opacity(0.3)), lineWidth: 12)
-            }
-            
-            // Draw markers (dots/crosses/open)
-            for (stringIndex, fretStr) in shape.frets.enumerated() {
-                let x = startX + CGFloat(stringIndex) * stringSpacing
+                // Padding
+                let padLeft: CGFloat = 30
+                let padRight: CGFloat = 20
+                let padTop: CGFloat = 20
+                let padBottom: CGFloat = 35
                 
-                if fretStr == "x" {
-                    // Muted string (X)
-                    let y = startY - 15
-                    let crossPath = Path { p in
-                        p.move(to: CGPoint(x: x - 5, y: y - 5))
-                        p.addLine(to: CGPoint(x: x + 5, y: y + 5))
-                        p.move(to: CGPoint(x: x + 5, y: y - 5))
-                        p.addLine(to: CGPoint(x: x - 5, y: y + 5))
+                let innerW = width - padLeft - padRight
+                let innerH = height - padTop - padBottom
+                
+                let fretW = innerW / CGFloat(fretCount)
+                let stringH = innerH / CGFloat(stringCount - 1)
+                
+                // Calculate base fret
+                let pos = shape.frets.compactMap { Int($0) }.filter { $0 > 0 }
+                let baseFret = pos.isEmpty ? 1 : pos.min()!
+                let showNut = baseFret == 1
+                
+                // Helper functions
+                func xForFret(_ absFret: Int) -> CGFloat {
+                    if absFret == 0 { return padLeft - 12 }
+                    let rel = absFret - baseFret + 1
+                    return padLeft + fretW * (CGFloat(rel) - 0.5)
+                }
+                
+                func yForString(_ sIdx: Int) -> CGFloat {
+                    return padTop + stringH * CGFloat(5 - sIdx)
+                }
+                
+                // Draw strings (horizontal lines, 1st string at top)
+                for s in 0..<stringCount {
+                    let path = Path { p in
+                        p.move(to: CGPoint(x: padLeft, y: yForString(s)))
+                        p.addLine(to: CGPoint(x: padLeft + innerW, y: yForString(s)))
                     }
-                    context.stroke(crossPath, with: .color(.red), lineWidth: 2)
-                } else if fretStr == "0" {
-                    // Open string (O)
-                    let y = startY - 15
-                    let circle = Circle()
-                        .path(in: CGRect(x: x - 6, y: y - 6, width: 12, height: 12))
-                    context.stroke(circle, with: .color(.green), lineWidth: 2)
-                } else if let fret = Int(fretStr), fret > 0 {
-                    // Fretted note (filled circle)
-                    let minFret = shape.frets.compactMap { Int($0) }.filter { $0 > 0 }.min() ?? 1
-                    let relativeFret = fret - minFret + 1
-                    let y = startY + (CGFloat(relativeFret) - 0.5) * fretHeight
-                    
-                    let circle = Circle()
-                        .path(in: CGRect(x: x - 10, y: y - 10, width: 20, height: 20))
-                    context.fill(circle, with: .color(.blue))
-                    context.stroke(circle, with: .color(.white), lineWidth: 2)
-                    
-                    // Draw display text (finger/roman/note)
-                    let displayText = getDisplayText(
-                        stringIndex: stringIndex,
-                        fretStr: fretStr
-                    )
-                    let text = Text(displayText)
+                    context.stroke(path, with: .color(Color(white: 0.35)), lineWidth: 1)
+                }
+                
+                // Draw frets (vertical lines)
+                for f in 1...fretCount {
+                    let path = Path { p in
+                        p.move(to: CGPoint(x: padLeft + fretW * CGFloat(f), y: padTop))
+                        p.addLine(to: CGPoint(x: padLeft + fretW * CGFloat(f), y: padTop + innerH))
+                    }
+                    context.stroke(path, with: .color(Color(white: 0.35)), lineWidth: 1)
+                }
+                
+                // Draw nut or fret number
+                if showNut {
+                    let nutRect = CGRect(x: padLeft - 7, y: padTop - 1.5, width: 7, height: innerH + 3)
+                    context.fill(Path(roundedRect: nutRect, cornerRadius: 3), with: .color(Color(white: 0.9)))
+                } else {
+                    let text = Text("\(baseFret)fr")
                         .font(.caption)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                    context.draw(text, at: CGPoint(x: x, y: y))
+                        .foregroundColor(.secondary)
+                    context.draw(text, at: CGPoint(x: padLeft - 8, y: padTop - 10))
+                }
+                
+                // Draw fret numbers at bottom
+                for f in 1...fretCount {
+                    let displayFret = baseFret + f - 1
+                    let text = Text("\(displayFret)")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                    context.draw(text, at: CGPoint(x: padLeft + fretW * (CGFloat(f) - 0.5), y: height - 12))
+                }
+                
+                // Draw barre lines
+                for barre in shape.barres {
+                    let x = xForFret(barre.fret)
+                    let y1 = yForString(6 - barre.fromString)
+                    let y2 = yForString(6 - barre.toString)
+                    let y = min(y1, y2) - 10
+                    let h = abs(y2 - y1) + 20
+                    
+                    let barreRect = CGRect(x: x - 10, y: y, width: 20, height: h)
+                    context.fill(Path(roundedRect: barreRect, cornerRadius: 10), with: .color(Color.teal.opacity(0.3)))
+                }
+                
+                // Draw markers
+                for (stringIndex, fretStr) in shape.frets.enumerated() {
+                    let reversedStringIdx = 5 - stringIndex // Reverse: 6弦=0, 1弦=5
+                    let y = yForString(reversedStringIdx)
+                    
+                    if fretStr == "x" {
+                        // Muted (X)
+                        let x = padLeft - 15
+                        let crossPath = Path { p in
+                            p.move(to: CGPoint(x: x - 5, y: y - 5))
+                            p.addLine(to: CGPoint(x: x + 5, y: y + 5))
+                            p.move(to: CGPoint(x: x + 5, y: y - 5))
+                            p.addLine(to: CGPoint(x: x - 5, y: y + 5))
+                        }
+                        context.stroke(crossPath, with: .color(.red), lineWidth: 2)
+                    } else if fretStr == "0" {
+                        // Open (O)
+                        let x = padLeft - 15
+                        let circle = Circle()
+                            .path(in: CGRect(x: x - 6, y: y - 6, width: 12, height: 12))
+                        context.stroke(circle, with: .color(.green), lineWidth: 2)
+                    } else if let fret = Int(fretStr), fret > 0 {
+                        // Fretted
+                        let x = xForFret(fret)
+                        
+                        let circle = Circle()
+                            .path(in: CGRect(x: x - 12, y: y - 12, width: 24, height: 24))
+                        context.fill(circle, with: .color(.blue))
+                        context.stroke(circle, with: .color(.white), lineWidth: 2)
+                        
+                        // Display text
+                        let displayText = getDisplayText(stringIndex: stringIndex, fretStr: fretStr)
+                        let text = Text(displayText)
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                        context.draw(text, at: CGPoint(x: x, y: y))
+                    }
                 }
             }
         }
-        .frame(height: 200)
-        .padding()
-    }
-    
-    private func extractFretNumber(from label: String) -> Int? {
-        let components = label.components(separatedBy: "fr")
-        return Int(components[0])
     }
     
     private func getDisplayText(stringIndex: Int, fretStr: String) -> String {

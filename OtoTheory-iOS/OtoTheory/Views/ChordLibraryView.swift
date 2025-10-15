@@ -2,8 +2,8 @@
 //  ChordLibraryView.swift
 //  OtoTheory
 //
-//  Main UI for Chord Library
-//  Displays 5 forms with horizontal scrolling
+//  Main UI for Chord Library (Web version style)
+//  Horizontal scrolling with page indicators
 //
 
 import SwiftUI
@@ -20,13 +20,10 @@ struct ChordLibraryView: View {
     @State private var currentShapeIndex: Int = 0
     @State private var showMyForms: Bool = false
     
-    // Orientation detection
-    @State private var isLandscape: Bool = false
-    
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: 16) {
                     // My Forms button
                     Button(action: {
                         showMyForms = true
@@ -45,10 +42,6 @@ struct ChordLibraryView: View {
                     .sheet(isPresented: $showMyForms) {
                         SavedFormsView()
                     }
-                    // Landscape hint (show in portrait)
-                    if !isLandscape {
-                        landscapeHint
-                    }
                     
                     // Root selector
                     rootSelectorSection
@@ -56,12 +49,22 @@ struct ChordLibraryView: View {
                     // Quality selector
                     qualitySelectorSection
                     
-                    // Display mode toggle
-                    displayModeSection
-                    
-                    // Chord info
+                    // Chord info + Display Mode
                     if let chordEntry = libraryManager.getChord(root: selectedRoot, quality: selectedQuality) {
-                        chordInfoSection(chordEntry)
+                        chordInfoAndDisplaySection(chordEntry)
+                        
+                        // Page indicator hint
+                        HStack {
+                            Spacer()
+                            Text("\(currentShapeIndex + 1) / \(chordEntry.shapes.count)")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            Image(systemName: "chevron.right")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            Spacer()
+                        }
+                        .padding(.vertical, 4)
                         
                         // 5 Forms horizontal scroller
                         formsScrollerSection(chordEntry)
@@ -75,29 +78,8 @@ struct ChordLibraryView: View {
             }
             .navigationTitle("Chord Library")
             .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                detectOrientation()
-            }
-            .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-                detectOrientation()
-            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
-    }
-    
-    // MARK: - Landscape Hint
-    
-    private var landscapeHint: some View {
-        HStack {
-            Image(systemName: "rotate.right")
-                .foregroundColor(.orange)
-            Text("Rotate device for landscape view for better experience")
-                .font(.caption)
-                .foregroundColor(.secondary)
-        }
-        .padding()
-        .background(Color.orange.opacity(0.1))
-        .cornerRadius(8)
     }
     
     // MARK: - Root Selector
@@ -203,124 +185,119 @@ struct ChordLibraryView: View {
         }
     }
     
-    // MARK: - Display Mode
+    // MARK: - Chord Info + Display Mode
     
-    private var displayModeSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Display")
-                .font(.headline)
-            
-            Picker("Display Mode", selection: $displayMode) {
-                ForEach(ChordDisplayMode.allCases) { mode in
-                    Text(mode.rawValue).tag(mode)
+    private func chordInfoAndDisplaySection(_ chordEntry: ChordEntry) -> some View {
+        HStack(alignment: .top, spacing: 16) {
+            // Left: Chord info
+            VStack(alignment: .leading, spacing: 4) {
+                Text(chordEntry.display)
+                    .font(.title)
+                    .fontWeight(.bold)
+                
+                HStack(spacing: 4) {
+                    Text(chordEntry.intervals)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    Text("|")
+                        .foregroundColor(.secondary)
+                    Text(chordEntry.notes)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
                 }
             }
-            .pickerStyle(SegmentedPickerStyle())
+            
+            Spacer()
+            
+            // Right: Display Mode (compact)
+            HStack(spacing: 4) {
+                ForEach(ChordDisplayMode.allCases) { mode in
+                    Button(action: {
+                        displayMode = mode
+                    }) {
+                        Text(mode.rawValue.lowercased())
+                            .font(.caption)
+                            .fontWeight(displayMode == mode ? .bold : .regular)
+                            .frame(width: 50, height: 28)
+                            .background(displayMode == mode ? Color.blue : Color.gray.opacity(0.2))
+                            .foregroundColor(displayMode == mode ? .white : .primary)
+                            .cornerRadius(6)
+                    }
+                }
+            }
         }
+        .padding(.vertical, 8)
     }
     
-    // MARK: - Chord Info
-    
-    private func chordInfoSection(_ chordEntry: ChordEntry) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(chordEntry.display)
-                .font(.largeTitle)
-                .fontWeight(.bold)
-            
-            Text("\(chordEntry.intervals)")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-            
-            Text("\(chordEntry.notes)")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-            
-            Text(chordEntry.voicingNote)
-                .font(.caption)
-                .foregroundColor(.secondary)
-                .italic()
-        }
-    }
-    
-    // MARK: - Forms Scroller (5 forms)
+    // MARK: - Forms Scroller
     
     private func formsScrollerSection(_ chordEntry: ChordEntry) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Forms (\(chordEntry.shapes.count))")
-                .font(.headline)
-            
-            TabView(selection: $currentShapeIndex) {
-                ForEach(Array(chordEntry.shapes.enumerated()), id: \.offset) { index, shape in
-                    ChordFormCard(
-                        shape: shape,
-                        root: selectedRoot,
-                        quality: selectedQuality,
-                        displayMode: displayMode,
-                        isSaved: savedFormsManager.isSaved(
-                            root: selectedRoot.rawValue,
-                            quality: selectedQuality.rawValue,
-                            shapeKind: shape.kind
-                        ),
-                        onPlayStrum: {
-                            audioPlayer.playStrum(shape: shape, root: selectedRoot)
-                        },
-                        onPlayArpeggio: {
-                            audioPlayer.playArpeggio(shape: shape, root: selectedRoot)
-                        },
-                        onToggleSave: {
-                            if savedFormsManager.isSaved(
-                                root: selectedRoot.rawValue,
-                                quality: selectedQuality.rawValue,
-                                shapeKind: shape.kind
-                            ) {
-                                // Remove from saved forms
-                                if let savedForm = savedFormsManager.savedForms.first(where: {
-                                    $0.root == selectedRoot.rawValue &&
-                                    $0.quality == selectedQuality.rawValue &&
-                                    $0.shapeKind == shape.kind
-                                }) {
-                                    savedFormsManager.delete(savedForm)
-                                }
-                            } else {
-                                // Save to My Forms
-                                let newForm = SavedForm(
-                                    root: selectedRoot.rawValue,
-                                    quality: selectedQuality.rawValue,
-                                    shapeKind: shape.kind,
-                                    symbol: libraryManager.buildSymbol(root: selectedRoot, quality: selectedQuality)
-                                )
-                                savedFormsManager.save(newForm)
-                            }
-                        }
-                    )
-                    .tag(index)
-                }
+        TabView(selection: $currentShapeIndex) {
+            ForEach(Array(chordEntry.shapes.enumerated()), id: \.offset) { index, shape in
+                ChordFormFullCard(
+                    shape: shape,
+                    root: selectedRoot,
+                    quality: selectedQuality,
+                    symbol: chordEntry.symbol,
+                    displayMode: displayMode,
+                    isSaved: savedFormsManager.isSaved(
+                        root: selectedRoot.rawValue,
+                        quality: selectedQuality.rawValue,
+                        shapeKind: shape.kind
+                    ),
+                    onPlayStrum: {
+                        audioPlayer.playStrum(shape: shape, root: selectedRoot)
+                    },
+                    onPlayArpeggio: {
+                        audioPlayer.playArpeggio(shape: shape, root: selectedRoot)
+                    },
+                    onToggleSave: {
+                        toggleSave(shape: shape)
+                    }
+                )
+                .tag(index)
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-            .frame(height: isLandscape ? 400 : 500)
         }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)) // Hide default dots
+        .frame(height: 500) // Larger for landscape diagram
     }
     
     // MARK: - Helpers
     
-    private func detectOrientation() {
-        let scenes = UIApplication.shared.connectedScenes
-        let windowScene = scenes.first as? UIWindowScene
-        let window = windowScene?.windows.first
-        
-        if let windowWidth = window?.bounds.width,
-           let windowHeight = window?.bounds.height {
-            isLandscape = windowWidth > windowHeight
+    private func toggleSave(shape: ChordShape) {
+        if savedFormsManager.isSaved(
+            root: selectedRoot.rawValue,
+            quality: selectedQuality.rawValue,
+            shapeKind: shape.kind
+        ) {
+            // Remove
+            if let savedForm = savedFormsManager.savedForms.first(where: {
+                $0.root == selectedRoot.rawValue &&
+                $0.quality == selectedQuality.rawValue &&
+                $0.shapeKind == shape.kind
+            }) {
+                savedFormsManager.delete(savedForm)
+            }
+        } else {
+            // Save
+            let newForm = SavedForm(
+                root: selectedRoot.rawValue,
+                quality: selectedQuality.rawValue,
+                shapeKind: shape.kind,
+                symbol: libraryManager.buildSymbol(root: selectedRoot, quality: selectedQuality)
+            )
+            savedFormsManager.save(newForm)
         }
     }
 }
 
-// MARK: - Chord Form Card
+// MARK: - Chord Form Full Card (1 screen = 1 form)
 
-struct ChordFormCard: View {
+struct ChordFormFullCard: View {
     let shape: ChordShape
     let root: ChordRoot
     let quality: ChordLibraryQuality
+    let symbol: String
     let displayMode: ChordDisplayMode
     let isSaved: Bool
     let onPlayStrum: () -> Void
@@ -328,12 +305,12 @@ struct ChordFormCard: View {
     let onToggleSave: () -> Void
     
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 12) {
             // Shape label
             HStack {
                 Text(shape.kind)
-                    .font(.title2)
-                    .fontWeight(.bold)
+                    .font(.title3)
+                    .fontWeight(.semibold)
                 Spacer()
                 Text(shape.label)
                     .font(.subheadline)
@@ -341,19 +318,21 @@ struct ChordFormCard: View {
             }
             .padding(.horizontal)
             
-            // Diagram
+            // Diagram (large, horizontal)
             ChordDiagramView(
                 shape: shape,
                 root: root,
                 displayMode: displayMode
             )
+            .frame(height: 280) // Larger for better visibility
             
-            // Tips
+            // Tips (if available)
             if !shape.tips.isEmpty {
-                Text(shape.tips)
+                Text("• \(shape.tips)")
                     .font(.caption)
                     .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal)
             }
             
@@ -363,7 +342,7 @@ struct ChordFormCard: View {
                 Button(action: onPlayStrum) {
                     VStack {
                         Image(systemName: "play.circle.fill")
-                            .font(.largeTitle)
+                            .font(.system(size: 44))
                         Text("Play")
                             .font(.caption)
                     }
@@ -373,7 +352,7 @@ struct ChordFormCard: View {
                 Button(action: onPlayArpeggio) {
                     VStack {
                         Image(systemName: "music.note.list")
-                            .font(.largeTitle)
+                            .font(.system(size: 44))
                         Text("Arp")
                             .font(.caption)
                     }
@@ -383,7 +362,7 @@ struct ChordFormCard: View {
                 Button(action: onToggleSave) {
                     VStack {
                         Image(systemName: isSaved ? "star.fill" : "star")
-                            .font(.largeTitle)
+                            .font(.system(size: 44))
                             .foregroundColor(isSaved ? .yellow : .primary)
                         Text(isSaved ? "Saved" : "Save")
                             .font(.caption)
@@ -391,15 +370,14 @@ struct ChordFormCard: View {
                 }
             }
             .padding()
+            
+            Spacer(minLength: 0)
         }
         .padding()
         .background(Color(.systemBackground))
-        .cornerRadius(12)
-        .shadow(radius: 2)
     }
 }
 
 #Preview {
     ChordLibraryView()
 }
-
