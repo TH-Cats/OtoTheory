@@ -1931,6 +1931,143 @@ let STATIC_CHORDS: [StaticChord] = [
         ]
     ),
     
+    // MARK: - 7th Chords
+    
+    // C7 (Dominant 7th)
+    StaticChord(
+        id: "C7",
+        symbol: "C7",
+        quality: "7",
+        forms: [
+            // Open form
+            StaticForm(
+                id: "C7-1-Open",
+                shapeName: "Open",
+                frets: [.open, F(1), .open, F(2), F(3), .x],
+                fingers: [nil, .one, nil, .two, .three, nil],
+                barres: [],
+                tips: ["With open strings", "Easy dominant 7th"]
+            ),
+            // Root-6 (8fr) - Full barre
+            StaticForm(
+                id: "C7-2-Root6",
+                shapeName: "Root-6",
+                frets: [F(8), F(8), F(9), F(10), F(8), F(8)],
+                fingers: [.one, .one, .two, .four, .one, .one],
+                barres: [StaticBarre(fret: 8, fromString: 1, toString: 6, finger: .one)],
+                tips: ["6th string root", "Full barre"]
+            ),
+            // Root-5 (3fr) - 5th string barre
+            StaticForm(
+                id: "C7-3-Root5",
+                shapeName: "Root-5",
+                frets: [F(3), F(5), F(3), F(5), F(3), .x],
+                fingers: [.one, .three, .one, .four, .one, nil],
+                barres: [StaticBarre(fret: 3, fromString: 1, toString: 5, finger: .one)],
+                tips: ["5th string root", "Standard form"]
+            ),
+            // Root-4 (10fr) - 4th string root
+            StaticForm(
+                id: "C7-4-Root4",
+                shapeName: "Root-4",
+                frets: [F(10), F(12), .x, F(10), .x, .x],
+                fingers: [.one, .three, nil, .two, nil, nil],
+                barres: [],
+                tips: ["4th string root", "High position"]
+            )
+        ]
+    ),
+    
+    // D7 (Dominant 7th)
+    StaticChord(
+        id: "D7",
+        symbol: "D7",
+        quality: "7",
+        forms: [
+            // Open form (xx0212)
+            StaticForm(
+                id: "D7-1-Open",
+                shapeName: "Open",
+                frets: [F(2), F(1), F(2), .open, .x, .x],
+                fingers: [.two, .one, .three, nil, nil, nil],
+                barres: [],
+                tips: ["With open strings", "Classic D7"]
+            ),
+            // Root-6 (10fr) - Full barre
+            StaticForm(
+                id: "D7-2-Root6",
+                shapeName: "Root-6",
+                frets: [F(10), F(10), F(11), F(12), F(10), F(10)],
+                fingers: [.one, .one, .two, .four, .one, .one],
+                barres: [StaticBarre(fret: 10, fromString: 1, toString: 6, finger: .one)],
+                tips: ["6th string root", "Full barre"]
+            ),
+            // Root-5 (5fr) - 5th string barre
+            StaticForm(
+                id: "D7-3-Root5",
+                shapeName: "Root-5",
+                frets: [F(5), F(7), F(5), F(7), F(5), .x],
+                fingers: [.one, .three, .one, .four, .one, nil],
+                barres: [StaticBarre(fret: 5, fromString: 1, toString: 5, finger: .one)],
+                tips: ["5th string root", "Standard form"]
+            ),
+            // Root-4 (3fr) - 4th string root
+            StaticForm(
+                id: "D7-4-Root4",
+                shapeName: "Root-4",
+                frets: [.x, F(3), F(5), F(4), F(5), .x],
+                fingers: [nil, .one, .three, .two, .four, nil],
+                barres: [],
+                tips: ["4th string root", "Low position"]
+            )
+        ]
+    ),
+    
+    // E7 (Dominant 7th)
+    StaticChord(
+        id: "E7",
+        symbol: "E7",
+        quality: "7",
+        forms: [
+            // Open form (020100)
+            StaticForm(
+                id: "E7-1-Open",
+                shapeName: "Open",
+                frets: [.open, .open, F(1), .open, F(2), .open],
+                fingers: [nil, nil, .one, nil, .two, nil],
+                barres: [],
+                tips: ["With open strings", "Classic E7"]
+            ),
+            // Root-6 (12fr) - Full barre
+            StaticForm(
+                id: "E7-2-Root6",
+                shapeName: "Root-6",
+                frets: [F(12), F(12), F(13), F(14), F(12), F(12)],
+                fingers: [.one, .one, .two, .four, .one, .one],
+                barres: [StaticBarre(fret: 12, fromString: 1, toString: 6, finger: .one)],
+                tips: ["6th string root", "Full barre"]
+            ),
+            // Root-5 (7fr) - 5th string barre
+            StaticForm(
+                id: "E7-3-Root5",
+                shapeName: "Root-5",
+                frets: [F(7), F(9), F(7), F(9), F(7), .x],
+                fingers: [.one, .three, .one, .four, .one, nil],
+                barres: [StaticBarre(fret: 7, fromString: 1, toString: 5, finger: .one)],
+                tips: ["5th string root", "Standard form"]
+            ),
+            // Root-4 (1fr) - 4th string root
+            StaticForm(
+                id: "E7-4-Root4",
+                shapeName: "Root-4",
+                frets: [.open, F(3), F(1), F(2), .x, .x],
+                fingers: [nil, .four, .one, .two, nil, nil],
+                barres: [],
+                tips: ["4th string root", "Low position"]
+            )
+        ]
+    ),
+    
     // MARK: - dim Chords
     
     // Cdim (6th string root): x3424x
