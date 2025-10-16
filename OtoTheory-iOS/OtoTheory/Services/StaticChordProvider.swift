@@ -1912,7 +1912,7 @@ let STATIC_CHORDS: [StaticChord] = [
                 id: "C7-3-Root5",
                 shapeName: "Root-5",
                 frets: [F(3), F(5), F(3), F(5), F(3), .x],
-                fingers: [.one, .three, .one, .four, .one, nil],
+                fingers: [.one, .four, .one, .three, .one, nil],
                 barres: [StaticBarre(fret: 3, fromString: 1, toString: 5, finger: .one)],
                 tips: ["5th string root A-shape", "Barre 1-3-5 strings"]
             ),
@@ -1920,10 +1920,10 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "C7-4-Root4",
                 shapeName: "Root-4",
-                frets: [F(12), F(11), .x, F(10), .x, .x],
-                fingers: [.three, .two, nil, .one, nil, nil],
+                frets: [F(12), F(11), F(12), F(10), .x, .x],
+                fingers: [.four, .two, .three, .one, nil, nil],
                 barres: [],
-                tips: ["4th string root", "Compact high voicing"]
+                tips: ["4th string root", "Add 3rd on 3rd string"]
             )
         ]
     ),
