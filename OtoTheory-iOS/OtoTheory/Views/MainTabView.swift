@@ -22,7 +22,7 @@ struct MainTabView: View {
                 }
                 .tag(1)
             
-            StaticChordLibraryView()
+            ChordLibraryView()
                 .tabItem {
                     Label("Chord Library", systemImage: "guitars.fill")
                 }

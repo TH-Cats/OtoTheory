@@ -27,6 +27,42 @@ class StaticChordProvider: ObservableObject {
     var allSymbols: [String] {
         return chords.map { $0.symbol }
     }
+    
+    /// Find chord by root and quality
+    func findChord(root: String, quality: String) -> StaticChord? {
+        // Build symbol (e.g., "C" + "m7" = "Cm7")
+        var symbol = root
+        
+        // Handle major chord (empty or "M" quality)
+        if quality.isEmpty || quality == "M" {
+            // Just use root (e.g., "C")
+            symbol = root
+        } else {
+            symbol = root + quality
+        }
+        
+        // Find chord with matching symbol
+        return chords.first(where: { $0.symbol == symbol })
+    }
+    
+    /// Get all available qualities for a given root
+    func getQualities(for root: String) -> [String] {
+        var qualities: Set<String> = []
+        
+        for chord in chords {
+            // Check if chord symbol starts with root
+            if chord.symbol == root {
+                // Major chord (no suffix)
+                qualities.insert("M")
+            } else if chord.symbol.hasPrefix(root) {
+                // Extract quality part
+                let qualityPart = String(chord.symbol.dropFirst(root.count))
+                qualities.insert(qualityPart)
+            }
+        }
+        
+        return Array(qualities).sorted()
+    }
 }
 
 // MARK: - Static Chord Data (from PDF)

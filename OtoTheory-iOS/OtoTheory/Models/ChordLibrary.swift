@@ -382,6 +382,24 @@ struct ChordShape: Identifiable, Codable {
         self.tips = tips
     }
     
+    // Static data initializer (for v0 static forms)
+    init(
+        kindString: String,
+        label: String,
+        frets: [ChordFret],
+        fingers: [ChordFinger?],
+        barres: [ChordBarre] = [],
+        tips: [String] = []
+    ) {
+        self.id = UUID()
+        self.kind = kindString
+        self.label = label
+        self.frets = frets.map { $0.displayValue }
+        self.fingers = fingers.map { $0?.rawValue }
+        self.barres = barres
+        self.tips = tips
+    }
+    
     /// Convert to MIDI note numbers using 1st->6th order
     func toMIDINotes(rootSemitone: Int) -> [UInt8] {
         // Open strings (1st to 6th): E4, B3, G3, D3, A2, E2
@@ -493,10 +511,11 @@ class ChordLibraryManager: ObservableObject {
     static let shared = ChordLibraryManager()
     
     @Published private var cache: [String: ChordEntry] = [:]
+    @Published var useStaticData: Bool = true  // v0: Use static data from PDF
     
     private init() {}
     
-    /// Get chord entry (generates if not cached)
+    /// Get chord entry (from static data or generates if not cached)
     func getChord(root: ChordRoot, quality: ChordLibraryQuality) -> ChordEntry? {
         let key = "\(root.rawValue)-\(quality.rawValue)"
         
@@ -504,7 +523,63 @@ class ChordLibraryManager: ObservableObject {
             return cached
         }
         
-        // Generate shapes (will be implemented in ChordShapeGenerator)
+        // Try static data first (if enabled)
+        if useStaticData {
+            let rootStr = root.displayName
+            let qualityStr = quality.rawValue
+            
+            if let staticChord = StaticChordProvider.shared.findChord(root: rootStr, quality: qualityStr) {
+                // Convert StaticChord to ChordEntry
+                let shapes = staticChord.forms.map { form -> ChordShape in
+                    // Convert StaticForm to ChordShape
+                    let frets = form.frets.map { fretVal -> ChordFret in
+                        switch fretVal {
+                        case .x: return .muted
+                        case .open: return .open
+                        case .fret(let f): return .fretted(f)
+                        }
+                    }
+                    
+                    // Convert FingerNum? to ChordFinger?
+                    let fingers = (form.fingers ?? Array(repeating: nil, count: 6)).map { fingerNum -> ChordFinger? in
+                        guard let num = fingerNum else { return nil }
+                        switch num {
+                        case .one: return .one
+                        case .two: return .two
+                        case .three: return .three
+                        case .four: return .four
+                        }
+                    }
+                    
+                    let barres = form.barres.map { staticBarre -> ChordBarre in
+                        // Convert FingerNum to ChordFinger
+                        let finger: ChordFinger
+                        switch staticBarre.finger {
+                        case .one: finger = .one
+                        case .two: finger = .two
+                        case .three: finger = .three
+                        case .four: finger = .four
+                        }
+                        return ChordBarre(fret: staticBarre.fret, fromString: staticBarre.fromString, toString: staticBarre.toString, finger: finger)
+                    }
+                    
+                    return ChordShape(
+                        kindString: form.shapeName ?? "Form",
+                        label: "",
+                        frets: frets,
+                        fingers: fingers,
+                        barres: barres,
+                        tips: form.tips
+                    )
+                }
+                
+                let entry = ChordEntry(root: root, quality: quality, shapes: shapes)
+                cache[key] = entry
+                return entry
+            }
+        }
+        
+        // Fallback to dynamic generation
         let shapes = ChordShapeGenerator.shared.generateShapes(root: root, quality: quality)
         
         if shapes.isEmpty { return nil }
