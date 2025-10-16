@@ -107,8 +107,13 @@ struct ChordDiagramView: View {
                         context.stroke(crossPath, with: .color(.red), lineWidth: 2)
                     } else if fretStr == "0" {
                         let x = padLeft - 15
+                        
+                        // Check if open string is the root
+                        let isRoot = isRootNote(stringIndex: stringIndex, fret: 0)
+                        let circleColor: Color = isRoot ? .orange : .green
+                        
                         let circle = Circle().path(in: CGRect(x: x - 6, y: y - 6, width: 12, height: 12))
-                        context.stroke(circle, with: .color(.green), lineWidth: 2)
+                        context.stroke(circle, with: .color(circleColor), lineWidth: 2)
                         
                         // Display text for open strings (roman or note) - always show in roman/note mode
                         if displayMode == .roman || displayMode == .note {
@@ -118,7 +123,7 @@ struct ChordDiagramView: View {
                             let text = Text(finalText)
                                 .font(.system(size: 11))
                                 .fontWeight(.bold)
-                                .foregroundColor(.green)
+                                .foregroundColor(circleColor)
                             // Position text above the open circle, aligned with this string's y position
                             context.draw(text, at: CGPoint(x: x, y: y - 20))
                         }
@@ -127,7 +132,12 @@ struct ChordDiagramView: View {
                         // Larger dot size: 32x32 (was 24x24)
                         let dotRadius: CGFloat = 16
                         let circle = Circle().path(in: CGRect(x: x - dotRadius, y: y - dotRadius, width: dotRadius * 2, height: dotRadius * 2))
-                        context.fill(circle, with: .color(.blue))
+                        
+                        // Check if this note is the root
+                        let isRoot = isRootNote(stringIndex: stringIndex, fret: fret)
+                        let dotColor: Color = isRoot ? .orange : .blue
+                        
+                        context.fill(circle, with: .color(dotColor))
                         context.stroke(circle, with: .color(.white), lineWidth: 2)
                         
                         // Pass stringIndex directly (0=1st, 5=6th)
@@ -210,6 +220,18 @@ struct ChordDiagramView: View {
         let pitchClass = midiNote % 12
         
         return ChordRoot.from(semitone: pitchClass).displayName
+    }
+    
+    private func isRootNote(stringIndex: Int, fret: Int) -> Bool {
+        // Open strings (1st to 6th): E4(64), B3(59), G3(55), D3(50), A2(45), E2(40)
+        let openStrings = [64, 59, 55, 50, 45, 40]
+        let midiNote = openStrings[stringIndex] + fret
+        // Calculate interval from root pitch class
+        let notePitchClass = midiNote % 12
+        let rootPitchClass = root.semitone
+        let interval = (notePitchClass - rootPitchClass + 12) % 12
+        
+        return interval == 0
     }
 }
 
