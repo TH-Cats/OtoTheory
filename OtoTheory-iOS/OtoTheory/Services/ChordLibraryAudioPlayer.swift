@@ -70,6 +70,18 @@ class ChordLibraryAudioPlayer: ObservableObject {
         playArpeggioNotes(notes)
     }
     
+    /// Play static form with strum (v0 static data)
+    func playStrum(form: StaticForm, rootSemitone: Int) {
+        let notes = form.toMIDINotes(rootSemitone: rootSemitone)
+        playStrumNotes(notes)
+    }
+    
+    /// Play static form with arpeggio (v0 static data)
+    func playArpeggio(form: StaticForm, rootSemitone: Int) {
+        let notes = form.toMIDINotes(rootSemitone: rootSemitone)
+        playArpeggioNotes(notes)
+    }
+    
     private func playStrumNotes(_ notes: [UInt8]) {
         let velocity: UInt8 = 80
         let strumDelay: TimeInterval = 0.015  // 15ms between strings
