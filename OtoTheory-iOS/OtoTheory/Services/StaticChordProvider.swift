@@ -873,8 +873,8 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Cm-2-Root6",
                 shapeName: "Root-6",
-                frets: [F(8), F(8), F(8), F(10), F(11), F(8)],
-                fingers: [.one, .one, .one, .two, .three, .one],
+                frets: [F(8), F(8), F(8), F(10), F(10), F(8)],
+                fingers: [.one, .one, .one, .two, .two, .one],
                 barres: [StaticBarre(fret: 8, fromString: 1, toString: 6, finger: .one)],
                 tips: ["6弦ルート", "フルバレー"]
             ),
@@ -927,8 +927,8 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "C#m-1-Root6",
                 shapeName: "Root-6",
-                frets: [F(9), F(9), F(9), F(11), F(12), F(9)],
-                fingers: [.one, .one, .one, .two, .three, .one],
+                frets: [F(9), F(9), F(9), F(11), F(11), F(9)],
+                fingers: [.one, .one, .one, .two, .two, .one],
                 barres: [StaticBarre(fret: 9, fromString: 1, toString: 6, finger: .one)],
                 tips: ["6弦ルート", "フルバレー"]
             ),
@@ -990,8 +990,8 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Dm-2-Root6",
                 shapeName: "Root-6",
-                frets: [F(10), F(10), F(10), F(12), F(13), F(10)],
-                fingers: [.one, .one, .one, .two, .three, .one],
+                frets: [F(10), F(10), F(10), F(12), F(12), F(10)],
+                fingers: [.one, .one, .one, .two, .two, .one],
                 barres: [StaticBarre(fret: 10, fromString: 1, toString: 6, finger: .one)],
                 tips: ["6弦ルート", "フルバレー"]
             ),
