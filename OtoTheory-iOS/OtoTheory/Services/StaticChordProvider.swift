@@ -51,14 +51,15 @@ class StaticChordProvider: ObservableObject {
         // Map quality to static data format
         let mappedQuality = qualityMap[quality] ?? quality
         
-        // Build symbol (e.g., "C" + "M7" = "CM7")
-        var symbol = root
+        // Build symbol (e.g., "C" + "M7" = "CM7", "C#" + "" = "C#")
+        var symbol: String
         
         // Handle major chord (empty or "M" quality)
         if mappedQuality.isEmpty || mappedQuality == "M" {
-            // Just use root (e.g., "C")
+            // Just use root (e.g., "C", "C#")
             symbol = root
         } else {
+            // For sharps/flats, append quality (e.g., "C#" + "m" = "C#m")
             symbol = root + mappedQuality
         }
         
@@ -548,21 +549,121 @@ let STATIC_CHORDS: [StaticChord] = [
         ]
     ),
     
-    // MARK: - Major Chords (Open)
+    // MARK: - Major Chords
     
-    // C (Open): x32010
+    // C (Open + Barre forms)
     StaticChord(
         id: "C",
         symbol: "C",
         quality: "M",
         forms: [
+            // Open form
             StaticForm(
-                id: "C-1",
-                shapeName: nil,
+                id: "C-1-Open",
+                shapeName: "Open",
                 frets: [.open, F(1), .open, F(2), F(3), .x],
                 fingers: [nil, .one, nil, .two, .three, nil],
                 barres: [],
-                tips: ["Classic C major", "Mute 6th string"]
+                tips: ["開放弦を含む基本形", "ローコード"]
+            ),
+            // Root-6 (8fr)
+            StaticForm(
+                id: "C-2-Root6",
+                shapeName: "Root-6",
+                frets: [F(8), F(10), F(10), F(9), F(8), F(8)],
+                fingers: [.one, .three, .four, .two, .one, .one],
+                barres: [StaticBarre(fret: 8, fromString: 1, toString: 6, finger: .one)],
+                tips: ["6弦ルート", "フルバレー"]
+            ),
+            // Root-5 (3fr)
+            StaticForm(
+                id: "C-3-Root5",
+                shapeName: "Root-5",
+                frets: [F(3), F(5), F(5), F(5), F(3), .x],
+                fingers: [.one, .two, .three, .four, .one, nil],
+                barres: [StaticBarre(fret: 3, fromString: 1, toString: 5, finger: .one)],
+                tips: ["5弦ルート", "ハイポジション"]
+            ),
+            // Root-4 (10fr)
+            StaticForm(
+                id: "C-4-Root4",
+                shapeName: "Root-4",
+                frets: [F(10), .x, F(10), F(10), F(12), .x],
+                fingers: [.one, nil, .one, .two, .four, nil],
+                barres: [],
+                tips: ["4弦ルート", "コンパクト"]
+            ),
+            // Triad上 (上部3弦)
+            StaticForm(
+                id: "C-5-TriadHigh",
+                shapeName: "トライアド上",
+                frets: [F(5), F(5), F(5), .x, .x, .x],
+                fingers: [.one, .two, .three, nil, nil, nil],
+                barres: [],
+                tips: ["1-3弦のみ", "明るい響き"]
+            ),
+            // Triad中 (中間3弦)
+            StaticForm(
+                id: "C-6-TriadMid",
+                shapeName: "トライアド中",
+                frets: [.x, F(5), F(5), F(5), .x, .x],
+                fingers: [nil, .one, .two, .three, nil, nil],
+                barres: [],
+                tips: ["2-4弦のみ", "バランス良い"]
+            )
+        ]
+    ),
+    
+    // C# Major (6 forms - no open)
+    StaticChord(
+        id: "C#",
+        symbol: "C#",
+        quality: "M",
+        forms: [
+            // Root-6 (9fr)
+            StaticForm(
+                id: "C#-1-Root6",
+                shapeName: "Root-6",
+                frets: [F(9), F(11), F(11), F(10), F(9), F(9)],
+                fingers: [.one, .three, .four, .two, .one, .one],
+                barres: [StaticBarre(fret: 9, fromString: 1, toString: 6, finger: .one)],
+                tips: ["6弦ルート", "フルバレー"]
+            ),
+            // Root-5 (4fr)
+            StaticForm(
+                id: "C#-2-Root5",
+                shapeName: "Root-5",
+                frets: [F(4), F(6), F(6), F(6), F(4), .x],
+                fingers: [.one, .two, .three, .four, .one, nil],
+                barres: [StaticBarre(fret: 4, fromString: 1, toString: 5, finger: .one)],
+                tips: ["5弦ルート", "ミドルポジション"]
+            ),
+            // Root-4 (11fr)
+            StaticForm(
+                id: "C#-3-Root4",
+                shapeName: "Root-4",
+                frets: [F(11), .x, F(11), F(11), F(13), .x],
+                fingers: [.one, nil, .one, .two, .four, nil],
+                barres: [],
+                tips: ["4弦ルート", "ハイポジション"]
+            ),
+            // Triad上
+            StaticForm(
+                id: "C#-4-TriadHigh",
+                shapeName: "トライアド上",
+                frets: [F(6), F(6), F(6), .x, .x, .x],
+                fingers: [.one, .two, .three, nil, nil, nil],
+                barres: [],
+                tips: ["1-3弦のみ", "明るい響き"]
+            ),
+            // Triad中
+            StaticForm(
+                id: "C#-5-TriadMid",
+                shapeName: "トライアド中",
+                frets: [.x, F(6), F(6), F(6), .x, .x],
+                fingers: [nil, .one, .two, .three, nil, nil],
+                barres: [],
+                tips: ["2-4弦のみ", "バランス良い"]
             )
         ]
     ),

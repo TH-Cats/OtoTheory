@@ -11,7 +11,7 @@ import Foundation
 // MARK: - Chord Root (12 notes)
 
 enum ChordRoot: String, CaseIterable, Identifiable {
-    case C, D, E, F, G, A, B
+    case C, Cs = "C#", D, Ds = "D#", E, F, G, A, B
     
     var id: String { rawValue }
     
@@ -20,7 +20,9 @@ enum ChordRoot: String, CaseIterable, Identifiable {
     var semitone: Int {
         switch self {
         case .C: return 0
+        case .Cs: return 1
         case .D: return 2
+        case .Ds: return 3
         case .E: return 4
         case .F: return 5
         case .G: return 7
@@ -31,29 +33,18 @@ enum ChordRoot: String, CaseIterable, Identifiable {
     
     static func from(semitone: Int) -> ChordRoot {
         let normalized = ((semitone % 12) + 12) % 12
-        // Map to natural notes only
         let mapping: [Int: ChordRoot] = [
             0: .C,
+            1: .Cs,
             2: .D,
+            3: .Ds,
             4: .E,
             5: .F,
             7: .G,
             9: .A,
             11: .B
         ]
-        // For semitones that don't match natural notes, round to nearest natural note
-        if let root = mapping[normalized] {
-            return root
-        }
-        // Fallback: map sharps/flats to nearest natural note
-        switch normalized {
-        case 1: return .C  // C# -> C
-        case 3: return .D  // Eb -> D
-        case 6: return .F  // F# -> F
-        case 8: return .G  // Ab -> G
-        case 10: return .A  // Bb -> A
-        default: return .C
-        }
+        return mapping[normalized] ?? .C
     }
 }
 
