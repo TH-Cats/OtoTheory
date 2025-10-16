@@ -172,7 +172,7 @@ struct StaticChordLibraryView: View {
     
     private func formsScrollerSection(_ chord: StaticChord) -> some View {
         let forms = sortForms(chord.forms)
-        TabView(selection: $currentFormIndex) {
+        return TabView(selection: $currentFormIndex) {
             ForEach(Array(forms.enumerated()), id: \.offset) { index, form in
                 formCardView(form: form, chord: chord)
                     .tag(index)
