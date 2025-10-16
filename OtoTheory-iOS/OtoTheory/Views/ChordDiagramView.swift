@@ -173,6 +173,10 @@ struct ChordDiagramView: View {
             if let fingerNum = shape.fingers[stringIndex] {
                 return "\(fingerNum)"
             }
+            // Show "0" for open strings
+            if fretStr == "0" {
+                return "0"
+            }
             return ""
         case .roman:
             // Show interval (R, III, V, etc.)
