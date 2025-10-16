@@ -578,7 +578,7 @@ class ChordLibraryManager: ObservableObject {
                     }
                     
                     return ChordShape(
-                        kindString: form.shapeName ?? "Form",
+                        kindString: form.shapeName ?? inferShapeName(from: form),
                         label: "",
                         frets: frets,
                         fingers: fingers,
@@ -602,6 +602,18 @@ class ChordLibraryManager: ObservableObject {
         cache[key] = entry
         
         return entry
+    }
+
+    /// Infer shape name for ordering/title when not provided
+    private func inferShapeName(from form: StaticForm) -> String {
+        if let name = form.shapeName, !name.isEmpty { return name }
+        let hasOpen = form.frets.contains { if case .open = $0 { return true } else { return false } }
+        if hasOpen { return "Open" }
+        if form.barres.contains(where: { $0.fromString == 1 && $0.toString == 6 }) { return "Root-6" }
+        if form.barres.contains(where: { $0.toString == 5 }) { return "Root-5" }
+        let sounding = form.frets.filter { if case .x = $0 { return false } else { return true } }.count
+        if sounding <= 3 { return "Triad-1" }
+        return "Root-4"
     }
     
     /// Build chord symbol string

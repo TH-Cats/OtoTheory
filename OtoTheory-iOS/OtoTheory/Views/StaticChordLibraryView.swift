@@ -171,8 +171,9 @@ struct StaticChordLibraryView: View {
     // MARK: - Forms Scroller Section
     
     private func formsScrollerSection(_ chord: StaticChord) -> some View {
+        let forms = sortForms(chord.forms)
         TabView(selection: $currentFormIndex) {
-            ForEach(Array(chord.forms.enumerated()), id: \.offset) { index, form in
+            ForEach(Array(forms.enumerated()), id: \.offset) { index, form in
                 formCardView(form: form, chord: chord)
                     .tag(index)
             }
@@ -185,10 +186,10 @@ struct StaticChordLibraryView: View {
     
     private func formCardView(form: StaticForm, chord: StaticChord) -> some View {
         VStack(spacing: 16) {
-            // Shape name placeholder (reserved for future)
-            Text("") // Empty space for shape name
+            // Shape title inferred or explicit
+            Text(shapeTitle(for: form))
                 .font(.headline)
-                .foregroundColor(.clear)
+                .foregroundColor(.secondary)
                 .frame(height: 20)
             
             // Diagram
@@ -249,6 +250,31 @@ struct StaticChordLibraryView: View {
         .padding()
         .background(Color.gray.opacity(0.1))
         .cornerRadius(12)
+    }
+
+    // MARK: - Form Ordering & Title Helpers
+
+    private let desiredOrder: [String] = ["Open", "Root-6", "Root-5", "Root-4", "Triad-1", "Triad-2"]
+
+    private func shapeTitle(for form: StaticForm) -> String {
+        if let explicit = form.shapeName, !explicit.isEmpty { return explicit }
+        // Heuristics
+        let hasOpen = form.frets.contains { if case .open = $0 { return true } else { return false } }
+        if hasOpen { return "Open" }
+        if form.barres.contains(where: { $0.fromString == 1 && $0.toString == 6 }) { return "Root-6" }
+        if form.barres.contains(where: { $0.toString == 5 }) { return "Root-5" }
+        let sounding = form.frets.filter { if case .x = $0 { return false } else { return true } }.count
+        if sounding <= 3 { return "Triad-1" }
+        return "Root-4"
+    }
+
+    private func sortForms(_ forms: [StaticForm]) -> [StaticForm] {
+        return forms.sorted { a, b in
+            let ka = desiredOrder.firstIndex(of: shapeTitle(for: a)) ?? desiredOrder.count
+            let kb = desiredOrder.firstIndex(of: shapeTitle(for: b)) ?? desiredOrder.count
+            if ka != kb { return ka < kb }
+            return a.id < b.id
+        }
     }
     
     // MARK: - Helpers
