@@ -154,7 +154,106 @@ enum ChordLibraryQuality: String, CaseIterable, Identifiable {
     }
 }
 
-// MARK: - Shape Kind (5 forms)
+// MARK: - Root Position (5 forms) - v3.1.2 rewrite
+
+enum RootPosition: String, CaseIterable, Identifiable {
+    case root6 = "Root-6"
+    case root5 = "Root-5"
+    case root4 = "Root-4"
+    case variantA = "Variant-A"
+    case variantB = "Variant-B"
+    
+    var id: String { rawValue }
+    
+    var displayName: String { rawValue }
+    
+    var description: String {
+        switch self {
+        case .root6:
+            return "6th string root position"
+        case .root5:
+            return "5th string root position"
+        case .root4:
+            return "4th string root position"
+        case .variantA:
+            return "Variant voicing (add9, sus, color)"
+        case .variantB:
+            return "Variant voicing (compact, distributed)"
+        }
+    }
+    
+    var anchorString: Int {
+        switch self {
+        case .root6: return 6
+        case .root5: return 5
+        case .root4: return 4
+        case .variantA, .variantB: return 0  // varies
+        }
+    }
+}
+
+// MARK: - Relative Fret (for pattern DSL)
+
+enum ChordFretRel: Equatable {
+    case rel(Int)   // relative offset (e.g., +2, -1, 0)
+    case open       // 0
+    case mute       // x
+    
+    func resolve(rootFret: Int) -> ChordFret {
+        switch self {
+        case .rel(let offset):
+            let absoluteFret = rootFret + offset
+            return absoluteFret <= 0 ? .open : .fretted(absoluteFret)
+        case .open:
+            return .open
+        case .mute:
+            return .muted
+        }
+    }
+}
+
+// MARK: - Relative Barre (for pattern DSL)
+
+struct ChordBarreRel {
+    let fretRel: Int         // relative offset from root fret
+    let fromString: Int      // 1-6 (1=high E, 6=low E)
+    let toString: Int
+    let finger: ChordFinger
+    
+    func resolve(rootFret: Int) -> ChordBarre {
+        let absoluteFret = rootFret + fretRel
+        return ChordBarre(fret: absoluteFret, fromString: fromString, toString: toString, finger: finger)
+    }
+}
+
+// MARK: - Relative Pattern (DSL for chord generation)
+
+struct RelPattern {
+    let position: RootPosition
+    let anchorString: Int         // 6/5/4 (which string the root sits on)
+    let frets: [ChordFretRel]     // 1→6 order (iOS standard)
+    let fingers: [ChordFinger?]   // 1→6 order
+    let barres: [ChordBarreRel]
+    let spanMax: Int              // max fret span (usually 4)
+    let tips: [String]
+    
+    /// Resolve pattern to absolute ChordShape
+    func resolve(rootFret: Int, position: RootPosition, label: String) -> ChordShape {
+        let absoluteFrets = frets.map { $0.resolve(rootFret: rootFret) }
+        let absoluteBarres = barres.map { $0.resolve(rootFret: rootFret) }
+        
+        return ChordShape(
+            kind: position,
+            label: label,
+            frets: absoluteFrets,
+            fingers: fingers,
+            barres: absoluteBarres,
+            tips: tips
+        )
+    }
+}
+
+// MARK: - Legacy Shape Kind (for backward compatibility)
 
 enum ShapeKind: String, CaseIterable, Identifiable {
     case open = "Open"
@@ -240,13 +339,32 @@ struct ChordBarre: Identifiable, Codable {
 
 struct ChordShape: Identifiable, Codable {
     let id: UUID
-    let kind: String  // ShapeKind.rawValue
-    let label: String // "Open", "3fr", "5fr"
+    let kind: String  // RootPosition.rawValue or ShapeKind.rawValue
+    let label: String // "Open", "3fr", "5fr", "Root-6"
     let frets: [String]  // 6 strings (1st to 6th), ["0", "1", "0", "2", "3", "x"]
     let fingers: [Int?]  // 6 strings (1st to 6th)
     let barres: [ChordBarre]
     let tips: [String]  // Multiple tips
     
+    // New initializer (RootPosition-based)
+    init(
+        kind: RootPosition,
+        label: String,
+        frets: [ChordFret],
+        fingers: [ChordFinger?],
+        barres: [ChordBarre] = [],
+        tips: [String] = []
+    ) {
+        self.id = UUID()
+        self.kind = kind.rawValue
+        self.label = label
+        self.frets = frets.map { $0.displayValue }
+        self.fingers = fingers.map { $0?.rawValue }
+        self.barres = barres
+        self.tips = tips
+    }
+    
+    // Legacy initializer (ShapeKind-based, for backward compatibility)
     init(
         kind: ShapeKind,
         label: String,
