@@ -1894,7 +1894,7 @@ let STATIC_CHORDS: [StaticChord] = [
                 id: "C7-1-Open",
                 shapeName: "Open",
                 frets: [.open, F(1), F(3), F(2), F(3), .x],
-                fingers: [nil, .one, .two, .three, .four, nil],
+                fingers: [nil, .one, .three, .two, .four, nil],
                 barres: [],
                 tips: ["Classic C7 open", "3rd string is b7"]
             ),
