@@ -1947,28 +1947,28 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "D7-2-Root6",
                 shapeName: "Root-6",
-                frets: [F(10), F(10), F(11), F(12), F(10), F(10)],
-                fingers: [.one, .one, .two, .three, .one, .one],
+                frets: [F(10), F(10), F(11), F(10), F(12), F(10)],
+                fingers: [.one, .one, .two, .one, .three, .one],
                 barres: [StaticBarre(fret: 10, fromString: 1, toString: 6, finger: .one)],
-                tips: ["6th string root E-shape", "Full barre at 10fr"]
+                tips: ["6th string root E-shape", "4th=10fr(b7), 5th=12fr(5th)"]
             ),
             // Root-5 (5fr): 5-7-5-7-5-x
             StaticForm(
                 id: "D7-3-Root5",
                 shapeName: "Root-5",
                 frets: [F(5), F(7), F(5), F(7), F(5), .x],
-                fingers: [.one, .three, .one, .four, .one, nil],
+                fingers: [.one, .four, .one, .three, .one, nil],
                 barres: [StaticBarre(fret: 5, fromString: 1, toString: 5, finger: .one)],
                 tips: ["5th string root A-shape", "Barre 1-3-5 strings"]
             ),
-            // Root-4 (3fr): x-3-5-4-5-x
+            // Root-4 (9-11fr): 10-10-11-9-x-x
             StaticForm(
                 id: "D7-4-Root4",
                 shapeName: "Root-4",
-                frets: [.x, F(3), F(5), F(4), F(5), .x],
-                fingers: [nil, .one, .three, .two, .four, nil],
+                frets: [F(10), F(10), F(11), F(9), .x, .x],
+                fingers: [.four, .three, .two, .one, nil, nil],
                 barres: [],
-                tips: ["4th string root", "Mid-range voicing"]
+                tips: ["4th string root", "High position 9-11fr"]
             )
         ]
     ),
