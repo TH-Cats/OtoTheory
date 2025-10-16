@@ -58,9 +58,9 @@ class ChordShapeGenerator {
             return ChordShape(
                 kind: .open,
                 label: "Open",
-                frets: [.muted, .fretted(3), .fretted(2), .open, .fretted(1), .open],
-                fingers: [nil, .three, .two, nil, .one, nil],
-                tips: ["Mute 6th string.", "Open 1st rings beautifully."]
+                frets: [.open, .muted, .open, .open, .fretted(1), .fretted(3)],
+                fingers: [nil, nil, nil, nil, .one, .three],
+                tips: ["Classic C major open chord.", "Mute 5th string."]
             )
         case (.C, .m):
             return ChordShape(

@@ -544,7 +544,7 @@ struct ChordLibraryFullscreenView: View {
             Color.black.ignoresSafeArea()
             
             VStack(spacing: 0) {
-                // Top bar
+                // Top bar with Close, Chord info, Display Mode
                 HStack {
                     // Chord name and info (left)
                     VStack(alignment: .leading, spacing: 2) {
@@ -598,40 +598,56 @@ struct ChordLibraryFullscreenView: View {
                 .padding()
                 .background(Color.black.opacity(0.8))
                 
+                // Shape name and page dots (second bar)
+                HStack {
+                    // Shape info
+                    HStack {
+                        Text(currentShape.kind)
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                        Spacer()
+                        Text(currentShape.label)
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Spacer()
+                    
+                    // Page dots
+                    HStack(spacing: 6) {
+                        ForEach(0..<chordEntry.shapes.count, id: \.self) { index in
+                            Circle()
+                                .fill(index == currentShapeIndex ? Color.blue : Color.gray.opacity(0.4))
+                                .frame(width: 8, height: 8)
+                        }
+                    }
+                }
+                .padding()
+                .background(Color.black.opacity(0.6))
+                
                 // Main content with TabView for swipe navigation
                 TabView(selection: $currentShapeIndex) {
                     ForEach(Array(chordEntry.shapes.enumerated()), id: \.offset) { index, shape in
                         GeometryReader { geometry in
                             HStack(spacing: 16) {
-                                // Left: Fretboard (65%)
+                                // Left: Fretboard (70%)
                                 VStack(spacing: 8) {
                                     ChordDiagramView(
                                         shape: shape,
                                         root: selectedRoot,
                                         displayMode: displayMode
                                     )
-                                    .frame(height: geometry.size.height * 0.75)
-                                    
-                                    // Shape info
-                                    HStack {
-                                        Text(shape.kind)
-                                            .font(.title3)
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(.white)
-                                        Spacer()
-                                        Text(shape.label)
-                                            .font(.subheadline)
-                                            .foregroundColor(.gray)
-                                    }
-                                    .padding(.horizontal)
+                                    .frame(height: geometry.size.height * 0.8)
                                 }
-                                .frame(width: geometry.size.width * 0.65)
+                                .frame(width: geometry.size.width * 0.7)
                                 
-                                // Right: Tips + Actions (30%)
-                                VStack(alignment: .leading, spacing: 8) {
-                                    // Tips (no label)
+                                // Right: Tips + Actions (25%)
+                                VStack(alignment: .leading, spacing: 6) {
+                                    // Tips
                                     if !shape.tips.isEmpty {
-                                        VStack(alignment: .leading, spacing: 3) {
+                                        VStack(alignment: .leading, spacing: 2) {
                                             ForEach(shape.tips, id: \.self) { tip in
                                                 Text("• \(tip)")
                                                     .font(.caption)
@@ -642,65 +658,46 @@ struct ChordLibraryFullscreenView: View {
                                     
                                     Spacer()
                                     
-                                    // Navigation indicator
-                                    Text("\(currentShapeIndex + 1) / \(chordEntry.shapes.count)")
-                                        .font(.caption)
-                                        .foregroundColor(.gray)
-                                        .frame(maxWidth: .infinity, alignment: .center)
-                                    
-                                    // Action buttons (smaller)
-                                    VStack(spacing: 6) {
+                                    // Action buttons (horizontal)
+                                    HStack(spacing: 6) {
                                         Button(action: {
                                             audioPlayer.playStrum(shape: shape, root: selectedRoot)
                                         }) {
-                                            HStack(spacing: 4) {
-                                                Image(systemName: "play.circle.fill")
-                                                    .font(.caption)
-                                                Text("Play")
-                                                    .font(.caption2)
-                                            }
-                                            .frame(maxWidth: .infinity)
-                                            .padding(.vertical, 6)
-                                            .background(Color.blue)
-                                            .foregroundColor(.white)
-                                            .cornerRadius(6)
+                                            Image(systemName: "play.circle.fill")
+                                                .font(.title3)
+                                                .foregroundColor(.white)
                                         }
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 8)
+                                        .background(Color.blue)
+                                        .cornerRadius(6)
                                         
                                         Button(action: {
                                             audioPlayer.playArpeggio(shape: shape, root: selectedRoot)
                                         }) {
-                                            HStack(spacing: 4) {
-                                                Image(systemName: "music.note.list")
-                                                    .font(.caption)
-                                                Text("Arp")
-                                                    .font(.caption2)
-                                            }
-                                            .frame(maxWidth: .infinity)
-                                            .padding(.vertical, 6)
-                                            .background(Color.gray.opacity(0.3))
-                                            .foregroundColor(.white)
-                                            .cornerRadius(6)
+                                            Image(systemName: "music.note.list")
+                                                .font(.title3)
+                                                .foregroundColor(.white)
                                         }
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 8)
+                                        .background(Color.gray.opacity(0.3))
+                                        .cornerRadius(6)
                                         
                                         Button(action: {
                                             toggleSaveForShape(shape)
                                         }) {
-                                            HStack(spacing: 4) {
-                                                Image(systemName: isSavedShape(shape) ? "star.fill" : "star")
-                                                    .font(.caption)
-                                                    .foregroundColor(isSavedShape(shape) ? .yellow : .white)
-                                                Text("Save")
-                                                    .font(.caption2)
-                                            }
-                                            .frame(maxWidth: .infinity)
-                                            .padding(.vertical, 6)
-                                            .background(Color.gray.opacity(0.3))
-                                            .foregroundColor(.white)
-                                            .cornerRadius(6)
+                                            Image(systemName: isSavedShape(shape) ? "star.fill" : "star")
+                                                .font(.title3)
+                                                .foregroundColor(isSavedShape(shape) ? .yellow : .white)
                                         }
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 8)
+                                        .background(Color.gray.opacity(0.3))
+                                        .cornerRadius(6)
                                     }
                                 }
-                                .frame(width: geometry.size.width * 0.3)
+                                .frame(width: geometry.size.width * 0.25)
                                 .padding(.trailing)
                             }
                             .frame(maxWidth: .infinity, maxHeight: .infinity)

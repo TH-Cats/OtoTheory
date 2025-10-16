@@ -14,7 +14,7 @@ struct ChordDiagramView: View {
     let displayMode: ChordDisplayMode
     
     private let stringCount = 6
-    private let fretCount = 5
+    private let fretCount = 4
     
     var body: some View {
         GeometryReader { geometry in
