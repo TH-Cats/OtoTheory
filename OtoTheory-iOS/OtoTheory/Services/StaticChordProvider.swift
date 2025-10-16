@@ -2018,6 +2018,42 @@ let STATIC_CHORDS: [StaticChord] = [
         ]
     ),
     
+    // C#7 (Dominant 7th)
+    StaticChord(
+        id: "C#7",
+        symbol: "C#7",
+        quality: "7",
+        forms: [
+            // Root-6 (9fr): 9-9-10-9-11-9
+            StaticForm(
+                id: "C#7-1-Root6",
+                shapeName: "Root-6",
+                frets: [F(9), F(9), F(10), F(9), F(11), F(9)],
+                fingers: [.one, .one, .two, .one, .three, .one],
+                barres: [StaticBarre(fret: 9, fromString: 1, toString: 6, finger: .one)],
+                tips: ["6th string root E-shape", "b7 on 4th, 5th at 11fr"]
+            ),
+            // Root-5 (4fr): 4-6-4-6-4-x
+            StaticForm(
+                id: "C#7-2-Root5",
+                shapeName: "Root-5",
+                frets: [F(4), F(6), F(4), F(6), F(4), .x],
+                fingers: [.one, .four, .one, .three, .one, nil],
+                barres: [StaticBarre(fret: 4, fromString: 1, toString: 5, finger: .one)],
+                tips: ["5th string root A-shape", "Barre 1-3-5 strings"]
+            ),
+            // Root-4 (8-10fr): 9-9-10-8-x-x
+            StaticForm(
+                id: "C#7-3-Root4",
+                shapeName: "Root-4",
+                frets: [F(9), F(9), F(10), F(8), .x, .x],
+                fingers: [.four, .three, .two, .one, nil, nil],
+                barres: [],
+                tips: ["4th string root", "Compact voicing"]
+            )
+        ]
+    ),
+    
     // MARK: - dim Chords
     
     // Cdim (6th string root): x3424x
