@@ -35,8 +35,10 @@ struct ChordDiagramView: View {
                 let stringH = innerH / CGFloat(stringCount - 1)
                 
                 // Calculate base fret
+                // If chord has open strings (0), always show from fret 1 (low position chord)
+                let hasOpenStrings = shape.frets.contains("0")
                 let pos = shape.frets.compactMap { Int($0) }.filter { $0 > 0 }
-                let baseFret = pos.isEmpty ? 1 : pos.min()!
+                let baseFret = hasOpenStrings ? 1 : (pos.min() ?? 1)
                 let showNut = baseFret == 1
                 
                 // Helper functions
@@ -107,6 +109,19 @@ struct ChordDiagramView: View {
                         let x = padLeft - 15
                         let circle = Circle().path(in: CGRect(x: x - 6, y: y - 6, width: 12, height: 12))
                         context.stroke(circle, with: .color(.green), lineWidth: 2)
+                        
+                        // Display text for open strings (roman or note)
+                        if displayMode == .roman || displayMode == .note {
+                            let displayText = getDisplayText(stringIndex: stringIndex, fretStr: fretStr)
+                            if !displayText.isEmpty {
+                                let text = Text(displayText)
+                                    .font(.system(size: 9))
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.green)
+                                // Position text to the right of the open circle
+                                context.draw(text, at: CGPoint(x: x + 15, y: y))
+                            }
+                        }
                     } else if let fret = Int(fretStr), fret > 0 {
                         let x = xForFret(fret)
                         let circle = Circle().path(in: CGRect(x: x - 12, y: y - 12, width: 24, height: 24))
