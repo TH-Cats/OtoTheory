@@ -288,56 +288,6 @@ let STATIC_CHORDS: [StaticChord] = [
     
     // MARK: - 7 (Dominant 7th) Chords
     
-    // C7 (Open): x32310
-    StaticChord(
-        id: "C7",
-        symbol: "C7",
-        quality: "7",
-        forms: [
-            StaticForm(
-                id: "C7-1",
-                shapeName: nil,
-                frets: [.open, F(1), F(3), F(2), F(3), .x],  // 1→6
-                fingers: [nil, .one, .four, .two, .three, nil],
-                barres: [],
-                tips: ["Classic C7 open", "Bluesy sound"]
-            )
-        ]
-    ),
-    
-    // D7 (Open): xx0212
-    StaticChord(
-        id: "D7",
-        symbol: "D7",
-        quality: "7",
-        forms: [
-            StaticForm(
-                id: "D7-1",
-                shapeName: nil,
-                frets: [F(2), F(1), F(2), .open, .x, .x],  // 1→6
-                fingers: [.two, .one, .three, nil, nil, nil],
-                barres: [],
-                tips: ["D7 open position", "Compact voicing"]
-            )
-        ]
-    ),
-    
-    // E7 (Open): 020100
-    StaticChord(
-        id: "E7",
-        symbol: "E7",
-        quality: "7",
-        forms: [
-            StaticForm(
-                id: "E7-1",
-                shapeName: nil,
-                frets: [.open, .open, F(1), .open, F(2), .open],  // 1→6
-                fingers: [nil, nil, .one, nil, .two, nil],
-                barres: [],
-                tips: ["Classic E7", "All strings played"]
-            )
-        ]
-    ),
     
     // G7 (Open): 320001
     StaticChord(
