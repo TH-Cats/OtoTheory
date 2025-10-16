@@ -79,13 +79,13 @@ struct ChordDiagramView: View {
                     context.draw(text, at: CGPoint(x: padLeft - 8, y: padTop - 10))
                 }
                 
-                // Draw fret numbers at bottom
+                // Draw fret numbers at bottom (1..4)
                 for f in 1...fretCount {
                     let displayFret = baseFret + f - 1
                     let text = Text("\(displayFret)")
-                        .font(.caption2)
+                        .font(.footnote)
                         .foregroundColor(.secondary)
-                    context.draw(text, at: CGPoint(x: padLeft + fretW * (CGFloat(f) - 0.5), y: height - 12))
+                    context.draw(text, at: CGPoint(x: padLeft + fretW * (CGFloat(f) - 0.5), y: height - 6))
                 }
                 
                 // Draw markers (1st to 6th order)

@@ -544,16 +544,23 @@ struct ChordLibraryFullscreenView: View {
             Color.black.ignoresSafeArea()
             
             VStack(spacing: 0) {
-                // Top bar with Close, Chord info, Display Mode
-                HStack {
-                    // Chord name and info (left)
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(chordEntry.display)
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                        
-                        HStack(spacing: 4) {
+                // Top bar with chord/shape info, mode buttons next to intervals/notes, then page dots and close
+                HStack(spacing: 12) {
+                    // Left: Chord + Shape + intervals/notes + mode buttons
+                    VStack(alignment: .leading, spacing: 6) {
+                        HStack(spacing: 10) {
+                            Text(chordEntry.display)
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                            Text(currentShape.kind)
+                                .font(.headline)
+                                .foregroundColor(.white)
+                            Text(currentShape.label)
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                        }
+                        HStack(spacing: 8) {
                             Text(chordEntry.intervals)
                                 .font(.caption)
                                 .foregroundColor(.gray)
@@ -562,52 +569,26 @@ struct ChordLibraryFullscreenView: View {
                             Text(chordEntry.notes)
                                 .font(.caption)
                                 .foregroundColor(.gray)
-                        }
-                    }
-                    
-                    Spacer()
-                    
-                    // Display Mode (center-right)
-                    HStack(spacing: 4) {
-                        ForEach(ChordDisplayMode.allCases) { mode in
-                            Button(action: {
-                                displayMode = mode
-                            }) {
-                                Text(mode.rawValue.lowercased())
-                                    .font(.caption)
-                                    .fontWeight(displayMode == mode ? .bold : .regular)
-                                    .frame(width: 50, height: 24)
-                                    .background(displayMode == mode ? Color.blue : Color.gray.opacity(0.3))
-                                    .foregroundColor(.white)
-                                    .cornerRadius(4)
+                            // Display Mode right next to intervals/notes
+                            HStack(spacing: 4) {
+                                ForEach(ChordDisplayMode.allCases) { mode in
+                                    Button(action: { displayMode = mode }) {
+                                        Text(mode.rawValue.lowercased())
+                                            .font(.caption)
+                                            .fontWeight(displayMode == mode ? .bold : .regular)
+                                            .frame(width: 50, height: 24)
+                                            .background(displayMode == mode ? Color.blue : Color.gray.opacity(0.3))
+                                            .foregroundColor(.white)
+                                            .cornerRadius(4)
+                                    }
+                                }
                             }
                         }
                     }
                     
                     Spacer()
                     
-                    // Close button (right)
-                    Button {
-                        onClose()
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.title2)
-                            .foregroundColor(.white)
-                    }
-                }
-                .padding()
-                .background(Color.black.opacity(0.8))
-                
-                // Shape name and page dots (second bar)
-                HStack(spacing: 12) {
-                    Text(currentShape.kind)
-                        .font(.headline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                    Text(currentShape.label)
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                    Spacer()
+                    // Page dots to the right of mode buttons
                     HStack(spacing: 6) {
                         ForEach(0..<chordEntry.shapes.count, id: \.self) { index in
                             Circle()
@@ -615,10 +596,17 @@ struct ChordLibraryFullscreenView: View {
                                 .frame(width: 8, height: 8)
                         }
                     }
+                    
+                    // Close button
+                    Button(action: onClose) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.title2)
+                            .foregroundColor(.white)
+                    }
                 }
                 .padding(.horizontal)
-                .padding(.vertical, 6)
-                .background(Color.black.opacity(0.6))
+                .padding(.vertical, 10)
+                .background(Color.black.opacity(0.85))
                 
                 // Main content with TabView for swipe navigation
                 TabView(selection: $currentShapeIndex) {
