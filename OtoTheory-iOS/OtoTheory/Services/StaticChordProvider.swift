@@ -905,14 +905,14 @@ let STATIC_CHORDS: [StaticChord] = [
                 barres: [],
                 tips: ["1-3弦のみ", "哀愁ある響き"]
             ),
-            // Triad2 (2弦+4弦)
+            // Triad2 (2-4弦)
             StaticForm(
                 id: "Cm-6-Triad2",
                 shapeName: "トライアド2",
-                frets: [.x, .x, F(8), F(8), .x, .x],
-                fingers: [nil, nil, .one, .one, nil, nil],
+                frets: [.x, .x, F(8), F(8), F(10), .x],
+                fingers: [nil, nil, .one, .one, .three, nil],
                 barres: [],
-                tips: ["2弦+4弦", "同じフレット"]
+                tips: ["2-4弦", "2+3弦同じフレット"]
             )
         ]
     ),
@@ -959,14 +959,14 @@ let STATIC_CHORDS: [StaticChord] = [
                 barres: [],
                 tips: ["1-3弦のみ", "哀愁ある響き"]
             ),
-            // Triad2 (2弦+4弦)
+            // Triad2 (2-4弦)
             StaticForm(
                 id: "C#m-5-Triad2",
                 shapeName: "トライアド2",
-                frets: [.x, .x, F(9), F(9), .x, .x],
-                fingers: [nil, nil, .one, .one, nil, nil],
+                frets: [.x, .x, F(9), F(9), F(11), .x],
+                fingers: [nil, nil, .one, .one, .three, nil],
                 barres: [],
-                tips: ["2弦+4弦", "同じフレット"]
+                tips: ["2-4弦", "2+3弦同じフレット"]
             )
         ]
     ),
@@ -1022,14 +1022,14 @@ let STATIC_CHORDS: [StaticChord] = [
                 barres: [],
                 tips: ["1-3弦のみ", "哀愁ある響き"]
             ),
-            // Triad2 (2弦+4弦)
+            // Triad2 (2-4弦)
             StaticForm(
                 id: "Dm-6-Triad2",
                 shapeName: "トライアド2",
-                frets: [.x, .x, F(10), F(10), .x, .x],
-                fingers: [nil, nil, .one, .one, nil, nil],
+                frets: [.x, .x, F(10), F(10), F(12), .x],
+                fingers: [nil, nil, .one, .one, .three, nil],
                 barres: [],
-                tips: ["2弦+4弦", "同じフレット"]
+                tips: ["2-4弦", "2+3弦同じフレット"]
             )
         ]
     ),

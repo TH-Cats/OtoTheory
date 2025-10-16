@@ -22,8 +22,8 @@ struct ChordDiagramView: View {
                 let width = size.width
                 let height = size.height
                 
-                // Padding
-                let padLeft: CGFloat = 30
+                // Padding (increased padLeft to avoid overlap with open string dots)
+                let padLeft: CGFloat = 50
                 let padRight: CGFloat = 20
                 let padTop: CGFloat = 20
                 let padBottom: CGFloat = 35
