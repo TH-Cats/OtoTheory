@@ -50,23 +50,27 @@ class ChordShapeGenerator {
     
     private func eShapeFrets(rootFret r: Int, quality: ChordLibraryQuality) -> [ChordFret]? {
         switch quality {
-        case .M:   return [.fretted(r), .fretted(r), .fretted(r+1), .fretted(r+2), .fretted(r+2), .fretted(r)]
-        case .m:   return [.fretted(r), .fretted(r), .fretted(r),   .fretted(r+2), .fretted(r+2), .fretted(r)]
+        case .M:     return [.fretted(r), .fretted(r), .fretted(r+1), .fretted(r+2), .fretted(r+2), .fretted(r)]
+        case .m:     return [.fretted(r), .fretted(r), .fretted(r),   .fretted(r+2), .fretted(r+2), .fretted(r)]
         case .seven: return [.fretted(r), .fretted(r), .fretted(r+1), .fretted(r),   .fretted(r+2), .fretted(r)]
-        case .M7:  return [.fretted(r), .fretted(r), .fretted(r+1), .fretted(r+1), .fretted(r+2), .fretted(r)]
-        case .six: return [.fretted(r), .fretted(r+2), .fretted(r+1), .fretted(r+2), .fretted(r+2), .fretted(r)]
-        default:   return [.fretted(r), .fretted(r), .fretted(r+1), .fretted(r+2), .fretted(r+2), .fretted(r)]
+        case .M7:    return [.fretted(r), .fretted(r), .fretted(r+1), .fretted(r+1), .fretted(r+2), .fretted(r)]
+        case .six:   return [.fretted(r), .fretted(r+2), .fretted(r+1), .fretted(r+2), .fretted(r+2), .fretted(r)]
+        case .dim:   return [.fretted(r), .fretted(r), .fretted(r),   .fretted(r+1), .fretted(r+1), .fretted(r)]
+        case .dim7:  return [.fretted(r), .fretted(r+2), .fretted(r), .fretted(r+1), .fretted(r+1), .fretted(r)]
+        default:     return [.fretted(r), .fretted(r), .fretted(r+1), .fretted(r+2), .fretted(r+2), .fretted(r)]
         }
     }
     
     private func aShapeFrets(rootFret r: Int, quality: ChordLibraryQuality) -> [ChordFret]? {
         switch quality {
-        case .M:   return [.fretted(r),   .fretted(r+2), .fretted(r+2), .fretted(r+2), .fretted(r),   .muted]
-        case .m:   return [.fretted(r),   .fretted(r+1), .fretted(r+2), .fretted(r+2), .fretted(r),   .muted]
-        case .seven: return [.fretted(r), .fretted(r+2), .fretted(r),   .fretted(r+2), .fretted(r),   .muted]
-        case .M7:  return [.fretted(r),   .fretted(r+2), .fretted(r+1), .fretted(r+2), .fretted(r),   .muted]
-        case .six: return [.fretted(r+2), .fretted(r+2), .fretted(r+2), .fretted(r+2), .fretted(r),   .muted]
-        default:   return [.fretted(r),   .fretted(r+2), .fretted(r+2), .fretted(r+2), .fretted(r),   .muted]
+        case .M:     return [.fretted(r),   .fretted(r+2), .fretted(r+2), .fretted(r+2), .fretted(r),   .muted]
+        case .m:     return [.fretted(r),   .fretted(r+1), .fretted(r+2), .fretted(r+2), .fretted(r),   .muted]
+        case .seven: return [.fretted(r),   .fretted(r+2), .fretted(r),   .fretted(r+2), .fretted(r),   .muted]
+        case .M7:    return [.fretted(r),   .fretted(r+2), .fretted(r+1), .fretted(r+2), .fretted(r),   .muted]
+        case .six:   return [.fretted(r+2), .fretted(r+2), .fretted(r+2), .fretted(r+2), .fretted(r),   .muted]
+        case .dim:   return [.fretted(r),   .fretted(r+1), .fretted(r+2), .fretted(r+1), .fretted(r),   .muted]
+        case .dim7:  return [.fretted(r+2), .fretted(r+1), .fretted(r+2), .fretted(r+1), .fretted(r),   .muted]
+        default:     return [.fretted(r),   .fretted(r+2), .fretted(r+2), .fretted(r+2), .fretted(r),   .muted]
         }
     }
 
@@ -252,13 +256,29 @@ class ChordShapeGenerator {
         var r = (root.semitone - 4 + 12) % 12
         if r == 0 { r = 12 }
         guard let frets = eShapeFrets(rootFret: r, quality: quality) else { return nil }
+        
+        // Determine fingers and tips based on quality
+        let (fingers, tips): ([ChordFinger?], [String]) = {
+            switch quality {
+            case .dim:
+                return ([.one, .one, .one, .four, .three, .one],
+                        ["Anxious spice.", "Insert for just one beat as bridge."])
+            case .dim7:
+                return ([.one, .two, .one, .four, .three, .one],
+                        ["Symmetrical tension.", "Slide by m3 for sequences."])
+            default:
+                return ([.one, .three, .four, .two, .one, .one],
+                        ["E-shape \(quality.displayName.isEmpty ? "Maj" : quality.displayName) barre"])
+            }
+        }()
+        
         return ChordShape(
             kind: .eShape,
             label: "\(r)fr",
             frets: frets,
-            fingers: [.one, .three, .four, .two, .one, .one],
+            fingers: fingers,
             barres: [ChordBarre(fret: r, fromString: 1, toString: 6, finger: .one)],
-            tips: ["E-shape \(quality.displayName.isEmpty ? "Maj" : quality.displayName) barre"]
+            tips: tips
         )
     }
     
@@ -270,13 +290,29 @@ class ChordShapeGenerator {
         var r = (root.semitone - 9 + 12) % 12
         if r == 0 { r = 12 }
         guard let frets = aShapeFrets(rootFret: r, quality: quality) else { return nil }
+        
+        // Determine fingers and tips based on quality
+        let (fingers, tips): ([ChordFinger?], [String]) = {
+            switch quality {
+            case .dim:
+                return ([.one, .two, .four, .three, .one, nil],
+                        ["One-beat bridge.", "Arpeggio passage sounds elegant."])
+            case .dim7:
+                return ([.four, .two, .three, .two, .one, nil],
+                        ["Chromatic leading.", "Move by m3 for classic diminished runs."])
+            default:
+                return ([.one, .three, .three, .three, .one, nil],
+                        ["A-shape \(quality.displayName.isEmpty ? "Maj" : quality.displayName) barre"])
+            }
+        }()
+        
         return ChordShape(
             kind: .aShape,
             label: "\(r)fr",
             frets: frets,
-            fingers: [.one, .three, .three, .three, .one, nil],
+            fingers: fingers,
             barres: [ChordBarre(fret: r, fromString: 1, toString: 5, finger: .one)],
-            tips: ["A-shape \(quality.displayName.isEmpty ? "Maj" : quality.displayName) barre"]
+            tips: tips
         )
     }
     
