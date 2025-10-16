@@ -1898,14 +1898,14 @@ let STATIC_CHORDS: [StaticChord] = [
                 barres: [],
                 tips: ["Classic C7 open", "3rd string is b7"]
             ),
-            // Root-6 (8fr): 8-8-9-10-8-8 (Full barre)
+            // Root-6 (8fr): 8-8-9-8-10-8 (Full barre per provided diagram)
             StaticForm(
                 id: "C7-2-Root6",
                 shapeName: "Root-6",
-                frets: [F(8), F(8), F(9), F(10), F(8), F(8)],
-                fingers: [.one, .one, .two, .three, .one, .one],
+                frets: [F(8), F(8), F(9), F(8), F(10), F(8)],
+                fingers: [.one, .one, .two, .one, .three, .one],
                 barres: [StaticBarre(fret: 8, fromString: 1, toString: 6, finger: .one)],
-                tips: ["6th string root E-shape", "Full barre at 8fr"]
+                tips: ["6th string root E-shape", "4th string at 8fr, 5th at 10fr"]
             ),
             // Root-5 (3fr): 3-5-3-5-3-x
             StaticForm(
