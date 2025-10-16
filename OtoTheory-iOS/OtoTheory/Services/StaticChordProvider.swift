@@ -112,6 +112,50 @@ let STATIC_CHORDS: [StaticChord] = [
         ]
     ),
     
+    // C#m7
+    StaticChord(
+        id: "C#m7",
+        symbol: "C#m7",
+        quality: "m7",
+        forms: [
+            // Open: x42000 (1→6 = 0,0,0,1,2,x)
+            StaticForm(
+                id: "C#m7-1-Open",
+                shapeName: "Open",
+                frets: [.open, .open, .open, F(1), F(2), .x],
+                fingers: [nil, nil, nil, .one, .two, nil],
+                barres: [],
+                tips: ["Open C#m7", "Light shimmer"]
+            ),
+            // Root-6 (9fr): 9-9-9-9-11-9
+            StaticForm(
+                id: "C#m7-2-Root6",
+                shapeName: "Root-6",
+                frets: [F(9), F(9), F(9), F(9), F(11), F(9)],
+                fingers: [.one, .one, .one, .one, .three, .one],
+                barres: [StaticBarre(fret: 9, fromString: 1, toString: 6, finger: .one)],
+                tips: ["6th string root", "m7 E-shape full barre"]
+            ),
+            // Root-5 (4fr): 4-5-4-6-4-x
+            StaticForm(
+                id: "C#m7-3-Root5",
+                shapeName: "Root-5",
+                frets: [F(4), F(5), F(4), F(6), F(4), .x],
+                fingers: [.one, .two, .one, .three, .one, nil],
+                barres: [StaticBarre(fret: 4, fromString: 1, toString: 5, finger: .one)],
+                tips: ["5th string root", "Standard m7 A-shape"]
+            ),
+            // Root-4 (9-12fr): 12-12-12-9-x-x
+            StaticForm(
+                id: "C#m7-4-Root4",
+                shapeName: "Root-4",
+                frets: [F(12), F(12), F(12), F(9), .x, .x],
+                fingers: [.three, .two, .four, .one, nil, nil],
+                barres: [],
+                tips: ["4th string root", "High position"]
+            )
+        ]
+    ),
     // G#M7
     StaticChord(
         id: "G#M7",
@@ -3124,19 +3168,38 @@ let STATIC_CHORDS: [StaticChord] = [
     
     // MARK: - Additional m7 Barre Forms
     
-    // Cm7: x35343
+    // Cm7
     StaticChord(
         id: "Cm7",
         symbol: "Cm7",
         quality: "m7",
         forms: [
+            // Root-6 (8fr): 8-8-8-8-10-8
             StaticForm(
-                id: "Cm7-1",
-                shapeName: nil,
+                id: "Cm7-1-Root6",
+                shapeName: "Root-6",
+                frets: [F(8), F(8), F(8), F(8), F(10), F(8)],
+                fingers: [.one, .one, .one, .one, .three, .one],
+                barres: [StaticBarre(fret: 8, fromString: 1, toString: 6, finger: .one)],
+                tips: ["6th string root", "m7 E-shape full barre"]
+            ),
+            // Root-5 (3fr): 3-4-3-5-3-x
+            StaticForm(
+                id: "Cm7-2-Root5",
+                shapeName: "Root-5",
                 frets: [F(3), F(4), F(3), F(5), F(3), .x],
-                fingers: [.one, .two, .one, .four, .one, nil],
+                fingers: [.one, .two, .one, .three, .one, nil],
                 barres: [StaticBarre(fret: 3, fromString: 1, toString: 5, finger: .one)],
-                tips: ["C minor 7th barre", "5th string root"]
+                tips: ["5th string root", "Standard m7 A-shape"]
+            ),
+            // Root-4 (8-11fr): 11-11-11-8-x-x
+            StaticForm(
+                id: "Cm7-3-Root4",
+                shapeName: "Root-4",
+                frets: [F(11), F(11), F(11), F(8), .x, .x],
+                fingers: [.three, .two, .four, .one, nil, nil],
+                barres: [],
+                tips: ["4th string root", "High position"]
             )
         ]
     ),
