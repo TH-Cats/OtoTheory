@@ -247,7 +247,10 @@ class ChordShapeGenerator {
     // MARK: - E-Shape (6th string root)
     
     private func generateEShape(root: ChordRoot, quality: ChordLibraryQuality) -> ChordShape? {
-        let r = root.semitone
+        // 6th string open = E = semitone 4
+        // Calculate fret: (root - 4 + 12) % 12, but if 0 use 12 for playability
+        var r = (root.semitone - 4 + 12) % 12
+        if r == 0 { r = 12 }
         guard let frets = eShapeFrets(rootFret: r, quality: quality) else { return nil }
         return ChordShape(
             kind: .eShape,
@@ -262,7 +265,10 @@ class ChordShapeGenerator {
     // MARK: - A-Shape (5th string root)
     
     private func generateAShape(root: ChordRoot, quality: ChordLibraryQuality) -> ChordShape? {
-        let r = root.semitone
+        // 5th string open = A = semitone 9
+        // Calculate fret: (root - 9 + 12) % 12, but if 0 use 12 for playability
+        var r = (root.semitone - 9 + 12) % 12
+        if r == 0 { r = 12 }
         guard let frets = aShapeFrets(rootFret: r, quality: quality) else { return nil }
         return ChordShape(
             kind: .aShape,
@@ -277,7 +283,9 @@ class ChordShapeGenerator {
     // MARK: - Compact (Upper 4 strings)
     
     private func generateCompactShape(root: ChordRoot, quality: ChordLibraryQuality) -> ChordShape? {
-        let r = root.semitone
+        // Use same fret as E-shape for consistency
+        var r = (root.semitone - 4 + 12) % 12
+        if r == 0 { r = 12 }
         // Prefer E-shape compact; if nil fallback to A-shape
         let base = eShapeFrets(rootFret: r, quality: quality) ?? aShapeFrets(rootFret: r, quality: quality)
         guard let baseFrets = base else { return nil }
@@ -294,7 +302,9 @@ class ChordShapeGenerator {
     // MARK: - Color (add9, 6/9, sus)
     
     private func generateColorShape(root: ChordRoot, quality: ChordLibraryQuality) -> ChordShape? {
-        let r = root.semitone
+        // Use same fret as E-shape for consistency
+        var r = (root.semitone - 4 + 12) % 12
+        if r == 0 { r = 12 }
         guard let base = eShapeFrets(rootFret: r, quality: .M) else { return nil }
         let compact = makeCompact(from: base)
         var frets = compact

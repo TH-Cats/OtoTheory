@@ -90,6 +90,8 @@ struct ChordDiagramView: View {
                 
                 // Draw markers (1st to 6th order)
                 for (stringIndex, fretStr) in shape.frets.enumerated() {
+                    // stringIndex: 0=1st string, 5=6th string
+                    // yForString: expects 0=6th, 5=1st, so we use (5-stringIndex)
                     let y = yForString(5 - stringIndex)
                     
                     if fretStr == "x" {
@@ -111,7 +113,8 @@ struct ChordDiagramView: View {
                         context.fill(circle, with: .color(.blue))
                         context.stroke(circle, with: .color(.white), lineWidth: 2)
                         
-                        let displayText = getDisplayText(stringIndex: 5 - stringIndex, fretStr: fretStr)
+                        // Pass stringIndex directly (0=1st, 5=6th)
+                        let displayText = getDisplayText(stringIndex: stringIndex, fretStr: fretStr)
                         let text = Text(displayText)
                             .font(.caption)
                             .fontWeight(.bold)
@@ -155,10 +158,13 @@ struct ChordDiagramView: View {
     private func getRomanNumeral(stringIndex: Int, fretStr: String) -> String {
         guard let fret = Int(fretStr) else { return "" }
         
-        // Open strings: E(40), A(45), D(50), G(55), B(59), E(64)
-        let openStrings = [40, 45, 50, 55, 59, 64]
-        let midiNote = openStrings[5 - stringIndex] + fret
-        let interval = (midiNote - (root.semitone + 40)) % 12
+        // Open strings (1st to 6th): E4(64), B3(59), G3(55), D3(50), A2(45), E2(40)
+        let openStrings = [64, 59, 55, 50, 45, 40]
+        let midiNote = openStrings[stringIndex] + fret
+        // Calculate interval from root pitch class
+        let notePitchClass = midiNote % 12
+        let rootPitchClass = root.semitone
+        let interval = (notePitchClass - rootPitchClass + 12) % 12
         
         switch interval {
         case 0: return "R"
@@ -180,12 +186,12 @@ struct ChordDiagramView: View {
     private func getNoteName(stringIndex: Int, fretStr: String) -> String {
         guard let fret = Int(fretStr) else { return "" }
         
-        // Open strings: E(40), A(45), D(50), G(55), B(59), E(64)
-        let openStrings = [40, 45, 50, 55, 59, 64]
-        let midiNote = openStrings[5 - stringIndex] + fret
-        let semitone = midiNote % 12
+        // Open strings (1st to 6th): E4(64), B3(59), G3(55), D3(50), A2(45), E2(40)
+        let openStrings = [64, 59, 55, 50, 45, 40]
+        let midiNote = openStrings[stringIndex] + fret
+        let pitchClass = midiNote % 12
         
-        return ChordRoot.from(semitone: semitone).displayName
+        return ChordRoot.from(semitone: pitchClass).displayName
     }
 }
 
