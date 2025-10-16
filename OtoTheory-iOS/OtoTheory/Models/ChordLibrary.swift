@@ -11,7 +11,7 @@ import Foundation
 // MARK: - Chord Root (12 notes)
 
 enum ChordRoot: String, CaseIterable, Identifiable {
-    case C, Cs = "C#", D, Ds = "D#", E, F, G, A, B
+    case C, Cs = "C#", D, Ds = "D#", E, F, Fs = "F#", G, Gs = "G#", A, Bb, B
     
     var id: String { rawValue }
     
@@ -25,8 +25,11 @@ enum ChordRoot: String, CaseIterable, Identifiable {
         case .Ds: return 3
         case .E: return 4
         case .F: return 5
+        case .Fs: return 6
         case .G: return 7
+        case .Gs: return 8
         case .A: return 9
+        case .Bb: return 10
         case .B: return 11
         }
     }
@@ -40,8 +43,11 @@ enum ChordRoot: String, CaseIterable, Identifiable {
             3: .Ds,
             4: .E,
             5: .F,
+            6: .Fs,
             7: .G,
+            8: .Gs,
             9: .A,
+            10: .Bb,
             11: .B
         ]
         return mapping[normalized] ?? .C
