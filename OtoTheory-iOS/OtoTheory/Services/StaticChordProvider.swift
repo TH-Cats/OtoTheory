@@ -860,12 +860,12 @@ let STATIC_CHORDS: [StaticChord] = [
         symbol: "Cm",
         quality: "m",
         forms: [
-            // Open form (x20130)
+            // Open form (x10130)
             StaticForm(
                 id: "Cm-1-Open",
                 shapeName: "Open",
-                frets: [.x, F(2), .open, F(1), F(3), .x],
-                fingers: [nil, .two, nil, .one, .three, nil],
+                frets: [.x, F(1), .open, F(1), F(3), .x],
+                fingers: [nil, .one, nil, .one, .three, nil],
                 barres: [],
                 tips: ["開放弦を含む基本形", "ローコード"]
             ),
