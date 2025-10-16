@@ -867,7 +867,7 @@ let STATIC_CHORDS: [StaticChord] = [
                 frets: [.x, F(1), .open, F(1), F(3), .x],
                 fingers: [nil, .one, nil, .one, .three, nil],
                 barres: [],
-                tips: ["開放弦を含む基本形", "ローコード"]
+                tips: ["With open strings", "Low position"]
             ),
             // Root-6 (8fr) - Full barre
             StaticForm(
@@ -876,7 +876,7 @@ let STATIC_CHORDS: [StaticChord] = [
                 frets: [F(8), F(8), F(8), F(10), F(10), F(8)],
                 fingers: [.one, .one, .one, .two, .two, .one],
                 barres: [StaticBarre(fret: 8, fromString: 1, toString: 6, finger: .one)],
-                tips: ["6弦ルート", "フルバレー"]
+                tips: ["6th string root", "Full barre"]
             ),
             // Root-5 (3fr) - 5th string barre
             StaticForm(
@@ -885,7 +885,7 @@ let STATIC_CHORDS: [StaticChord] = [
                 frets: [F(3), F(4), F(5), F(5), F(3), .x],
                 fingers: [.one, .two, .three, .four, .one, nil],
                 barres: [StaticBarre(fret: 3, fromString: 1, toString: 5, finger: .one)],
-                tips: ["5弦ルート", "定番フォーム"]
+                tips: ["5th string root", "Standard form"]
             ),
             // Root-4 (10fr) - 4th string root
             StaticForm(
@@ -894,25 +894,25 @@ let STATIC_CHORDS: [StaticChord] = [
                 frets: [F(11), .x, F(12), F(10), .x, .x],
                 fingers: [.two, nil, .four, .one, nil, nil],
                 barres: [],
-                tips: ["4弦ルート", "ハイポジション"]
+                tips: ["4th string root", "High position"]
             ),
             // Triad1 (1-3弦)
             StaticForm(
                 id: "Cm-5-Triad1",
-                shapeName: "トライアド1",
+                shapeName: "Triad-1",
                 frets: [F(3), F(4), F(5), .x, .x, .x],
                 fingers: [.one, .two, .three, nil, nil, nil],
                 barres: [],
-                tips: ["1-3弦のみ", "哀愁ある響き"]
+                tips: ["Strings 1-3 only", "Melancholic sound"]
             ),
             // Triad2 (2-4弦)
             StaticForm(
                 id: "Cm-6-Triad2",
-                shapeName: "トライアド2",
+                shapeName: "Triad-2",
                 frets: [.x, F(8), F(8), F(10), .x, .x],
                 fingers: [nil, .one, .one, .three, nil, nil],
                 barres: [],
-                tips: ["2-4弦", "2+3弦同じフレット"]
+                tips: ["Strings 2-4", "Same fret on 2+3"]
             )
         ]
     ),
@@ -930,7 +930,7 @@ let STATIC_CHORDS: [StaticChord] = [
                 frets: [F(9), F(9), F(9), F(11), F(11), F(9)],
                 fingers: [.one, .one, .one, .two, .two, .one],
                 barres: [StaticBarre(fret: 9, fromString: 1, toString: 6, finger: .one)],
-                tips: ["6弦ルート", "フルバレー"]
+                tips: ["6th string root", "Full barre"]
             ),
             // Root-5 (4fr) - 5th string barre
             StaticForm(
@@ -939,7 +939,7 @@ let STATIC_CHORDS: [StaticChord] = [
                 frets: [F(4), F(5), F(6), F(6), F(4), .x],
                 fingers: [.one, .two, .three, .four, .one, nil],
                 barres: [StaticBarre(fret: 4, fromString: 1, toString: 5, finger: .one)],
-                tips: ["5弦ルート", "定番フォーム"]
+                tips: ["5th string root", "Standard form"]
             ),
             // Root-4 (11fr) - 4th string root
             StaticForm(
@@ -948,25 +948,25 @@ let STATIC_CHORDS: [StaticChord] = [
                 frets: [F(12), .x, F(13), F(11), .x, .x],
                 fingers: [.two, nil, .four, .one, nil, nil],
                 barres: [],
-                tips: ["4弦ルート", "ハイポジション"]
+                tips: ["4th string root", "High position"]
             ),
             // Triad1 (1-3弦)
             StaticForm(
                 id: "C#m-4-Triad1",
-                shapeName: "トライアド1",
+                shapeName: "Triad-1",
                 frets: [F(4), F(5), F(6), .x, .x, .x],
                 fingers: [.one, .two, .three, nil, nil, nil],
                 barres: [],
-                tips: ["1-3弦のみ", "哀愁ある響き"]
+                tips: ["Strings 1-3 only", "Melancholic sound"]
             ),
             // Triad2 (2-4弦)
             StaticForm(
                 id: "C#m-5-Triad2",
-                shapeName: "トライアド2",
+                shapeName: "Triad-2",
                 frets: [.x, F(9), F(9), F(11), .x, .x],
                 fingers: [nil, .one, .one, .three, nil, nil],
                 barres: [],
-                tips: ["2-4弦", "2+3弦同じフレット"]
+                tips: ["Strings 2-4", "Same fret on 2+3"]
             )
         ]
     ),
@@ -984,7 +984,7 @@ let STATIC_CHORDS: [StaticChord] = [
                 frets: [F(1), F(3), F(2), .open, .x, .x],
                 fingers: [.one, .three, .two, nil, nil, nil],
                 barres: [],
-                tips: ["開放弦を含む基本形", "ローコード"]
+                tips: ["With open strings", "Low position"]
             ),
             // Root-6 (10fr) - Full barre
             StaticForm(
@@ -993,7 +993,7 @@ let STATIC_CHORDS: [StaticChord] = [
                 frets: [F(10), F(10), F(10), F(12), F(12), F(10)],
                 fingers: [.one, .one, .one, .two, .two, .one],
                 barres: [StaticBarre(fret: 10, fromString: 1, toString: 6, finger: .one)],
-                tips: ["6弦ルート", "フルバレー"]
+                tips: ["6th string root", "Full barre"]
             ),
             // Root-5 (5fr) - 5th string barre
             StaticForm(
@@ -1002,7 +1002,7 @@ let STATIC_CHORDS: [StaticChord] = [
                 frets: [F(5), F(6), F(7), F(7), F(5), .x],
                 fingers: [.one, .two, .three, .four, .one, nil],
                 barres: [StaticBarre(fret: 5, fromString: 1, toString: 5, finger: .one)],
-                tips: ["5弦ルート", "ミドルポジション"]
+                tips: ["5th string root", "Middle position"]
             ),
             // Root-4 (12fr) - 4th string root
             StaticForm(
@@ -1011,30 +1011,30 @@ let STATIC_CHORDS: [StaticChord] = [
                 frets: [F(13), .x, F(14), F(12), .x, .x],
                 fingers: [.two, nil, .four, .one, nil, nil],
                 barres: [],
-                tips: ["4弦ルート", "ハイポジション"]
+                tips: ["4th string root", "High position"]
             ),
             // Triad1 (1-3弦)
             StaticForm(
                 id: "Dm-5-Triad1",
-                shapeName: "トライアド1",
+                shapeName: "Triad-1",
                 frets: [F(5), F(6), F(7), .x, .x, .x],
                 fingers: [.one, .two, .three, nil, nil, nil],
                 barres: [],
-                tips: ["1-3弦のみ", "哀愁ある響き"]
+                tips: ["Strings 1-3 only", "Melancholic sound"]
             ),
             // Triad2 (2-4弦)
             StaticForm(
                 id: "Dm-6-Triad2",
-                shapeName: "トライアド2",
+                shapeName: "Triad-2",
                 frets: [.x, F(10), F(10), F(12), .x, .x],
                 fingers: [nil, .one, .one, .three, nil, nil],
                 barres: [],
-                tips: ["2-4弦", "2+3弦同じフレット"]
+                tips: ["Strings 2-4", "Same fret on 2+3"]
             )
         ]
     ),
     
-    // D# minor (3 forms - high positions skipped)
+    // D# minor (5 forms)
     StaticChord(
         id: "D#m",
         symbol: "D#m",
@@ -1044,28 +1044,46 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "D#m-1-Root6",
                 shapeName: "Root-6",
-                frets: [F(11), F(11), F(11), F(13), F(14), F(11)],
-                fingers: [.one, .one, .one, .two, .three, .one],
+                frets: [F(11), F(11), F(11), F(13), F(13), F(11)],
+                fingers: [.one, .one, .one, .two, .two, .one],
                 barres: [StaticBarre(fret: 11, fromString: 1, toString: 6, finger: .one)],
-                tips: ["6弦ルート", "フルバレー"]
+                tips: ["6th string root", "Full barre"]
             ),
-            // Root-5 (6fr) - 5th string barre
+            // Root-4 (1fr) - 4th string root
             StaticForm(
-                id: "D#m-2-Root5",
-                shapeName: "Root-5",
-                frets: [F(6), F(7), F(8), F(8), F(6), .x],
-                fingers: [.one, .two, .three, .four, .one, nil],
-                barres: [StaticBarre(fret: 6, fromString: 1, toString: 5, finger: .one)],
-                tips: ["5弦ルート", "ミドルポジション"]
+                id: "D#m-2-Root4",
+                shapeName: "Root-4",
+                frets: [F(2), .x, F(3), F(1), .x, .x],
+                fingers: [.two, nil, .three, .one, nil, nil],
+                barres: [],
+                tips: ["4th string root", "Low position"]
             ),
             // Triad1 (1-3弦)
             StaticForm(
                 id: "D#m-3-Triad1",
-                shapeName: "トライアド1",
+                shapeName: "Triad-1",
                 frets: [F(6), F(7), F(8), .x, .x, .x],
                 fingers: [.one, .two, .three, nil, nil, nil],
                 barres: [],
-                tips: ["1-3弦のみ", "哀愁ある響き"]
+                tips: ["Strings 1-3 only", "Melancholic sound"]
+            ),
+            // Triad2 (3-5弦)
+            StaticForm(
+                id: "D#m-4-Triad2",
+                shapeName: "Triad-2",
+                frets: [.x, .x, F(3), F(4), F(6), .x],
+                fingers: [nil, nil, .one, .two, .four, nil],
+                barres: [],
+                tips: ["Strings 3-5", "Low position"]
+            ),
+            // Root-5 (6fr) - 5th string barre
+            StaticForm(
+                id: "D#m-5-Root5",
+                shapeName: "Root-5",
+                frets: [F(6), F(7), F(8), F(8), F(6), .x],
+                fingers: [.one, .two, .three, .four, .one, nil],
+                barres: [StaticBarre(fret: 6, fromString: 1, toString: 5, finger: .one)],
+                tips: ["5th string root", "Middle position"]
             )
         ]
     ),
