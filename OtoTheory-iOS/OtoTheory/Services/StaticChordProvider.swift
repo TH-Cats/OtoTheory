@@ -112,6 +112,42 @@ let STATIC_CHORDS: [StaticChord] = [
         ]
     ),
     
+    // D#7 (Dominant 7th)
+    StaticChord(
+        id: "D#7",
+        symbol: "D#7",
+        quality: "7",
+        forms: [
+            // Root-6 (11fr): 11-11-12-11-13-11
+            StaticForm(
+                id: "D#7-1-Root6",
+                shapeName: "Root-6",
+                frets: [F(11), F(11), F(12), F(11), F(13), F(11)],
+                fingers: [.one, .one, .two, .one, .three, .one],
+                barres: [StaticBarre(fret: 11, fromString: 1, toString: 6, finger: .one)],
+                tips: ["6th string root E-shape", "b7 on 4th, 5th at 13fr"]
+            ),
+            // Root-5 (6fr): 6-8-6-8-6-x
+            StaticForm(
+                id: "D#7-2-Root5",
+                shapeName: "Root-5",
+                frets: [F(6), F(8), F(6), F(8), F(6), .x],
+                fingers: [.one, .four, .one, .three, .one, nil],
+                barres: [StaticBarre(fret: 6, fromString: 1, toString: 5, finger: .one)],
+                tips: ["5th string root A-shape", "Barre 1-3-5 strings"]
+            ),
+            // Root-4 (1-3fr): 3-2-3-1-x-x
+            StaticForm(
+                id: "D#7-3-Root4",
+                shapeName: "Root-4",
+                frets: [F(3), F(2), F(3), F(1), .x, .x],
+                fingers: [.four, .two, .three, .one, nil, nil],
+                barres: [],
+                tips: ["4th string root", "Low position"]
+            )
+        ]
+    ),
+    
     // Asus4 (Open): x02230
     StaticChord(
         id: "Asus4",
@@ -1965,10 +2001,10 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "D7-4-Root4",
                 shapeName: "Root-4",
-                frets: [F(10), F(10), F(11), F(9), .x, .x],
-                fingers: [.four, .three, .two, .one, nil, nil],
+                frets: [F(13), F(11), F(12), F(10), .x, .x],
+                fingers: [.four, .two, .three, .one, nil, nil],
                 barres: [],
-                tips: ["4th string root", "High position 9-11fr"]
+                tips: ["4th string root", "High position 10-13fr"]
             )
         ]
     ),
@@ -2046,10 +2082,10 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "C#7-3-Root4",
                 shapeName: "Root-4",
-                frets: [F(9), F(9), F(10), F(8), .x, .x],
-                fingers: [.four, .three, .two, .one, nil, nil],
+                frets: [F(13), F(12), F(13), F(11), .x, .x],
+                fingers: [.four, .two, .three, .one, nil, nil],
                 barres: [],
-                tips: ["4th string root", "Compact voicing"]
+                tips: ["4th string root", "High position 11-13fr"]
             )
         ]
     ),
