@@ -88,6 +88,38 @@ struct ChordDiagramView: View {
                     context.draw(text, at: CGPoint(x: padLeft + fretW * (CGFloat(f) - 0.5), y: height - 12))
                 }
                 
+                // Draw markers (1st to 6th order)
+                for (stringIndex, fretStr) in shape.frets.enumerated() {
+                    let y = yForString(5 - stringIndex)
+                    
+                    if fretStr == "x" {
+                        let x = padLeft - 15
+                        let crossPath = Path { p in
+                            p.move(to: CGPoint(x: x - 5, y: y - 5))
+                            p.addLine(to: CGPoint(x: x + 5, y: y + 5))
+                            p.move(to: CGPoint(x: x + 5, y: y - 5))
+                            p.addLine(to: CGPoint(x: x - 5, y: y + 5))
+                        }
+                        context.stroke(crossPath, with: .color(.red), lineWidth: 2)
+                    } else if fretStr == "0" {
+                        let x = padLeft - 15
+                        let circle = Circle().path(in: CGRect(x: x - 6, y: y - 6, width: 12, height: 12))
+                        context.stroke(circle, with: .color(.green), lineWidth: 2)
+                    } else if let fret = Int(fretStr), fret > 0 {
+                        let x = xForFret(fret)
+                        let circle = Circle().path(in: CGRect(x: x - 12, y: y - 12, width: 24, height: 24))
+                        context.fill(circle, with: .color(.blue))
+                        context.stroke(circle, with: .color(.white), lineWidth: 2)
+                        
+                        let displayText = getDisplayText(stringIndex: 5 - stringIndex, fretStr: fretStr)
+                        let text = Text(displayText)
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                        context.draw(text, at: CGPoint(x: x, y: y))
+                    }
+                }
+                
                 // Draw barre lines
                 for barre in shape.barres {
                     let x = xForFret(barre.fret)
@@ -98,47 +130,6 @@ struct ChordDiagramView: View {
                     
                     let barreRect = CGRect(x: x - 10, y: y, width: 20, height: h)
                     context.fill(Path(roundedRect: barreRect, cornerRadius: 10), with: .color(Color.teal.opacity(0.3)))
-                }
-                
-                // Draw markers
-                // frets array: [6th, 5th, 4th, 3rd, 2nd, 1st]
-                // yForString: sIdx=0 → bottom (6th), sIdx=5 → top (1st)
-                for (stringIndex, fretStr) in shape.frets.enumerated() {
-                    let y = yForString(stringIndex)
-                    
-                    if fretStr == "x" {
-                        // Muted (X)
-                        let x = padLeft - 15
-                        let crossPath = Path { p in
-                            p.move(to: CGPoint(x: x - 5, y: y - 5))
-                            p.addLine(to: CGPoint(x: x + 5, y: y + 5))
-                            p.move(to: CGPoint(x: x + 5, y: y - 5))
-                            p.addLine(to: CGPoint(x: x - 5, y: y + 5))
-                        }
-                        context.stroke(crossPath, with: .color(.red), lineWidth: 2)
-                    } else if fretStr == "0" {
-                        // Open (O)
-                        let x = padLeft - 15
-                        let circle = Circle()
-                            .path(in: CGRect(x: x - 6, y: y - 6, width: 12, height: 12))
-                        context.stroke(circle, with: .color(.green), lineWidth: 2)
-                    } else if let fret = Int(fretStr), fret > 0 {
-                        // Fretted
-                        let x = xForFret(fret)
-                        
-                        let circle = Circle()
-                            .path(in: CGRect(x: x - 12, y: y - 12, width: 24, height: 24))
-                        context.fill(circle, with: .color(.blue))
-                        context.stroke(circle, with: .color(.white), lineWidth: 2)
-                        
-                        // Display text
-                        let displayText = getDisplayText(stringIndex: stringIndex, fretStr: fretStr)
-                        let text = Text(displayText)
-                            .font(.caption)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                        context.draw(text, at: CGPoint(x: x, y: y))
-                    }
                 }
             }
         }

@@ -599,23 +599,15 @@ struct ChordLibraryFullscreenView: View {
                 .background(Color.black.opacity(0.8))
                 
                 // Shape name and page dots (second bar)
-                HStack {
-                    // Shape info
-                    HStack {
-                        Text(currentShape.kind)
-                            .font(.headline)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                        Spacer()
-                        Text(currentShape.label)
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
+                HStack(spacing: 12) {
+                    Text(currentShape.kind)
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                    Text(currentShape.label)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
                     Spacer()
-                    
-                    // Page dots
                     HStack(spacing: 6) {
                         ForEach(0..<chordEntry.shapes.count, id: \.self) { index in
                             Circle()
@@ -624,7 +616,8 @@ struct ChordLibraryFullscreenView: View {
                         }
                     }
                 }
-                .padding()
+                .padding(.horizontal)
+                .padding(.vertical, 6)
                 .background(Color.black.opacity(0.6))
                 
                 // Main content with TabView for swipe navigation

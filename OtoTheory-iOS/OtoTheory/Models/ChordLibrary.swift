@@ -242,8 +242,8 @@ struct ChordShape: Identifiable, Codable {
     let id: UUID
     let kind: String  // ShapeKind.rawValue
     let label: String // "Open", "3fr", "5fr"
-    let frets: [String]  // 6 strings (6th to 1st), ["3", "2", "0", "0", "x", "x"]
-    let fingers: [Int?]  // 6 strings (6th to 1st), [3, 2, nil, nil, nil, nil]
+    let frets: [String]  // 6 strings (1st to 6th), ["0", "1", "0", "2", "3", "x"]
+    let fingers: [Int?]  // 6 strings (1st to 6th)
     let barres: [ChordBarre]
     let tips: [String]  // Multiple tips
     
@@ -264,13 +264,12 @@ struct ChordShape: Identifiable, Codable {
         self.tips = tips
     }
     
-    /// Convert to MIDI note numbers (E2=40 for 6th string open)
+    /// Convert to MIDI note numbers using 1st->6th order
     func toMIDINotes(rootSemitone: Int) -> [UInt8] {
-        // Open strings: 6th to 1st (E2, A2, D3, G3, B3, E4)
-        let openStrings = [40, 45, 50, 55, 59, 64]
+        // Open strings (1st to 6th): E4, B3, G3, D3, A2, E2
+        let openStrings = [64, 59, 55, 50, 45, 40]
         var notes: [UInt8] = []
         
-        // frets array is already 6th to 1st, no need to reverse
         for (index, fretStr) in frets.enumerated() {
             if fretStr == "x" { continue }
             let fret = Int(fretStr) ?? 0
@@ -299,7 +298,7 @@ struct ChordEntry: Identifiable {
         self.id = UUID()
         self.root = root
         self.quality = quality
-        self.symbol = root.displayName + quality.displayName
+        self.symbol = root.displayName + quality.symbolSuffix
         self.display = symbol
         self.shapes = shapes
         
@@ -352,6 +351,11 @@ struct ChordEntry: Identifiable {
         default: return "Extended harmony"
         }
     }
+}
+
+extension ChordLibraryQuality {
+    /// Suffix used for chord symbols (Major returns empty string)
+    var symbolSuffix: String { self == .M ? "" : self.rawValue }
 }
 
 // MARK: - Chord Display Mode
