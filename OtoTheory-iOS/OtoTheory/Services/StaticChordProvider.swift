@@ -1208,18 +1208,9 @@ let STATIC_CHORDS: [StaticChord] = [
         symbol: "F",
         quality: "",
         forms: [
-            // Open form (xx3211)
-            StaticForm(
-                id: "F-1-Open",
-                shapeName: "Open",
-                frets: [F(1), F(1), F(2), F(3), .x, .x],
-                fingers: [.one, .one, .two, .three, nil, nil],
-                barres: [StaticBarre(fret: 1, fromString: 1, toString: 2, finger: .one)],
-                tips: ["Partial barre", "Low position"]
-            ),
             // Root-6 (1fr) - Full barre
             StaticForm(
-                id: "F-2-Root6",
+                id: "F-1-Root6",
                 shapeName: "Root-6",
                 frets: [F(1), F(1), F(2), F(3), F(3), F(1)],
                 fingers: [.one, .one, .two, .three, .four, .one],
@@ -1228,7 +1219,7 @@ let STATIC_CHORDS: [StaticChord] = [
             ),
             // Root-5 (8fr) - 5th string barre
             StaticForm(
-                id: "F-3-Root5",
+                id: "F-2-Root5",
                 shapeName: "Root-5",
                 frets: [F(8), F(10), F(10), F(10), F(8), .x],
                 fingers: [.one, .two, .three, .four, .one, nil],
@@ -1237,7 +1228,7 @@ let STATIC_CHORDS: [StaticChord] = [
             ),
             // Root-4 (3fr) - 4th string root
             StaticForm(
-                id: "F-4-Root4",
+                id: "F-3-Root4",
                 shapeName: "Root-4",
                 frets: [F(5), .x, F(5), F(3), .x, .x],
                 fingers: [.three, nil, .four, .one, nil, nil],
@@ -1246,7 +1237,7 @@ let STATIC_CHORDS: [StaticChord] = [
             ),
             // Triad1 (1-3弦)
             StaticForm(
-                id: "F-5-Triad1",
+                id: "F-4-Triad1",
                 shapeName: "Triad-1",
                 frets: [F(8), F(10), F(10), .x, .x, .x],
                 fingers: [.one, .two, .three, nil, nil, nil],
@@ -1255,7 +1246,7 @@ let STATIC_CHORDS: [StaticChord] = [
             ),
             // Triad2 (2-4弦)
             StaticForm(
-                id: "F-6-Triad2",
+                id: "F-5-Triad2",
                 shapeName: "Triad-2",
                 frets: [.x, F(1), F(2), F(3), .x, .x],
                 fingers: [nil, .one, .two, .three, nil, nil],
@@ -1437,8 +1428,8 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "G-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .open, F(2), F(3), F(3)],
-                fingers: [nil, nil, nil, .one, .two, .three],
+                frets: [F(3), .open, .open, .open, F(2), F(3)],
+                fingers: [.three, nil, nil, nil, .one, .two],
                 barres: [],
                 tips: ["With open strings", "Easy and popular"]
             ),
