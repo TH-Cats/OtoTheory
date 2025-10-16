@@ -1988,32 +1988,32 @@ let STATIC_CHORDS: [StaticChord] = [
                 barres: [],
                 tips: ["Classic E7 open", "All 6 strings"]
             ),
-            // Root-6 (12fr): 12-12-13-14-12-12 (Full barre)
+            // Root-6 (12fr): 12-12-13-12-14-12 (Full barre per spec)
             StaticForm(
                 id: "E7-2-Root6",
                 shapeName: "Root-6",
-                frets: [F(12), F(12), F(13), F(14), F(12), F(12)],
-                fingers: [.one, .one, .two, .three, .one, .one],
+                frets: [F(12), F(12), F(13), F(12), F(14), F(12)],
+                fingers: [.one, .one, .two, .one, .three, .one],
                 barres: [StaticBarre(fret: 12, fromString: 1, toString: 6, finger: .one)],
-                tips: ["6th string root E-shape", "Full barre at 12fr"]
+                tips: ["6th string root E-shape", "4th=12fr(b7), 5th=14fr(5th)"]
             ),
             // Root-5 (7fr): 7-9-7-9-7-x
             StaticForm(
                 id: "E7-3-Root5",
                 shapeName: "Root-5",
                 frets: [F(7), F(9), F(7), F(9), F(7), .x],
-                fingers: [.one, .three, .one, .four, .one, nil],
+                fingers: [.one, .four, .one, .three, .one, nil],
                 barres: [StaticBarre(fret: 7, fromString: 1, toString: 5, finger: .one)],
                 tips: ["5th string root A-shape", "Barre 1-3-5 strings"]
             ),
-            // Root-4 (1fr): 0-3-1-2-x-x
+            // Root-4 (1-3fr): 3-1-2-0-x-x
             StaticForm(
                 id: "E7-4-Root4",
                 shapeName: "Root-4",
-                frets: [.open, F(3), F(1), F(2), .x, .x],
-                fingers: [nil, .four, .one, .two, nil, nil],
+                frets: [F(3), F(1), F(2), .open, .x, .x],
+                fingers: [.three, .one, .two, nil, nil, nil],
                 barres: [],
-                tips: ["4th string root", "Low open voicing"]
+                tips: ["4th string root", "Low open voicing (G on 1st string)"]
             )
         ]
     ),
