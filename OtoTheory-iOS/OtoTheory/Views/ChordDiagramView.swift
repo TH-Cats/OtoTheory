@@ -23,7 +23,7 @@ struct ChordDiagramView: View {
                 let height = size.height
                 
                 // Padding (increased padLeft to avoid overlap with open string dots)
-                let padLeft: CGFloat = 60
+                let padLeft: CGFloat = 70
                 let padRight: CGFloat = 20
                 let padTop: CGFloat = 20
                 let padBottom: CGFloat = 35
@@ -43,7 +43,7 @@ struct ChordDiagramView: View {
                 
                 // Helper functions
                 func xForFret(_ absFret: Int) -> CGFloat {
-                    if absFret == 0 { return padLeft - 20 }
+                    if absFret == 0 { return padLeft - 25 }
                     let rel = absFret - baseFret + 1
                     return padLeft + fretW * (CGFloat(rel) - 0.5)
                 }
@@ -97,7 +97,7 @@ struct ChordDiagramView: View {
                     let y = yForString(5 - stringIndex)
                     
                     if fretStr == "x" {
-                        let x = padLeft - 20
+                        let x = padLeft - 25
                         let crossPath = Path { p in
                             p.move(to: CGPoint(x: x - 5, y: y - 5))
                             p.addLine(to: CGPoint(x: x + 5, y: y + 5))
@@ -106,7 +106,7 @@ struct ChordDiagramView: View {
                         }
                         context.stroke(crossPath, with: .color(.red), lineWidth: 2)
                     } else if fretStr == "0" {
-                        let x = padLeft - 20
+                        let x = padLeft - 25
                         
                         // Check if open string is the root
                         let isRoot = isRootNote(stringIndex: stringIndex, fret: 0)

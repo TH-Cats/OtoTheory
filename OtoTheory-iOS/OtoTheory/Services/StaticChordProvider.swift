@@ -909,8 +909,8 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Cm-6-Triad2",
                 shapeName: "トライアド2",
-                frets: [.x, .x, F(8), F(8), F(10), .x],
-                fingers: [nil, nil, .one, .one, .three, nil],
+                frets: [.x, F(8), F(8), F(10), .x, .x],
+                fingers: [nil, .one, .one, .three, nil, nil],
                 barres: [],
                 tips: ["2-4弦", "2+3弦同じフレット"]
             )
@@ -963,8 +963,8 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "C#m-5-Triad2",
                 shapeName: "トライアド2",
-                frets: [.x, .x, F(9), F(9), F(11), .x],
-                fingers: [nil, nil, .one, .one, .three, nil],
+                frets: [.x, F(9), F(9), F(11), .x, .x],
+                fingers: [nil, .one, .one, .three, nil, nil],
                 barres: [],
                 tips: ["2-4弦", "2+3弦同じフレット"]
             )
@@ -1026,8 +1026,8 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Dm-6-Triad2",
                 shapeName: "トライアド2",
-                frets: [.x, .x, F(10), F(10), F(12), .x],
-                fingers: [nil, nil, .one, .one, .three, nil],
+                frets: [.x, F(10), F(10), F(12), .x, .x],
+                fingers: [nil, .one, .one, .three, nil, nil],
                 barres: [],
                 tips: ["2-4弦", "2+3弦同じフレット"]
             )
