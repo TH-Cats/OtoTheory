@@ -8,12 +8,25 @@ import {
   type Root, type Quality, type AdvancedQuality,
   getCachedChord, getIntervals, getChordNotes, getVoicingNote 
 } from '@/lib/chord-library';
+import { getStaticChord, type StaticChord, type StaticForm } from '@/lib/chord-library-static';
 import { ChordCard } from '@/components/chords/ChordCard';
 import AdSlot from '@/components/AdSlot.client';
 import { tTip, tLabel } from '@/lib/i18n/chordLibrary';
 import { useLocale } from '@/lib/i18n/locale';
 
 export type DisplayMode = 'finger' | 'roman' | 'note';
+
+// Helper to convert static form to old ChordShape format
+function convertToChordShape(form: StaticForm): any {
+  return {
+    id: form.id,
+    label: form.shapeName || 'Unknown',
+    frets: form.frets,
+    fingers: form.fingers,
+    barres: form.barres,
+    tips: form.tips
+  };
+}
 
 export default function Client() {
   const [root, setRoot] = useState<Root>('C');
@@ -23,7 +36,24 @@ export default function Client() {
   const locale = useLocale();
   const t = messages[locale].chordLibrary;
 
-  const entry = useMemo(() => getCachedChord(root, quality), [root, quality]);
+  // Try to get static chord first, fallback to generated
+  const staticChord = useMemo(() => {
+    const symbol = quality === 'M' ? root : `${root}${quality}`;
+    return getStaticChord(symbol);
+  }, [root, quality]);
+
+  const entry = useMemo(() => {
+    if (staticChord) {
+      // Convert static chord to old format
+      return {
+        symbol: staticChord.symbol,
+        display: staticChord.symbol,
+        shapes: staticChord.forms.slice(0, 3).map(convertToChordShape) as [any, any, any]
+      };
+    }
+    return getCachedChord(root, quality);
+  }, [root, quality, staticChord]);
+
   const intervals = useMemo(() => getIntervals(quality), [quality]);
   const notes = useMemo(() => getChordNotes(root, quality), [root, quality]);
   const voicingNote = useMemo(() => getVoicingNote(quality), [quality]);

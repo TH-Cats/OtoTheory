@@ -470,8 +470,8 @@ export const MIN7_CHORDS: StaticChord[] = [
       {
         id: 'Cm7-Root4',
         shapeName: 'Root-4',
-        frets: [11, 12, 10, 11, 'x', 'x'],
-        fingers: [3, 4, 1, 2, null, null],
+        frets: ['x', 'x', 10, 12, 11, 11],
+        fingers: [null, null, 1, 4, 2, 3],
         barres: [],
         tips: ['4th string root', 'High position']
       }
@@ -515,8 +515,8 @@ export const MIN7_CHORDS: StaticChord[] = [
       {
         id: 'Dm7-Root4',
         shapeName: 'Root-4',
-        frets: [13, 14, 12, 13, 'x', 'x'],
-        fingers: [3, 4, 1, 2, null, null],
+        frets: ['x', 'x', 12, 14, 13, 13],
+        fingers: [null, null, 1, 4, 2, 3],
         barres: [],
         tips: ['4th string root', 'Compact voicing']
       }
@@ -542,8 +542,8 @@ export const MIN7_CHORDS: StaticChord[] = [
       {
         id: 'Em7-Root4',
         shapeName: 'Root-4',
-        frets: [3, 4, 2, 3, 'x', 'x'],
-        fingers: [3, 4, 1, 2, null, null],
+        frets: ['x', 'x', 2, 4, 3, 3],
+        fingers: [null, null, 1, 4, 2, 3],
         barres: [],
         tips: ['4th string root', 'Compact voicing']
       },
@@ -605,8 +605,8 @@ export const MIN7_CHORDS: StaticChord[] = [
       {
         id: 'Am7-Root4',
         shapeName: 'Root-4',
-        frets: [8, 9, 7, 8, 'x', 'x'],
-        fingers: [3, 4, 1, 2, null, null],
+        frets: ['x', 'x', 7, 9, 8, 8],
+        fingers: [null, null, 1, 4, 2, 3],
         barres: [],
         tips: ['4th string root', 'Compact voicing']
       }

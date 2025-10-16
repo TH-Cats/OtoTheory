@@ -22,8 +22,9 @@ const NOTE_INDEX: Record<string, number> = {
   'F#': 6, 'G': 7, 'G#': 8, 'Ab': 8, 'A': 9, 'A#': 10, 'Bb': 10, 'B': 11
 };
 
-// Open strings (E A D G B E)
-const OPEN_STRINGS = ['E', 'A', 'D', 'G', 'B', 'E'];
+// Open strings (1st to 6th: high E to low E)
+// Array index 0 = 1st string (high E), index 5 = 6th string (low E)
+const OPEN_STRINGS = ['E', 'B', 'G', 'D', 'A', 'E'];
 
 // Get note name for a fret on a string
 function getNoteName(stringIdx: number, fret: number): string {
@@ -90,8 +91,10 @@ export function ChordDiagram({ frets, fingers, barres = [], root, displayMode, w
 
   const barreEls = barres.map((b,i) => {
     const x = xForFret(b.fret);
-    const y1 = yForString(6 - b.fromString);
-    const y2 = yForString(6 - b.toString);
+    // b.fromString and b.toString are 1-indexed (1=high E, 6=low E)
+    // Convert to 0-indexed for yForString
+    const y1 = yForString(b.fromString - 1);
+    const y2 = yForString(b.toString - 1);
     const y = Math.min(y1, y2) - 10;
     const h = Math.abs(y2 - y1) + 20;
     return <rect key={`barre${i}`} x={x-10} y={y} width={20} height={h} rx={10} fill="#2dd4bf" opacity={0.3} />;
