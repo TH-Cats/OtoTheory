@@ -98,7 +98,8 @@ enum ChordLibraryQuality: String, CaseIterable, Identifiable {
     var id: String { rawValue }
     
     var displayName: String {
-        rawValue  // Empty string for Major, otherwise use rawValue
+        // Display "M" for empty string (Major)
+        rawValue.isEmpty ? "M" : rawValue
     }
     
     /// Pro-only qualities (for Progression Add restriction)
@@ -265,10 +266,12 @@ struct ChordShape: Identifiable, Codable {
     
     /// Convert to MIDI note numbers (E2=40 for 6th string open)
     func toMIDINotes(rootSemitone: Int) -> [UInt8] {
-        let openStrings = [40, 45, 50, 55, 59, 64] // E2, A2, D3, G3, B3, E4
+        // Open strings: 6th to 1st (E2, A2, D3, G3, B3, E4)
+        let openStrings = [40, 45, 50, 55, 59, 64]
         var notes: [UInt8] = []
         
-        for (index, fretStr) in frets.reversed().enumerated() {
+        // frets array is already 6th to 1st, no need to reverse
+        for (index, fretStr) in frets.enumerated() {
             if fretStr == "x" { continue }
             let fret = Int(fretStr) ?? 0
             let midiNote = openStrings[index] + fret

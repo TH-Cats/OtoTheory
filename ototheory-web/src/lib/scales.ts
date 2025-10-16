@@ -50,12 +50,12 @@ export function getScalePitches(root: Pc, type: ScaleId): Pc[] {
 
 export function scaleTypeLabel(t: ScaleId | ScaleType): string {
   const map: Record<ScaleType,string> = {
-    Ionian: 'Major',
+    Ionian: 'major scale',
     Dorian: 'Dorian',
     Phrygian: 'Phrygian',
     Lydian: 'Lydian',
     Mixolydian: 'Mixolydian',
-    Aeolian: 'Minor',
+    Aeolian: 'natural minor scale',
     Locrian: 'Locrian',
     HarmonicMinor: 'Harmonic Minor',
     MelodicMinor: 'Melodic Minor',

@@ -714,7 +714,7 @@ struct ProgressionView: View {
                                     HStack {
                                         // Key & Mode
                                         VStack(alignment: .leading, spacing: 4) {
-                                            Text("\(candidate.tonic) \(candidate.mode)")
+                                            Text("\(candidate.tonic) \(scaleTypeToDisplayName(candidate.mode))")
                                                 .font(.body)
                                                 .fontWeight(selectedKeyIndex == index ? .bold : .semibold)
                                                 .foregroundColor(.primary)
@@ -808,7 +808,7 @@ struct ProgressionView: View {
                         // Info section
                         VStack(alignment: .leading, spacing: 4) {
                             // Key & Scale
-                            Text("\(key.tonic) \(scale.type)")
+                            Text("\(key.tonic) \(scaleTypeToDisplayName(scale.type))")
                                 .font(.system(size: 16, weight: .bold))
                                 .foregroundColor(.white)
                             
@@ -1950,12 +1950,12 @@ struct ProgressionView: View {
     
     private func scaleTypeToDisplayName(_ type: String) -> String {
         switch type {
-        case "Ionian": return "Major Scale"
+        case "Ionian": return "major scale"
         case "Dorian": return "Dorian"
         case "Phrygian": return "Phrygian"
         case "Lydian": return "Lydian"
         case "Mixolydian": return "Mixolydian"
-        case "Aeolian": return "Natural Minor"
+        case "Aeolian": return "natural minor scale"
         case "Locrian": return "Locrian"
         case "HarmonicMinor": return "Harmonic Minor"
         case "MelodicMinor": return "Melodic Minor"
@@ -2551,12 +2551,12 @@ struct ScaleCandidateButton: View {
     
     private func scaleTypeToDisplayName(_ type: String) -> String {
         switch type {
-        case "Ionian": return "Major Scale"
+        case "Ionian": return "major scale"
         case "Dorian": return "Dorian"
         case "Phrygian": return "Phrygian"
         case "Lydian": return "Lydian"
         case "Mixolydian": return "Mixolydian"
-        case "Aeolian": return "Natural Minor"
+        case "Aeolian": return "natural minor scale"
         case "Locrian": return "Locrian"
         case "HarmonicMinor": return "Harmonic Minor"
         case "MelodicMinor": return "Melodic Minor"
