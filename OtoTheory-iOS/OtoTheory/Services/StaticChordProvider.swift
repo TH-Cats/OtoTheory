@@ -145,12 +145,12 @@ let STATIC_CHORDS: [StaticChord] = [
                 barres: [StaticBarre(fret: 4, fromString: 1, toString: 5, finger: .one)],
                 tips: ["5th string root", "Standard m7 A-shape"]
             ),
-            // Root-4 (9-12fr): 12-12-12-9-x-x
+            // Root-4 (11-13fr): 13-12-13-11-x-x
             StaticForm(
                 id: "C#m7-4-Root4",
                 shapeName: "Root-4",
-                frets: [F(12), F(12), F(12), F(9), .x, .x],
-                fingers: [.three, .two, .four, .one, nil, nil],
+                frets: [F(13), F(12), F(13), F(11), .x, .x],
+                fingers: [.four, .two, .three, .one, nil, nil],
                 barres: [],
                 tips: ["4th string root", "High position"]
             )
@@ -1319,14 +1319,14 @@ let STATIC_CHORDS: [StaticChord] = [
                 barres: [StaticBarre(fret: 5, fromString: 1, toString: 5, finger: .one)],
                 tips: ["5th string root", "Standard m7 A-shape"]
             ),
-            // Root-4 (10-12fr): 12-10-10-10-x-x (mini barre on 2-4)
+            // Root-4 (12-14fr): 14-13-14-12-x-x
             StaticForm(
                 id: "Dm7-4-Root4",
                 shapeName: "Root-4",
-                frets: [F(12), F(10), F(10), F(10), .x, .x],
-                fingers: [.four, .one, .one, .one, nil, nil],
-                barres: [StaticBarre(fret: 10, fromString: 2, toString: 4, finger: .one)],
-                tips: ["4th string root", "Mini-barre on strings 2-4"]
+                frets: [F(14), F(13), F(14), F(12), .x, .x],
+                fingers: [.four, .two, .three, .one, nil, nil],
+                barres: [],
+                tips: ["4th string root", "Compact voicing"]
             )
         ]
     ),
@@ -3479,12 +3479,12 @@ let STATIC_CHORDS: [StaticChord] = [
                 barres: [StaticBarre(fret: 3, fromString: 1, toString: 5, finger: .one)],
                 tips: ["5th string root", "Standard m7 A-shape"]
             ),
-            // Root-4 (8-11fr): 11-11-11-8-x-x
+            // Root-4 (10-12fr): 12-11-12-10-x-x
             StaticForm(
                 id: "Cm7-3-Root4",
                 shapeName: "Root-4",
-                frets: [F(11), F(11), F(11), F(8), .x, .x],
-                fingers: [.three, .two, .four, .one, nil, nil],
+                frets: [F(12), F(11), F(12), F(10), .x, .x],
+                fingers: [.four, .two, .three, .one, nil, nil],
                 barres: [],
                 tips: ["4th string root", "High position"]
             )
