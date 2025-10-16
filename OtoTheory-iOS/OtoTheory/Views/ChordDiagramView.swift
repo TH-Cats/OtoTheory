@@ -110,17 +110,17 @@ struct ChordDiagramView: View {
                         let circle = Circle().path(in: CGRect(x: x - 6, y: y - 6, width: 12, height: 12))
                         context.stroke(circle, with: .color(.green), lineWidth: 2)
                         
-                        // Display text for open strings (roman or note)
+                        // Display text for open strings (roman or note) - always show in roman/note mode
                         if displayMode == .roman || displayMode == .note {
                             let displayText = getDisplayText(stringIndex: stringIndex, fretStr: fretStr)
-                            if !displayText.isEmpty {
-                                let text = Text(displayText)
-                                    .font(.system(size: 10))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.green)
-                                // Position text above the open circle to avoid nut overlap
-                                context.draw(text, at: CGPoint(x: x, y: y - 18))
-                            }
+                            // Debug: always try to draw text even if empty
+                            let finalText = displayText.isEmpty ? "?" : displayText
+                            let text = Text(finalText)
+                                .font(.system(size: 11))
+                                .fontWeight(.bold)
+                                .foregroundColor(.green)
+                            // Position text above the open circle, aligned with this string's y position
+                            context.draw(text, at: CGPoint(x: x, y: y - 20))
                         }
                     } else if let fret = Int(fretStr), fret > 0 {
                         let x = xForFret(fret)
