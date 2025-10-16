@@ -115,23 +115,25 @@ struct ChordDiagramView: View {
                             let displayText = getDisplayText(stringIndex: stringIndex, fretStr: fretStr)
                             if !displayText.isEmpty {
                                 let text = Text(displayText)
-                                    .font(.system(size: 9))
-                                    .fontWeight(.semibold)
+                                    .font(.system(size: 10))
+                                    .fontWeight(.bold)
                                     .foregroundColor(.green)
-                                // Position text to the right of the open circle
-                                context.draw(text, at: CGPoint(x: x + 15, y: y))
+                                // Position text above the open circle to avoid nut overlap
+                                context.draw(text, at: CGPoint(x: x, y: y - 18))
                             }
                         }
                     } else if let fret = Int(fretStr), fret > 0 {
                         let x = xForFret(fret)
-                        let circle = Circle().path(in: CGRect(x: x - 12, y: y - 12, width: 24, height: 24))
+                        // Larger dot size: 32x32 (was 24x24)
+                        let dotRadius: CGFloat = 16
+                        let circle = Circle().path(in: CGRect(x: x - dotRadius, y: y - dotRadius, width: dotRadius * 2, height: dotRadius * 2))
                         context.fill(circle, with: .color(.blue))
                         context.stroke(circle, with: .color(.white), lineWidth: 2)
                         
                         // Pass stringIndex directly (0=1st, 5=6th)
                         let displayText = getDisplayText(stringIndex: stringIndex, fretStr: fretStr)
                         let text = Text(displayText)
-                            .font(.caption)
+                            .font(.body)  // Larger font for larger dot
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                         context.draw(text, at: CGPoint(x: x, y: y))
@@ -143,11 +145,12 @@ struct ChordDiagramView: View {
                     let x = xForFret(barre.fret)
                     let y1 = yForString(6 - barre.fromString)
                     let y2 = yForString(6 - barre.toString)
-                    let y = min(y1, y2) - 10
-                    let h = abs(y2 - y1) + 20
+                    let y = min(y1, y2) - 14
+                    let h = abs(y2 - y1) + 28
                     
-                    let barreRect = CGRect(x: x - 10, y: y, width: 20, height: h)
-                    context.fill(Path(roundedRect: barreRect, cornerRadius: 10), with: .color(Color.teal.opacity(0.3)))
+                    // Wider barre to match larger dots
+                    let barreRect = CGRect(x: x - 14, y: y, width: 28, height: h)
+                    context.fill(Path(roundedRect: barreRect, cornerRadius: 14), with: .color(Color.teal.opacity(0.3)))
                 }
             }
         }
