@@ -30,15 +30,36 @@ class StaticChordProvider: ObservableObject {
     
     /// Find chord by root and quality
     func findChord(root: String, quality: String) -> StaticChord? {
-        // Build symbol (e.g., "C" + "m7" = "Cm7")
+        // Quality mapping: ChordLibraryQuality rawValue -> Static data quality
+        let qualityMap: [String: String] = [
+            "": "M",           // Empty string = Major
+            "M": "M",          // Major
+            "maj7": "M7",      // Major 7th
+            "m": "m",          // minor
+            "m7": "m7",        // minor 7th
+            "7": "7",          // Dominant 7th
+            "dim": "dim",      // Diminished
+            "dim7": "dim7",    // Diminished 7th
+            "m7b5": "m7-5",    // Half-diminished
+            "sus4": "sus4",    // Suspended 4th
+            "sus2": "sus2",    // Suspended 2nd
+            "add9": "add9",    // Add 9th
+            "6": "6",          // Sixth
+            "aug": "aug"       // Augmented
+        ]
+        
+        // Map quality to static data format
+        let mappedQuality = qualityMap[quality] ?? quality
+        
+        // Build symbol (e.g., "C" + "M7" = "CM7")
         var symbol = root
         
         // Handle major chord (empty or "M" quality)
-        if quality.isEmpty || quality == "M" {
+        if mappedQuality.isEmpty || mappedQuality == "M" {
             // Just use root (e.g., "C")
             symbol = root
         } else {
-            symbol = root + quality
+            symbol = root + mappedQuality
         }
         
         // Find chord with matching symbol
@@ -370,19 +391,38 @@ let STATIC_CHORDS: [StaticChord] = [
     
     // MARK: - M7 (Major 7th) Chords
     
-    // CM7 (Open): x32000
+    // CM7: Multiple forms
     StaticChord(
         id: "CM7",
         symbol: "CM7",
         quality: "M7",
         forms: [
+            // Open form
             StaticForm(
                 id: "CM7-1",
                 shapeName: nil,
-                frets: [.open, .open, .open, F(2), F(3), .x],  // 1→6
+                frets: [.open, .open, .open, F(2), F(3), .x],  // 1→6: x32000
                 fingers: [nil, nil, nil, .one, .two, nil],
                 barres: [],
                 tips: ["Rich C major 7th", "Open strings"]
+            ),
+            // Root-5 Barre (3fr)
+            StaticForm(
+                id: "CM7-2",
+                shapeName: nil,
+                frets: [F(3), F(5), F(4), F(5), F(3), .x],  // 1→6: x35453
+                fingers: [.one, .three, .two, .four, .one, nil],
+                barres: [StaticBarre(fret: 3, fromString: 1, toString: 5, finger: .one)],
+                tips: ["Barre form", "5th string root"]
+            ),
+            // Root-6 Barre (8fr)
+            StaticForm(
+                id: "CM7-3",
+                shapeName: nil,
+                frets: [F(8), F(10), F(9), F(10), F(8), F(8)],  // 1→6: 8 10 9 10 8 8
+                fingers: [.one, .three, .two, .four, .one, .one],
+                barres: [StaticBarre(fret: 8, fromString: 1, toString: 6, finger: .one)],
+                tips: ["Full barre", "6th string root"]
             )
         ]
     ),
