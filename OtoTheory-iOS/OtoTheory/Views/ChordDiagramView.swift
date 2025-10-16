@@ -110,23 +110,23 @@ struct ChordDiagramView: View {
                         
                         // Check if open string is the root
                         let isRoot = isRootNote(stringIndex: stringIndex, fret: 0)
-                        let circleColor: Color = isRoot ? .orange : .green
+                        let dotColor: Color = isRoot ? .orange : .blue
                         
-                        let circle = Circle().path(in: CGRect(x: x - 6, y: y - 6, width: 12, height: 12))
-                        context.stroke(circle, with: .color(circleColor), lineWidth: 2)
+                        // Draw filled dot (same as fretted notes)
+                        let dotRadius: CGFloat = 16
+                        let circle = Circle().path(in: CGRect(x: x - dotRadius, y: y - dotRadius, width: dotRadius * 2, height: dotRadius * 2))
+                        context.fill(circle, with: .color(dotColor))
+                        context.stroke(circle, with: .color(.white), lineWidth: 2)
                         
-                        // Display text for open strings (roman or note) - always show in roman/note mode
-                        if displayMode == .roman || displayMode == .note {
-                            let displayText = getDisplayText(stringIndex: stringIndex, fretStr: fretStr)
-                            // Debug: always try to draw text even if empty
-                            let finalText = displayText.isEmpty ? "?" : displayText
-                            let text = Text(finalText)
-                                .font(.system(size: 11))
-                                .fontWeight(.bold)
-                                .foregroundColor(circleColor)
-                            // Position text above the open circle, aligned with this string's y position
-                            context.draw(text, at: CGPoint(x: x, y: y - 20))
-                        }
+                        // Always show roman/note text inside the dot
+                        let displayText = getDisplayText(stringIndex: stringIndex, fretStr: fretStr)
+                        let finalText = displayText.isEmpty ? "?" : displayText
+                        let text = Text(finalText)
+                            .font(.body)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                        // Position text at center of dot
+                        context.draw(text, at: CGPoint(x: x, y: y))
                     } else if let fret = Int(fretStr), fret > 0 {
                         let x = xForFret(fret)
                         // Larger dot size: 32x32 (was 24x24)

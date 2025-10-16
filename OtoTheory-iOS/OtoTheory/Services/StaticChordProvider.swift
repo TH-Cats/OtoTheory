@@ -891,8 +891,8 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Cm-4-Root4",
                 shapeName: "Root-4",
-                frets: [F(10), .x, F(12), F(10), .x, .x],
-                fingers: [.one, nil, .four, .two, nil, nil],
+                frets: [F(11), .x, F(12), F(10), .x, .x],
+                fingers: [.two, nil, .four, .one, nil, nil],
                 barres: [],
                 tips: ["4弦ルート", "ハイポジション"]
             ),
@@ -945,8 +945,8 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "C#m-3-Root4",
                 shapeName: "Root-4",
-                frets: [F(11), .x, F(13), F(11), .x, .x],
-                fingers: [.one, nil, .four, .two, nil, nil],
+                frets: [F(12), .x, F(13), F(11), .x, .x],
+                fingers: [.two, nil, .four, .one, nil, nil],
                 barres: [],
                 tips: ["4弦ルート", "ハイポジション"]
             ),
@@ -1008,8 +1008,8 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Dm-4-Root4",
                 shapeName: "Root-4",
-                frets: [F(12), .x, F(14), F(12), .x, .x],
-                fingers: [.one, nil, .four, .two, nil, nil],
+                frets: [F(13), .x, F(14), F(12), .x, .x],
+                fingers: [.two, nil, .four, .one, nil, nil],
                 barres: [],
                 tips: ["4弦ルート", "ハイポジション"]
             ),
