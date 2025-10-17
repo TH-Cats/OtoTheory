@@ -14,6 +14,7 @@ import { GoogleTagManagerHead, GoogleTagManagerBody } from "@/components/GoogleT
 import Script from "next/script";
 import LangToggle from "@/components/LangToggle";
 import FooterNav from "@/components/FooterNav.client";
+import { HomePageStructuredData, AppStructuredData } from "@/components/StructuredData";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -120,6 +121,8 @@ export default function RootLayout({
         </footer>
 
         <GoogleAnalytics />
+        <HomePageStructuredData />
+        <AppStructuredData />
         </ProProvider>
       </body>
     </html>

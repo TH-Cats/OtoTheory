@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.ototheory.com';
-  const lastModified = new Date('2025-10-14'); // 多言語対応 + Chord Library 独立化
+  const lastModified = new Date(); // 現在の日付に更新
 
   // 全ページのパス定義（英語・日本語の両方を自動生成）
   const pages = [

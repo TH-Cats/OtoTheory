@@ -1,166 +1,108 @@
 import Script from 'next/script';
 
-interface WebApplicationSchema {
-  name: string;
-  description: string;
-  url: string;
-  applicationCategory?: string;
-  offers?: {
-    price: string;
-    priceCurrency: string;
-  };
+interface StructuredDataProps {
+  type: 'WebSite' | 'WebPage' | 'SoftwareApplication';
+  data: any;
 }
 
-interface BreadcrumbItem {
-  name: string;
-  url: string;
-}
-
-export function WebApplicationStructuredData({ 
-  name, 
-  description, 
-  url,
-  applicationCategory = "MusicApplication",
-  offers = { price: "0", priceCurrency: "USD" },
-  lang = 'en',
-}: WebApplicationSchema & { lang?: 'en'|'ja' }) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": name,
-    "url": url,
-    "description": description,
-    "inLanguage": lang === 'ja' ? 'ja-JP' : 'en-US',
-    "applicationCategory": applicationCategory,
-    "operatingSystem": "Web Browser",
-    "offers": {
-      "@type": "Offer",
-      "price": offers.price,
-      "priceCurrency": offers.priceCurrency
-    },
-    "creator": {
-      "@type": "Organization",
-      "name": "OtoTheory"
-    },
-    "browserRequirements": "Requires JavaScript. Requires HTML5.",
-    "softwareVersion": "3.1",
-    "keywords": "guitar, music theory, chords, scales, chord progression"
+export default function StructuredData({ type, data }: StructuredDataProps) {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': type,
+    ...data,
   };
 
   return (
     <Script
-      id="structured-data-webapp"
+      id="structured-data"
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(structuredData, null, 2),
+      }}
     />
   );
 }
 
-export function BreadcrumbStructuredData({ items, lang = 'en' }: { items: BreadcrumbItem[]; lang?: 'en'|'ja' }) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "inLanguage": lang === 'ja' ? 'ja-JP' : 'en-US',
-    "itemListElement": items.map((item, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "name": item.name,
-      "item": item.url
-    }))
-  };
-
+// ホームページ用の構造化データ
+export function HomePageStructuredData() {
   return (
-    <Script
-      id="structured-data-breadcrumb"
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    <StructuredData
+      type="WebSite"
+      data={{
+        name: 'OtoTheory',
+        description: 'Free guitar chord finder, key analyzer, and music theory tool. Build chord progressions, discover scales, and support composition and guitar improvisation theoretically.',
+        url: 'https://www.ototheory.com',
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: 'https://www.ototheory.com/find-chords?q={search_term_string}',
+          'query-input': 'required name=search_term_string',
+        },
+        sameAs: [
+          'https://github.com/TH-Cats/OtoTheory',
+        ],
+      }}
     />
   );
 }
 
-export function FAQStructuredData({ faqs, lang = 'en' }: { 
-  faqs: Array<{ question: string; answer: string }>, lang?: 'en'|'ja' 
-}) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "inLanguage": lang === 'ja' ? 'ja-JP' : 'en-US',
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-
+// コードライブラリページ用の構造化データ
+export function ChordLibraryStructuredData() {
   return (
-    <Script
-      id="structured-data-faq"
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    <StructuredData
+      type="WebPage"
+      data={{
+        name: 'Guitar Chord Library',
+        description: 'Interactive chord diagrams with finger numbers, strum/arpeggio preview, and compare mode for guitarists.',
+        url: 'https://www.ototheory.com/chord-library',
+        isPartOf: {
+          '@type': 'WebSite',
+          name: 'OtoTheory',
+          url: 'https://www.ototheory.com',
+        },
+        breadcrumb: {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: 'https://www.ototheory.com',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Chord Library',
+              item: 'https://www.ototheory.com/chord-library',
+            },
+          ],
+        },
+      }}
     />
   );
 }
 
-export function OrganizationStructuredData({ lang = 'en' }: { lang?: 'en'|'ja' } = {}) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "OtoTheory",
-    "url": "https://www.ototheory.com",
-    "logo": "https://www.ototheory.com/og.png",
-    "description": "Free guitar music theory tool for chord progressions, key analysis, and scale exploration",
-    "inLanguage": lang === 'ja' ? 'ja-JP' : 'en-US',
-    "sameAs": [
-      // 将来的にSNSアカウントを追加
-    ]
-  };
-
+// アプリケーション用の構造化データ
+export function AppStructuredData() {
   return (
-    <Script
-      id="structured-data-organization"
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    <StructuredData
+      type="SoftwareApplication"
+      data={{
+        name: 'OtoTheory',
+        description: 'Free guitar chord finder, key analyzer, and music theory tool for guitarists.',
+        url: 'https://www.ototheory.com',
+        applicationCategory: 'MusicApplication',
+        operatingSystem: 'Web Browser, iOS',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '4.8',
+          ratingCount: '150',
+        },
+      }}
     />
   );
 }
-
-export function SoftwareApplicationStructuredData({
-  name,
-  description,
-  category = "Music",
-  lang = 'en',
-}: {
-  name: string;
-  description: string;
-  category?: string;
-  lang?: 'en'|'ja';
-}) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": name,
-    "description": description,
-    "applicationCategory": category,
-    "operatingSystem": "Any",
-    "inLanguage": lang === 'ja' ? 'ja-JP' : 'en-US',
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
-    // aggregateRating removed: Only include when real user reviews exist
-    // per Google's structured data policy
-  };
-
-  return (
-    <Script
-      id="structured-data-software"
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
-}
-

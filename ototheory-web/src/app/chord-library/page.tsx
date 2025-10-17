@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Client from './Client';
+import { ChordLibraryStructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Guitar Chord Library – Forms & Fingering | OtoTheory',
@@ -16,6 +17,11 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <Client />;
+  return (
+    <>
+      <ChordLibraryStructuredData />
+      <Client />
+    </>
+  );
 }
 
