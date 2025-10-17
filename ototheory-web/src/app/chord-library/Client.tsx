@@ -13,6 +13,7 @@ import { ChordCard } from '@/components/chords/ChordCard';
 import AdSlot from '@/components/AdSlot.client';
 import { tTip, tLabel } from '@/lib/i18n/chordLibrary';
 import { useLocale } from '@/lib/i18n/locale';
+import InfoDot from '@/components/ui/InfoDot';
 
 export type DisplayMode = 'finger' | 'roman' | 'note';
 
@@ -35,6 +36,19 @@ export default function Client() {
   const [showAdvanced, setShowAdvanced] = useState(false);
   const locale = useLocale();
   const t = messages[locale].chordLibrary;
+
+  const helpText = useMemo(() => {
+    const m = messages[locale].chordLibrary;
+    return {
+      finger: m.info.fingerHelp,
+      roman: m.info.romanHelp,
+      note: m.info.noteHelp,
+      summary: m.detailsSummary,
+      benefits: m.benefits,
+      tryNow: m.tryNow,
+      details: m.details,
+    } as const;
+  }, [locale]);
 
   // Try to get static chord first, fallback to generated
   const staticChord = useMemo(() => {
@@ -80,6 +94,54 @@ export default function Client() {
         <p className={styles['sub']}>
           {t.sub}
         </p>
+
+        {/* Benefit strip: concise value props */}
+        <div className={styles['benefit-strip']} role="list" aria-label={locale==='ja' ? 'このページでできること' : 'What you can do here'}>
+          {helpText.benefits.map((b, i) => (
+            <div role="listitem" key={i} className={styles['benefit-item']}>{b}</div>
+          ))}
+          <a href="#forms" className={styles['benefit-cta']} aria-label={helpText.tryNow}>{helpText.tryNow}</a>
+        </div>
+
+        {/* Collapsible long description for SEO, default closed */}
+        <details className={styles['details-card']}>
+          <summary>{helpText.summary}</summary>
+          <div className={styles['details-body']}>
+            <div className={styles['details-grid']}>
+              <section>
+                <h4>{helpText.details.how.title}</h4>
+                <ul>
+                  {helpText.details.how.bullets.map((b, i) => (
+                    <li key={`how-${i}`}>
+                      {b}
+                      {i === 1 && (
+                        <span className={styles['inline-help']}> <InfoDot text={helpText.finger} ariaLabel={locale==='ja' ? '指番号の説明' : 'About finger numbers'} /> </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+              <section>
+                <h4>{helpText.details.forms.title}</h4>
+                <ul>
+                  {helpText.details.forms.bullets.map((b, i) => (<li key={`forms-${i}`}>{b}</li>))}
+                </ul>
+              </section>
+              <section>
+                <h4>{helpText.details.visual.title}</h4>
+                <ul>
+                  {helpText.details.visual.bullets.map((b, i) => (<li key={`visual-${i}`}>{b}</li>))}
+                </ul>
+              </section>
+              <section>
+                <h4>{helpText.details.more.title}</h4>
+                <ul>
+                  {helpText.details.more.bullets.map((b, i) => (<li key={`more-${i}`}>{b}</li>))}
+                </ul>
+              </section>
+            </div>
+          </div>
+        </details>
 
         <div
           ref={rootWrapRef}
@@ -167,6 +229,7 @@ export default function Client() {
                 className={`${styles['mode-btn']} ${displayMode === 'finger' ? styles['mode-btn--active'] : ''}`}
                 onClick={() => setDisplayMode('finger')}
                 aria-pressed={displayMode === 'finger'}
+                aria-label={locale==='ja' ? '指番号を表示' : 'Show finger numbers'}
               >
                 {t.finger}
               </button>
@@ -174,6 +237,7 @@ export default function Client() {
                 className={`${styles['mode-btn']} ${displayMode === 'roman' ? styles['mode-btn--active'] : ''}`}
                 onClick={() => setDisplayMode('roman')}
                 aria-pressed={displayMode === 'roman'}
+                aria-label={locale==='ja' ? '度数を表示' : 'Show intervals'}
               >
                 {t.roman}
               </button>
@@ -181,15 +245,22 @@ export default function Client() {
                 className={`${styles['mode-btn']} ${displayMode === 'note' ? styles['mode-btn--active'] : ''}`}
                 onClick={() => setDisplayMode('note')}
                 aria-pressed={displayMode === 'note'}
+                aria-label={locale==='ja' ? '音名を表示' : 'Show note names'}
               >
                 {t.note}
               </button>
+              <span className={styles['mode-help']}>
+                <InfoDot
+                  text={displayMode === 'finger' ? helpText.finger : displayMode === 'roman' ? helpText.roman : helpText.note}
+                  ariaLabel={locale==='ja' ? '表示モードの説明' : 'About display modes'}
+                />
+              </span>
             </div>
           </div>
         </div>
       </header>
 
-      <section key={`${root}-${quality}`} className={styles['grid-3']} aria-label="Chord forms">
+      <section id="forms" key={`${root}-${quality}`} className={styles['grid-3']} aria-label="Chord forms">
         {entry.shapes.map((shape, index) => (
           <div className={styles['grid-3__col']} key={`${root}-${quality}-${index}`}>
             <ChordCard 
