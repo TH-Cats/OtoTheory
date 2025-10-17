@@ -1,69 +1,147 @@
 {
   "input": "/Users/nh/App/OtoTheory/docs/content/Chord Library Mastar.csv",
-  "timestamp": "2025-10-17T01:06:41.612Z",
+  "timestamp": "2025-10-17T05:05:30.527Z",
   "totals": {
-    "rows": 109,
-    "chords": 34,
-    "groupsWithReorder": 2,
-    "shapeIssueCount": 0,
-    "toneIssueCount": 0,
-    "duplicates": 4
+    "rows": 347,
+    "chords": 97,
+    "groupsWithReorder": 6,
+    "shapeIssueCount": 2,
+    "toneIssueCount": 8,
+    "duplicates": 0
   },
   "issues": [
     {
-      "chord": "E",
-      "formId": "E-2-Root6",
-      "shape": "Root-6",
-      "type": "duplicate_open_plus_12",
-      "suggestedShell": [
-        "x",
-        12,
-        13,
-        13,
-        "x",
-        12
-      ]
+      "line": 185,
+      "chord": "Ddim",
+      "symbol": "Ddim",
+      "formId": "Ddim-1",
+      "shape": "",
+      "type": "unknown_shape"
     },
     {
+      "line": 186,
+      "chord": "Edim",
+      "symbol": "Edim",
+      "formId": "Edim-1",
+      "shape": "",
+      "type": "unknown_shape"
+    },
+    {
+      "line": 65,
       "chord": "A",
+      "symbol": "A",
+      "quality": "M",
+      "shape": "Root-5",
       "formId": "A-3-Root5",
-      "shape": "Root-5",
-      "type": "duplicate_open_plus_12",
-      "suggestedShell": [
-        "x",
-        "x",
-        9,
-        9,
-        "x",
-        7
+      "type": "tone_mismatch",
+      "missing": [
+        4
+      ],
+      "foreign": [
+        8,
+        5
       ]
     },
     {
+      "line": 70,
       "chord": "Am",
-      "formId": "Am-3-Root5",
+      "symbol": "Am",
+      "quality": "m",
       "shape": "Root-5",
-      "type": "duplicate_open_plus_12",
-      "suggestedShell": [
-        "x",
-        "x",
-        9,
-        9,
-        "x",
-        7
+      "formId": "Am-3-Root5",
+      "type": "tone_mismatch",
+      "missing": [
+        4
+      ],
+      "foreign": [
+        8,
+        5
       ]
     },
     {
-      "chord": "Em",
-      "formId": "Em-2-Root6",
-      "shape": "Root-6",
-      "type": "duplicate_open_plus_12",
-      "suggestedShell": [
-        "x",
-        12,
-        13,
-        13,
-        "x",
-        12
+      "line": 127,
+      "chord": "A7",
+      "symbol": "A7",
+      "quality": "7",
+      "shape": "Root-5",
+      "formId": "A7-3-Root-5",
+      "type": "tone_mismatch",
+      "missing": [
+        4
+      ],
+      "foreign": []
+    },
+    {
+      "line": 131,
+      "chord": "B7",
+      "symbol": "B7",
+      "quality": "7",
+      "shape": "Root-5",
+      "formId": "B7-3-Root-5",
+      "type": "tone_mismatch",
+      "missing": [
+        11,
+        3,
+        9
+      ],
+      "foreign": [
+        1,
+        10,
+        4
+      ]
+    },
+    {
+      "line": 133,
+      "chord": "C7",
+      "symbol": "C7",
+      "quality": "7",
+      "shape": "Open",
+      "formId": "C7-1-Open",
+      "type": "tone_mismatch",
+      "missing": [
+        7
+      ],
+      "foreign": []
+    },
+    {
+      "line": 140,
+      "chord": "D7",
+      "symbol": "D7",
+      "quality": "7",
+      "shape": "Root-4",
+      "formId": "D7-4-Root-4",
+      "type": "tone_mismatch",
+      "missing": [
+        0
+      ],
+      "foreign": []
+    },
+    {
+      "line": 144,
+      "chord": "E7",
+      "symbol": "E7",
+      "quality": "7",
+      "shape": "Root-4",
+      "formId": "E7-4-Root-4",
+      "type": "tone_mismatch",
+      "missing": [
+        11
+      ],
+      "foreign": []
+    },
+    {
+      "line": 149,
+      "chord": "F7",
+      "symbol": "F7",
+      "quality": "7",
+      "shape": "Root-4",
+      "formId": "F7-3-Root-4",
+      "type": "tone_mismatch",
+      "missing": [
+        3
+      ],
+      "foreign": [
+        2
       ]
     }
   ]

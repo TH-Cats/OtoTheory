@@ -10,28 +10,25 @@ const CSV_PATH = '/Users/nh/App/OtoTheory/docs/content/Chord Library Mastar.csv'
 function read(p){ return fs.readFileSync(p,'utf8'); }
 
 function parse7(sw){
-  const chordBlockRe = /StaticChord\([\s\S]*?symbol:\s*"([A-G]#?)7"[\s\S]*?quality:\s*"7"[\s\S]*?forms:\s*\[([\s\S]*?)\][\s\S]*?\)/g;
-  const formRe = /StaticForm\([\s\S]*?id:\s*"([A-G]#?7)-(\d+)-(Open|Root6|Root-6|Root5|Root-5|Root4|Root-4)"[\s\S]*?shapeName:\s*"?(Open|Root-6|Root-5|Root-4)"?[\s\S]*?frets:\s*\[(.*?)\][\s\S]*?fingers:\s*\[(.*?)\][\s\S]*?barres:/g;
-  const res=[]; let m;
-  while((m = chordBlockRe.exec(sw))){
-    const symbol = m[1]+"7"; const formsBlock = m[2];
-    let fm;
-    while((fm = formRe.exec(formsBlock))){
-      const seq = fm[2];
-      const shape = fm[4];
-      const fretsRaw = fm[5];
-      const fingersRaw = fm[6];
-      const frets = fretsRaw.split(',').map(s=>s.trim()).map(s=>{
-        if (s === '.x') return 'x';
-        if (s === '.open') return '0';
-        const mm = /F\((\d+)\)/.exec(s);
-        return mm ? mm[1] : '';
-      });
-      const map={'.one':'1','.two':'2','.three':'3','.four':'4'};
-      const fingers = fingersRaw.split(',').map(s=>s.trim()).map(s=> map[s] ?? '-');
-      const pad6=a=>{while(a.length<6)a.push('');return a.slice(0,6)};
-      res.push({ symbol, shape, seq, frets: pad6(frets), fingers: pad6(fingers) });
-    }
+  // Simpler global scan: find any StaticForm whose id begins with [A-G]#?7-
+  const formRe = /StaticForm\([\s\S]*?id:\s*"([A-G]#?7)-(\d+)-(Open|Root6|Root-6|Root5|Root-5|Root4|Root-4)"[\s\S]*?shapeName:\s*"?(Open|Root-6|Root-5|Root-4|Open)"?[\s\S]*?frets:\s*\[(.*?)\][\s\S]*?fingers:\s*\[(.*?)\][\s\S]*?barres:/g;
+  const res=[]; let fm;
+  while((fm = formRe.exec(sw))){
+    const symbol = fm[1];
+    const seq = fm[2];
+    const shape = fm[4].replace('Root6','Root-6').replace('Root5','Root-5').replace('Root4','Root-4');
+    const fretsRaw = fm[5];
+    const fingersRaw = fm[6];
+    const frets = fretsRaw.split(',').map(s=>s.trim()).map(s=>{
+      if (s === '.x') return 'x';
+      if (s === '.open') return '0';
+      const mm = /F\((\d+)\)/.exec(s);
+      return mm ? mm[1] : '';
+    });
+    const map={'.one':'1','.two':'2','.three':'3','.four':'4'};
+    const fingers = fingersRaw.split(',').map(s=>s.trim()).map(s=> map[s] ?? '-');
+    const pad6=a=>{while(a.length<6)a.push('');return a.slice(0,6)};
+    res.push({ symbol, shape, seq, frets: pad6(frets), fingers: pad6(fingers) });
   }
   return res;
 }
