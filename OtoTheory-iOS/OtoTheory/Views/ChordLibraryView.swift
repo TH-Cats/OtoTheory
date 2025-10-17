@@ -16,7 +16,6 @@ struct ChordLibraryView: View {
     @State private var selectedRoot: ChordRoot = .C
     @State private var selectedQuality: ChordLibraryQuality = .M
     @State private var displayMode: ChordDisplayMode = .finger
-    @State private var showAdvanced: Bool = false
     @State private var currentShapeIndex: Int = 0
     @State private var showMyForms: Bool = false
     @State private var showFullscreen: Bool = false
@@ -150,61 +149,21 @@ struct ChordLibraryView: View {
     
     private var qualitySelectorSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Text("Quality")
-                    .font(.headline)
-                
-                Spacer()
-                
-                Button(action: {
-                    withAnimation {
-                        showAdvanced.toggle()
-                    }
-                }) {
-                    HStack {
-                        Text(showAdvanced ? "Show Less" : "Show Advanced")
-                            .font(.caption)
-                        Image(systemName: showAdvanced ? "chevron.up" : "chevron.down")
-                            .font(.caption)
-                    }
-                }
-            }
-            
-            // Quick qualities
+            Text("Quality")
+                .font(.headline)
+
+            // All qualities (basic + advanced) in one horizontal row
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
-                    ForEach([ChordLibraryQuality.M, .m, .seven, .M7, .m7, .dim, .sus4], id: \.self) { quality in
+                    ForEach(ChordLibraryQuality.allCases, id: \.self) { quality in
                         qualityChip(quality)
                     }
-                }
-            }
-            
-            // Advanced qualities
-            if showAdvanced {
-                VStack(alignment: .leading, spacing: 12) {
-                    qualitySection(title: "Extended", qualities: [.six, .m6, .nine, .M9, .m9, .eleven, .M11, .thirteen, .M13, .m13])
-                    qualitySection(title: "Altered", qualities: [.sevenb9, .sevenSharp9, .sevenb5, .sevenSharp5, .sevenSharp11])
-                    qualitySection(title: "Other", qualities: [.aug, .dim7, .m7b5, .sus2, .add9, .sixNine, .mM7])
                 }
             }
         }
     }
     
-    private func qualitySection(title: String, qualities: [ChordLibraryQuality]) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(title)
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 8) {
-                    ForEach(qualities, id: \.self) { quality in
-                        qualityChip(quality)
-                    }
-                }
-            }
-        }
-    }
+    private func qualitySection(title: String, qualities: [ChordLibraryQuality]) -> some View { EmptyView() }
     
     private func qualityChip(_ quality: ChordLibraryQuality) -> some View {
         Button(action: {
