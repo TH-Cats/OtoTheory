@@ -35,7 +35,7 @@ export type Quality =
   | '6' | 'm6'  // Sixth chords
   | '7' | 'M7' | 'm7'  // Essential sevenths
   | 'dim7' | 'm7b5'  // Diminished sevenths
-  | '9' | 'M9' | 'm9'  // Ninths
+  | '9' | 'm9'  // Ninths (M9 removed)
   | 'add9' | '6/9' | '7sus4';  // Added notes & suspensions
 
 // Advanced extensions (optional, can be toggled)
@@ -414,7 +414,7 @@ export function getIntervals(quality: Quality | AdvancedQuality): string[] {
     'm7b5': ['R', '♭III', '♭V', '♭VII'],
     // Ninths
     '9': ['R', 'III', 'V', '♭VII', 'IX'],
-    'M9': ['R', 'III', 'V', 'VII', 'IX'],
+    // 'M9' removed
     'm9': ['R', '♭III', 'V', '♭VII', 'IX'],
     // Added notes & suspensions
     'add9': ['R', 'III', 'V', 'IX'],
@@ -497,7 +497,7 @@ export function buildSymbol(root: Root, quality: Quality | AdvancedQuality): {sy
     'm7b5': { symbol: `${root}m7♭5`, display: `${root}m7♭5` },
     // Ninths
     '9': { symbol: `${root}9`, display: `${root}9` },
-    'M9': { symbol: `${root}M9`, display: `${root}M9` },
+    // 'M9' removed
     'm9': { symbol: `${root}m9`, display: `${root}m9` },
     // Added notes & suspensions
     'add9': { symbol: `${root}add9`, display: `${root}add9` },
@@ -543,7 +543,7 @@ export function generateChord(root: Root, quality: Quality | AdvancedQuality): C
     const minorSixthFamily = ['m6'];
     const domSevenFamily = ['7', '7b9', '7#9', '7b5', '7#5'];
     const minorSevenFamily = ['m7'];
-    const majSevenFamily = ['M7', 'M9'];
+  const majSevenFamily = ['M7'];
     const susFamily = ['sus2', 'sus4', '7sus4'];
     const augFamily = ['aug'];
     const dimFamily = ['dim', 'dim7', 'm7b5'];
@@ -581,7 +581,7 @@ export function generateChord(root: Root, quality: Quality | AdvancedQuality): C
   const sixthFamilyE = ['6', '6/9'];
   const minorFamilyE = ['m'];
   const minorSixthFamilyE = ['m6'];
-  const majSevenFamilyE = ['M7', 'M9'];
+  const majSevenFamilyE = ['M7'];
   const domSevenFamilyE = ['7', '9', '7b9', '7#9', '7b5', '7#5', '11', '13'];
   const minorSevenFamilyE = ['m7', 'm9'];
   const susFamilyE = ['sus2', 'sus4', '7sus4'];
@@ -621,7 +621,7 @@ export function generateChord(root: Root, quality: Quality | AdvancedQuality): C
   const sixthFamilyA = ['6', '6/9'];
   const minorFamilyA = ['m'];
   const minorSixthFamilyA = ['m6'];
-  const majSevenFamilyA = ['M7', 'M9'];
+  const majSevenFamilyA = ['M7'];
   const domSevenFamilyA = ['7', '9', '7b9', '7#9', '7b5', '7#5', '11', '13'];
   const minorSevenFamilyA = ['m7', 'm9'];
   const susFamilyA = ['sus2', 'sus4', '7sus4'];
@@ -679,7 +679,7 @@ export const QUALITIES: Quality[] = [
   '6', 'm6',  // Sixth chords (2)
   '7', 'M7', 'm7',  // Essential sevenths (3)
   'dim7', 'm7b5',  // Diminished sevenths (2)
-  '9', 'M9', 'm9',  // Ninths (3)
+  '9', 'm9',  // Ninths (M9 removed)
   'add9', '6/9', '7sus4'  // Added notes & suspensions (3)
 ];
 

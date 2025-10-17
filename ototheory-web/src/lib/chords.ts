@@ -2,7 +2,7 @@ export const QUICK_QUALITIES = ["M","m","7","M7","m7","sus4","dim"] as const;
 
 // Advanced categories
 export const ADV_EXTENSIONS = [
-  "6","m6","9","M9","m9","11","M11","13","M13"
+  "6","m6","9","m9","11","M11","13","M13"
 ] as const;
 
 export const ADV_ALTERED_DOM = [
