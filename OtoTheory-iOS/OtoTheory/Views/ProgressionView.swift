@@ -423,13 +423,38 @@ struct ProgressionView: View {
     }
     
     @ViewBuilder
+    private var sectionCards: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    ForEach(progressionStore.sectionDefinitions) { section in
+                        SectionChip(
+                            section: section,
+                            isSelected: progressionStore.currentSectionId == section.id,
+                            onTap: {
+                                progressionStore.currentSectionId = section.id
+                                // Reset cursor to first slot when switching sections
+                                cursorIndex = 0
+                            }
+                        )
+                    }
+                }
+                .padding(.horizontal)
+            }
+        }
+    }
+    
+    @ViewBuilder
     private var buildProgressionSection: some View {
         Group {
             buildProgressionHeader
             playbackControls
             sectionMarkers
             
-            // Section Picker removed - editing is handled by the Section button in the top toolbar
+            // Section Picker (if section mode is enabled) - show section cards only
+            if progressionStore.useSectionMode {
+                sectionCards
+            }
             
             slotsGrid
         }
