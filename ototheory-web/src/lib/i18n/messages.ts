@@ -20,7 +20,7 @@ export const messages = {
       tip: 'Tip: Forms with × on 1st or 6th string should not be strummed there, or lightly muted with your fretting hand.',
       // UX simplified: value props & help
       benefits: [
-        'Practical voicings: curated, ready-to-use forms',
+        'Chord forms that inspire composition and arranging',
         'Visual learning: see chord tones/intervals at a glance',
         'Try fast: play/arp with one click',
       ],
@@ -88,7 +88,7 @@ export const messages = {
       tip: 'ヒント：1弦または6弦に×が付くフォームは、その弦を弾かないか、左手で軽くミュートしてください。',
       // UX簡素化: 価値訴求とヘルプ
       benefits: [
-        '即戦力フォーム: 実用的な定番ボイシングを厳選',
+        '作曲やアレンジのヒントになるフォームを紹介',
         '視覚で理解: 構成音/度数を一目で確認',
         'すぐ試せる: ワンクリックで再生・アルペジオ',
       ],
