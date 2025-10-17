@@ -24,7 +24,7 @@ export const messages = {
         'Visual learning: see chord tones/intervals at a glance',
         'Try fast: play/arp with one click',
       ],
-      tryNow: 'Try now',
+      tryNow: '',
       detailsSummary: 'Open details (How to use · Visuals · More)',
       info: {
         fingerHelp: '1 Index, 2 Middle, 3 Ring, 4 Pinky, T Thumb',
@@ -92,7 +92,7 @@ export const messages = {
         '視覚で理解: 構成音/度数を一目で確認',
         'すぐ試せる: ワンクリックで再生・アルペジオ',
       ],
-      tryNow: '今すぐ試す',
+      tryNow: '',
       detailsSummary: '詳しい説明を開く（使い方・視覚化・その他）',
       info: {
         fingerHelp: '①人差し指 ②中指 ③薬指 ④小指 T親指',

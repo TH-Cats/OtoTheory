@@ -100,7 +100,9 @@ export default function Client() {
           {helpText.benefits.map((b, i) => (
             <div role="listitem" key={i} className={styles['benefit-item']}>{b}</div>
           ))}
-          <a href="#forms" className={styles['benefit-cta']} aria-label={helpText.tryNow}>{helpText.tryNow}</a>
+          {helpText.tryNow && (
+            <a href="#forms" className={styles['benefit-cta']} aria-label={helpText.tryNow}>{helpText.tryNow}</a>
+          )}
         </div>
 
         {/* Collapsible long description for SEO, default closed */}
