@@ -15,7 +15,7 @@ struct AdvancedChordBuilderView: View {
     let onShowPaywall: () -> Void
     
     private let roots = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-    private let extensionChords = ["6", "m6", "9", "M9", "m9", "11", "M11", "13", "M13"]
+    private let extensionChords = ["6", "m6", "9", "m9", "11", "M11", "13", "M13"]
     private let alteredDominant = ["7b5", "7#5", "7b9", "7#9", "7#11", "7b13", "7alt"]
     private let diminishedVariants = ["dim7", "m7b5"]
     private let suspensionsAdds = ["sus2", "add9", "add11", "add13", "6/9"]

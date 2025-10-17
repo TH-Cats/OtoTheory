@@ -81,7 +81,6 @@ enum ChordLibraryQuality: String, CaseIterable, Identifiable {
     
     // 9th chords
     case nine = "9"
-    case M9 = "maj9"
     case m9
     case add9
     
@@ -145,7 +144,6 @@ enum ChordLibraryQuality: String, CaseIterable, Identifiable {
         case .dim7: return [0, 3, 6, 9]
         case .m7b5: return [0, 3, 6, 10]
         case .nine: return [0, 4, 7, 10, 14]
-        case .M9: return [0, 4, 7, 11, 14]
         case .m9: return [0, 3, 7, 10, 14]
         case .add9: return [0, 4, 7, 14]
         case .eleven: return [0, 4, 7, 10, 14, 17]
