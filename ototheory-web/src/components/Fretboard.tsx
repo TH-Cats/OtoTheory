@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { SCALE_CATALOG } from "@/lib/scaleCatalog";
-import { degreeLabelFor, getScalePitches, type ScaleType } from "@/lib/scales";
+import { degreeLabelFor, degreeRomanFor, getScalePitches, type ScaleType } from "@/lib/scales";
 import { player } from "@/lib/audio/player";
 import type { FormShape, Quality } from "@/lib/chordForms";
 const PITCHES12 = ['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B'] as const;
@@ -267,7 +267,7 @@ function renderMarker({ overlay, strings, rowIdx, colIdx, isMobile }:{ overlay: 
   const showDegrees = overlay.display === 'degrees';
   const fallbackRoot = (typeof scaleRoot === 'number' ? scaleRoot : chordRootIdx);
   const label = (showDegrees)
-    ? (degreeLbl ?? fallbackDegreeLabel(spc, fallbackRoot))
+    ? ((degreeRomanFor(spc, fallbackRoot, overlay.scaleType as any) ?? degreeLbl ?? fallbackDegreeLabel(spc, fallbackRoot)))
     : PITCHES12[spc];
   const dense = (() => { const def = SCALE_CATALOG.find(s => s.id === (overlay.scaleType as any)); return (def?.degrees?.length ?? 0) > 7; })();
   const fretLabel = colIdx + 1;
@@ -336,7 +336,7 @@ function renderOpenMarker({ overlay, strings, rowIdx, isMobile }:{ overlay: Fret
   const bg = colorForDegreeLabel(false, degreeLbl, isChordTone, inScale, isRoot);
   const showDegrees = overlay.display === 'degrees';
   const label = (showDegrees)
-    ? (degreeLbl ?? fallbackDegreeLabel(spc, tonicIdx))
+    ? ((degreeRomanFor(spc, tonicIdx, overlay.scaleType as any) ?? degreeLbl ?? fallbackDegreeLabel(spc, tonicIdx)))
     : PITCHES12[spc];
   const dense = (() => { const def = SCALE_CATALOG.find(s => s.id === (overlay.scaleType as any)); return (def?.degrees?.length ?? 0) > 7; })();
   const stringNumber = rowIdx + 1;

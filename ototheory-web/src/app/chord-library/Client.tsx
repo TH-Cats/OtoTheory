@@ -61,7 +61,7 @@ export default function Client() {
       return {
         symbol: staticChord.symbol,
         display: staticChord.symbol,
-        shapes: staticChord.forms.slice(0, 3).map(convertToChordShape) as [any, any, any]
+        shapes: staticChord.forms.map(convertToChordShape) as any[]
       };
     }
     return getCachedChord(root, quality);

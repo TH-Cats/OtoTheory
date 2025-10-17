@@ -1,0 +1,55 @@
+area,key,en,ja,notes
+nav,nav.progression,Chord progression,コード進行,
+nav,nav.findChords,Find chords,コードを探す,
+nav,nav.chordLibrary,Chord Library,コード辞典,「ライブラリ」→「辞典」
+nav,nav.resources,Resources,参考,SSOT上も本表記に統一
+progression,progression.buildTitle,Build progression,コード進行を作る,
+progression,progression.chooseChords,Choose chords,コードを選ぶ,
+action,action.reset,Reset,リセット,
+nav,nav.sketches,Sketches,My進行,v3.1 用語
+nav,nav.presets,Presets,プリセット,綴り修正（Prisets→Presets）
+action,action.add,Add,追加,
+action,action.analyze,Analyze,分析,録音UIは現状非露出（Flag OFF）
+label,label.result,Result,結果,
+hint,hint.clickAnalyze,Click Analyze to see results.,分析をクリック,必要に応じて補足可
+section,section.tools,Tools,ツール,
+section,section.fretboard,Fretboard,フレットボード,綴り修正（Fretboad→Fretboard）
+label,label.key,Key,キー,
+label,label.scale,Scale,スケール,
+tone,tone.acousticSteel,Acoustic Steel,アコースティックギター,
+tone,tone.acousticNylon,Acoustic Nylon,クラシックギター,
+tone,tone.electricClean,Electric Clean,クリーントーン（エレキ）, 
+tone,tone.distortion,Distortion,ディストーション,綴り修正（Distorsion→Distortion）
+tone,tone.overDrive,Over Drive,オーバードライブ,
+tone,tone.muted,Muted,ミュート,余分スペース除去
+tone,tone.piano,Piano,ピアノ,
+fb,fb.degrees,Degrees,度数,
+fb,fb.names,Names,音名,
+section,section.diatonic,Diatonic,ダイアトニック,
+fb,fb.open,Open,オープン,
+section,section.roman,Roman,度数進行,非ヘプタ時は非表示（SSOT準拠）
+section,section.cadence,Cadence,カデンツ（終止形）, 
+scale,scale.major,Major Scale,メジャースケール,
+scale,scale.dorian,Dorian Scale,ドリアンスケール,
+scale,scale.phrygian,Phrygian Scale,フリジアンスケール,
+scale,scale.lydian,Lydian Scale,リディアンスケール,
+scale,scale.mixolydian,Mixolydian Scale,ミクソリディアンスケール,
+scale,scale.naturalMinor,Natural Minor Scale,ナチュラルマイナースケール,
+scale,scale.locrian,Locrian Scale,ロクリアンスケール,
+scale,scale.majorPentatonic,Major Pentatonic,メジャーペンタトニック,
+scale,scale.minorPentatonic,Minor Pentatonic,マイナーペンタトニック,
+scale,scale.bluesMinor,Blues Scale (minor),ブルーススケール（マイナー）, 
+scale,scale.harmonicMinor,Harmonic Minor,ハーモニックマイナー,
+scale,scale.melodicMinor,Melodic Minor Scale,メロディックマイナースケール,
+scale,scale.diminishedWholeHalf,Diminished Scale (Whole-Half),ディミニッシュスケール（ホール・ハーフ）, 
+scale,scale.diminishedHalfWhole,Diminished Scale (Half-Whole),ディミニッシュスケール（ハーフ・ホール）, 
+find,find.selectKeyScale,Select Key & Scale,キーとスケールを選択,
+label,label.scale,Scale,スケール,
+label,label.result,Result,結果,
+section,section.diatonic,Diatonic,ダイアトニック,
+fb,fb.open,Open,オープン,
+section,section.fretboard,Fretboard,フレットボード,
+fb,fb.degrees,Degrees,度数,
+fb,fb.names,Names,音名,
+chordLibrary,chordLibrary.title,Chord Library,コード辞典,
+chordLibrary,chordLibrary.sub,"Choose a Root and Quality to see 3 chord forms side by side with horizontal fretboard layout. Supports Eb, Ab, Bb and other practical keys. Hear them with ▶ Play (strum) and Arp (arpeggio).","ルートとコードタイプを選ぶと、押さえ方が横並びで複数表示されます。Eb、Ab、Bbなどの実用的なキーに対応。▶ Playでストローク、Arpでアルペジオを再生できます。",

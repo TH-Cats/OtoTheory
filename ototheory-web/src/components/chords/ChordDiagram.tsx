@@ -43,7 +43,7 @@ function getRoman(noteName: string, root: Root): string {
   return romans[interval];
 }
 
-export function ChordDiagram({ frets, fingers, barres = [], root, displayMode, width = 320, maxFrets = 5 }: Props) {
+export function ChordDiagram({ frets, fingers, barres = [], root, displayMode, width = 320, maxFrets = 4 }: Props) {
   const height = 160;
   const innerW = width - PAD.left - PAD.right;
   const innerH = height - PAD.top - PAD.bottom;

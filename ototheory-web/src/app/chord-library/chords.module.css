@@ -334,7 +334,7 @@
 
 .grid-3 {
   display: grid;
-  grid-template-columns: repeat(3, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 12px;
   margin: 16px 0;
   overflow-x: auto;
@@ -342,7 +342,7 @@
 
 @media (max-width: 900px) {
   .grid-3 {
-    grid-template-columns: repeat(3, 280px);
+    grid-template-columns: repeat(auto-fit, 280px);
   }
 }
 

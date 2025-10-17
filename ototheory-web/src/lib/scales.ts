@@ -50,12 +50,12 @@ export function getScalePitches(root: Pc, type: ScaleId): Pc[] {
 
 export function scaleTypeLabel(t: ScaleId | ScaleType): string {
   const map: Record<ScaleType,string> = {
-    Ionian: 'major scale',
+    Ionian: 'Major Scale',
     Dorian: 'Dorian',
     Phrygian: 'Phrygian',
     Lydian: 'Lydian',
     Mixolydian: 'Mixolydian',
-    Aeolian: 'natural minor scale',
+    Aeolian: 'Natural Minor Scale',
     Locrian: 'Locrian',
     HarmonicMinor: 'Harmonic Minor',
     MelodicMinor: 'Melodic Minor',
@@ -98,6 +98,49 @@ export function degreeLabelFor(pc: Pc, root: Pc, type: ScaleId | ScaleType): str
     ?? (DEGREE_LABELS[type as ScaleType] ?? undefined);
   if (!labels) return null;
   return labels[idx] ?? null;
+}
+
+// Convert a degree token like "1", "b2", "#4", "♭3" to Roman form (R, II, ♯IV, ♭III, etc.)
+function degreeTokenToRoman(token: string): string {
+  const t = token.replace(/\s+/g, '')
+    .replace(/bb/g, '♭♭')
+    .replace(/b/g, '♭')
+    .replace(/##/g, '♯♯')
+    .replace(/#/g, '♯');
+  // Extract accidentals and number
+  const m = t.match(/^(♭|♯|♭♭|♯♯)?(\d)$/);
+  if (!m) {
+    // fallback: if already has Roman-like content, return as is
+    return t;
+  }
+  const acc = m[1] ?? '';
+  const n = m[2];
+  const romanBase: Record<string,string> = {
+    '1': 'R',
+    '2': 'II',
+    '3': 'III',
+    '4': 'IV',
+    '5': 'V',
+    '6': 'VI',
+    '7': 'VII',
+  };
+  const base = romanBase[n] ?? n;
+  return `${acc}${base}`;
+}
+
+// Roman degree label for a pitch class in a given scale (uses catalog degrees when available)
+export function degreeRomanFor(pc: Pc, root: Pc, type: ScaleId | ScaleType): string | null {
+  const iv = (pc - root + 120) % 12;
+  const cat = SCALE_CATALOG.find(s => s.id === (type as any));
+  const ivs = (cat ? cat.degrees.map(d => DEGREE_TO_SEMITONE[d]) : undefined)
+    ?? (SCALE_INTERVALS[type as ScaleType] ?? []);
+  const idx = ivs.indexOf(iv);
+  if (idx === -1) return null;
+  const labels = (cat?.degrees as string[] | undefined)
+    ?? (DEGREE_LABELS[type as ScaleType] ?? undefined);
+  if (!labels) return null;
+  const token = labels[idx] ?? '';
+  return degreeTokenToRoman(token);
 }
 
 // Parent mode mapping (e.g., pentatonic → its diatonic parent)

@@ -41,18 +41,18 @@ struct FretboardHelpers {
         
         // Map interval to degree
         switch interval {
-        case 0: return "1"
-        case 1: return "b2"
-        case 2: return "2"
-        case 3: return "b3"
-        case 4: return "3"
-        case 5: return "4"
-        case 6: return "b5"
-        case 7: return "5"
-        case 8: return "b6"
-        case 9: return "6"
-        case 10: return "b7"
-        case 11: return "7"
+        case 0: return "R"    // 1 → R
+        case 1: return "♭II"  // b2 → ♭II
+        case 2: return "II"   // 2 → II
+        case 3: return "♭III" // b3 → ♭III
+        case 4: return "III"  // 3 → III
+        case 5: return "IV"   // 4 → IV
+        case 6: return "♭V"   // b5 → ♭V
+        case 7: return "V"    // 5 → V
+        case 8: return "♭VI"  // b6 → ♭VI
+        case 9: return "VI"   // 6 → VI
+        case 10: return "♭VII"// b7 → ♭VII
+        case 11: return "VII" // 7 → VII
         default: return nil
         }
     }
@@ -67,15 +67,22 @@ struct FretboardHelpers {
         guard let degree = degree else {
             return Color.gray.opacity(0.5)
         }
-        
-        if degree.contains("3") {
-            return Color.blue  // 3rd
-        } else if degree.contains("5") {
+
+        // Roman表記に対応（♭/♯を除去し、ベースのローマ数字で判定）
+        let base = degree
+            .replacingOccurrences(of: "♭", with: "")
+            .replacingOccurrences(of: "♯", with: "")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        switch base {
+        case "III":
+            return Color.blue   // 3rd
+        case "V":
             return Color.green  // 5th
-        } else if degree.contains("7") {
-            return Color.purple  // 7th
-        } else {
-            return Color.gray.opacity(0.7)  // Other scale tones
+        case "VII":
+            return Color.purple // 7th
+        default:
+            return Color.gray.opacity(0.7)  // その他のスケール音
         }
     }
     

@@ -1,5 +1,5 @@
 // Static chord library data for Web version
-// Based on iOS StaticChordProvider.swift
+// Based on Chord Library Mastar.csv
 // Array order: 1st string (high E) to 6th string (low E)
 
 export type StaticFret = number | 0 | 'x';
@@ -31,600 +31,4972 @@ export interface StaticChord {
 // Helper function to create fret notation
 const F = (n: number): number => n;
 
-// Major chords (メジャーコード)
-export const MAJOR_CHORDS: StaticChord[] = [
-  // C Major
-  {
-    id: 'C',
-    symbol: 'C',
-    quality: 'M',
-    forms: [
-      // Open: x32010
-      {
-        id: 'C-Open',
-        shapeName: 'Open',
-        frets: [0, 1, 0, 2, 3, 'x'],
-        fingers: [null, 1, null, 2, 3, null],
-        barres: [],
-        tips: ['C major open', 'Beginner-friendly']
-      },
-      // Root-6 (8fr): 8-8-9-10-10-8
-      {
-        id: 'C-Root6',
-        shapeName: 'Root-6',
-        frets: [8, 10, 10, 9, 8, 8],
-        fingers: [1, 3, 4, 2, 1, 1],
-        barres: [{ fret: 8, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['6th string root', 'E-shape barre']
-      },
-      // Root-5 (3fr): 3-5-5-5-3-x
-      {
-        id: 'C-Root5',
-        shapeName: 'Root-5',
-        frets: [3, 5, 5, 5, 3, 'x'],
-        fingers: [1, 3, 4, 2, 1, null],
-        barres: [{ fret: 3, fromString: 1, toString: 5, finger: 1 }],
-        tips: ['5th string root', 'A-shape barre']
-      },
-      // Root-4: 10-12-12-12-10-x-x (will add later)
-    ]
-  },
-
-  // D Major
-  {
-    id: 'D',
-    symbol: 'D',
-    quality: 'M',
-    forms: [
-      // Open: xx0232
-      {
-        id: 'D-Open',
-        shapeName: 'Open',
-        frets: [2, 3, 2, 0, 'x', 'x'],
-        fingers: [1, 3, 2, null, null, null],
-        barres: [],
-        tips: ['D major open', 'Bright sound']
-      },
-      // Root-6 (10fr): 10-10-11-12-12-10
-      {
-        id: 'D-Root6',
-        shapeName: 'Root-6',
-        frets: [10, 12, 12, 11, 10, 10],
-        fingers: [1, 3, 4, 2, 1, 1],
-        barres: [{ fret: 10, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['6th string root', 'E-shape barre']
-      },
-      // Root-5 (5fr): 5-7-7-7-5-x
-      {
-        id: 'D-Root5',
-        shapeName: 'Root-5',
-        frets: [5, 7, 7, 7, 5, 'x'],
-        fingers: [1, 3, 4, 2, 1, null],
-        barres: [{ fret: 5, fromString: 1, toString: 5, finger: 1 }],
-        tips: ['5th string root', 'A-shape barre']
-      }
-    ]
-  },
-
-  // E Major
-  {
-    id: 'E',
-    symbol: 'E',
-    quality: 'M',
-    forms: [
-      // Open: 022100
-      {
-        id: 'E-Open',
-        shapeName: 'Open',
-        frets: [0, 0, 1, 2, 2, 0],
-        fingers: [null, null, 1, 3, 2, null],
-        barres: [],
-        tips: ['E major open', 'Full, rich sound']
-      },
-      // Root-6 (12fr): 12-12-13-14-14-12
-      {
-        id: 'E-Root6',
-        shapeName: 'Root-6',
-        frets: [12, 14, 14, 13, 12, 12],
-        fingers: [1, 3, 4, 2, 1, 1],
-        barres: [{ fret: 12, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['6th string root', 'E-shape barre']
-      },
-      // Root-5 (7fr): 7-9-9-9-7-x
-      {
-        id: 'E-Root5',
-        shapeName: 'Root-5',
-        frets: [7, 9, 9, 9, 7, 'x'],
-        fingers: [1, 3, 4, 2, 1, null],
-        barres: [{ fret: 7, fromString: 1, toString: 5, finger: 1 }],
-        tips: ['5th string root', 'A-shape barre']
-      }
-    ]
-  },
-
-  // G Major
-  {
-    id: 'G',
-    symbol: 'G',
-    quality: 'M',
-    forms: [
-      // Open: 320003
-      {
-        id: 'G-Open',
-        shapeName: 'Open',
-        frets: [3, 0, 0, 0, 2, 3],
-        fingers: [3, null, null, null, 1, 2],
-        barres: [],
-        tips: ['G major open', 'Full-bodied']
-      },
-      // Root-6 (3fr): 3-3-4-5-5-3
-      {
-        id: 'G-Root6',
-        shapeName: 'Root-6',
-        frets: [3, 5, 5, 4, 3, 3],
-        fingers: [1, 3, 4, 2, 1, 1],
-        barres: [{ fret: 3, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['6th string root', 'E-shape barre']
-      },
-      // Root-5 (10fr): 10-12-12-12-10-x
-      {
-        id: 'G-Root5',
-        shapeName: 'Root-5',
-        frets: [10, 12, 12, 12, 10, 'x'],
-        fingers: [1, 3, 4, 2, 1, null],
-        barres: [{ fret: 10, fromString: 1, toString: 5, finger: 1 }],
-        tips: ['5th string root', 'A-shape barre']
-      }
-    ]
-  },
-
-  // A Major
+// All static chords from master CSV
+export const ALL_STATIC_CHORDS: StaticChord[] = [
+  // A (M)
   {
     id: 'A',
     symbol: 'A',
     quality: 'M',
     forms: [
-      // Open: x02220
       {
-        id: 'A-Open',
+        id: 'A-1-Open',
         shapeName: 'Open',
         frets: [0, 2, 2, 2, 0, 'x'],
         fingers: [null, 2, 3, 1, null, null],
         barres: [],
-        tips: ['A major open', 'Powerful sound']
+        tips: ['"A major open | Powerful sound"']
       },
-      // Root-6 (5fr): 5-5-6-7-7-5
       {
-        id: 'A-Root6',
+        id: 'A-2-Root6',
         shapeName: 'Root-6',
-        frets: [5, 7, 7, 6, 5, 5],
-        fingers: [1, 3, 4, 2, 1, 1],
+        frets: [5, 5, 6, 7, 7, 5],
+        fingers: [1, 1, 2, 3, 4, 1],
         barres: [{ fret: 5, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['6th string root', 'E-shape barre']
+        tips: ['"6th string root | E-shape barre"']
       },
-      // Root-5 (12fr): 12-14-14-14-12-x
       {
-        id: 'A-Root5',
+        id: 'A-3-Root5',
         shapeName: 'Root-5',
-        frets: [12, 14, 14, 14, 12, 'x'],
-        fingers: [1, 3, 4, 2, 1, null],
-        barres: [{ fret: 12, fromString: 1, toString: 5, finger: 1 }],
-        tips: ['5th string root', 'A-shape barre']
+        frets: ['x', 9, 10, 11, 12, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"A major compact (x-9-10-11-12-x)"']
+      },
+      {
+        id: 'A-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [12, 14, 14, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'A-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 5, 6, 7, 'x', 'x'],
+        fingers: [null, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
       }
     ]
   },
-];
-
-// Minor chords (マイナーコード)
-export const MINOR_CHORDS: StaticChord[] = [
-  // Am
+  // A#add9 (add9)
+  {
+    id: 'A#add9',
+    symbol: 'A#add9',
+    quality: 'add9',
+    forms: [
+      {
+        id: 'A#add9-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 5, 3, 5, 6],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"A# add9 root-6 (x-x-5-3-5-6)"']
+      },
+      {
+        id: 'A#add9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 13, 10, 12, 13, 'x'],
+        fingers: [null, 4, 1, 2, 3, null],
+        barres: [{ fret: 10, fromString: 2, toString: 5, finger: 4 }],
+        tips: ['"A# add9 root-5 (x-13-10-12-13-x) barre@10(2-5)"']
+      },
+      {
+        id: 'A#add9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [8, 6, 7, 8, 'x', 'x'],
+        fingers: [4, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"A# add9 root-4 (8-6-7-8-x-x)"']
+      }
+    ]
+  },
+  // A#aug (aug)
+  {
+    id: 'A#aug',
+    symbol: 'A#aug',
+    quality: 'aug',
+    forms: [
+      {
+        id: 'A#aug-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 19, 19, 20, 'x', 18],
+        fingers: [null, 3, 2, 4, null, 1],
+        barres: [],
+        tips: ['"A# augmented root-6 (x-19-19-20-x-18)"']
+      },
+      {
+        id: 'A#aug-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 13, 12, 11, 11, 'x'],
+        fingers: [null, 3, 2, 1, 1, null],
+        barres: [{ fret: 11, fromString: 2, toString: 3, finger: 3 }],
+        tips: ['"A# augmented root-5 (x-13-12-11-11-x) barre@11(2-3)"']
+      },
+      {
+        id: 'A#aug-4-Root4',
+        shapeName: 'Root-4',
+        frets: [18, 19, 19, 20, 'x', 'x'],
+        fingers: [1, 2, 3, 4, null, null],
+        barres: [],
+        tips: ['"A# augmented root-4 (18-19-19-20-x-x)"']
+      },
+      {
+        id: 'A#aug-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [14, 15, 15, 'x', 'x', 'x'],
+        fingers: [1, 3, 2, null, null, null],
+        barres: [],
+        tips: ['"A# augmented Triad-1 (14-15-15-x-x-x)"']
+      },
+      {
+        id: 'A#aug-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 19, 19, 20, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [{ fret: 19, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"A# augmented Triad-2 (x-19-19-20-x-x) barre@19(2-3)"']
+      }
+    ]
+  },
+  // A#dim (dim)
+  {
+    id: 'A#dim',
+    symbol: 'A#dim',
+    quality: 'dim',
+    forms: [
+      {
+        id: 'A#dim-1-Root6',
+        shapeName: 'Root-6',
+        frets: [18, 17, 18, 'x', 'x', 18],
+        fingers: [4, 1, 3, null, null, 2],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +10)']
+      },
+      {
+        id: 'A#dim-2',
+        shapeName: 'Root-5',
+        frets: ['x', 14, 15, 14, 13, 'x'],
+        fingers: [null, 3, 4, 2, 1, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +10)']
+      },
+      {
+        id: 'A#dim-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [18, 17, 18, 20, 'x', 'x'],
+        fingers: [3, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +10)']
+      },
+      {
+        id: 'A#dim-4-Triad-1',
+        shapeName: 'Triad-1',
+        frets: [12, 14, 15, 'x', 'x', 'x'],
+        fingers: [1, 3, 4, null, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +10)']
+      },
+      {
+        id: 'A#dim-5-Triad-2',
+        shapeName: 'Triad-2',
+        frets: ['x', 17, 18, 20, 'x', 'x'],
+        fingers: [null, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +10)']
+      }
+    ]
+  },
+  // A#sus4 (sus4)
+  {
+    id: 'A#sus4',
+    symbol: 'A#sus4',
+    quality: 'sus4',
+    forms: [
+      {
+        id: 'A#sus4-2-Root6',
+        shapeName: 'Root-6',
+        frets: [13, 15, 15, 15, 13, 13],
+        fingers: [1, 3, 4, 4, 1, 2],
+        barres: [{ fret: 13, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"A# sus4 root-6 (13-15-15-15-13-13)"']
+      },
+      {
+        id: 'A#sus4-3-Root5',
+        shapeName: 'Root-5',
+        frets: [18, 20, 20, 20, 18, 'x'],
+        fingers: [1, 3, 4, 4, 1, null],
+        barres: [{ fret: 18, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"A# sus4 root-5 (18-20-20-20-18-x)"']
+      },
+      {
+        id: 'A#sus4-4-Root4',
+        shapeName: 'Root-4',
+        frets: [18, 18, 20, 20, 'x', 'x'],
+        fingers: [1, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['"A# sus4 root-4 (18-18-20-20-x-x)"']
+      },
+      {
+        id: 'A#sus4-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [13, 16, 15, 'x', 'x', 'x'],
+        fingers: [1, 4, 3, null, null, null],
+        barres: [],
+        tips: ['A#sus4 Triad-1 (auto from Csus4 +10)']
+      },
+      {
+        id: 'A#sus4-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 18, 20, 20, 'x', 'x'],
+        fingers: [null, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['A#sus4 Triad-2 (auto from Csus4 +10)']
+      }
+    ]
+  },
+  // A6 (6)
+  {
+    id: 'A6',
+    symbol: 'A6',
+    quality: '6',
+    forms: [
+      {
+        id: 'A6-1-Open',
+        shapeName: 'Open',
+        frets: [2, 2, 2, 2, 0, 'x'],
+        fingers: [1, 1, 1, 1, null, null],
+        barres: [{ fret: 2, fromString: 1, toString: 4, finger: 1 }],
+        tips: ['"A 6 open (x-0-2-2-2-2) barre@2(1-4)"']
+      },
+      {
+        id: 'A6-1-Open',
+        shapeName: 'Open',
+        frets: [2, 2, 2, 2, 0, 'x'],
+        fingers: [1, 1, 1, 1, null, null],
+        barres: [{ fret: 2, fromString: 1, toString: 4, finger: 1 }],
+        tips: ['"A 6 open (x-0-2-2-2-2) barre@2(1-4)"']
+      },
+      {
+        id: 'A6-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 7, 6, 7, 'x', 5],
+        fingers: [null, 4, 2, 3, null, 1],
+        barres: [],
+        tips: ['"A 6 root-6 (x-7-6-7-x-5)"']
+      },
+      {
+        id: 'A6-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 7, 6, 7, 'x', 5],
+        fingers: [null, 4, 2, 3, null, 1],
+        barres: [],
+        tips: ['"A 6 root-6 (x-7-6-7-x-5)"']
+      }
+    ]
+  },
+  // A7 (7)
+  {
+    id: 'A7',
+    symbol: 'A7',
+    quality: '7',
+    forms: [
+      {
+        id: 'A7-1-Open',
+        shapeName: 'Open',
+        frets: [0, 2, 0, 2, 0, 'x'],
+        fingers: [null, 3, null, 2, null, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'A7-2-Root-6',
+        shapeName: 'Root-6',
+        frets: [5, 5, 6, 5, 7, 5],
+        fingers: [1, 1, 2, 1, 3, 1],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'A7-3-Root-5',
+        shapeName: 'Root-5',
+        frets: ['x', 10, 12, 11, 12, 'x'],
+        fingers: [null, 1, 3, 2, 4, null],
+        barres: [],
+        tips: ['"Compact A7 (x-10-12-11-12-x)"']
+      },
+      {
+        id: 'A7-4-Root-4',
+        shapeName: 'Root-4',
+        frets: [9, 8, 9, 7, 'x', 'x'],
+        fingers: [4, 2, 3, 1, null, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      }
+    ]
+  },
+  // Aadd9 (add9)
+  {
+    id: 'Aadd9',
+    symbol: 'Aadd9',
+    quality: 'add9',
+    forms: [
+      {
+        id: 'Aadd9-1-Open',
+        shapeName: 'Open',
+        frets: [0, 2, 4, 2, 0, 'x'],
+        fingers: [null, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['"A add9 open (0-2-4-2-0-x)"']
+      },
+      {
+        id: 'Aadd9-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 4, 2, 4, 5],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"A add9 root-6 (x-x-4-2-4-5)"']
+      },
+      {
+        id: 'Aadd9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 12, 9, 11, 12, 'x'],
+        fingers: [null, 4, 1, 2, 3, null],
+        barres: [{ fret: 9, fromString: 2, toString: 5, finger: 4 }],
+        tips: ['"A add9 root-5 (x-12-9-11-12-x) barre@9(2-5)"']
+      },
+      {
+        id: 'Aadd9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [7, 5, 6, 7, 'x', 'x'],
+        fingers: [4, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"A add9 root-4 (7-5-6-7-x-x)"']
+      }
+    ]
+  },
+  // Aaug (aug)
+  {
+    id: 'Aaug',
+    symbol: 'Aaug',
+    quality: 'aug',
+    forms: [
+      {
+        id: 'Aaug-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 18, 18, 19, 'x', 17],
+        fingers: [null, 3, 2, 4, null, 1],
+        barres: [],
+        tips: ['"A augmented root-6 (x-18-18-19-x-17)"']
+      },
+      {
+        id: 'Aaug-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 12, 11, 10, 10, 'x'],
+        fingers: [null, 3, 2, 1, 1, null],
+        barres: [{ fret: 10, fromString: 2, toString: 3, finger: 3 }],
+        tips: ['"A augmented root-5 (x-12-11-10-10-x) barre@10(2-3)"']
+      },
+      {
+        id: 'Aaug-4-Root4',
+        shapeName: 'Root-4',
+        frets: [17, 18, 18, 19, 'x', 'x'],
+        fingers: [1, 2, 3, 4, null, null],
+        barres: [],
+        tips: ['"A augmented root-4 (17-18-18-19-x-x)"']
+      },
+      {
+        id: 'Aaug-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [13, 14, 14, 'x', 'x', 'x'],
+        fingers: [1, 3, 2, null, null, null],
+        barres: [],
+        tips: ['"A augmented Triad-1 (13-14-14-x-x-x)"']
+      },
+      {
+        id: 'Aaug-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 18, 18, 19, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [{ fret: 18, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"A augmented Triad-2 (x-18-18-19-x-x) barre@18(2-3)"']
+      }
+    ]
+  },
+  // Adim (dim)
+  {
+    id: 'Adim',
+    symbol: 'Adim',
+    quality: 'dim',
+    forms: [
+      {
+        id: 'Adim-1-Root6',
+        shapeName: 'Root-6',
+        frets: [17, 16, 17, 'x', 'x', 17],
+        fingers: [4, 1, 3, null, null, 2],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +9)']
+      },
+      {
+        id: 'Adim-2',
+        shapeName: 'Root-5',
+        frets: ['x', 13, 14, 13, 12, 'x'],
+        fingers: [null, 3, 4, 2, 1, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +9)']
+      },
+      {
+        id: 'Adim-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [17, 16, 17, 19, 'x', 'x'],
+        fingers: [3, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +9)']
+      },
+      {
+        id: 'Adim-4-Triad-1',
+        shapeName: 'Triad-1',
+        frets: [11, 13, 14, 'x', 'x', 'x'],
+        fingers: [1, 3, 4, null, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +9)']
+      },
+      {
+        id: 'Adim-5-Triad-2',
+        shapeName: 'Triad-2',
+        frets: ['x', 16, 17, 19, 'x', 'x'],
+        fingers: [null, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +9)']
+      }
+    ]
+  },
+  // Am (m)
   {
     id: 'Am',
     symbol: 'Am',
     quality: 'm',
     forms: [
-      // Open: x01020
       {
-        id: 'Am-Open',
+        id: 'Am-1-Open',
         shapeName: 'Open',
-        frets: [0, 1, 0, 2, 0, 'x'],
-        fingers: [null, 1, null, 2, null, null],
+        frets: [0, 1, 2, 2, 0, 'x'],
+        fingers: [null, 1, 3, 2, null, null],
         barres: [],
-        tips: ['A minor open', 'Melancholic']
+        tips: ['"A minor open | Melancholic"']
       },
-      // Root-6 (5fr): 5-5-5-5-7-5
       {
-        id: 'Am-Root6',
+        id: 'Am-2-Root6',
         shapeName: 'Root-6',
-        frets: [5, 7, 5, 5, 5, 5],
-        fingers: [1, 3, 1, 1, 1, 1],
+        frets: [5, 5, 5, 7, 7, 5],
+        fingers: [1, 1, 1, 3, 4, 1],
         barres: [{ fret: 5, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['6th string root', 'E-shape minor barre']
+        tips: ['"6th string root | E-shape minor barre"']
       },
-      // Root-5 (12fr): 12-14-12-13-12-x
       {
-        id: 'Am-Root5',
+        id: 'Am-3-Root5',
         shapeName: 'Root-5',
-        frets: [12, 13, 12, 14, 12, 'x'],
-        fingers: [1, 2, 1, 3, 1, null],
-        barres: [{ fret: 12, fromString: 1, toString: 5, finger: 1 }],
-        tips: ['5th string root', 'A-shape minor barre']
-      }
-    ]
-  },
-
-  // Dm
-  {
-    id: 'Dm',
-    symbol: 'Dm',
-    quality: 'm',
-    forms: [
-      // Open: xx0231
-      {
-        id: 'Dm-Open',
-        shapeName: 'Open',
-        frets: [1, 3, 2, 0, 'x', 'x'],
-        fingers: [1, 3, 2, null, null, null],
+        frets: ['x', 9, 10, 10, 12, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
         barres: [],
-        tips: ['D minor open', 'Compact and easy']
+        tips: ['"Compact Am (x-9-10-10-12-x)"']
       },
-      // Root-6 (10fr): 10-10-10-10-12-10
       {
-        id: 'Dm-Root6',
-        shapeName: 'Root-6',
-        frets: [10, 12, 10, 10, 10, 10],
-        fingers: [1, 3, 1, 1, 1, 1],
-        barres: [{ fret: 10, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['6th string root', 'E-shape minor barre']
-      },
-      // Root-5 (5fr): 5-6-5-7-5-x
-      {
-        id: 'Dm-Root5',
-        shapeName: 'Root-5',
-        frets: [5, 7, 5, 6, 5, 'x'],
-        fingers: [1, 3, 1, 2, 1, null],
-        barres: [{ fret: 5, fromString: 1, toString: 5, finger: 1 }],
-        tips: ['5th string root', 'A-shape minor barre']
-      }
-    ]
-  },
-
-  // Em
-  {
-    id: 'Em',
-    symbol: 'Em',
-    quality: 'm',
-    forms: [
-      // Open: 022000
-      {
-        id: 'Em-Open',
-        shapeName: 'Open',
-        frets: [0, 0, 0, 2, 2, 0],
-        fingers: [null, null, null, 2, 3, null],
+        id: 'Am-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [12, 13, 14, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
         barres: [],
-        tips: ['E minor open', 'Beautiful resonance']
+        tips: ['Triad extracted from iOS (Triad-1)']
       },
-      // Root-6 (12fr): 12-12-12-12-14-12
       {
-        id: 'Em-Root6',
-        shapeName: 'Root-6',
-        frets: [12, 14, 12, 12, 12, 12],
-        fingers: [1, 3, 1, 1, 1, 1],
-        barres: [{ fret: 12, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['6th string root', 'E-shape minor barre']
-      },
-      // Root-5 (7fr): 7-8-7-9-7-x
-      {
-        id: 'Em-Root5',
-        shapeName: 'Root-5',
-        frets: [7, 9, 7, 8, 7, 'x'],
-        fingers: [1, 3, 1, 2, 1, null],
-        barres: [{ fret: 7, fromString: 1, toString: 5, finger: 1 }],
-        tips: ['5th string root', 'A-shape minor barre']
-      }
-    ]
-  },
-];
-
-// Dominant 7th chords (セブンスコード)
-export const DOM7_CHORDS: StaticChord[] = [
-  // C7
-  {
-    id: 'C7',
-    symbol: 'C7',
-    quality: '7',
-    forms: [
-      // Open: x32310
-      {
-        id: 'C7-Open',
-        shapeName: 'Open',
-        frets: [0, 1, 3, 2, 3, 'x'],
-        fingers: [null, 1, 4, 2, 3, null],
+        id: 'Am-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 5, 5, 7, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
         barres: [],
-        tips: ['C7 open', 'Blues classic']
-      },
-      // Root-6 (8fr): 8-8-9-8-10-8
-      {
-        id: 'C7-Root6',
-        shapeName: 'Root-6',
-        frets: [8, 10, 8, 9, 8, 8],
-        fingers: [1, 3, 1, 2, 1, 1],
-        barres: [{ fret: 8, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['6th string root', 'E-shape 7th barre']
-      },
-      // Root-5 (3fr): 3-5-3-5-3-x
-      {
-        id: 'C7-Root5',
-        shapeName: 'Root-5',
-        frets: [3, 5, 3, 5, 3, 'x'],
-        fingers: [1, 3, 1, 4, 1, null],
-        barres: [{ fret: 3, fromString: 1, toString: 5, finger: 1 }],
-        tips: ['5th string root', 'A-shape 7th barre']
+        tips: ['Triad extracted from iOS (Triad-2)']
       }
     ]
   },
-
-  // G7
+  // Am6 (m6)
   {
-    id: 'G7',
-    symbol: 'G7',
-    quality: '7',
+    id: 'Am6',
+    symbol: 'Am6',
+    quality: 'm6',
     forms: [
-      // Open: 320001
       {
-        id: 'G7-Open',
+        id: 'Am6-1-Open',
         shapeName: 'Open',
-        frets: [1, 0, 0, 0, 2, 3],
-        fingers: [1, null, null, null, 2, 3],
+        frets: [0, 1, 2, 2, 0, 'x'],
+        fingers: [null, 1, 3, 2, null, null],
         barres: [],
-        tips: ['G7 open', 'Full-bodied']
+        tips: ['"A minor 6 open (x-0-2-2-1-0)"']
       },
-      // Root-6 (3fr): 3-3-4-3-5-3
       {
-        id: 'G7-Root6',
+        id: 'Am6-2-Root6',
         shapeName: 'Root-6',
-        frets: [3, 5, 3, 4, 3, 3],
-        fingers: [1, 3, 1, 2, 1, 1],
-        barres: [{ fret: 3, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['6th string root', 'E-shape 7th barre']
-      },
-      // Root-5 (10fr): 10-12-10-12-10-x
-      {
-        id: 'G7-Root5',
-        shapeName: 'Root-5',
-        frets: [10, 12, 10, 12, 10, 'x'],
-        fingers: [1, 3, 1, 4, 1, null],
-        barres: [{ fret: 10, fromString: 1, toString: 5, finger: 1 }],
-        tips: ['5th string root', 'A-shape 7th barre']
-      }
-    ]
-  },
-];
-
-// Major 7th chords (メジャーセブンスコード)
-export const MAJ7_CHORDS: StaticChord[] = [
-  // CM7
-  {
-    id: 'CM7',
-    symbol: 'CM7',
-    quality: 'M7',
-    forms: [
-      // Open: x32000
-      {
-        id: 'CM7-Open',
-        shapeName: 'Open',
-        frets: [0, 0, 0, 2, 3, 'x'],
-        fingers: [null, null, null, 2, 3, null],
+        frets: ['x', 7, 7, 6, 'x', 7],
+        fingers: [null, 3, 4, 1, null, 2],
         barres: [],
-        tips: ['C major 7th open', 'Dreamy']
+        tips: ['"A minor 6 root-6 (x-7-7-6-x-7)"']
       },
-      // Root-6 (8fr): 8-8-9-9-10-8
       {
-        id: 'CM7-Root6',
-        shapeName: 'Root-6',
-        frets: [8, 10, 9, 9, 8, 8],
-        fingers: [1, 3, 2, 2, 1, 1],
-        barres: [{ fret: 8, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['6th string root', 'E-shape M7 barre']
-      },
-      // Root-5 (3fr): 3-5-4-5-3-x
-      {
-        id: 'CM7-Root5',
+        id: 'Am6-3-Root5',
         shapeName: 'Root-5',
-        frets: [3, 5, 4, 5, 3, 'x'],
-        fingers: [1, 3, 2, 4, 1, null],
-        barres: [{ fret: 3, fromString: 1, toString: 5, finger: 1 }],
-        tips: ['5th string root', 'A-shape M7 barre']
-      }
-    ]
-  },
-];
-
-// Minor 7th chords (マイナーセブンスコード)
-export const MIN7_CHORDS: StaticChord[] = [
-  // Cm7
-  {
-    id: 'Cm7',
-    symbol: 'Cm7',
-    quality: 'm7',
-    forms: [
-      // Root-6 (8fr): 8-8-8-8-10-8
-      {
-        id: 'Cm7-Root6',
-        shapeName: 'Root-6',
-        frets: [8, 10, 8, 8, 8, 8],
-        fingers: [1, 3, 1, 1, 1, 1],
-        barres: [{ fret: 8, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['6th string root', 'm7 E-shape full barre']
+        frets: ['x', 10, 11, 10, 12, 'x'],
+        fingers: [null, 1, 3, 2, 4, null],
+        barres: [],
+        tips: ['"A minor 6 root-5 (x-12-10-11-10-x)"']
       },
-      // Root-5 (3fr): 3-4-3-5-3-x
       {
-        id: 'Cm7-Root5',
-        shapeName: 'Root-5',
-        frets: [3, 5, 3, 4, 3, 'x'],
-        fingers: [1, 3, 1, 2, 1, null],
-        barres: [{ fret: 3, fromString: 1, toString: 5, finger: 1 }],
-        tips: ['5th string root', 'Standard m7 A-shape']
-      },
-      // Root-4 (10-12fr): 11-11-12-10-x-x
-      {
-        id: 'Cm7-Root4',
+        id: 'Am6-4-Root4',
         shapeName: 'Root-4',
-        frets: ['x', 'x', 10, 12, 11, 11],
-        fingers: [null, null, 1, 4, 2, 3],
+        frets: [5, 7, 5, 7, 'x', 'x'],
+        fingers: [1, 4, 2, 3, null, null],
         barres: [],
-        tips: ['4th string root', 'High position']
+        tips: ['"A minor 6 root-4 (5-7-5-7-x-x)"']
       }
     ]
   },
-
-  // Dm7
-  {
-    id: 'Dm7',
-    symbol: 'Dm7',
-    quality: 'm7',
-    forms: [
-      // Open: xx0211
-      {
-        id: 'Dm7-Open',
-        shapeName: 'Open',
-        frets: [1, 1, 2, 0, 'x', 'x'],
-        fingers: [1, 1, 2, null, null, null],
-        barres: [],
-        tips: ['D minor 7th', 'Compact and easy']
-      },
-      // Root-6 (10fr): 10-10-10-10-12-10
-      {
-        id: 'Dm7-Root6',
-        shapeName: 'Root-6',
-        frets: [10, 12, 10, 10, 10, 10],
-        fingers: [1, 3, 1, 1, 1, 1],
-        barres: [{ fret: 10, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['6th string root', 'm7 E-shape full barre']
-      },
-      // Root-5 (5fr): 5-6-5-7-5-x
-      {
-        id: 'Dm7-Root5',
-        shapeName: 'Root-5',
-        frets: [5, 7, 5, 6, 5, 'x'],
-        fingers: [1, 3, 1, 2, 1, null],
-        barres: [{ fret: 5, fromString: 1, toString: 5, finger: 1 }],
-        tips: ['5th string root', 'Standard m7 A-shape']
-      },
-      // Root-4 (12-14fr): 13-13-14-12-x-x
-      {
-        id: 'Dm7-Root4',
-        shapeName: 'Root-4',
-        frets: ['x', 'x', 12, 14, 13, 13],
-        fingers: [null, null, 1, 4, 2, 3],
-        barres: [],
-        tips: ['4th string root', 'Compact voicing']
-      }
-    ]
-  },
-
-  // Em7
-  {
-    id: 'Em7',
-    symbol: 'Em7',
-    quality: 'm7',
-    forms: [
-      // Open: 020000
-      {
-        id: 'Em7-Open',
-        shapeName: 'Open',
-        frets: [0, 0, 0, 0, 2, 0],
-        fingers: [null, null, null, null, 1, null],
-        barres: [],
-        tips: ['E minor 7th', 'Beautiful open sound']
-      },
-      // Root-4: 3-3-4-2-x-x
-      {
-        id: 'Em7-Root4',
-        shapeName: 'Root-4',
-        frets: ['x', 'x', 2, 4, 3, 3],
-        fingers: [null, null, 1, 4, 2, 3],
-        barres: [],
-        tips: ['4th string root', 'Compact voicing']
-      },
-      // Root-5 (7fr): 7-8-7-9-7-x
-      {
-        id: 'Em7-Root5',
-        shapeName: 'Root-5',
-        frets: [7, 9, 7, 8, 7, 'x'],
-        fingers: [1, 3, 1, 2, 1, null],
-        barres: [{ fret: 7, fromString: 1, toString: 5, finger: 1 }],
-        tips: ['5th string root', 'Standard m7 A-shape']
-      },
-      // Root-6 (12fr): 12-12-12-12-14-12
-      {
-        id: 'Em7-Root6',
-        shapeName: 'Root-6',
-        frets: [12, 14, 12, 12, 12, 12],
-        fingers: [1, 3, 1, 1, 1, 1],
-        barres: [{ fret: 12, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['6th string root', 'm7 E-shape full barre']
-      }
-    ]
-  },
-
-  // Am7
+  // Am7 (m7)
   {
     id: 'Am7',
     symbol: 'Am7',
     quality: 'm7',
     forms: [
-      // Open: x01020
       {
-        id: 'Am7-Open',
+        id: 'Am7-1-Open',
         shapeName: 'Open',
         frets: [0, 1, 0, 2, 0, 'x'],
         fingers: [null, 1, null, 2, null, null],
         barres: [],
-        tips: ['A minor 7th', 'Melancholic sound']
+        tips: ['Minor 7th (extracted)']
       },
-      // Root-6 (5fr): 5-5-5-5-7-5
       {
-        id: 'Am7-Root6',
+        id: 'Am7-2-Root-6',
         shapeName: 'Root-6',
-        frets: [5, 7, 5, 5, 5, 5],
-        fingers: [1, 3, 1, 1, 1, 1],
-        barres: [{ fret: 5, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['6th string root', 'm7 E-shape full barre']
-      },
-      // Root-5 (12fr): 12-13-12-14-12-x
-      {
-        id: 'Am7-Root5',
-        shapeName: 'Root-5',
-        frets: [12, 14, 12, 13, 12, 'x'],
-        fingers: [1, 3, 1, 2, 1, null],
-        barres: [{ fret: 12, fromString: 1, toString: 5, finger: 1 }],
-        tips: ['5th string root', 'Standard m7 A-shape']
-      },
-      // Root-4 (7-9fr): 8-8-9-7-x-x
-      {
-        id: 'Am7-Root4',
-        shapeName: 'Root-4',
-        frets: ['x', 'x', 7, 9, 8, 8],
-        fingers: [null, null, 1, 4, 2, 3],
+        frets: [5, 5, 5, 5, 7, 5],
+        fingers: [1, 1, 1, 1, 3, 1],
         barres: [],
-        tips: ['4th string root', 'Compact voicing']
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'Am7-3-Root-5',
+        shapeName: 'Root-5',
+        frets: ['x', 10, 12, 12, 10, 'x'],
+        fingers: [null, 1, 3, 4, 1, null],
+        barres: [{ fret: 10, fromString: 2, toString: 5, finger: 1 }],
+        tips: ['"A minor 7 (x-10-12-12-10-x)"']
+      },
+      {
+        id: 'Am7-4-Root-4',
+        shapeName: 'Root-4',
+        frets: [8, 8, 9, 7, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
       }
     ]
   },
-];
+  // AM7 (M7)
+  {
+    id: 'AM7',
+    symbol: 'AM7',
+    quality: 'M7',
+    forms: [
+      {
+        id: 'AM7-1-Open',
+        shapeName: 'Open',
+        frets: [0, 2, 1, 2, 0, 'x'],
+        fingers: [null, 3, 1, 2, null, null],
+        barres: [],
+        tips: ['"Amaj7 open | Mellow sound"']
+      },
+      {
+        id: 'AM7-2-Root6',
+        shapeName: 'Root-6',
+        frets: [5, 5, 6, 6, 7, 5],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 5, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | Maj7 E-shape"']
+      },
+      {
+        id: 'AM7-3-Root5',
+        shapeName: 'Root-5',
+        frets: [9, 9, 9, 11, 12, 'x'],
+        fingers: [1, 1, 1, 3, 4, null],
+        barres: [{ fret: 9, fromString: 1, toString: 3, finger: 1 }],
+        tips: ['"5th string root | Maj7 (barre 1–3 @ 9f)"']
+      },
+      {
+        id: 'AM7-4-Root4',
+        shapeName: 'Root-4',
+        frets: [9, 9, 9, 7, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      }
+    ]
+  },
+  // Am9 (m9)
+  {
+    id: 'Am9',
+    symbol: 'Am9',
+    quality: 'm9',
+    forms: [
+      {
+        id: 'Am9-2-Root6',
+        shapeName: 'Root-6',
+        frets: [7, 5, 5, 5, 7, 5],
+        fingers: [4, 1, 1, 1, 3, 1],
+        barres: [{ fret: 5, fromString: 1, toString: 6, finger: 4 }],
+        tips: ['"A minor 9 root-6 (7-5-5-5-7-5) barre@5(1-6)"']
+      },
+      {
+        id: 'Am9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 12, 12, 10, 12, 'x'],
+        fingers: [null, 1, 1, 3, 4, null],
+        barres: [{ fret: 12, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"A minor 9 root-5 (x-12-12-10-12-x) barre@12(2-3)"']
+      },
+      {
+        id: 'Am9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [7, 8, 7, 5, 'x', 'x'],
+        fingers: [3, 4, 2, 1, null, null],
+        barres: [],
+        tips: ['"A minor 9 root-4 (7-8-7-5-x-x)"']
+      }
+    ]
+  },
+  // Asus2 (sus2)
+  {
+    id: 'Asus2',
+    symbol: 'Asus2',
+    quality: 'sus2',
+    forms: [
+      {
+        id: 'Asus2-1-Open',
+        shapeName: 'Open',
+        frets: [0, 0, 2, 2, 0, 'x'],
+        fingers: [null, null, 1, 2, null, null],
+        barres: [],
+        tips: ['"A sus2 open (x-0-2-2-0-0)"']
+      }
+    ]
+  },
+  // Asus4 (sus4)
+  {
+    id: 'Asus4',
+    symbol: 'Asus4',
+    quality: 'sus4',
+    forms: [
+      {
+        id: 'Asus4-1-Open',
+        shapeName: 'Open',
+        frets: [0, 3, 2, 2, 0, 'x'],
+        fingers: [null, 3, 2, 1, null, null],
+        barres: [],
+        tips: ['"A sus4 open (x-0-2-2-3-0)"']
+      },
+      {
+        id: 'Asus4-1-Open',
+        shapeName: 'Open',
+        frets: [0, 3, 2, 2, 0, 'x'],
+        fingers: [null, 3, 2, 1, null, null],
+        barres: [],
+        tips: ['"A sus4 open (x-0-2-2-3-0)"']
+      },
+      {
+        id: 'Asus4-2-Root6',
+        shapeName: 'Root-6',
+        frets: [12, 14, 14, 14, 12, 12],
+        fingers: [1, 3, 4, 4, 1, 2],
+        barres: [{ fret: 12, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"A sus4 root-6 (12-14-14-14-12-12)"']
+      },
+      {
+        id: 'Asus4-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 10, 9, 12, 12, 'x'],
+        fingers: [null, 2, 1, 4, 4, null],
+        barres: [{ fret: 10, fromString: 2, toString: 5, finger: 2 }],
+        tips: ['"A sus4 root-5 (x-10-9-12-12-x)"']
+      },
+      {
+        id: 'Asus4-4-Root4',
+        shapeName: 'Root-4',
+        frets: [17, 17, 19, 19, 'x', 'x'],
+        fingers: [1, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['"A sus4 root-4 (17-17-19-19-x-x)"']
+      },
+      {
+        id: 'Asus4-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [12, 15, 14, 'x', 'x', 'x'],
+        fingers: [1, 4, 3, null, null, null],
+        barres: [],
+        tips: ['Asus4 Triad-1 (auto from Csus4 +9)']
+      },
+      {
+        id: 'Asus4-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 17, 19, 19, 'x', 'x'],
+        fingers: [null, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['Asus4 Triad-2 (auto from Csus4 +9)']
+      }
+    ]
+  },
+  // B (M)
+  {
+    id: 'B',
+    symbol: 'B',
+    quality: 'M',
+    forms: [
+      {
+        id: 'B-4-Triad1',
+        shapeName: 'Triad-1',
+        frets: [2, 4, 4, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'B-5-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 7, 8, 9, 'x', 'x'],
+        fingers: [null, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // B6 (6)
+  {
+    id: 'B6',
+    symbol: 'B6',
+    quality: '6',
+    forms: [
+      {
+        id: 'B6-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 4, 4, 4, 2, 'x'],
+        fingers: [null, 3, 4, 4, 1, null],
+        barres: [],
+        tips: ['"B 6 root-5 (x-2-4-4-4-x)"']
+      },
+      {
+        id: 'B6-4-Root4',
+        shapeName: 'Root-4',
+        frets: [7, 9, 8, 9, 'x', 'x'],
+        fingers: [1, 4, 2, 3, null, null],
+        barres: [],
+        tips: ['"B 6 root-4 (7-9-8-9-x-x)"']
+      }
+    ]
+  },
+  // B7 (7)
+  {
+    id: 'B7',
+    symbol: 'B7',
+    quality: '7',
+    forms: [
+      {
+        id: 'B7-1-Open',
+        shapeName: 'Open',
+        frets: [2, 0, 2, 1, 2, 'x'],
+        fingers: [3, null, 2, 1, 4, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'B7-2-Root-6',
+        shapeName: 'Root-6',
+        frets: [7, 7, 8, 7, 9, 7],
+        fingers: [1, 1, 2, 1, 3, 1],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'B7-3-Root-5',
+        shapeName: 'Root-5',
+        frets: [9, 11, 9, 11, 9, 'x'],
+        fingers: [1, 4, 1, 3, 1, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'B7-4-Root-4',
+        shapeName: 'Root-4',
+        frets: [11, 10, 11, 9, 'x', 'x'],
+        fingers: [4, 2, 3, 1, null, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      }
+    ]
+  },
+  // Badd9 (add9)
+  {
+    id: 'Badd9',
+    symbol: 'Badd9',
+    quality: 'add9',
+    forms: [
+      {
+        id: 'Badd9-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 18, 16, 18, 19],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"B add9 root-6 (x-x-18-16-18-19)"']
+      },
+      {
+        id: 'Badd9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 14, 11, 13, 14, 'x'],
+        fingers: [null, 4, 1, 2, 3, null],
+        barres: [{ fret: 11, fromString: 2, toString: 5, finger: 4 }],
+        tips: ['"B add9 root-5 (x-14-11-13-14-x) barre@11(2-5)"']
+      },
+      {
+        id: 'Badd9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [21, 19, 20, 21, 'x', 'x'],
+        fingers: [4, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"B add9 root-4 (21-19-20-21-x-x)"']
+      }
+    ]
+  },
+  // Baug (aug)
+  {
+    id: 'Baug',
+    symbol: 'Baug',
+    quality: 'aug',
+    forms: [
+      {
+        id: 'Baug-1-Open',
+        shapeName: 'Open',
+        frets: [3, 0, 0, 1, 2, 'x'],
+        fingers: [4, null, null, 1, 3, null],
+        barres: [],
+        tips: ['"B augmented open (x-2-1-0-0-3)"']
+      },
+      {
+        id: 'Baug-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 20, 20, 21, 'x', 19],
+        fingers: [null, 3, 2, 4, null, 1],
+        barres: [],
+        tips: ['"B augmented root-6 (x-20-20-21-x-19)"']
+      },
+      {
+        id: 'Baug-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 14, 13, 12, 12, 'x'],
+        fingers: [null, 3, 2, 1, 1, null],
+        barres: [{ fret: 12, fromString: 2, toString: 3, finger: 3 }],
+        tips: ['"B augmented root-5 (x-14-13-12-12-x) barre@12(2-3)"']
+      },
+      {
+        id: 'Baug-4-Root4',
+        shapeName: 'Root-4',
+        frets: [19, 20, 20, 21, 'x', 'x'],
+        fingers: [1, 2, 3, 4, null, null],
+        barres: [],
+        tips: ['"B augmented root-4 (19-20-20-21-x-x)"']
+      },
+      {
+        id: 'Baug-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [15, 16, 16, 'x', 'x', 'x'],
+        fingers: [1, 3, 2, null, null, null],
+        barres: [],
+        tips: ['"B augmented Triad-1 (15-16-16-x-x-x)"']
+      },
+      {
+        id: 'Baug-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 20, 20, 21, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [{ fret: 20, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"B augmented Triad-2 (x-20-20-21-x-x) barre@20(2-3)"']
+      }
+    ]
+  },
+  // BbM7 (M7)
+  {
+    id: 'BbM7',
+    symbol: 'BbM7',
+    quality: 'M7',
+    forms: [
+      {
+        id: 'BbM7-1-Root6',
+        shapeName: 'Root-6',
+        frets: [6, 6, 7, 7, 8, 6],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 6, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"A#maj7 enharmonic | Maj7 E-shape"']
+      },
+      {
+        id: 'BbM7-2-Root5',
+        shapeName: 'Root-5',
+        frets: [1, 3, 2, 3, 1, 'x'],
+        fingers: [1, 4, 2, 3, 1, null],
+        barres: [{ fret: 1, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | Maj7 A-shape"']
+      },
+      {
+        id: 'BbM7-3-Root4',
+        shapeName: 'Root-4',
+        frets: [10, 10, 10, 8, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      }
+    ]
+  },
+  // Bdim (dim)
+  {
+    id: 'Bdim',
+    symbol: 'Bdim',
+    quality: 'dim',
+    forms: [
+      {
+        id: 'Bdim-1-Root6',
+        shapeName: 'Root-6',
+        frets: [19, 18, 19, 'x', 'x', 19],
+        fingers: [4, 1, 3, null, null, 2],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +11)']
+      },
+      {
+        id: 'Bdim-2',
+        shapeName: 'Root-5',
+        frets: ['x', 15, 16, 15, 14, 'x'],
+        fingers: [null, 3, 4, 2, 1, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +11)']
+      },
+      {
+        id: 'Bdim-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [19, 18, 19, 21, 'x', 'x'],
+        fingers: [3, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +11)']
+      },
+      {
+        id: 'Bdim-4-Triad-1',
+        shapeName: 'Triad-1',
+        frets: [13, 15, 16, 'x', 'x', 'x'],
+        fingers: [1, 3, 4, null, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +11)']
+      },
+      {
+        id: 'Bdim-5-Triad-2',
+        shapeName: 'Triad-2',
+        frets: ['x', 18, 19, 21, 'x', 'x'],
+        fingers: [null, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +11)']
+      }
+    ]
+  },
+  // Bm (m)
+  {
+    id: 'Bm',
+    symbol: 'Bm',
+    quality: 'm',
+    forms: [
+      {
+        id: 'Bm-4-Triad1',
+        shapeName: 'Triad-1',
+        frets: [2, 3, 4, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'Bm-5-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 7, 7, 9, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // Bm6 (m6)
+  {
+    id: 'Bm6',
+    symbol: 'Bm6',
+    quality: 'm6',
+    forms: [
+      {
+        id: 'Bm6-1-Open',
+        shapeName: 'Open',
+        frets: [0, 0, 1, 0, 2, 'x'],
+        fingers: [null, null, 1, null, 2, null],
+        barres: [],
+        tips: ['"B minor 6 open (x-2-0-1-0-0)"']
+      },
+      {
+        id: 'Bm6-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 19, 19, 18, 'x', 19],
+        fingers: [null, 3, 4, 1, null, 2],
+        barres: [],
+        tips: ['"B minor 6 root-6 (x-19-19-18-x-19)"']
+      },
+      {
+        id: 'Bm6-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 12, 13, 12, 14, 'x'],
+        fingers: [null, 1, 3, 2, 4, null],
+        barres: [],
+        tips: ['"B minor 6 root-5 (x-14-12-13-12-x)"']
+      },
+      {
+        id: 'Bm6-4-Root4',
+        shapeName: 'Root-4',
+        frets: [7, 9, 7, 9, 'x', 'x'],
+        fingers: [1, 4, 2, 3, null, null],
+        barres: [],
+        tips: ['"B minor 6 root-4 (7-9-7-9-x-x)"']
+      }
+    ]
+  },
+  // BM7 (M7)
+  {
+    id: 'BM7',
+    symbol: 'BM7',
+    quality: 'M7',
+    forms: [
+      {
+        id: 'BM7-1-Root6',
+        shapeName: 'Root-6',
+        frets: [7, 7, 8, 8, 9, 7],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 7, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | Maj7 E-shape"']
+      },
+      {
+        id: 'BM7-2-Root5',
+        shapeName: 'Root-5',
+        frets: [2, 4, 3, 4, 2, 'x'],
+        fingers: [1, 4, 2, 3, 1, null],
+        barres: [{ fret: 2, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | Maj7 A-shape"']
+      },
+      {
+        id: 'BM7-3-Root4',
+        shapeName: 'Root-4',
+        frets: [11, 11, 11, 9, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      }
+    ]
+  },
+  // Bm9 (m9)
+  {
+    id: 'Bm9',
+    symbol: 'Bm9',
+    quality: 'm9',
+    forms: [
+      {
+        id: 'Bm9-1-Open',
+        shapeName: 'Open',
+        frets: [0, 0, 2, 4, 2, 'x'],
+        fingers: [null, null, 1, 3, 2, null],
+        barres: [],
+        tips: ['"B minor 9 open (x-2-4-2-0-0)"']
+      },
+      {
+        id: 'Bm9-2-Root6',
+        shapeName: 'Root-6',
+        frets: [7, 5, 5, 5, 7, 5],
+        fingers: [4, 1, 1, 1, 3, 1],
+        barres: [{ fret: 5, fromString: 1, toString: 6, finger: 4 }],
+        tips: ['"B minor 9 root-6 (7-5-5-5-7-5) barre@5(1-6)"']
+      },
+      {
+        id: 'Bm9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 14, 14, 12, 14, 'x'],
+        fingers: [null, 1, 1, 3, 4, null],
+        barres: [{ fret: 14, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"B minor 9 root-5 (x-14-14-12-14-x)"']
+      },
+      {
+        id: 'Bm9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [12, 12, 10, 7, 'x', 'x'],
+        fingers: [4, 4, 2, 1, null, null],
+        barres: [],
+        tips: ['"B minor 9 root-4 (12-12-10-7-x-x)"']
+      }
+    ]
+  },
+  // Bsus2 (sus2)
+  {
+    id: 'Bsus2',
+    symbol: 'Bsus2',
+    quality: 'sus2',
+    forms: [
+      {
+        id: 'Bsus2-3-Root5',
+        shapeName: 'Root-5',
+        frets: [2, 2, 4, 4, 2, 'x'],
+        fingers: [1, 1, 3, 4, 1, null],
+        barres: [{ fret: 2, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"B sus2 root-5 (x-2-4-4-2-2) barre@2(1-5)"']
+      }
+    ]
+  },
+  // Bsus4 (sus4)
+  {
+    id: 'Bsus4',
+    symbol: 'Bsus4',
+    quality: 'sus4',
+    forms: [
+      {
+        id: 'Bsus4-1-Open',
+        shapeName: 'Open',
+        frets: [2, 0, 'x', 2, 2, 'x'],
+        fingers: [4, null, null, 3, 2, null],
+        barres: [],
+        tips: ['"B sus4 open (x-2-2-0-2-2 pattern)"']
+      },
+      {
+        id: 'Bsus4-2-Root6',
+        shapeName: 'Root-6',
+        frets: [14, 16, 16, 16, 14, 14],
+        fingers: [1, 3, 4, 4, 1, 2],
+        barres: [{ fret: 14, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"B sus4 root-6 (14-16-16-16-14-14)"']
+      },
+      {
+        id: 'Bsus4-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 12, 11, 14, 14, 'x'],
+        fingers: [null, 2, 1, 4, 4, null],
+        barres: [{ fret: 12, fromString: 2, toString: 5, finger: 2 }],
+        tips: ['"B sus4 root-5 (x-12-11-14-14-x)"']
+      },
+      {
+        id: 'Bsus4-4-Root4',
+        shapeName: 'Root-4',
+        frets: [19, 19, 21, 21, 'x', 'x'],
+        fingers: [1, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['"B sus4 root-4 (19-19-21-21-x-x)"']
+      },
+      {
+        id: 'Bsus4-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [14, 17, 16, 'x', 'x', 'x'],
+        fingers: [1, 4, 3, null, null, null],
+        barres: [],
+        tips: ['Bsus4 Triad-1 (auto from Csus4 +11)']
+      },
+      {
+        id: 'Bsus4-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 19, 21, 21, 'x', 'x'],
+        fingers: [null, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['Bsus4 Triad-2 (auto from Csus4 +11)']
+      }
+    ]
+  },
+  // C (M)
+  {
+    id: 'C',
+    symbol: 'C',
+    quality: 'M',
+    forms: [
+      {
+        id: 'C-1-Open',
+        shapeName: 'Open',
+        frets: [0, 1, 0, 2, 3, 'x'],
+        fingers: [null, 1, null, 2, 3, null],
+        barres: [],
+        tips: ['"C major open | Beginner-friendly"']
+      },
+      {
+        id: 'C-2-Root6',
+        shapeName: 'Root-6',
+        frets: [8, 8, 9, 10, 10, 8],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 8, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape barre"']
+      },
+      {
+        id: 'C-3-Root5',
+        shapeName: 'Root-5',
+        frets: [3, 5, 5, 5, 3, 'x'],
+        fingers: [1, 3, 4, 2, 1, null],
+        barres: [{ fret: 3, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | A-shape barre"']
+      },
+      {
+        id: 'C-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [3, 5, 5, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'C-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 8, 9, 10, 'x', 'x'],
+        fingers: [null, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // C# (M)
+  {
+    id: 'C#',
+    symbol: 'C#',
+    quality: 'M',
+    forms: [
+      {
+        id: 'C#-4-Triad1',
+        shapeName: 'Triad-1',
+        frets: [4, 6, 6, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'C#-5-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 9, 10, 11, 'x', 'x'],
+        fingers: [null, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // C#7 (7)
+  {
+    id: 'C#7',
+    symbol: 'C#7',
+    quality: '7',
+    forms: [
+      {
+        id: 'C#7-1-Root-6',
+        shapeName: 'Root-6',
+        frets: [9, 9, 10, 9, 11, 9],
+        fingers: [1, 1, 2, 1, 3, 1],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'C#7-2-Root-5',
+        shapeName: 'Root-5',
+        frets: [4, 6, 4, 6, 4, 'x'],
+        fingers: [1, 4, 1, 3, 1, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'C#7-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [13, 12, 13, 11, 'x', 'x'],
+        fingers: [4, 2, 3, 1, null, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      }
+    ]
+  },
+  // C#add9 (add9)
+  {
+    id: 'C#add9',
+    symbol: 'C#add9',
+    quality: 'add9',
+    forms: [
+      {
+        id: 'C#add9-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 8, 6, 8, 9],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"C# add9 root-6 (x-x-8-6-8-9)"']
+      },
+      {
+        id: 'C#add9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 4, 1, 3, 4, 'x'],
+        fingers: [null, 4, 1, 2, 3, null],
+        barres: [{ fret: 1, fromString: 1, toString: 5, finger: null }],
+        tips: ['"C# add9 root-5 (x-4-1-3-4-x) barre@1(1-5)"']
+      },
+      {
+        id: 'C#add9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [11, 9, 10, 11, 'x', 'x'],
+        fingers: [4, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"C# add9 root-4 (11-9-10-11-x-x)"']
+      }
+    ]
+  },
+  // C#aug (aug)
+  {
+    id: 'C#aug',
+    symbol: 'C#aug',
+    quality: 'aug',
+    forms: [
+      {
+        id: 'C#aug-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 10, 10, 11, 'x', 9],
+        fingers: [null, 3, 2, 4, null, 1],
+        barres: [],
+        tips: ['"C# augmented root-6 (x-10-10-11-x-9)"']
+      },
+      {
+        id: 'C#aug-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 4, 3, 2, 2, 'x'],
+        fingers: [null, 3, 2, 1, 1, null],
+        barres: [{ fret: 2, fromString: 2, toString: 3, finger: 3 }],
+        tips: ['"C# augmented root-5 (x-4-3-2-2-x) barre@2(2-3)"']
+      },
+      {
+        id: 'C#aug-4-Root4',
+        shapeName: 'Root-4',
+        frets: [9, 10, 10, 11, 'x', 'x'],
+        fingers: [1, 2, 3, 4, null, null],
+        barres: [],
+        tips: ['"C# augmented root-4 (9-10-10-11-x-x)"']
+      },
+      {
+        id: 'C#aug-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [5, 6, 6, 'x', 'x', 'x'],
+        fingers: [1, 3, 2, null, null, null],
+        barres: [],
+        tips: ['"C# augmented Triad-1 (5-6-6-x-x-x)"']
+      },
+      {
+        id: 'C#aug-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 10, 10, 11, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [{ fret: 10, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"C# augmented Triad-2 (x-10-10-11-x-x) barre@10(2-3)"']
+      }
+    ]
+  },
+  // C#dim (dim)
+  {
+    id: 'C#dim',
+    symbol: 'C#dim',
+    quality: 'dim',
+    forms: [
+      {
+        id: 'C#dim-1-Root6',
+        shapeName: 'Root-6',
+        frets: [9, 8, 9, 'x', 'x', 9],
+        fingers: [4, 1, 3, null, null, 2],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +1)']
+      },
+      {
+        id: 'C#dim-2',
+        shapeName: 'Root-5',
+        frets: ['x', 5, 6, 5, 4, 'x'],
+        fingers: [null, 3, 4, 2, 1, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +1)']
+      },
+      {
+        id: 'C#dim-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [9, 8, 9, 11, 'x', 'x'],
+        fingers: [3, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +1)']
+      },
+      {
+        id: 'C#dim-4-Triad-1',
+        shapeName: 'Triad-1',
+        frets: [3, 5, 6, 'x', 'x', 'x'],
+        fingers: [1, 3, 4, null, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +1)']
+      },
+      {
+        id: 'C#dim-5-Triad-2',
+        shapeName: 'Triad-2',
+        frets: ['x', 8, 9, 11, 'x', 'x'],
+        fingers: [null, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +1)']
+      }
+    ]
+  },
+  // C#m (m)
+  {
+    id: 'C#m',
+    symbol: 'C#m',
+    quality: 'm',
+    forms: [
+      {
+        id: 'C#m-4-Triad1',
+        shapeName: 'Triad-1',
+        frets: [4, 5, 6, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'C#m-5-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 9, 9, 11, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // C#m7 (m7)
+  {
+    id: 'C#m7',
+    symbol: 'C#m7',
+    quality: 'm7',
+    forms: [
+      {
+        id: 'C#m7-1-Open',
+        shapeName: 'Open',
+        frets: [0, 0, 0, 1, 2, 'x'],
+        fingers: [null, null, null, 1, 2, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'C#m7-2-Root-6',
+        shapeName: 'Root-6',
+        frets: [9, 9, 9, 9, 11, 9],
+        fingers: [1, 1, 1, 1, 3, 1],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'C#m7-3-Root-5',
+        shapeName: 'Root-5',
+        frets: [4, 5, 4, 6, 4, 'x'],
+        fingers: [1, 2, 1, 3, 1, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'C#m7-4-Root-4',
+        shapeName: 'Root-4',
+        frets: [12, 12, 13, 11, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      }
+    ]
+  },
+  // C#M7 (M7)
+  {
+    id: 'C#M7',
+    symbol: 'C#M7',
+    quality: 'M7',
+    forms: [
+      {
+        id: 'C#M7-1-Root6',
+        shapeName: 'Root-6',
+        frets: [9, 9, 10, 10, 11, 9],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 9, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | Maj7 shape"']
+      },
+      {
+        id: 'C#M7-2-Root5',
+        shapeName: 'Root-5',
+        frets: [4, 6, 5, 6, 4, 'x'],
+        fingers: [1, 4, 2, 3, 1, null],
+        barres: [{ fret: 4, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | Barre"']
+      },
+      {
+        id: 'C#M7-3-Root4',
+        shapeName: 'Root-4',
+        frets: [13, 13, 13, 11, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      }
+    ]
+  },
+  // C#sus4 (sus4)
+  {
+    id: 'C#sus4',
+    symbol: 'C#sus4',
+    quality: 'sus4',
+    forms: [
+      {
+        id: 'C#sus4-2-Root6',
+        shapeName: 'Root-6',
+        frets: [4, 6, 6, 6, 4, 4],
+        fingers: [1, 3, 4, 4, 1, 2],
+        barres: [{ fret: 3, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"C# sus4 root-6 (4-6-6-6-4-4)"']
+      },
+      {
+        id: 'C#sus4-3-Root5',
+        shapeName: 'Root-5',
+        frets: [9, 11, 11, 11, 9, 'x'],
+        fingers: [1, 3, 4, 4, 1, null],
+        barres: [{ fret: 9, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"C# sus4 root-5 (9-11-11-11-9-x)"']
+      },
+      {
+        id: 'C#sus4-4-Root4',
+        shapeName: 'Root-4',
+        frets: [9, 9, 11, 11, 'x', 'x'],
+        fingers: [1, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['"C# sus4 root-4 (9-9-11-11-x-x)"']
+      },
+      {
+        id: 'C#sus4-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [4, 7, 6, 'x', 'x', 'x'],
+        fingers: [1, 4, 3, null, null, null],
+        barres: [],
+        tips: ['"C# sus4 Triad-1 (4-7-6 on 1-3)"']
+      },
+      {
+        id: 'C#sus4-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 9, 11, 11, 'x', 'x'],
+        fingers: [null, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['"C# sus4 Triad-2 (x-9-11-11-x-x)"']
+      }
+    ]
+  },
+  // C6 (6)
+  {
+    id: 'C6',
+    symbol: 'C6',
+    quality: '6',
+    forms: [
+      {
+        id: 'C6-1-Open',
+        shapeName: 'Open',
+        frets: [0, 1, 2, 2, 3, 'x'],
+        fingers: [null, 1, 3, 2, 4, null],
+        barres: [],
+        tips: ['"C 6 open (x-3-2-2-1-0)"']
+      },
+      {
+        id: 'C6-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 8, 9, 7, 'x', 8],
+        fingers: [null, 3, 4, 1, null, 2],
+        barres: [],
+        tips: ['"C 6 root-6 (x-8-9-7-x-8)"']
+      },
+      {
+        id: 'C6-3-Root5',
+        shapeName: 'Root-5',
+        frets: [5, 5, 5, 5, 3, 'x'],
+        fingers: [3, 3, 3, 3, 1, null],
+        barres: [{ fret: 5, fromString: 1, toString: 4, finger: 3 }],
+        tips: ['"C 6 root-5 (5-5-5-5-3-x) barre@5(1-4)"']
+      },
+      {
+        id: 'C6-4-Root4',
+        shapeName: 'Root-4',
+        frets: [8, 10, 9, 10, 'x', 'x'],
+        fingers: [1, 4, 2, 3, null, null],
+        barres: [],
+        tips: ['"C 6 root-4 (8-10-9-10-x-x)"']
+      }
+    ]
+  },
+  // C7 (7)
+  {
+    id: 'C7',
+    symbol: 'C7',
+    quality: '7',
+    forms: [
+      {
+        id: 'C7-1-Open',
+        shapeName: 'Open',
+        frets: [0, 1, 3, 2, 3, 'x'],
+        fingers: [null, 1, 3, 2, 4, null],
+        barres: [],
+        tips: ['"Classic C7 open"']
+      },
+      {
+        id: 'C7-2-Root-6',
+        shapeName: 'Root-6',
+        frets: [8, 8, 9, 8, 10, 8],
+        fingers: [1, 1, 2, 1, 3, 1],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'C7-3-Root-5',
+        shapeName: 'Root-5',
+        frets: [3, 5, 3, 5, 3, 'x'],
+        fingers: [1, 4, 1, 3, 1, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'C7-4-Root-4',
+        shapeName: 'Root-4',
+        frets: [12, 11, 12, 10, 'x', 'x'],
+        fingers: [4, 2, 3, 1, null, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      }
+    ]
+  },
+  // Cadd9 (add9)
+  {
+    id: 'Cadd9',
+    symbol: 'Cadd9',
+    quality: 'add9',
+    forms: [
+      {
+        id: 'Cadd9-1-Open',
+        shapeName: 'Open',
+        frets: [0, 3, 0, 2, 3, 'x'],
+        fingers: [null, 4, null, 1, 3, null],
+        barres: [],
+        tips: ['"C add9 open (x-3-2-0-3-0)"']
+      },
+      {
+        id: 'Cadd9-2-Root4',
+        shapeName: 'Root-4',
+        frets: [10, 8, 9, 10, 'x', 'x'],
+        fingers: [4, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"C add9 root-4 (10-8-9-10-x-x)"']
+      },
+      {
+        id: 'Cadd9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 5, 7, 5, 3, 'x'],
+        fingers: [null, 1, 4, 2, 3, null],
+        barres: [],
+        tips: ['"C add9 root-5 (x-3-5-7-5-x)"']
+      },
+      {
+        id: 'Cadd9-4-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 7, 5, 7, 8],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"C add9 root-6 (x-x-7-5-7-8)"']
+      },
+      {
+        id: 'Cadd9-4-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 7, 5, 7, 8],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"C add9 root-6 (x-x-7-5-7-8)"']
+      },
+      {
+        id: 'Cadd9-4-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 7, 5, 7, 8],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"C add9 root-6 (x-x-7-5-7-8)"']
+      },
+      {
+        id: 'Cadd9-4-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 7, 5, 7, 8],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"C add9 root-6 (x-x-7-5-7-8)"']
+      }
+    ]
+  },
+  // Caug (aug)
+  {
+    id: 'Caug',
+    symbol: 'Caug',
+    quality: 'aug',
+    forms: [
+      {
+        id: 'Caug-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 9, 9, 10, 'x', 8],
+        fingers: [null, 3, 2, 4, null, 1],
+        barres: [],
+        tips: ['"C augmented root-6 (x-9-9-10-x-8)"']
+      },
+      {
+        id: 'Caug-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 3, 2, 1, 1, 'x'],
+        fingers: [null, 3, 2, 1, 1, null],
+        barres: [{ fret: 1, fromString: 2, toString: 3, finger: 3 }],
+        tips: ['"C augmented root-5 (x-3-2-1-1-x) barre@1(2-3)"']
+      },
+      {
+        id: 'Caug-4-Root4',
+        shapeName: 'Root-4',
+        frets: [8, 9, 9, 10, 'x', 'x'],
+        fingers: [1, 2, 3, 4, null, null],
+        barres: [],
+        tips: ['"C augmented root-4 (8-9-9-10-x-x)"']
+      },
+      {
+        id: 'Caug-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [4, 5, 5, 'x', 'x', 'x'],
+        fingers: [1, 3, 2, null, null, null],
+        barres: [],
+        tips: ['"C augmented Triad-1 (4-5-5-x-x-x)"']
+      },
+      {
+        id: 'Caug-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 9, 9, 10, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [{ fret: 9, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"C augmented Triad-2 (x-9-9-10-x-x) barre@9(2-3)"']
+      }
+    ]
+  },
+  // Cdim (dim)
+  {
+    id: 'Cdim',
+    symbol: 'Cdim',
+    quality: 'dim',
+    forms: [
+      {
+        id: 'Cdim-1-Root6',
+        shapeName: 'Root-6',
+        frets: [8, 7, 8, 'x', 'x', 8],
+        fingers: [4, 1, 3, null, null, 2],
+        barres: [],
+        tips: ['"Cdim Root-6 (x-?-? pattern; 5th string mute)"']
+      },
+      {
+        id: 'Cdim-2',
+        shapeName: 'Root-5',
+        frets: ['x', 4, 5, 4, 3, 'x'],
+        fingers: [null, 3, 4, 2, 1, null],
+        barres: [],
+        tips: ['"Cdim Root-5 (x-4-5-4-3-x)"']
+      },
+      {
+        id: 'Cdim-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [8, 7, 8, 10, 'x', 'x'],
+        fingers: [3, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['"Cdim Root-4 (8-7-8-10-x-x)"']
+      },
+      {
+        id: 'Cdim-4-Triad-1',
+        shapeName: 'Triad-1',
+        frets: [2, 4, 5, 'x', 'x', 'x'],
+        fingers: [1, 3, 4, null, null, null],
+        barres: [],
+        tips: ['"Cdim Triad-1 (2-4-5 on 1-3)"']
+      },
+      {
+        id: 'Cdim-5-Triad-2',
+        shapeName: 'Triad-2',
+        frets: ['x', 7, 8, 10, 'x', 'x'],
+        fingers: [null, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['"Cdim Triad-2 (x-7-8-10-x-x)"']
+      }
+    ]
+  },
+  // Cm (m)
+  {
+    id: 'Cm',
+    symbol: 'Cm',
+    quality: 'm',
+    forms: [
+      {
+        id: 'Cm-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [3, 4, 5, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'Cm-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 8, 8, 10, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // Cm6 (m6)
+  {
+    id: 'Cm6',
+    symbol: 'Cm6',
+    quality: 'm6',
+    forms: [
+      {
+        id: 'Cm6-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 8, 8, 7, 'x', 8],
+        fingers: [null, 3, 4, 1, null, 2],
+        barres: [],
+        tips: ['"C minor 6 root-6 (x-8-8-7-x-8)"']
+      },
+      {
+        id: 'Cm6-3-Root5',
+        shapeName: 'Root-5',
+        frets: [3, 4, 2, 'x', 3, 'x'],
+        fingers: [4, 3, 1, null, 2, null],
+        barres: [],
+        tips: ['"C minor 6 root-5 (3-4-2-x-3-x)"']
+      },
+      {
+        id: 'Cm6-4-Root4',
+        shapeName: 'Root-4',
+        frets: [8, 10, 8, 10, 'x', 'x'],
+        fingers: [1, 4, 1, 3, null, null],
+        barres: [{ fret: 8, fromString: 1, toString: 3, finger: 1 }],
+        tips: ['"C minor 6 root-4 (8-10-8-10-x-x) barre@8(1-3)"']
+      }
+    ]
+  },
+  // Cm7 (m7)
+  {
+    id: 'Cm7',
+    symbol: 'Cm7',
+    quality: 'm7',
+    forms: [
+      {
+        id: 'Cm7-1-Root-6',
+        shapeName: 'Root-6',
+        frets: [8, 8, 8, 8, 10, 8],
+        fingers: [1, 1, 1, 1, 3, 1],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'Cm7-2-Root-5',
+        shapeName: 'Root-5',
+        frets: [3, 4, 3, 5, 3, 'x'],
+        fingers: [1, 2, 1, 3, 1, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'Cm7-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [11, 11, 12, 10, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      }
+    ]
+  },
+  // CM7 (M7)
+  {
+    id: 'CM7',
+    symbol: 'CM7',
+    quality: 'M7',
+    forms: [
+      {
+        id: 'CM7-1',
+        shapeName: 'Open',
+        frets: [0, 0, 0, 2, 3, 'x'],
+        fingers: [null, null, null, 2, 3, null],
+        barres: [],
+        tips: ['"Rich C major 7th | Open strings"']
+      },
+      {
+        id: 'CM7-2',
+        shapeName: 'Root-5',
+        frets: [3, 5, 4, 5, 3, 'x'],
+        fingers: [1, 4, 2, 3, 1, null],
+        barres: [{ fret: 3, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"Barre form | 5th string root"']
+      },
+      {
+        id: 'CM7-3',
+        shapeName: 'Root-6',
+        frets: [8, 8, 9, 9, 10, 8],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 8, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"Full barre | 2nd&3rd strings at 8/9"']
+      },
+      {
+        id: 'CM7-4',
+        shapeName: 'Root-4',
+        frets: [12, 12, 12, 10, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      }
+    ]
+  },
+  // Cm9 (m9)
+  {
+    id: 'Cm9',
+    symbol: 'Cm9',
+    quality: 'm9',
+    forms: [
+      {
+        id: 'Cm9-1-Open',
+        shapeName: 'Open',
+        frets: [0, 0, 3, 5, 3, 'x'],
+        fingers: [null, null, 1, 4, 2, null],
+        barres: [],
+        tips: ['"C minor 9 open (x-3-5-3-0-0)"']
+      },
+      {
+        id: 'Cm9-2-Root6',
+        shapeName: 'Root-6',
+        frets: [8, 6, 6, 6, 8, 6],
+        fingers: [5, 1, 1, 1, 3, 1],
+        barres: [{ fret: 6, fromString: 1, toString: 6, finger: 5 }],
+        tips: ['"C minor 9 root-6 (8-6-6-6-8-6) barre@6(1-6)"']
+      },
+      {
+        id: 'Cm9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 15, 15, 13, 15, 'x'],
+        fingers: [null, 1, 1, 3, 4, null],
+        barres: [{ fret: 15, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"C minor 9 root-5 (x-15-15-13-15-x)"']
+      },
+      {
+        id: 'Cm9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [13, 13, 11, 8, 'x', 'x'],
+        fingers: [4, 4, 2, 1, null, null],
+        barres: [],
+        tips: ['"C minor 9 root-4 (13-13-11-8-x-x)"']
+      }
+    ]
+  },
+  // Csus2 (sus2)
+  {
+    id: 'Csus2',
+    symbol: 'Csus2',
+    quality: 'sus2',
+    forms: [
+      {
+        id: 'Csus2-1-Open',
+        shapeName: 'Open',
+        frets: [3, 3, 0, 0, 3, 'x'],
+        fingers: [4, 3, null, null, 1, null],
+        barres: [],
+        tips: ['"C sus2 open (x-3-0-0-3-3)"']
+      }
+    ]
+  },
+  // Csus4 (sus4)
+  {
+    id: 'Csus4',
+    symbol: 'Csus4',
+    quality: 'sus4',
+    forms: [
+      {
+        id: 'Csus4-1-Open',
+        shapeName: 'Open',
+        frets: [1, 1, 0, 3, 3, 'x'],
+        fingers: [1, 1, null, 4, 3, null],
+        barres: [{ fret: 1, fromString: 1, toString: 2, finger: 1 }],
+        tips: ['"C sus4 open (x-3-3-0-1-1)"']
+      },
+      {
+        id: 'Csus4-2-Root6',
+        shapeName: 'Root-6',
+        frets: [3, 5, 5, 5, 3, 3],
+        fingers: [1, 3, 4, 4, 1, 2],
+        barres: [{ fret: 3, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"C sus4 root-6 (3-5-5-5-3-3)"']
+      },
+      {
+        id: 'Csus4-3-Root5',
+        shapeName: 'Root-5',
+        frets: [3, 6, 5, 5, 3, 'x'],
+        fingers: [1, 4, 3, 2, 1, null],
+        barres: [{ fret: 3, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"C sus4 root-5 (3-6-5-5-3-x)"']
+      },
+      {
+        id: 'Csus4-4-Root4',
+        shapeName: 'Root-4',
+        frets: [8, 8, 10, 10, 'x', 'x'],
+        fingers: [1, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['"C sus4 root-4 (8-8-10-10-x-x)"']
+      },
+      {
+        id: 'Csus4-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [3, 6, 5, 'x', 'x', 'x'],
+        fingers: [1, 4, 3, null, null, null],
+        barres: [],
+        tips: ['"C sus4 Triad-1 (3-6-5 on 1-3)"']
+      },
+      {
+        id: 'Csus4-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 8, 10, 10, 'x', 'x'],
+        fingers: [null, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['"C sus4 Triad-2 (x-8-10-10-x-x)"']
+      }
+    ]
+  },
+  // D (M)
+  {
+    id: 'D',
+    symbol: 'D',
+    quality: 'M',
+    forms: [
+      {
+        id: 'D-1-Open',
+        shapeName: 'Open',
+        frets: [2, 3, 2, 0, 'x', 'x'],
+        fingers: [1, 3, 2, null, null, null],
+        barres: [],
+        tips: ['"D major open | Bright sound"']
+      },
+      {
+        id: 'D-2-Root6',
+        shapeName: 'Root-6',
+        frets: [10, 10, 11, 12, 12, 10],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 10, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape barre"']
+      },
+      {
+        id: 'D-3-Root5',
+        shapeName: 'Root-5',
+        frets: [5, 7, 7, 7, 5, 'x'],
+        fingers: [1, 3, 4, 2, 1, null],
+        barres: [{ fret: 5, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | A-shape barre"']
+      },
+      {
+        id: 'D-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [5, 7, 7, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'D-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 10, 11, 12, 'x', 'x'],
+        fingers: [null, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // D# (M)
+  {
+    id: 'D#',
+    symbol: 'D#',
+    quality: 'M',
+    forms: [
+      {
+        id: 'D#-4-Triad1',
+        shapeName: 'Triad-1',
+        frets: [6, 8, 8, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'D#-5-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 11, 12, 13, 'x', 'x'],
+        fingers: [null, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // D#7 (7)
+  {
+    id: 'D#7',
+    symbol: 'D#7',
+    quality: '7',
+    forms: [
+      {
+        id: 'D#7-1-Root-6',
+        shapeName: 'Root-6',
+        frets: [11, 11, 12, 11, 13, 11],
+        fingers: [1, 1, 2, 1, 3, 1],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'D#7-2-Root-5',
+        shapeName: 'Root-5',
+        frets: [6, 8, 6, 8, 6, 'x'],
+        fingers: [1, 4, 1, 3, 1, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'D#7-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [3, 2, 3, 1, 'x', 'x'],
+        fingers: [4, 2, 3, 1, null, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      }
+    ]
+  },
+  // D#add9 (add9)
+  {
+    id: 'D#add9',
+    symbol: 'D#add9',
+    quality: 'add9',
+    forms: [
+      {
+        id: 'D#add9-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 10, 8, 10, 11],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"D# add9 root-6 (x-x-10-8-10-11)"']
+      },
+      {
+        id: 'D#add9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 6, 3, 5, 6, 'x'],
+        fingers: [null, 4, 1, 2, 3, null],
+        barres: [{ fret: 3, fromString: 1, toString: 5, finger: null }],
+        tips: ['"D# add9 root-5 (x-6-3-5-6-x) barre@3(1-5)"']
+      },
+      {
+        id: 'D#add9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [13, 11, 12, 13, 'x', 'x'],
+        fingers: [4, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"D# add9 root-4 (13-11-12-13-x-x)"']
+      }
+    ]
+  },
+  // D#aug (aug)
+  {
+    id: 'D#aug',
+    symbol: 'D#aug',
+    quality: 'aug',
+    forms: [
+      {
+        id: 'D#aug-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 12, 12, 13, 'x', 11],
+        fingers: [null, 3, 2, 4, null, 1],
+        barres: [],
+        tips: ['"D# augmented root-6 (x-12-12-13-x-11)"']
+      },
+      {
+        id: 'D#aug-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 6, 5, 4, 4, 'x'],
+        fingers: [null, 3, 2, 1, 1, null],
+        barres: [{ fret: 4, fromString: 2, toString: 3, finger: 3 }],
+        tips: ['"D# augmented root-5 (x-6-5-4-4-x) barre@4(2-3)"']
+      },
+      {
+        id: 'D#aug-4-Root4',
+        shapeName: 'Root-4',
+        frets: [11, 12, 12, 13, 'x', 'x'],
+        fingers: [1, 2, 3, 4, null, null],
+        barres: [],
+        tips: ['"D# augmented root-4 (11-12-12-13-x-x)"']
+      },
+      {
+        id: 'D#aug-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [7, 8, 8, 'x', 'x', 'x'],
+        fingers: [1, 3, 2, null, null, null],
+        barres: [],
+        tips: ['"D# augmented Triad-1 (7-8-8-x-x-x)"']
+      },
+      {
+        id: 'D#aug-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 12, 12, 13, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [{ fret: 12, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"D# augmented Triad-2 (x-12-12-13-x-x) barre@12(2-3)"']
+      }
+    ]
+  },
+  // D#dim (dim)
+  {
+    id: 'D#dim',
+    symbol: 'D#dim',
+    quality: 'dim',
+    forms: [
+      {
+        id: 'D#dim-1-Root6',
+        shapeName: 'Root-6',
+        frets: [11, 10, 11, 'x', 'x', 11],
+        fingers: [4, 1, 3, null, null, 2],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +3)']
+      },
+      {
+        id: 'D#dim-2',
+        shapeName: 'Root-5',
+        frets: ['x', 7, 8, 7, 6, 'x'],
+        fingers: [null, 3, 4, 2, 1, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +3)']
+      },
+      {
+        id: 'D#dim-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [11, 10, 11, 13, 'x', 'x'],
+        fingers: [3, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +3)']
+      },
+      {
+        id: 'D#dim-4-Triad-1',
+        shapeName: 'Triad-1',
+        frets: [5, 7, 8, 'x', 'x', 'x'],
+        fingers: [1, 3, 4, null, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +3)']
+      },
+      {
+        id: 'D#dim-5-Triad-2',
+        shapeName: 'Triad-2',
+        frets: ['x', 10, 11, 13, 'x', 'x'],
+        fingers: [null, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +3)']
+      }
+    ]
+  },
+  // D#m (m)
+  {
+    id: 'D#m',
+    symbol: 'D#m',
+    quality: 'm',
+    forms: [
+      {
+        id: 'D#m-4-Triad1',
+        shapeName: 'Triad-1',
+        frets: [6, 7, 8, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'D#m-5-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 'x', 3, 4, 6, 'x'],
+        fingers: [null, null, 1, 2, 4, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // D#m7 (m7)
+  {
+    id: 'D#m7',
+    symbol: 'D#m7',
+    quality: 'm7',
+    forms: [
+      {
+        id: 'D#m7-1-Root-5',
+        shapeName: 'Root-5',
+        frets: [6, 7, 6, 8, 6, 'x'],
+        fingers: [1, 2, 1, 3, 1, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'D#m7-2-Root-6',
+        shapeName: 'Root-6',
+        frets: [11, 11, 11, 11, 13, 11],
+        fingers: [1, 1, 1, 1, 3, 1],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'D#m7-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [14, 14, 15, 13, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      }
+    ]
+  },
+  // D#M7 (M7)
+  {
+    id: 'D#M7',
+    symbol: 'D#M7',
+    quality: 'M7',
+    forms: [
+      {
+        id: 'D#M7-1-Root4',
+        shapeName: 'Root-4',
+        frets: [3, 3, 3, 1, 'x', 'x'],
+        fingers: [3, 1, 2, 1, null, null],
+        barres: [],
+        tips: ['"4th string root | Compact voicing"']
+      },
+      {
+        id: 'D#M7-2-Root5',
+        shapeName: 'Root-5',
+        frets: [6, 8, 7, 8, 6, 'x'],
+        fingers: [1, 4, 2, 3, 1, null],
+        barres: [{ fret: 6, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | Maj7 A-shape"']
+      },
+      {
+        id: 'D#M7-3-Root6',
+        shapeName: 'Root-6',
+        frets: [11, 11, 12, 12, 13, 11],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 11, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | Maj7 E-shape"']
+      }
+    ]
+  },
+  // D#sus4 (sus4)
+  {
+    id: 'D#sus4',
+    symbol: 'D#sus4',
+    quality: 'sus4',
+    forms: [
+      {
+        id: 'D#sus4-2-Root6',
+        shapeName: 'Root-6',
+        frets: [6, 8, 8, 8, 6, 6],
+        fingers: [1, 3, 4, 4, 1, 2],
+        barres: [{ fret: 6, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"D# sus4 root-6 (6-8-8-8-6-6)"']
+      },
+      {
+        id: 'D#sus4-3-Root5',
+        shapeName: 'Root-5',
+        frets: [11, 13, 13, 13, 11, 'x'],
+        fingers: [1, 3, 4, 4, 1, null],
+        barres: [{ fret: 11, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"D# sus4 root-5 (11-13-13-13-11-x)"']
+      },
+      {
+        id: 'D#sus4-4-Root4',
+        shapeName: 'Root-4',
+        frets: [11, 11, 13, 13, 'x', 'x'],
+        fingers: [1, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['"D# sus4 root-4 (11-11-13-13-x-x)"']
+      },
+      {
+        id: 'D#sus4-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [6, 9, 8, 'x', 'x', 'x'],
+        fingers: [1, 4, 3, null, null, null],
+        barres: [],
+        tips: ['D#sus4 Triad-1 (auto from Csus4 +3)']
+      },
+      {
+        id: 'D#sus4-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 11, 13, 13, 'x', 'x'],
+        fingers: [null, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['D#sus4 Triad-2 (auto from Csus4 +3)']
+      }
+    ]
+  },
+  // D6 (6)
+  {
+    id: 'D6',
+    symbol: 'D6',
+    quality: '6',
+    forms: [
+      {
+        id: 'D6-1-Open',
+        shapeName: 'Open',
+        frets: [2, 0, 2, 0, 'x', 'x'],
+        fingers: [3, null, 2, null, null, null],
+        barres: [],
+        tips: ['"D 6 open (x-x-0-2-0-2)"']
+      },
+      {
+        id: 'D6-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 10, 11, 9, 10, 'x'],
+        fingers: [null, 3, 4, 1, 2, null],
+        barres: [],
+        tips: ['"D 6 root-6 (x-10-11-9-10-x)"']
+      },
+      {
+        id: 'D6-3-Root5',
+        shapeName: 'Root-5',
+        frets: [7, 7, 7, 7, 5, 'x'],
+        fingers: [3, 3, 3, 3, 1, null],
+        barres: [{ fret: 7, fromString: 1, toString: 4, finger: 3 }],
+        tips: ['"D 6 root-5 (x-5-7-7-7-7) barre@7(1-4)"']
+      },
+      {
+        id: 'D6-4-Root4',
+        shapeName: 'Root-4',
+        frets: [10, 12, 11, 12, 'x', 'x'],
+        fingers: [1, 4, 2, 3, null, null],
+        barres: [],
+        tips: ['"D 6 root-4 (10-12-11-12-x-x)"']
+      }
+    ]
+  },
+  // D7 (7)
+  {
+    id: 'D7',
+    symbol: 'D7',
+    quality: '7',
+    forms: [
+      {
+        id: 'D7-1-Open',
+        shapeName: 'Open',
+        frets: [2, 1, 2, 0, 'x', 'x'],
+        fingers: [3, 1, 2, null, null, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'D7-2-Root-6',
+        shapeName: 'Root-6',
+        frets: [10, 10, 11, 10, 12, 10],
+        fingers: [1, 1, 2, 1, 3, 1],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'D7-3-Root-5',
+        shapeName: 'Root-5',
+        frets: [5, 7, 5, 7, 5, 'x'],
+        fingers: [1, 4, 1, 3, 1, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'D7-4-Root-4',
+        shapeName: 'Root-4',
+        frets: [10, 10, 11, 12, 'x', 'x'],
+        fingers: [1, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | Alt voicing"']
+      }
+    ]
+  },
+  // Dadd9 (add9)
+  {
+    id: 'Dadd9',
+    symbol: 'Dadd9',
+    quality: 'add9',
+    forms: [
+      {
+        id: 'Dadd9-2-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 5, 2, 4, 5, 'x'],
+        fingers: [null, 4, 1, 2, 3, null],
+        barres: [{ fret: 2, fromString: 1, toString: 5, finger: null }],
+        tips: ['"D add9 root-5 (x-5-2-4-5-x) barre@2(1-5)"']
+      },
+      {
+        id: 'Dadd9-3-Root4',
+        shapeName: 'Root-4',
+        frets: [12, 10, 11, 12, 'x', 'x'],
+        fingers: [4, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"D add9 root-4 (12-10-11-12-x-x)"']
+      },
+      {
+        id: 'Dadd9-4-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 9, 7, 9, 10],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"D add9 root-6 (x-x-9-7-9-10)"']
+      }
+    ]
+  },
+  // Daug (aug)
+  {
+    id: 'Daug',
+    symbol: 'Daug',
+    quality: 'aug',
+    forms: [
+      {
+        id: 'Daug-1-Open',
+        shapeName: 'Open',
+        frets: [2, 3, 3, 0, 'x', 'x'],
+        fingers: [1, 3, 4, null, null, null],
+        barres: [],
+        tips: ['"D augmented open (x-x-0-3-3-2)"']
+      },
+      {
+        id: 'Daug-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 11, 11, 12, 'x', 10],
+        fingers: [null, 3, 2, 4, null, 1],
+        barres: [],
+        tips: ['"D augmented root-6 (x-11-11-12-x-10)"']
+      },
+      {
+        id: 'Daug-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 5, 4, 3, 3, 'x'],
+        fingers: [null, 3, 2, 1, 1, null],
+        barres: [{ fret: 3, fromString: 2, toString: 3, finger: 3 }],
+        tips: ['"D augmented root-5 (x-5-4-3-3-x) barre@3(2-3)"']
+      },
+      {
+        id: 'Daug-4-Root4',
+        shapeName: 'Root-4',
+        frets: [10, 11, 11, 12, 'x', 'x'],
+        fingers: [1, 2, 3, 4, null, null],
+        barres: [],
+        tips: ['"D augmented root-4 (10-11-11-12-x-x)"']
+      },
+      {
+        id: 'Daug-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [6, 7, 7, 'x', 'x', 'x'],
+        fingers: [1, 3, 2, null, null, null],
+        barres: [],
+        tips: ['"D augmented Triad-1 (6-7-7-x-x-x)"']
+      },
+      {
+        id: 'Daug-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 11, 11, 12, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [{ fret: 11, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"D augmented Triad-2 (x-11-11-12-x-x) barre@11(2-3)"']
+      }
+    ]
+  },
+  // Ddim (dim)
+  {
+    id: 'Ddim',
+    symbol: 'Ddim',
+    quality: 'dim',
+    forms: [
+      {
+        id: 'Ddim-1',
+        shapeName: null,
+        frets: ['x', 6, 4, 6, 4, 'x'],
+        fingers: [null, 3, 1, 4, 2, null],
+        barres: [],
+        tips: ['Diminished (extracted)']
+      }
+    ]
+  },
+  // Dm (m)
+  {
+    id: 'Dm',
+    symbol: 'Dm',
+    quality: 'm',
+    forms: [
+      {
+        id: 'Dm-1-Open',
+        shapeName: 'Open',
+        frets: [1, 3, 2, 0, 'x', 'x'],
+        fingers: [1, 3, 2, null, null, null],
+        barres: [],
+        tips: ['"D minor open | Compact"']
+      },
+      {
+        id: 'Dm-2-Root6',
+        shapeName: 'Root-6',
+        frets: [10, 10, 10, 12, 12, 10],
+        fingers: [1, 1, 1, 3, 4, 1],
+        barres: [{ fret: 10, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape minor barre"']
+      },
+      {
+        id: 'Dm-3-Root5',
+        shapeName: 'Root-5',
+        frets: [5, 6, 7, 7, 5, 'x'],
+        fingers: [1, 2, 3, 4, 1, null],
+        barres: [{ fret: 5, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | A-shape minor barre"']
+      },
+      {
+        id: 'Dm-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [5, 6, 7, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'Dm-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 10, 10, 12, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // Dm6 (m6)
+  {
+    id: 'Dm6',
+    symbol: 'Dm6',
+    quality: 'm6',
+    forms: [
+      {
+        id: 'Dm6-1-Open',
+        shapeName: 'Open',
+        frets: [1, 0, 2, 0, 'x', 'x'],
+        fingers: [1, null, 2, null, null, null],
+        barres: [],
+        tips: ['"D minor 6 open (x-x-0-2-0-1)"']
+      },
+      {
+        id: 'Dm6-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 10, 10, 9, 'x', 10],
+        fingers: [null, 3, 4, 1, null, 2],
+        barres: [],
+        tips: ['"D minor 6 root-6 (x-10-10-9-x-10)"']
+      },
+      {
+        id: 'Dm6-3-Root5',
+        shapeName: 'Root-5',
+        frets: [5, 6, 4, 'x', 5, 'x'],
+        fingers: [4, 3, 1, null, 2, null],
+        barres: [],
+        tips: ['"D minor 6 root-5 (5-6-4-x-5-x)"']
+      },
+      {
+        id: 'Dm6-4-Root4',
+        shapeName: 'Root-4',
+        frets: [10, 12, 10, 12, 'x', 'x'],
+        fingers: [1, 4, 1, 3, null, null],
+        barres: [{ fret: 10, fromString: 1, toString: 3, finger: 1 }],
+        tips: ['"D minor 6 root-4 (10-12-10-12-x-x) barre@10(1-3)"']
+      }
+    ]
+  },
+  // Dm7 (m7)
+  {
+    id: 'Dm7',
+    symbol: 'Dm7',
+    quality: 'm7',
+    forms: [
+      {
+        id: 'Dm7-1-Open',
+        shapeName: 'Open',
+        frets: [1, 1, 2, 0, 'x', 'x'],
+        fingers: [1, 1, 2, null, null, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'Dm7-2-Root-6',
+        shapeName: 'Root-6',
+        frets: [10, 10, 10, 10, 12, 10],
+        fingers: [1, 1, 1, 1, 3, 1],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'Dm7-3-Root-5',
+        shapeName: 'Root-5',
+        frets: [5, 6, 5, 7, 5, 'x'],
+        fingers: [1, 2, 1, 3, 1, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'Dm7-4-Root-4',
+        shapeName: 'Root-4',
+        frets: [13, 13, 14, 12, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      }
+    ]
+  },
+  // DM7 (M7)
+  {
+    id: 'DM7',
+    symbol: 'DM7',
+    quality: 'M7',
+    forms: [
+      {
+        id: 'DM7-1-Root6',
+        shapeName: 'Root-6',
+        frets: [10, 10, 11, 11, 12, 10],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 10, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | Maj7 shape"']
+      },
+      {
+        id: 'DM7-2-Root5',
+        shapeName: 'Root-5',
+        frets: [5, 7, 6, 7, 5, 'x'],
+        fingers: [1, 4, 2, 3, 1, null],
+        barres: [{ fret: 5, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | Barre"']
+      },
+      {
+        id: 'DM7-3-Root4',
+        shapeName: 'Root-4',
+        frets: [14, 14, 14, 12, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      }
+    ]
+  },
+  // Dm9 (m9)
+  {
+    id: 'Dm9',
+    symbol: 'Dm9',
+    quality: 'm9',
+    forms: [
+      {
+        id: 'Dm9-1-Open',
+        shapeName: 'Open',
+        frets: [0, 0, 5, 7, 5, 'x'],
+        fingers: [null, null, 1, 4, 2, null],
+        barres: [],
+        tips: ['"D minor 9 open (x-5-7-5-0-0)"']
+      },
+      {
+        id: 'Dm9-2-Root6',
+        shapeName: 'Root-6',
+        frets: [10, 8, 8, 8, 10, 8],
+        fingers: [7, 1, 1, 1, 3, 1],
+        barres: [{ fret: 8, fromString: 1, toString: 6, finger: 7 }],
+        tips: ['"D minor 9 root-6 (10-8-8-8-10-8) barre@8(1-6)"']
+      },
+      {
+        id: 'Dm9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 17, 17, 15, 17, 'x'],
+        fingers: [null, 1, 1, 3, 4, null],
+        barres: [{ fret: 17, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"D minor 9 root-5 (x-17-17-15-17-x)"']
+      },
+      {
+        id: 'Dm9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [15, 15, 13, 10, 'x', 'x'],
+        fingers: [4, 4, 2, 1, null, null],
+        barres: [],
+        tips: ['"D minor 9 root-4 (15-15-13-10-x-x)"']
+      }
+    ]
+  },
+  // Dsus2 (sus2)
+  {
+    id: 'Dsus2',
+    symbol: 'Dsus2',
+    quality: 'sus2',
+    forms: [
+      {
+        id: 'Dsus2-1-Open',
+        shapeName: 'Open',
+        frets: [0, 3, 2, 0, 'x', 'x'],
+        fingers: [null, 3, 1, null, null, null],
+        barres: [],
+        tips: ['"D sus2 open (x-x-0-2-3-0)"']
+      }
+    ]
+  },
+  // Dsus4 (sus4)
+  {
+    id: 'Dsus4',
+    symbol: 'Dsus4',
+    quality: 'sus4',
+    forms: [
+      {
+        id: 'Dsus4-1-Open',
+        shapeName: 'Open',
+        frets: [3, 3, 2, 0, 'x', 'x'],
+        fingers: [4, 3, 1, null, null, null],
+        barres: [],
+        tips: ['"D sus4 open (x-x-0-2-3-3)"']
+      },
+      {
+        id: 'Dsus4-2-Root6',
+        shapeName: 'Root-6',
+        frets: [5, 7, 7, 7, 5, 5],
+        fingers: [1, 3, 4, 4, 1, 2],
+        barres: [{ fret: 5, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"D sus4 root-6 (5-7-7-7-5-5)"']
+      },
+      {
+        id: 'Dsus4-3-Root5',
+        shapeName: 'Root-5',
+        frets: [10, 12, 12, 12, 10, 'x'],
+        fingers: [1, 3, 4, 4, 1, null],
+        barres: [{ fret: 10, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"D sus4 root-5 (10-12-12-12-10-x)"']
+      },
+      {
+        id: 'Dsus4-4-Root4',
+        shapeName: 'Root-4',
+        frets: [10, 10, 12, 12, 'x', 'x'],
+        fingers: [1, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['"D sus4 root-4 (10-10-12-12-x-x)"']
+      },
+      {
+        id: 'Dsus4-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [5, 8, 7, 'x', 'x', 'x'],
+        fingers: [1, 4, 3, null, null, null],
+        barres: [],
+        tips: ['Dsus4 Triad-1 (auto from Csus4 +2)']
+      },
+      {
+        id: 'Dsus4-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 10, 12, 12, 'x', 'x'],
+        fingers: [null, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['Dsus4 Triad-2 (auto from Csus4 +2)']
+      }
+    ]
+  },
+  // E (M)
+  {
+    id: 'E',
+    symbol: 'E',
+    quality: 'M',
+    forms: [
+      {
+        id: 'E-1-Open',
+        shapeName: 'Open',
+        frets: [0, 0, 1, 2, 2, 0],
+        fingers: [null, null, 1, 3, 2, null],
+        barres: [],
+        tips: ['"E major open | Full']
+      },
+      {
+        id: 'E-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 12, 13, 14, 'x', 12],
+        fingers: [null, 2, 3, 4, null, 1],
+        barres: [],
+        tips: []
+      },
+      {
+        id: 'E-3-Root5',
+        shapeName: 'Root-5',
+        frets: [7, 9, 9, 9, 7, 'x'],
+        fingers: [1, 3, 4, 2, 1, null],
+        barres: [{ fret: 7, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | A-shape barre"']
+      },
+      {
+        id: 'E-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [7, 9, 9, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'E-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 12, 13, 14, 'x', 'x'],
+        fingers: [null, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // E6 (6)
+  {
+    id: 'E6',
+    symbol: 'E6',
+    quality: '6',
+    forms: [
+      {
+        id: 'E6-1-Open',
+        shapeName: 'Open',
+        frets: [0, 2, 1, 2, 2, 0],
+        fingers: [null, 4, 1, 3, 2, null],
+        barres: [],
+        tips: ['"E 6 open (0-2-2-1-2-0)"']
+      },
+      {
+        id: 'E6-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 12, 13, 11, 'x', 12],
+        fingers: [null, 3, 4, 1, null, 2],
+        barres: [],
+        tips: ['"E 6 root-6 (x-12-13-11-x-12)"']
+      },
+      {
+        id: 'E6-3-Root5',
+        shapeName: 'Root-5',
+        frets: [9, 9, 9, 9, 7, 'x'],
+        fingers: [3, 3, 3, 3, 1, null],
+        barres: [{ fret: 9, fromString: 1, toString: 4, finger: 3 }],
+        tips: ['"E 6 root-5 (x-7-9-9-9-9) barre@9(1-4)"']
+      },
+      {
+        id: 'E6-4-Root4',
+        shapeName: 'Root-4',
+        frets: [4, 2, 4, 2, 'x', 'x'],
+        fingers: [4, 1, 3, 1, null, null],
+        barres: [{ fret: 2, fromString: 2, toString: 4, finger: 1 }],
+        tips: ['"E 6 root-4 (4-2-4-2-x-x) partial barre@2(2-4)"']
+      }
+    ]
+  },
+  // E7 (7)
+  {
+    id: 'E7',
+    symbol: 'E7',
+    quality: '7',
+    forms: [
+      {
+        id: 'E7-1-Open',
+        shapeName: 'Open',
+        frets: [0, 0, 1, 0, 2, 0],
+        fingers: [null, null, 1, null, 2, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'E7-2-Root-6',
+        shapeName: 'Root-6',
+        frets: ['x', 12, 13, 12, 'x', 12],
+        fingers: [null, 1, 2, 1, null, 1],
+        barres: [{ fret: 12, fromString: 2, toString: 4, finger: 1 }],
+        tips: ['"Shell voicing at 12F (E7)"']
+      },
+      {
+        id: 'E7-3-Root-5',
+        shapeName: 'Root-5',
+        frets: [7, 9, 7, 9, 7, 'x'],
+        fingers: [1, 4, 1, 3, 1, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'E7-4-Root-4',
+        shapeName: 'Root-4',
+        frets: [0, 3, 1, 2, 'x', 'x'],
+        fingers: [null, 3, 1, 2, null, null],
+        barres: [],
+        tips: ['"4th string root | Low open voicing"']
+      }
+    ]
+  },
+  // Eadd9 (add9)
+  {
+    id: 'Eadd9',
+    symbol: 'Eadd9',
+    quality: 'add9',
+    forms: [
+      {
+        id: 'Eadd9-1-Open',
+        shapeName: 'Open',
+        frets: [2, 0, 1, 2, 2, 0],
+        fingers: [4, null, 1, 3, 2, null],
+        barres: [],
+        tips: ['"E add9 open (2-0-1-2-2-0)"']
+      },
+      {
+        id: 'Eadd9-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 11, 9, 11, 12],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"E add9 root-6 (x-x-11-9-11-12)"']
+      },
+      {
+        id: 'Eadd9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 7, 4, 6, 7, 'x'],
+        fingers: [null, 4, 1, 2, 3, null],
+        barres: [{ fret: 4, fromString: 1, toString: 5, finger: null }],
+        tips: ['"E add9 root-5 (x-7-4-6-7-x) barre@4(1-5)"']
+      },
+      {
+        id: 'Eadd9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [14, 12, 13, 14, 'x', 'x'],
+        fingers: [4, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"E add9 root-4 (14-12-13-14-x-x)"']
+      }
+    ]
+  },
+  // Eaug (aug)
+  {
+    id: 'Eaug',
+    symbol: 'Eaug',
+    quality: 'aug',
+    forms: [
+      {
+        id: 'Eaug-1-Open',
+        shapeName: 'Open',
+        frets: [0, 1, 1, 2, 3, 0],
+        fingers: [null, 2, 1, 3, 4, null],
+        barres: [],
+        tips: ['"E augmented open (0-3-2-1-1-0)"']
+      },
+      {
+        id: 'Eaug-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 13, 13, 14, 'x', 12],
+        fingers: [null, 3, 2, 4, null, 1],
+        barres: [],
+        tips: ['"E augmented root-6 (x-13-13-14-x-12)"']
+      },
+      {
+        id: 'Eaug-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 7, 6, 5, 5, 'x'],
+        fingers: [null, 3, 2, 1, 1, null],
+        barres: [{ fret: 5, fromString: 2, toString: 3, finger: 3 }],
+        tips: ['"E augmented root-5 (x-7-6-5-5-x) barre@5(2-3)"']
+      },
+      {
+        id: 'Eaug-4-Root4',
+        shapeName: 'Root-4',
+        frets: [12, 13, 13, 14, 'x', 'x'],
+        fingers: [1, 2, 3, 4, null, null],
+        barres: [],
+        tips: ['"E augmented root-4 (12-13-13-14-x-x)"']
+      },
+      {
+        id: 'Eaug-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [8, 9, 9, 'x', 'x', 'x'],
+        fingers: [1, 3, 2, null, null, null],
+        barres: [],
+        tips: ['"E augmented Triad-1 (8-9-9-x-x-x)"']
+      },
+      {
+        id: 'Eaug-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 13, 13, 14, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [{ fret: 13, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"E augmented Triad-2 (x-13-13-14-x-x) barre@13(2-3)"']
+      }
+    ]
+  },
+  // Edim (dim)
+  {
+    id: 'Edim',
+    symbol: 'Edim',
+    quality: 'dim',
+    forms: [
+      {
+        id: 'Edim-1',
+        shapeName: null,
+        frets: ['x', 1, 0, 1, 0, 'x'],
+        fingers: [null, 1, null, 2, null, null],
+        barres: [],
+        tips: ['Diminished (extracted)']
+      }
+    ]
+  },
+  // Em (m)
+  {
+    id: 'Em',
+    symbol: 'Em',
+    quality: 'm',
+    forms: [
+      {
+        id: 'Em-1-Open',
+        shapeName: 'Open',
+        frets: [0, 0, 0, 2, 2, 0],
+        fingers: [null, null, null, 2, 3, null],
+        barres: [],
+        tips: ['"E minor open | Beautiful resonance"']
+      },
+      {
+        id: 'Em-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 9, 9, 10, 12],
+        fingers: [null, null, 1, 1, 2, 4],
+        barres: [{ fret: 9, fromString: 3, toString: 4, finger: 1 }],
+        tips: ['"Compact Em (x-x-9-9-10-12)"']
+      },
+      {
+        id: 'Em-3-Root5',
+        shapeName: 'Root-5',
+        frets: [7, 8, 9, 9, 7, 'x'],
+        fingers: [1, 2, 3, 4, 1, null],
+        barres: [{ fret: 7, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | A-shape minor barre"']
+      },
+      {
+        id: 'Em-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [7, 8, 9, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'Em-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 12, 12, 14, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // Em6 (m6)
+  {
+    id: 'Em6',
+    symbol: 'Em6',
+    quality: 'm6',
+    forms: [
+      {
+        id: 'Em6-1-Open',
+        shapeName: 'Open',
+        frets: [0, 2, 0, 2, 2, 0],
+        fingers: [null, 2, null, 3, 4, null],
+        barres: [],
+        tips: ['"E minor 6 open (0-2-2-0-2-0)"']
+      },
+      {
+        id: 'Em6-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 12, 12, 11, 'x', 12],
+        fingers: [null, 3, 4, 1, null, 2],
+        barres: [],
+        tips: ['"E minor 6 root-6 (x-12-12-11-x-12)"']
+      },
+      {
+        id: 'Em6-3-Root5',
+        shapeName: 'Root-5',
+        frets: [7, 8, 6, 'x', 7, 'x'],
+        fingers: [4, 3, 1, null, 2, null],
+        barres: [],
+        tips: ['"E minor 6 root-5 (7-8-6-x-7-x)"']
+      },
+      {
+        id: 'Em6-4-Root4',
+        shapeName: 'Root-4',
+        frets: [12, 14, 12, 14, 'x', 'x'],
+        fingers: [1, 4, 1, 3, null, null],
+        barres: [{ fret: 12, fromString: 1, toString: 3, finger: 1 }],
+        tips: ['"E minor 6 root-4 (12-14-12-14-x-x) barre@12(1-3)"']
+      }
+    ]
+  },
+  // Em7 (m7)
+  {
+    id: 'Em7',
+    symbol: 'Em7',
+    quality: 'm7',
+    forms: [
+      {
+        id: 'Em7-2-Root-4',
+        shapeName: 'Root-4',
+        frets: [3, 3, 4, 2, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'Em7-3-Root-5',
+        shapeName: 'Root-5',
+        frets: [7, 8, 7, 9, 7, 'x'],
+        fingers: [1, 2, 1, 3, 1, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'Em7-4-Root-6',
+        shapeName: 'Root-6',
+        frets: [12, 12, 12, 12, 14, 12],
+        fingers: [1, 1, 1, 1, 3, 1],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      }
+    ]
+  },
+  // EM7 (M7)
+  {
+    id: 'EM7',
+    symbol: 'EM7',
+    quality: 'M7',
+    forms: [
+      {
+        id: 'EM7-1-Open',
+        shapeName: 'Open',
+        frets: [0, 0, 1, 1, 2, 0],
+        fingers: [null, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"E major 7th | Beautiful open voicing"']
+      },
+      {
+        id: 'EM7-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 12, 13, 13, 'x', 12],
+        fingers: [null, 1, 3, 2, null, 1],
+        barres: [{ fret: 12, fromString: 2, toString: 4, finger: 1 }],
+        tips: ['"Shell voicing at 12F (avoid duplicating Open at +12)"']
+      },
+      {
+        id: 'EM7-3-Root5',
+        shapeName: 'Root-5',
+        frets: [7, 9, 8, 9, 7, 'x'],
+        fingers: [1, 3, 2, 4, 1, null],
+        barres: [{ fret: 7, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | Standard M7 A-shape"']
+      },
+      {
+        id: 'EM7-4-Root4',
+        shapeName: 'Root-4',
+        frets: [11, 12, 13, 14, 'x', 'x'],
+        fingers: [1, 3, 2, 4, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      }
+    ]
+  },
+  // Em9 (m9)
+  {
+    id: 'Em9',
+    symbol: 'Em9',
+    quality: 'm9',
+    forms: [
+      {
+        id: 'Em9-1-Open',
+        shapeName: 'Open',
+        frets: [0, 0, 7, 9, 7, 'x'],
+        fingers: [null, null, 1, 4, 2, null],
+        barres: [],
+        tips: ['"E minor 9 open (x-7-9-7-0-0)"']
+      },
+      {
+        id: 'Em9-2-Root6',
+        shapeName: 'Root-6',
+        frets: [12, 10, 10, 10, 12, 10],
+        fingers: [9, 1, 1, 1, 3, 1],
+        barres: [{ fret: 10, fromString: 1, toString: 6, finger: 9 }],
+        tips: ['"E minor 9 root-6 (12-10-10-10-12-10) barre@10(1-6)"']
+      },
+      {
+        id: 'Em9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 19, 19, 17, 19, 'x'],
+        fingers: [null, 1, 1, 3, 4, null],
+        barres: [{ fret: 19, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"E minor 9 root-5 (x-19-19-17-19-x)"']
+      },
+      {
+        id: 'Em9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [17, 17, 15, 12, 'x', 'x'],
+        fingers: [4, 4, 2, 1, null, null],
+        barres: [],
+        tips: ['"E minor 9 root-4 (17-17-15-12-x-x)"']
+      }
+    ]
+  },
+  // Esus2 (sus2)
+  {
+    id: 'Esus2',
+    symbol: 'Esus2',
+    quality: 'sus2',
+    forms: [
+      {
+        id: 'Esus2-1-Open',
+        shapeName: 'Open',
+        frets: [0, 0, 4, 4, 2, 0],
+        fingers: [null, null, 3, 4, 1, null],
+        barres: [],
+        tips: ['"E sus2 open (0-2-4-4-0-0)"']
+      }
+    ]
+  },
+  // Esus4 (sus4)
+  {
+    id: 'Esus4',
+    symbol: 'Esus4',
+    quality: 'sus4',
+    forms: [
+      {
+        id: 'Esus4-1-Open',
+        shapeName: 'Open',
+        frets: [0, 0, 2, 2, 0, 0],
+        fingers: [null, null, 3, 4, null, null],
+        barres: [],
+        tips: ['"E sus4 open (0-0-2-2-0-0)"']
+      },
+      {
+        id: 'Esus4-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 10, 0, 9, 'x', 12],
+        fingers: [null, 2, null, 1, null, 4],
+        barres: [],
+        tips: ['"E sus4 root-6 (x-10-0-9-x-12)"']
+      },
+      {
+        id: 'Esus4-3-Root5',
+        shapeName: 'Root-5',
+        frets: [12, 14, 14, 14, 12, 'x'],
+        fingers: [1, 3, 4, 4, 1, null],
+        barres: [{ fret: 12, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"E sus4 root-5 (12-14-14-14-12-x)"']
+      },
+      {
+        id: 'Esus4-4-Root4',
+        shapeName: 'Root-4',
+        frets: [12, 12, 14, 14, 'x', 'x'],
+        fingers: [1, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['"E sus4 root-4 (12-12-14-14-x-x)"']
+      },
+      {
+        id: 'Esus4-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [7, 10, 9, 'x', 'x', 'x'],
+        fingers: [1, 4, 3, null, null, null],
+        barres: [],
+        tips: ['Esus4 Triad-1 (auto from Csus4 +4)']
+      },
+      {
+        id: 'Esus4-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 12, 14, 14, 'x', 'x'],
+        fingers: [null, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['Esus4 Triad-2 (auto from Csus4 +4)']
+      }
+    ]
+  },
+  // F (M)
+  {
+    id: 'F',
+    symbol: 'F',
+    quality: 'M',
+    forms: [
+      {
+        id: 'F-4-Triad1',
+        shapeName: 'Triad-1',
+        frets: [8, 10, 10, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'F-5-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 1, 2, 3, 'x', 'x'],
+        fingers: [null, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // F# (M)
+  {
+    id: 'F#',
+    symbol: 'F#',
+    quality: 'M',
+    forms: [
+      {
+        id: 'F#-4-Triad1',
+        shapeName: 'Triad-1',
+        frets: [9, 11, 11, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'F#-5-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 2, 3, 4, 'x', 'x'],
+        fingers: [null, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // F#7 (7)
+  {
+    id: 'F#7',
+    symbol: 'F#7',
+    quality: '7',
+    forms: [
+      {
+        id: 'F#7-1-Open',
+        shapeName: 'Open',
+        frets: [0, 2, 3, 4, 'x', 'x'],
+        fingers: [null, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'F#7-2-Root-6',
+        shapeName: 'Root-6',
+        frets: [2, 2, 3, 2, 4, 2],
+        fingers: [1, 1, 2, 1, 3, 1],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'F#7-3-Root-5',
+        shapeName: 'Root-5',
+        frets: [9, 11, 9, 11, 9, 'x'],
+        fingers: [1, 4, 1, 3, 1, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'F#7-4-Root-4',
+        shapeName: 'Root-4',
+        frets: [6, 5, 6, 4, 'x', 'x'],
+        fingers: [4, 2, 3, 1, null, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      }
+    ]
+  },
+  // F#add9 (add9)
+  {
+    id: 'F#add9',
+    symbol: 'F#add9',
+    quality: 'add9',
+    forms: [
+      {
+        id: 'F#add9-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 13, 11, 13, 14],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"F# add9 root-6 (x-x-13-11-13-14)"']
+      },
+      {
+        id: 'F#add9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 9, 6, 8, 9, 'x'],
+        fingers: [null, 4, 1, 2, 3, null],
+        barres: [{ fret: 6, fromString: 1, toString: 5, finger: null }],
+        tips: ['"F# add9 root-5 (x-9-6-8-9-x) barre@6(1-5)"']
+      },
+      {
+        id: 'F#add9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [16, 14, 15, 16, 'x', 'x'],
+        fingers: [4, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"F# add9 root-4 (16-14-15-16-x-x)"']
+      }
+    ]
+  },
+  // F#aug (aug)
+  {
+    id: 'F#aug',
+    symbol: 'F#aug',
+    quality: 'aug',
+    forms: [
+      {
+        id: 'F#aug-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 15, 15, 16, 'x', 14],
+        fingers: [null, 3, 2, 4, null, 1],
+        barres: [],
+        tips: ['"F# augmented root-6 (x-15-15-16-x-14)"']
+      },
+      {
+        id: 'F#aug-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 9, 8, 7, 7, 'x'],
+        fingers: [null, 3, 2, 1, 1, null],
+        barres: [{ fret: 7, fromString: 2, toString: 3, finger: 3 }],
+        tips: ['"F# augmented root-5 (x-9-8-7-7-x) barre@7(2-3)"']
+      },
+      {
+        id: 'F#aug-4-Root4',
+        shapeName: 'Root-4',
+        frets: [14, 15, 15, 16, 'x', 'x'],
+        fingers: [1, 2, 3, 4, null, null],
+        barres: [],
+        tips: ['"F# augmented root-4 (14-15-15-16-x-x)"']
+      },
+      {
+        id: 'F#aug-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [10, 11, 11, 'x', 'x', 'x'],
+        fingers: [1, 3, 2, null, null, null],
+        barres: [],
+        tips: ['"F# augmented Triad-1 (10-11-11-x-x-x)"']
+      },
+      {
+        id: 'F#aug-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 15, 15, 16, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [{ fret: 15, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"F# augmented Triad-2 (x-15-15-16-x-x) barre@15(2-3)"']
+      }
+    ]
+  },
+  // F#dim (dim)
+  {
+    id: 'F#dim',
+    symbol: 'F#dim',
+    quality: 'dim',
+    forms: [
+      {
+        id: 'F#dim-1-Root6',
+        shapeName: 'Root-6',
+        frets: [14, 13, 14, 'x', 'x', 14],
+        fingers: [4, 1, 3, null, null, 2],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +6)']
+      },
+      {
+        id: 'F#dim-2',
+        shapeName: 'Root-5',
+        frets: ['x', 10, 11, 10, 9, 'x'],
+        fingers: [null, 3, 4, 2, 1, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +6)']
+      },
+      {
+        id: 'F#dim-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [14, 13, 14, 16, 'x', 'x'],
+        fingers: [3, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +6)']
+      },
+      {
+        id: 'F#dim-4-Triad-1',
+        shapeName: 'Triad-1',
+        frets: [8, 10, 11, 'x', 'x', 'x'],
+        fingers: [1, 3, 4, null, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +6)']
+      },
+      {
+        id: 'F#dim-5-Triad-2',
+        shapeName: 'Triad-2',
+        frets: ['x', 13, 14, 16, 'x', 'x'],
+        fingers: [null, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +6)']
+      }
+    ]
+  },
+  // F#m (m)
+  {
+    id: 'F#m',
+    symbol: 'F#m',
+    quality: 'm',
+    forms: [
+      {
+        id: 'F#m-4-Triad1',
+        shapeName: 'Triad-1',
+        frets: [9, 10, 11, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'F#m-5-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 2, 2, 4, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // F#m7 (m7)
+  {
+    id: 'F#m7',
+    symbol: 'F#m7',
+    quality: 'm7',
+    forms: [
+      {
+        id: 'F#m7-1-Root-6',
+        shapeName: 'Root-6',
+        frets: [2, 2, 2, 2, 4, 2],
+        fingers: [1, 1, 1, 1, 3, 1],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'F#m7-2-Root-5',
+        shapeName: 'Root-5',
+        frets: [9, 10, 9, 11, 9, 'x'],
+        fingers: [1, 2, 1, 3, 1, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'F#m7-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [5, 5, 6, 4, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      }
+    ]
+  },
+  // F#M7 (M7)
+  {
+    id: 'F#M7',
+    symbol: 'F#M7',
+    quality: 'M7',
+    forms: [
+      {
+        id: 'F#M7-1-Root6',
+        shapeName: 'Root-6',
+        frets: [2, 2, 3, 3, 4, 2],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 2, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | Maj7 E-shape"']
+      },
+      {
+        id: 'F#M7-2-Root5',
+        shapeName: 'Root-5',
+        frets: [9, 11, 10, 11, 9, 'x'],
+        fingers: [1, 4, 2, 3, 1, null],
+        barres: [{ fret: 9, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | Maj7 A-shape"']
+      },
+      {
+        id: 'F#M7-3-Root4',
+        shapeName: 'Root-4',
+        frets: [6, 6, 6, 4, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      }
+    ]
+  },
+  // F#sus4 (sus4)
+  {
+    id: 'F#sus4',
+    symbol: 'F#sus4',
+    quality: 'sus4',
+    forms: [
+      {
+        id: 'F#sus4-2-Root6',
+        shapeName: 'Root-6',
+        frets: [9, 11, 11, 11, 9, 9],
+        fingers: [1, 3, 4, 4, 1, 2],
+        barres: [{ fret: 9, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"F# sus4 root-6 (9-11-11-11-9-9)"']
+      },
+      {
+        id: 'F#sus4-3-Root5',
+        shapeName: 'Root-5',
+        frets: [14, 16, 16, 16, 14, 'x'],
+        fingers: [1, 3, 4, 4, 1, null],
+        barres: [{ fret: 14, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"F# sus4 root-5 (14-16-16-16-14-x)"']
+      },
+      {
+        id: 'F#sus4-4-Root4',
+        shapeName: 'Root-4',
+        frets: [14, 14, 16, 16, 'x', 'x'],
+        fingers: [1, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['"F# sus4 root-4 (14-14-16-16-x-x)"']
+      },
+      {
+        id: 'F#sus4-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [9, 12, 11, 'x', 'x', 'x'],
+        fingers: [1, 4, 3, null, null, null],
+        barres: [],
+        tips: ['F#sus4 Triad-1 (auto from Csus4 +6)']
+      },
+      {
+        id: 'F#sus4-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 14, 16, 16, 'x', 'x'],
+        fingers: [null, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['F#sus4 Triad-2 (auto from Csus4 +6)']
+      }
+    ]
+  },
+  // F6 (6)
+  {
+    id: 'F6',
+    symbol: 'F6',
+    quality: '6',
+    forms: [
+      {
+        id: 'F6-1-Open',
+        shapeName: 'Open',
+        frets: ['x', 1, 2, 0, 'x', 1],
+        fingers: [null, 2, 3, null, null, 1],
+        barres: [],
+        tips: ['"F 6 open (1-x-0-2-1-x)"']
+      },
+      {
+        id: 'F6-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 3, 2, 3, 'x', 1],
+        fingers: [null, 4, 2, 3, null, 1],
+        barres: [],
+        tips: ['"F 6 root-6 (x-3-2-3-x-1)"']
+      },
+      {
+        id: 'F6-3-Root5',
+        shapeName: 'Root-5',
+        frets: [10, 10, 10, 10, 8, 'x'],
+        fingers: [4, 4, 4, 4, 1, null],
+        barres: [{ fret: 10, fromString: 1, toString: 4, finger: 4 }],
+        tips: ['"F 6 root-5 (10-10-10-10-8-x) barre@10(1-4)"']
+      },
+      {
+        id: 'F6-4-Root4',
+        shapeName: 'Root-4',
+        frets: [1, 3, 2, 3, 'x', 'x'],
+        fingers: [1, 4, 2, 3, null, null],
+        barres: [],
+        tips: ['"F 6 root-4 (1-3-2-3-x-x)"']
+      }
+    ]
+  },
+  // F7 (7)
+  {
+    id: 'F7',
+    symbol: 'F7',
+    quality: '7',
+    forms: [
+      {
+        id: 'F7-2-Root-5',
+        shapeName: 'Root-5',
+        frets: [8, 10, 8, 10, 8, 'x'],
+        fingers: [1, 4, 1, 3, 1, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'F7-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [1, 1, 2, 0, 'x', 'x'],
+        fingers: [1, 1, 2, null, null, null],
+        barres: [],
+        tips: ['"4th string root | Low position"']
+      }
+    ]
+  },
+  // Fadd9 (add9)
+  {
+    id: 'Fadd9',
+    symbol: 'Fadd9',
+    quality: 'add9',
+    forms: [
+      {
+        id: 'Fadd9-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 12, 10, 12, 13],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"F add9 root-6 (x-x-12-10-12-13)"']
+      },
+      {
+        id: 'Fadd9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 8, 5, 7, 8, 'x'],
+        fingers: [null, 4, 1, 2, 3, null],
+        barres: [{ fret: 5, fromString: 1, toString: 5, finger: null }],
+        tips: ['"F add9 root-5 (x-8-5-7-8-x) barre@5(1-5)"']
+      },
+      {
+        id: 'Fadd9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [15, 13, 14, 15, 'x', 'x'],
+        fingers: [4, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"F add9 root-4 (15-13-14-15-x-x)"']
+      }
+    ]
+  },
+  // Faug (aug)
+  {
+    id: 'Faug',
+    symbol: 'Faug',
+    quality: 'aug',
+    forms: [
+      {
+        id: 'Faug-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 14, 14, 15, 'x', 13],
+        fingers: [null, 3, 2, 4, null, 1],
+        barres: [],
+        tips: ['"F augmented root-6 (x-14-14-15-x-13)"']
+      },
+      {
+        id: 'Faug-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 8, 7, 6, 6, 'x'],
+        fingers: [null, 3, 2, 1, 1, null],
+        barres: [{ fret: 6, fromString: 2, toString: 3, finger: 3 }],
+        tips: ['"F augmented root-5 (x-8-7-6-6-x) barre@6(2-3)"']
+      },
+      {
+        id: 'Faug-4-Root4',
+        shapeName: 'Root-4',
+        frets: [13, 14, 14, 15, 'x', 'x'],
+        fingers: [1, 2, 3, 4, null, null],
+        barres: [],
+        tips: ['"F augmented root-4 (13-14-14-15-x-x)"']
+      },
+      {
+        id: 'Faug-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [9, 10, 10, 'x', 'x', 'x'],
+        fingers: [1, 3, 2, null, null, null],
+        barres: [],
+        tips: ['"F augmented Triad-1 (9-10-10-x-x-x)"']
+      },
+      {
+        id: 'Faug-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 14, 14, 15, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [{ fret: 14, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"F augmented Triad-2 (x-14-14-15-x-x) barre@14(2-3)"']
+      }
+    ]
+  },
+  // Fdim (dim)
+  {
+    id: 'Fdim',
+    symbol: 'Fdim',
+    quality: 'dim',
+    forms: [
+      {
+        id: 'Fdim-1-Root6',
+        shapeName: 'Root-6',
+        frets: [13, 12, 13, 'x', 'x', 13],
+        fingers: [4, 1, 3, null, null, 2],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +5)']
+      },
+      {
+        id: 'Fdim-2',
+        shapeName: 'Root-5',
+        frets: ['x', 9, 10, 9, 8, 'x'],
+        fingers: [null, 3, 4, 2, 1, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +5)']
+      },
+      {
+        id: 'Fdim-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [13, 12, 13, 15, 'x', 'x'],
+        fingers: [3, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +5)']
+      },
+      {
+        id: 'Fdim-4-Triad-1',
+        shapeName: 'Triad-1',
+        frets: [7, 9, 10, 'x', 'x', 'x'],
+        fingers: [1, 3, 4, null, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +5)']
+      },
+      {
+        id: 'Fdim-5-Triad-2',
+        shapeName: 'Triad-2',
+        frets: ['x', 12, 13, 15, 'x', 'x'],
+        fingers: [null, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +5)']
+      }
+    ]
+  },
+  // Fm (m)
+  {
+    id: 'Fm',
+    symbol: 'Fm',
+    quality: 'm',
+    forms: [
+      {
+        id: 'Fm-4-Triad1',
+        shapeName: 'Triad-1',
+        frets: [8, 9, 10, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'Fm-5-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 1, 1, 3, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // Fm6 (m6)
+  {
+    id: 'Fm6',
+    symbol: 'Fm6',
+    quality: 'm6',
+    forms: [
+      {
+        id: 'Fm6-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 13, 13, 12, 'x', 13],
+        fingers: [null, 3, 4, 1, null, 2],
+        barres: [],
+        tips: ['"F minor 6 root-6 (x-13-13-12-x-13)"']
+      },
+      {
+        id: 'Fm6-3-Root5',
+        shapeName: 'Root-5',
+        frets: [8, 9, 7, 'x', 8, 'x'],
+        fingers: [4, 3, 1, null, 2, null],
+        barres: [],
+        tips: ['"F minor 6 root-5 (8-9-7-x-8-x)"']
+      },
+      {
+        id: 'Fm6-4-Root4',
+        shapeName: 'Root-4',
+        frets: [13, 15, 13, 15, 'x', 'x'],
+        fingers: [1, 4, 1, 3, null, null],
+        barres: [{ fret: 13, fromString: 1, toString: 3, finger: 1 }],
+        tips: ['"F minor 6 root-4 (13-15-13-15-x-x) barre@13(1-3)"']
+      }
+    ]
+  },
+  // FM7 (M7)
+  {
+    id: 'FM7',
+    symbol: 'FM7',
+    quality: 'M7',
+    forms: [
+      {
+        id: 'FM7',
+        shapeName: 'Open',
+        frets: [0, 1, 2, 3, 3, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"F major 7th | Upper string voicing"']
+      },
+      {
+        id: 'FM7-2-Root6',
+        shapeName: 'Root-6',
+        frets: [1, 1, 2, 2, 3, 1],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 1, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | Maj7 E-shape"']
+      },
+      {
+        id: 'FM7-3-Root5',
+        shapeName: 'Root-5',
+        frets: [8, 10, 9, 10, 8, 'x'],
+        fingers: [1, 4, 2, 3, 1, null],
+        barres: [{ fret: 8, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | Maj7 A-shape"']
+      },
+      {
+        id: 'FM7-4-Root4',
+        shapeName: 'Root-4',
+        frets: [5, 5, 5, 3, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      }
+    ]
+  },
+  // Fm9 (m9)
+  {
+    id: 'Fm9',
+    symbol: 'Fm9',
+    quality: 'm9',
+    forms: [
+      {
+        id: 'Fm9-1-Open',
+        shapeName: 'Open',
+        frets: [0, 0, 8, 10, 8, 'x'],
+        fingers: [null, null, 1, 4, 2, null],
+        barres: [],
+        tips: ['"F minor 9 open (x-8-10-8-0-0)"']
+      },
+      {
+        id: 'Fm9-2-Root6',
+        shapeName: 'Root-6',
+        frets: [13, 11, 11, 11, 13, 11],
+        fingers: [10, 1, 1, 1, 3, 1],
+        barres: [{ fret: 11, fromString: 1, toString: 6, finger: 10 }],
+        tips: ['"F minor 9 root-6 (13-11-11-11-13-11) barre@11(1-6)"']
+      },
+      {
+        id: 'Fm9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 20, 20, 18, 20, 'x'],
+        fingers: [null, 1, 1, 3, 4, null],
+        barres: [{ fret: 20, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"F minor 9 root-5 (x-20-20-18-20-x)"']
+      },
+      {
+        id: 'Fm9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [18, 18, 16, 13, 'x', 'x'],
+        fingers: [4, 4, 2, 1, null, null],
+        barres: [],
+        tips: ['"F minor 9 root-4 (18-18-16-13-x-x)"']
+      }
+    ]
+  },
+  // Fsus2 (sus2)
+  {
+    id: 'Fsus2',
+    symbol: 'Fsus2',
+    quality: 'sus2',
+    forms: [
+      {
+        id: 'Fsus2-1-Open',
+        shapeName: 'Open',
+        frets: [3, 1, 0, 3, 'x', 'x'],
+        fingers: [4, 1, null, 3, null, null],
+        barres: [],
+        tips: ['"F sus2 open (x-x-3-0-1-3)"']
+      }
+    ]
+  },
+  // Fsus4 (sus4)
+  {
+    id: 'Fsus4',
+    symbol: 'Fsus4',
+    quality: 'sus4',
+    forms: [
+      {
+        id: 'Fsus4-2-Root6',
+        shapeName: 'Root-6',
+        frets: [8, 10, 10, 10, 8, 8],
+        fingers: [1, 3, 4, 4, 1, 2],
+        barres: [{ fret: 8, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"F sus4 root-6 (8-10-10-10-8-8)"']
+      },
+      {
+        id: 'Fsus4-3-Root5',
+        shapeName: 'Root-5',
+        frets: [13, 15, 15, 15, 13, 'x'],
+        fingers: [1, 3, 4, 4, 1, null],
+        barres: [{ fret: 13, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"F sus4 root-5 (13-15-15-15-13-x)"']
+      },
+      {
+        id: 'Fsus4-4-Root4',
+        shapeName: 'Root-4',
+        frets: [13, 13, 15, 15, 'x', 'x'],
+        fingers: [1, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['"F sus4 root-4 (13-13-15-15-x-x)"']
+      },
+      {
+        id: 'Fsus4-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [8, 11, 10, 'x', 'x', 'x'],
+        fingers: [1, 4, 3, null, null, null],
+        barres: [],
+        tips: ['Fsus4 Triad-1 (auto from Csus4 +5)']
+      },
+      {
+        id: 'Fsus4-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 13, 15, 15, 'x', 'x'],
+        fingers: [null, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['Fsus4 Triad-2 (auto from Csus4 +5)']
+      }
+    ]
+  },
+  // G (M)
+  {
+    id: 'G',
+    symbol: 'G',
+    quality: 'M',
+    forms: [
+      {
+        id: 'G-1-Open',
+        shapeName: 'Open',
+        frets: [3, 0, 0, 0, 2, 3],
+        fingers: [3, null, null, null, 1, 2],
+        barres: [],
+        tips: []
+      },
+      {
+        id: 'G-2-Root6',
+        shapeName: 'Root-6',
+        frets: [3, 3, 4, 5, 5, 3],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 3, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape barre"']
+      },
+      {
+        id: 'G-3-Root5',
+        shapeName: 'Root-5',
+        frets: [10, 12, 12, 12, 10, 'x'],
+        fingers: [1, 3, 4, 2, 1, null],
+        barres: [{ fret: 10, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | A-shape barre"']
+      },
+      {
+        id: 'G-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [10, 12, 12, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'G-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 3, 4, 5, 'x', 'x'],
+        fingers: [null, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // G# (M)
+  {
+    id: 'G#',
+    symbol: 'G#',
+    quality: 'M',
+    forms: [
+      {
+        id: 'G#-4-Triad1',
+        shapeName: 'Triad-1',
+        frets: [11, 13, 13, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'G#-5-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 4, 5, 6, 'x', 'x'],
+        fingers: [null, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // G#7 (7)
+  {
+    id: 'G#7',
+    symbol: 'G#7',
+    quality: '7',
+    forms: [
+      {
+        id: 'G#7-1-Root-6',
+        shapeName: 'Root-6',
+        frets: [4, 4, 5, 4, 6, 4],
+        fingers: [1, 1, 2, 1, 3, 1],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'G#7-2-Root-5',
+        shapeName: 'Root-5',
+        frets: [11, 13, 11, 13, 11, 'x'],
+        fingers: [1, 4, 1, 3, 1, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'G#7-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [8, 7, 8, 6, 'x', 'x'],
+        fingers: [4, 2, 3, 1, null, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      }
+    ]
+  },
+  // G#add9 (add9)
+  {
+    id: 'G#add9',
+    symbol: 'G#add9',
+    quality: 'add9',
+    forms: [
+      {
+        id: 'G#add9-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 15, 13, 15, 16],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"G# add9 root-6 (x-x-15-13-15-16)"']
+      },
+      {
+        id: 'G#add9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 11, 8, 10, 11, 'x'],
+        fingers: [null, 4, 1, 2, 3, null],
+        barres: [{ fret: 8, fromString: 1, toString: 5, finger: null }],
+        tips: ['"G# add9 root-5 (x-11-8-10-11-x) barre@8(1-5)"']
+      },
+      {
+        id: 'G#add9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [18, 16, 17, 18, 'x', 'x'],
+        fingers: [4, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"G# add9 root-4 (18-16-17-18-x-x)"']
+      }
+    ]
+  },
+  // G#aug (aug)
+  {
+    id: 'G#aug',
+    symbol: 'G#aug',
+    quality: 'aug',
+    forms: [
+      {
+        id: 'G#aug-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 17, 17, 18, 'x', 16],
+        fingers: [null, 3, 2, 4, null, 1],
+        barres: [],
+        tips: ['"G# augmented root-6 (x-17-17-18-x-16)"']
+      },
+      {
+        id: 'G#aug-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 11, 10, 9, 9, 'x'],
+        fingers: [null, 3, 2, 1, 1, null],
+        barres: [{ fret: 9, fromString: 2, toString: 3, finger: 3 }],
+        tips: ['"G# augmented root-5 (x-11-10-9-9-x) barre@9(2-3)"']
+      },
+      {
+        id: 'G#aug-4-Root4',
+        shapeName: 'Root-4',
+        frets: [16, 17, 17, 18, 'x', 'x'],
+        fingers: [1, 2, 3, 4, null, null],
+        barres: [],
+        tips: ['"G# augmented root-4 (16-17-17-18-x-x)"']
+      },
+      {
+        id: 'G#aug-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [12, 13, 13, 'x', 'x', 'x'],
+        fingers: [1, 3, 2, null, null, null],
+        barres: [],
+        tips: ['"G# augmented Triad-1 (12-13-13-x-x-x)"']
+      },
+      {
+        id: 'G#aug-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 17, 17, 18, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [{ fret: 17, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"G# augmented Triad-2 (x-17-17-18-x-x) barre@17(2-3)"']
+      }
+    ]
+  },
+  // G#dim (dim)
+  {
+    id: 'G#dim',
+    symbol: 'G#dim',
+    quality: 'dim',
+    forms: [
+      {
+        id: 'G#dim-1-Root6',
+        shapeName: 'Root-6',
+        frets: [16, 15, 16, 'x', 'x', 16],
+        fingers: [4, 1, 3, null, null, 2],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +8)']
+      },
+      {
+        id: 'G#dim-2',
+        shapeName: 'Root-5',
+        frets: ['x', 12, 13, 12, 11, 'x'],
+        fingers: [null, 3, 4, 2, 1, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +8)']
+      },
+      {
+        id: 'G#dim-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [16, 15, 16, 18, 'x', 'x'],
+        fingers: [3, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +8)']
+      },
+      {
+        id: 'G#dim-4-Triad-1',
+        shapeName: 'Triad-1',
+        frets: [10, 12, 13, 'x', 'x', 'x'],
+        fingers: [1, 3, 4, null, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +8)']
+      },
+      {
+        id: 'G#dim-5-Triad-2',
+        shapeName: 'Triad-2',
+        frets: ['x', 15, 16, 18, 'x', 'x'],
+        fingers: [null, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +8)']
+      }
+    ]
+  },
+  // G#m (m)
+  {
+    id: 'G#m',
+    symbol: 'G#m',
+    quality: 'm',
+    forms: [
+      {
+        id: 'G#m-4-Triad1',
+        shapeName: 'Triad-1',
+        frets: [11, 12, 13, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'G#m-5-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 4, 4, 6, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // G#m7 (m7)
+  {
+    id: 'G#m7',
+    symbol: 'G#m7',
+    quality: 'm7',
+    forms: [
+      {
+        id: 'G#m7-1-Root-6',
+        shapeName: 'Root-6',
+        frets: [4, 4, 4, 4, 6, 4],
+        fingers: [1, 1, 1, 1, 3, 1],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'G#m7-2-Root-5',
+        shapeName: 'Root-5',
+        frets: [11, 12, 11, 13, 11, 'x'],
+        fingers: [1, 2, 1, 3, 1, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'G#m7-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [7, 7, 8, 6, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      }
+    ]
+  },
+  // G#M7 (M7)
+  {
+    id: 'G#M7',
+    symbol: 'G#M7',
+    quality: 'M7',
+    forms: [
+      {
+        id: 'G#M7-1-Root6',
+        shapeName: 'Root-6',
+        frets: [4, 4, 5, 5, 6, 4],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 4, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | Maj7 E-shape"']
+      },
+      {
+        id: 'G#M7-2-Root5',
+        shapeName: 'Root-5',
+        frets: [11, 13, 12, 13, 11, 'x'],
+        fingers: [1, 4, 2, 3, 1, null],
+        barres: [{ fret: 11, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | Maj7 A-shape"']
+      },
+      {
+        id: 'G#M7-3-Root4',
+        shapeName: 'Root-4',
+        frets: [8, 8, 8, 6, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      }
+    ]
+  },
+  // G#sus4 (sus4)
+  {
+    id: 'G#sus4',
+    symbol: 'G#sus4',
+    quality: 'sus4',
+    forms: [
+      {
+        id: 'G#sus4-2-Root6',
+        shapeName: 'Root-6',
+        frets: [11, 13, 13, 13, 11, 11],
+        fingers: [1, 3, 4, 4, 1, 2],
+        barres: [{ fret: 11, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"G# sus4 root-6 (11-13-13-13-11-11)"']
+      },
+      {
+        id: 'G#sus4-3-Root5',
+        shapeName: 'Root-5',
+        frets: [16, 18, 18, 18, 16, 'x'],
+        fingers: [1, 3, 4, 4, 1, null],
+        barres: [{ fret: 16, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"G# sus4 root-5 (16-18-18-18-16-x)"']
+      },
+      {
+        id: 'G#sus4-4-Root4',
+        shapeName: 'Root-4',
+        frets: [16, 16, 18, 18, 'x', 'x'],
+        fingers: [1, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['"G# sus4 root-4 (16-16-18-18-x-x)"']
+      },
+      {
+        id: 'G#sus4-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [11, 14, 13, 'x', 'x', 'x'],
+        fingers: [1, 4, 3, null, null, null],
+        barres: [],
+        tips: ['G#sus4 Triad-1 (auto from Csus4 +8)']
+      },
+      {
+        id: 'G#sus4-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 16, 18, 18, 'x', 'x'],
+        fingers: [null, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['G#sus4 Triad-2 (auto from Csus4 +8)']
+      }
+    ]
+  },
+  // G6 (6)
+  {
+    id: 'G6',
+    symbol: 'G6',
+    quality: '6',
+    forms: [
+      {
+        id: 'G6-1-Open',
+        shapeName: 'Open',
+        frets: [0, 0, 0, 0, 2, 3],
+        fingers: [null, null, null, null, 2, 3],
+        barres: [],
+        tips: ['"G 6 open (0-0-0-0-2-3)"']
+      },
+      {
+        id: 'G6-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 5, 4, 5, 'x', 3],
+        fingers: [null, 4, 2, 3, null, 1],
+        barres: [],
+        tips: ['"G 6 root-6 (x-5-4-5-x-3)"']
+      },
+      {
+        id: 'G6-3-Root5',
+        shapeName: 'Root-5',
+        frets: [12, 12, 12, 12, 10, 'x'],
+        fingers: [3, 3, 3, 3, 1, null],
+        barres: [{ fret: 12, fromString: 1, toString: 4, finger: 3 }],
+        tips: ['"G 6 root-5 (12-12-12-12-10-x) barre@12(1-4)"']
+      },
+      {
+        id: 'G6-4-Root4',
+        shapeName: 'Root-4',
+        frets: [3, 5, 4, 5, 'x', 'x'],
+        fingers: [1, 4, 2, 3, null, null],
+        barres: [],
+        tips: ['"G 6 root-4 (3-5-4-5-x-x)"']
+      }
+    ]
+  },
+  // G7 (7)
+  {
+    id: 'G7',
+    symbol: 'G7',
+    quality: '7',
+    forms: [
+      {
+        id: 'G7-1-Open',
+        shapeName: 'Open',
+        frets: [1, 0, 0, 0, 2, 3],
+        fingers: [1, null, null, null, 2, 3],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'G7-2-Root-6',
+        shapeName: 'Root-6',
+        frets: [3, 3, 4, 3, 5, 3],
+        fingers: [1, 1, 2, 1, 3, 1],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'G7-3-Root-5',
+        shapeName: 'Root-5',
+        frets: [10, 12, 10, 12, 10, 'x'],
+        fingers: [1, 4, 1, 3, 1, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      },
+      {
+        id: 'G7-4-Root-4',
+        shapeName: 'Root-4',
+        frets: [7, 6, 7, 5, 'x', 'x'],
+        fingers: [4, 2, 3, 1, null, null],
+        barres: [],
+        tips: ['Dominant 7th (extracted)']
+      }
+    ]
+  },
+  // Gadd9 (add9)
+  {
+    id: 'Gadd9',
+    symbol: 'Gadd9',
+    quality: 'add9',
+    forms: [
+      {
+        id: 'Gadd9-1-Open',
+        shapeName: 'Open',
+        frets: [3, 0, 2, 0, 'x', 3],
+        fingers: [4, null, 1, null, null, 2],
+        barres: [],
+        tips: ['"G add9 open (3-0-2-0-x-3)"']
+      },
+      {
+        id: 'Gadd9-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 14, 12, 14, 15],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"G add9 root-6 (x-x-14-12-14-15)"']
+      },
+      {
+        id: 'Gadd9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 10, 7, 9, 10, 'x'],
+        fingers: [null, 4, 1, 2, 3, null],
+        barres: [{ fret: 7, fromString: 1, toString: 5, finger: null }],
+        tips: ['"G add9 root-5 (x-10-7-9-10-x) barre@7(1-5)"']
+      },
+      {
+        id: 'Gadd9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [17, 15, 16, 17, 'x', 'x'],
+        fingers: [4, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"G add9 root-4 (17-15-16-17-x-x)"']
+      }
+    ]
+  },
+  // Gaug (aug)
+  {
+    id: 'Gaug',
+    symbol: 'Gaug',
+    quality: 'aug',
+    forms: [
+      {
+        id: 'Gaug-1-Open',
+        shapeName: 'Open',
+        frets: [3, 0, 0, 1, 2, 3],
+        fingers: [4, null, null, 1, 3, 2],
+        barres: [],
+        tips: ['"G augmented open (3-2-1-0-0-3)"']
+      },
+      {
+        id: 'Gaug-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 16, 16, 17, 'x', 15],
+        fingers: [null, 3, 2, 4, null, 1],
+        barres: [],
+        tips: ['"G augmented root-6 (x-16-16-17-x-15)"']
+      },
+      {
+        id: 'Gaug-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 10, 9, 8, 8, 'x'],
+        fingers: [null, 3, 2, 1, 1, null],
+        barres: [{ fret: 8, fromString: 2, toString: 3, finger: 3 }],
+        tips: ['"G augmented root-5 (x-10-9-8-8-x) barre@8(2-3)"']
+      },
+      {
+        id: 'Gaug-4-Root4',
+        shapeName: 'Root-4',
+        frets: [15, 16, 16, 17, 'x', 'x'],
+        fingers: [1, 2, 3, 4, null, null],
+        barres: [],
+        tips: ['"G augmented root-4 (15-16-16-17-x-x)"']
+      },
+      {
+        id: 'Gaug-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [11, 12, 12, 'x', 'x', 'x'],
+        fingers: [1, 3, 2, null, null, null],
+        barres: [],
+        tips: ['"G augmented Triad-1 (11-12-12-x-x-x)"']
+      },
+      {
+        id: 'Gaug-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 16, 16, 17, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [{ fret: 16, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"G augmented Triad-2 (x-16-16-17-x-x) barre@16(2-3)"']
+      }
+    ]
+  },
+  // Gdim (dim)
+  {
+    id: 'Gdim',
+    symbol: 'Gdim',
+    quality: 'dim',
+    forms: [
+      {
+        id: 'Gdim-1-Root6',
+        shapeName: 'Root-6',
+        frets: [15, 14, 15, 'x', 'x', 15],
+        fingers: [4, 1, 3, null, null, 2],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +7)']
+      },
+      {
+        id: 'Gdim-2',
+        shapeName: 'Root-5',
+        frets: ['x', 11, 12, 11, 10, 'x'],
+        fingers: [null, 3, 4, 2, 1, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +7)']
+      },
+      {
+        id: 'Gdim-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [15, 14, 15, 17, 'x', 'x'],
+        fingers: [3, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +7)']
+      },
+      {
+        id: 'Gdim-4-Triad-1',
+        shapeName: 'Triad-1',
+        frets: [9, 11, 12, 'x', 'x', 'x'],
+        fingers: [1, 3, 4, null, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +7)']
+      },
+      {
+        id: 'Gdim-5-Triad-2',
+        shapeName: 'Triad-2',
+        frets: ['x', 14, 15, 17, 'x', 'x'],
+        fingers: [null, 1, 2, 4, null, null],
+        barres: [],
+        tips: ['Diminished (auto from Cdim +7)']
+      }
+    ]
+  },
+  // Gm (m)
+  {
+    id: 'Gm',
+    symbol: 'Gm',
+    quality: 'm',
+    forms: [
+      {
+        id: 'Gm-4-Triad1',
+        shapeName: 'Triad-1',
+        frets: [10, 11, 12, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'Gm-5-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 3, 3, 5, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // Gm6 (m6)
+  {
+    id: 'Gm6',
+    symbol: 'Gm6',
+    quality: 'm6',
+    forms: [
+      {
+        id: 'Gm6-1-Open',
+        shapeName: 'Open',
+        frets: [0, 3, 0, 0, 1, 3],
+        fingers: [null, 3, null, null, 1, 2],
+        barres: [],
+        tips: ['"G minor 6 open (3-1-0-0-3-0 pattern)"']
+      },
+      {
+        id: 'Gm6-2-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 15, 15, 14, 'x', 15],
+        fingers: [null, 3, 4, 1, null, 2],
+        barres: [],
+        tips: ['"G minor 6 root-6 (x-15-15-14-x-15)"']
+      },
+      {
+        id: 'Gm6-3-Root5',
+        shapeName: 'Root-5',
+        frets: [10, 11, 9, 'x', 10, 'x'],
+        fingers: [4, 3, 1, null, 2, null],
+        barres: [],
+        tips: ['"G minor 6 root-5 (10-11-9-x-10-x)"']
+      },
+      {
+        id: 'Gm6-4-Root4',
+        shapeName: 'Root-4',
+        frets: [15, 17, 15, 17, 'x', 'x'],
+        fingers: [1, 4, 1, 3, null, null],
+        barres: [{ fret: 15, fromString: 1, toString: 3, finger: 1 }],
+        tips: ['"G minor 6 root-4 (15-17-15-17-x-x) barre@15(1-3)"']
+      }
+    ]
+  },
+  // Gm7 (m7)
+  {
+    id: 'Gm7',
+    symbol: 'Gm7',
+    quality: 'm7',
+    forms: [
+      {
+        id: 'Gm7-1-Root-6',
+        shapeName: 'Root-6',
+        frets: [3, 3, 3, 3, 5, 3],
+        fingers: [1, 1, 1, 1, 3, 1],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'Gm7-2-Root-5',
+        shapeName: 'Root-5',
+        frets: [10, 11, 10, 12, 10, 'x'],
+        fingers: [1, 2, 1, 3, 1, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'Gm7-3-Root-4',
+        shapeName: 'Root-4',
+        frets: [6, 6, 7, 5, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      }
+    ]
+  },
+  // GM7 (M7)
+  {
+    id: 'GM7',
+    symbol: 'GM7',
+    quality: 'M7',
+    forms: [
+      {
+        id: 'GM7-1-Open',
+        shapeName: 'Open',
+        frets: [2, 0, 0, 0, 2, 3],
+        fingers: [1, null, null, null, 2, 3],
+        barres: [],
+        tips: ['"Gmaj7 open | Bright voicing"']
+      },
+      {
+        id: 'GM7-2-Root6',
+        shapeName: 'Root-6',
+        frets: [3, 3, 4, 4, 5, 3],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 3, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | Maj7 E-shape"']
+      },
+      {
+        id: 'GM7-3-Root5',
+        shapeName: 'Root-5',
+        frets: [10, 12, 11, 12, 10, 'x'],
+        fingers: [1, 4, 2, 3, 1, null],
+        barres: [{ fret: 10, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | Maj7 A-shape"']
+      },
+      {
+        id: 'GM7-4-Root4',
+        shapeName: 'Root-4',
+        frets: [7, 7, 7, 5, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      }
+    ]
+  },
+  // Gm9 (m9)
+  {
+    id: 'Gm9',
+    symbol: 'Gm9',
+    quality: 'm9',
+    forms: [
+      {
+        id: 'Gm9-1-Open',
+        shapeName: 'Open',
+        frets: [0, 0, 10, 12, 10, 'x'],
+        fingers: [null, null, 1, 4, 2, null],
+        barres: [],
+        tips: ['"G minor 9 open (x-10-12-10-0-0)"']
+      },
+      {
+        id: 'Gm9-2-Root6',
+        shapeName: 'Root-6',
+        frets: [15, 13, 13, 13, 15, 13],
+        fingers: [12, 1, 1, 1, 3, 1],
+        barres: [{ fret: 13, fromString: 1, toString: 6, finger: 12 }],
+        tips: ['"G minor 9 root-6 (15-13-13-13-15-13) barre@13(1-6)"']
+      },
+      {
+        id: 'Gm9-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 22, 22, 20, 22, 'x'],
+        fingers: [null, 1, 1, 3, 4, null],
+        barres: [{ fret: 22, fromString: 2, toString: 3, finger: 1 }],
+        tips: ['"G minor 9 root-5 (x-22-22-20-22-x)"']
+      },
+      {
+        id: 'Gm9-4-Root4',
+        shapeName: 'Root-4',
+        frets: [20, 20, 18, 15, 'x', 'x'],
+        fingers: [4, 4, 2, 1, null, null],
+        barres: [],
+        tips: ['"G minor 9 root-4 (20-20-18-15-x-x)"']
+      }
+    ]
+  },
+  // Gsus2 (sus2)
+  {
+    id: 'Gsus2',
+    symbol: 'Gsus2',
+    quality: 'sus2',
+    forms: [
+      {
+        id: 'Gsus2-1-Open',
+        shapeName: 'Open',
+        frets: [3, 3, 2, 0, 'x', 3],
+        fingers: [4, 3, 1, null, null, 2],
+        barres: [],
+        tips: ['"G sus2 open (3-x-0-2-3-3)"']
+      }
+    ]
+  },
+  // Gsus4 (sus4)
+  {
+    id: 'Gsus4',
+    symbol: 'Gsus4',
+    quality: 'sus4',
+    forms: [
+      {
+        id: 'Gsus4-1-Open',
+        shapeName: 'Open',
+        frets: [3, 1, 0, 0, 3, 3],
+        fingers: [4, 1, null, null, 3, 2],
+        barres: [],
+        tips: ['"G sus4 open (3-1-0-0-3-3)"']
+      },
+      {
+        id: 'Gsus4-2-Root6',
+        shapeName: 'Root-6',
+        frets: [10, 12, 12, 12, 10, 10],
+        fingers: [1, 3, 4, 4, 1, 2],
+        barres: [{ fret: 10, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"G sus4 root-6 (10-12-12-12-10-10)"']
+      },
+      {
+        id: 'Gsus4-3-Root5',
+        shapeName: 'Root-5',
+        frets: [15, 17, 17, 17, 15, 'x'],
+        fingers: [1, 3, 4, 4, 1, null],
+        barres: [{ fret: 15, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"G sus4 root-5 (15-17-17-17-15-x)"']
+      },
+      {
+        id: 'Gsus4-4-Root4',
+        shapeName: 'Root-4',
+        frets: [15, 15, 17, 17, 'x', 'x'],
+        fingers: [1, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['"G sus4 root-4 (15-15-17-17-x-x)"']
+      },
+      {
+        id: 'Gsus4-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [10, 13, 12, 'x', 'x', 'x'],
+        fingers: [1, 4, 3, null, null, null],
+        barres: [],
+        tips: ['Gsus4 Triad-1 (auto from Csus4 +7)']
+      },
+      {
+        id: 'Gsus4-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 15, 17, 17, 'x', 'x'],
+        fingers: [null, 1, 3, 4, null, null],
+        barres: [],
+        tips: ['Gsus4 Triad-2 (auto from Csus4 +7)']
+      }
+    ]
+  }
 
-// Combine all static chords
-export const ALL_STATIC_CHORDS: StaticChord[] = [
-  ...MAJOR_CHORDS,
-  ...MINOR_CHORDS,
-  ...DOM7_CHORDS,
-  ...MAJ7_CHORDS,
-  ...MIN7_CHORDS,
 ];
 
 // Helper to find chord by symbol
 export function getStaticChord(symbol: string): StaticChord | undefined {
   return ALL_STATIC_CHORDS.find(c => c.symbol === symbol);
 }
-

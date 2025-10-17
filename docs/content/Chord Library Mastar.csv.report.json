@@ -1,10 +1,10 @@
 {
   "input": "/Users/nh/App/OtoTheory/docs/content/Chord Library Mastar.csv",
-  "timestamp": "2025-10-17T05:05:30.527Z",
+  "timestamp": "2025-10-17T16:28:29.435Z",
   "totals": {
-    "rows": 347,
-    "chords": 97,
-    "groupsWithReorder": 6,
+    "rows": 490,
+    "chords": 130,
+    "groupsWithReorder": 9,
     "shapeIssueCount": 2,
     "toneIssueCount": 8,
     "duplicates": 0

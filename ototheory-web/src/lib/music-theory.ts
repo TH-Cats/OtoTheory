@@ -212,16 +212,16 @@ function recommendScales(topKey: KeySignature, chords: ParsedChord[]): ScaleCand
   const keyTonic = topKey.tonic;
   const scaleScores = list.map((sm) => {
     const scaleName =
-      sm.id === "major" ? "major" :
-      sm.id === "naturalMinor" ? "natural minor" :
-      sm.id === "majorPent" ? "major pentatonic" :
-      sm.id === "minorPent" ? "minor pentatonic" :
-      sm.id === "blues" ? "blues" :
-      sm.id === "dorian" ? "dorian" :
-      sm.id === "mixolydian" ? "mixolydian" :
-      sm.id === "lydian" ? "lydian" :
-      sm.id === "harmonicMinor" ? "harmonic minor" :
-      "melodic minor";
+      sm.id === "major" ? "Major" :
+      sm.id === "naturalMinor" ? "Natural Minor" :
+      sm.id === "majorPent" ? "Major Pentatonic" :
+      sm.id === "minorPent" ? "Minor Pentatonic" :
+      sm.id === "blues" ? "Blues" :
+      sm.id === "dorian" ? "Dorian" :
+      sm.id === "mixolydian" ? "Mixolydian" :
+      sm.id === "lydian" ? "Lydian" :
+      sm.id === "harmonicMinor" ? "Harmonic Minor" :
+      "Melodic Minor";
     const sc = Scale.get(`${keyTonic} ${scaleName}`);
     const noteSet = new Set((sc.notes || []).map(normalizeNote));
     const matches = Array.from(chordRoots).filter((r) => noteSet.has(r)).length;

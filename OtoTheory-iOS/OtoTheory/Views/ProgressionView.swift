@@ -1,6 +1,47 @@
 import SwiftUI
 import AVFoundation
 
+// MARK: - Unified toolbar label style (icon over text, fixed min height)
+struct VerticalToolbarLabelStyle: LabelStyle {
+    var spacing: CGFloat = 4
+    var minHeight: CGFloat = 44
+
+    func makeBody(configuration: Configuration) -> some View {
+        VStack(spacing: spacing) {
+            configuration.icon
+                .symbolRenderingMode(.monochrome)
+                .imageScale(.large)
+            configuration.title
+                .font(.caption2)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+                .multilineTextAlignment(.center)
+        }
+        .frame(maxWidth: .infinity, minHeight: minHeight)
+        .contentShape(Rectangle())
+    }
+}
+
+// Minimal, consistent bordered style with unified tint/text and compact height
+struct BorderedTintButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled) private var isEnabled
+    var cornerRadius: CGFloat = 12
+    var minHeight: CGFloat = 44
+    var disabledOpacity: Double = 0.45
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(maxWidth: .infinity, minHeight: minHeight)
+            .padding(.horizontal, 6)
+            .overlay(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(.tint, lineWidth: 1)
+            )
+            .foregroundStyle(.tint)
+            .opacity(isEnabled ? (configuration.isPressed ? 0.85 : 1.0) : disabledOpacity)
+    }
+}
+
 // MARK: - Constants
 
 private enum ProgressionConstants {
@@ -54,6 +95,7 @@ struct ProgressionView: View {
     // Playback state
     @State private var isPlaying = false
     @State private var bpm: Double = ProgressionConstants.defaultBPM
+    @State private var bpmPickerValue: Int = Int(ProgressionConstants.defaultBPM)
     @State private var currentSlotIndex: Int? = nil
     @State private var selectedInstrument: Int = 0
     @State private var playbackMode: PlaybackMode = .fullSong // Full song or per-section playback
@@ -387,10 +429,7 @@ struct ProgressionView: View {
             playbackControls
             sectionMarkers
             
-            // Section Picker (if section mode is enabled)
-            if progressionStore.useSectionMode {
-                sectionPicker
-            }
+            // Section Picker removed - editing is handled by the Section button in the top toolbar
             
             slotsGrid
         }
@@ -406,108 +445,46 @@ struct ProgressionView: View {
                             .fontWeight(.semibold)
                             .padding(.horizontal)
                         
-                        // Buttons - 2 rows for better readability
-                        VStack(spacing: 8) {
-                            // First row: Preset, Sections, Reset
-                            HStack(spacing: 8) {
-                                // Preset Button
-                                Button(action: { showPresetPicker = true }) {
-                                    VStack(spacing: 2) {
-                                        Image(systemName: "music.note.list")
-                                            .font(.title3)
-                                        Text("Preset")
-                                            .font(.caption2)
-                                    }
-                                    .frame(maxWidth: .infinity)
-                                }
-                                .buttonStyle(.bordered)
-                            
-                                // Sections Button (Pro only)
-                                #if DEBUG
-                                // Always show in DEBUG mode for testing
-                                Button(action: {
-                                    if !progressionStore.useSectionMode {
-                                        progressionStore.enableSectionMode()
-                                    }
-                                    showSectionManagement = true
-                                }) {
-                                    VStack(spacing: 2) {
-                                        Image(systemName: progressionStore.useSectionMode ? "square.grid.3x2.fill" : "square.grid.3x2")
-                                            .font(.title3)
-                                        HStack(spacing: 2) {
-                                            Text("Section")
-                                            if progressionStore.useSectionMode && !progressionStore.sectionDefinitions.isEmpty {
-                                                Text("(\(progressionStore.sectionDefinitions.count))")
-                                            }
-                                        }
-                                        .font(.caption2)
-                                    }
-                                    .frame(maxWidth: .infinity)
-                                }
-                                .buttonStyle(.bordered)
-                                .background(progressionStore.useSectionMode ? Color.blue.opacity(0.1) : Color.clear)
-                                .cornerRadius(8)
-                                #else
-                                // Production: Pro only
-                                if proManager.isProUser {
-                                    Button(action: {
-                                        if !progressionStore.useSectionMode {
-                                            progressionStore.enableSectionMode()
-                                        }
-                                        showSectionManagement = true
-                                    }) {
-                                        VStack(spacing: 2) {
-                                            Image(systemName: progressionStore.useSectionMode ? "square.grid.3x2.fill" : "square.grid.3x2")
-                                                .font(.title3)
-                                            HStack(spacing: 2) {
-                                                Text("Section")
-                                                if progressionStore.useSectionMode && !progressionStore.sectionDefinitions.isEmpty {
-                                                    Text("(\(progressionStore.sectionDefinitions.count))")
-                                                }
-                                            }
-                                            .font(.caption2)
-                                        }
-                                        .frame(maxWidth: .infinity)
-                                    }
-                                    .buttonStyle(.bordered)
-                                    .background(progressionStore.useSectionMode ? Color.blue.opacity(0.1) : Color.clear)
-                                    .cornerRadius(8)
-                                }
-                                #endif
-                                
-                                // Reset Button
-                                Button(action: resetProgression) {
-                                    VStack(spacing: 2) {
-                                        Image(systemName: "arrow.counterclockwise")
-                                            .font(.title3)
-                                        Text("Reset")
-                                            .font(.caption2)
-                                    }
-                                    .frame(maxWidth: .infinity)
-                                }
-                                .buttonStyle(.bordered)
+                        // Buttons row unified
+                        HStack(spacing: 8) {
+                            Button(action: { showPresetPicker = true }) {
+                                Label("Preset", systemImage: "music.note.list")
                             }
-                            
-                            // Second row: Enable Sections (conditional), Sketches
-                            HStack(spacing: 8) {
-                                // Enable Sections Button (only show if not in section mode and has chords)
-                                if !progressionStore.useSectionMode && progressionStore.slots.compactMap({ $0 }).count > 0 {
-                                    Button(action: { showConvertSheet = true }) {
-                                        VStack(spacing: 2) {
-                                            Image(systemName: "square.grid.2x2")
-                                                .font(.title3)
-                                            Text("Enable\nSections")
-                                                .font(.caption2)
-                                                .multilineTextAlignment(.center)
-                                                .lineLimit(2)
-                                                .minimumScaleFactor(0.7)
+                            .labelStyle(VerticalToolbarLabelStyle())
+
+                            Button(action: {
+                                if !progressionStore.useSectionMode { progressionStore.enableSectionMode() }
+                                showSectionManagement = true
+                            }) {
+                                Label {
+                                    HStack(spacing: 2) {
+                                        Text("Section")
+                                        if progressionStore.useSectionMode && !progressionStore.sectionDefinitions.isEmpty {
+                                            Text("(\(progressionStore.sectionDefinitions.count))")
                                         }
-                                        .frame(maxWidth: .infinity)
                                     }
-                                    .buttonStyle(.borderedProminent)
+                                } icon: {
+                                    Image(systemName: progressionStore.useSectionMode ? "square.grid.3x2.fill" : "square.grid.3x2")
                                 }
                             }
+                            .labelStyle(VerticalToolbarLabelStyle())
+
+                            Button(action: resetProgression) {
+                                Label("Reset", systemImage: "arrow.counterclockwise")
+                            }
+                            .labelStyle(VerticalToolbarLabelStyle())
+
+                            Button(action: { showConvertSheet = true }) {
+                                Label("Enable Sections", systemImage: "plus")
+                            }
+                            .labelStyle(VerticalToolbarLabelStyle())
+                            .disabled(progressionStore.slots.compactMap({ $0 }).isEmpty)
+                            .opacity(progressionStore.slots.compactMap({ $0 }).isEmpty ? 0.6 : 1.0)
+                            .frame(minHeight: 56) // Ensure same height as other buttons
                         }
+                        .buttonStyle(BorderedTintButtonStyle())
+                        .tint(.blue)
+                        .buttonBorderShape(.roundedRectangle)
                         .padding(.horizontal)
                 }
     }
@@ -516,71 +493,107 @@ struct ProgressionView: View {
     private var playbackControls: some View {
                             // Playback Controls
                             VStack(spacing: 12) {
-                                // Playback Mode Selector (Section mode only)
-                                if progressionStore.useSectionMode {
-                                    HStack(spacing: 8) {
-                                        ForEach(PlaybackMode.allCases, id: \.self) { mode in
-                                            Button(action: { playbackMode = mode }) {
-                                                HStack(spacing: 4) {
-                                                    Image(systemName: mode.icon)
-                                                        .font(.caption)
-                                                    Text(mode.rawValue)
-                                                        .font(.caption)
-                                                        .fontWeight(.medium)
-                                                }
-                                                .padding(.horizontal, 12)
-                                                .padding(.vertical, 6)
-                                                .background(playbackMode == mode ? Color.blue : Color.secondary.opacity(0.1))
-                                                .foregroundColor(playbackMode == mode ? .white : .primary)
-                                                .cornerRadius(6)
+                                // Compact controls: Play mode, BPM Slider, Instrument (single row)
+                                HStack(spacing: 12) {
+                                    Spacer(minLength: 0) // align left edge with top buttons' left padding
+                                    
+                                    // Play mode buttons (when in section mode) or single Play button
+                                    if progressionStore.useSectionMode {
+                                        // Full Song button
+                                        Button(action: { 
+                                            playbackMode = .fullSong
+                                            togglePlayback()
+                                        }) {
+                                            HStack(spacing: 4) {
+                                                Image(systemName: isPlaying && playbackMode == .fullSong ? "stop.fill" : "play.fill")
+                                                    .font(.system(size: 14))
+                                                Text("Full Song")
+                                                    .font(.caption)
+                                                    .fontWeight(.medium)
                                             }
+                                            .padding(.horizontal, 10)
+                                            .padding(.vertical, 6)
+                                            .background(playbackMode == .fullSong ? (isPlaying ? Color.red : Color.blue) : Color.secondary.opacity(0.1))
+                                            .foregroundColor(playbackMode == .fullSong ? .white : .primary)
+                                            .cornerRadius(6)
                                         }
-                                    }
-                                }
-                                
-                                HStack(spacing: 16) {
-                                    // Play/Stop Button
-                                    Button(action: togglePlayback) {
-                                        HStack {
-                                            Image(systemName: isPlaying ? "stop.fill" : "play.fill")
-                                                .font(.system(size: 20))
-                                            Text(isPlaying ? "Stop" : "Play")
-                                                .fontWeight(.semibold)
-                                        }
-                                        .frame(maxWidth: .infinity)
-                                        .padding(.vertical, 12)
-                                        .background(isPlaying ? Color.red : Color.blue)
-                                        .foregroundColor(.white)
-                                        .cornerRadius(8)
-                                    }
-                                    
-                                    // BPM Control
-                                    VStack(alignment: .leading, spacing: 4) {
-                                        Text("BPM: \(Int(bpm))")
-                                            .font(.caption)
-                                            .fontWeight(.medium)
                                         
-                                        Slider(value: $bpm, in: 40...240, step: 10)
-                                            .frame(width: 120)
-                                    }
-                                }
-                                
-                                // Instrument Selection
-                                HStack(spacing: 8) {
-                                    Text("Instrument:")
-                                        .font(.caption)
-                                        .fontWeight(.medium)
-                                    
-                                    Picker("Instrument", selection: $selectedInstrument) {
-                                        ForEach(0..<instruments.count, id: \.self) { index in
-                                            Text(instruments[index].0).tag(index)
+                                        // Current Section button
+                                        Button(action: { 
+                                            playbackMode = .currentSection
+                                            togglePlayback()
+                                        }) {
+                                            HStack(spacing: 4) {
+                                                Image(systemName: isPlaying && playbackMode == .currentSection ? "stop.fill" : "play.rectangle.fill")
+                                                    .font(.system(size: 14))
+                                                Text("Section")
+                                                    .font(.caption)
+                                                    .fontWeight(.medium)
+                                            }
+                                            .padding(.horizontal, 10)
+                                            .padding(.vertical, 6)
+                                            .background(playbackMode == .currentSection ? (isPlaying ? Color.red : Color.blue) : Color.secondary.opacity(0.1))
+                                            .foregroundColor(playbackMode == .currentSection ? .white : .primary)
+                                            .cornerRadius(6)
+                                        }
+                                    } else {
+                                        // Single Play button (when not in section mode)
+                                        Button(action: togglePlayback) {
+                                            HStack(spacing: 6) {
+                                                Image(systemName: isPlaying ? "stop.fill" : "play.fill")
+                                                    .font(.system(size: 16))
+                                                Text(isPlaying ? "Stop" : "Play")
+                                                    .font(.caption)
+                                                    .fontWeight(.semibold)
+                                            }
+                                            .padding(.horizontal, 12)
+                                            .padding(.vertical, 6)
+                                            .background(isPlaying ? Color.red : Color.blue)
+                                            .foregroundColor(.white)
+                                            .cornerRadius(8)
                                         }
                                     }
-                                    .pickerStyle(.menu)
-                                    .onChange(of: selectedInstrument) { _, newValue in
-                                        changeInstrument(instruments[newValue].1)
+
+                                    // BPM Control (Slider: 40...240 step 5) — compact
+                                    VStack(spacing: 2) {
+                                        Text("BPM \(Int(bpm))")
+                                            .font(.caption2)
+                                            .fontWeight(.medium)
+                                        Slider(value: $bpm, in: 40...240, step: 5)
+                                            .frame(height: 20)
                                     }
+                                    .frame(maxWidth: .infinity)
+
+                                    // Instrument Picker (with up/down arrows like scale picker)
+                                    HStack(spacing: 4) {
+                                        Text(instruments[selectedInstrument].0)
+                                            .font(.caption)
+                                            .lineLimit(1)
+                                            .minimumScaleFactor(0.9)
+                                        
+                                        Menu {
+                                            ForEach(instruments.indices, id: \.self) { i in
+                                                Button {
+                                                    selectedInstrument = i
+                                                    changeInstrument(instruments[i].1)
+                                                } label: {
+                                                    HStack {
+                                                        Text(instruments[i].0)
+                                                        if i == selectedInstrument {
+                                                            Image(systemName: "checkmark")
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        } label: {
+                                            Image(systemName: "chevron.up.chevron.down")
+                                                .font(.caption2)
+                                                .foregroundColor(.blue)
+                                        }
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
+                                .frame(height: 44) // compact row height
                             }
                             .padding(.horizontal)
     }
@@ -703,10 +716,6 @@ struct ProgressionView: View {
                 // Result Section (after analysis)
                 if isAnalyzed && !keyCandidates.isEmpty {
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("Result")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                            .padding(.horizontal)
                         
                         // Key Selection
                         VStack(alignment: .leading, spacing: 12) {
@@ -1071,9 +1080,7 @@ struct ProgressionView: View {
     @ViewBuilder
     private var diatonicSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Diatonic Chords")
-                .font(.headline)
-                .padding(.horizontal)
+            // Heading removed per spec
             
             if let scale = selectedScale, let key = selectedKey {
                 DiatonicTableView(
