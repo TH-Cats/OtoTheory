@@ -9,7 +9,7 @@ export const messages = {
     actions: { analyze: 'Analyze' },
     chordLibrary: {
       title: 'Chord Library',
-      sub: 'Choose a Root and Quality to see 3 chord forms side by side with horizontal fretboard layout. Supports Eb, Ab, Bb and other practical keys. Hear them with ▶ Play (strum) and Arp (arpeggio).',
+      sub: '',
       quality: 'Quality:',
       showAdvanced: 'Show Advanced',
       hideAdvanced: 'Hide Advanced',
