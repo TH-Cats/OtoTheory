@@ -77,7 +77,7 @@ export const messages = {
     actions: { analyze: '分析' },
     chordLibrary: {
       title: 'Chord Library',
-      sub: 'ルートとクオリティを選ぶと、横向きのフレットボードで3つのフォームを並べて表示します。Eb, Ab, Bb など実用キーにも対応。▶ Play（ストラム）と Arp（アルペジオ）で音を確認できます。',
+      sub: '',
       quality: 'Quality:',
       showAdvanced: '高度なフォームを表示',
       hideAdvanced: '高度なフォームを隠す',
