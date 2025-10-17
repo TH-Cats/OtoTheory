@@ -1,0 +1,110 @@
+Chord,Symbol,Quality,FormOrder,FormID,ShapeName,Fret1,Fret2,Fret3,Fret4,Fret5,Fret6,Finger1,Finger2,Finger3,Finger4,Finger5,Finger6,BarreFret,BarreFrom,BarreTo,Tips
+G#M7,G#M7,M7,1,G#M7-1-Root6,Root-6,4,4,5,5,6,4,1,1,2,3,4,1,4,1,6,6th string root | Maj7 E-shape
+G#M7,G#M7,M7,2,G#M7-2-Root5,Root-5,11,13,12,13,11,x,1,4,2,3,1,-,11,1,5,5th string root | Maj7 A-shape
+G#M7,G#M7,M7,3,G#M7-3-Root4,Root-4,8,8,8,6,x,x,3,2,4,1,-,-,,,,4th string root | High position
+F#M7,F#M7,M7,1,F#M7-1-Root6,Root-6,2,2,3,3,4,2,1,1,2,3,4,1,2,1,6,6th string root | Maj7 E-shape
+F#M7,F#M7,M7,2,F#M7-2-Root5,Root-5,9,11,10,11,9,x,1,4,2,3,1,-,9,1,5,5th string root | Maj7 A-shape
+F#M7,F#M7,M7,3,F#M7-3-Root4,Root-4,6,6,6,4,x,x,3,2,4,1,-,-,,,,4th string root | High position
+BbM7,BbM7,M7,1,BbM7-1-Root6,Root-6,6,6,7,7,8,6,1,1,2,3,4,1,6,1,6,A#maj7 enharmonic | Maj7 E-shape
+BbM7,BbM7,M7,2,BbM7-2-Root5,Root-5,1,3,2,3,1,x,1,4,2,3,1,-,1,1,5,5th string root | Maj7 A-shape
+BbM7,BbM7,M7,3,BbM7-3-Root4,Root-4,10,10,10,8,x,x,3,2,4,1,-,-,,,,4th string root | High position
+BM7,BM7,M7,1,BM7-1-Root6,Root-6,7,7,8,8,9,7,1,1,2,3,4,1,7,1,6,6th string root | Maj7 E-shape
+BM7,BM7,M7,2,BM7-2-Root5,Root-5,2,4,3,4,2,x,1,4,2,3,1,-,2,1,5,5th string root | Maj7 A-shape
+BM7,BM7,M7,3,BM7-3-Root4,Root-4,11,11,11,9,x,x,3,2,4,1,-,-,,,,4th string root | High position
+CM7,CM7,M7,1,CM7-1,Open,0,0,0,2,3,x,-,-,-,2,3,-,,,,Rich C major 7th | Open strings
+CM7,CM7,M7,2,CM7-3,Root-6,8,8,9,9,10,8,1,1,2,3,4,1,8,1,6,Full barre | 2nd&3rd strings at 8/9
+CM7,CM7,M7,3,CM7-2,Root-5,3,5,4,5,3,x,1,4,2,3,1,-,3,1,5,Barre form | 5th string root
+CM7,CM7,M7,4,CM7-4,Root-4,12,12,12,10,x,x,3,2,4,1,-,-,,,,4th string root | High position
+C#M7,C#M7,M7,1,C#M7-1-Root6,Root-6,9,9,10,10,11,9,1,1,2,3,4,1,9,1,6,6th string root | Maj7 shape
+C#M7,C#M7,M7,2,C#M7-2-Root5,Root-5,4,6,5,6,4,x,1,4,2,3,1,-,4,1,5,5th string root | Barre
+C#M7,C#M7,M7,3,C#M7-3-Root4,Root-4,13,13,13,11,x,x,3,2,4,1,-,-,,,,4th string root | High position
+DM7,DM7,M7,1,DM7-1-Root6,Root-6,10,10,11,11,12,10,1,1,2,3,4,1,10,1,6,6th string root | Maj7 shape
+DM7,DM7,M7,2,DM7-2-Root5,Root-5,5,7,6,7,5,x,1,4,2,3,1,-,5,1,5,5th string root | Barre
+DM7,DM7,M7,3,DM7-3-Root4,Root-4,14,14,14,12,x,x,3,2,4,1,-,-,,,,4th string root | High position
+D#M7,D#M7,M7,1,D#M7-3-Root6,Root-6,11,11,12,12,13,11,1,1,2,3,4,1,11,1,6,6th string root | Maj7 E-shape
+D#M7,D#M7,M7,2,D#M7-2-Root5,Root-5,6,8,7,8,6,x,1,4,2,3,1,-,6,1,5,5th string root | Maj7 A-shape
+D#M7,D#M7,M7,3,D#M7-1-Root4,Root-4,3,3,3,1,x,x,3,1,2,1,-,-,,,,4th string root | Compact voicing
+EM7,EM7,M7,1,EM7-1-Open,Open,0,0,1,1,2,0,-,-,1,2,3,-,,,,E major 7th | Beautiful open voicing
+EM7,EM7,M7,2,EM7-2-Root6,Root-6,x,12,13,13,x,12,-,1,3,2,-,1,12,2,4,Shell voicing at 12F (avoid duplicating Open at +12)
+EM7,EM7,M7,3,EM7-3-Root5,Root-5,7,9,8,9,7,x,1,3,2,4,1,-,7,1,5,5th string root | Standard M7 A-shape
+EM7,EM7,M7,4,EM7-4-Root4,Root-4,11,12,13,14,x,x,1,3,2,4,-,-,,,,4th string root | High position
+GM7,GM7,M7,1,GM7-1-Open,Open,2,0,0,0,2,3,1,-,-,-,2,3,,,,Gmaj7 open | Bright voicing
+GM7,GM7,M7,2,GM7-2-Root6,Root-6,3,3,4,4,5,3,1,1,2,3,4,1,3,1,6,6th string root | Maj7 E-shape
+GM7,GM7,M7,3,GM7-3-Root5,Root-5,10,12,11,12,10,x,1,4,2,3,1,-,10,1,5,5th string root | Maj7 A-shape
+GM7,GM7,M7,4,GM7-4-Root4,Root-4,7,7,7,5,x,x,3,2,4,1,-,-,,,,4th string root | High position
+AM7,AM7,M7,1,AM7-1-Open,Open,0,2,1,2,0,x,-,3,1,2,-,-,,,,Amaj7 open | Mellow sound
+AM7,AM7,M7,2,AM7-2-Root6,Root-6,5,5,6,6,7,5,1,1,2,3,4,1,5,1,6,6th string root | Maj7 E-shape
+AM7,AM7,M7,3,AM7-3-Root5,Root-5,9,9,9,11,12,x,1,1,1,3,4,-,9,1,3,5th string root | Maj7 (barre 1–3 @ 9f)
+AM7,AM7,M7,4,AM7-4-Root4,Root-4,9,9,9,7,x,x,3,2,4,1,-,-,,,,4th string root | High position
+FM7,FM7,M7,1,FM7,Open,0,1,2,3,3,x,-,1,2,3,4,-,,,,F major 7th | Upper string voicing
+FM7,FM7,M7,2,FM7-2-Root6,Root-6,1,1,2,2,3,1,1,1,2,3,4,1,1,1,6,6th string root | Maj7 E-shape
+FM7,FM7,M7,3,FM7-3-Root5,Root-5,8,10,9,10,8,x,1,4,2,3,1,-,8,1,5,5th string root | Maj7 A-shape
+FM7,FM7,M7,4,FM7-4-Root4,Root-4,5,5,5,3,x,x,3,2,4,1,-,-,,,,4th string root | High position
+C,C,M,1,C-1-Open,Open,0,1,0,2,3,x,-,1,-,2,3,-,,,,C major open | Beginner-friendly
+C,C,M,2,C-2-Root6,Root-6,8,8,9,10,10,8,1,1,2,3,4,1,8,1,6,6th string root | E-shape barre
+C,C,M,3,C-3-Root5,Root-5,3,5,5,5,3,x,1,3,4,2,1,-,3,1,5,5th string root | A-shape barre
+C,C,M,4,C-5-Triad1,Triad-1,3,5,5,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+C,C,M,5,C-6-Triad2,Triad-2,x,8,9,10,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+D,D,M,1,D-1-Open,Open,2,3,2,0,x,x,1,3,2,-,-,-,,, ,D major open | Bright sound
+D,D,M,2,D-2-Root6,Root-6,10,10,11,12,12,10,1,1,2,3,4,1,10,1,6,6th string root | E-shape barre
+D,D,M,3,D-3-Root5,Root-5,5,7,7,7,5,x,1,3,4,2,1,-,5,1,5,5th string root | A-shape barre
+D,D,M,4,D-5-Triad1,Triad-1,5,7,7,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+D,D,M,5,D-6-Triad2,Triad-2,x,10,11,12,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+E,E,M,1,E-1-Open,Open,0,0,1,2,2,0,-,-,1,3,2,-,,,,"E major open | Full, rich sound"
+E,E,M,2,E-2-Root6,Root-6,12,12,13,14,14,12,1,1,2,3,4,1,12,1,6,6th string root | E-shape barre
+E,E,M,3,E-3-Root5,Root-5,7,9,9,9,7,x,1,3,4,2,1,-,7,1,5,5th string root | A-shape barre
+E,E,M,4,E-5-Triad1,Triad-1,7,9,9,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+E,E,M,5,E-6-Triad2,Triad-2,x,12,13,14,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+G,G,M,1,G-1-Open,Open,3,0,0,0,2,3,3,-,-,-,1,2,-,,,,G major open | Full-bodied
+G,G,M,2,G-2-Root6,Root-6,3,3,4,5,5,3,1,1,2,3,4,1,3,1,6,6th string root | E-shape barre
+G,G,M,3,G-3-Root5,Root-5,10,12,12,12,10,x,1,3,4,2,1,-,10,1,5,5th string root | A-shape barre
+G,G,M,4,G-5-Triad1,Triad-1,10,12,12,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+G,G,M,5,G-6-Triad2,Triad-2,x,3,4,5,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+A,A,M,1,A-1-Open,Open,0,2,2,2,0,x,-,2,3,1,-,-,,, ,A major open | Powerful sound
+A,A,M,2,A-2-Root6,Root-6,5,5,6,7,7,5,1,1,2,3,4,1,5,1,6,6th string root | E-shape barre
+A,A,M,3,A-3-Root5,Root-5,12,14,14,14,12,x,1,3,4,2,1,-,12,1,5,5th string root | A-shape barre
+A,A,M,4,A-5-Triad1,Triad-1,12,14,14,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+A,A,M,5,A-6-Triad2,Triad-2,x,5,6,7,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Am,Am,m,1,Am-1-Open,Open,0,1,2,2,0,x,-,1,3,2,-,-,,,,A minor open | Melancholic
+Am,Am,m,2,Am-2-Root6,Root-6,5,5,5,7,7,5,1,1,1,3,4,1,5,1,6,6th string root | E-shape minor barre
+Am,Am,m,3,Am-3-Root5,Root-5,12,13,14,14,12,x,1,2,3,4,1,-,12,1,5,5th string root | A-shape minor barre
+Am,Am,m,4,Am-5-Triad1,Triad-1,12,13,14,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Am,Am,m,5,Am-6-Triad2,Triad-2,x,5,5,7,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Dm,Dm,m,1,Dm-1-Open,Open,1,3,2,0,x,x,1,3,2,-,-,-,,,,D minor open | Compact
+Dm,Dm,m,2,Dm-2-Root6,Root-6,10,10,10,12,12,10,1,1,1,3,4,1,10,1,6,6th string root | E-shape minor barre
+Dm,Dm,m,3,Dm-3-Root5,Root-5,5,6,7,7,5,x,1,2,3,4,1,-,5,1,5,5th string root | A-shape minor barre
+Dm,Dm,m,4,Dm-5-Triad1,Triad-1,5,6,7,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Dm,Dm,m,5,Dm-6-Triad2,Triad-2,x,10,10,12,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Em,Em,m,1,Em-1-Open,Open,0,0,0,2,2,0,-,-,-,2,3,-,,,,E minor open | Beautiful resonance
+Em,Em,m,2,Em-2-Root6,Root-6,12,12,12,14,14,12,1,1,1,3,4,1,12,1,6,6th string root | E-shape minor barre
+Em,Em,m,3,Em-3-Root5,Root-5,7,8,9,9,7,x,1,2,3,4,1,-,7,1,5,5th string root | A-shape minor barre
+Em,Em,m,4,Em-5-Triad1,Triad-1,7,8,9,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Em,Em,m,5,Em-6-Triad2,Triad-2,x,12,12,14,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+C#,C#,M,1,C#-4-Triad1,Triad-1,4,6,6,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+C#,C#,M,2,C#-5-Triad2,Triad-2,x,9,10,11,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+D#,D#,M,1,D#-4-Triad1,Triad-1,6,8,8,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+D#,D#,M,2,D#-5-Triad2,Triad-2,x,11,12,13,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Cm,Cm,m,1,Cm-5-Triad1,Triad-1,3,4,5,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Cm,Cm,m,2,Cm-6-Triad2,Triad-2,x,8,8,10,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+C#m,C#m,m,1,C#m-4-Triad1,Triad-1,4,5,6,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+C#m,C#m,m,2,C#m-5-Triad2,Triad-2,x,9,9,11,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+D#m,D#m,m,1,D#m-4-Triad1,Triad-1,6,7,8,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+D#m,D#m,m,2,D#m-5-Triad2,Triad-2,x,x,3,4,6,x,-,-,1,2,4,-,,,,Triad extracted from iOS (Triad-2)
+Fm,Fm,m,1,Fm-4-Triad1,Triad-1,8,9,10,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Fm,Fm,m,2,Fm-5-Triad2,Triad-2,x,1,1,3,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+F,F,M,1,F-4-Triad1,Triad-1,8,10,10,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+F,F,M,2,F-5-Triad2,Triad-2,x,1,2,3,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+F#m,F#m,m,1,F#m-4-Triad1,Triad-1,9,10,11,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+F#m,F#m,m,2,F#m-5-Triad2,Triad-2,x,2,2,4,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+F#,F#,M,1,F#-4-Triad1,Triad-1,9,11,11,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+F#,F#,M,2,F#-5-Triad2,Triad-2,x,2,3,4,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Gm,Gm,m,1,Gm-4-Triad1,Triad-1,10,11,12,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Gm,Gm,m,2,Gm-5-Triad2,Triad-2,x,3,3,5,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+G#m,G#m,m,1,G#m-4-Triad1,Triad-1,11,12,13,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+G#m,G#m,m,2,G#m-5-Triad2,Triad-2,x,4,4,6,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+G#,G#,M,1,G#-4-Triad1,Triad-1,11,13,13,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+G#,G#,M,2,G#-5-Triad2,Triad-2,x,4,5,6,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Bm,Bm,m,1,Bm-4-Triad1,Triad-1,2,3,4,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Bm,Bm,m,2,Bm-5-Triad2,Triad-2,x,7,7,9,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+B,B,M,1,B-4-Triad1,Triad-1,2,4,4,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+B,B,M,2,B-5-Triad2,Triad-2,x,7,8,9,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)

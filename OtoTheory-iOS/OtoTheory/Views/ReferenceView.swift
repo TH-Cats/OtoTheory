@@ -46,7 +46,6 @@ struct ReferenceView: View {
                     .background(Color(.systemGray6))
                     .cornerRadius(12)
                     
-                    // TODO: Future implementation
                     VStack(spacing: 8) {
                         Text("Full reference content coming soon")
                             .font(.caption)

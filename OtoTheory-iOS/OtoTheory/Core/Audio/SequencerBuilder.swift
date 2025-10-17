@@ -57,8 +57,7 @@ final class SequencerBuilder {
         }
         
         if includeDrums {
-            // TODO: Phase C でドラムトラックを追加
-            print("⚠️ SequencerBuilder: Drum track not yet implemented (Phase C)")
+            print("⚠️ SequencerBuilder: Drum track not yet implemented")
         }
         
         print("✅ SequencerBuilder: sequence built (tempo=\(score.bpm)BPM)")
@@ -152,7 +151,7 @@ final class SequencerBuilder {
         score: Score,
         pattern: DrumPattern = .basic
     ) throws {
-        // TODO: Phase C
+        // Future implementation: Drum track
         // 1. MusicSequenceNewTrack でトラック作成（ch=10）
         // 2. 16ステップパターンを各小節に配置
         //    - Kick=36, Snare=38, HiHat=42/46

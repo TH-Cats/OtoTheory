@@ -1,0 +1,70 @@
+{
+  "input": "/Users/nh/App/OtoTheory/docs/content/Chord Library Mastar.csv",
+  "timestamp": "2025-10-17T01:06:41.612Z",
+  "totals": {
+    "rows": 109,
+    "chords": 34,
+    "groupsWithReorder": 2,
+    "shapeIssueCount": 0,
+    "toneIssueCount": 0,
+    "duplicates": 4
+  },
+  "issues": [
+    {
+      "chord": "E",
+      "formId": "E-2-Root6",
+      "shape": "Root-6",
+      "type": "duplicate_open_plus_12",
+      "suggestedShell": [
+        "x",
+        12,
+        13,
+        13,
+        "x",
+        12
+      ]
+    },
+    {
+      "chord": "A",
+      "formId": "A-3-Root5",
+      "shape": "Root-5",
+      "type": "duplicate_open_plus_12",
+      "suggestedShell": [
+        "x",
+        "x",
+        9,
+        9,
+        "x",
+        7
+      ]
+    },
+    {
+      "chord": "Am",
+      "formId": "Am-3-Root5",
+      "shape": "Root-5",
+      "type": "duplicate_open_plus_12",
+      "suggestedShell": [
+        "x",
+        "x",
+        9,
+        9,
+        "x",
+        7
+      ]
+    },
+    {
+      "chord": "Em",
+      "formId": "Em-2-Root6",
+      "shape": "Root-6",
+      "type": "duplicate_open_plus_12",
+      "suggestedShell": [
+        "x",
+        12,
+        13,
+        13,
+        "x",
+        12
+      ]
+    }
+  ]
+}

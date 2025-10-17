@@ -301,7 +301,6 @@ struct SketchRow: View {
     // MARK: - Export Functions
     
     private func exportAsPNG() {
-        // TODO: PNG export implementation (Phase 3.5)
         exportError = "PNG export is not yet implemented"
         showError = true
     }

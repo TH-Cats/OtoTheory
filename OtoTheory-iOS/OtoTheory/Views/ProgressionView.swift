@@ -1,6 +1,14 @@
 import SwiftUI
 import AVFoundation
 
+// MARK: - Constants
+
+private enum ProgressionConstants {
+    static let defaultBPM: Double = 120
+    static let defaultKey: String = "C"
+    static let simulatedAnalysisDelay: UInt64 = 2_000_000_000 // 2 seconds in nanoseconds
+}
+
 struct ProgressionView: View {
     @StateObject private var progressionStore = ProgressionStore.shared
     @State private var cursorIndex = 0
@@ -12,30 +20,30 @@ struct ProgressionView: View {
         nonmutating set { progressionStore.slots = newValue }
     }
     
-    // Phase E-5: Active slots (section-aware)
+    // Active slots (section-aware)
     private var activeSlots: [String?] {
         progressionStore.activeSlots
     }
     
-    // Phase A: Hybrid Audio Architecture
+    // Audio Architecture
     @StateObject private var audioPlayer = AudioPlayer()
     @StateObject private var sketchManager = SketchManager.shared
-    @StateObject private var proManager = ProManager.shared  // Phase 1: Pro feature management
-    @State private var sequencer: ChordSequencer?  // 旧実装（Phase Bで削除予定）
+    @StateObject private var proManager = ProManager.shared
+    @State private var sequencer: ChordSequencer?  // Legacy MIDI sequencer
     @State private var hybridPlayer: HybridPlayer?
     @State private var bounceService: GuitarBounceService?
-    @State private var bassService: BassBounceService?  // Phase C-2.5: ベース PCM レンダリング
-    @State private var scalePreviewPlayer: ScalePreviewPlayer?  // Phase A-3: スケール音プレビュー（進捗バー対応）
+    @State private var bassService: BassBounceService?
+    @State private var scalePreviewPlayer: ScalePreviewPlayer?
     
     // Chord builder state
-    @State private var selectedRoot: String = "C"
+    @State private var selectedRoot: String = ProgressionConstants.defaultKey
     @State private var selectedQuick: String = ""
     
-    // Phase E-4B: Advanced Chord Builder (Pro)
+    // Advanced Chord Builder (Pro)
     @State private var showAdvanced: Bool = false
     @State private var selectedSlashBass: String? = nil  // For slash chords
     
-    // Phase E-4C: Slash Chord Editor (Pro)
+    // Slash Chord Editor (Pro)
     @State private var editingSlotIndex: Int? = nil
     @State private var showSlashEditor = false
     @State private var showToast = false
@@ -45,10 +53,10 @@ struct ProgressionView: View {
     
     // Playback state
     @State private var isPlaying = false
-    @State private var bpm: Double = 120
+    @State private var bpm: Double = ProgressionConstants.defaultBPM
     @State private var currentSlotIndex: Int? = nil
-    @State private var selectedInstrument: Int = 0 // 0=Steel, 1=Nylon, 2=Clean, 3=Dist, 4=OverDrive, 5=Muted, 6=Piano
-    @State private var playbackMode: PlaybackMode = .fullSong // Phase E-5: 全体/セクションごと再生
+    @State private var selectedInstrument: Int = 0
+    @State private var playbackMode: PlaybackMode = .fullSong // Full song or per-section playback
     
     private let instruments = [
         ("Acoustic Steel", 25),
@@ -59,16 +67,16 @@ struct ProgressionView: View {
     
     // Preset state
     @State private var showPresetPicker = false
-    @State private var selectedPresetKey: String = "C"
+    @State private var selectedPresetKey: String = ProgressionConstants.defaultKey
     
-    // Pro / Paywall state (Phase 1)
+    // Pro / Paywall state
     @State private var showPaywall = false
     
-    // Section state (Phase 2 - Legacy)
+    // Section state (Legacy)
     @State private var sections: [Section] = []
     @State private var showSectionEditor = false
     
-    // Section mode (Phase E-5)
+    // Section mode
     @State private var showSectionManagement = false
     
     // Sketch state
@@ -87,7 +95,7 @@ struct ProgressionView: View {
     @State private var isAnalyzed = false
     @State private var isAnalyzing = false
     
-    // Fretboard & Diatonic state (Phase E: Progression Tools)
+    // Fretboard & Diatonic state
     @State private var fbDisplay: FretboardDisplay = .degrees
     @State private var selectedDiatonicChord: String? = nil
     @State private var overlayChordNotes: [String] = []
@@ -143,7 +151,7 @@ struct ProgressionView: View {
     // MARK: - Init
     
     init() {
-        // ✅ HybridPlayer を常用（Phase B 最終版）
+        // Initialize HybridPlayer for audio playback
         audioTrace("PATH = Hybrid (fixed)")
         
         let candidates = [
@@ -160,11 +168,11 @@ struct ProgressionView: View {
                     
                     // GuitarBounceService を初期化
                     let bounce = try GuitarBounceService(sf2URL: url)
-                    let bass = try BassBounceService(sf2URL: url)  // Phase C-2.5: ベースサービス初期化
+                    let bass = try BassBounceService(sf2URL: url)
                     _bounceService = State(initialValue: bounce)
                     _bassService = State(initialValue: bass)  // ベースサービスを保存
                     
-                    // ScalePreviewPlayer を初期化（Phase A-3）
+                    // Initialize ScalePreviewPlayer for scale audio preview
                     let preview = try ScalePreviewPlayer(sf2URL: url)
                     _scalePreviewPlayer = State(initialValue: preview)
                     
@@ -241,7 +249,7 @@ struct ProgressionView: View {
             )
         }
         .sheet(isPresented: $showSlashEditor) {
-            // Phase E-4C: Slash Chord Editor Sheet
+            // Slash Chord Editor Sheet
             if let index = editingSlotIndex {
                 let currentChord: String? = {
                     if progressionStore.useSectionMode {
@@ -302,9 +310,9 @@ struct ProgressionView: View {
         }
     }
     
-    // MARK: - View Sections (Phase E-4B/C: Performance Optimization)
+    // MARK: - View Sections
     
-    // MARK: - Section Picker (Phase E-5)
+    // MARK: - Section Picker
     
     @ViewBuilder
     private var sectionPicker: some View {
@@ -379,7 +387,7 @@ struct ProgressionView: View {
             playbackControls
             sectionMarkers
             
-            // Phase E-5: Section Picker (if section mode is enabled)
+            // Section Picker (if section mode is enabled)
             if progressionStore.useSectionMode {
                 sectionPicker
             }
@@ -414,7 +422,7 @@ struct ProgressionView: View {
                                 }
                                 .buttonStyle(.bordered)
                             
-                                // Sections Button (Pro only - Phase E-5)
+                                // Sections Button (Pro only)
                                 #if DEBUG
                                 // Always show in DEBUG mode for testing
                                 Button(action: {
@@ -508,7 +516,7 @@ struct ProgressionView: View {
     private var playbackControls: some View {
                             // Playback Controls
                             VStack(spacing: 12) {
-                                // Playback Mode Selector (Phase E-5: Section mode only)
+                                // Playback Mode Selector (Section mode only)
                                 if progressionStore.useSectionMode {
                                     HStack(spacing: 8) {
                                         ForEach(PlaybackMode.allCases, id: \.self) { mode in
@@ -579,7 +587,7 @@ struct ProgressionView: View {
     
     @ViewBuilder
     private var sectionMarkers: some View {
-                        // Section Markers (Phase 2)
+                        // Section Markers
                         if !sections.isEmpty {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 8) {
@@ -610,7 +618,7 @@ struct ProgressionView: View {
                     onDelete: currentSlots[index] != nil ? { deleteChord(at: index) } : nil
                 )
                 .onLongPressGesture(minimumDuration: 0.5) {
-                    // Phase E-4C: Slash Chord Editor (Pro)
+                    // Slash Chord Editor (Pro)
                     if currentSlots[index] != nil {
                         // Pro判定
                         if proManager.isProUser {
@@ -634,7 +642,7 @@ struct ProgressionView: View {
     
     @ViewBuilder
     private var chordBuilderSection: some View {
-                // Choose Chords Section (Phase E-4B: Component)
+                // Choose Chords Section
                 ChordBuilderView(
                     selectedRoot: $selectedRoot,
                     selectedQuick: $selectedQuick,
@@ -1865,7 +1873,7 @@ struct ProgressionView: View {
             return
         }
         
-        // Phase E-5: Build section info for weighted analysis
+        // Build section info for weighted analysis
         var sectionInfos: [SectionInfo]? = nil
         if progressionStore.useSectionMode && !progressionStore.sectionDefinitions.isEmpty {
             var cumulativeIndex = 0
@@ -1896,12 +1904,12 @@ struct ProgressionView: View {
         // Show analyzing state
         isAnalyzing = true
         
-        // Simulate analysis delay (2 seconds)
+        // Simulate analysis delay
         Task {
-            try? await Task.sleep(nanoseconds: 2_000_000_000)
+            try? await Task.sleep(nanoseconds: ProgressionConstants.simulatedAnalysisDelay)
             
             await MainActor.run {
-                // Phase E-5: Analyze with section weights
+                // Analyze with section weights
                 let candidates = bridge.analyzeProgression(chords, sections: sectionInfos)
                 
                 guard !candidates.isEmpty else {
@@ -1948,24 +1956,8 @@ struct ProgressionView: View {
         print("   Scale candidates (top 5): \(scaleCandidates.map { "\($0.type) (\($0.score)%)" }.joined(separator: ", "))")
     }
     
-    private func scaleTypeToDisplayName(_ type: String) -> String {
-        switch type {
-        case "Ionian": return "major scale"
-        case "Dorian": return "Dorian"
-        case "Phrygian": return "Phrygian"
-        case "Lydian": return "Lydian"
-        case "Mixolydian": return "Mixolydian"
-        case "Aeolian": return "natural minor scale"
-        case "Locrian": return "Locrian"
-        case "HarmonicMinor": return "Harmonic Minor"
-        case "MelodicMinor": return "Melodic Minor"
-        case "MajorPentatonic": return "Major Pentatonic"
-        case "MinorPentatonic": return "Minor Pentatonic"
-        default: return type
-        }
-    }
     
-    // MARK: - Scale Preview (Phase A-3)
+    // MARK: - Scale Preview
     
     private func playScalePreview(_ candidate: ScaleCandidate) {
         guard let player = scalePreviewPlayer else {
@@ -2117,7 +2109,7 @@ struct ProgressionView: View {
         showToast = true
     }
     
-    // MARK: - Playback Functions (Phase B: HybridPlayer)
+    // MARK: - Playback Functions
     
     private func togglePlayback() {
         if isPlaying {
@@ -2128,7 +2120,7 @@ struct ProgressionView: View {
     }
     
     private func startPlayback() {
-        // Phase E-5: Select slots based on playback mode
+        // Select slots based on playback mode
         let slots: [String?]
         if progressionStore.useSectionMode && playbackMode == .currentSection {
             // Current section only
@@ -2160,7 +2152,7 @@ struct ProgressionView: View {
         }
         
         audioTrace("Playback started (HybridPlayer)")
-        guard let bass = bassService else { return }  // Phase C-2.5: ベースサービス確認
+        guard let bass = bassService else { return }
         playWithHybridPlayer(slots: slots, chords: chords, player: hybrid, bounce: bounce, bass: bass)
     }
     
@@ -2217,7 +2209,7 @@ struct ProgressionView: View {
                 
                 print("✅ All guitar buffers generated: \(guitarBuffers.count) bars")
                 
-                // 各小節のベースPCMバッファ生成（Phase C-2.5）
+                // Generate bass PCM buffer for each bar
                 var bassBuffers: [AVAudioPCMBuffer] = []
                 for bar in score.bars {
                     let key = BassBounceService.CacheKey(
@@ -2242,7 +2234,7 @@ struct ProgressionView: View {
                         DispatchQueue.main.async {
                             self.currentSlotIndex = slotIndex
                             
-                            // Phase E-5: Auto-switch section during full song playback
+                            // Auto-switch section during full song playback
                             if self.progressionStore.useSectionMode && self.playbackMode == .fullSong {
                                 self.autoSwitchSection(for: slotIndex)
                             }
@@ -2264,7 +2256,7 @@ struct ProgressionView: View {
         isPlaying = false
         currentSlotIndex = nil
         
-        // Phase B: Try HybridPlayer first, fallback to ChordSequencer
+        // Try HybridPlayer first, fallback to ChordSequencer
         if hybridPlayer != nil {
             hybridPlayer?.stop()
             print("✅ HybridPlayer: stopped")
@@ -2274,7 +2266,7 @@ struct ProgressionView: View {
         }
     }
     
-    /// Phase E-5: Auto-switch to the section that contains the given slot index
+    /// Auto-switch to the section that contains the given slot index
     private func autoSwitchSection(for slotIndex: Int) {
         guard progressionStore.useSectionMode else { return }
         
@@ -2311,7 +2303,7 @@ struct ProgressionView: View {
     }
     
     // 注意: カウントインはChordSequencer内で実装されているため、この関数は不要
-    // （Phase 2では MusicSequence のクリックトラックで実装）
+    // MusicSequence click track implementation
     
     // 音色変更
     private func changeInstrument(_ program: Int) {
@@ -2451,7 +2443,7 @@ struct SlotView: View {
     }
 }
 
-// MARK: - Section Marker (Phase 2)
+// MARK: - Section Marker
 
 struct SectionMarker: View {
     let section: Section
@@ -2494,7 +2486,7 @@ struct SectionMarker: View {
     }
 }
 
-// MARK: - Scale Candidate Button (Phase A-3)
+// MARK: - Scale Candidate Button
 
 struct ScaleCandidateButton: View {
     let candidate: ScaleCandidate
@@ -2549,30 +2541,32 @@ struct ScaleCandidateButton: View {
         .buttonStyle(.plain)
     }
     
-    private func scaleTypeToDisplayName(_ type: String) -> String {
-        switch type {
-        case "Ionian": return "major scale"
-        case "Dorian": return "Dorian"
-        case "Phrygian": return "Phrygian"
-        case "Lydian": return "Lydian"
-        case "Mixolydian": return "Mixolydian"
-        case "Aeolian": return "natural minor scale"
-        case "Locrian": return "Locrian"
-        case "HarmonicMinor": return "Harmonic Minor"
-        case "MelodicMinor": return "Melodic Minor"
-        case "MajorPentatonic": return "Major Pentatonic"
-        case "MinorPentatonic": return "Minor Pentatonic"
-        case "Blues": return "Blues"
-        default: return type
-        }
-    }
-    
     private func fitColor(_ score: Int) -> Color {
         if score >= 90 { return .green }
         if score >= 70 { return .yellow }
         return .orange
     }
     
+}
+
+// MARK: - Helper Functions
+
+private func scaleTypeToDisplayName(_ type: String) -> String {
+    switch type {
+    case "Ionian": return "major scale"
+    case "Dorian": return "Dorian"
+    case "Phrygian": return "Phrygian"
+    case "Lydian": return "Lydian"
+    case "Mixolydian": return "Mixolydian"
+    case "Aeolian": return "natural minor scale"
+    case "Locrian": return "Locrian"
+    case "HarmonicMinor": return "Harmonic Minor"
+    case "MelodicMinor": return "Melodic Minor"
+    case "MajorPentatonic": return "Major Pentatonic"
+    case "MinorPentatonic": return "Minor Pentatonic"
+    case "Blues": return "Blues"
+    default: return type
+    }
 }
 
 // MARK: - Section Chip
@@ -2702,7 +2696,7 @@ struct ConvertToSectionSheet: View {
     }
 }
 
-// MARK: - Playback Mode (Phase E-5)
+// MARK: - Playback Mode
 
 enum PlaybackMode: String, CaseIterable {
     case fullSong = "Full Song"

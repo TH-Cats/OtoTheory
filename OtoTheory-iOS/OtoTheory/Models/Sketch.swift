@@ -1,5 +1,11 @@
 import Foundation
 
+// MARK: - Constants
+
+private enum SketchConstants {
+    static let defaultBPM: Double = 120
+}
+
 struct Sketch: Identifiable, Codable {
     let id: String
     var name: String
@@ -22,7 +28,7 @@ struct Sketch: Identifiable, Codable {
         chords: [String?],
         key: String? = nil,
         scale: String? = nil,
-        bpm: Double = 120,
+        bpm: Double = SketchConstants.defaultBPM,
         fretboardDisplay: FretboardDisplayMode = .degrees,
         sectionDefinitions: [SectionDefinition] = [],
         playbackOrder: PlaybackOrder = PlaybackOrder(),
