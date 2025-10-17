@@ -33,7 +33,6 @@ export default function Client() {
   const [root, setRoot] = useState<Root>('C');
   const [quality, setQuality] = useState<Quality | AdvancedQuality>('M');
   const [displayMode, setDisplayMode] = useState<DisplayMode>('finger');
-  const [showAdvanced, setShowAdvanced] = useState(false);
   const locale = useLocale();
   const t = messages[locale].chordLibrary;
 
@@ -72,7 +71,7 @@ export default function Client() {
   const notes = useMemo(() => getChordNotes(root, quality), [root, quality]);
   const voicingNote = useMemo(() => getVoicingNote(quality), [quality]);
 
-  const allQualitiesDisplay = showAdvanced ? [...QUALITIES, ...ADVANCED_QUALITIES] : QUALITIES;
+  const allQualitiesDisplay = [...QUALITIES, ...ADVANCED_QUALITIES];
   const rootIdx = ROOTS.indexOf(root);
   const qualIdx = allQualitiesDisplay.indexOf(quality as Quality | AdvancedQuality);
   const rootWrapRef = useRef<HTMLDivElement>(null);
@@ -173,13 +172,6 @@ export default function Client() {
         <div className={styles['quality-section']}>
           <div className={styles['quality-header']}>
             <span className={styles['quality-label']}>{t.quality}</span>
-            <button
-              className={`${styles['advanced-toggle']} ${showAdvanced ? styles['advanced-toggle--on'] : ''}`}
-              onClick={() => setShowAdvanced(!showAdvanced)}
-              aria-pressed={showAdvanced}
-            >
-              {showAdvanced ? t.hideAdvanced : t.showAdvanced}
-            </button>
           </div>
           <div
             ref={qualWrapRef}
