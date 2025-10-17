@@ -89,6 +89,7 @@ export default function Client() {
 
   return (
     <main className={styles['chord-page']}>
+      <div className="container">
       <header className={styles['chord-page__header']}>
         <h1>{t.title}</h1>
         <p className={styles['sub']}>
@@ -280,6 +281,7 @@ export default function Client() {
       <section className={styles['chord-page__ad']} aria-label="Advertisement">
         <AdSlot page="chord_library" format="horizontal" />
       </section>
+      </div>
     </main>
   );
 }
