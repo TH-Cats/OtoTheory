@@ -103,7 +103,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "A-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(2), .fret(2), .fret(2), .open, .x],
+                frets: [.open, .fret(3), .fret(3), .fret(3), .open, .open],
                 fingers: [nil, .two, .three, .one, nil, nil],
                 barres: [],
                 tips: ["\"A major open | Powerful sound\""]
@@ -438,7 +438,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "A6-1-Open",
                 shapeName: "Open",
-                frets: [.fret(2), .fret(2), .fret(2), .fret(2), .open, .x],
+                frets: [.fret(3), .fret(3), .fret(3), .fret(3), .open, .open],
                 fingers: [.one, .one, .one, .one, nil, nil],
                 barres: [StaticBarre(fret: 2, fromString: 1, toString: 4, finger: .one)],
                 tips: ["\"A 6 open (x-0-2-2-2-2) barre@2(1-4)\""]
@@ -446,7 +446,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "A6-1-Open",
                 shapeName: "Open",
-                frets: [.fret(2), .fret(2), .fret(2), .fret(2), .open, .x],
+                frets: [.fret(3), .fret(3), .fret(3), .fret(3), .open, .open],
                 fingers: [.one, .one, .one, .one, nil, nil],
                 barres: [StaticBarre(fret: 2, fromString: 1, toString: 4, finger: .one)],
                 tips: ["\"A 6 open (x-0-2-2-2-2) barre@2(1-4)\""]
@@ -479,7 +479,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "A7-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(2), .open, .fret(2), .open, .x],
+                frets: [.open, .fret(3), .open, .fret(3), .open, .open],
                 fingers: [nil, .three, nil, .two, nil, nil],
                 barres: [],
                 tips: ["Dominant 7th (extracted)"]
@@ -520,7 +520,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Aadd9-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(2), .fret(4), .fret(2), .open, .x],
+                frets: [.open, .fret(3), .fret(5), .fret(3), .open, .open],
                 fingers: [nil, .two, .four, .one, nil, nil],
                 barres: [],
                 tips: ["\"A add9 open (0-2-4-2-0-x)\""]
@@ -659,7 +659,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Am-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(1), .fret(2), .fret(2), .open, .x],
+                frets: [.open, .fret(2), .fret(3), .fret(3), .open, .open],
                 fingers: [nil, .one, .three, .two, nil, nil],
                 barres: [],
                 tips: ["\"A minor open | Melancholic\""]
@@ -716,7 +716,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Am6-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(1), .fret(2), .fret(2), .open, .x],
+                frets: [.open, .fret(2), .fret(3), .fret(3), .open, .open],
                 fingers: [nil, .one, .three, .two, nil, nil],
                 barres: [],
                 tips: ["\"A minor 6 open (x-0-2-2-1-0)\""]
@@ -757,7 +757,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Am7-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(1), .open, .fret(2), .open, .x],
+                frets: [.open, .fret(2), .open, .fret(3), .open, .open],
                 fingers: [nil, .one, nil, .two, nil, nil],
                 barres: [],
                 tips: ["Minor 7th (extracted)"]
@@ -798,7 +798,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "AM7-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(2), .fret(1), .fret(2), .open, .x],
+                frets: [.open, .fret(3), .fret(2), .fret(3), .open, .open],
                 fingers: [nil, .three, .one, .two, nil, nil],
                 barres: [],
                 tips: ["\"Amaj7 open | Mellow sound\""]
@@ -872,7 +872,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Asus2-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .fret(2), .fret(2), .open, .x],
+                frets: [.open, .open, .fret(3), .fret(3), .open, .open],
                 fingers: [nil, nil, .one, .two, nil, nil],
                 barres: [],
                 tips: ["\"A sus2 open (x-0-2-2-0-0)\""]
@@ -889,7 +889,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Asus4-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(3), .fret(2), .fret(2), .open, .x],
+                frets: [.open, .fret(4), .fret(3), .fret(3), .open, .open],
                 fingers: [nil, .three, .two, .one, nil, nil],
                 barres: [],
                 tips: ["\"A sus4 open (x-0-2-2-3-0)\""]
@@ -897,7 +897,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Asus4-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(3), .fret(2), .fret(2), .open, .x],
+                frets: [.open, .fret(4), .fret(3), .fret(3), .open, .open],
                 fingers: [nil, .three, .two, .one, nil, nil],
                 barres: [],
                 tips: ["\"A sus4 open (x-0-2-2-3-0)\""]
@@ -1028,7 +1028,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "B7-1-Open",
                 shapeName: "Open",
-                frets: [.fret(2), .open, .fret(2), .fret(1), .fret(2), .x],
+                frets: [.fret(3), .open, .fret(3), .fret(2), .fret(3), .open],
                 fingers: [.three, nil, .two, .one, .four, nil],
                 barres: [],
                 tips: ["Dominant 7th (extracted)"]
@@ -1102,7 +1102,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Baug-1-Open",
                 shapeName: "Open",
-                frets: [.fret(3), .open, .open, .fret(1), .fret(2), .x],
+                frets: [.fret(4), .open, .open, .fret(2), .fret(3), .open],
                 fingers: [.four, nil, nil, .one, .three, nil],
                 barres: [],
                 tips: ["\"B augmented open (x-2-1-0-0-3)\""]
@@ -1388,7 +1388,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Bm6-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .fret(1), .open, .fret(2), .x],
+                frets: [.open, .open, .fret(2), .open, .fret(3), .open],
                 fingers: [nil, nil, .one, nil, .two, nil],
                 barres: [],
                 tips: ["\"B minor 6 open (x-2-0-1-0-0)\""]
@@ -1462,7 +1462,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Bm9-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .fret(2), .fret(4), .fret(2), .x],
+                frets: [.open, .open, .fret(3), .fret(5), .fret(3), .open],
                 fingers: [nil, nil, .one, .three, .two, nil],
                 barres: [],
                 tips: ["\"B minor 9 open (x-2-4-2-0-0)\""]
@@ -1520,7 +1520,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Bsus4-1-Open",
                 shapeName: "Open",
-                frets: [.fret(2), .open, .x, .fret(2), .fret(2), .x],
+                frets: [.fret(3), .open, .open, .fret(3), .fret(3), .open],
                 fingers: [.four, nil, nil, .three, .two, nil],
                 barres: [],
                 tips: ["\"B sus4 open (x-2-2-0-2-2 pattern)\""]
@@ -1577,7 +1577,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "C-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(1), .open, .fret(2), .fret(3), .x],
+                frets: [.open, .fret(2), .open, .fret(3), .fret(4), .open],
                 fingers: [nil, .one, nil, .two, .three, nil],
                 barres: [],
                 tips: ["\"C major open | Beginner-friendly\""]
@@ -1896,7 +1896,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "C#m7-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .open, .fret(1), .fret(2), .x],
+                frets: [.open, .open, .open, .fret(2), .fret(3), .open],
                 fingers: [nil, nil, nil, .one, .two, nil],
                 barres: [],
                 tips: ["Minor 7th (extracted)"]
@@ -2019,7 +2019,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "C6-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(1), .fret(2), .fret(2), .fret(3), .x],
+                frets: [.open, .fret(2), .fret(3), .fret(3), .fret(4), .open],
                 fingers: [nil, .one, .three, .two, .four, nil],
                 barres: [],
                 tips: ["\"C 6 open (x-3-2-2-1-0)\""]
@@ -2060,7 +2060,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "C7-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(1), .fret(3), .fret(2), .fret(3), .x],
+                frets: [.open, .fret(2), .fret(4), .fret(3), .fret(4), .open],
                 fingers: [nil, .one, .three, .two, .four, nil],
                 barres: [],
                 tips: ["\"Classic C7 open\""]
@@ -2101,7 +2101,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Cadd9-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(3), .open, .fret(2), .fret(3), .x],
+                frets: [.open, .fret(4), .open, .fret(3), .fret(4), .open],
                 fingers: [nil, .four, nil, .one, .three, nil],
                 barres: [],
                 tips: ["\"C add9 open (x-3-2-0-3-0)\""]
@@ -2379,7 +2379,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "CM7-1",
                 shapeName: "Open",
-                frets: [.open, .open, .open, .fret(2), .fret(3), .x],
+                frets: [.open, .open, .open, .fret(3), .fret(4), .open],
                 fingers: [nil, nil, nil, .two, .three, nil],
                 barres: [],
                 tips: ["\"Rich C major 7th | Open strings\""]
@@ -2420,7 +2420,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Cm9-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .fret(3), .fret(5), .fret(3), .x],
+                frets: [.open, .open, .fret(4), .fret(6), .fret(4), .open],
                 fingers: [nil, nil, .one, .four, .two, nil],
                 barres: [],
                 tips: ["\"C minor 9 open (x-3-5-3-0-0)\""]
@@ -2461,7 +2461,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Csus2-1-Open",
                 shapeName: "Open",
-                frets: [.fret(3), .fret(3), .open, .open, .fret(3), .x],
+                frets: [.fret(4), .fret(4), .open, .open, .fret(4), .open],
                 fingers: [.four, .three, nil, nil, .one, nil],
                 barres: [],
                 tips: ["\"C sus2 open (x-3-0-0-3-3)\""]
@@ -2478,7 +2478,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Csus4-1-Open",
                 shapeName: "Open",
-                frets: [.fret(1), .fret(1), .open, .fret(3), .fret(3), .x],
+                frets: [.fret(2), .fret(2), .open, .fret(4), .fret(4), .open],
                 fingers: [.one, .one, nil, .four, .three, nil],
                 barres: [StaticBarre(fret: 1, fromString: 1, toString: 2, finger: .one)],
                 tips: ["\"C sus4 open (x-3-3-0-1-1)\""]
@@ -2535,7 +2535,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "D-1-Open",
                 shapeName: "Open",
-                frets: [.fret(2), .fret(3), .fret(2), .open, .x, .x],
+                frets: [.fret(3), .fret(4), .fret(3), .open, .open, .open],
                 fingers: [.one, .three, .two, nil, nil, nil],
                 barres: [],
                 tips: ["\"D major open | Bright sound\""]
@@ -2969,7 +2969,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "D6-1-Open",
                 shapeName: "Open",
-                frets: [.fret(2), .open, .fret(2), .open, .x, .x],
+                frets: [.fret(3), .open, .fret(3), .open, .open, .open],
                 fingers: [.three, nil, .two, nil, nil, nil],
                 barres: [],
                 tips: ["\"D 6 open (x-x-0-2-0-2)\""]
@@ -3010,7 +3010,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "D7-1-Open",
                 shapeName: "Open",
-                frets: [.fret(2), .fret(1), .fret(2), .open, .x, .x],
+                frets: [.fret(3), .fret(2), .fret(3), .open, .open, .open],
                 fingers: [.three, .one, .two, nil, nil, nil],
                 barres: [],
                 tips: ["Dominant 7th (extracted)"]
@@ -3084,7 +3084,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Daug-1-Open",
                 shapeName: "Open",
-                frets: [.fret(2), .fret(3), .fret(3), .open, .x, .x],
+                frets: [.fret(3), .fret(4), .fret(4), .open, .open, .open],
                 fingers: [.one, .three, .four, nil, nil, nil],
                 barres: [],
                 tips: ["\"D augmented open (x-x-0-3-3-2)\""]
@@ -3158,7 +3158,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Dm-1-Open",
                 shapeName: "Open",
-                frets: [.fret(1), .fret(3), .fret(2), .open, .x, .x],
+                frets: [.fret(2), .fret(4), .fret(3), .open, .open, .open],
                 fingers: [.one, .three, .two, nil, nil, nil],
                 barres: [],
                 tips: ["\"D minor open | Compact\""]
@@ -3215,7 +3215,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Dm6-1-Open",
                 shapeName: "Open",
-                frets: [.fret(1), .open, .fret(2), .open, .x, .x],
+                frets: [.fret(2), .open, .fret(3), .open, .open, .open],
                 fingers: [.one, nil, .two, nil, nil, nil],
                 barres: [],
                 tips: ["\"D minor 6 open (x-x-0-2-0-1)\""]
@@ -3256,7 +3256,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Dm7-1-Open",
                 shapeName: "Open",
-                frets: [.fret(1), .fret(1), .fret(2), .open, .x, .x],
+                frets: [.fret(2), .fret(2), .fret(3), .open, .open, .open],
                 fingers: [.one, .one, .two, nil, nil, nil],
                 barres: [],
                 tips: ["Minor 7th (extracted)"]
@@ -3330,7 +3330,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Dm9-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .fret(5), .fret(7), .fret(5), .x],
+                frets: [.open, .open, .fret(6), .fret(8), .fret(6), .open],
                 fingers: [nil, nil, .one, .four, .two, nil],
                 barres: [],
                 tips: ["\"D minor 9 open (x-5-7-5-0-0)\""]
@@ -3371,7 +3371,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Dsus2-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(3), .fret(2), .open, .x, .x],
+                frets: [.open, .fret(4), .fret(3), .open, .open, .open],
                 fingers: [nil, .three, .one, nil, nil, nil],
                 barres: [],
                 tips: ["\"D sus2 open (x-x-0-2-3-0)\""]
@@ -3388,7 +3388,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Dsus4-1-Open",
                 shapeName: "Open",
-                frets: [.fret(3), .fret(3), .fret(2), .open, .x, .x],
+                frets: [.fret(4), .fret(4), .fret(3), .open, .open, .open],
                 fingers: [.four, .three, .one, nil, nil, nil],
                 barres: [],
                 tips: ["\"D sus4 open (x-x-0-2-3-3)\""]
@@ -3445,7 +3445,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "E-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .fret(1), .fret(2), .fret(2), .open],
+                frets: [.open, .open, .fret(2), .fret(3), .fret(3), .open],
                 fingers: [nil, nil, .one, .three, .two, nil],
                 barres: [],
                 tips: ["\"E major open | Full"]
@@ -3502,7 +3502,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "E6-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(2), .fret(1), .fret(2), .fret(2), .open],
+                frets: [.open, .fret(3), .fret(2), .fret(3), .fret(3), .open],
                 fingers: [nil, .four, .one, .three, .two, nil],
                 barres: [],
                 tips: ["\"E 6 open (0-2-2-1-2-0)\""]
@@ -3543,7 +3543,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "E7-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .fret(1), .open, .fret(2), .open],
+                frets: [.open, .open, .fret(2), .open, .fret(3), .open],
                 fingers: [nil, nil, .one, nil, .two, nil],
                 barres: [],
                 tips: ["Dominant 7th (extracted)"]
@@ -3584,7 +3584,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Eadd9-1-Open",
                 shapeName: "Open",
-                frets: [.fret(2), .open, .fret(1), .fret(2), .fret(2), .open],
+                frets: [.fret(3), .open, .fret(2), .fret(3), .fret(3), .open],
                 fingers: [.four, nil, .one, .three, .two, nil],
                 barres: [],
                 tips: ["\"E add9 open (2-0-1-2-2-0)\""]
@@ -3625,7 +3625,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Eaug-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(1), .fret(1), .fret(2), .fret(3), .open],
+                frets: [.open, .fret(2), .fret(2), .fret(3), .fret(4), .open],
                 fingers: [nil, .two, .one, .three, .four, nil],
                 barres: [],
                 tips: ["\"E augmented open (0-3-2-1-1-0)\""]
@@ -3830,7 +3830,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Em-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .open, .fret(2), .fret(2), .open],
+                frets: [.open, .open, .open, .fret(3), .fret(3), .open],
                 fingers: [nil, nil, nil, .two, .three, nil],
                 barres: [],
                 tips: ["\"E minor open | Beautiful resonance\""]
@@ -3887,7 +3887,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Em6-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(2), .open, .fret(2), .fret(2), .open],
+                frets: [.open, .fret(3), .open, .fret(3), .fret(3), .open],
                 fingers: [nil, .two, nil, .three, .four, nil],
                 barres: [],
                 tips: ["\"E minor 6 open (0-2-2-0-2-0)\""]
@@ -3961,7 +3961,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "EM7-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .fret(1), .fret(1), .fret(2), .open],
+                frets: [.open, .open, .fret(2), .fret(2), .fret(3), .open],
                 fingers: [nil, nil, .one, .two, .three, nil],
                 barres: [],
                 tips: ["\"E major 7th | Beautiful open voicing\""]
@@ -4002,7 +4002,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Em9-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .fret(7), .fret(9), .fret(7), .x],
+                frets: [.open, .open, .fret(8), .fret(10), .fret(8), .open],
                 fingers: [nil, nil, .one, .four, .two, nil],
                 barres: [],
                 tips: ["\"E minor 9 open (x-7-9-7-0-0)\""]
@@ -4043,7 +4043,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Esus2-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .fret(4), .fret(4), .fret(2), .open],
+                frets: [.open, .open, .fret(5), .fret(5), .fret(3), .open],
                 fingers: [nil, nil, .three, .four, .one, nil],
                 barres: [],
                 tips: ["\"E sus2 open (0-2-4-4-0-0)\""]
@@ -4060,7 +4060,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Esus4-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .fret(2), .fret(2), .open, .open],
+                frets: [.open, .open, .fret(3), .fret(3), .open, .open],
                 fingers: [nil, nil, .three, .four, nil, nil],
                 barres: [],
                 tips: ["\"E sus4 open (0-0-2-2-0-0)\""]
@@ -4133,7 +4133,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "F-4-Root4",
                 shapeName: "Root-4",
-                frets: [.fret(1), .fret(1), .fret(2), .fret(3), .x, .x],
+                frets: [.fret(3), .fret(3), .fret(4), .fret(5), .x, .x],
                 fingers: [.one, .one, .two, .three, nil, nil],
                 barres: [],
                 tips: ["\"4th string root | High position\""]
@@ -4215,7 +4215,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "F#7-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(2), .fret(3), .fret(4), .x, .x],
+                frets: [.open, .fret(3), .fret(4), .fret(5), .open, .open],
                 fingers: [nil, .one, .two, .three, nil, nil],
                 barres: [],
                 tips: ["Dominant 7th (extracted)"]
@@ -4551,7 +4551,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "F6-1-Open",
                 shapeName: "Open",
-                frets: [.x, .fret(1), .fret(2), .open, .x, .fret(1)],
+                frets: [.open, .fret(2), .fret(3), .open, .open, .fret(2)],
                 fingers: [nil, .two, .three, nil, nil, .one],
                 barres: [],
                 tips: ["\"F 6 open (1-x-0-2-1-x)\""]
@@ -4830,7 +4830,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "FM7",
                 shapeName: "Open",
-                frets: [.open, .fret(1), .fret(2), .fret(3), .fret(3), .x],
+                frets: [.open, .fret(2), .fret(3), .fret(4), .fret(4), .open],
                 fingers: [.one, .one, .two, .four, .three, .one],
                 barres: [],
                 tips: ["\"F major 7th | Upper string voicing\""]
@@ -4871,7 +4871,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Fm9-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .fret(8), .fret(10), .fret(8), .x],
+                frets: [.open, .open, .fret(9), .fret(11), .fret(9), .open],
                 fingers: [nil, nil, .one, .four, .two, nil],
                 barres: [],
                 tips: ["\"F minor 9 open (x-8-10-8-0-0)\""]
@@ -4912,7 +4912,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Fsus2-1-Open",
                 shapeName: "Open",
-                frets: [.fret(3), .fret(1), .open, .fret(3), .x, .x],
+                frets: [.fret(4), .fret(2), .open, .fret(4), .open, .open],
                 fingers: [.four, .one, nil, .three, nil, nil],
                 barres: [],
                 tips: ["\"F sus2 open (x-x-3-0-1-3)\""]
@@ -4978,7 +4978,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "G-1-Open",
                 shapeName: "Open",
-                frets: [.fret(3), .open, .open, .open, .fret(2), .fret(3)],
+                frets: [.fret(4), .open, .open, .open, .fret(3), .fret(4)],
                 fingers: [.three, nil, nil, nil, .one, .two],
                 barres: [],
                 tips: []
@@ -5412,7 +5412,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "G6-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .open, .open, .fret(2), .fret(3)],
+                frets: [.open, .open, .open, .open, .fret(3), .fret(4)],
                 fingers: [nil, nil, nil, nil, .two, .three],
                 barres: [],
                 tips: ["\"G 6 open (0-0-0-0-2-3)\""]
@@ -5453,7 +5453,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "G7-1-Open",
                 shapeName: "Open",
-                frets: [.fret(1), .open, .open, .open, .fret(2), .fret(3)],
+                frets: [.fret(2), .open, .open, .open, .fret(3), .fret(4)],
                 fingers: [.one, nil, nil, nil, .two, .three],
                 barres: [],
                 tips: ["Dominant 7th (extracted)"]
@@ -5494,7 +5494,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Gadd9-1-Open",
                 shapeName: "Open",
-                frets: [.fret(3), .open, .fret(2), .open, .x, .fret(3)],
+                frets: [.fret(4), .open, .fret(3), .open, .open, .fret(4)],
                 fingers: [.four, nil, .one, nil, nil, .two],
                 barres: [],
                 tips: ["\"G add9 open (3-0-2-0-x-3)\""]
@@ -5535,7 +5535,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Gaug-1-Open",
                 shapeName: "Open",
-                frets: [.fret(3), .open, .open, .fret(1), .fret(2), .fret(3)],
+                frets: [.fret(4), .open, .open, .fret(2), .fret(3), .fret(4)],
                 fingers: [.four, nil, nil, .one, .three, .two],
                 barres: [],
                 tips: ["\"G augmented open (3-2-1-0-0-3)\""]
@@ -5690,7 +5690,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Gm6-1-Open",
                 shapeName: "Open",
-                frets: [.open, .fret(3), .open, .open, .fret(1), .fret(3)],
+                frets: [.open, .fret(4), .open, .open, .fret(2), .fret(4)],
                 fingers: [nil, .three, nil, nil, .one, .two],
                 barres: [],
                 tips: ["\"G minor 6 open (3-1-0-0-3-0 pattern)\""]
@@ -5764,7 +5764,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "GM7-1-Open",
                 shapeName: "Open",
-                frets: [.fret(2), .open, .open, .open, .fret(2), .fret(3)],
+                frets: [.fret(3), .open, .open, .open, .fret(3), .fret(4)],
                 fingers: [.one, nil, nil, nil, .two, .three],
                 barres: [],
                 tips: ["\"Gmaj7 open | Bright voicing\""]
@@ -5805,7 +5805,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Gm9-1-Open",
                 shapeName: "Open",
-                frets: [.open, .open, .fret(10), .fret(12), .fret(10), .x],
+                frets: [.open, .open, .fret(11), .fret(13), .fret(11), .open],
                 fingers: [nil, nil, .one, .four, .two, nil],
                 barres: [],
                 tips: ["\"G minor 9 open (x-10-12-10-0-0)\""]
@@ -5846,7 +5846,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Gsus2-1-Open",
                 shapeName: "Open",
-                frets: [.fret(3), .fret(3), .fret(2), .open, .x, .fret(3)],
+                frets: [.fret(4), .fret(4), .fret(3), .open, .open, .fret(4)],
                 fingers: [.four, .three, .one, nil, nil, .two],
                 barres: [],
                 tips: ["\"G sus2 open (3-x-0-2-3-3)\""]
@@ -5863,7 +5863,7 @@ let STATIC_CHORDS: [StaticChord] = [
             StaticForm(
                 id: "Gsus4-1-Open",
                 shapeName: "Open",
-                frets: [.fret(3), .fret(1), .open, .open, .fret(3), .fret(3)],
+                frets: [.fret(4), .fret(2), .open, .open, .fret(4), .fret(4)],
                 fingers: [.four, .one, nil, nil, .three, .two],
                 barres: [],
                 tips: ["\"G sus4 open (3-1-0-0-3-3)\""]

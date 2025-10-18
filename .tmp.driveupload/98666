@@ -1,0 +1,3 @@
+module.exports=[73235,a=>{"use strict";a.s(["default",()=>c,"metadata",()=>b]);let b={title:"Guitar Glossary – Quick Music Theory Terms | OtoTheory",description:"Quick reference glossary for guitarists. One-line definitions + guitar-specific notes + examples. Covering scale degrees, chords, progressions, and practical techniques.",alternates:{canonical:"/resources/glossary",languages:{en:"/resources/glossary","ja-JP":"/ja/resources/glossary","x-default":"/resources/glossary"}},openGraph:{title:"Guitar Glossary – Quick Music Theory Terms",description:"Quick reference glossary with guitar-focused definitions and practical examples."}};function c({children:a}){return a}}];
+
+//# sourceMappingURL=src_app_resources_glossary_layout_tsx_b92c2afa._.js.map

@@ -1,0 +1,3 @@
+module.exports=[22537,a=>{"use strict";a.s(["default",()=>e,"metadata",()=>d]);var b=a.i(7997),c=a.i(40270);let d={alternates:{canonical:"/ja/find-chords",languages:{en:"/find-chords","ja-JP":"/ja/find-chords","x-default":"/find-chords"}},openGraph:{locale:"ja_JP"}};function e({children:a}){return(0,b.jsxs)(b.Fragment,{children:[(0,b.jsx)(c.BreadcrumbStructuredData,{lang:"ja",items:[{name:"Home",url:"https://www.ototheory.com/ja"},{name:"Find Chords",url:"https://www.ototheory.com/ja/find-chords"}]}),(0,b.jsx)(c.SoftwareApplicationStructuredData,{name:"Find Chords by Key & Scale",description:"Discover all diatonic chords for any key and scale",category:"Music",lang:"ja"}),a]})}}];
+
+//# sourceMappingURL=src_app_ja_find-chords_layout_tsx_c74c6988._.js.map

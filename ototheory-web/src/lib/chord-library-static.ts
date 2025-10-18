@@ -42,7 +42,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'A-1-Open',
         shapeName: 'Open',
-        frets: [0, 2, 2, 2, 0, 'x'],
+        frets: [0, 3, 3, 3, 0, 0],
         fingers: [null, 2, 3, 1, null, null],
         barres: [],
         tips: ['"A major open | Powerful sound"']
@@ -370,7 +370,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'A6-1-Open',
         shapeName: 'Open',
-        frets: [2, 2, 2, 2, 0, 'x'],
+        frets: [3, 3, 3, 3, 0, 0],
         fingers: [1, 1, 1, 1, null, null],
         barres: [{ fret: 2, fromString: 1, toString: 4, finger: 1 }],
         tips: ['"A 6 open (x-0-2-2-2-2) barre@2(1-4)"']
@@ -378,7 +378,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'A6-1-Open',
         shapeName: 'Open',
-        frets: [2, 2, 2, 2, 0, 'x'],
+        frets: [3, 3, 3, 3, 0, 0],
         fingers: [1, 1, 1, 1, null, null],
         barres: [{ fret: 2, fromString: 1, toString: 4, finger: 1 }],
         tips: ['"A 6 open (x-0-2-2-2-2) barre@2(1-4)"']
@@ -410,7 +410,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'A7-1-Open',
         shapeName: 'Open',
-        frets: [0, 2, 0, 2, 0, 'x'],
+        frets: [0, 3, 0, 3, 0, 0],
         fingers: [null, 3, null, 2, null, null],
         barres: [],
         tips: ['Dominant 7th (extracted)']
@@ -450,7 +450,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Aadd9-1-Open',
         shapeName: 'Open',
-        frets: [0, 2, 4, 2, 0, 'x'],
+        frets: [0, 3, 5, 3, 0, 0],
         fingers: [null, 2, 4, 1, null, null],
         barres: [],
         tips: ['"A add9 open (0-2-4-2-0-x)"']
@@ -586,7 +586,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Am-1-Open',
         shapeName: 'Open',
-        frets: [0, 1, 2, 2, 0, 'x'],
+        frets: [0, 2, 3, 3, 0, 0],
         fingers: [null, 1, 3, 2, null, null],
         barres: [],
         tips: ['"A minor open | Melancholic"']
@@ -642,7 +642,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Am6-1-Open',
         shapeName: 'Open',
-        frets: [0, 1, 2, 2, 0, 'x'],
+        frets: [0, 2, 3, 3, 0, 0],
         fingers: [null, 1, 3, 2, null, null],
         barres: [],
         tips: ['"A minor 6 open (x-0-2-2-1-0)"']
@@ -682,7 +682,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Am7-1-Open',
         shapeName: 'Open',
-        frets: [0, 1, 0, 2, 0, 'x'],
+        frets: [0, 2, 0, 3, 0, 0],
         fingers: [null, 1, null, 2, null, null],
         barres: [],
         tips: ['Minor 7th (extracted)']
@@ -722,7 +722,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'AM7-1-Open',
         shapeName: 'Open',
-        frets: [0, 2, 1, 2, 0, 'x'],
+        frets: [0, 3, 2, 3, 0, 0],
         fingers: [null, 3, 1, 2, null, null],
         barres: [],
         tips: ['"Amaj7 open | Mellow sound"']
@@ -794,7 +794,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Asus2-1-Open',
         shapeName: 'Open',
-        frets: [0, 0, 2, 2, 0, 'x'],
+        frets: [0, 0, 3, 3, 0, 0],
         fingers: [null, null, 1, 2, null, null],
         barres: [],
         tips: ['"A sus2 open (x-0-2-2-0-0)"']
@@ -810,7 +810,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Asus4-1-Open',
         shapeName: 'Open',
-        frets: [0, 3, 2, 2, 0, 'x'],
+        frets: [0, 4, 3, 3, 0, 0],
         fingers: [null, 3, 2, 1, null, null],
         barres: [],
         tips: ['"A sus4 open (x-0-2-2-3-0)"']
@@ -818,7 +818,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Asus4-1-Open',
         shapeName: 'Open',
-        frets: [0, 3, 2, 2, 0, 'x'],
+        frets: [0, 4, 3, 3, 0, 0],
         fingers: [null, 3, 2, 1, null, null],
         barres: [],
         tips: ['"A sus4 open (x-0-2-2-3-0)"']
@@ -946,7 +946,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'B7-1-Open',
         shapeName: 'Open',
-        frets: [2, 0, 2, 1, 2, 'x'],
+        frets: [3, 0, 3, 2, 3, 0],
         fingers: [3, null, 2, 1, 4, null],
         barres: [],
         tips: ['Dominant 7th (extracted)']
@@ -1018,7 +1018,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Baug-1-Open',
         shapeName: 'Open',
-        frets: [3, 0, 0, 1, 2, 'x'],
+        frets: [4, 0, 0, 2, 3, 0],
         fingers: [4, null, null, 1, 3, null],
         barres: [],
         tips: ['"B augmented open (x-2-1-0-0-3)"']
@@ -1298,7 +1298,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Bm6-1-Open',
         shapeName: 'Open',
-        frets: [0, 0, 1, 0, 2, 'x'],
+        frets: [0, 0, 2, 0, 3, 0],
         fingers: [null, null, 1, null, 2, null],
         barres: [],
         tips: ['"B minor 6 open (x-2-0-1-0-0)"']
@@ -1370,7 +1370,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Bm9-1-Open',
         shapeName: 'Open',
-        frets: [0, 0, 2, 4, 2, 'x'],
+        frets: [0, 0, 3, 5, 3, 0],
         fingers: [null, null, 1, 3, 2, null],
         barres: [],
         tips: ['"B minor 9 open (x-2-4-2-0-0)"']
@@ -1426,7 +1426,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Bsus4-1-Open',
         shapeName: 'Open',
-        frets: [2, 0, 'x', 2, 2, 'x'],
+        frets: [3, 0, 0, 3, 3, 0],
         fingers: [4, null, null, 3, 2, null],
         barres: [],
         tips: ['"B sus4 open (x-2-2-0-2-2 pattern)"']
@@ -1482,7 +1482,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'C-1-Open',
         shapeName: 'Open',
-        frets: [0, 1, 0, 2, 3, 'x'],
+        frets: [0, 2, 0, 3, 4, 0],
         fingers: [null, 1, null, 2, 3, null],
         barres: [],
         tips: ['"C major open | Beginner-friendly"']
@@ -1794,7 +1794,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'C#m7-1-Open',
         shapeName: 'Open',
-        frets: [0, 0, 0, 1, 2, 'x'],
+        frets: [0, 0, 0, 2, 3, 0],
         fingers: [null, null, null, 1, 2, null],
         barres: [],
         tips: ['Minor 7th (extracted)']
@@ -1914,7 +1914,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'C6-1-Open',
         shapeName: 'Open',
-        frets: [0, 1, 2, 2, 3, 'x'],
+        frets: [0, 2, 3, 3, 4, 0],
         fingers: [null, 1, 3, 2, 4, null],
         barres: [],
         tips: ['"C 6 open (x-3-2-2-1-0)"']
@@ -1954,7 +1954,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'C7-1-Open',
         shapeName: 'Open',
-        frets: [0, 1, 3, 2, 3, 'x'],
+        frets: [0, 2, 4, 3, 4, 0],
         fingers: [null, 1, 3, 2, 4, null],
         barres: [],
         tips: ['"Classic C7 open"']
@@ -1994,7 +1994,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Cadd9-1-Open',
         shapeName: 'Open',
-        frets: [0, 3, 0, 2, 3, 'x'],
+        frets: [0, 4, 0, 3, 4, 0],
         fingers: [null, 4, null, 1, 3, null],
         barres: [],
         tips: ['"C add9 open (x-3-2-0-3-0)"']
@@ -2266,7 +2266,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'CM7-1',
         shapeName: 'Open',
-        frets: [0, 0, 0, 2, 3, 'x'],
+        frets: [0, 0, 0, 3, 4, 0],
         fingers: [null, null, null, 2, 3, null],
         barres: [],
         tips: ['"Rich C major 7th | Open strings"']
@@ -2306,7 +2306,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Cm9-1-Open',
         shapeName: 'Open',
-        frets: [0, 0, 3, 5, 3, 'x'],
+        frets: [0, 0, 4, 6, 4, 0],
         fingers: [null, null, 1, 4, 2, null],
         barres: [],
         tips: ['"C minor 9 open (x-3-5-3-0-0)"']
@@ -2346,7 +2346,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Csus2-1-Open',
         shapeName: 'Open',
-        frets: [3, 3, 0, 0, 3, 'x'],
+        frets: [4, 4, 0, 0, 4, 0],
         fingers: [4, 3, null, null, 1, null],
         barres: [],
         tips: ['"C sus2 open (x-3-0-0-3-3)"']
@@ -2362,7 +2362,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Csus4-1-Open',
         shapeName: 'Open',
-        frets: [1, 1, 0, 3, 3, 'x'],
+        frets: [2, 2, 0, 4, 4, 0],
         fingers: [1, 1, null, 4, 3, null],
         barres: [{ fret: 1, fromString: 1, toString: 2, finger: 1 }],
         tips: ['"C sus4 open (x-3-3-0-1-1)"']
@@ -2418,7 +2418,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'D-1-Open',
         shapeName: 'Open',
-        frets: [2, 3, 2, 0, 'x', 'x'],
+        frets: [3, 4, 3, 0, 0, 0],
         fingers: [1, 3, 2, null, null, null],
         barres: [],
         tips: ['"D major open | Bright sound"']
@@ -2842,7 +2842,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'D6-1-Open',
         shapeName: 'Open',
-        frets: [2, 0, 2, 0, 'x', 'x'],
+        frets: [3, 0, 3, 0, 0, 0],
         fingers: [3, null, 2, null, null, null],
         barres: [],
         tips: ['"D 6 open (x-x-0-2-0-2)"']
@@ -2882,7 +2882,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'D7-1-Open',
         shapeName: 'Open',
-        frets: [2, 1, 2, 0, 'x', 'x'],
+        frets: [3, 2, 3, 0, 0, 0],
         fingers: [3, 1, 2, null, null, null],
         barres: [],
         tips: ['Dominant 7th (extracted)']
@@ -2954,7 +2954,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Daug-1-Open',
         shapeName: 'Open',
-        frets: [2, 3, 3, 0, 'x', 'x'],
+        frets: [3, 4, 4, 0, 0, 0],
         fingers: [1, 3, 4, null, null, null],
         barres: [],
         tips: ['"D augmented open (x-x-0-3-3-2)"']
@@ -3026,7 +3026,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Dm-1-Open',
         shapeName: 'Open',
-        frets: [1, 3, 2, 0, 'x', 'x'],
+        frets: [2, 4, 3, 0, 0, 0],
         fingers: [1, 3, 2, null, null, null],
         barres: [],
         tips: ['"D minor open | Compact"']
@@ -3082,7 +3082,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Dm6-1-Open',
         shapeName: 'Open',
-        frets: [1, 0, 2, 0, 'x', 'x'],
+        frets: [2, 0, 3, 0, 0, 0],
         fingers: [1, null, 2, null, null, null],
         barres: [],
         tips: ['"D minor 6 open (x-x-0-2-0-1)"']
@@ -3122,7 +3122,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Dm7-1-Open',
         shapeName: 'Open',
-        frets: [1, 1, 2, 0, 'x', 'x'],
+        frets: [2, 2, 3, 0, 0, 0],
         fingers: [1, 1, 2, null, null, null],
         barres: [],
         tips: ['Minor 7th (extracted)']
@@ -3194,7 +3194,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Dm9-1-Open',
         shapeName: 'Open',
-        frets: [0, 0, 5, 7, 5, 'x'],
+        frets: [0, 0, 6, 8, 6, 0],
         fingers: [null, null, 1, 4, 2, null],
         barres: [],
         tips: ['"D minor 9 open (x-5-7-5-0-0)"']
@@ -3234,7 +3234,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Dsus2-1-Open',
         shapeName: 'Open',
-        frets: [0, 3, 2, 0, 'x', 'x'],
+        frets: [0, 4, 3, 0, 0, 0],
         fingers: [null, 3, 1, null, null, null],
         barres: [],
         tips: ['"D sus2 open (x-x-0-2-3-0)"']
@@ -3250,7 +3250,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Dsus4-1-Open',
         shapeName: 'Open',
-        frets: [3, 3, 2, 0, 'x', 'x'],
+        frets: [4, 4, 3, 0, 0, 0],
         fingers: [4, 3, 1, null, null, null],
         barres: [],
         tips: ['"D sus4 open (x-x-0-2-3-3)"']
@@ -3306,7 +3306,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'E-1-Open',
         shapeName: 'Open',
-        frets: [0, 0, 1, 2, 2, 0],
+        frets: [0, 0, 2, 3, 3, 0],
         fingers: [null, null, 1, 3, 2, null],
         barres: [],
         tips: ['"E major open | Full']
@@ -3362,7 +3362,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'E6-1-Open',
         shapeName: 'Open',
-        frets: [0, 2, 1, 2, 2, 0],
+        frets: [0, 3, 2, 3, 3, 0],
         fingers: [null, 4, 1, 3, 2, null],
         barres: [],
         tips: ['"E 6 open (0-2-2-1-2-0)"']
@@ -3402,7 +3402,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'E7-1-Open',
         shapeName: 'Open',
-        frets: [0, 0, 1, 0, 2, 0],
+        frets: [0, 0, 2, 0, 3, 0],
         fingers: [null, null, 1, null, 2, null],
         barres: [],
         tips: ['Dominant 7th (extracted)']
@@ -3442,7 +3442,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Eadd9-1-Open',
         shapeName: 'Open',
-        frets: [2, 0, 1, 2, 2, 0],
+        frets: [3, 0, 2, 3, 3, 0],
         fingers: [4, null, 1, 3, 2, null],
         barres: [],
         tips: ['"E add9 open (2-0-1-2-2-0)"']
@@ -3482,7 +3482,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Eaug-1-Open',
         shapeName: 'Open',
-        frets: [0, 1, 1, 2, 3, 0],
+        frets: [0, 2, 2, 3, 4, 0],
         fingers: [null, 2, 1, 3, 4, null],
         barres: [],
         tips: ['"E augmented open (0-3-2-1-1-0)"']
@@ -3682,7 +3682,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Em-1-Open',
         shapeName: 'Open',
-        frets: [0, 0, 0, 2, 2, 0],
+        frets: [0, 0, 0, 3, 3, 0],
         fingers: [null, null, null, 2, 3, null],
         barres: [],
         tips: ['"E minor open | Beautiful resonance"']
@@ -3738,7 +3738,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Em6-1-Open',
         shapeName: 'Open',
-        frets: [0, 2, 0, 2, 2, 0],
+        frets: [0, 3, 0, 3, 3, 0],
         fingers: [null, 2, null, 3, 4, null],
         barres: [],
         tips: ['"E minor 6 open (0-2-2-0-2-0)"']
@@ -3810,7 +3810,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'EM7-1-Open',
         shapeName: 'Open',
-        frets: [0, 0, 1, 1, 2, 0],
+        frets: [0, 0, 2, 2, 3, 0],
         fingers: [null, null, 1, 2, 3, null],
         barres: [],
         tips: ['"E major 7th | Beautiful open voicing"']
@@ -3850,7 +3850,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Em9-1-Open',
         shapeName: 'Open',
-        frets: [0, 0, 7, 9, 7, 'x'],
+        frets: [0, 0, 8, 10, 8, 0],
         fingers: [null, null, 1, 4, 2, null],
         barres: [],
         tips: ['"E minor 9 open (x-7-9-7-0-0)"']
@@ -3890,7 +3890,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Esus2-1-Open',
         shapeName: 'Open',
-        frets: [0, 0, 4, 4, 2, 0],
+        frets: [0, 0, 5, 5, 3, 0],
         fingers: [null, null, 3, 4, 1, null],
         barres: [],
         tips: ['"E sus2 open (0-2-4-4-0-0)"']
@@ -3906,7 +3906,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Esus4-1-Open',
         shapeName: 'Open',
-        frets: [0, 0, 2, 2, 0, 0],
+        frets: [0, 0, 3, 3, 0, 0],
         fingers: [null, null, 3, 4, null, null],
         barres: [],
         tips: ['"E sus4 open (0-0-2-2-0-0)"']
@@ -3978,7 +3978,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'F-4-Root4',
         shapeName: 'Root-4',
-        frets: [1, 1, 2, 3, 'x', 'x'],
+        frets: [3, 3, 4, 5, 'x', 'x'],
         fingers: [1, 1, 2, 3, null, null],
         barres: [],
         tips: ['"4th string root | High position"']
@@ -4058,7 +4058,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'F#7-1-Open',
         shapeName: 'Open',
-        frets: [0, 2, 3, 4, 'x', 'x'],
+        frets: [0, 3, 4, 5, 0, 0],
         fingers: [null, 1, 2, 3, null, null],
         barres: [],
         tips: ['Dominant 7th (extracted)']
@@ -4386,7 +4386,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'F6-1-Open',
         shapeName: 'Open',
-        frets: ['x', 1, 2, 0, 'x', 1],
+        frets: [0, 2, 3, 0, 0, 2],
         fingers: [null, 2, 3, null, null, 1],
         barres: [],
         tips: ['"F 6 open (1-x-0-2-1-x)"']
@@ -4658,7 +4658,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'FM7',
         shapeName: 'Open',
-        frets: [0, 1, 2, 3, 3, 'x'],
+        frets: [0, 2, 3, 4, 4, 0],
         fingers: [1, 1, 2, 4, 3, 1],
         barres: [],
         tips: ['"F major 7th | Upper string voicing"']
@@ -4698,7 +4698,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Fm9-1-Open',
         shapeName: 'Open',
-        frets: [0, 0, 8, 10, 8, 'x'],
+        frets: [0, 0, 9, 11, 9, 0],
         fingers: [null, null, 1, 4, 2, null],
         barres: [],
         tips: ['"F minor 9 open (x-8-10-8-0-0)"']
@@ -4738,7 +4738,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Fsus2-1-Open',
         shapeName: 'Open',
-        frets: [3, 1, 0, 3, 'x', 'x'],
+        frets: [4, 2, 0, 4, 0, 0],
         fingers: [4, 1, null, 3, null, null],
         barres: [],
         tips: ['"F sus2 open (x-x-3-0-1-3)"']
@@ -4802,7 +4802,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'G-1-Open',
         shapeName: 'Open',
-        frets: [3, 0, 0, 0, 2, 3],
+        frets: [4, 0, 0, 0, 3, 4],
         fingers: [3, null, null, null, 1, 2],
         barres: [],
         tips: []
@@ -5226,7 +5226,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'G6-1-Open',
         shapeName: 'Open',
-        frets: [0, 0, 0, 0, 2, 3],
+        frets: [0, 0, 0, 0, 3, 4],
         fingers: [null, null, null, null, 2, 3],
         barres: [],
         tips: ['"G 6 open (0-0-0-0-2-3)"']
@@ -5266,7 +5266,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'G7-1-Open',
         shapeName: 'Open',
-        frets: [1, 0, 0, 0, 2, 3],
+        frets: [2, 0, 0, 0, 3, 4],
         fingers: [1, null, null, null, 2, 3],
         barres: [],
         tips: ['Dominant 7th (extracted)']
@@ -5306,7 +5306,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Gadd9-1-Open',
         shapeName: 'Open',
-        frets: [3, 0, 2, 0, 'x', 3],
+        frets: [4, 0, 3, 0, 0, 4],
         fingers: [4, null, 1, null, null, 2],
         barres: [],
         tips: ['"G add9 open (3-0-2-0-x-3)"']
@@ -5346,7 +5346,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Gaug-1-Open',
         shapeName: 'Open',
-        frets: [3, 0, 0, 1, 2, 3],
+        frets: [4, 0, 0, 2, 3, 4],
         fingers: [4, null, null, 1, 3, 2],
         barres: [],
         tips: ['"G augmented open (3-2-1-0-0-3)"']
@@ -5498,7 +5498,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Gm6-1-Open',
         shapeName: 'Open',
-        frets: [0, 3, 0, 0, 1, 3],
+        frets: [0, 4, 0, 0, 2, 4],
         fingers: [null, 3, null, null, 1, 2],
         barres: [],
         tips: ['"G minor 6 open (3-1-0-0-3-0 pattern)"']
@@ -5570,7 +5570,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'GM7-1-Open',
         shapeName: 'Open',
-        frets: [2, 0, 0, 0, 2, 3],
+        frets: [3, 0, 0, 0, 3, 4],
         fingers: [1, null, null, null, 2, 3],
         barres: [],
         tips: ['"Gmaj7 open | Bright voicing"']
@@ -5610,7 +5610,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Gm9-1-Open',
         shapeName: 'Open',
-        frets: [0, 0, 10, 12, 10, 'x'],
+        frets: [0, 0, 11, 13, 11, 0],
         fingers: [null, null, 1, 4, 2, null],
         barres: [],
         tips: ['"G minor 9 open (x-10-12-10-0-0)"']
@@ -5650,7 +5650,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Gsus2-1-Open',
         shapeName: 'Open',
-        frets: [3, 3, 2, 0, 'x', 3],
+        frets: [4, 4, 3, 0, 0, 4],
         fingers: [4, 3, 1, null, null, 2],
         barres: [],
         tips: ['"G sus2 open (3-x-0-2-3-3)"']
@@ -5666,7 +5666,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       {
         id: 'Gsus4-1-Open',
         shapeName: 'Open',
-        frets: [3, 1, 0, 0, 3, 3],
+        frets: [4, 2, 0, 0, 4, 4],
         fingers: [4, 1, null, null, 3, 2],
         barres: [],
         tips: ['"G sus4 open (3-1-0-0-3-3)"']
