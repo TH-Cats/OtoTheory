@@ -239,13 +239,13 @@ final class DrumBounceService {
     ) -> [(frame: AVAudioFramePosition, note: UInt8, velocity: UInt8, isNoteOn: Bool)] {
         
         let beatFrames = AVAudioFramePosition((60.0 / bpm) * sampleRate)  // 1拍のフレーム数
-        let sixteenthFrames = beatFrames / 4  // 16分音符のフレーム数
+        let _ = beatFrames / 4  // 16分音符のフレーム数
         
         // General MIDI Drum Map（チャンネル10）
         let kick: UInt8 = 36        // Bass Drum 1
         let snare: UInt8 = 38       // Acoustic Snare
-        let closedHH: UInt8 = 42    // Closed Hi-Hat
-        let openHH: UInt8 = 46      // Open Hi-Hat
+        let _: UInt8 = 42    // Closed Hi-Hat
+        let _: UInt8 = 46      // Open Hi-Hat
         
         var events: [(frame: AVAudioFramePosition, note: UInt8, velocity: UInt8, isNoteOn: Bool)] = []
         

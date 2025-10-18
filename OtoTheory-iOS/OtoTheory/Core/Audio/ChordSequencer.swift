@@ -1,4 +1,4 @@
-import AVFoundation
+@preconcurrency import AVFoundation
 import AudioToolbox
 import os.log
 
@@ -117,7 +117,7 @@ final class ChordSequencer: ObservableObject {
         playbackTask = Task { @MainActor in
             let beatSec = 60.0 / bpm
             let barSec = beatSec * 4
-            let strumDelay = strumMs / 1000.0
+            let _ = strumMs / 1000.0
             
             print("🎵 Starting playback (2-Bus Fade): BPM=\(bpm), fadeMs=\(fadeMs)")
             
@@ -194,7 +194,7 @@ final class ChordSequencer: ObservableObject {
                         // 各拍でストラム（診断ログ付き）
                         for (i, note) in playedNotes.enumerated() {
                             let d = beatDelay + (Double(i) * strumMs / 1000.0)
-                            xfadeQ.asyncAfter(deadline: .now() + d) { [weak self, weak nextSampler, bar] in
+                            xfadeQ.asyncAfter(deadline: .now() + d) { @MainActor [weak self, weak nextSampler, bar] in
                                 if beat == 0 && i == 0 {
                                     self?.audioTrace("startNote: first note of bar \(bar)")
                                 }
@@ -204,7 +204,7 @@ final class ChordSequencer: ObservableObject {
                         
                         // 各拍の音を短く切る（全て同じ長さ）
                         let noteDuration = beatSec * 0.85  // 拍の85%で切る
-                        xfadeQ.asyncAfter(deadline: .now() + beatDelay + noteDuration) { [weak nextSampler] in
+                        xfadeQ.asyncAfter(deadline: .now() + beatDelay + noteDuration) { @MainActor [weak nextSampler] in
                             for note in playedNotes {
                                 nextSampler?.stopNote(note, onChannel: 0)
                             }
@@ -213,7 +213,7 @@ final class ChordSequencer: ObservableObject {
                     
                     // ③ 旧バスのフェードアウトは「小節の最後にだけ」実行（キャプチャした prevDest を使用）
                     let fadeStartSec = barSec - (fadeMs / 1000.0)  // 2.0 - 0.08 = 1.92s
-                    xfadeQ.asyncAfter(deadline: .now() + fadeStartSec) { [weak self, prevDest, prevSampler] in
+                    xfadeQ.asyncAfter(deadline: .now() + fadeStartSec) { @MainActor [weak self, prevDest, prevSampler] in
                         guard let self = self else { return }
                         audioTrace("Fade-out start: 80ms (prevDest)")
                         
@@ -222,7 +222,7 @@ final class ChordSequencer: ObservableObject {
                         
                         // フェード完了後に CC64 を送る（Sustain Off のみ、reset は呼ばない）
                         let ccDelay = (self.fadeMs / 1000.0) + 0.010
-                        self.xfadeQ.asyncAfter(deadline: .now() + ccDelay) { [weak self] in
+                        self.xfadeQ.asyncAfter(deadline: .now() + ccDelay) { @MainActor [weak self] in
                             guard let self = self else { return }
                             for ch: UInt8 in 0...1 {
                                 prevSampler.sendController(64, withValue: 0, onChannel: ch)
