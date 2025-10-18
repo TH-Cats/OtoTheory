@@ -490,11 +490,34 @@ struct ProgressionView: View {
     private var buildProgressionHeader: some View {
                 // Build Progression Section
                 VStack(alignment: .leading, spacing: 12) {
-                        // Title
-                        Text("Build Progression")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                            .padding(.horizontal)
+                        // Title with Info Button
+                        HStack {
+                            Text("Build Progression")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                            
+                            Button(action: {
+                                // Show info alert
+                                let alert = UIAlertController(
+                                    title: "Build Progression",
+                                    message: "Choose Chordsからコードを選んでスロットに追加ボタンから追加してください。上部のプリセットからコード進行を選択して追加することもできます。",
+                                    preferredStyle: .alert
+                                )
+                                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                                
+                                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                                   let window = windowScene.windows.first {
+                                    window.rootViewController?.present(alert, animated: true)
+                                }
+                            }) {
+                                Image(systemName: "info.circle")
+                                    .foregroundColor(.blue)
+                                    .font(.title3)
+                            }
+                            
+                            Spacer()
+                        }
+                        .padding(.horizontal)
                         
                         // Buttons row unified
                         HStack(spacing: 8) {
