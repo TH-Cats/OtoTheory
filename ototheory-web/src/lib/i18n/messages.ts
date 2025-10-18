@@ -87,7 +87,7 @@ export const messages = {
       chordProgression: 'コード進行',
       findChords: 'コードを探す',
       chordLibrary: 'コード辞典',
-      resources: 'リソース',
+      resources: '参考',
     },
     actions: { analyze: '分析' },
     chordLibrary: {

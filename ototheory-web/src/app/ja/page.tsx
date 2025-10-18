@@ -51,7 +51,7 @@ export default function HomeJa() {
             <p className="text-sm opacity-80">インタラクティブなコード図と音声</p>
           </Link>
           <Link href="/ja/resources" className="ot-card hover:bg-black/5 dark:hover:bg-white/5">
-            <h2 className="font-semibold mb-1">リソース</h2>
+            <h2 className="font-semibold mb-1">参考</h2>
             <p className="text-sm opacity-80">理論ガイドと用語集</p>
           </Link>
         </section>
