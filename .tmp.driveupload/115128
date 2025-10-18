@@ -1,0 +1,3 @@
+module.exports=[6325,a=>{"use strict";a.s(["default",()=>c,"metadata",()=>b]);let b={alternates:{canonical:"/ja/pricing",languages:{en:"/pricing","ja-JP":"/ja/pricing","x-default":"/pricing"}},openGraph:{locale:"ja_JP"}};function c({children:a}){return a}}];
+
+//# sourceMappingURL=src_app_ja_pricing_layout_tsx_176326bc._.js.map
