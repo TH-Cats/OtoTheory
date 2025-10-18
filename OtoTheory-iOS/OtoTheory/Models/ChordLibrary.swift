@@ -522,7 +522,7 @@ enum ChordDisplayMode: String, CaseIterable, Identifiable {
 class ChordLibraryManager: ObservableObject {
     static let shared = ChordLibraryManager()
     
-    @Published private var cache: [String: ChordEntry] = [:]
+    private var cache: [String: ChordEntry] = [:]
     @Published var useStaticData: Bool = true  // v0: Use static data from PDF
     
     private init() {}
@@ -553,7 +553,7 @@ class ChordLibraryManager: ObservableObject {
                     }
                     
                     // Convert FingerNum? to ChordFinger?
-                    let fingers = (form.fingers ?? Array(repeating: nil, count: 6)).map { fingerNum -> ChordFinger? in
+                    let fingers = form.fingers.map { fingerNum -> ChordFinger? in
                         guard let num = fingerNum else { return nil }
                         switch num {
                         case .one: return .one

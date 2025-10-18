@@ -1,9 +1,0 @@
-feat(homepage): enhance with rich content cards and visual design
-
-- Install @heroicons/react for SVG icons
-- Create FeatureCard component with hover effects and gradient styling
-- Add 5 feature cards with icons, catchphrases, and 3-line descriptions
-- Implement 3-2 grid layout (top row: 3 cards, bottom row: 2 centered)
-- Update both English and Japanese homepage with rich content
-- Add visual enhancements: gradients, hover animations, icon styling
-- Improve SEO with descriptive content for music theory keywords

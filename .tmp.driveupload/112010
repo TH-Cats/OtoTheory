@@ -1,3 +1,0 @@
-module.exports=[90928,a=>{"use strict";a.s(["default",()=>c,"metadata",()=>b]);let b={alternates:{canonical:"/ja/resources",languages:{en:"/resources","ja-JP":"/ja/resources","x-default":"/resources"}},openGraph:{locale:"ja_JP"}};function c({children:a}){return a}}];
-
-//# sourceMappingURL=src_app_ja_resources_layout_tsx_72446856._.js.map
