@@ -4,35 +4,38 @@ import AVFoundation
 // MARK: - Unified toolbar label style (icon over text, fixed min height)
 struct VerticalToolbarLabelStyle: LabelStyle {
     var spacing: CGFloat = 4
-    var minHeight: CGFloat = 44
+    var symbolSize: CGFloat = 20   // アイコンの"枠"を固定
 
     func makeBody(configuration: Configuration) -> some View {
         VStack(spacing: spacing) {
             configuration.icon
                 .symbolRenderingMode(.monochrome)
-                .imageScale(.large)
+                .font(.system(size: symbolSize, weight: .regular)) // 絶対サイズ
+                .frame(height: symbolSize)                          // バウンディングを統一
+
             configuration.title
                 .font(.caption2)
                 .lineLimit(1)
                 .minimumScaleFactor(0.8)
                 .multilineTextAlignment(.center)
         }
-        .frame(maxWidth: .infinity, minHeight: minHeight)
+        .frame(maxWidth: .infinity)
         .contentShape(Rectangle())
     }
 }
 
-// Minimal, consistent bordered style with unified tint/text and compact height
-struct BorderedTintButtonStyle: ButtonStyle {
+// Fixed height bordered style for uniform button heights
+struct BorderedTintFixedHeightButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled
+    var height: CGFloat = 45
     var cornerRadius: CGFloat = 12
-    var minHeight: CGFloat = 44
     var disabledOpacity: Double = 0.45
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .frame(maxWidth: .infinity, minHeight: minHeight)
-            .padding(.horizontal, 6)
+            .frame(maxWidth: .infinity)
+            .frame(height: height) // 固定で統一（minHeightではなく）
+            .contentShape(RoundedRectangle(cornerRadius: cornerRadius))
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(.tint, lineWidth: 1)
@@ -457,6 +460,17 @@ struct ProgressionView: View {
             }
             
             slotsGrid
+            
+            // Contextual convert to sections prompt
+            if !progressionStore.useSectionMode && !progressionStore.slots.compactMap({ $0 }).isEmpty {
+                Button(action: { showConvertSheet = true }) {
+                    Text("Convert to sections?")
+                        .font(.caption)
+                        .foregroundColor(.blue)
+                }
+                .padding(.top, 8)
+                .padding(.horizontal)
+            }
         }
     }
     
@@ -498,16 +512,8 @@ struct ProgressionView: View {
                                 Label("Reset", systemImage: "arrow.counterclockwise")
                             }
                             .labelStyle(VerticalToolbarLabelStyle())
-
-                            Button(action: { showConvertSheet = true }) {
-                                Label("Enable Sections", systemImage: "plus")
-                            }
-                            .labelStyle(VerticalToolbarLabelStyle())
-                            .disabled(progressionStore.slots.compactMap({ $0 }).isEmpty)
-                            .opacity(progressionStore.slots.compactMap({ $0 }).isEmpty ? 0.6 : 1.0)
-                            .frame(minHeight: 56) // Ensure same height as other buttons
                         }
-                        .buttonStyle(BorderedTintButtonStyle())
+                        .buttonStyle(BorderedTintFixedHeightButtonStyle(height: 45))
                         .tint(.blue)
                         .buttonBorderShape(.roundedRectangle)
                         .padding(.horizontal)
