@@ -24,6 +24,21 @@ export const messages = {
         'Visual learning: see chord tones/intervals at a glance',
         'Try fast: play/arp with one click',
       ],
+      // Interactive cards for detailed explanations
+      cards: [
+        {
+          title: '🎯 How to Use & Basic Operations',
+          description: 'Simply select a root note and chord type to display various chord forms. Switch between detailed information using "Finger", "Intervals", and "Note Names" buttons.',
+        },
+        {
+          title: '🎵 Practical Chord Forms',
+          description: 'Carefully selected forms useful for composition and arranging, including open chords, 6/5/4 string roots, and triads (high/mid range). Quickly compare forms that fit your song\'s flow.',
+        },
+        {
+          title: '👁️ Visualization & Audio Preview',
+          description: 'Shows chord tones and intervals in the top-left. Visualize on the fretboard using "Intervals" and "Note Names" buttons. Preview audio with Play/Arp and save to chord progression slots with right-click.',
+        },
+      ],
       tryNow: '',
       detailsSummary: 'Open details (How to use · Visuals · More)',
       info: {
@@ -91,6 +106,21 @@ export const messages = {
         '作曲やアレンジのヒントになるフォームを紹介',
         '視覚で理解: 構成音/度数を一目で確認',
         'すぐ試せる: ワンクリックで再生・アルペジオ',
+      ],
+      // インタラクティブカード（詳細説明用）
+      cards: [
+        {
+          title: '🎯 使い方・基本操作',
+          description: 'ルート音とコードタイプを選択するだけで、様々なコードフォームが表示されます。「指」「度数」「音名」ボタンで詳細情報を切り替えられます。',
+        },
+        {
+          title: '🎵 実用的なコードフォーム',
+          description: 'オープンコード、6/5/4弦ルート、トライアド（高/中域）など、作曲やアレンジに役立つフォームを厳選。曲の流れに合うフォームを素早く比較できます。',
+        },
+        {
+          title: '👁️ 視覚化と音の確認',
+          description: '左上に構成音と度数を表示。「度数」「音名」ボタンでフレット上に可視化できます。Play/Arpで音を確認し、右クリックでコード進行スロットへ保存できます。',
+        },
       ],
       tryNow: '',
       detailsSummary: '詳しい説明を開く（使い方・視覚化・その他）',

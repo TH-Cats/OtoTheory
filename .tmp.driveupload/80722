@@ -1,3 +1,0 @@
-module.exports=[38447,a=>{"use strict";a.s(["default",()=>c,"metadata",()=>b]);let b={alternates:{canonical:"/ja/privacy",languages:{en:"/privacy","ja-JP":"/ja/privacy","x-default":"/privacy"}},openGraph:{locale:"ja_JP"}};function c({children:a}){return a}}];
-
-//# sourceMappingURL=src_app_ja_privacy_layout_tsx_2e402864._.js.map

@@ -50,7 +50,7 @@ struct BorderedTintFixedHeightButtonStyle: ButtonStyle {
 private enum ProgressionConstants {
     static let defaultBPM: Double = 120
     static let defaultKey: String = "C"
-    static let simulatedAnalysisDelay: UInt64 = 2_000_000_000 // 2 seconds in nanoseconds
+    static let simulatedAnalysisDelay: UInt64 = 1_000_000_000 // 1 second in nanoseconds
 }
 
 struct ProgressionView: View {
@@ -78,6 +78,7 @@ struct ProgressionView: View {
     @State private var bounceService: GuitarBounceService?
     @State private var bassService: BassBounceService?
     @State private var scalePreviewPlayer: ScalePreviewPlayer?
+    @State private var scrollToResult = false
     
     // Chord builder state
     @State private var selectedRoot: String = ProgressionConstants.defaultKey
@@ -247,14 +248,25 @@ struct ProgressionView: View {
             if showFretboardFullscreen {
                 fretboardFullscreenView
             } else {
-                ScrollView {
-                    VStack(spacing: 24) {
-                        buildProgressionSection
-                        chordBuilderSection
-                        analyzeAndResultSection
-                        Spacer()
+                ScrollViewReader { proxy in
+                    ScrollView {
+                        VStack(spacing: 24) {
+                            buildProgressionSection
+                            chordBuilderSection
+                            analyzeAndResultSection
+                                .id("resultSection")
+                            Spacer()
+                        }
+                        .padding(.vertical)
                     }
-                    .padding(.vertical)
+                    .onChange(of: scrollToResult) { _, shouldScroll in
+                        if shouldScroll {
+                            withAnimation(.easeInOut(duration: 0.8)) {
+                                proxy.scrollTo("resultSection", anchor: .top)
+                            }
+                            scrollToResult = false
+                        }
+                    }
                 }
             }
         }
@@ -512,6 +524,26 @@ struct ProgressionView: View {
                                 Label("Reset", systemImage: "arrow.counterclockwise")
                             }
                             .labelStyle(VerticalToolbarLabelStyle())
+
+                            Button(action: {
+                                analyzeProgression()
+                                // Scroll to result section after analysis
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    withAnimation(.easeInOut(duration: 0.8)) {
+                                        scrollToResult = true
+                                    }
+                                }
+                            }) {
+                                Label("Analyze", systemImage: "magnifyingglass")
+                            }
+                            .labelStyle(VerticalToolbarLabelStyle())
+                            .disabled(!hasEnoughChords || isAnalyzing)
+
+                            Button(action: { showSaveDialog = true }) {
+                                Label("Save", systemImage: "square.and.arrow.down")
+                            }
+                            .labelStyle(VerticalToolbarLabelStyle())
+                            .disabled(progressionStore.slots.compactMap({ $0 }).isEmpty)
                         }
                         .buttonStyle(BorderedTintFixedHeightButtonStyle(height: 45))
                         .tint(.blue)

@@ -28,6 +28,39 @@ class StaticChordProvider: ObservableObject {
         return chords.map { $0.symbol }
     }
     
+    /// Check if chord exists in library
+    func isChordInLibrary(_ chordName: String) -> Bool {
+        // Normalize chord name for comparison
+        let normalizedChord = normalizeChordName(chordName)
+        return chords.contains { $0.symbol == normalizedChord }
+    }
+    
+    /// Normalize chord name for comparison
+    private func normalizeChordName(_ chordName: String) -> String {
+        // Remove spaces and convert to uppercase for comparison
+        var normalized = chordName.replacingOccurrences(of: " ", with: "")
+        
+        // Handle common variations
+        let variations: [String: String] = [
+            "maj7": "M7",
+            "maj": "M",
+            "min": "m",
+            "dim7": "dim7",
+            "m7b5": "m7-5",
+            "sus4": "sus4",
+            "sus2": "sus2",
+            "add9": "add9"
+        ]
+        
+        for (variation, standard) in variations {
+            if normalized.contains(variation) {
+                normalized = normalized.replacingOccurrences(of: variation, with: standard)
+            }
+        }
+        
+        return normalized
+    }
+    
     /// Find chord by root and quality
     func findChord(root: String, quality: String) -> StaticChord? {
         // Quality mapping: ChordLibraryQuality rawValue -> Static data quality

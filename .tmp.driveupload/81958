@@ -1,3 +1,0 @@
-module.exports=[21280,a=>{a.v({className:"noto_sans_jp_8e2bc04-module__J4cSNa__className"})},76286,a=>{"use strict";a.s(["default",()=>f,"metadata",()=>e],76286);var b=a.i(7997),c=a.i(21280);let d={className:c.default.className,style:{fontFamily:"'Noto Sans JP', 'Noto Sans JP Fallback'",fontStyle:"normal"}};null!=c.default.variable&&(d.variable=c.default.variable);let e={alternates:{languages:{en:"/","ja-JP":"/ja","x-default":"/"}},openGraph:{locale:"ja_JP"}};function f({children:a}){return(0,b.jsx)("div",{className:d.className,children:a})}}];
-
-//# sourceMappingURL=%5Broot-of-the-server%5D__460c1c50._.js.map

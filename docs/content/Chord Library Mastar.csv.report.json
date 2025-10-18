@@ -1,17 +1,17 @@
 {
   "input": "/Users/nh/App/OtoTheory/docs/content/Chord Library Mastar.csv",
-  "timestamp": "2025-10-17T16:28:29.435Z",
+  "timestamp": "2025-10-18T03:37:21.463Z",
   "totals": {
-    "rows": 490,
-    "chords": 130,
-    "groupsWithReorder": 9,
+    "rows": 541,
+    "chords": 134,
+    "groupsWithReorder": 10,
     "shapeIssueCount": 2,
-    "toneIssueCount": 8,
+    "toneIssueCount": 11,
     "duplicates": 0
   },
   "issues": [
     {
-      "line": 185,
+      "line": 236,
       "chord": "Ddim",
       "symbol": "Ddim",
       "formId": "Ddim-1",
@@ -19,7 +19,7 @@
       "type": "unknown_shape"
     },
     {
-      "line": 186,
+      "line": 237,
       "chord": "Edim",
       "symbol": "Edim",
       "formId": "Edim-1",
@@ -27,7 +27,7 @@
       "type": "unknown_shape"
     },
     {
-      "line": 65,
+      "line": 72,
       "chord": "A",
       "symbol": "A",
       "quality": "M",
@@ -43,7 +43,7 @@
       ]
     },
     {
-      "line": 70,
+      "line": 78,
       "chord": "Am",
       "symbol": "Am",
       "quality": "m",
@@ -59,7 +59,51 @@
       ]
     },
     {
-      "line": 127,
+      "line": 110,
+      "chord": "Cm",
+      "symbol": "Cm",
+      "quality": "m",
+      "shape": "Root-5",
+      "formId": "Cm-3-Root5",
+      "type": "tone_mismatch",
+      "missing": [],
+      "foreign": [
+        10
+      ]
+    },
+    {
+      "line": 115,
+      "chord": "C#m",
+      "symbol": "C#m",
+      "quality": "m",
+      "shape": "Root-5",
+      "formId": "C#m-3-Root5",
+      "type": "tone_mismatch",
+      "missing": [],
+      "foreign": [
+        11
+      ]
+    },
+    {
+      "line": 123,
+      "chord": "F",
+      "symbol": "F",
+      "quality": "M",
+      "shape": "Open",
+      "formId": "F-1-Open",
+      "type": "tone_mismatch",
+      "missing": [
+        9,
+        0
+      ],
+      "foreign": [
+        2,
+        10,
+        4
+      ]
+    },
+    {
+      "line": 178,
       "chord": "A7",
       "symbol": "A7",
       "quality": "7",
@@ -72,7 +116,7 @@
       "foreign": []
     },
     {
-      "line": 131,
+      "line": 182,
       "chord": "B7",
       "symbol": "B7",
       "quality": "7",
@@ -91,7 +135,7 @@
       ]
     },
     {
-      "line": 133,
+      "line": 184,
       "chord": "C7",
       "symbol": "C7",
       "quality": "7",
@@ -104,7 +148,7 @@
       "foreign": []
     },
     {
-      "line": 140,
+      "line": 191,
       "chord": "D7",
       "symbol": "D7",
       "quality": "7",
@@ -117,7 +161,7 @@
       "foreign": []
     },
     {
-      "line": 144,
+      "line": 195,
       "chord": "E7",
       "symbol": "E7",
       "quality": "7",
@@ -130,7 +174,7 @@
       "foreign": []
     },
     {
-      "line": 149,
+      "line": 200,
       "chord": "F7",
       "symbol": "F7",
       "quality": "7",
