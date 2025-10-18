@@ -2000,12 +2000,36 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['"C add9 open (x-3-2-0-3-0)"']
       },
       {
-        id: 'Cadd9-2-Root4',
-        shapeName: 'Root-4',
-        frets: [10, 8, 9, 10, 'x', 'x'],
-        fingers: [4, 1, 2, 3, null, null],
+        id: 'Cadd9-4-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 7, 5, 7, 8],
+        fingers: [null, null, 3, 1, 2, 4],
         barres: [],
-        tips: ['"C add9 root-4 (10-8-9-10-x-x)"']
+        tips: ['"C add9 root-6 (x-x-7-5-7-8)"']
+      },
+      {
+        id: 'Cadd9-4-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 7, 5, 7, 8],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"C add9 root-6 (x-x-7-5-7-8)"']
+      },
+      {
+        id: 'Cadd9-4-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 7, 5, 7, 8],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"C add9 root-6 (x-x-7-5-7-8)"']
+      },
+      {
+        id: 'Cadd9-4-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 7, 5, 7, 8],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"C add9 root-6 (x-x-7-5-7-8)"']
       },
       {
         id: 'Cadd9-3-Root5',
@@ -2016,36 +2040,12 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['"C add9 root-5 (x-3-5-7-5-x)"']
       },
       {
-        id: 'Cadd9-4-Root6',
-        shapeName: 'Root-6',
-        frets: ['x', 'x', 7, 5, 7, 8],
-        fingers: [null, null, 3, 1, 2, 4],
+        id: 'Cadd9-2-Root4',
+        shapeName: 'Root-4',
+        frets: [10, 8, 9, 10, 'x', 'x'],
+        fingers: [4, 1, 2, 3, null, null],
         barres: [],
-        tips: ['"C add9 root-6 (x-x-7-5-7-8)"']
-      },
-      {
-        id: 'Cadd9-4-Root6',
-        shapeName: 'Root-6',
-        frets: ['x', 'x', 7, 5, 7, 8],
-        fingers: [null, null, 3, 1, 2, 4],
-        barres: [],
-        tips: ['"C add9 root-6 (x-x-7-5-7-8)"']
-      },
-      {
-        id: 'Cadd9-4-Root6',
-        shapeName: 'Root-6',
-        frets: ['x', 'x', 7, 5, 7, 8],
-        fingers: [null, null, 3, 1, 2, 4],
-        barres: [],
-        tips: ['"C add9 root-6 (x-x-7-5-7-8)"']
-      },
-      {
-        id: 'Cadd9-4-Root6',
-        shapeName: 'Root-6',
-        frets: ['x', 'x', 7, 5, 7, 8],
-        fingers: [null, null, 3, 1, 2, 4],
-        barres: [],
-        tips: ['"C add9 root-6 (x-x-7-5-7-8)"']
+        tips: ['"C add9 root-4 (10-8-9-10-x-x)"']
       }
     ]
   },
@@ -2273,19 +2273,19 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'CM7-2',
-        shapeName: 'Root-5',
-        frets: [3, 5, 4, 5, 3, 'x'],
-        fingers: [1, 4, 2, 3, 1, null],
-        barres: [{ fret: 3, fromString: 1, toString: 5, finger: 1 }],
-        tips: ['"Barre form | 5th string root"']
-      },
-      {
-        id: 'CM7-3',
         shapeName: 'Root-6',
         frets: [8, 8, 9, 9, 10, 8],
         fingers: [1, 1, 2, 3, 4, 1],
         barres: [{ fret: 8, fromString: 1, toString: 6, finger: 1 }],
         tips: ['"Full barre | 2nd&3rd strings at 8/9"']
+      },
+      {
+        id: 'CM7-3',
+        shapeName: 'Root-5',
+        frets: [3, 5, 4, 5, 3, 'x'],
+        fingers: [1, 4, 2, 3, 1, null],
+        barres: [{ fret: 3, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"Barre form | 5th string root"']
       },
       {
         id: 'CM7-4',
@@ -2728,18 +2728,18 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'm7',
     forms: [
       {
-        id: 'D#m7-1-Root-5',
-        shapeName: 'Root-5',
-        frets: [6, 7, 6, 8, 6, 'x'],
-        fingers: [1, 2, 1, 3, 1, null],
-        barres: [],
-        tips: ['Minor 7th (extracted)']
-      },
-      {
         id: 'D#m7-2-Root-6',
         shapeName: 'Root-6',
         frets: [11, 11, 11, 11, 13, 11],
         fingers: [1, 1, 1, 1, 3, 1],
+        barres: [],
+        tips: ['Minor 7th (extracted)']
+      },
+      {
+        id: 'D#m7-1-Root-5',
+        shapeName: 'Root-5',
+        frets: [6, 7, 6, 8, 6, 'x'],
+        fingers: [1, 2, 1, 3, 1, null],
         barres: [],
         tips: ['Minor 7th (extracted)']
       },
@@ -2760,12 +2760,12 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'M7',
     forms: [
       {
-        id: 'D#M7-1-Root4',
-        shapeName: 'Root-4',
-        frets: [3, 3, 3, 1, 'x', 'x'],
-        fingers: [3, 1, 2, 1, null, null],
-        barres: [],
-        tips: ['"4th string root | Compact voicing"']
+        id: 'D#M7-3-Root6',
+        shapeName: 'Root-6',
+        frets: [11, 11, 12, 12, 13, 11],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 11, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | Maj7 E-shape"']
       },
       {
         id: 'D#M7-2-Root5',
@@ -2776,12 +2776,12 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['"5th string root | Maj7 A-shape"']
       },
       {
-        id: 'D#M7-3-Root6',
-        shapeName: 'Root-6',
-        frets: [11, 11, 12, 12, 13, 11],
-        fingers: [1, 1, 2, 3, 4, 1],
-        barres: [{ fret: 11, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['"6th string root | Maj7 E-shape"']
+        id: 'D#M7-1-Root4',
+        shapeName: 'Root-4',
+        frets: [3, 3, 3, 1, 'x', 'x'],
+        fingers: [3, 1, 2, 1, null, null],
+        barres: [],
+        tips: ['"4th string root | Compact voicing"']
       }
     ]
   },
@@ -2920,6 +2920,14 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'add9',
     forms: [
       {
+        id: 'Dadd9-4-Root6',
+        shapeName: 'Root-6',
+        frets: ['x', 'x', 9, 7, 9, 10],
+        fingers: [null, null, 3, 1, 2, 4],
+        barres: [],
+        tips: ['"D add9 root-6 (x-x-9-7-9-10)"']
+      },
+      {
         id: 'Dadd9-2-Root5',
         shapeName: 'Root-5',
         frets: ['x', 5, 2, 4, 5, 'x'],
@@ -2934,14 +2942,6 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [4, 1, 2, 3, null, null],
         barres: [],
         tips: ['"D add9 root-4 (12-10-11-12-x-x)"']
-      },
-      {
-        id: 'Dadd9-4-Root6',
-        shapeName: 'Root-6',
-        frets: ['x', 'x', 9, 7, 9, 10],
-        fingers: [null, null, 3, 1, 2, 4],
-        barres: [],
-        tips: ['"D add9 root-6 (x-x-9-7-9-10)"']
       }
     ]
   },
@@ -3632,12 +3632,12 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'M7',
     forms: [
       {
-        id: 'EbM7-1-Root4',
-        shapeName: 'Root-4',
-        frets: [3, 3, 3, 1, 'x', 'x'],
-        fingers: [3, 1, 2, 1, null, null],
-        barres: [],
-        tips: ['"4th string root | Compact voicing"']
+        id: 'EbM7-3-Root6',
+        shapeName: 'Root-6',
+        frets: [11, 11, 12, 12, 13, 11],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 11, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | Maj7 E-shape"']
       },
       {
         id: 'EbM7-2-Root5',
@@ -3648,12 +3648,12 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['"5th string root | Maj7 A-shape"']
       },
       {
-        id: 'EbM7-3-Root6',
-        shapeName: 'Root-6',
-        frets: [11, 11, 12, 12, 13, 11],
-        fingers: [1, 1, 2, 3, 4, 1],
-        barres: [{ fret: 11, fromString: 1, toString: 6, finger: 1 }],
-        tips: ['"6th string root | Maj7 E-shape"']
+        id: 'EbM7-1-Root4',
+        shapeName: 'Root-4',
+        frets: [3, 3, 3, 1, 'x', 'x'],
+        fingers: [3, 1, 2, 1, null, null],
+        barres: [],
+        tips: ['"4th string root | Compact voicing"']
       }
     ]
   },
@@ -3776,10 +3776,10 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'm7',
     forms: [
       {
-        id: 'Em7-2-Root-4',
-        shapeName: 'Root-4',
-        frets: [3, 3, 4, 2, 'x', 'x'],
-        fingers: [3, 2, 4, 1, null, null],
+        id: 'Em7-4-Root-6',
+        shapeName: 'Root-6',
+        frets: [12, 12, 12, 12, 14, 12],
+        fingers: [1, 1, 1, 1, 3, 1],
         barres: [],
         tips: ['Minor 7th (extracted)']
       },
@@ -3792,10 +3792,10 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['Minor 7th (extracted)']
       },
       {
-        id: 'Em7-4-Root-6',
-        shapeName: 'Root-6',
-        frets: [12, 12, 12, 12, 14, 12],
-        fingers: [1, 1, 1, 1, 3, 1],
+        id: 'Em7-2-Root-4',
+        shapeName: 'Root-4',
+        frets: [3, 3, 4, 2, 'x', 'x'],
+        fingers: [3, 2, 4, 1, null, null],
         barres: [],
         tips: ['Minor 7th (extracted)']
       }
@@ -4659,7 +4659,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         id: 'FM7',
         shapeName: 'Open',
         frets: [0, 1, 2, 3, 3, 'x'],
-        fingers: [null, 1, 2, 3, 4, null],
+        fingers: [1, 1, 2, 4, 3, 1],
         barres: [],
         tips: ['"F major 7th | Upper string voicing"']
       },
