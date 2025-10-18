@@ -19,7 +19,7 @@ export default function Nav() {
   const isActive = (href: string) => pathname?.startsWith(href);
 
   return (
-    <nav className="flex text-sm ml-6 sm:ml-14 md:ml-20 gap-5 sm:gap-10">
+    <nav className="hidden sm:flex text-sm ml-6 sm:ml-14 md:ml-20 gap-5 sm:gap-10">
       {links.map((l) => (
         <div key={l.href} className="relative">
           <Link prefetch href={l.href} aria-label={l.aria} className="hover:underline whitespace-pre md:whitespace-nowrap">
