@@ -1163,7 +1163,25 @@ export default function FindKeyPage() {
                         return;
                       }
                       startAnalyze(() => {
-                        analyze();
+                        // Run analysis without auto-scroll (analyze function has its own scroll)
+                        const res = analyzeChordProgression(progression);
+                        setResult(res);
+                        const ranked = rankKeys(progression);
+                        setKeys(ranked.slice(0,4));
+                        if (ranked.length > 0) {
+                          const mode: RomanMode = ranked[0].mode === "Major" ? "major" : "minor";
+                          const keyName = ranked[0].label.split(" ")[0];
+                          const sel = { tonic: keyName, mode } as const;
+                          setSelectedKey(sel);
+                          setRomanLine(progression.map(c => toRoman(c, sel.tonic, sel.mode, { showQuality: true, uppercase: true })));
+                        } else {
+                          setScales([]);
+                          setSelectedKey(null);
+                          setRomanLine([]);
+                        }
+                        // store-based analysis for Top3 candidates
+                        runAnalyze(progression);
+                        
                         // Auto-scroll to result section
                         setTimeout(() => {
                           const resultElement = document.getElementById('result');
