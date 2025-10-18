@@ -148,3 +148,4 @@ f8926e7e1ebdf3db286cf503f9e81be2425e032d 3f87c7c1ffd9292584c7303e679eb8c97ead7d9
 9e27104730fa2f8f1b490f72aae6b604d92ddee7 71aa62511ce5b2c55ea156d10515e299d824927a Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1760798591 +0900	commit: Fix Web Root explanation to use graduation cap icon instead of i-button
 71aa62511ce5b2c55ea156d10515e299d824927a 5f731d490ddce49cbbe60857d80f68fa9b60b641 Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1760799185 +0900	commit: Add Quality explanation with graduation cap icon and localize to コードタイプ
 5f731d490ddce49cbbe60857d80f68fa9b60b641 b36be681f903aaf9d5569be946c3e3f1745b8821 Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1760799282 +0900	commit: Fix graduation cap icon in Web InfoDot component
+b36be681f903aaf9d5569be946c3e3f1745b8821 4f2712e611f024553dd5e097071376563a55f6c7 Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1760799320 +0900	commit: Clean up temporary files and update Xcode project state
