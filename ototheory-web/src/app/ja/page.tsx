@@ -1,6 +1,13 @@
-import Link from "next/link";
 import { WebApplicationStructuredData, OrganizationStructuredData } from "@/components/StructuredData";
 import AdSlot from "@/components/AdSlot.client";
+import FeatureCard from "@/components/FeatureCard";
+import { 
+  MusicalNoteIcon, 
+  MagnifyingGlassIcon, 
+  BookOpenIcon, 
+  AcademicCapIcon, 
+  DocumentTextIcon 
+} from "@heroicons/react/24/outline";
 
 export const metadata = {
   title: "OtoTheory – ギター音楽理論をもっと簡単に",
@@ -37,23 +44,78 @@ export default function HomeJa() {
           <h1 className="text-2xl font-semibold">OtoTheory</h1>
           <p className="opacity-90">涙なしで理論を使う</p>
         </section>
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          <Link href="/ja/chord-progression" className="ot-card hover:bg-black/5 dark:hover:bg-white/5">
-            <h2 className="font-semibold mb-1">コード進行</h2>
-            <p className="text-sm opacity-80">コード進行を作る</p>
-          </Link>
-          <Link href="/ja/find-chords" className="ot-card hover:bg-black/5 dark:hover:bg-white/5">
-            <h2 className="font-semibold mb-1">コードを探す</h2>
-            <p className="text-sm opacity-80">キーとスケールからコードを見る</p>
-          </Link>
-          <Link href="/ja/chord-library" className="ot-card hover:bg-black/5 dark:hover:bg-white/5">
-            <h2 className="font-semibold mb-1">コード辞典</h2>
-            <p className="text-sm opacity-80">インタラクティブなコード図と音声</p>
-          </Link>
-          <Link href="/ja/resources" className="ot-card hover:bg-black/5 dark:hover:bg-white/5">
-            <h2 className="font-semibold mb-1">参考</h2>
-            <p className="text-sm opacity-80">理論ガイドと用語集</p>
-          </Link>
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* Top row - 3 cards */}
+          <div className="lg:col-span-1">
+            <FeatureCard
+              href="/ja/chord-progression"
+              icon={<MusicalNoteIcon />}
+              title="コード進行"
+              catchphrase="作るたびに、理論がわかる。"
+              description={[
+                "コード進行を分析して、より良い展開を見つけよう。",
+                "スケールやコードの響きを確かめながら、理論を体で理解。",
+                "作曲やギター練習が、音楽理論の学びに変わる。"
+              ]}
+            />
+          </div>
+          
+          <div className="lg:col-span-1">
+            <FeatureCard
+              href="/ja/find-chords"
+              icon={<MagnifyingGlassIcon />}
+              title="コードを探す"
+              catchphrase="スケールからコードを見つける。耳で覚える理論。"
+              description={[
+                "キーとスケールを選ぶと、使えるコードがすぐ見える。",
+                "フレットボードと一緒に確認して、音を聴きながら理解。",
+                "スケール理論とコード構成を、感覚で覚えられる。"
+              ]}
+            />
+          </div>
+
+          <div className="lg:col-span-1">
+            <FeatureCard
+              href="/ja/chord-library"
+              icon={<BookOpenIcon />}
+              title="コード辞典"
+              catchphrase="弾いて、見て、わかるコード辞典。"
+              description={[
+                "メジャー・マイナー・セブンスなど主要コードを網羅。",
+                "押さえ方と度数が見えるフォーム図で指の感覚を磨こう。",
+                "ギターコードの響きを、視覚と音で学べる。"
+              ]}
+            />
+          </div>
+
+          {/* Bottom row - 2 cards centered */}
+          <div className="lg:col-start-2 lg:col-span-1">
+            <FeatureCard
+              href="/ja/resources"
+              icon={<AcademicCapIcon />}
+              title="参考"
+              catchphrase="理論を、1分で復習できる。"
+              description={[
+                "ダイアトニック、モード、カデンツなどを図で整理。",
+                "音楽理論の要点をすぐ確認できるガイドと用語集。",
+                "作曲・編曲のインスピレーションを支える基礎リソース。"
+              ]}
+            />
+          </div>
+
+          <div className="lg:col-span-1">
+            <FeatureCard
+              href="/ja/chord-progression"
+              icon={<DocumentTextIcon />}
+              title="My進行"
+              catchphrase="思いついた進行を、すぐ形に。"
+              description={[
+                "作ったコード進行をスケッチとして保存。",
+                "Freeは3件までローカル、Proならクラウドで無制限。",
+                "開けばすぐループ再生、アイデアを逃さない。"
+              ]}
+            />
+          </div>
         </section>
         <div className="ot-card">
           <AdSlot page="home" format="horizontal" />

@@ -10,6 +10,7 @@
     "e2e": "playwright test"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "html-to-image": "^1.11.13",
     "next": "15.5.3",
     "react": "19.1.0",
