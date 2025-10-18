@@ -43,11 +43,11 @@ export default function HomeJa() {
             <p className="text-sm opacity-80">コード進行を作る</p>
           </Link>
           <Link href="/ja/find-chords" className="ot-card hover:bg-black/5 dark:hover:bg-white/5">
-            <h2 className="font-semibold mb-1">Find Chords</h2>
+            <h2 className="font-semibold mb-1">コードを探す</h2>
             <p className="text-sm opacity-80">キーとスケールからコードを見る</p>
           </Link>
           <Link href="/ja/chord-library" className="ot-card hover:bg-black/5 dark:hover:bg-white/5">
-            <h2 className="font-semibold mb-1">コードライブラリ</h2>
+            <h2 className="font-semibold mb-1">コード辞典</h2>
             <p className="text-sm opacity-80">インタラクティブなコード図と音声</p>
           </Link>
           <Link href="/ja/resources" className="ot-card hover:bg-black/5 dark:hover:bg-white/5">
