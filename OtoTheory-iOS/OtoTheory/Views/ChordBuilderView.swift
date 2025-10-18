@@ -27,10 +27,33 @@ struct ChordBuilderView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Choose Chords")
-                .font(.title2)
-                .fontWeight(.semibold)
-                .padding(.horizontal)
+            HStack {
+                Text("Choose Chords")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                
+                Button(action: {
+                    // Show info alert
+                    let alert = UIAlertController(
+                        title: "Choose Chords",
+                        message: "ルートとコードタイプを選んでください。追加ボタンでコード進行のスロットに追加できます。\nProプランの場合、より複雑なコードタイプを選ぶことができます。",
+                        preferredStyle: .alert
+                    )
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                       let window = windowScene.windows.first {
+                        window.rootViewController?.present(alert, animated: true)
+                    }
+                }) {
+                    Image(systemName: "info.circle")
+                        .foregroundColor(.blue)
+                        .font(.title3)
+                }
+                
+                Spacer()
+            }
+            .padding(.horizontal)
             
             VStack(spacing: 12) {
                 // Root Selection

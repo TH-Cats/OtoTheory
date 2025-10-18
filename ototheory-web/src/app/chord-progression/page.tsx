@@ -998,7 +998,16 @@ export default function FindKeyPage() {
       {/* Choose chords card: full-width below */}
       <section id="choose" ref={rightRef} className="ot-card right-panel">
           <div className="flex items-center justify-between mb-2">
-            <H2 className="mb-0 text-left">Choose chords</H2>
+            <div className="flex items-center gap-2">
+              <H2 className="mb-0 text-left">Choose chords</H2>
+              <InfoDot
+                title="Choose Chords"
+                text={isJapanese 
+                  ? "ルートとコードタイプを選んでください。追加ボタンでコード進行のスロットに追加できます。\nProプランの場合、より複雑なコードタイプを選ぶことができます。"
+                  : "Select a root note and chord type. Use the Add button to add to chord progression slots.\nPro plan allows you to select more complex chord types."
+                }
+              />
+            </div>
             {/* Preset button moved from Build progression */}
             <button
               type="button"

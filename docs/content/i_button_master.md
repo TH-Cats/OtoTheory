@@ -171,7 +171,21 @@ Quality → Chord Type
 
 ## 2. Find Chords（コード検索）
 
-### 2.1 フレットボード説明
+### 2.1 Choose Chords説明
+
+**日本語**:
+```
+ルートとコードタイプを選んでください。追加ボタンでコード進行のスロットに追加できます。
+Proプランの場合、より複雑なコードタイプを選ぶことができます。
+```
+
+**English**:
+```
+Select a root note and chord type. Use the Add button to add to chord progression slots.
+Pro plan allows you to select more complex chord types.
+```
+
+### 2.2 フレットボード説明
 
 **日本語**:
 ```
@@ -183,7 +197,7 @@ Quality → Chord Type
 Fretboard: Visualize intervals of the selected scale. Switch display using Degrees/Names buttons.
 ```
 
-### 2.2 ダイアトニックテーブル説明
+### 2.3 ダイアトニックテーブル説明
 
 **日本語**:
 ```
@@ -195,7 +209,7 @@ Fretboard: Visualize intervals of the selected scale. Switch display using Degre
 Diatonic Table: List of chords available in the selected key. Tap to play, long press to add to progression.
 ```
 
-### 2.3 提案スケール説明
+### 2.4 提案スケール説明
 
 **日本語**:
 ```
@@ -207,7 +221,7 @@ Diatonic Table: List of chords available in the selected key. Tap to play, long 
 Suggested Scales: Shows scales suitable for the selected chord. Preview with arpeggio.
 ```
 
-### 2.4 代理コード説明
+### 2.5 代理コード説明
 
 **日本語**:
 ```
@@ -371,6 +385,7 @@ Export: PNG (white background fixed)/Text (Free), MIDI (Pro). PNG fires once reg
 |--------|---------|------|
 | コード辞典 | Chord Library | メニュー項目 |
 | コードを探す | Find Chords | メニュー項目 |
+| Choose Chords | Choose Chords | 機能説明 |
 | コードタイプ | Chord Type | メニュー項目 |
 | 指番号 | Finger | 表示モード |
 | 度数 | Intervals | 表示モード |
