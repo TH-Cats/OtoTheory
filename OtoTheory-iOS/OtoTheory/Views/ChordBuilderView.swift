@@ -58,9 +58,32 @@ struct ChordBuilderView: View {
             VStack(spacing: 12) {
                 // Root Selection
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Root")
-                        .font(.headline)
-                        .padding(.horizontal)
+                    HStack {
+                        Text("Root")
+                            .font(.headline)
+                        
+                        Button(action: {
+                            // Show info alert
+                            let alert = UIAlertController(
+                                title: "Root",
+                                message: "コードの基準となる音で、コード名の元になります。Cコードのルート音は「C（ド）」。",
+                                preferredStyle: .alert
+                            )
+                            alert.addAction(UIAlertAction(title: "OK", style: .default))
+                            
+                            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                               let window = windowScene.windows.first {
+                                window.rootViewController?.present(alert, animated: true)
+                            }
+                        }) {
+                            Image(systemName: "graduationcap.fill")
+                                .foregroundColor(.blue)
+                                .font(.caption)
+                        }
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 8) {
@@ -83,9 +106,9 @@ struct ChordBuilderView: View {
                     }
                 }
                 
-                // Quick Selection
+                // Quality Selection
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Quick")
+                    Text("Quality")
                         .font(.headline)
                         .padding(.horizontal)
                     

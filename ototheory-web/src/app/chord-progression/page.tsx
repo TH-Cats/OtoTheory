@@ -1024,7 +1024,16 @@ export default function FindKeyPage() {
           {/* <div className="text-[11px] text-gray-400 mb-2">{copy.progression.example}</div> */}
           <div className="mt-1 sm:mt-2 space-y-1">
             <div>
-              <div className="text-xs opacity-70 mb-0.5">Root</div>
+              <div className="text-xs opacity-70 mb-0.5 flex items-center gap-1">
+                Root
+                <InfoDot
+                  title="Root"
+                  text={isJapanese 
+                    ? "コードの基準となる音で、コード名の元になります。Cコードのルート音は「C（ド）」。"
+                    : "The fundamental note that serves as the basis of the chord and forms the root of the chord name. The root note of a C chord is \"C (do)\"."
+                  }
+                />
+              </div>
               <div ref={rootRowRef} className="chips-row overflow-x-auto whitespace-nowrap" role="tablist" aria-orientation="horizontal" aria-label="Select key">
                 {ROOTS.map(rt => (
                   <button
@@ -1039,7 +1048,7 @@ export default function FindKeyPage() {
               </div>
             </div>
             <div>
-              <div className="text-xs opacity-70 mb-0.5">Quick</div>
+              <div className="text-xs opacity-70 mb-0.5">Quality</div>
               <div className="chips-row overflow-x-auto whitespace-nowrap">
                 {QUICK_QUALITIES.map(q => (
                   <button

@@ -185,6 +185,18 @@ Select a root note and chord type. Use the Add button to add to chord progressio
 Pro plan allows you to select more complex chord types.
 ```
 
+### 2.1.1 Root解説
+
+**日本語**:
+```
+コードの基準となる音で、コード名の元になります。Cコードのルート音は「C（ド）」。
+```
+
+**English**:
+```
+The fundamental note that serves as the basis of the chord and forms the root of the chord name. The root note of a C chord is "C (do)".
+```
+
 ### 2.2 フレットボード説明
 
 **日本語**:
