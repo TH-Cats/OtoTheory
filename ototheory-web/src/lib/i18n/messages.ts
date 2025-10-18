@@ -2,20 +2,20 @@ export const messages = {
   en: {
     nav: {
       chordProgression: 'Chord Progression',
-      findChords: 'Find Chords',
-      chordLibrary: 'Chord Library',
+      findChords: 'コードを探す',
+      chordLibrary: 'コード辞典',
       resources: 'Resources',
     },
     actions: { analyze: 'Analyze' },
     chordLibrary: {
       title: 'Chord Library',
       sub: '',
-      quality: 'Quality:',
+      quality: 'コードタイプ:',
       showAdvanced: 'Show Advanced',
       hideAdvanced: 'Hide Advanced',
       display: 'Display:',
       finger: 'Finger',
-      roman: 'Roman',
+      roman: 'Intervals',
       note: 'Note',
       tip: 'Tip: Forms with × on 1st or 6th string should not be strummed there, or lightly muted with your fretting hand.',
       // UX simplified: value props & help
@@ -85,20 +85,20 @@ export const messages = {
   ja: {
     nav: {
       chordProgression: 'コード進行',
-      findChords: 'Find Chords',
-      chordLibrary: 'Chord Library',
+      findChords: 'コードを探す',
+      chordLibrary: 'コード辞典',
       resources: 'リソース',
     },
     actions: { analyze: '分析' },
     chordLibrary: {
       title: 'Chord Library',
       sub: '',
-      quality: 'Quality:',
+      quality: 'コードタイプ:',
       showAdvanced: '高度なフォームを表示',
       hideAdvanced: '高度なフォームを隠す',
       display: '表示:',
       finger: '指番号',
-      roman: 'ローマ',
+      roman: '度数',
       note: '音名',
       tip: 'ヒント：1弦または6弦に×が付くフォームは、その弦を弾かないか、左手で軽くミュートしてください。',
       // UX簡素化: 価値訴求とヘルプ
@@ -126,7 +126,7 @@ export const messages = {
       detailsSummary: '詳しい説明を開く（使い方・視覚化・その他）',
       info: {
         fingerHelp: '①人差し指 ②中指 ③薬指 ④小指 T親指',
-        romanHelp: '度数表示（Root=1、長3度=3、短7度=b7 など）',
+        romanHelp: '度数表示（ルート=1、長3度=3、短7度=b7 など）',
         noteHelp: 'フレットボード上の実際の音名を表示します',
       },
       details: {

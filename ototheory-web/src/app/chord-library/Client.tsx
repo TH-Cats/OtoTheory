@@ -90,7 +90,6 @@ export default function Client() {
     <main className={styles['chord-page']}>
       <div className="container">
       <header className={styles['chord-page__header']}>
-        <h1>{t.title}</h1>
         <p className={styles['sub']}>
           {t.sub}
         </p>
@@ -184,10 +183,12 @@ export default function Client() {
             <div className={styles['sel__symbol']}>{entry.display}</div>
             <div className={styles['sel__notes']}>
               <span className={styles['sel__notes-intervals']}>
+                <span className={styles['sel__notes-label']}>{locale === 'ja' ? '構成度数' : 'Intervals'}: </span>
                 {intervals.join(' · ')}
               </span>
               <span className={styles['sel__notes-separator']}>|</span>
               <span className={styles['sel__notes-actual']}>
+                <span className={styles['sel__notes-label']}>{locale === 'ja' ? '構成音' : 'Chord Tones'}: </span>
                 {notes.join(' · ')}
               </span>
             </div>

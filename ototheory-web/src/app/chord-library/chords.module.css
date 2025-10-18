@@ -288,6 +288,12 @@
   letter-spacing: 0.5px;
 }
 
+.sel__notes-label {
+  color: var(--chord-muted);
+  font-weight: 400;
+  font-size: 12px;
+}
+
 .sel__notes-separator {
   color: var(--chord-line);
   font-weight: 300;
