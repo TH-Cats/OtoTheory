@@ -44,8 +44,6 @@ export default function Client() {
       roman: m.info.romanHelp,
       note: m.info.noteHelp,
       summary: m.detailsSummary,
-      benefits: m.benefits,
-      tryNow: m.tryNow,
       details: m.details,
       cards: m.cards,
     } as const;
@@ -97,15 +95,6 @@ export default function Client() {
           {t.sub}
         </p>
 
-        {/* Benefit strip: concise value props */}
-        <div className={styles['benefit-strip']} role="list" aria-label={locale==='ja' ? 'このページでできること' : 'What you can do here'}>
-          {helpText.benefits.map((b, i) => (
-            <div role="listitem" key={i} className={styles['benefit-item']}>{b}</div>
-          ))}
-          {helpText.tryNow && (
-            <a href="#forms" className={styles['benefit-cta']} aria-label={helpText.tryNow}>{helpText.tryNow}</a>
-          )}
-        </div>
 
         {/* Interactive cards for detailed explanations */}
         <div className={styles['interactive-cards']}>
