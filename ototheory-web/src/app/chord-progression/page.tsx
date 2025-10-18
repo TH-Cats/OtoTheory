@@ -803,7 +803,13 @@ export default function FindKeyPage() {
       {/* Progression card: full-width at top */}
       <section id="progression" className={"ot-card prog-compact"}>
           <div className="flex items-center justify-between gap-4 sm:gap-3 mb-1 sm:mb-2">
-            <H2 className="mb-0 text-left">Build progression</H2>
+            <div className="flex items-center gap-2">
+              <H2 className="mb-0 text-left">Build progression</H2>
+              <InfoDot
+                title="Build Progression"
+                text="Choose Chordsからコードを選んでスロットに追加ボタンから追加してください。上部のプリセットからコード進行を選択して追加することもできます。"
+              />
+            </div>
           <div className="flex flex-wrap items-center gap-2 relative">
               {/* Reset, Sketches */}
             <button
