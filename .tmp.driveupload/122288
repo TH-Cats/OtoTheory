@@ -1,3 +1,0 @@
-module.exports=[58371,a=>{"use strict";a.s(["default",()=>c,"metadata",()=>b]);let b={alternates:{canonical:"/ja/chord-progression",languages:{en:"/chord-progression","ja-JP":"/ja/chord-progression","x-default":"/chord-progression"}},openGraph:{locale:"ja_JP"}};function c({children:a}){return a}}];
-
-//# sourceMappingURL=src_app_ja_chord-progression_layout_tsx_a72fba3a._.js.map

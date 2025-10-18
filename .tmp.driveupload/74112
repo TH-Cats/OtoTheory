@@ -1,0 +1,4 @@
+Fix graduation cap icon in Web InfoDot component
+
+- Replace star icon with proper graduation cap icon for theoretical explanations
+- Use Material Design graduation cap SVG path for better visual consistency
