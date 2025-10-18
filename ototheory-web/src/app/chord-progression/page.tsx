@@ -580,6 +580,17 @@ export default function FindKeyPage() {
     }
     // store-based analysis for Top3 candidates
     runAnalyze(progression);
+    
+    // Auto-scroll to result section
+    setTimeout(() => {
+      const resultElement = document.getElementById('result');
+      if (resultElement) {
+        resultElement.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }
+    }, 100);
   };
 
   useEffect(() => {
@@ -1153,6 +1164,16 @@ export default function FindKeyPage() {
                       }
                       startAnalyze(() => {
                         analyze();
+                        // Auto-scroll to result section
+                        setTimeout(() => {
+                          const resultElement = document.getElementById('result');
+                          if (resultElement) {
+                            resultElement.scrollIntoView({ 
+                              behavior: 'smooth', 
+                              block: 'start' 
+                            });
+                          }
+                        }, 100);
                       });
                     }}
                     disabled={isAnalyzing}
