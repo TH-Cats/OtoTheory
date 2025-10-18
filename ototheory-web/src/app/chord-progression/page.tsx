@@ -1030,8 +1030,9 @@ export default function FindKeyPage() {
                   title="Root"
                   text={isJapanese 
                     ? "コードの基準となる音で、コード名の元になります。Cコードのルート音は「C（ド）」。"
-                    : "The fundamental note that serves as the basis of the chord and forms the root of the chord name. The root note of a C chord is \"C (do)\"."
+                    : "The fundamental note that serves as the basis of the chord and forms the root of the chord name. The root note of a C chord is \"C\"."
                   }
+                  icon="graduation"
                 />
               </div>
               <div ref={rootRowRef} className="chips-row overflow-x-auto whitespace-nowrap" role="tablist" aria-orientation="horizontal" aria-label="Select key">

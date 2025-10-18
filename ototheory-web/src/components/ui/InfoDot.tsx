@@ -10,6 +10,7 @@ type Props = {
   linkHref?: string;
   linkLabel?: string;
   ariaLabel?: string;
+  icon?: 'info' | 'graduation';    // icon type
 };
 
 export default function InfoDot({
@@ -20,6 +21,7 @@ export default function InfoDot({
   linkHref,
   linkLabel = "Learn more",
   ariaLabel = "More info",
+  icon = 'info',
 }: Props) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -61,7 +63,13 @@ export default function InfoDot({
   return (
     <div ref={ref} className={`relative inline-flex items-center ${className}`}>
       <button ref={btnRef} type="button" className="info-dot" aria-label={ariaLabel} onClick={() => setOpen((o) => !o)}>
-        i
+        {icon === 'graduation' ? (
+          <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M5.13 10.3c-.2-.2-.2-.5 0-.7l2.1-2.1c.2-.2.5-.2.7 0l2.1 2.1c.2.2.2.5 0 .7l-2.1 2.1c-.2.2-.5.2-.7 0l-2.1-2.1zM12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        ) : (
+          'i'
+        )}
       </button>
       {open && createPortal(
         (
