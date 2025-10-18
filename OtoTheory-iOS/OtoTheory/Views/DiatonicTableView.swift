@@ -529,6 +529,24 @@ struct DiatonicChordButton: View {
                     }
                 }
         )
+        .contextMenu {
+            Button(action: {
+                // Navigate to chord library
+                NotificationCenter.default.post(
+                    name: .navigateToChordLibrary,
+                    object: chord.chordName
+                )
+            }) {
+                Label("フォームを確認", systemImage: "music.note")
+            }
+            
+            Button(action: {
+                // Add to progression slot
+                onLongPress?()
+            }) {
+                Label("スロットに追加", systemImage: "plus")
+            }
+        }
     }
 }
 

@@ -60,8 +60,16 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         shapeName: 'Root-5',
         frets: ['x', 9, 10, 11, 12, 'x'],
         fingers: [null, 1, 2, 3, 4, null],
+        barres: [{ fret: 9, fromString: 1, toString: 5, finger: null }],
+        tips: ['"A major root-5 | Barre at 9th fret"']
+      },
+      {
+        id: 'A-4-Root4',
+        shapeName: 'Root-4',
+        frets: [5, 5, 6, 7, 'x', 'x'],
+        fingers: [1, 1, 2, 3, null, null],
         barres: [],
-        tips: ['"A major compact (x-9-10-11-12-x)"']
+        tips: ['"4th string root | High position"']
       },
       {
         id: 'A-5-Triad1',
@@ -75,6 +83,54 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         id: 'A-6-Triad2',
         shapeName: 'Triad-2',
         frets: ['x', 5, 6, 7, 'x', 'x'],
+        fingers: [null, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // A# (M)
+  {
+    id: 'A#',
+    symbol: 'A#',
+    quality: 'M',
+    forms: [
+      {
+        id: 'A#-2-Root6',
+        shapeName: 'Root-6',
+        frets: [6, 6, 7, 8, 8, 6],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 6, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape barre"']
+      },
+      {
+        id: 'A#-3-Root5',
+        shapeName: 'Root-5',
+        frets: [1, 3, 3, 3, 1, 'x'],
+        fingers: [1, 3, 4, 2, 1, null],
+        barres: [{ fret: 1, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | A-shape barre"']
+      },
+      {
+        id: 'A#-4-Root4',
+        shapeName: 'Root-4',
+        frets: [6, 6, 7, 8, 'x', 'x'],
+        fingers: [1, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'A#-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [1, 3, 3, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'A#-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 6, 7, 8, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
         barres: [],
         tips: ['Triad extracted from iOS (Triad-2)']
@@ -206,6 +262,54 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [null, 1, 2, 4, null, null],
         barres: [],
         tips: ['Diminished (auto from Cdim +10)']
+      }
+    ]
+  },
+  // A#m (m)
+  {
+    id: 'A#m',
+    symbol: 'A#m',
+    quality: 'm',
+    forms: [
+      {
+        id: 'A#m-2-Root6',
+        shapeName: 'Root-6',
+        frets: [6, 6, 6, 8, 8, 6],
+        fingers: [1, 1, 1, 3, 4, 1],
+        barres: [{ fret: 6, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape minor barre"']
+      },
+      {
+        id: 'A#m-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 1, 2, 3, 3, 1],
+        fingers: [NaN, null, 1, 2, 4, 3],
+        barres: [],
+        tips: ['1']
+      },
+      {
+        id: 'A#m-4-Root4',
+        shapeName: 'Root-4',
+        frets: [6, 6, 6, 8, 'x', 'x'],
+        fingers: [1, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'A#m-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [1, 2, 3, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'A#m-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 6, 6, 8, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
       }
     ]
   },
@@ -500,8 +604,16 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         shapeName: 'Root-5',
         frets: ['x', 9, 10, 10, 12, 'x'],
         fingers: [null, 1, 2, 3, 4, null],
+        barres: [{ fret: 9, fromString: 1, toString: 5, finger: null }],
+        tips: ['"A minor root-5 | Barre at 9th fret"']
+      },
+      {
+        id: 'Am-4-Root4',
+        shapeName: 'Root-4',
+        frets: [5, 5, 5, 7, 'x', 'x'],
+        fingers: [1, 1, 1, 3, null, null],
         barres: [],
-        tips: ['"Compact Am (x-9-10-10-12-x)"']
+        tips: ['"4th string root | High position"']
       },
       {
         id: 'Am-5-Triad1',
@@ -760,7 +872,31 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'M',
     forms: [
       {
-        id: 'B-4-Triad1',
+        id: 'B-2-Root6',
+        shapeName: 'Root-6',
+        frets: [7, 7, 8, 9, 9, 7],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 7, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape barre"']
+      },
+      {
+        id: 'B-3-Root5',
+        shapeName: 'Root-5',
+        frets: [2, 4, 4, 4, 2, 'x'],
+        fingers: [1, 3, 4, 2, 1, null],
+        barres: [{ fret: 2, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | A-shape barre"']
+      },
+      {
+        id: 'B-4-Root4',
+        shapeName: 'Root-4',
+        frets: [7, 7, 8, 9, 'x', 'x'],
+        fingers: [1, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'B-5-Triad1',
         shapeName: 'Triad-1',
         frets: [2, 4, 4, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
@@ -768,7 +904,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['Triad extracted from iOS (Triad-1)']
       },
       {
-        id: 'B-5-Triad2',
+        id: 'B-6-Triad2',
         shapeName: 'Triad-2',
         frets: ['x', 7, 8, 9, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
@@ -929,6 +1065,102 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Bb (M)
+  {
+    id: 'Bb',
+    symbol: 'Bb',
+    quality: 'M',
+    forms: [
+      {
+        id: 'Bb-2-Root6',
+        shapeName: 'Root-6',
+        frets: [6, 6, 7, 8, 8, 6],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 6, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape barre"']
+      },
+      {
+        id: 'Bb-3-Root5',
+        shapeName: 'Root-5',
+        frets: [1, 3, 3, 3, 1, 'x'],
+        fingers: [1, 3, 4, 2, 1, null],
+        barres: [{ fret: 1, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | A-shape barre"']
+      },
+      {
+        id: 'Bb-4-Root4',
+        shapeName: 'Root-4',
+        frets: [6, 6, 7, 8, 'x', 'x'],
+        fingers: [1, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'Bb-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [1, 3, 3, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'Bb-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 6, 7, 8, 'x', 'x'],
+        fingers: [null, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // Bbm (m)
+  {
+    id: 'Bbm',
+    symbol: 'Bbm',
+    quality: 'm',
+    forms: [
+      {
+        id: 'Bbm-2-Root6',
+        shapeName: 'Root-6',
+        frets: [6, 6, 6, 8, 8, 6],
+        fingers: [1, 1, 1, 3, 4, 1],
+        barres: [{ fret: 6, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape minor barre"']
+      },
+      {
+        id: 'Bbm-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 1, 2, 3, 3, 1],
+        fingers: [NaN, null, 1, 2, 4, 3],
+        barres: [],
+        tips: ['1']
+      },
+      {
+        id: 'Bbm-4-Root4',
+        shapeName: 'Root-4',
+        frets: [6, 6, 6, 8, 'x', 'x'],
+        fingers: [1, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'Bbm-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [1, 2, 3, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'Bbm-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 6, 6, 8, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
   // BbM7 (M7)
   {
     id: 'BbM7',
@@ -1016,7 +1248,31 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'm',
     forms: [
       {
-        id: 'Bm-4-Triad1',
+        id: 'Bm-2-Root6',
+        shapeName: 'Root-6',
+        frets: [7, 7, 7, 9, 9, 7],
+        fingers: [1, 1, 1, 3, 4, 1],
+        barres: [{ fret: 7, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape minor barre"']
+      },
+      {
+        id: 'Bm-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 2, 3, 4, 4, 2],
+        fingers: [NaN, null, 1, 2, 4, 3],
+        barres: [],
+        tips: ['1']
+      },
+      {
+        id: 'Bm-4-Root4',
+        shapeName: 'Root-4',
+        frets: [7, 7, 7, 9, 'x', 'x'],
+        fingers: [1, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'Bm-5-Triad1',
         shapeName: 'Triad-1',
         frets: [2, 3, 4, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
@@ -1024,7 +1280,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['Triad extracted from iOS (Triad-1)']
       },
       {
-        id: 'Bm-5-Triad2',
+        id: 'Bm-6-Triad2',
         shapeName: 'Triad-2',
         frets: ['x', 7, 7, 9, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
@@ -1248,6 +1504,14 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['"5th string root | A-shape barre"']
       },
       {
+        id: 'C-4-Root4',
+        shapeName: 'Root-4',
+        frets: [8, 8, 9, 10, 'x', 'x'],
+        fingers: [1, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
         id: 'C-5-Triad1',
         shapeName: 'Triad-1',
         frets: [3, 5, 5, 'x', 'x', 'x'],
@@ -1272,7 +1536,31 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'M',
     forms: [
       {
-        id: 'C#-4-Triad1',
+        id: 'C#-2-Root6',
+        shapeName: 'Root-6',
+        frets: [9, 9, 10, 11, 11, 9],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 9, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape barre"']
+      },
+      {
+        id: 'C#-3-Root5',
+        shapeName: 'Root-5',
+        frets: [4, 6, 6, 6, 4, 'x'],
+        fingers: [1, 3, 4, 2, 1, null],
+        barres: [{ fret: 4, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | A-shape barre"']
+      },
+      {
+        id: 'C#-4-Root4',
+        shapeName: 'Root-4',
+        frets: [9, 9, 10, 11, 'x', 'x'],
+        fingers: [1, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'C#-5-Triad1',
         shapeName: 'Triad-1',
         frets: [4, 6, 6, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
@@ -1280,7 +1568,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['Triad extracted from iOS (Triad-1)']
       },
       {
-        id: 'C#-5-Triad2',
+        id: 'C#-6-Triad2',
         shapeName: 'Triad-2',
         frets: ['x', 9, 10, 11, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
@@ -1456,7 +1744,31 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'm',
     forms: [
       {
-        id: 'C#m-4-Triad1',
+        id: 'C#m-2-Root6',
+        shapeName: 'Root-6',
+        frets: [9, 9, 9, 11, 11, 9],
+        fingers: [1, 1, 1, 3, 4, 1],
+        barres: [{ fret: 9, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape minor barre"']
+      },
+      {
+        id: 'C#m-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 4, 4, 6, 4, 'x'],
+        fingers: [null, 1, 1, 3, 1, null],
+        barres: [{ fret: 4, fromString: 1, toString: 5, finger: null }],
+        tips: ['"C# minor root-5 | Barre at 4th fret"']
+      },
+      {
+        id: 'C#m-4-Root4',
+        shapeName: 'Root-4',
+        frets: [9, 9, 9, 11, 'x', 'x'],
+        fingers: [1, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'C#m-5-Triad1',
         shapeName: 'Triad-1',
         frets: [4, 5, 6, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
@@ -1464,7 +1776,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['Triad extracted from iOS (Triad-1)']
       },
       {
-        id: 'C#m-5-Triad2',
+        id: 'C#m-6-Triad2',
         shapeName: 'Triad-2',
         frets: ['x', 9, 9, 11, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
@@ -1840,6 +2152,30 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'm',
     forms: [
       {
+        id: 'Cm-2-Root6',
+        shapeName: 'Root-6',
+        frets: [8, 8, 8, 10, 10, 8],
+        fingers: [1, 1, 1, 3, 4, 1],
+        barres: [{ fret: 8, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape minor barre"']
+      },
+      {
+        id: 'Cm-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 3, 3, 5, 3, 'x'],
+        fingers: [null, 1, 1, 3, 1, null],
+        barres: [{ fret: 3, fromString: 1, toString: 5, finger: null }],
+        tips: ['"C minor root-5 | Barre at 3rd fret"']
+      },
+      {
+        id: 'Cm-4-Root4',
+        shapeName: 'Root-4',
+        frets: [8, 8, 8, 10, 'x', 'x'],
+        fingers: [1, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
         id: 'Cm-5-Triad1',
         shapeName: 'Triad-1',
         frets: [3, 4, 5, 'x', 'x', 'x'],
@@ -2104,6 +2440,14 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['"5th string root | A-shape barre"']
       },
       {
+        id: 'D-4-Root4',
+        shapeName: 'Root-4',
+        frets: [10, 10, 11, 12, 'x', 'x'],
+        fingers: [1, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
         id: 'D-5-Triad1',
         shapeName: 'Triad-1',
         frets: [5, 7, 7, 'x', 'x', 'x'],
@@ -2128,7 +2472,31 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'M',
     forms: [
       {
-        id: 'D#-4-Triad1',
+        id: 'D#-2-Root6',
+        shapeName: 'Root-6',
+        frets: [11, 11, 12, 13, 13, 11],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 11, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape barre"']
+      },
+      {
+        id: 'D#-3-Root5',
+        shapeName: 'Root-5',
+        frets: [6, 8, 8, 8, 6, 'x'],
+        fingers: [1, 3, 4, 2, 1, null],
+        barres: [{ fret: 6, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | A-shape barre"']
+      },
+      {
+        id: 'D#-4-Root4',
+        shapeName: 'Root-4',
+        frets: [11, 11, 12, 13, 'x', 'x'],
+        fingers: [1, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'D#-5-Triad1',
         shapeName: 'Triad-1',
         frets: [6, 8, 8, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
@@ -2136,7 +2504,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['Triad extracted from iOS (Triad-1)']
       },
       {
-        id: 'D#-5-Triad2',
+        id: 'D#-6-Triad2',
         shapeName: 'Triad-2',
         frets: ['x', 11, 12, 13, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
@@ -2312,7 +2680,31 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'm',
     forms: [
       {
-        id: 'D#m-4-Triad1',
+        id: 'D#m-2-Root6',
+        shapeName: 'Root-6',
+        frets: [11, 11, 11, 13, 13, 11],
+        fingers: [1, 1, 1, 3, 4, 1],
+        barres: [{ fret: 11, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape minor barre"']
+      },
+      {
+        id: 'D#m-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 6, 7, 8, 8, 6],
+        fingers: [NaN, null, 1, 2, 4, 3],
+        barres: [],
+        tips: ['1']
+      },
+      {
+        id: 'D#m-4-Root4',
+        shapeName: 'Root-4',
+        frets: [11, 11, 11, 13, 'x', 'x'],
+        fingers: [1, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'D#m-5-Triad1',
         shapeName: 'Triad-1',
         frets: [6, 7, 8, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
@@ -2320,10 +2712,10 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['Triad extracted from iOS (Triad-1)']
       },
       {
-        id: 'D#m-5-Triad2',
+        id: 'D#m-6-Triad2',
         shapeName: 'Triad-2',
-        frets: ['x', 'x', 3, 4, 6, 'x'],
-        fingers: [null, null, 1, 2, 4, null],
+        frets: ['x', 11, 11, 13, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
         barres: [],
         tips: ['Triad extracted from iOS (Triad-2)']
       }
@@ -2656,6 +3048,14 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['"5th string root | A-shape minor barre"']
       },
       {
+        id: 'Dm-4-Root4',
+        shapeName: 'Root-4',
+        frets: [10, 10, 10, 12, 'x', 'x'],
+        fingers: [1, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
         id: 'Dm-5-Triad1',
         shapeName: 'Triad-1',
         frets: [5, 6, 7, 'x', 'x', 'x'],
@@ -2928,6 +3328,14 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['"5th string root | A-shape barre"']
       },
       {
+        id: 'E-4-Root4',
+        shapeName: 'Root-4',
+        frets: [12, 12, 13, 14, 'x', 'x'],
+        fingers: [1, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
         id: 'E-5-Triad1',
         shapeName: 'Triad-1',
         frets: [7, 9, 9, 'x', 'x', 'x'],
@@ -3121,6 +3529,134 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Eb (M)
+  {
+    id: 'Eb',
+    symbol: 'Eb',
+    quality: 'M',
+    forms: [
+      {
+        id: 'Eb-2-Root6',
+        shapeName: 'Root-6',
+        frets: [11, 11, 12, 13, 13, 11],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 11, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape barre"']
+      },
+      {
+        id: 'Eb-3-Root5',
+        shapeName: 'Root-5',
+        frets: [6, 8, 8, 8, 6, 'x'],
+        fingers: [1, 3, 4, 2, 1, null],
+        barres: [{ fret: 6, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | A-shape barre"']
+      },
+      {
+        id: 'Eb-4-Root4',
+        shapeName: 'Root-4',
+        frets: [11, 11, 12, 13, 'x', 'x'],
+        fingers: [1, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'Eb-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [6, 8, 8, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'Eb-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 11, 12, 13, 'x', 'x'],
+        fingers: [null, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // Ebm (m)
+  {
+    id: 'Ebm',
+    symbol: 'Ebm',
+    quality: 'm',
+    forms: [
+      {
+        id: 'Ebm-2-Root6',
+        shapeName: 'Root-6',
+        frets: [11, 11, 11, 13, 13, 11],
+        fingers: [1, 1, 1, 3, 4, 1],
+        barres: [{ fret: 11, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape minor barre"']
+      },
+      {
+        id: 'Ebm-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 6, 7, 8, 8, 6],
+        fingers: [NaN, null, 1, 2, 4, 3],
+        barres: [],
+        tips: ['1']
+      },
+      {
+        id: 'Ebm-4-Root4',
+        shapeName: 'Root-4',
+        frets: [11, 11, 11, 13, 'x', 'x'],
+        fingers: [1, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'Ebm-5-Triad1',
+        shapeName: 'Triad-1',
+        frets: [6, 7, 8, 'x', 'x', 'x'],
+        fingers: [1, 2, 3, null, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-1)']
+      },
+      {
+        id: 'Ebm-6-Triad2',
+        shapeName: 'Triad-2',
+        frets: ['x', 11, 11, 13, 'x', 'x'],
+        fingers: [null, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // EbM7 (M7)
+  {
+    id: 'EbM7',
+    symbol: 'EbM7',
+    quality: 'M7',
+    forms: [
+      {
+        id: 'EbM7-1-Root4',
+        shapeName: 'Root-4',
+        frets: [3, 3, 3, 1, 'x', 'x'],
+        fingers: [3, 1, 2, 1, null, null],
+        barres: [],
+        tips: ['"4th string root | Compact voicing"']
+      },
+      {
+        id: 'EbM7-2-Root5',
+        shapeName: 'Root-5',
+        frets: [6, 8, 7, 8, 6, 'x'],
+        fingers: [1, 4, 2, 3, 1, null],
+        barres: [{ fret: 6, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | Maj7 A-shape"']
+      },
+      {
+        id: 'EbM7-3-Root6',
+        shapeName: 'Root-6',
+        frets: [11, 11, 12, 12, 13, 11],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 11, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | Maj7 E-shape"']
+      }
+    ]
+  },
   // Edim (dim)
   {
     id: 'Edim',
@@ -3166,6 +3702,14 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [1, 2, 3, 4, 1, null],
         barres: [{ fret: 7, fromString: 1, toString: 5, finger: 1 }],
         tips: ['"5th string root | A-shape minor barre"']
+      },
+      {
+        id: 'Em-4-Root4',
+        shapeName: 'Root-4',
+        frets: [12, 12, 12, 14, 'x', 'x'],
+        fingers: [1, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
       },
       {
         id: 'Em-5-Triad1',
@@ -3416,7 +3960,31 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'M',
     forms: [
       {
-        id: 'F-4-Triad1',
+        id: 'F-2-Root6',
+        shapeName: 'Root-6',
+        frets: [1, 1, 2, 3, 3, 1],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 1, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape barre"']
+      },
+      {
+        id: 'F-3-Root5',
+        shapeName: 'Root-5',
+        frets: [8, 10, 10, 10, 8, 'x'],
+        fingers: [1, 3, 4, 2, 1, null],
+        barres: [{ fret: 8, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | A-shape barre"']
+      },
+      {
+        id: 'F-4-Root4',
+        shapeName: 'Root-4',
+        frets: [1, 1, 2, 3, 'x', 'x'],
+        fingers: [1, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'F-5-Triad1',
         shapeName: 'Triad-1',
         frets: [8, 10, 10, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
@@ -3424,7 +3992,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['Triad extracted from iOS (Triad-1)']
       },
       {
-        id: 'F-5-Triad2',
+        id: 'F-6-Triad2',
         shapeName: 'Triad-2',
         frets: ['x', 1, 2, 3, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
@@ -3440,7 +4008,31 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'M',
     forms: [
       {
-        id: 'F#-4-Triad1',
+        id: 'F#-2-Root6',
+        shapeName: 'Root-6',
+        frets: [2, 2, 3, 4, 4, 2],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 2, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape barre"']
+      },
+      {
+        id: 'F#-3-Root5',
+        shapeName: 'Root-5',
+        frets: [9, 11, 11, 11, 9, 'x'],
+        fingers: [1, 3, 4, 2, 1, null],
+        barres: [{ fret: 9, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | A-shape barre"']
+      },
+      {
+        id: 'F#-4-Root4',
+        shapeName: 'Root-4',
+        frets: [2, 2, 3, 4, 'x', 'x'],
+        fingers: [1, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'F#-5-Triad1',
         shapeName: 'Triad-1',
         frets: [9, 11, 11, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
@@ -3448,7 +4040,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['Triad extracted from iOS (Triad-1)']
       },
       {
-        id: 'F#-5-Triad2',
+        id: 'F#-6-Triad2',
         shapeName: 'Triad-2',
         frets: ['x', 2, 3, 4, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
@@ -3632,7 +4224,31 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'm',
     forms: [
       {
-        id: 'F#m-4-Triad1',
+        id: 'F#m-2-Root6',
+        shapeName: 'Root-6',
+        frets: [2, 2, 2, 4, 4, 2],
+        fingers: [1, 1, 1, 3, 4, 1],
+        barres: [{ fret: 2, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape minor barre"']
+      },
+      {
+        id: 'F#m-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 9, 10, 11, 11, 9],
+        fingers: [NaN, null, 1, 2, 4, 3],
+        barres: [],
+        tips: ['1']
+      },
+      {
+        id: 'F#m-4-Root4',
+        shapeName: 'Root-4',
+        frets: [2, 2, 2, 4, 'x', 'x'],
+        fingers: [1, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'F#m-5-Triad1',
         shapeName: 'Triad-1',
         frets: [9, 10, 11, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
@@ -3640,7 +4256,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['Triad extracted from iOS (Triad-1)']
       },
       {
-        id: 'F#m-5-Triad2',
+        id: 'F#m-6-Triad2',
         shapeName: 'Triad-2',
         frets: ['x', 2, 2, 4, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
@@ -3960,7 +4576,31 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'm',
     forms: [
       {
-        id: 'Fm-4-Triad1',
+        id: 'Fm-2-Root6',
+        shapeName: 'Root-6',
+        frets: [1, 1, 1, 3, 3, 1],
+        fingers: [1, 1, 1, 3, 4, 1],
+        barres: [{ fret: 1, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape minor barre"']
+      },
+      {
+        id: 'Fm-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 8, 9, 10, 10, 8],
+        fingers: [NaN, null, 1, 2, 4, 3],
+        barres: [],
+        tips: ['1']
+      },
+      {
+        id: 'Fm-4-Root4',
+        shapeName: 'Root-4',
+        frets: [1, 1, 1, 3, 'x', 'x'],
+        fingers: [1, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'Fm-5-Triad1',
         shapeName: 'Triad-1',
         frets: [8, 9, 10, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
@@ -3968,7 +4608,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['Triad extracted from iOS (Triad-1)']
       },
       {
-        id: 'Fm-5-Triad2',
+        id: 'Fm-6-Triad2',
         shapeName: 'Triad-2',
         frets: ['x', 1, 1, 3, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
@@ -4184,6 +4824,14 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['"5th string root | A-shape barre"']
       },
       {
+        id: 'G-4-Root4',
+        shapeName: 'Root-4',
+        frets: [3, 3, 4, 5, 'x', 'x'],
+        fingers: [1, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
         id: 'G-5-Triad1',
         shapeName: 'Triad-1',
         frets: [10, 12, 12, 'x', 'x', 'x'],
@@ -4208,7 +4856,31 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'M',
     forms: [
       {
-        id: 'G#-4-Triad1',
+        id: 'G#-2-Root6',
+        shapeName: 'Root-6',
+        frets: [4, 4, 5, 6, 6, 4],
+        fingers: [1, 1, 2, 3, 4, 1],
+        barres: [{ fret: 4, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape barre"']
+      },
+      {
+        id: 'G#-3-Root5',
+        shapeName: 'Root-5',
+        frets: [11, 13, 13, 13, 11, 'x'],
+        fingers: [1, 3, 4, 2, 1, null],
+        barres: [{ fret: 11, fromString: 1, toString: 5, finger: 1 }],
+        tips: ['"5th string root | A-shape barre"']
+      },
+      {
+        id: 'G#-4-Root4',
+        shapeName: 'Root-4',
+        frets: [4, 4, 5, 6, 'x', 'x'],
+        fingers: [1, 1, 2, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'G#-5-Triad1',
         shapeName: 'Triad-1',
         frets: [11, 13, 13, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
@@ -4216,7 +4888,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['Triad extracted from iOS (Triad-1)']
       },
       {
-        id: 'G#-5-Triad2',
+        id: 'G#-6-Triad2',
         shapeName: 'Triad-2',
         frets: ['x', 4, 5, 6, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
@@ -4392,7 +5064,31 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'm',
     forms: [
       {
-        id: 'G#m-4-Triad1',
+        id: 'G#m-2-Root6',
+        shapeName: 'Root-6',
+        frets: [4, 4, 4, 6, 6, 4],
+        fingers: [1, 1, 1, 3, 4, 1],
+        barres: [{ fret: 4, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape minor barre"']
+      },
+      {
+        id: 'G#m-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 11, 12, 13, 13, 11],
+        fingers: [NaN, null, 1, 2, 4, 3],
+        barres: [],
+        tips: ['1']
+      },
+      {
+        id: 'G#m-4-Root4',
+        shapeName: 'Root-4',
+        frets: [4, 4, 4, 6, 'x', 'x'],
+        fingers: [1, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'G#m-5-Triad1',
         shapeName: 'Triad-1',
         frets: [11, 12, 13, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
@@ -4400,7 +5096,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['Triad extracted from iOS (Triad-1)']
       },
       {
-        id: 'G#m-5-Triad2',
+        id: 'G#m-6-Triad2',
         shapeName: 'Triad-2',
         frets: ['x', 4, 4, 6, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
@@ -4752,7 +5448,31 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     quality: 'm',
     forms: [
       {
-        id: 'Gm-4-Triad1',
+        id: 'Gm-2-Root6',
+        shapeName: 'Root-6',
+        frets: [3, 3, 3, 5, 5, 3],
+        fingers: [1, 1, 1, 3, 4, 1],
+        barres: [{ fret: 3, fromString: 1, toString: 6, finger: 1 }],
+        tips: ['"6th string root | E-shape minor barre"']
+      },
+      {
+        id: 'Gm-3-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 10, 11, 12, 12, 10],
+        fingers: [NaN, null, 1, 2, 4, 3],
+        barres: [],
+        tips: ['1']
+      },
+      {
+        id: 'Gm-4-Root4',
+        shapeName: 'Root-4',
+        frets: [3, 3, 3, 5, 'x', 'x'],
+        fingers: [1, 1, 1, 3, null, null],
+        barres: [],
+        tips: ['"4th string root | High position"']
+      },
+      {
+        id: 'Gm-5-Triad1',
         shapeName: 'Triad-1',
         frets: [10, 11, 12, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
@@ -4760,7 +5480,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         tips: ['Triad extracted from iOS (Triad-1)']
       },
       {
-        id: 'Gm-5-Triad2',
+        id: 'Gm-6-Triad2',
         shapeName: 'Triad-2',
         frets: ['x', 3, 3, 5, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],

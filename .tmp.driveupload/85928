@@ -1,0 +1,405 @@
+1:"$Sreact.fragment"
+2:I[76074,["/_next/static/chunks/8cbbe25b15b5d7ce.js"],"GoogleTagManagerHead"]
+3:I[79520,["/_next/static/chunks/8cbbe25b15b5d7ce.js"],""]
+4:I[76074,["/_next/static/chunks/8cbbe25b15b5d7ce.js"],"GoogleTagManagerBody"]
+5:I[52829,["/_next/static/chunks/8cbbe25b15b5d7ce.js"],"default"]
+6:I[9089,["/_next/static/chunks/8cbbe25b15b5d7ce.js"],"default"]
+7:I[7442,["/_next/static/chunks/8cbbe25b15b5d7ce.js"],"ProProvider"]
+8:I[22016,["/_next/static/chunks/8cbbe25b15b5d7ce.js"],"default"]
+9:I[5500,["/_next/static/chunks/8cbbe25b15b5d7ce.js"],"Image"]
+a:I[84834,["/_next/static/chunks/8cbbe25b15b5d7ce.js"],"default"]
+b:I[31336,["/_next/static/chunks/8cbbe25b15b5d7ce.js"],"default"]
+c:I[89796,["/_next/static/chunks/8cbbe25b15b5d7ce.js"],"default"]
+d:I[39756,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/c059d57364b7db98.js"],"default"]
+e:I[37457,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/c059d57364b7db98.js"],"default"]
+1d:I[68027,["/_next/static/chunks/8cbbe25b15b5d7ce.js"],"default"]
+:HL["/_next/static/chunks/39861196b49736a0.css","style"]
+:HL["/_next/static/chunks/d6cf8c2377950a6e.css","style"]
+:HL["/_next/static/media/797e433ab948586e-s.p.dbea232f.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/ad9c66e761fed85a-s.p.2adee7ab.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"P":null,"b":"Smhfi1ABEdRg27ng1OyEJ","p":"","c":["","ja","resources","glossary"],"i":false,"f":[[["",{"children":["ja",{"children":["resources",{"children":["glossary",{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/39861196b49736a0.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/8cbbe25b15b5d7ce.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","$L2",null,{}],["$","$L3",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9662479821167655","crossOrigin":"anonymous","strategy":"afterInteractive"}],["$","body",null,{"className":"geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable antialiased","children":[["$","$L4",null,{}],["$","$L5",null,{}],["$","$L6",null,{}],["$","$L7",null,{"children":[["$","header",null,{"className":"border-b border-black/10 dark:border-white/10","children":["$","div",null,{"className":"container flex items-center justify-between h-24","children":[["$","$L8",null,{"href":"/","className":"flex items-center gap-2","children":[["$","$L9",null,{"src":"/logo/logo-horizontal-light.png","alt":"OtoTheory","width":280,"height":84,"className":"h-20 w-auto dark:hidden","priority":true}],["$","$L9",null,{"src":"/logo/logo-horizontal.png","alt":"OtoTheory","width":280,"height":84,"className":"h-20 w-auto hidden dark:block","priority":true}]]}],["$","div",null,{"className":"flex items-center gap-4","children":[["$","$La",null,{}],["$","$Lb",null,{}],["$","$Lc",null,{}]]}]]}]}],["$","main",null,{"className":"pt-1 pb-4 sm:pt-2 sm:pb-6","children":["$","$Ld",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$Le",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"ot-page ot-stack","children":[["$","section",null,{"className":"ot-card text-center py-12","children":[["$","div",null,{"className":"text-8xl mb-6","children":"🎸"}],["$","h1",null,{"className":"text-4xl font-bold mb-3","children":"404 - Page Not Found"}],["$","p",null,{"className":"text-lg opacity-80 mb-6","children":"Oops! Looks like this page hit a wrong note."}],["$","p",null,{"className":"opacity-70 max-w-md mx-auto","children":"The page you're looking for doesn't exist or may have been moved."}]]}],["$","section",null,{"className":"ot-card","children":[["$","h2",null,{"className":"text-xl font-semibold mb-4 text-center","children":"Where would you like to go?"}],["$","div",null,{"className":"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3","children":[["$","$L8",null,{"href":"/","className":"p-4 rounded-lg border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors","children":[["$","div",null,{"className":"text-2xl mb-2","children":"🏠"}],["$","h3",null,{"className":"font-semibold mb-1","children":"Home"}],["$","p",null,{"className":"text-sm opacity-70","children":"Back to the top page"}]]}],["$","$L8",null,{"href":"/chord-progression","className":"p-4 rounded-lg border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors","children":[["$","div",null,{"className":"text-2xl mb-2","children":"🎵"}],["$","h3",null,{"className":"font-semibold mb-1","children":"Chord Progression"}],["$","p",null,{"className":"text-sm opacity-70","children":"Build chord progressions"}]]}],["$","$L8",null,{"href":"/find-chords","className":"p-4 rounded-lg border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors","children":[["$","div",null,{"className":"text-2xl mb-2","children":"🔍"}],["$","h3",null,{"className":"font-semibold mb-1","children":"Find Chords"}],["$","p",null,{"className":"text-sm opacity-70","children":"Explore chords by key"}]]}],["$","$L8",null,{"href":"/resources","className":"p-4 rounded-lg border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors","children":[["$","div",null,{"className":"text-2xl mb-2","children":"📚"}],["$","h3",null,{"className":"font-semibold mb-1","children":"Resources"}],["$","p",null,{"className":"text-sm opacity-70","children":"Theory, glossary, chord library"}]]}],["$","$L8",null,{"href":"/getting-started","className":"p-4 rounded-lg border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors","children":["$Lf","$L10","$L11"]}],"$L12"]}]]}],"$L13"]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L14","$L15","$L16","$L17"]}]]}]]}]]}],{"children":["ja","$L18",{"children":["resources","$L19",{"children":["glossary","$L1a",{"children":["__PAGE__","$L1b",{},null,false]},null,false]},null,false]},null,false]},null,false],"$L1c",false]],"m":"$undefined","G":["$1d",["$L1e"]],"s":false,"S":true}
+1f:I[77285,["/_next/static/chunks/8cbbe25b15b5d7ce.js"],"default"]
+20:I[46029,["/_next/static/chunks/8cbbe25b15b5d7ce.js"],"default"]
+21:I[31362,["/_next/static/chunks/8cbbe25b15b5d7ce.js"],"default"]
+23:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/c059d57364b7db98.js"],"OutletBoundary"]
+25:I[11533,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/c059d57364b7db98.js"],"AsyncMetadataOutlet"]
+27:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/c059d57364b7db98.js"],"ViewportBoundary"]
+29:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/c059d57364b7db98.js"],"MetadataBoundary"]
+2a:"$Sreact.suspense"
+f:["$","div",null,{"className":"text-2xl mb-2","children":"📖"}]
+10:["$","h3",null,{"className":"font-semibold mb-1","children":"Getting Started"}]
+11:["$","p",null,{"className":"text-sm opacity-70","children":"Learn how to use OtoTheory"}]
+12:["$","$L8",null,{"href":"/faq","className":"p-4 rounded-lg border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors","children":[["$","div",null,{"className":"text-2xl mb-2","children":"❓"}],["$","h3",null,{"className":"font-semibold mb-1","children":"FAQ"}],["$","p",null,{"className":"text-sm opacity-70","children":"Common questions"}]]}]
+13:["$","section",null,{"className":"ot-card text-center","children":[["$","h3",null,{"className":"font-semibold mb-3","children":"Need help?"}],["$","p",null,{"className":"text-sm opacity-80 mb-4","children":"If you think this is a mistake or need assistance, please contact us."}],["$","$L8",null,{"href":"/support","className":"inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold hover:opacity-90 transition-opacity","children":"Contact Support"}]]}]
+14:["$","footer",null,{"className":"mt-16 py-8 text-center text-xs text-black/60 dark:text-white/60 border-t border-black/10 dark:border-white/10","children":["$","div",null,{"className":"container space-y-3","children":[["$","$L1f",null,{}],["$","$L20",null,{}],["$","div",null,{"children":["© ",2025," OtoTheory"]}]]}]}]
+15:["$","$L21",null,{}]
+16:["$","$L3",null,{"id":"structured-data","type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebSite\",\n  \"name\": \"OtoTheory\",\n  \"description\": \"Free guitar chord finder, key analyzer, and music theory tool. Build chord progressions, discover scales, and support composition and guitar improvisation theoretically.\",\n  \"url\": \"https://www.ototheory.com\",\n  \"potentialAction\": {\n    \"@type\": \"SearchAction\",\n    \"target\": \"https://www.ototheory.com/find-chords?q={search_term_string}\",\n    \"query-input\": \"required name=search_term_string\"\n  },\n  \"sameAs\": [\n    \"https://github.com/TH-Cats/OtoTheory\"\n  ]\n}"}}]
+17:["$","$L3",null,{"id":"structured-data","type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"SoftwareApplication\",\n  \"name\": \"OtoTheory\",\n  \"description\": \"Free guitar chord finder, key analyzer, and music theory tool for guitarists.\",\n  \"url\": \"https://www.ototheory.com\",\n  \"applicationCategory\": \"MusicApplication\",\n  \"operatingSystem\": \"Web Browser, iOS\",\n  \"offers\": {\n    \"@type\": \"Offer\",\n    \"price\": \"0\",\n    \"priceCurrency\": \"USD\"\n  },\n  \"aggregateRating\": {\n    \"@type\": \"AggregateRating\",\n    \"ratingValue\": \"4.8\",\n    \"ratingCount\": \"150\"\n  }\n}"}}]
+18:["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/d6cf8c2377950a6e.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","div",null,{"className":"noto_sans_jp_8e2bc04-module__J4cSNa__className","children":["$","$Ld",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$Le",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]}]]}]
+19:["$","$1","c",{"children":[null,["$","$Ld",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$Le",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+1a:["$","$1","c",{"children":[null,[null,["$","$Ld",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$Le",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]]}]
+1b:["$","$1","c",{"children":["$L22",[["$","script","script-0",{"src":"/_next/static/chunks/4b63b2217320630c.js","async":true,"nonce":"$undefined"}]],["$","$L23",null,{"children":["$L24",["$","$L25",null,{"promise":"$@26"}]]}]]}]
+1c:["$","$1","h",{"children":[null,[["$","$L27",null,{"children":"$L28"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$L29",null,{"children":["$","div",null,{"hidden":true,"children":["$","$2a",null,{"fallback":null,"children":"$L2b"}]}]}]]}]
+1e:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/39861196b49736a0.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+2c:I[70295,["/_next/static/chunks/8cbbe25b15b5d7ce.js","/_next/static/chunks/4b63b2217320630c.js"],"default"]
+2d:T1bd1,---
+title: "Glossary"
+description: "Quick music theory reference for guitarists. One-line definitions + guitar-specific notes + examples for instant understanding."
+---
+
+# Glossary
+
+> Each term includes **definition → guitar-specific note → example**.  
+> For deeper exploration, click **→ Learn more** to jump to Music Theory.
+
+---
+
+## A. Fundamentals
+
+### Scale Degree
+**Definition**: **Numbers 1–7** within a key. **1 = tonic**.  
+**Guitar Note**: When the key changes, "1 (tonic)" moves (= movable do). Number relationships stay constant.  
+**Example**: In C major, 1–2–3 is **C–D–E**. In D major, it's **D–E–F#**.  
+→ Learn more: [/resources/music-theory#degrees](/resources/music-theory#degrees)
+
+### Interval
+**Definition**: Distance between two notes (perfect 5th, minor 3rd, etc.). Independent of key.  
+**Guitar Note**: Use **degrees for progressions/melodies**, **intervals for voicings**.  
+**Example**: Power chord = **1 (root) + 5th**.
+
+### Key
+**Definition**: The tonal center and pitch level of a piece.  
+**Guitar Note**: **Key selection** determines 80% of singability. Capo comes after.  
+**Example**: Chorus too high → try half-step down (–1).  
+→ Learn more: [/resources/music-theory#key-roman](/resources/music-theory#key-roman)
+
+### Diatonic
+**Definition**: The "core members" of a key.  
+**Guitar Note**: Build the skeleton with diatonic chords first to avoid confusion.  
+**Example**: D major diatonic chords: **D Em F#m G A Bm C#°**.
+
+### Roman Numerals
+**Definition**: Chord notation based on scale degrees. **Uppercase = major / lowercase = minor / ° = diminished**.  
+**Guitar Note**: Memorize progressions like **I–V–vi–IV** for instant transposition.  
+**Example**: I–V–vi–IV in C → **D–A–Bm–G** in D.  
+→ Learn more: [/resources/music-theory#roman](/resources/music-theory#roman)
+
+---
+
+## B. Chords and Symbols
+
+### Root
+**Definition**: The starting point of a chord.  
+**Guitar Note**: When bass is present, **reduce root emphasis** and prioritize 3rd/7th for clarity.  
+**Example**: In G7, let bass handle G, focus upper voices on **B (3rd) · F (7th)**.
+
+### 3rd / 5th / 7th
+**Definition**: 3rd = character, 5th = skeleton, 7th = directional arrow.  
+**Guitar Note**: The essential formula for accompaniment is **never skip 3rd/7th**.  
+**Example**: Voice lead **B→C** (3rd→root from G7→C) in the top voice.
+
+### Triad
+**Definition**: Three-note chord built on 1·3·5.  
+**Guitar Note**: Moving just the **3rd** changes the mood.  
+**Example**: C → **Cm** → F (3rd moves E→E♭).
+
+### 7th Chord
+**Definition**: Triad + 7th.  
+**Guitar Note**: **V7 = strong resolution**, **maj7 = dissolves**.  
+**Example**: G → **G7** → C / C → **Cmaj7** → C.
+
+### sus / add / slash
+**Definition**: **sus** suspends the 3rd, **add** adds notes, **slash** specifies bass note.  
+**Guitar Note**: Sus creates "tension", slash enables **walking bass**.  
+**Example**: D–**Dsus4**–D / C–**C/E**–F.
+
+### Inversion
+**Definition**: Rearranging which chord tone is in the bass (lowest note).  
+**Guitar Note**: Use **G/B, D/F#** etc. for smooth bass lines.  
+**Example**: C→**G/B**→Am→**F/C**.
+
+### Voicing
+**Definition**: Internal arrangement of chord tones.  
+**Guitar Note**: Design the **top note** to support the vocal melody.  
+**Example**: Keep top notes **E→E→F→F** through C→Am→F→G.
+
+### Form/Shape
+**Definition**: Fingering pattern (Open/Barre, etc.).  
+**Guitar Note**: Form ≠ voicing. **Same form with different arrangements** changes the feel.  
+**Example**: C form with E on top vs. G on top sounds different.
+
+---
+
+## C. Progressions and Function
+
+### T / S / D (Functional Harmony)
+**Definition**: T = stable (I, vi), S = preparation (ii, IV), D = gravitational pull (V, vii°).  
+**Guitar Note**: **T→S→D→T** framework reduces confusion.  
+**Example**: C｜F｜G｜C.  
+→ Learn more: [/resources/music-theory#tsd](/resources/music-theory#tsd)
+
+### Cadence
+**Definition**: Resolution patterns (V→I / IV→I / V→vi / etc.).  
+**Guitar Note**: Use **V→I at chorus start** as a clear flag.  
+**Example**: G7→C (authentic cadence).
+
+### Secondary Dominant (V/○○)
+**Definition**: Temporarily treat the target chord as tonic and approach with its V7.  
+**Guitar Note**: **1–2 spot uses** create maximum impact.  
+**Example**: In D, **E7→A** (V/V→V).  
+→ Learn more: [/resources/music-theory#secondary](/resources/music-theory#secondary)
+
+### Modal Interchange (Borrowed Chords)
+**Definition**: Borrowing bVII, bVI, iv etc. from the parallel minor.  
+**Guitar Note**: Works great with open strings. Adds a **sunset color**.  
+**Example**: D–C–G (I–bVII–IV).  
+→ Learn more: [/resources/music-theory#modal-interchange](/resources/music-theory#modal-interchange)
+
+### Tritone Substitution / Backdoor
+**Definition**: V7⇄bII7, or bVII7→I.  
+**Guitar Note**: Use sparingly for rich color.  
+**Example**: A7→D becomes **E♭7→D**.  
+→ Learn more: [/resources/music-theory#tritone-backdoor](/resources/music-theory#tritone-backdoor)
+
+### Passing Diminished
+**Definition**: Insert a chromatic bridge for just one beat.  
+**Guitar Note**: Use **#ivo°7** etc. for smooth transitions.  
+**Example**: D｜**G#°7**｜A｜D.  
+→ Learn more: [/resources/music-theory#diminished](/resources/music-theory#diminished)
+
+---
+
+## D. Extensions and Alterations
+
+### 9/11/13 (Extensions)
+**Definition**: Color tones above the 7th.  
+**Guitar Note**: Add **just 1–2 targeted notes**.  
+**Example**: Cmaj7(9), Am7(9,11).
+
+### Alterations (♭9 / ♯9 / ♯11 / ♭13)
+**Definition**: Spices that shape dominant direction.  
+**Guitar Note**: Align with chord tones of the resolution target.  
+**Example**: G7(♭9)→Cmaj7 / G7(♯11)→Cmaj7.
+
+### Avoid Note
+**Definition**: Notes that clash within a specific chord.  
+**Guitar Note**: Watch for **11 over major** (half-step clash with 3rd).  
+**Example**: F (11) on Cmaj7 needs careful handling.
+
+---
+
+## E. Practical Tips
+
+### Harmonic Rhythm
+**Definition**: Duration of chord changes.  
+**Guitar Note**: Create **contrast** between sections.  
+**Example**: Verse = 1 bar, chorus = 2 beats.
+
+### Line Cliché
+**Definition**: Chromatic inner voice movement.  
+**Guitar Note**: I–Imaj7–I7–IV is simple and effective.  
+**Example**: C–Cmaj7–C7–F.
+
+### Pedal Point
+**Definition**: Sustaining one note throughout changes.  
+**Guitar Note**: Open string pedals are a guitar superpower.  
+**Example**: Keep high strings open while changing chords below.
+
+### Capo / Shaped / Sounding
+**Definition**: **Shaped = finger positions, Sounding = actual pitches**.  
+**Guitar Note**: **Decide key first, capo second**.  
+**Example**: Match vocal with –2, then add Capo 2 to use C shapes.
+
+---
+
+## Navigation Tips
+- **What are degrees?** → [/resources/music-theory#degrees](/resources/music-theory#degrees)  
+- **How to transpose progressions?** → [/resources/music-theory#key-roman](/resources/music-theory#key-roman)  
+- **Want to add color?** → [/resources/music-theory#color](/resources/music-theory#color)
+
+
+
+2e:T1f26,---
+title: "Glossary (用語解説)"
+description: "ギタリストのための音楽用語ミニ辞典。1行の定義＋ギター的メモ＋例で素早く腹落ち。"
+---
+
+# Glossary（用語解説）
+
+> 1つの用語につき **定義 → ギター的メモ → 例** の3点セット。  
+> より深掘りしたい場合は各項の **→ Learn more** を押して Music Theory へどうぞ。
+
+---
+
+## A. 基本のことば
+
+### 度数（Scale Degree）
+**定義**：あるキーでの **1〜7 の番号**。**1=主音**。  
+**ギター的メモ**：キーが変わると「1（主音）」も移動（＝移動ド）。番号の関係は常に同じ。  
+**例**：Cメジャーの 1–2–3 は **C–D–E**。Dメジャーなら **D–E–F#**。  
+→ Learn more: [/resources/music-theory#degrees](/resources/music-theory#degrees)
+
+### 音程（Interval）
+**定義**：2音の距離（完全5度、短3度…）。キーに依らない。  
+**ギター的メモ**：**進行やメロ=度数**で、**ボイシング=音程**で考えると速い。  
+**例**：パワーコードは **1（ルート）＋5度**。
+
+### キー（Key）
+**定義**：曲の中心となる高さ・調性。  
+**ギター的メモ**：歌いやすさは**キー選び**で8割決まる。Capoはその後。  
+**例**：サビが高い→半音下げて試す（–1）。  
+→ Learn more: [/resources/music-theory#key-roman](/resources/music-theory#key-roman)
+
+### ダイアトニック（Diatonic）
+**定義**：そのキーの"純正メンバー"。  
+**ギター的メモ**：まずはダイアトニックだけで骨組みを作ると破綻しにくい。  
+**例**：Dメジャーのダイアトニック・コードは **D Em F#m G A Bm C#°**。
+
+### ローマ数字（Roman Numerals）
+**定義**：度数で作られたコードの表記。**大文字=メジャー系／小文字=マイナー系／°=ディミニッシュ**。  
+**ギター的メモ**：**I–V–vi–IV** のように番号で覚えると移調が一瞬。  
+**例**：Cの I–V–vi–IV → Dでは **D–A–Bm–G**。  
+→ Learn more: [/resources/music-theory#roman](/resources/music-theory#roman)
+
+---
+
+## B. 和音と記号
+
+### ルート（Root）
+**定義**：コードの出発点。  
+**ギター的メモ**：ベースが居る場は**ルートを減らし**、3rd/7thを優先すると抜ける。  
+**例**：G7 で低音のGを任せ、上は **B（3rd）・F（7th）** を中心に。
+
+### 3度 / 5度 / 7th
+**定義**：3度＝性格、5度＝骨格、7th＝矢印（進み方）。  
+**ギター的メモ**：伴奏の最短解は**3rd/7th**を外さないこと。  
+**例**：**B→C**（G7→Cの3rd→ルート）を上声で作る。
+
+### トライアド（Triad）
+**定義**：1・3・5 の3和音。  
+**ギター的メモ**：**3度**を動かすだけで明暗が変わる。  
+**例**：C → **Cm** → F（3rdをE→E♭へ）。
+
+### セブンス・コード（7th Chord）
+**定義**：トライアド＋7th。  
+**ギター的メモ**：**V7は強い帰着**、**maj7は溶ける**。  
+**例**：G → **G7** → C / C → **Cmaj7** → C。
+
+### sus / add / slash
+**定義**：**sus**は3rdを一時保留、**add**は音を足す、**slash**はベース音を指定。  
+**ギター的メモ**：susは"ため"、slashは**歩くベース**作りに便利。  
+**例**：D–**Dsus4**–D / C–**C/E**–F。
+
+### 転回（Inversion）
+**定義**：コードのベース（最低音）を入れ替えた形。  
+**ギター的メモ**：**G/B、D/F#** などでベースラインを滑らかに。  
+**例**：C→**G/B**→Am→**F/C**。
+
+### ボイシング（Voicing）
+**定義**：コード内部の音の並べ方。  
+**ギター的メモ**：**トップノート**をデザインすると歌が立つ。  
+**例**：C→Am→F→G のトップを **E→E→F→F** に固定。
+
+### フォーム（Form/Shape）
+**定義**：押さえ方の型（Open/Barre…）。  
+**ギター的メモ**：フォーム≠ボイシング。**同じフォームでも並び替え**で印象は変わる。  
+**例**：CのフォームでもトップをEにする・Gにするで質感が変わる。
+
+---
+
+## C. 進行と機能
+
+### T / S / D（機能和声）
+**定義**：T=安定（I, vi）、S=準備（ii, IV）、D=引力（V, vii°）。  
+**ギター的メモ**：**T→S→D→T** の骨組みで迷いが減る。  
+**例**：C｜F｜G｜C。  
+→ Learn more: [/resources/music-theory#tsd](/resources/music-theory#tsd)
+
+### カデンツ（Cadence）
+**定義**：着地・区切りの型（V→I / IV→I / V→vi / …）。  
+**ギター的メモ**：**サビ頭はV→I**で旗を立てる。  
+**例**：G7→C（完全終止）。
+
+### セカンダリードミナント（V/○○）
+**定義**：目的コードを一瞬主役扱いし、そのV7で押す。  
+**ギター的メモ**：**1～2回**のスポット使いが映える。  
+**例**：D調で **E7→A**（V/V→V）。  
+→ Learn more: [/resources/music-theory#secondary](/resources/music-theory#secondary)
+
+### モーダルインターチェンジ（借用）
+**定義**：平行調から bVII, bVI, iv などを借りる。  
+**ギター的メモ**：開放弦に相性良。**夕暮れ色**をひと筆。  
+**例**：D–C–G（I–bVII–IV）。  
+→ Learn more: [/resources/music-theory#modal-interchange](/resources/music-theory#modal-interchange)
+
+### トライトーン代理 / バックドア
+**定義**：V7⇄bII7、または bVII7→I。  
+**ギター的メモ**：ここぞで1回。濃い色。  
+**例**：A7→D を **E♭7→D** に。  
+→ Learn more: [/resources/music-theory#tritone-backdoor](/resources/music-theory#tritone-backdoor)
+
+### ディミニッシュの通過
+**定義**：半音の橋を1拍だけ挟む。  
+**ギター的メモ**：**#ivo°7** 等で滑らかに次へ。  
+**例**：D｜**G#°7**｜A｜D。  
+→ Learn more: [/resources/music-theory#diminished](/resources/music-theory#diminished)
+
+---
+
+## D. テンションと拡張（Extensions/Alterations）
+
+### 9/11/13（拡張音）
+**定義**：7thより上の色付け。  
+**ギター的メモ**：**狙いの1〜2音だけ**足す。  
+**例**：Cmaj7(9), Am7(9,11)。
+
+### 変化音（♭9 / ♯9 / ♯11 / ♭13）
+**定義**：ドミナントの方向性を決めるスパイス。  
+**ギター的メモ**：解決先のコードトーンに寄せる。  
+**例**：G7(♭9)→Cmaj7 / G7(♯11)→Cmaj7。
+
+### Avoid Note（回避音）
+**定義**：そのコード上で濁りやすい音。  
+**ギター的メモ**：**メジャー上の11**などは要注意（3rdと半音衝突）。  
+**例**：Cmaj7 で F（11）は避けるか処理する。
+
+---
+
+## E. 実務のヒント
+
+### ハーモニック・リズム
+**定義**：コードの滞在時間。  
+**ギター的メモ**：セクションで**長短の対比**をつける。  
+**例**：Aメロ=1小節、サビ=2拍。
+
+### ライン・クリシェ
+**定義**：内声を半音で動かす飾り。  
+**ギター的メモ**：I–Imaj7–I7–IV など、簡単で映える。  
+**例**：C–Cmaj7–C7–F。
+
+### ペダルポイント
+**定義**：1音を鳴らし続ける。  
+**ギター的メモ**：開放弦ペダルはギターの特権。  
+**例**：高音弦を開放で鳴らしながら下でコードチェンジ。
+
+### Capo / Shaped / Sounding
+**定義**：**Shaped=指の形、Sounding=実音**。  
+**ギター的メモ**：**先にキー決定、後からCapo**。  
+**例**：歌に合わせて–2、押さえにくければCapo2で形はCに。
+
+---
+
+## 用語の並びで迷ったら
+- **度数って何？** → [/resources/music-theory#degrees](/resources/music-theory#degrees)  
+- **進行を移したい** → [/resources/music-theory#key-roman](/resources/music-theory#key-roman)  
+- **色を足したい** → [/resources/music-theory#color](/resources/music-theory#color)
+
+
+
+22:["$","$L2c",null,{"enContent":"$2d","jaContent":"$2e","backLink":"/resources"}]
+28:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+24:null
+2f:I[27201,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/c059d57364b7db98.js"],"IconMark"]
+26:{"metadata":[["$","title","0",{"children":"OtoTheory – Guitar Music Theory Made Easy"}],["$","meta","1",{"name":"description","content":"Free guitar chord finder, key analyzer, and music theory tool. Build chord progressions, discover scales, and support composition and guitar improvisation theoretically."}],["$","meta","2",{"name":"google-adsense-account","content":"ca-pub-9662479821167655"}],["$","link","3",{"rel":"canonical","href":"https://www.ototheory.com/ja/resources/glossary"}],["$","link","4",{"rel":"alternate","hrefLang":"en","href":"https://www.ototheory.com/resources/glossary"}],["$","link","5",{"rel":"alternate","hrefLang":"ja-JP","href":"https://www.ototheory.com/ja/resources/glossary"}],["$","link","6",{"rel":"alternate","hrefLang":"x-default","href":"https://www.ototheory.com/resources/glossary"}],["$","meta","7",{"property":"og:title","content":"OtoTheory – Guitar Music Theory Made Easy"}],["$","meta","8",{"property":"og:description","content":"Free guitar chord finder, key analyzer, and music theory tool. Build chord progressions, discover scales, and support composition and guitar improvisation theoretically."}],["$","meta","9",{"property":"og:locale","content":"ja_JP"}],["$","meta","10",{"name":"twitter:card","content":"summary"}],["$","meta","11",{"name":"twitter:title","content":"OtoTheory – Guitar Music Theory Made Easy"}],["$","meta","12",{"name":"twitter:description","content":"Free guitar chord finder, key analyzer, and music theory tool. Build chord progressions, discover scales, and support composition and guitar improvisation theoretically."}],["$","link","13",{"rel":"icon","href":"/favicon.ico?favicon.0b3bf435.ico","sizes":"256x256","type":"image/x-icon"}],["$","link","14",{"rel":"icon","href":"/favicon.ico","sizes":"any"}],["$","link","15",{"rel":"icon","href":"/favicon-32x32.png","sizes":"32x32","type":"image/png"}],["$","link","16",{"rel":"icon","href":"/favicon-16x16.png","sizes":"16x16","type":"image/png"}],["$","link","17",{"rel":"apple-touch-icon","href":"/apple-touch-icon.png","sizes":"180x180","type":"image/png"}],["$","$L2f","18",{}]],"error":null,"digest":"$undefined"}
+2b:"$26:metadata"

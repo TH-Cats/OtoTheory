@@ -1,0 +1,18 @@
+{
+  "pages": {
+    "/ja/resources/glossary/page": [
+      "static/chunks/ff1a16fafef87110.js",
+      "static/chunks/c059d57364b7db98.js",
+      "static/chunks/39861196b49736a0.css",
+      "static/chunks/8cbbe25b15b5d7ce.js",
+      "static/chunks/d6cf8c2377950a6e.css",
+      "static/chunks/4b63b2217320630c.js",
+      "static/chunks/55d70d6f4355bed6.js",
+      "static/chunks/3609cefa23fa8e7f.js",
+      "static/chunks/fdf5c956028d2489.js",
+      "static/chunks/d7eefcf0774315f0.js",
+      "static/chunks/8082ab48faca5ea1.js",
+      "static/chunks/turbopack-8a2426b25c8ce220.js"
+    ]
+  }
+}

@@ -3,10 +3,13 @@ import SwiftUI
 // MARK: - Notification Extension
 extension Notification.Name {
     static let loadSketch = Notification.Name("loadSketch")
+    static let navigateToChordLibrary = Notification.Name("navigateToChordLibrary")
 }
 
 struct MainTabView: View {
     @State private var selectedTab = 0
+    @State private var targetChordForLibrary: String? = nil
+    @State private var highlightChordInLibrary: Bool = false
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -22,7 +25,10 @@ struct MainTabView: View {
                 }
                 .tag(1)
             
-            ChordLibraryView()
+            ChordLibraryView(
+                targetChord: $targetChordForLibrary,
+                highlightChord: $highlightChordInLibrary
+            )
                 .tabItem {
                     Label("Chord Library", systemImage: "guitars.fill")
                 }
@@ -49,6 +55,14 @@ struct MainTabView: View {
         .onReceive(NotificationCenter.default.publisher(for: .loadSketch)) { _ in
             // Switch to Chord Progression tab when loading a sketch
             selectedTab = 0
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .navigateToChordLibrary)) { notification in
+            // Navigate to Chord Library tab and highlight specific chord
+            if let chordName = notification.object as? String {
+                targetChordForLibrary = chordName
+                selectedTab = 2
+                highlightChordInLibrary = true
+            }
         }
     }
 }

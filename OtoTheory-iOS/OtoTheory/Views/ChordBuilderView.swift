@@ -114,6 +114,17 @@ struct ChordBuilderView: View {
                             .background(Color.blue.opacity(0.2))
                             .cornerRadius(8)
                         }
+                        .contextMenu {
+                            Button(action: {
+                                // Navigate to chord library
+                                NotificationCenter.default.post(
+                                    name: .navigateToChordLibrary,
+                                    object: previewChord
+                                )
+                            }) {
+                                Label("フォームを確認", systemImage: "music.note")
+                            }
+                        }
                     }
                     
                     // Add Button

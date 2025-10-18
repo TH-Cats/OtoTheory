@@ -2514,6 +2514,19 @@ struct SlotView: View {
         .buttonStyle(PlainButtonStyle())
         .scaleEffect(isHighlighted ? 1.05 : 1.0)
         .animation(.spring(response: 0.4, dampingFraction: 0.6), value: isHighlighted)
+        .contextMenu {
+            if let chord = chord {
+                Button(action: {
+                    // Navigate to chord library
+                    NotificationCenter.default.post(
+                        name: .navigateToChordLibrary,
+                        object: chord
+                    )
+                }) {
+                    Label("フォームを確認", systemImage: "music.note")
+                }
+            }
+        }
     }
 }
 

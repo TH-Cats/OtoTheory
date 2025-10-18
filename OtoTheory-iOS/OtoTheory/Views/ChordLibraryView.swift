@@ -21,6 +21,10 @@ struct ChordLibraryView: View {
     @State private var showFullscreen: Bool = false
     @StateObject private var orientationManager = OrientationManager.shared
     
+    // Navigation from other views
+    @Binding var targetChord: String?
+    @Binding var highlightChord: Bool
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -99,6 +103,19 @@ struct ChordLibraryView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .onChange(of: targetChord) { _, newChord in
+            if let chordName = newChord {
+                navigateToChord(chordName)
+            }
+        }
+        .onChange(of: highlightChord) { _, shouldHighlight in
+            if shouldHighlight {
+                // Start highlight animation
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    highlightChord = false
+                }
+            }
+        }
         .fullScreenCover(isPresented: $showFullscreen) {
             if let chordEntry = libraryManager.getChord(root: selectedRoot, quality: selectedQuality),
                currentShapeIndex < chordEntry.shapes.count {
@@ -258,6 +275,34 @@ struct ChordLibraryView: View {
     }
     
     // MARK: - Helpers
+    
+    private func navigateToChord(_ chordName: String) {
+        // Parse chord name to extract root and quality
+        if let (root, quality) = parseChordName(chordName) {
+            selectedRoot = root
+            selectedQuality = quality
+            currentShapeIndex = 0
+            targetChord = nil // Clear target after navigation
+        }
+    }
+    
+    private func parseChordName(_ chordName: String) -> (ChordRoot, ChordLibraryQuality)? {
+        // Simple chord name parsing
+        // This is a basic implementation - you might want to enhance it
+        let normalizedName = chordName.replacingOccurrences(of: " ", with: "")
+        
+        // Try to find matching root and quality
+        for root in ChordRoot.allCases {
+            for quality in ChordLibraryQuality.allCases {
+                let expectedSymbol = libraryManager.buildSymbol(root: root, quality: quality)
+                if expectedSymbol == normalizedName {
+                    return (root, quality)
+                }
+            }
+        }
+        
+        return nil
+    }
     
     private func toggleSave(shape: ChordShape) {
         if savedFormsManager.isSaved(

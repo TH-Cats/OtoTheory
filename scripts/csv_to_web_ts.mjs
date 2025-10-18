@@ -120,8 +120,16 @@ function convertFingerToTS(finger) {
 function generateBarreTS(barreFret, barreFrom, barreTo, finger) {
   if (!barreFret || !barreFrom || !barreTo) return null;
   
+  // Validate numeric values
+  const fret = parseInt(barreFret);
+  const from = parseInt(barreFrom);
+  const to = parseInt(barreTo);
+  
+  if (isNaN(fret) || isNaN(from) || isNaN(to)) return null;
+  if (from < 1 || from > 6 || to < 1 || to > 6) return null;
+  
   const fingerStr = convertFingerToTS(finger);
-  return `{ fret: ${barreFret}, fromString: ${barreFrom}, toString: ${barreTo}, finger: ${fingerStr} }`;
+  return `{ fret: ${fret}, fromString: ${from}, toString: ${to}, finger: ${fingerStr} }`;
 }
 
 // Generate TypeScript code
