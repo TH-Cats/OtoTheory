@@ -6,7 +6,7 @@ import { useRovingTabs } from "@/hooks/useRovingTabs";
 import Fretboard from "@/components/Fretboard";
 import CapoFold from "@/components/CapoFold";
 import { rankKeys, rankScales, type ScaleRank, PITCHES, detectCadence, noteToPc, romanToChordSymbol, type Mode } from "@/lib/theory";
-import { getScalePitchesById, getScalePitches, scaleTypeLabel, SCALE_INTERVALS, parentModeOf } from "@/lib/scales";
+import { getScalePitchesById, getScalePitches, scaleTypeLabel, normalizeScaleId, SCALE_INTERVALS, parentModeOf } from "@/lib/scales";
 import { diatonicTriads, triadToChordSym } from "@/lib/theory/diatonic";
 import { SCALE_CATALOG } from "@/lib/scaleCatalog";
 import { toRoman, type Mode as RomanMode } from "@/lib/theory/roman";
@@ -1432,8 +1432,10 @@ export default function FindKeyPage() {
                 </H3>
                 <div className="chip-row mb-2" role="tablist" aria-label="Scale candidates">
                   {scaleCandidates.map((s, idx) => {
-                    const active = selectedScale?.type === s.type && selectedScale?.root === s.root;
-                    const label = `${PITCHES[s.root]} ${scaleTypeLabel(s.type)}`;
+                    console.log('[Scale type]', s.type);
+                    const type = normalizeScaleId(s.type as any);
+                    const active = selectedScale?.type === type && selectedScale?.root === s.root;
+                    const label = `${PITCHES[s.root]} ${scaleTypeLabel(type as any)}`;
                     return (
                       <button
                         key={`${label}-${idx}`}

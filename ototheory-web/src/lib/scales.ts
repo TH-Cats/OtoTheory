@@ -48,7 +48,18 @@ export function getScalePitches(root: Pc, type: ScaleId): Pc[] {
   return ints.map((iv) => (root + iv + 120) % 12);
 }
 
+// エイリアス→正規IDの正規化関数
+export function normalizeScaleId(id: string): string {
+  const aliases: Record<string, string> = { Major: 'Ionian', Minor: 'Aeolian' };
+  const key = String(id);
+  return aliases[key] ?? aliases[key[0].toUpperCase()+key.slice(1)] ?? id;
+}
+
 export function scaleTypeLabel(t: ScaleId | ScaleType): string {
+  // エイリアス吸収（防御的）
+  const aliasToId: Record<string, ScaleType> = { Major: 'Ionian', Minor: 'Aeolian' };
+  const id = (aliasToId[t as string] ?? t) as ScaleType;
+  
   const map: Record<ScaleType,string> = {
     Ionian: 'Major Scale',
     Dorian: 'Dorian',
@@ -63,10 +74,10 @@ export function scaleTypeLabel(t: ScaleId | ScaleType): string {
     MinorPentatonic: 'Minor Pentatonic',
   };
   // Mapを既定とし、未定義はカタログのdisplay.enを利用
-  const short = map[t as ScaleType];
+  const short = map[id];
   if (short) return short;
-  const cat = SCALE_CATALOG.find(s => s.id === (t as any));
-  return (cat?.display.en || String(t)).replace(/\s*\(.*\)$/,'');
+  const cat = SCALE_CATALOG.find(s => s.id === (id as any));
+  return (cat?.display.en || String(id)).replace(/\s*\(.*\)$/,'');
 }
 
 // === Degree labels (with accidentals) per scale type ===
