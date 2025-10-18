@@ -731,5 +731,8 @@ struct ChordLibraryFullscreenView: View {
 }
 
 #Preview {
-    ChordLibraryView()
+    ChordLibraryView(
+        targetChord: .constant(nil),
+        highlightChord: .constant(false)
+    )
 }

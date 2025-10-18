@@ -43,6 +43,13 @@ function getRoman(noteName: string, root: Root): string {
   return romans[interval];
 }
 
+// Check if a note is the root note
+function isRootNote(stringIdx: number, fret: number, root: Root): boolean {
+  if (fret === 'x' || fret === 0) return false;
+  const noteName = getNoteName(stringIdx, fret);
+  return noteName === root;
+}
+
 export function ChordDiagram({ frets, fingers, barres = [], root, displayMode, width = 240, maxFrets = 4 }: Props) {
   const height = 160;
   const innerW = width - PAD.left - PAD.right;
@@ -144,7 +151,10 @@ export function ChordDiagram({ frets, fingers, barres = [], root, displayMode, w
       }
     } else if (typeof f === 'number') {
       const x = xForFret(f);
-      markers.push(<circle key={`p${s}`} cx={x} cy={y} r={11} fill="#1f2328" stroke="#3b3f45" />);
+      const isRoot = isRootNote(s, f, root);
+      const dotColor = isRoot ? "#ff8c00" : "#1f2328"; // Orange for root, dark for others
+      const strokeColor = isRoot ? "#ffa500" : "#3b3f45"; // Lighter orange stroke for root
+      markers.push(<circle key={`p${s}`} cx={x} cy={y} r={11} fill={dotColor} stroke={strokeColor} />);
       
       // Display content based on mode
       let displayText = '';
