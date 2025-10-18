@@ -34,8 +34,8 @@ export default function Nav() {
               </>
             ) : l.href === `${base}/chord-library` ? (
               <>
-                <span className="block leading-none md:inline">{isJa ? 'Chord ' : 'Chord '}</span>
-                <span className="block leading-tight md:inline">{isJa ? 'Library' : 'Library'}</span>
+                <span className="block leading-none md:inline">{isJa ? 'コード' : 'Chord '}</span>
+                <span className="block leading-tight md:inline">{isJa ? '辞典' : 'Library'}</span>
               </>
             ) : (
               l.label
