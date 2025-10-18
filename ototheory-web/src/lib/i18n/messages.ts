@@ -27,7 +27,7 @@ export const messages = {
       // Interactive cards for detailed explanations
       cards: [
         {
-          title: '🎯 How to Use & Basic Operations',
+          title: '🎯 How to Use',
           description: 'Simply select a root note and chord type to display various chord forms. Switch between detailed information using "Finger", "Intervals", and "Note Names" buttons.',
         },
         {
@@ -110,7 +110,7 @@ export const messages = {
       // インタラクティブカード（詳細説明用）
       cards: [
         {
-          title: '🎯 使い方・基本操作',
+          title: '🎯 使い方',
           description: 'ルート音とコードタイプを選択するだけで、様々なコードフォームが表示されます。「指」「度数」「音名」ボタンで詳細情報を切り替えられます。',
         },
         {
