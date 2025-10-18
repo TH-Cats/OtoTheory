@@ -55,7 +55,7 @@ export function scaleTypeLabel(t: ScaleId | ScaleType): string {
     Phrygian: 'Phrygian',
     Lydian: 'Lydian',
     Mixolydian: 'Mixolydian',
-    Aeolian: 'Natural Minor Scale',
+    Aeolian: 'Natural Minor',
     Locrian: 'Locrian',
     HarmonicMinor: 'Harmonic Minor',
     MelodicMinor: 'Melodic Minor',
