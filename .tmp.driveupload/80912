@@ -1,0 +1,3 @@
+module.exports=[79382,a=>{"use strict";a.s(["default",()=>c,"metadata",()=>b]);let b={title:"Guitar Resources – Theory, Glossary & Chord Library | OtoTheory",description:"Comprehensive guitar resources: music theory guide, terminology glossary, and chord library. Learn theory by numbers with practical recipes and quick reference tools.",alternates:{canonical:"/resources",languages:{en:"/resources","ja-JP":"/ja/resources","x-default":"/resources"}},openGraph:{title:"Guitar Resources – Theory, Glossary & Chord Library",description:"Complete guitar resources hub with theory, terminology, and chord references."}};function c({children:a}){return a}}];
+
+//# sourceMappingURL=src_app_resources_layout_tsx_e6b195a0._.js.map

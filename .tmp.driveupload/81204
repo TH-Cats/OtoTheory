@@ -1,0 +1,3 @@
+module.exports=[22135,a=>{"use strict";a.s(["default",()=>e,"metadata",()=>d]);var b=a.i(7997),c=a.i(40270);let d={alternates:{canonical:"/ja/resources/glossary",languages:{en:"/resources/glossary","ja-JP":"/ja/resources/glossary","x-default":"/resources/glossary"}},openGraph:{locale:"ja_JP"}};function e({children:a}){return(0,b.jsxs)(b.Fragment,{children:[(0,b.jsx)(c.BreadcrumbStructuredData,{lang:"ja",items:[{name:"Home",url:"https://www.ototheory.com/ja"},{name:"Resources",url:"https://www.ototheory.com/ja/resources"},{name:"Glossary",url:"https://www.ototheory.com/ja/resources/glossary"}]}),a]})}}];
+
+//# sourceMappingURL=src_app_ja_resources_glossary_layout_tsx_c376f5cb._.js.map

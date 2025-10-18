@@ -21,10 +21,6 @@ struct DiatonicTableView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             // Header
-            Text("Result")
-                .font(.title2)
-                .bold()
-            
             Text("Diatonic")
                 .font(.headline)
             

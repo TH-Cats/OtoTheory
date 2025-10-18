@@ -747,6 +747,10 @@ struct ProgressionView: View {
                 // Result Section (after analysis)
                 if isAnalyzed && !keyCandidates.isEmpty {
                     VStack(alignment: .leading, spacing: 16) {
+                        Text("Result")
+                            .font(.title2)
+                            .bold()
+                            .padding(.horizontal)
                         
                         // Key Selection
                         VStack(alignment: .leading, spacing: 12) {
