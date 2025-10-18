@@ -82,6 +82,13 @@
 |---|---|---|
 | chordLibrary.title | Chord Library | コード辞典 |
 | chordLibrary.sub | Choose a Root and Quality to see 3 chord forms side by side with horizontal fretboard layout. Supports Eb, Ab, Bb and other practical keys. Hear them with ▶ Play (strum) and Arp (arpeggio). | ルートとコードタイプを選ぶと、押さえ方が横並びで複数表示されます。Eb、Ab、Bbなどの実用的なキーに対応。▶ Playでストローク、Arpでアルペジオを再生できます。 |
+| chordLibrary.formNames | Form Names | フォーム名 |
+| chordLibrary.open | Open | オープン |
+| chordLibrary.root6 | Root-6 | ルート6弦 |
+| chordLibrary.root5 | Root-5 | ルート5弦 |
+| chordLibrary.root4 | Root-4 | ルート4弦 |
+| chordLibrary.triad1 | Triad-1 | トライアド1 |
+| chordLibrary.triad2 | Triad-2 | トライアド2 |
 
 ---
 

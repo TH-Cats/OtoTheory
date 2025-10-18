@@ -2640,12 +2640,12 @@ struct ScaleCandidateButton: View {
 
 private func scaleTypeToDisplayName(_ type: String) -> String {
     switch type {
-    case "Ionian": return "major scale"
+    case "Ionian": return "Major Scale"
     case "Dorian": return "Dorian"
     case "Phrygian": return "Phrygian"
     case "Lydian": return "Lydian"
     case "Mixolydian": return "Mixolydian"
-    case "Aeolian": return "natural minor scale"
+    case "Aeolian": return "Natural Minor"
     case "Locrian": return "Locrian"
     case "HarmonicMinor": return "Harmonic Minor"
     case "MelodicMinor": return "Melodic Minor"

@@ -47,219 +47,219 @@ C,C,M,1,C-1-Open,Open,0,1,0,2,3,x,-,1,-,2,3,-,,,,"Cメジャーオープン | �
 C,C,M,2,C-2-Root6,Root-6,8,8,9,10,10,8,1,1,2,3,4,1,8,1,6,"6弦ルート | Eフォームバレー"
 C,C,M,3,C-3-Root5,Root-5,3,5,5,5,3,x,1,3,4,2,1,-,3,1,5,"5弦ルート | Aフォームバレー"
 C,C,M,4,C-4-Root4,Root-4,8,8,9,10,x,x,1,1,2,3,-,-,,,,"4弦ルート | 高音域ポジション"
-C,C,M,5,C-5-Triad1,Triad-1,3,5,5,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-C,C,M,6,C-6-Triad2,Triad-2,x,8,9,10,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+C,C,M,5,C-5-Triad1,トライアド1,3,5,5,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+C,C,M,6,C-6-Triad2,トライアド2,x,8,9,10,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
 D,D,M,1,D-1-Open,Open,3,4,3,0,0,0,1,3,2,-,-,-,,, ,"D major open | Bright sound"
 D,D,M,2,D-2-Root6,Root-6,10,10,11,12,12,10,1,1,2,3,4,1,10,1,6,"6弦ルート | Eフォームバレー"
 D,D,M,3,D-3-Root5,Root-5,5,7,7,7,5,x,1,3,4,2,1,-,5,1,5,"5弦ルート | Aフォームバレー"
 D,D,M,4,D-4-Root4,Root-4,10,10,11,12,x,x,1,1,2,3,-,-,,,,"4弦ルート | 高音域ポジション"
-D,D,M,5,D-5-Triad1,Triad-1,5,7,7,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-D,D,M,6,D-6-Triad2,Triad-2,x,10,11,12,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+D,D,M,5,D-5-Triad1,トライアド1,5,7,7,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+D,D,M,6,D-6-Triad2,トライアド2,x,10,11,12,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
 E,E,M,1,E-1-Open,Open,0,0,1,2,2,0,-,-,1,3,2,-,,,,"E major open | Full, rich sound"
 E,E,M,2,E-2-Root6,Root-6,x,12,13,14,x,12,-,2,3,4,-,1,,,,,"Eメジャーコンパクト（x-12-13-14-x-12）"
 E,E,M,3,E-3-Root5,Root-5,7,9,9,9,7,x,1,3,4,2,1,-,7,1,5,"5弦ルート | Aフォームバレー"
 E,E,M,4,E-4-Root4,Root-4,12,12,13,14,x,x,1,1,2,3,-,-,,,,"4弦ルート | 高音域ポジション"
-E,E,M,5,E-5-Triad1,Triad-1,7,9,9,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-E,E,M,6,E-6-Triad2,Triad-2,x,12,13,14,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+E,E,M,5,E-5-Triad1,トライアド1,7,9,9,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+E,E,M,6,E-6-Triad2,トライアド2,x,12,13,14,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
 G,G,M,1,G-1-Open,Open,4,0,0,0,3,4,3,-,-,-,1,2,-,,,,"G major open | Full-bodied"
 G,G,M,2,G-2-Root6,Root-6,3,3,4,5,5,3,1,1,2,3,4,1,3,1,6,"6弦ルート | Eフォームバレー"
 G,G,M,3,G-3-Root5,Root-5,10,12,12,12,10,x,1,3,4,2,1,-,10,1,5,"5弦ルート | Aフォームバレー"
 G,G,M,4,G-4-Root4,Root-4,3,3,4,5,x,x,1,1,2,3,-,-,,,,"4弦ルート | 高音域ポジション"
-G,G,M,5,G-5-Triad1,Triad-1,10,12,12,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-G,G,M,6,G-6-Triad2,Triad-2,x,3,4,5,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+G,G,M,5,G-5-Triad1,トライアド1,10,12,12,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+G,G,M,6,G-6-Triad2,トライアド2,x,3,4,5,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
 A,A,M,1,A-1-Open,Open,0,2,2,2,0,x,-,2,3,1,-,-,,, ,"Aメジャーオープン | 力強い響き"
 A,A,M,2,A-2-Root6,Root-6,5,5,6,7,7,5,1,1,2,3,4,1,5,1,6,"6弦ルート | Eフォームバレー"
 A,A,M,3,A-3-Root5,Root-5,x,9,10,11,12,x,-,1,2,3,4,-,9,1,5,"Aメジャールート5 | 9フレットでバレー"
 A,A,M,4,A-4-Root4,Root-4,5,5,6,7,x,x,1,1,2,3,-,-,,,,"4弦ルート | 高音域ポジション"
-A,A,M,5,A-5-Triad1,Triad-1,12,14,14,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-A,A,M,6,A-6-Triad2,Triad-2,x,5,6,7,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+A,A,M,5,A-5-Triad1,トライアド1,12,14,14,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+A,A,M,6,A-6-Triad2,トライアド2,x,5,6,7,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
 Am,Am,m,1,Am-1-Open,Open,0,1,2,2,0,x,-,1,3,2,-,-,,,,"Aマイナーオープン | メランコリック"
 Am,Am,m,2,Am-2-Root6,Root-6,5,5,5,7,7,5,1,1,1,3,4,1,5,1,6,"6弦ルート | Eフォームマイナーバレー"
 Am,Am,m,3,Am-3-Root5,Root-5,x,9,10,10,12,x,-,1,2,3,4,-,9,1,5,"Aマイナールート5 | 9フレットでバレー"
 Am,Am,m,4,Am-4-Root4,Root-4,5,5,5,7,x,x,1,1,1,3,-,-,,,,"4弦ルート | 高音域ポジション"
-Am,Am,m,5,Am-5-Triad1,Triad-1,12,13,14,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-Am,Am,m,6,Am-6-Triad2,Triad-2,x,5,5,7,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Am,Am,m,5,Am-5-Triad1,トライアド1,12,13,14,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Am,Am,m,6,Am-6-Triad2,トライアド2,x,5,5,7,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
 Dm,Dm,m,1,Dm-1-Open,Open,2,4,3,0,0,0,1,3,2,-,-,-,,,,"D minor open | Compact"
 Dm,Dm,m,2,Dm-2-Root6,Root-6,10,10,10,12,12,10,1,1,1,3,4,1,10,1,6,"6弦ルート | Eフォームマイナーバレー"
 Dm,Dm,m,3,Dm-3-Root5,Root-5,5,6,7,7,5,x,1,2,3,4,1,-,5,1,5,"5弦ルート | Aフォームマイナーバレー"
 Dm,Dm,m,4,Dm-4-Root4,Root-4,10,10,10,12,x,x,1,1,1,3,-,-,,,,"4弦ルート | 高音域ポジション"
-Dm,Dm,m,5,Dm-5-Triad1,Triad-1,5,6,7,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-Dm,Dm,m,6,Dm-6-Triad2,Triad-2,x,10,10,12,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Dm,Dm,m,5,Dm-5-Triad1,トライアド1,5,6,7,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Dm,Dm,m,6,Dm-6-Triad2,トライアド2,x,10,10,12,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
 Em,Em,m,1,Em-1-Open,Open,0,0,0,2,2,0,-,-,-,2,3,-,,,,"Eマイナーオープン | 美しい共鳴"
 Em,Em,m,2,Em-2-Root6,Root-6,x,x,9,9,10,12,-,-,1,1,2,4,9,3,4,"コンパクトEm（x-x-9-9-10-12）"
 Em,Em,m,3,Em-3-Root5,Root-5,7,8,9,9,7,x,1,2,3,4,1,-,7,1,5,"5弦ルート | Aフォームマイナーバレー"
 Em,Em,m,4,Em-4-Root4,Root-4,12,12,12,14,x,x,1,1,1,3,-,-,,,,"4弦ルート | 高音域ポジション"
-Em,Em,m,5,Em-5-Triad1,Triad-1,7,8,9,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-Em,Em,m,6,Em-6-Triad2,Triad-2,x,12,12,14,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Em,Em,m,5,Em-5-Triad1,トライアド1,7,8,9,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Em,Em,m,6,Em-6-Triad2,トライアド2,x,12,12,14,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
 C#,C#,M,2,C#-2-Root6,Root-6,9,9,10,11,11,9,1,1,2,3,4,1,9,1,6,"6弦ルート | Eフォームバレー"
 C#,C#,M,3,C#-3-Root5,Root-5,4,6,6,6,4,x,1,3,4,2,1,-,4,1,5,"5弦ルート | Aフォームバレー"
 C#,C#,M,4,C#-4-Root4,Root-4,9,9,10,11,x,x,1,1,2,3,-,-,,,,"4弦ルート | 高音域ポジション"
-C#,C#,M,5,C#-5-Triad1,Triad-1,4,6,6,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-C#,C#,M,6,C#-6-Triad2,Triad-2,x,9,10,11,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+C#,C#,M,5,C#-5-Triad1,トライアド1,4,6,6,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+C#,C#,M,6,C#-6-Triad2,トライアド2,x,9,10,11,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
 D#,D#,M,2,D#-2-Root6,Root-6,11,11,12,13,13,11,1,1,2,3,4,1,11,1,6,"6弦ルート | Eフォームバレー"
 D#,D#,M,3,D#-3-Root5,Root-5,6,8,8,8,6,x,1,3,4,2,1,-,6,1,5,"5弦ルート | Aフォームバレー"
 D#,D#,M,4,D#-4-Root4,Root-4,11,11,12,13,x,x,1,1,2,3,-,-,,,,"4弦ルート | 高音域ポジション"
-D#,D#,M,5,D#-5-Triad1,Triad-1,6,8,8,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-D#,D#,M,6,D#-6-Triad2,Triad-2,x,11,12,13,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+D#,D#,M,5,D#-5-Triad1,トライアド1,6,8,8,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+D#,D#,M,6,D#-6-Triad2,トライアド2,x,11,12,13,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
 Eb,Eb,M,2,Eb-2-Root6,Root-6,11,11,12,13,13,11,1,1,2,3,4,1,11,1,6,"6弦ルート | Eフォームバレー"
 Eb,Eb,M,3,Eb-3-Root5,Root-5,6,8,8,8,6,x,1,3,4,2,1,-,6,1,5,"5弦ルート | Aフォームバレー"
 Eb,Eb,M,4,Eb-4-Root4,Root-4,11,11,12,13,x,x,1,1,2,3,-,-,,,,"4弦ルート | 高音域ポジション"
-Eb,Eb,M,5,Eb-5-Triad1,Triad-1,6,8,8,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-Eb,Eb,M,6,Eb-6-Triad2,Triad-2,x,11,12,13,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Eb,Eb,M,5,Eb-5-Triad1,トライアド1,6,8,8,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Eb,Eb,M,6,Eb-6-Triad2,トライアド2,x,11,12,13,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
 Cm,Cm,m,2,Cm-2-Root6,Root-6,8,8,8,10,10,8,1,1,1,3,4,1,8,1,6,"6弦ルート | Eフォームマイナーバレー"
 Cm,Cm,m,3,Cm-3-Root5,Root-5,x,3,3,5,3,x,-,1,1,3,1,-,3,1,5,"C minor root-5 | Barre at 3rd fret"
 Cm,Cm,m,4,Cm-4-Root4,Root-4,8,8,8,10,x,x,1,1,1,3,-,-,,,,"4弦ルート | 高音域ポジション"
-Cm,Cm,m,5,Cm-5-Triad1,Triad-1,3,4,5,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-Cm,Cm,m,6,Cm-6-Triad2,Triad-2,x,8,8,10,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Cm,Cm,m,5,Cm-5-Triad1,トライアド1,3,4,5,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Cm,Cm,m,6,Cm-6-Triad2,トライアド2,x,8,8,10,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
 C#m,C#m,m,2,C#m-2-Root6,Root-6,9,9,9,11,11,9,1,1,1,3,4,1,9,1,6,"6弦ルート | Eフォームマイナーバレー"
 C#m,C#m,m,3,C#m-3-Root5,Root-5,x,4,4,6,4,x,-,1,1,3,1,-,4,1,5,"C# minor root-5 | Barre at 4th fret"
 C#m,C#m,m,4,C#m-4-Root4,Root-4,9,9,9,11,x,x,1,1,1,3,-,-,,,,"4弦ルート | 高音域ポジション"
-C#m,C#m,m,5,C#m-5-Triad1,Triad-1,4,5,6,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-C#m,C#m,m,6,C#m-6-Triad2,Triad-2,x,9,9,11,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+C#m,C#m,m,5,C#m-5-Triad1,トライアド1,4,5,6,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+C#m,C#m,m,6,C#m-6-Triad2,トライアド2,x,9,9,11,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
 D#m,D#m,m,2,D#m-2-Root6,Root-6,11,11,11,13,13,11,1,1,1,3,4,1,11,1,6,"6弦ルート | Eフォームマイナーバレー"
 D#m,D#m,m,3,D#m-3-Root5,Root-5,x,6,7,8,8,6,x,-,1,2,4,3,1,-,6,1,5,"D# minor root-5 | Barre at 6th fret"
 D#m,D#m,m,4,D#m-4-Root4,Root-4,11,11,11,13,x,x,1,1,1,3,-,-,,,,"4弦ルート | 高音域ポジション"
-D#m,D#m,m,5,D#m-5-Triad1,Triad-1,6,7,8,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-D#m,D#m,m,6,D#m-6-Triad2,Triad-2,x,11,11,13,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+D#m,D#m,m,5,D#m-5-Triad1,トライアド1,6,7,8,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+D#m,D#m,m,6,D#m-6-Triad2,トライアド2,x,11,11,13,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
 Ebm,Ebm,m,2,Ebm-2-Root6,Root-6,11,11,11,13,13,11,1,1,1,3,4,1,11,1,6,"6弦ルート | Eフォームマイナーバレー"
 Ebm,Ebm,m,3,Ebm-3-Root5,Root-5,x,6,7,8,8,6,x,-,1,2,4,3,1,-,6,1,5,"Eb minor root-5 | Barre at 6th fret"
 Ebm,Ebm,m,4,Ebm-4-Root4,Root-4,11,11,11,13,x,x,1,1,1,3,-,-,,,,"4弦ルート | 高音域ポジション"
-Ebm,Ebm,m,5,Ebm-5-Triad1,Triad-1,6,7,8,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-Ebm,Ebm,m,6,Ebm-6-Triad2,Triad-2,x,11,11,13,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Ebm,Ebm,m,5,Ebm-5-Triad1,トライアド1,6,7,8,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Ebm,Ebm,m,6,Ebm-6-Triad2,トライアド2,x,11,11,13,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
 Fm,Fm,m,2,Fm-2-Root6,Root-6,1,1,1,3,3,1,1,1,1,3,4,1,1,1,6,"6弦ルート | Eフォームマイナーバレー"
 Fm,Fm,m,3,Fm-3-Root5,Root-5,x,8,9,10,10,8,x,-,1,2,4,3,1,-,8,1,5,"F minor root-5 | Barre at 8th fret"
 Fm,Fm,m,4,Fm-4-Root4,Root-4,1,1,1,3,x,x,1,1,1,3,-,-,,,,"4弦ルート | 高音域ポジション"
-Fm,Fm,m,5,Fm-5-Triad1,Triad-1,8,9,10,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-Fm,Fm,m,6,Fm-6-Triad2,Triad-2,x,1,1,3,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Fm,Fm,m,5,Fm-5-Triad1,トライアド1,8,9,10,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Fm,Fm,m,6,Fm-6-Triad2,トライアド2,x,1,1,3,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
 F,F,M,2,F-2-Root6,Root-6,1,1,2,3,3,1,1,1,2,3,4,1,1,1,6,"6弦ルート | Eフォームバレー"
 F,F,M,3,F-3-Root5,Root-5,8,10,10,10,8,x,1,3,4,2,1,-,8,1,5,"5弦ルート | Aフォームバレー"
 F,F,M,4,F-4-Root4,Root-4,3,3,4,5,x,x,1,1,2,3,-,-,,,,"4弦ルート | 高音域ポジション"
-F,F,M,5,F-5-Triad1,Triad-1,8,10,10,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-F,F,M,6,F-6-Triad2,Triad-2,x,1,2,3,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+F,F,M,5,F-5-Triad1,トライアド1,8,10,10,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+F,F,M,6,F-6-Triad2,トライアド2,x,1,2,3,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
 F#m,F#m,m,2,F#m-2-Root6,Root-6,2,2,2,4,4,2,1,1,1,3,4,1,2,1,6,"6弦ルート | Eフォームマイナーバレー"
 F#m,F#m,m,3,F#m-3-Root5,Root-5,x,9,10,11,11,9,x,-,1,2,4,3,1,-,9,1,5,"F# minor root-5 | Barre at 9th fret"
 F#m,F#m,m,4,F#m-4-Root4,Root-4,2,2,2,4,x,x,1,1,1,3,-,-,,,,"4弦ルート | 高音域ポジション"
-F#m,F#m,m,5,F#m-5-Triad1,Triad-1,9,10,11,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-F#m,F#m,m,6,F#m-6-Triad2,Triad-2,x,2,2,4,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+F#m,F#m,m,5,F#m-5-Triad1,トライアド1,9,10,11,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+F#m,F#m,m,6,F#m-6-Triad2,トライアド2,x,2,2,4,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
 F#,F#,M,2,F#-2-Root6,Root-6,2,2,3,4,4,2,1,1,2,3,4,1,2,1,6,"6弦ルート | Eフォームバレー"
 F#,F#,M,3,F#-3-Root5,Root-5,9,11,11,11,9,x,1,3,4,2,1,-,9,1,5,"5弦ルート | Aフォームバレー"
 F#,F#,M,4,F#-4-Root4,Root-4,2,2,3,4,x,x,1,1,2,3,-,-,,,,"4弦ルート | 高音域ポジション"
-F#,F#,M,5,F#-5-Triad1,Triad-1,9,11,11,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-F#,F#,M,6,F#-6-Triad2,Triad-2,x,2,3,4,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+F#,F#,M,5,F#-5-Triad1,トライアド1,9,11,11,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+F#,F#,M,6,F#-6-Triad2,トライアド2,x,2,3,4,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
 Gm,Gm,m,2,Gm-2-Root6,Root-6,3,3,3,5,5,3,1,1,1,3,4,1,3,1,6,"6弦ルート | Eフォームマイナーバレー"
 Gm,Gm,m,3,Gm-3-Root5,Root-5,x,10,11,12,12,10,x,-,1,2,4,3,1,-,10,1,5,"G minor root-5 | Barre at 10th fret"
 Gm,Gm,m,4,Gm-4-Root4,Root-4,3,3,3,5,x,x,1,1,1,3,-,-,,,,"4弦ルート | 高音域ポジション"
-Gm,Gm,m,5,Gm-5-Triad1,Triad-1,10,11,12,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-Gm,Gm,m,6,Gm-6-Triad2,Triad-2,x,3,3,5,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Gm,Gm,m,5,Gm-5-Triad1,トライアド1,10,11,12,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Gm,Gm,m,6,Gm-6-Triad2,トライアド2,x,3,3,5,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
 G#m,G#m,m,2,G#m-2-Root6,Root-6,4,4,4,6,6,4,1,1,1,3,4,1,4,1,6,"6弦ルート | Eフォームマイナーバレー"
 G#m,G#m,m,3,G#m-3-Root5,Root-5,x,11,12,13,13,11,x,-,1,2,4,3,1,-,11,1,5,"G# minor root-5 | Barre at 11th fret"
 G#m,G#m,m,4,G#m-4-Root4,Root-4,4,4,4,6,x,x,1,1,1,3,-,-,,,,"4弦ルート | 高音域ポジション"
-G#m,G#m,m,5,G#m-5-Triad1,Triad-1,11,12,13,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-G#m,G#m,m,6,G#m-6-Triad2,Triad-2,x,4,4,6,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+G#m,G#m,m,5,G#m-5-Triad1,トライアド1,11,12,13,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+G#m,G#m,m,6,G#m-6-Triad2,トライアド2,x,4,4,6,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
 G#,G#,M,2,G#-2-Root6,Root-6,4,4,5,6,6,4,1,1,2,3,4,1,4,1,6,"6弦ルート | Eフォームバレー"
 G#,G#,M,3,G#-3-Root5,Root-5,11,13,13,13,11,x,1,3,4,2,1,-,11,1,5,"5弦ルート | Aフォームバレー"
 G#,G#,M,4,G#-4-Root4,Root-4,4,4,5,6,x,x,1,1,2,3,-,-,,,,"4弦ルート | 高音域ポジション"
-G#,G#,M,5,G#-5-Triad1,Triad-1,11,13,13,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-G#,G#,M,6,G#-6-Triad2,Triad-2,x,4,5,6,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+G#,G#,M,5,G#-5-Triad1,トライアド1,11,13,13,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+G#,G#,M,6,G#-6-Triad2,トライアド2,x,4,5,6,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
 A#,A#,M,2,A#-2-Root6,Root-6,6,6,7,8,8,6,1,1,2,3,4,1,6,1,6,"6弦ルート | Eフォームバレー"
 A#,A#,M,3,A#-3-Root5,Root-5,1,3,3,3,1,x,1,3,4,2,1,-,1,1,5,"5弦ルート | Aフォームバレー"
 A#,A#,M,4,A#-4-Root4,Root-4,6,6,7,8,x,x,1,1,2,3,-,-,,,,"4弦ルート | 高音域ポジション"
-A#,A#,M,5,A#-5-Triad1,Triad-1,1,3,3,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-A#,A#,M,6,A#-6-Triad2,Triad-2,x,6,7,8,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+A#,A#,M,5,A#-5-Triad1,トライアド1,1,3,3,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+A#,A#,M,6,A#-6-Triad2,トライアド2,x,6,7,8,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
 A#m,A#m,m,2,A#m-2-Root6,Root-6,6,6,6,8,8,6,1,1,1,3,4,1,6,1,6,"6弦ルート | Eフォームマイナーバレー"
 A#m,A#m,m,3,A#m-3-Root5,Root-5,x,1,2,3,3,1,x,-,1,2,4,3,1,-,1,1,5,"A# minor root-5 | Barre at 1st fret"
 A#m,A#m,m,4,A#m-4-Root4,Root-4,6,6,6,8,x,x,1,1,1,3,-,-,,,,"4弦ルート | 高音域ポジション"
-A#m,A#m,m,5,A#m-5-Triad1,Triad-1,1,2,3,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-A#m,A#m,m,6,A#m-6-Triad2,Triad-2,x,6,6,8,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+A#m,A#m,m,5,A#m-5-Triad1,トライアド1,1,2,3,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+A#m,A#m,m,6,A#m-6-Triad2,トライアド2,x,6,6,8,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
 Bbm,Bbm,m,2,Bbm-2-Root6,Root-6,6,6,6,8,8,6,1,1,1,3,4,1,6,1,6,"6弦ルート | Eフォームマイナーバレー"
 Bbm,Bbm,m,3,Bbm-3-Root5,Root-5,x,1,2,3,3,1,x,-,1,2,4,3,1,-,1,1,5,"Bb minor root-5 | Barre at 1st fret"
 Bbm,Bbm,m,4,Bbm-4-Root4,Root-4,6,6,6,8,x,x,1,1,1,3,-,-,,,,"4弦ルート | 高音域ポジション"
-Bbm,Bbm,m,5,Bbm-5-Triad1,Triad-1,1,2,3,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-Bbm,Bbm,m,6,Bbm-6-Triad2,Triad-2,x,6,6,8,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Bbm,Bbm,m,5,Bbm-5-Triad1,トライアド1,1,2,3,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Bbm,Bbm,m,6,Bbm-6-Triad2,トライアド2,x,6,6,8,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
 Bm,Bm,m,2,Bm-2-Root6,Root-6,7,7,7,9,9,7,1,1,1,3,4,1,7,1,6,"6弦ルート | Eフォームマイナーバレー"
 Bm,Bm,m,3,Bm-3-Root5,Root-5,x,2,3,4,4,2,x,-,1,2,4,3,1,-,2,1,5,"B minor root-5 | Barre at 2nd fret"
 Bm,Bm,m,4,Bm-4-Root4,Root-4,7,7,7,9,x,x,1,1,1,3,-,-,,,,"4弦ルート | 高音域ポジション"
-Bm,Bm,m,5,Bm-5-Triad1,Triad-1,2,3,4,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-Bm,Bm,m,6,Bm-6-Triad2,Triad-2,x,7,7,9,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Bm,Bm,m,5,Bm-5-Triad1,トライアド1,2,3,4,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Bm,Bm,m,6,Bm-6-Triad2,トライアド2,x,7,7,9,x,x,-,1,1,3,-,-,,,,Triad extracted from iOS (Triad-2)
 Bb,Bb,M,2,Bb-2-Root6,Root-6,6,6,7,8,8,6,1,1,2,3,4,1,6,1,6,"6弦ルート | Eフォームバレー"
 Bb,Bb,M,3,Bb-3-Root5,Root-5,1,3,3,3,1,x,1,3,4,2,1,-,1,1,5,"5弦ルート | Aフォームバレー"
 Bb,Bb,M,4,Bb-4-Root4,Root-4,6,6,7,8,x,x,1,1,2,3,-,-,,,,"4弦ルート | 高音域ポジション"
-Bb,Bb,M,5,Bb-5-Triad1,Triad-1,1,3,3,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-Bb,Bb,M,6,Bb-6-Triad2,Triad-2,x,6,7,8,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+Bb,Bb,M,5,Bb-5-Triad1,トライアド1,1,3,3,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+Bb,Bb,M,6,Bb-6-Triad2,トライアド2,x,6,7,8,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
 B,B,M,2,B-2-Root6,Root-6,7,7,8,9,9,7,1,1,2,3,4,1,7,1,6,"6弦ルート | Eフォームバレー"
 B,B,M,3,B-3-Root5,Root-5,2,4,4,4,2,x,1,3,4,2,1,-,2,1,5,"5弦ルート | Aフォームバレー"
 B,B,M,4,B-4-Root4,Root-4,7,7,8,9,x,x,1,1,2,3,-,-,,,,"4弦ルート | 高音域ポジション"
-B,B,M,5,B-5-Triad1,Triad-1,2,4,4,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
-B,B,M,6,B-6-Triad2,Triad-2,x,7,8,9,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
-G#7,G#7,7,2,G#7-1-Root-6,Root-6,4,4,5,4,6,4,1,1,2,1,3,1,,,,Dominant 7th (extracted)
-G#7,G#7,7,3,G#7-2-Root-5,Root-5,11,13,11,13,11,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
-G#7,G#7,7,4,G#7-3-Root-4,Root-4,8,7,8,6,x,x,4,2,3,1,-,-,,,,Dominant 7th (extracted)
-D#7,D#7,7,2,D#7-1-Root-6,Root-6,11,11,12,11,13,11,1,1,2,1,3,1,,,,Dominant 7th (extracted)
-D#7,D#7,7,3,D#7-2-Root-5,Root-5,6,8,6,8,6,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
-D#7,D#7,7,4,D#7-3-Root-4,Root-4,3,2,3,1,x,x,4,2,3,1,-,-,,,,Dominant 7th (extracted)
+B,B,M,5,B-5-Triad1,トライアド1,2,4,4,x,x,x,1,2,3,-,-,-,,,,Triad extracted from iOS (Triad-1)
+B,B,M,6,B-6-Triad2,トライアド2,x,7,8,9,x,x,-,1,2,3,-,-,,,,Triad extracted from iOS (Triad-2)
+G#7,G#7,7,2,G#7-1-Root-6,ルート6弦,4,4,5,4,6,4,1,1,2,1,3,1,,,,Dominant 7th (extracted)
+G#7,G#7,7,3,G#7-2-Root-5,ルート5弦,11,13,11,13,11,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
+G#7,G#7,7,4,G#7-3-Root-4,ルート4弦,8,7,8,6,x,x,4,2,3,1,-,-,,,,Dominant 7th (extracted)
+D#7,D#7,7,2,D#7-1-Root-6,ルート6弦,11,11,12,11,13,11,1,1,2,1,3,1,,,,Dominant 7th (extracted)
+D#7,D#7,7,3,D#7-2-Root-5,ルート5弦,6,8,6,8,6,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
+D#7,D#7,7,4,D#7-3-Root-4,ルート4弦,3,2,3,1,x,x,4,2,3,1,-,-,,,,Dominant 7th (extracted)
 F#7,F#7,7,1,F#7-1-Open,Open,0,2,3,4,x,x,-,1,2,3,-,-,,,,Dominant 7th (extracted)
-F#7,F#7,7,2,F#7-2-Root-6,Root-6,2,2,3,2,4,2,1,1,2,1,3,1,,,,Dominant 7th (extracted)
-F#7,F#7,7,3,F#7-3-Root-5,Root-5,9,11,9,11,9,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
-F#7,F#7,7,4,F#7-4-Root-4,Root-4,6,5,6,4,x,x,4,2,3,1,-,-,,,,Dominant 7th (extracted)
+F#7,F#7,7,2,F#7-2-Root-6,ルート6弦,2,2,3,2,4,2,1,1,2,1,3,1,,,,Dominant 7th (extracted)
+F#7,F#7,7,3,F#7-3-Root-5,ルート5弦,9,11,9,11,9,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
+F#7,F#7,7,4,F#7-4-Root-4,ルート4弦,6,5,6,4,x,x,4,2,3,1,-,-,,,,Dominant 7th (extracted)
 G7,G7,7,1,G7-1-Open,Open,2,0,0,0,3,4,1,-,-,-,2,3,,,,Dominant 7th (extracted)
-G7,G7,7,2,G7-2-Root-6,Root-6,3,3,4,3,5,3,1,1,2,1,3,1,,,,Dominant 7th (extracted)
-G7,G7,7,3,G7-3-Root-5,Root-5,10,12,10,12,10,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
-G7,G7,7,4,G7-4-Root-4,Root-4,7,6,7,5,x,x,4,2,3,1,-,-,,,,Dominant 7th (extracted)
+G7,G7,7,2,G7-2-Root-6,ルート6弦,3,3,4,3,5,3,1,1,2,1,3,1,,,,Dominant 7th (extracted)
+G7,G7,7,3,G7-3-Root-5,ルート5弦,10,12,10,12,10,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
+G7,G7,7,4,G7-4-Root-4,ルート4弦,7,6,7,5,x,x,4,2,3,1,-,-,,,,Dominant 7th (extracted)
 A7,A7,7,1,A7-1-Open,Open,0,2,0,2,0,x,-,3,-,2,-,-,,,,Dominant 7th (extracted)
-A7,A7,7,2,A7-2-Root-6,Root-6,5,5,6,5,7,5,1,1,2,1,3,1,,,,Dominant 7th (extracted)
+A7,A7,7,2,A7-2-Root-6,ルート6弦,5,5,6,5,7,5,1,1,2,1,3,1,,,,Dominant 7th (extracted)
 A7,A7,7,3,A7-3-Root-5,Root-5,x,10,12,11,12,x,-,1,3,2,4,-,,,,"コンパクトA7（x-10-12-11-12-x）"
-A7,A7,7,4,A7-4-Root-4,Root-4,9,8,9,7,x,x,4,2,3,1,-,-,,,,Dominant 7th (extracted)
+A7,A7,7,4,A7-4-Root-4,ルート4弦,9,8,9,7,x,x,4,2,3,1,-,-,,,,Dominant 7th (extracted)
 B7,B7,7,1,B7-1-Open,Open,3,0,3,2,3,0,3,-,2,1,4,-,,,,Dominant 7th (extracted)
-B7,B7,7,2,B7-2-Root-6,Root-6,7,7,8,7,9,7,1,1,2,1,3,1,,,,Dominant 7th (extracted)
-B7,B7,7,3,B7-3-Root-5,Root-5,9,11,9,11,9,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
-B7,B7,7,4,B7-4-Root-4,Root-4,11,10,11,9,x,x,4,2,3,1,-,-,,,,Dominant 7th (extracted)
+B7,B7,7,2,B7-2-Root-6,ルート6弦,7,7,8,7,9,7,1,1,2,1,3,1,,,,Dominant 7th (extracted)
+B7,B7,7,3,B7-3-Root-5,ルート5弦,9,11,9,11,9,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
+B7,B7,7,4,B7-4-Root-4,ルート4弦,11,10,11,9,x,x,4,2,3,1,-,-,,,,Dominant 7th (extracted)
 C7,C7,7,1,C7-1-Open,Open,0,1,3,2,3,x,-,1,3,2,4,-,,,,"クラシックC7オープン"
-C7,C7,7,2,C7-2-Root-6,Root-6,8,8,9,8,10,8,1,1,2,1,3,1,,,,Dominant 7th (extracted)
-C7,C7,7,3,C7-3-Root-5,Root-5,3,5,3,5,3,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
-C7,C7,7,4,C7-4-Root-4,Root-4,12,11,12,10,x,x,4,2,3,1,-,-,,,,Dominant 7th (extracted)
+C7,C7,7,2,C7-2-Root-6,ルート6弦,8,8,9,8,10,8,1,1,2,1,3,1,,,,Dominant 7th (extracted)
+C7,C7,7,3,C7-3-Root-5,ルート5弦,3,5,3,5,3,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
+C7,C7,7,4,C7-4-Root-4,ルート4弦,12,11,12,10,x,x,4,2,3,1,-,-,,,,Dominant 7th (extracted)
 D7,D7,7,1,D7-1-Open,Open,3,2,3,0,0,0,3,1,2,-,-,-,,,,Dominant 7th (extracted)
-D7,D7,7,2,D7-2-Root-6,Root-6,10,10,11,10,12,10,1,1,2,1,3,1,,,,Dominant 7th (extracted)
-D7,D7,7,3,D7-3-Root-5,Root-5,5,7,5,7,5,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
+D7,D7,7,2,D7-2-Root-6,ルート6弦,10,10,11,10,12,10,1,1,2,1,3,1,,,,Dominant 7th (extracted)
+D7,D7,7,3,D7-3-Root-5,ルート5弦,5,7,5,7,5,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
 D7,D7,7,4,D7-4-Root-4,Root-4,10,10,11,12,x,x,1,1,2,3,-,-,,,,"4弦ルート | 代替ボイシング"
 E7,E7,7,1,E7-1-Open,Open,0,0,1,0,2,0,-,-,1,-,2,-,,,,Dominant 7th (extracted)
 E7,E7,7,2,E7-2-Root-6,Root-6,x,12,13,12,x,12,-,1,2,1,-,1,12,2,4,"12フレットでのシェルボイシング（E7）"
-E7,E7,7,3,E7-3-Root-5,Root-5,7,9,7,9,7,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
+E7,E7,7,3,E7-3-Root-5,ルート5弦,7,9,7,9,7,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
 E7,E7,7,4,E7-4-Root-4,Root-4,0,3,1,2,x,x,-,3,1,2,-,-,,,,"4th string root | Low open voicing"
-C#7,C#7,7,2,C#7-1-Root-6,Root-6,9,9,10,9,11,9,1,1,2,1,3,1,,,,Dominant 7th (extracted)
-C#7,C#7,7,3,C#7-2-Root-5,Root-5,4,6,4,6,4,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
-C#7,C#7,7,4,C#7-3-Root-4,Root-4,13,12,13,11,x,x,4,2,3,1,-,-,,,,Dominant 7th (extracted)
-F7,F7,7,3,F7-2-Root-5,Root-5,8,10,8,10,8,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
+C#7,C#7,7,2,C#7-1-Root-6,ルート6弦,9,9,10,9,11,9,1,1,2,1,3,1,,,,Dominant 7th (extracted)
+C#7,C#7,7,3,C#7-2-Root-5,ルート5弦,4,6,4,6,4,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
+C#7,C#7,7,4,C#7-3-Root-4,ルート4弦,13,12,13,11,x,x,4,2,3,1,-,-,,,,Dominant 7th (extracted)
+F7,F7,7,3,F7-2-Root-5,ルート5弦,8,10,8,10,8,x,1,4,1,3,1,-,,,,Dominant 7th (extracted)
 F7,F7,7,4,F7-3-Root-4,Root-4,1,1,2,0,x,x,1,1,2,-,-,-,,,,"4弦ルート | 低音域ポジション"
 C#m7,C#m7,m7,1,C#m7-1-Open,Open,0,0,0,1,2,x,-,-,-,1,2,-,,,,Minor 7th (extracted)
-C#m7,C#m7,m7,2,C#m7-2-Root-6,Root-6,9,9,9,9,11,9,1,1,1,1,3,1,,,,Minor 7th (extracted)
-C#m7,C#m7,m7,3,C#m7-3-Root-5,Root-5,4,5,4,6,4,x,1,2,1,3,1,-,,,,Minor 7th (extracted)
-C#m7,C#m7,m7,4,C#m7-4-Root-4,Root-4,12,12,13,11,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
-F#m7,F#m7,m7,2,F#m7-1-Root-6,Root-6,2,2,2,2,4,2,1,1,1,1,3,1,,,,Minor 7th (extracted)
-F#m7,F#m7,m7,3,F#m7-2-Root-5,Root-5,9,10,9,11,9,x,1,2,1,3,1,-,,,,Minor 7th (extracted)
-F#m7,F#m7,m7,4,F#m7-3-Root-4,Root-4,5,5,6,4,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
+C#m7,C#m7,m7,2,C#m7-2-Root-6,ルート6弦,9,9,9,9,11,9,1,1,1,1,3,1,,,,Minor 7th (extracted)
+C#m7,C#m7,m7,3,C#m7-3-Root-5,ルート5弦,4,5,4,6,4,x,1,2,1,3,1,-,,,,Minor 7th (extracted)
+C#m7,C#m7,m7,4,C#m7-4-Root-4,ルート4弦,12,12,13,11,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
+F#m7,F#m7,m7,2,F#m7-1-Root-6,ルート6弦,2,2,2,2,4,2,1,1,1,1,3,1,,,,Minor 7th (extracted)
+F#m7,F#m7,m7,3,F#m7-2-Root-5,ルート5弦,9,10,9,11,9,x,1,2,1,3,1,-,,,,Minor 7th (extracted)
+F#m7,F#m7,m7,4,F#m7-3-Root-4,ルート4弦,5,5,6,4,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
 Am7,Am7,m7,1,Am7-1-Open,Open,0,1,0,2,0,x,-,1,-,2,-,-,,,,Minor 7th (extracted)
-Am7,Am7,m7,2,Am7-2-Root-6,Root-6,5,5,5,5,7,5,1,1,1,1,3,1,,,,Minor 7th (extracted)
+Am7,Am7,m7,2,Am7-2-Root-6,ルート6弦,5,5,5,5,7,5,1,1,1,1,3,1,,,,Minor 7th (extracted)
 Am7,Am7,m7,3,Am7-3-Root-5,Root-5,x,10,12,12,10,x,-,1,3,4,1,-,10,2,5,"Aマイナー7（x-10-12-12-10-x）"
-Am7,Am7,m7,4,Am7-4-Root-4,Root-4,8,8,9,7,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
-D#m7,D#m7,m7,3,D#m7-1-Root-5,Root-5,6,7,6,8,6,x,1,2,1,3,1,-,,,,Minor 7th (extracted)
-D#m7,D#m7,m7,2,D#m7-2-Root-6,Root-6,11,11,11,11,13,11,1,1,1,1,3,1,,,,Minor 7th (extracted)
-D#m7,D#m7,m7,4,D#m7-3-Root-4,Root-4,14,14,15,13,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
+Am7,Am7,m7,4,Am7-4-Root-4,ルート4弦,8,8,9,7,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
+D#m7,D#m7,m7,3,D#m7-1-Root-5,ルート5弦,6,7,6,8,6,x,1,2,1,3,1,-,,,,Minor 7th (extracted)
+D#m7,D#m7,m7,2,D#m7-2-Root-6,ルート6弦,11,11,11,11,13,11,1,1,1,1,3,1,,,,Minor 7th (extracted)
+D#m7,D#m7,m7,4,D#m7-3-Root-4,ルート4弦,14,14,15,13,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
 Dm7,Dm7,m7,1,Dm7-1-Open,Open,2,2,3,0,0,0,1,1,2,-,-,-,,,,Minor 7th (extracted)
-Dm7,Dm7,m7,2,Dm7-2-Root-6,Root-6,10,10,10,10,12,10,1,1,1,1,3,1,,,,Minor 7th (extracted)
-Dm7,Dm7,m7,3,Dm7-3-Root-5,Root-5,5,6,5,7,5,x,1,2,1,3,1,-,,,,Minor 7th (extracted)
-Dm7,Dm7,m7,4,Dm7-4-Root-4,Root-4,13,13,14,12,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
-Em7,Em7,m7,4,Em7-2-Root-4,Root-4,3,3,4,2,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
-Em7,Em7,m7,3,Em7-3-Root-5,Root-5,7,8,7,9,7,x,1,2,1,3,1,-,,,,Minor 7th (extracted)
-Em7,Em7,m7,2,Em7-4-Root-6,Root-6,12,12,12,12,14,12,1,1,1,1,3,1,,,,Minor 7th (extracted)
-Cm7,Cm7,m7,2,Cm7-1-Root-6,Root-6,8,8,8,8,10,8,1,1,1,1,3,1,,,,Minor 7th (extracted)
-Cm7,Cm7,m7,3,Cm7-2-Root-5,Root-5,3,4,3,5,3,x,1,2,1,3,1,-,,,,Minor 7th (extracted)
-Cm7,Cm7,m7,4,Cm7-3-Root-4,Root-4,11,11,12,10,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
-Gm7,Gm7,m7,2,Gm7-1-Root-6,Root-6,3,3,3,3,5,3,1,1,1,1,3,1,,,,Minor 7th (extracted)
-Gm7,Gm7,m7,3,Gm7-2-Root-5,Root-5,10,11,10,12,10,x,1,2,1,3,1,-,,,,Minor 7th (extracted)
-Gm7,Gm7,m7,4,Gm7-3-Root-4,Root-4,6,6,7,5,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
-G#m7,G#m7,m7,2,G#m7-1-Root-6,Root-6,4,4,4,4,6,4,1,1,1,1,3,1,,,,Minor 7th (extracted)
-G#m7,G#m7,m7,3,G#m7-2-Root-5,Root-5,11,12,11,13,11,x,1,2,1,3,1,-,,,,Minor 7th (extracted)
-G#m7,G#m7,m7,4,G#m7-3-Root-4,Root-4,7,7,8,6,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
+Dm7,Dm7,m7,2,Dm7-2-Root-6,ルート6弦,10,10,10,10,12,10,1,1,1,1,3,1,,,,Minor 7th (extracted)
+Dm7,Dm7,m7,3,Dm7-3-Root-5,ルート5弦,5,6,5,7,5,x,1,2,1,3,1,-,,,,Minor 7th (extracted)
+Dm7,Dm7,m7,4,Dm7-4-Root-4,ルート4弦,13,13,14,12,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
+Em7,Em7,m7,4,Em7-2-Root-4,ルート4弦,3,3,4,2,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
+Em7,Em7,m7,3,Em7-3-Root-5,ルート5弦,7,8,7,9,7,x,1,2,1,3,1,-,,,,Minor 7th (extracted)
+Em7,Em7,m7,2,Em7-4-Root-6,ルート6弦,12,12,12,12,14,12,1,1,1,1,3,1,,,,Minor 7th (extracted)
+Cm7,Cm7,m7,2,Cm7-1-Root-6,ルート6弦,8,8,8,8,10,8,1,1,1,1,3,1,,,,Minor 7th (extracted)
+Cm7,Cm7,m7,3,Cm7-2-Root-5,ルート5弦,3,4,3,5,3,x,1,2,1,3,1,-,,,,Minor 7th (extracted)
+Cm7,Cm7,m7,4,Cm7-3-Root-4,ルート4弦,11,11,12,10,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
+Gm7,Gm7,m7,2,Gm7-1-Root-6,ルート6弦,3,3,3,3,5,3,1,1,1,1,3,1,,,,Minor 7th (extracted)
+Gm7,Gm7,m7,3,Gm7-2-Root-5,ルート5弦,10,11,10,12,10,x,1,2,1,3,1,-,,,,Minor 7th (extracted)
+Gm7,Gm7,m7,4,Gm7-3-Root-4,ルート4弦,6,6,7,5,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
+G#m7,G#m7,m7,2,G#m7-1-Root-6,ルート6弦,4,4,4,4,6,4,1,1,1,1,3,1,,,,Minor 7th (extracted)
+G#m7,G#m7,m7,3,G#m7-2-Root-5,ルート5弦,11,12,11,13,11,x,1,2,1,3,1,-,,,,Minor 7th (extracted)
+G#m7,G#m7,m7,4,G#m7-3-Root-4,ルート4弦,7,7,8,6,x,x,3,2,4,1,-,-,,,,Minor 7th (extracted)
 Cdim,Cdim,dim,2,Cdim-1-Root6,Root-6,8,7,8,x,x,8,4,1,3,-,-,2,,,,"Cdim Root-6 (x-?-? pattern; 5th string mute)"
 Cdim,Cdim,dim,3,Cdim-2,Root-5,x,4,5,4,3,x,-,3,4,2,1,-,,,,"Cdim Root-5 (x-4-5-4-3-x)"
 Cdim,Cdim,dim,4,Cdim-3-Root-4,Root-4,8,7,8,10,x,x,3,1,2,4,-,-,,, ,"Cdim Root-4 (8-7-8-10-x-x)"
@@ -267,11 +267,11 @@ Cdim,Cdim,dim,5,Cdim-4-Triad-1,Triad-1,2,4,5,x,x,x,1,3,4,-,-,-,,,,"Cdim Triad-1 
 Cdim,Cdim,dim,6,Cdim-5-Triad-2,Triad-2,x,7,8,10,x,x,-,1,2,4,-,-,,,,"Cdim Triad-2 (x-7-8-10-x-x)"
 Ddim,Ddim,dim,1,Ddim-1,,x,6,4,6,4,x,-,3,1,4,2,-,,,,Diminished (extracted)
 Edim,Edim,dim,1,Edim-1,,x,1,0,1,0,x,-,1,-,2,-,-,,,,Diminished (extracted)
-C#dim,C#dim,dim,2,C#dim-1-Root6,Root-6,9,8,9,x,x,9,4,1,3,-,-,2,,,,Diminished (auto from Cdim +1)
-C#dim,C#dim,dim,3,C#dim-2,Root-5,x,5,6,5,4,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +1)
-C#dim,C#dim,dim,4,C#dim-3-Root-4,Root-4,9,8,9,11,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +1)
-C#dim,C#dim,dim,5,C#dim-4-Triad-1,Triad-1,3,5,6,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +1)
-C#dim,C#dim,dim,6,C#dim-5-Triad-2,Triad-2,x,8,9,11,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +1)
+C#dim,C#dim,dim,2,C#dim-1-Root6,ルート6弦,9,8,9,x,x,9,4,1,3,-,-,2,,,,Diminished (auto from Cdim +1)
+C#dim,C#dim,dim,3,C#dim-2,ルート5弦,x,5,6,5,4,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +1)
+C#dim,C#dim,dim,4,C#dim-3-Root-4,ルート4弦,9,8,9,11,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +1)
+C#dim,C#dim,dim,5,C#dim-4-Triad-1,トライアド1,3,5,6,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +1)
+C#dim,C#dim,dim,6,C#dim-5-Triad-2,トライアド2,x,8,9,11,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +1)
 Csus4,Csus4,sus4,1,Csus4-1-Open,Open,2,2,0,4,4,0,1,1,-,4,3,-,1,1,2,"C sus4 open (x-3-3-0-1-1)"
 Csus4,Csus4,sus4,2,Csus4-2-Root6,Root-6,3,5,5,5,3,3,1,3,4,4,1,2,3,1,6,"C sus4 root-6 (3-5-5-5-3-3)"
 Csus4,Csus4,sus4,3,Csus4-3-Root5,Root-5,3,6,5,5,3,x,1,4,3,2,1,-,3,1,5,"C sus4 root-5 (3-6-5-5-3-x)"
@@ -287,51 +287,51 @@ Dsus4,Dsus4,sus4,1,Dsus4-1-Open,Open,4,4,3,0,0,0,4,3,1,-,-,-,,, ,"D sus4 open (x
 Dsus4,Dsus4,sus4,2,Dsus4-2-Root6,Root-6,5,7,7,7,5,5,1,3,4,4,1,2,5,1,6,"D sus4 root-6 (5-7-7-7-5-5)"
 Dsus4,Dsus4,sus4,3,Dsus4-3-Root5,Root-5,10,12,12,12,10,x,1,3,4,4,1,-,10,1,5,"D sus4 root-5 (10-12-12-12-10-x)"
 Dsus4,Dsus4,sus4,4,Dsus4-4-Root4,Root-4,10,10,12,12,x,x,1,1,3,4,-,-,,, ,"D sus4 root-4 (10-10-12-12-x-x)"
-Dsus4,Dsus4,sus4,5,Dsus4-5-Triad1,Triad-1,5,8,7,x,x,x,1,4,3,-,-,-,,,,Dsus4 Triad-1 (auto from Csus4 +2)
-Dsus4,Dsus4,sus4,6,Dsus4-6-Triad2,Triad-2,x,10,12,12,x,x,-,1,3,4,-,-,,,,Dsus4 Triad-2 (auto from Csus4 +2)
+Dsus4,Dsus4,sus4,5,Dsus4-5-Triad1,トライアド1,5,8,7,x,x,x,1,4,3,-,-,-,,,,Dsus4 Triad-1 (auto from Csus4 +2)
+Dsus4,Dsus4,sus4,6,Dsus4-6-Triad2,トライアド2,x,10,12,12,x,x,-,1,3,4,-,-,,,,Dsus4 Triad-2 (auto from Csus4 +2)
 D#sus4,D#sus4,sus4,2,D#sus4-2-Root6,Root-6,6,8,8,8,6,6,1,3,4,4,1,2,6,1,6,"D# sus4 root-6 (6-8-8-8-6-6)"
 D#sus4,D#sus4,sus4,3,D#sus4-3-Root5,Root-5,11,13,13,13,11,x,1,3,4,4,1,-,11,1,5,"D# sus4 root-5 (11-13-13-13-11-x)"
 D#sus4,D#sus4,sus4,4,D#sus4-4-Root4,Root-4,11,11,13,13,x,x,1,1,3,4,-,-,,, ,"D# sus4 root-4 (11-11-13-13-x-x)"
-D#sus4,D#sus4,sus4,5,D#sus4-5-Triad1,Triad-1,6,9,8,x,x,x,1,4,3,-,-,-,,,,D#sus4 Triad-1 (auto from Csus4 +3)
-D#sus4,D#sus4,sus4,6,D#sus4-6-Triad2,Triad-2,x,11,13,13,x,x,-,1,3,4,-,-,,,,D#sus4 Triad-2 (auto from Csus4 +3)
+D#sus4,D#sus4,sus4,5,D#sus4-5-Triad1,トライアド1,6,9,8,x,x,x,1,4,3,-,-,-,,,,D#sus4 Triad-1 (auto from Csus4 +3)
+D#sus4,D#sus4,sus4,6,D#sus4-6-Triad2,トライアド2,x,11,13,13,x,x,-,1,3,4,-,-,,,,D#sus4 Triad-2 (auto from Csus4 +3)
 Esus4,Esus4,sus4,1,Esus4-1-Open,Open,0,0,2,2,0,0,-,-,3,4,-,-,,,,"E sus4オープン（0-0-2-2-0-0）"
 Esus4,Esus4,sus4,2,Esus4-2-Root6,Root-6,x,10,0,9,x,12,-,2,-,1,-,4,,,,"E sus4ルート6（x-10-0-9-x-12）"
 Esus4,Esus4,sus4,3,Esus4-3-Root5,Root-5,12,14,14,14,12,x,1,3,4,4,1,-,12,1,5,"E sus4ルート5（12-14-14-14-12-x）"
 Esus4,Esus4,sus4,4,Esus4-4-Root4,Root-4,12,12,14,14,x,x,1,1,3,4,-,-,,, ,"E sus4 root-4 (12-12-14-14-x-x)"
-Esus4,Esus4,sus4,5,Esus4-5-Triad1,Triad-1,7,10,9,x,x,x,1,4,3,-,-,-,,,,Esus4 Triad-1 (auto from Csus4 +4)
-Esus4,Esus4,sus4,6,Esus4-6-Triad2,Triad-2,x,12,14,14,x,x,-,1,3,4,-,-,,,,Esus4 Triad-2 (auto from Csus4 +4)
+Esus4,Esus4,sus4,5,Esus4-5-Triad1,トライアド1,7,10,9,x,x,x,1,4,3,-,-,-,,,,Esus4 Triad-1 (auto from Csus4 +4)
+Esus4,Esus4,sus4,6,Esus4-6-Triad2,トライアド2,x,12,14,14,x,x,-,1,3,4,-,-,,,,Esus4 Triad-2 (auto from Csus4 +4)
 Fsus4,Fsus4,sus4,2,Fsus4-2-Root6,Root-6,8,10,10,10,8,8,1,3,4,4,1,2,8,1,6,"F sus4 root-6 (8-10-10-10-8-8)"
 Fsus4,Fsus4,sus4,3,Fsus4-3-Root5,Root-5,13,15,15,15,13,x,1,3,4,4,1,-,13,1,5,"F sus4 root-5 (13-15-15-15-13-x)"
 Fsus4,Fsus4,sus4,4,Fsus4-4-Root4,Root-4,13,13,15,15,x,x,1,1,3,4,-,-,,, ,"F sus4 root-4 (13-13-15-15-x-x)"
-Fsus4,Fsus4,sus4,5,Fsus4-5-Triad1,Triad-1,8,11,10,x,x,x,1,4,3,-,-,-,,,,Fsus4 Triad-1 (auto from Csus4 +5)
-Fsus4,Fsus4,sus4,6,Fsus4-6-Triad2,Triad-2,x,13,15,15,x,x,-,1,3,4,-,-,,,,Fsus4 Triad-2 (auto from Csus4 +5)
+Fsus4,Fsus4,sus4,5,Fsus4-5-Triad1,トライアド1,8,11,10,x,x,x,1,4,3,-,-,-,,,,Fsus4 Triad-1 (auto from Csus4 +5)
+Fsus4,Fsus4,sus4,6,Fsus4-6-Triad2,トライアド2,x,13,15,15,x,x,-,1,3,4,-,-,,,,Fsus4 Triad-2 (auto from Csus4 +5)
 F#sus4,F#sus4,sus4,2,F#sus4-2-Root6,Root-6,9,11,11,11,9,9,1,3,4,4,1,2,9,1,6,"F# sus4 root-6 (9-11-11-11-9-9)"
 F#sus4,F#sus4,sus4,3,F#sus4-3-Root5,Root-5,14,16,16,16,14,x,1,3,4,4,1,-,14,1,5,"F# sus4 root-5 (14-16-16-16-14-x)"
 F#sus4,F#sus4,sus4,4,F#sus4-4-Root4,Root-4,14,14,16,16,x,x,1,1,3,4,-,-,,, ,"F# sus4 root-4 (14-14-16-16-x-x)"
-F#sus4,F#sus4,sus4,5,F#sus4-5-Triad1,Triad-1,9,12,11,x,x,x,1,4,3,-,-,-,,,,F#sus4 Triad-1 (auto from Csus4 +6)
-F#sus4,F#sus4,sus4,6,F#sus4-6-Triad2,Triad-2,x,14,16,16,x,x,-,1,3,4,-,-,,,,F#sus4 Triad-2 (auto from Csus4 +6)
+F#sus4,F#sus4,sus4,5,F#sus4-5-Triad1,トライアド1,9,12,11,x,x,x,1,4,3,-,-,-,,,,F#sus4 Triad-1 (auto from Csus4 +6)
+F#sus4,F#sus4,sus4,6,F#sus4-6-Triad2,トライアド2,x,14,16,16,x,x,-,1,3,4,-,-,,,,F#sus4 Triad-2 (auto from Csus4 +6)
 Gsus4,Gsus4,sus4,1,Gsus4-1-Open,Open,4,2,0,0,4,4,4,1,-,-,3,2,,, ,"G sus4 open (3-1-0-0-3-3)"
 Gsus4,Gsus4,sus4,2,Gsus4-2-Root6,Root-6,10,12,12,12,10,10,1,3,4,4,1,2,10,1,6,"G sus4 root-6 (10-12-12-12-10-10)"
 Gsus4,Gsus4,sus4,3,Gsus4-3-Root5,Root-5,15,17,17,17,15,x,1,3,4,4,1,-,15,1,5,"G sus4 root-5 (15-17-17-17-15-x)"
 Gsus4,Gsus4,sus4,4,Gsus4-4-Root4,Root-4,15,15,17,17,x,x,1,1,3,4,-,-,,, ,"G sus4 root-4 (15-15-17-17-x-x)"
-Gsus4,Gsus4,sus4,5,Gsus4-5-Triad1,Triad-1,10,13,12,x,x,x,1,4,3,-,-,-,,,,Gsus4 Triad-1 (auto from Csus4 +7)
-Gsus4,Gsus4,sus4,6,Gsus4-6-Triad2,Triad-2,x,15,17,17,x,x,-,1,3,4,-,-,,,,Gsus4 Triad-2 (auto from Csus4 +7)
+Gsus4,Gsus4,sus4,5,Gsus4-5-Triad1,トライアド1,10,13,12,x,x,x,1,4,3,-,-,-,,,,Gsus4 Triad-1 (auto from Csus4 +7)
+Gsus4,Gsus4,sus4,6,Gsus4-6-Triad2,トライアド2,x,15,17,17,x,x,-,1,3,4,-,-,,,,Gsus4 Triad-2 (auto from Csus4 +7)
 G#sus4,G#sus4,sus4,2,G#sus4-2-Root6,Root-6,11,13,13,13,11,11,1,3,4,4,1,2,11,1,6,"G# sus4 root-6 (11-13-13-13-11-11)"
 G#sus4,G#sus4,sus4,3,G#sus4-3-Root5,Root-5,16,18,18,18,16,x,1,3,4,4,1,-,16,1,5,"G# sus4 root-5 (16-18-18-18-16-x)"
 G#sus4,G#sus4,sus4,4,G#sus4-4-Root4,Root-4,16,16,18,18,x,x,1,1,3,4,-,-,,, ,"G# sus4 root-4 (16-16-18-18-x-x)"
-G#sus4,G#sus4,sus4,5,G#sus4-5-Triad1,Triad-1,11,14,13,x,x,x,1,4,3,-,-,-,,,,G#sus4 Triad-1 (auto from Csus4 +8)
-G#sus4,G#sus4,sus4,6,G#sus4-6-Triad2,Triad-2,x,16,18,18,x,x,-,1,3,4,-,-,,,,G#sus4 Triad-2 (auto from Csus4 +8)
+G#sus4,G#sus4,sus4,5,G#sus4-5-Triad1,トライアド1,11,14,13,x,x,x,1,4,3,-,-,-,,,,G#sus4 Triad-1 (auto from Csus4 +8)
+G#sus4,G#sus4,sus4,6,G#sus4-6-Triad2,トライアド2,x,16,18,18,x,x,-,1,3,4,-,-,,,,G#sus4 Triad-2 (auto from Csus4 +8)
 A#sus4,A#sus4,sus4,2,A#sus4-2-Root6,Root-6,13,15,15,15,13,13,1,3,4,4,1,2,13,1,6,"A# sus4 root-6 (13-15-15-15-13-13)"
 A#sus4,A#sus4,sus4,3,A#sus4-3-Root5,Root-5,18,20,20,20,18,x,1,3,4,4,1,-,18,1,5,"A# sus4 root-5 (18-20-20-20-18-x)"
 A#sus4,A#sus4,sus4,4,A#sus4-4-Root4,Root-4,18,18,20,20,x,x,1,1,3,4,-,-,,, ,"A# sus4 root-4 (18-18-20-20-x-x)"
-A#sus4,A#sus4,sus4,5,A#sus4-5-Triad1,Triad-1,13,16,15,x,x,x,1,4,3,-,-,-,,,,A#sus4 Triad-1 (auto from Csus4 +10)
-A#sus4,A#sus4,sus4,6,A#sus4-6-Triad2,Triad-2,x,18,20,20,x,x,-,1,3,4,-,-,,,,A#sus4 Triad-2 (auto from Csus4 +10)
+A#sus4,A#sus4,sus4,5,A#sus4-5-Triad1,トライアド1,13,16,15,x,x,x,1,4,3,-,-,-,,,,A#sus4 Triad-1 (auto from Csus4 +10)
+A#sus4,A#sus4,sus4,6,A#sus4-6-Triad2,トライアド2,x,18,20,20,x,x,-,1,3,4,-,-,,,,A#sus4 Triad-2 (auto from Csus4 +10)
 Bsus4,Bsus4,sus4,1,Bsus4-1-Open,Open,3,0,0,3,3,0,4,-,-,3,2,-,,, ,"B sus4 open (x-2-2-0-2-2 pattern)"
 Bsus4,Bsus4,sus4,2,Bsus4-2-Root6,Root-6,14,16,16,16,14,14,1,3,4,4,1,2,14,1,6,"B sus4 root-6 (14-16-16-16-14-14)"
 Bsus4,Bsus4,sus4,3,Bsus4-3-Root5,Root-5,x,12,11,14,14,x,-,2,1,4,4,-,12,2,5,"B sus4 root-5 (x-12-11-14-14-x)"
 Bsus4,Bsus4,sus4,4,Bsus4-4-Root4,Root-4,19,19,21,21,x,x,1,1,3,4,-,-,,, ,"B sus4 root-4 (19-19-21-21-x-x)"
-Bsus4,Bsus4,sus4,5,Bsus4-5-Triad1,Triad-1,14,17,16,x,x,x,1,4,3,-,-,-,,,,Bsus4 Triad-1 (auto from Csus4 +11)
-Bsus4,Bsus4,sus4,6,Bsus4-6-Triad2,Triad-2,x,19,21,21,x,x,-,1,3,4,-,-,,,,Bsus4 Triad-2 (auto from Csus4 +11)
+Bsus4,Bsus4,sus4,5,Bsus4-5-Triad1,トライアド1,14,17,16,x,x,x,1,4,3,-,-,-,,,,Bsus4 Triad-1 (auto from Csus4 +11)
+Bsus4,Bsus4,sus4,6,Bsus4-6-Triad2,トライアド2,x,19,21,21,x,x,-,1,3,4,-,-,,,,Bsus4 Triad-2 (auto from Csus4 +11)
 Cadd9,Cadd9,add9,1,Cadd9-1-Open,Open,0,3,0,2,3,x,-,4,-,1,3,-,,, ,"C add9オープン（x-3-2-0-3-0）"
 Cadd9,Cadd9,add9,4,Cadd9-2-Root4,Root-4,10,8,9,10,x,x,4,1,2,3,-,-,,, ,"C add9ルート4（10-8-9-10-x-x）"
 Cadd9,Cadd9,add9,3,Cadd9-3-Root5,Root-5,x,5,7,5,3,x,-,1,4,2,3,-,,, ,"C add9ルート5（x-3-5-7-5-x）"
@@ -380,48 +380,48 @@ Asus4,Asus4,sus4,1,Asus4-1-Open,Open,0,3,2,2,0,x,-,3,2,1,-,-,,, ,"A sus4オー�
 Asus4,Asus4,sus4,2,Asus4-2-Root6,Root-6,12,14,14,14,12,12,1,3,4,4,1,2,12,1,6,"A sus4ルート6（12-14-14-14-12-12）"
 Asus4,Asus4,sus4,3,Asus4-3-Root5,Root-5,x,10,9,12,12,x,-,2,1,4,4,-,10,2,5,"A sus4ルート5（x-10-9-12-12-x）"
 Asus4,Asus4,sus4,4,Asus4-4-Root4,Root-4,17,17,19,19,x,x,1,1,3,4,-,-,,, ,"A sus4 root-4 (17-17-19-19-x-x)"
-Asus4,Asus4,sus4,5,Asus4-5-Triad1,Triad-1,12,15,14,x,x,x,1,4,3,-,-,-,,,,Asus4 Triad-1 (auto from Csus4 +9)
-Asus4,Asus4,sus4,6,Asus4-6-Triad2,Triad-2,x,17,19,19,x,x,-,1,3,4,-,-,,,,Asus4 Triad-2 (auto from Csus4 +9)
-D#dim,D#dim,dim,2,D#dim-1-Root6,Root-6,11,10,11,x,x,11,4,1,3,-,-,2,,,,Diminished (auto from Cdim +3)
-D#dim,D#dim,dim,3,D#dim-2,Root-5,x,7,8,7,6,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +3)
-D#dim,D#dim,dim,4,D#dim-3-Root-4,Root-4,11,10,11,13,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +3)
-D#dim,D#dim,dim,5,D#dim-4-Triad-1,Triad-1,5,7,8,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +3)
-D#dim,D#dim,dim,6,D#dim-5-Triad-2,Triad-2,x,10,11,13,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +3)
-Fdim,Fdim,dim,2,Fdim-1-Root6,Root-6,13,12,13,x,x,13,4,1,3,-,-,2,,,,Diminished (auto from Cdim +5)
-Fdim,Fdim,dim,3,Fdim-2,Root-5,x,9,10,9,8,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +5)
-Fdim,Fdim,dim,4,Fdim-3-Root-4,Root-4,13,12,13,15,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +5)
-Fdim,Fdim,dim,5,Fdim-4-Triad-1,Triad-1,7,9,10,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +5)
-Fdim,Fdim,dim,6,Fdim-5-Triad-2,Triad-2,x,12,13,15,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +5)
-F#dim,F#dim,dim,2,F#dim-1-Root6,Root-6,14,13,14,x,x,14,4,1,3,-,-,2,,,,Diminished (auto from Cdim +6)
-F#dim,F#dim,dim,3,F#dim-2,Root-5,x,10,11,10,9,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +6)
-F#dim,F#dim,dim,4,F#dim-3-Root-4,Root-4,14,13,14,16,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +6)
-F#dim,F#dim,dim,5,F#dim-4-Triad-1,Triad-1,8,10,11,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +6)
-F#dim,F#dim,dim,6,F#dim-5-Triad-2,Triad-2,x,13,14,16,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +6)
-Gdim,Gdim,dim,2,Gdim-1-Root6,Root-6,15,14,15,x,x,15,4,1,3,-,-,2,,,,Diminished (auto from Cdim +7)
-Gdim,Gdim,dim,3,Gdim-2,Root-5,x,11,12,11,10,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +7)
-Gdim,Gdim,dim,4,Gdim-3-Root-4,Root-4,15,14,15,17,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +7)
-Gdim,Gdim,dim,5,Gdim-4-Triad-1,Triad-1,9,11,12,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +7)
-Gdim,Gdim,dim,6,Gdim-5-Triad-2,Triad-2,x,14,15,17,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +7)
-G#dim,G#dim,dim,2,G#dim-1-Root6,Root-6,16,15,16,x,x,16,4,1,3,-,-,2,,,,Diminished (auto from Cdim +8)
-G#dim,G#dim,dim,3,G#dim-2,Root-5,x,12,13,12,11,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +8)
-G#dim,G#dim,dim,4,G#dim-3-Root-4,Root-4,16,15,16,18,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +8)
-G#dim,G#dim,dim,5,G#dim-4-Triad-1,Triad-1,10,12,13,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +8)
-G#dim,G#dim,dim,6,G#dim-5-Triad-2,Triad-2,x,15,16,18,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +8)
-Adim,Adim,dim,2,Adim-1-Root6,Root-6,17,16,17,x,x,17,4,1,3,-,-,2,,,,Diminished (auto from Cdim +9)
-Adim,Adim,dim,3,Adim-2,Root-5,x,13,14,13,12,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +9)
-Adim,Adim,dim,4,Adim-3-Root-4,Root-4,17,16,17,19,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +9)
-Adim,Adim,dim,5,Adim-4-Triad-1,Triad-1,11,13,14,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +9)
-Adim,Adim,dim,6,Adim-5-Triad-2,Triad-2,x,16,17,19,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +9)
-A#dim,A#dim,dim,2,A#dim-1-Root6,Root-6,18,17,18,x,x,18,4,1,3,-,-,2,,,,Diminished (auto from Cdim +10)
-A#dim,A#dim,dim,3,A#dim-2,Root-5,x,14,15,14,13,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +10)
-A#dim,A#dim,dim,4,A#dim-3-Root-4,Root-4,18,17,18,20,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +10)
-A#dim,A#dim,dim,5,A#dim-4-Triad-1,Triad-1,12,14,15,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +10)
-A#dim,A#dim,dim,6,A#dim-5-Triad-2,Triad-2,x,17,18,20,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +10)
-Bdim,Bdim,dim,2,Bdim-1-Root6,Root-6,19,18,19,x,x,19,4,1,3,-,-,2,,,,Diminished (auto from Cdim +11)
-Bdim,Bdim,dim,3,Bdim-2,Root-5,x,15,16,15,14,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +11)
-Bdim,Bdim,dim,4,Bdim-3-Root-4,Root-4,19,18,19,21,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +11)
-Bdim,Bdim,dim,5,Bdim-4-Triad-1,Triad-1,13,15,16,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +11)
-Bdim,Bdim,dim,6,Bdim-5-Triad-2,Triad-2,x,18,19,21,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +11)
+Asus4,Asus4,sus4,5,Asus4-5-Triad1,トライアド1,12,15,14,x,x,x,1,4,3,-,-,-,,,,Asus4 Triad-1 (auto from Csus4 +9)
+Asus4,Asus4,sus4,6,Asus4-6-Triad2,トライアド2,x,17,19,19,x,x,-,1,3,4,-,-,,,,Asus4 Triad-2 (auto from Csus4 +9)
+D#dim,D#dim,dim,2,D#dim-1-Root6,ルート6弦,11,10,11,x,x,11,4,1,3,-,-,2,,,,Diminished (auto from Cdim +3)
+D#dim,D#dim,dim,3,D#dim-2,ルート5弦,x,7,8,7,6,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +3)
+D#dim,D#dim,dim,4,D#dim-3-Root-4,ルート4弦,11,10,11,13,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +3)
+D#dim,D#dim,dim,5,D#dim-4-Triad-1,トライアド1,5,7,8,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +3)
+D#dim,D#dim,dim,6,D#dim-5-Triad-2,トライアド2,x,10,11,13,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +3)
+Fdim,Fdim,dim,2,Fdim-1-Root6,ルート6弦,13,12,13,x,x,13,4,1,3,-,-,2,,,,Diminished (auto from Cdim +5)
+Fdim,Fdim,dim,3,Fdim-2,ルート5弦,x,9,10,9,8,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +5)
+Fdim,Fdim,dim,4,Fdim-3-Root-4,ルート4弦,13,12,13,15,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +5)
+Fdim,Fdim,dim,5,Fdim-4-Triad-1,トライアド1,7,9,10,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +5)
+Fdim,Fdim,dim,6,Fdim-5-Triad-2,トライアド2,x,12,13,15,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +5)
+F#dim,F#dim,dim,2,F#dim-1-Root6,ルート6弦,14,13,14,x,x,14,4,1,3,-,-,2,,,,Diminished (auto from Cdim +6)
+F#dim,F#dim,dim,3,F#dim-2,ルート5弦,x,10,11,10,9,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +6)
+F#dim,F#dim,dim,4,F#dim-3-Root-4,ルート4弦,14,13,14,16,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +6)
+F#dim,F#dim,dim,5,F#dim-4-Triad-1,トライアド1,8,10,11,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +6)
+F#dim,F#dim,dim,6,F#dim-5-Triad-2,トライアド2,x,13,14,16,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +6)
+Gdim,Gdim,dim,2,Gdim-1-Root6,ルート6弦,15,14,15,x,x,15,4,1,3,-,-,2,,,,Diminished (auto from Cdim +7)
+Gdim,Gdim,dim,3,Gdim-2,ルート5弦,x,11,12,11,10,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +7)
+Gdim,Gdim,dim,4,Gdim-3-Root-4,ルート4弦,15,14,15,17,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +7)
+Gdim,Gdim,dim,5,Gdim-4-Triad-1,トライアド1,9,11,12,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +7)
+Gdim,Gdim,dim,6,Gdim-5-Triad-2,トライアド2,x,14,15,17,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +7)
+G#dim,G#dim,dim,2,G#dim-1-Root6,ルート6弦,16,15,16,x,x,16,4,1,3,-,-,2,,,,Diminished (auto from Cdim +8)
+G#dim,G#dim,dim,3,G#dim-2,ルート5弦,x,12,13,12,11,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +8)
+G#dim,G#dim,dim,4,G#dim-3-Root-4,ルート4弦,16,15,16,18,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +8)
+G#dim,G#dim,dim,5,G#dim-4-Triad-1,トライアド1,10,12,13,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +8)
+G#dim,G#dim,dim,6,G#dim-5-Triad-2,トライアド2,x,15,16,18,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +8)
+Adim,Adim,dim,2,Adim-1-Root6,ルート6弦,17,16,17,x,x,17,4,1,3,-,-,2,,,,Diminished (auto from Cdim +9)
+Adim,Adim,dim,3,Adim-2,ルート5弦,x,13,14,13,12,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +9)
+Adim,Adim,dim,4,Adim-3-Root-4,ルート4弦,17,16,17,19,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +9)
+Adim,Adim,dim,5,Adim-4-Triad-1,トライアド1,11,13,14,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +9)
+Adim,Adim,dim,6,Adim-5-Triad-2,トライアド2,x,16,17,19,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +9)
+A#dim,A#dim,dim,2,A#dim-1-Root6,ルート6弦,18,17,18,x,x,18,4,1,3,-,-,2,,,,Diminished (auto from Cdim +10)
+A#dim,A#dim,dim,3,A#dim-2,ルート5弦,x,14,15,14,13,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +10)
+A#dim,A#dim,dim,4,A#dim-3-Root-4,ルート4弦,18,17,18,20,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +10)
+A#dim,A#dim,dim,5,A#dim-4-Triad-1,トライアド1,12,14,15,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +10)
+A#dim,A#dim,dim,6,A#dim-5-Triad-2,トライアド2,x,17,18,20,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +10)
+Bdim,Bdim,dim,2,Bdim-1-Root6,ルート6弦,19,18,19,x,x,19,4,1,3,-,-,2,,,,Diminished (auto from Cdim +11)
+Bdim,Bdim,dim,3,Bdim-2,ルート5弦,x,15,16,15,14,x,-,3,4,2,1,-,,,,Diminished (auto from Cdim +11)
+Bdim,Bdim,dim,4,Bdim-3-Root-4,ルート4弦,19,18,19,21,x,x,3,1,2,4,-,-,,,,Diminished (auto from Cdim +11)
+Bdim,Bdim,dim,5,Bdim-4-Triad-1,トライアド1,13,15,16,x,x,x,1,3,4,-,-,-,,,,Diminished (auto from Cdim +11)
+Bdim,Bdim,dim,6,Bdim-5-Triad-2,トライアド2,x,18,19,21,x,x,-,1,2,4,-,-,,,,Diminished (auto from Cdim +11)
 Csus2,Csus2,sus2,1,Csus2-1-Open,Open,4,4,0,0,4,0,4,3,-,-,1,-,,, ,"C sus2オープン（x-3-0-0-3-3）"
 Dsus2,Dsus2,sus2,1,Dsus2-1-Open,Open,0,3,2,0,x,x,-,3,1,-,-,-,,, ,"D sus2オープン（x-x-0-2-3-0）"
 Esus2,Esus2,sus2,1,Esus2-1-Open,Open,0,0,4,4,2,0,-,-,3,4,1,-,,, ,"E sus2オープン（0-2-4-4-0-0）"

@@ -73,7 +73,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'A-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [12, 14, 14, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -81,7 +81,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'A-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 5, 6, 7, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
         barres: [],
@@ -121,7 +121,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'A#-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [1, 3, 3, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -129,7 +129,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'A#-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 6, 7, 8, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
         barres: [],
@@ -225,7 +225,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'A#dim-1-Root6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [18, 17, 18, 'x', 'x', 18],
         fingers: [4, 1, 3, null, null, 2],
         barres: [],
@@ -233,7 +233,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'A#dim-2',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: ['x', 14, 15, 14, 13, 'x'],
         fingers: [null, 3, 4, 2, 1, null],
         barres: [],
@@ -241,7 +241,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'A#dim-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [18, 17, 18, 20, 'x', 'x'],
         fingers: [3, 1, 2, 4, null, null],
         barres: [],
@@ -249,7 +249,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'A#dim-4-Triad-1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [12, 14, 15, 'x', 'x', 'x'],
         fingers: [1, 3, 4, null, null, null],
         barres: [],
@@ -257,7 +257,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'A#dim-5-Triad-2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 17, 18, 20, 'x', 'x'],
         fingers: [null, 1, 2, 4, null, null],
         barres: [],
@@ -297,7 +297,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'A#m-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [1, 2, 3, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -305,7 +305,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'A#m-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 6, 6, 8, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
@@ -345,7 +345,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'A#sus4-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [13, 16, 15, 'x', 'x', 'x'],
         fingers: [1, 4, 3, null, null, null],
         barres: [],
@@ -353,7 +353,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'A#sus4-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 18, 20, 20, 'x', 'x'],
         fingers: [null, 1, 3, 4, null, null],
         barres: [],
@@ -417,7 +417,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'A7-2-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [5, 5, 6, 5, 7, 5],
         fingers: [1, 1, 2, 1, 3, 1],
         barres: [],
@@ -433,7 +433,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'A7-4-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [9, 8, 9, 7, 'x', 'x'],
         fingers: [4, 2, 3, 1, null, null],
         barres: [],
@@ -537,7 +537,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'Adim-1-Root6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [17, 16, 17, 'x', 'x', 17],
         fingers: [4, 1, 3, null, null, 2],
         barres: [],
@@ -545,7 +545,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Adim-2',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: ['x', 13, 14, 13, 12, 'x'],
         fingers: [null, 3, 4, 2, 1, null],
         barres: [],
@@ -553,7 +553,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Adim-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [17, 16, 17, 19, 'x', 'x'],
         fingers: [3, 1, 2, 4, null, null],
         barres: [],
@@ -561,7 +561,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Adim-4-Triad-1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [11, 13, 14, 'x', 'x', 'x'],
         fingers: [1, 3, 4, null, null, null],
         barres: [],
@@ -569,7 +569,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Adim-5-Triad-2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 16, 17, 19, 'x', 'x'],
         fingers: [null, 1, 2, 4, null, null],
         barres: [],
@@ -617,7 +617,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Am-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [12, 13, 14, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -625,7 +625,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Am-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 5, 5, 7, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
@@ -689,7 +689,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Am7-2-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [5, 5, 5, 5, 7, 5],
         fingers: [1, 1, 1, 1, 3, 1],
         barres: [],
@@ -705,7 +705,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Am7-4-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [8, 8, 9, 7, 'x', 'x'],
         fingers: [3, 2, 4, 1, null, null],
         barres: [],
@@ -849,7 +849,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Asus4-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [12, 15, 14, 'x', 'x', 'x'],
         fingers: [1, 4, 3, null, null, null],
         barres: [],
@@ -857,7 +857,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Asus4-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 17, 19, 19, 'x', 'x'],
         fingers: [null, 1, 3, 4, null, null],
         barres: [],
@@ -897,7 +897,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'B-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [2, 4, 4, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -905,7 +905,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'B-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 7, 8, 9, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
         barres: [],
@@ -953,7 +953,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'B7-2-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [7, 7, 8, 7, 9, 7],
         fingers: [1, 1, 2, 1, 3, 1],
         barres: [],
@@ -961,7 +961,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'B7-3-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [9, 11, 9, 11, 9, 'x'],
         fingers: [1, 4, 1, 3, 1, null],
         barres: [],
@@ -969,7 +969,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'B7-4-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [11, 10, 11, 9, 'x', 'x'],
         fingers: [4, 2, 3, 1, null, null],
         barres: [],
@@ -1097,7 +1097,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Bb-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [1, 3, 3, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -1105,7 +1105,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Bb-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 6, 7, 8, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
         barres: [],
@@ -1145,7 +1145,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Bbm-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [1, 2, 3, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -1153,7 +1153,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Bbm-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 6, 6, 8, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
@@ -1201,7 +1201,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'Bdim-1-Root6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [19, 18, 19, 'x', 'x', 19],
         fingers: [4, 1, 3, null, null, 2],
         barres: [],
@@ -1209,7 +1209,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Bdim-2',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: ['x', 15, 16, 15, 14, 'x'],
         fingers: [null, 3, 4, 2, 1, null],
         barres: [],
@@ -1217,7 +1217,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Bdim-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [19, 18, 19, 21, 'x', 'x'],
         fingers: [3, 1, 2, 4, null, null],
         barres: [],
@@ -1225,7 +1225,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Bdim-4-Triad-1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [13, 15, 16, 'x', 'x', 'x'],
         fingers: [1, 3, 4, null, null, null],
         barres: [],
@@ -1233,7 +1233,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Bdim-5-Triad-2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 18, 19, 21, 'x', 'x'],
         fingers: [null, 1, 2, 4, null, null],
         barres: [],
@@ -1273,7 +1273,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Bm-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [2, 3, 4, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -1281,7 +1281,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Bm-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 7, 7, 9, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
@@ -1457,7 +1457,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Bsus4-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [14, 17, 16, 'x', 'x', 'x'],
         fingers: [1, 4, 3, null, null, null],
         barres: [],
@@ -1465,7 +1465,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Bsus4-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 19, 21, 21, 'x', 'x'],
         fingers: [null, 1, 3, 4, null, null],
         barres: [],
@@ -1513,7 +1513,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [3, 5, 5, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -1521,7 +1521,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 8, 9, 10, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
         barres: [],
@@ -1561,7 +1561,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C#-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [4, 6, 6, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -1569,7 +1569,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C#-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 9, 10, 11, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
         barres: [],
@@ -1585,7 +1585,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'C#7-1-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [9, 9, 10, 9, 11, 9],
         fingers: [1, 1, 2, 1, 3, 1],
         barres: [],
@@ -1593,7 +1593,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C#7-2-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [4, 6, 4, 6, 4, 'x'],
         fingers: [1, 4, 1, 3, 1, null],
         barres: [],
@@ -1601,7 +1601,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C#7-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [13, 12, 13, 11, 'x', 'x'],
         fingers: [4, 2, 3, 1, null, null],
         barres: [],
@@ -1697,7 +1697,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'C#dim-1-Root6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [9, 8, 9, 'x', 'x', 9],
         fingers: [4, 1, 3, null, null, 2],
         barres: [],
@@ -1705,7 +1705,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C#dim-2',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: ['x', 5, 6, 5, 4, 'x'],
         fingers: [null, 3, 4, 2, 1, null],
         barres: [],
@@ -1713,7 +1713,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C#dim-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [9, 8, 9, 11, 'x', 'x'],
         fingers: [3, 1, 2, 4, null, null],
         barres: [],
@@ -1721,7 +1721,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C#dim-4-Triad-1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [3, 5, 6, 'x', 'x', 'x'],
         fingers: [1, 3, 4, null, null, null],
         barres: [],
@@ -1729,7 +1729,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C#dim-5-Triad-2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 8, 9, 11, 'x', 'x'],
         fingers: [null, 1, 2, 4, null, null],
         barres: [],
@@ -1769,7 +1769,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C#m-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [4, 5, 6, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -1777,7 +1777,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C#m-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 9, 9, 11, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
@@ -1801,7 +1801,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C#m7-2-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [9, 9, 9, 9, 11, 9],
         fingers: [1, 1, 1, 1, 3, 1],
         barres: [],
@@ -1809,7 +1809,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C#m7-3-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [4, 5, 4, 6, 4, 'x'],
         fingers: [1, 2, 1, 3, 1, null],
         barres: [],
@@ -1817,7 +1817,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C#m7-4-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [12, 12, 13, 11, 'x', 'x'],
         fingers: [3, 2, 4, 1, null, null],
         barres: [],
@@ -1961,7 +1961,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C7-2-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [8, 8, 9, 8, 10, 8],
         fingers: [1, 1, 2, 1, 3, 1],
         barres: [],
@@ -1969,7 +1969,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C7-3-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [3, 5, 3, 5, 3, 'x'],
         fingers: [1, 4, 1, 3, 1, null],
         barres: [],
@@ -1977,7 +1977,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'C7-4-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [12, 11, 12, 10, 'x', 'x'],
         fingers: [4, 2, 3, 1, null, null],
         barres: [],
@@ -2177,7 +2177,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Cm-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [3, 4, 5, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -2185,7 +2185,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Cm-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 8, 8, 10, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
@@ -2233,7 +2233,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'Cm7-1-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [8, 8, 8, 8, 10, 8],
         fingers: [1, 1, 1, 1, 3, 1],
         barres: [],
@@ -2241,7 +2241,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Cm7-2-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [3, 4, 3, 5, 3, 'x'],
         fingers: [1, 2, 1, 3, 1, null],
         barres: [],
@@ -2249,7 +2249,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Cm7-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [11, 11, 12, 10, 'x', 'x'],
         fingers: [3, 2, 4, 1, null, null],
         barres: [],
@@ -2449,7 +2449,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [5, 7, 7, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -2457,7 +2457,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 10, 11, 12, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
         barres: [],
@@ -2497,7 +2497,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D#-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [6, 8, 8, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -2505,7 +2505,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D#-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 11, 12, 13, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
         barres: [],
@@ -2521,7 +2521,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'D#7-1-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [11, 11, 12, 11, 13, 11],
         fingers: [1, 1, 2, 1, 3, 1],
         barres: [],
@@ -2529,7 +2529,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D#7-2-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [6, 8, 6, 8, 6, 'x'],
         fingers: [1, 4, 1, 3, 1, null],
         barres: [],
@@ -2537,7 +2537,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D#7-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [3, 2, 3, 1, 'x', 'x'],
         fingers: [4, 2, 3, 1, null, null],
         barres: [],
@@ -2633,7 +2633,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'D#dim-1-Root6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [11, 10, 11, 'x', 'x', 11],
         fingers: [4, 1, 3, null, null, 2],
         barres: [],
@@ -2641,7 +2641,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D#dim-2',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: ['x', 7, 8, 7, 6, 'x'],
         fingers: [null, 3, 4, 2, 1, null],
         barres: [],
@@ -2649,7 +2649,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D#dim-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [11, 10, 11, 13, 'x', 'x'],
         fingers: [3, 1, 2, 4, null, null],
         barres: [],
@@ -2657,7 +2657,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D#dim-4-Triad-1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [5, 7, 8, 'x', 'x', 'x'],
         fingers: [1, 3, 4, null, null, null],
         barres: [],
@@ -2665,7 +2665,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D#dim-5-Triad-2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 10, 11, 13, 'x', 'x'],
         fingers: [null, 1, 2, 4, null, null],
         barres: [],
@@ -2705,7 +2705,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D#m-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [6, 7, 8, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -2713,7 +2713,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D#m-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 11, 11, 13, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
@@ -2729,7 +2729,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'D#m7-2-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [11, 11, 11, 11, 13, 11],
         fingers: [1, 1, 1, 1, 3, 1],
         barres: [],
@@ -2737,7 +2737,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D#m7-1-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [6, 7, 6, 8, 6, 'x'],
         fingers: [1, 2, 1, 3, 1, null],
         barres: [],
@@ -2745,7 +2745,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D#m7-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [14, 14, 15, 13, 'x', 'x'],
         fingers: [3, 2, 4, 1, null, null],
         barres: [],
@@ -2817,7 +2817,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D#sus4-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [6, 9, 8, 'x', 'x', 'x'],
         fingers: [1, 4, 3, null, null, null],
         barres: [],
@@ -2825,7 +2825,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D#sus4-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 11, 13, 13, 'x', 'x'],
         fingers: [null, 1, 3, 4, null, null],
         barres: [],
@@ -2889,7 +2889,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D7-2-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [10, 10, 11, 10, 12, 10],
         fingers: [1, 1, 2, 1, 3, 1],
         barres: [],
@@ -2897,7 +2897,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'D7-3-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [5, 7, 5, 7, 5, 'x'],
         fingers: [1, 4, 1, 3, 1, null],
         barres: [],
@@ -3057,7 +3057,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Dm-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [5, 6, 7, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -3065,7 +3065,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Dm-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 10, 10, 12, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
@@ -3129,7 +3129,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Dm7-2-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [10, 10, 10, 10, 12, 10],
         fingers: [1, 1, 1, 1, 3, 1],
         barres: [],
@@ -3137,7 +3137,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Dm7-3-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [5, 6, 5, 7, 5, 'x'],
         fingers: [1, 2, 1, 3, 1, null],
         barres: [],
@@ -3145,7 +3145,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Dm7-4-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [13, 13, 14, 12, 'x', 'x'],
         fingers: [3, 2, 4, 1, null, null],
         barres: [],
@@ -3281,7 +3281,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Dsus4-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [5, 8, 7, 'x', 'x', 'x'],
         fingers: [1, 4, 3, null, null, null],
         barres: [],
@@ -3289,7 +3289,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Dsus4-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 10, 12, 12, 'x', 'x'],
         fingers: [null, 1, 3, 4, null, null],
         barres: [],
@@ -3337,7 +3337,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'E-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [7, 9, 9, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -3345,7 +3345,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'E-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 12, 13, 14, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
         barres: [],
@@ -3417,7 +3417,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'E7-3-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [7, 9, 7, 9, 7, 'x'],
         fingers: [1, 4, 1, 3, 1, null],
         barres: [],
@@ -3561,7 +3561,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Eb-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [6, 8, 8, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -3569,7 +3569,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Eb-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 11, 12, 13, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
         barres: [],
@@ -3609,7 +3609,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Ebm-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [6, 7, 8, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -3617,7 +3617,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Ebm-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 11, 11, 13, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
@@ -3713,7 +3713,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Em-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [7, 8, 9, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -3721,7 +3721,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Em-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 12, 12, 14, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
@@ -3777,7 +3777,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'Em7-4-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [12, 12, 12, 12, 14, 12],
         fingers: [1, 1, 1, 1, 3, 1],
         barres: [],
@@ -3785,7 +3785,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Em7-3-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [7, 8, 7, 9, 7, 'x'],
         fingers: [1, 2, 1, 3, 1, null],
         barres: [],
@@ -3793,7 +3793,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Em7-2-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [3, 3, 4, 2, 'x', 'x'],
         fingers: [3, 2, 4, 1, null, null],
         barres: [],
@@ -3937,7 +3937,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Esus4-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [7, 10, 9, 'x', 'x', 'x'],
         fingers: [1, 4, 3, null, null, null],
         barres: [],
@@ -3945,7 +3945,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Esus4-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 12, 14, 14, 'x', 'x'],
         fingers: [null, 1, 3, 4, null, null],
         barres: [],
@@ -3985,7 +3985,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [8, 10, 10, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -3993,7 +3993,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 1, 2, 3, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
         barres: [],
@@ -4033,7 +4033,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F#-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [9, 11, 11, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -4041,7 +4041,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F#-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 2, 3, 4, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
         barres: [],
@@ -4065,7 +4065,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F#7-2-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [2, 2, 3, 2, 4, 2],
         fingers: [1, 1, 2, 1, 3, 1],
         barres: [],
@@ -4073,7 +4073,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F#7-3-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [9, 11, 9, 11, 9, 'x'],
         fingers: [1, 4, 1, 3, 1, null],
         barres: [],
@@ -4081,7 +4081,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F#7-4-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [6, 5, 6, 4, 'x', 'x'],
         fingers: [4, 2, 3, 1, null, null],
         barres: [],
@@ -4177,7 +4177,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'F#dim-1-Root6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [14, 13, 14, 'x', 'x', 14],
         fingers: [4, 1, 3, null, null, 2],
         barres: [],
@@ -4185,7 +4185,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F#dim-2',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: ['x', 10, 11, 10, 9, 'x'],
         fingers: [null, 3, 4, 2, 1, null],
         barres: [],
@@ -4193,7 +4193,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F#dim-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [14, 13, 14, 16, 'x', 'x'],
         fingers: [3, 1, 2, 4, null, null],
         barres: [],
@@ -4201,7 +4201,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F#dim-4-Triad-1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [8, 10, 11, 'x', 'x', 'x'],
         fingers: [1, 3, 4, null, null, null],
         barres: [],
@@ -4209,7 +4209,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F#dim-5-Triad-2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 13, 14, 16, 'x', 'x'],
         fingers: [null, 1, 2, 4, null, null],
         barres: [],
@@ -4249,7 +4249,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F#m-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [9, 10, 11, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -4257,7 +4257,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F#m-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 2, 2, 4, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
@@ -4273,7 +4273,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'F#m7-1-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [2, 2, 2, 2, 4, 2],
         fingers: [1, 1, 1, 1, 3, 1],
         barres: [],
@@ -4281,7 +4281,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F#m7-2-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [9, 10, 9, 11, 9, 'x'],
         fingers: [1, 2, 1, 3, 1, null],
         barres: [],
@@ -4289,7 +4289,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F#m7-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [5, 5, 6, 4, 'x', 'x'],
         fingers: [3, 2, 4, 1, null, null],
         barres: [],
@@ -4361,7 +4361,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F#sus4-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [9, 12, 11, 'x', 'x', 'x'],
         fingers: [1, 4, 3, null, null, null],
         barres: [],
@@ -4369,7 +4369,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'F#sus4-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 14, 16, 16, 'x', 'x'],
         fingers: [null, 1, 3, 4, null, null],
         barres: [],
@@ -4425,7 +4425,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'F7-2-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [8, 10, 8, 10, 8, 'x'],
         fingers: [1, 4, 1, 3, 1, null],
         barres: [],
@@ -4529,7 +4529,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'Fdim-1-Root6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [13, 12, 13, 'x', 'x', 13],
         fingers: [4, 1, 3, null, null, 2],
         barres: [],
@@ -4537,7 +4537,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Fdim-2',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: ['x', 9, 10, 9, 8, 'x'],
         fingers: [null, 3, 4, 2, 1, null],
         barres: [],
@@ -4545,7 +4545,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Fdim-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [13, 12, 13, 15, 'x', 'x'],
         fingers: [3, 1, 2, 4, null, null],
         barres: [],
@@ -4553,7 +4553,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Fdim-4-Triad-1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [7, 9, 10, 'x', 'x', 'x'],
         fingers: [1, 3, 4, null, null, null],
         barres: [],
@@ -4561,7 +4561,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Fdim-5-Triad-2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 12, 13, 15, 'x', 'x'],
         fingers: [null, 1, 2, 4, null, null],
         barres: [],
@@ -4601,7 +4601,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Fm-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [8, 9, 10, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -4609,7 +4609,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Fm-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 1, 1, 3, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
@@ -4777,7 +4777,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Fsus4-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [8, 11, 10, 'x', 'x', 'x'],
         fingers: [1, 4, 3, null, null, null],
         barres: [],
@@ -4785,7 +4785,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Fsus4-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 13, 15, 15, 'x', 'x'],
         fingers: [null, 1, 3, 4, null, null],
         barres: [],
@@ -4833,7 +4833,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [10, 12, 12, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -4841,7 +4841,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 3, 4, 5, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
         barres: [],
@@ -4881,7 +4881,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G#-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [11, 13, 13, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -4889,7 +4889,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G#-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 4, 5, 6, 'x', 'x'],
         fingers: [null, 1, 2, 3, null, null],
         barres: [],
@@ -4905,7 +4905,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'G#7-1-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [4, 4, 5, 4, 6, 4],
         fingers: [1, 1, 2, 1, 3, 1],
         barres: [],
@@ -4913,7 +4913,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G#7-2-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [11, 13, 11, 13, 11, 'x'],
         fingers: [1, 4, 1, 3, 1, null],
         barres: [],
@@ -4921,7 +4921,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G#7-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [8, 7, 8, 6, 'x', 'x'],
         fingers: [4, 2, 3, 1, null, null],
         barres: [],
@@ -5017,7 +5017,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'G#dim-1-Root6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [16, 15, 16, 'x', 'x', 16],
         fingers: [4, 1, 3, null, null, 2],
         barres: [],
@@ -5025,7 +5025,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G#dim-2',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: ['x', 12, 13, 12, 11, 'x'],
         fingers: [null, 3, 4, 2, 1, null],
         barres: [],
@@ -5033,7 +5033,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G#dim-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [16, 15, 16, 18, 'x', 'x'],
         fingers: [3, 1, 2, 4, null, null],
         barres: [],
@@ -5041,7 +5041,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G#dim-4-Triad-1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [10, 12, 13, 'x', 'x', 'x'],
         fingers: [1, 3, 4, null, null, null],
         barres: [],
@@ -5049,7 +5049,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G#dim-5-Triad-2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 15, 16, 18, 'x', 'x'],
         fingers: [null, 1, 2, 4, null, null],
         barres: [],
@@ -5089,7 +5089,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G#m-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [11, 12, 13, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -5097,7 +5097,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G#m-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 4, 4, 6, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
@@ -5113,7 +5113,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'G#m7-1-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [4, 4, 4, 4, 6, 4],
         fingers: [1, 1, 1, 1, 3, 1],
         barres: [],
@@ -5121,7 +5121,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G#m7-2-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [11, 12, 11, 13, 11, 'x'],
         fingers: [1, 2, 1, 3, 1, null],
         barres: [],
@@ -5129,7 +5129,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G#m7-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [7, 7, 8, 6, 'x', 'x'],
         fingers: [3, 2, 4, 1, null, null],
         barres: [],
@@ -5201,7 +5201,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G#sus4-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [11, 14, 13, 'x', 'x', 'x'],
         fingers: [1, 4, 3, null, null, null],
         barres: [],
@@ -5209,7 +5209,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G#sus4-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 16, 18, 18, 'x', 'x'],
         fingers: [null, 1, 3, 4, null, null],
         barres: [],
@@ -5273,7 +5273,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G7-2-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [3, 3, 4, 3, 5, 3],
         fingers: [1, 1, 2, 1, 3, 1],
         barres: [],
@@ -5281,7 +5281,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G7-3-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [10, 12, 10, 12, 10, 'x'],
         fingers: [1, 4, 1, 3, 1, null],
         barres: [],
@@ -5289,7 +5289,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'G7-4-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [7, 6, 7, 5, 'x', 'x'],
         fingers: [4, 2, 3, 1, null, null],
         barres: [],
@@ -5401,7 +5401,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'Gdim-1-Root6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [15, 14, 15, 'x', 'x', 15],
         fingers: [4, 1, 3, null, null, 2],
         barres: [],
@@ -5409,7 +5409,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Gdim-2',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: ['x', 11, 12, 11, 10, 'x'],
         fingers: [null, 3, 4, 2, 1, null],
         barres: [],
@@ -5417,7 +5417,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Gdim-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [15, 14, 15, 17, 'x', 'x'],
         fingers: [3, 1, 2, 4, null, null],
         barres: [],
@@ -5425,7 +5425,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Gdim-4-Triad-1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [9, 11, 12, 'x', 'x', 'x'],
         fingers: [1, 3, 4, null, null, null],
         barres: [],
@@ -5433,7 +5433,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Gdim-5-Triad-2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 14, 15, 17, 'x', 'x'],
         fingers: [null, 1, 2, 4, null, null],
         barres: [],
@@ -5473,7 +5473,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Gm-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [10, 11, 12, 'x', 'x', 'x'],
         fingers: [1, 2, 3, null, null, null],
         barres: [],
@@ -5481,7 +5481,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Gm-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 3, 3, 5, 'x', 'x'],
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
@@ -5537,7 +5537,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
     forms: [
       {
         id: 'Gm7-1-Root-6',
-        shapeName: 'Root-6',
+        shapeName: 'ルート6弦',
         frets: [3, 3, 3, 3, 5, 3],
         fingers: [1, 1, 1, 1, 3, 1],
         barres: [],
@@ -5545,7 +5545,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Gm7-2-Root-5',
-        shapeName: 'Root-5',
+        shapeName: 'ルート5弦',
         frets: [10, 11, 10, 12, 10, 'x'],
         fingers: [1, 2, 1, 3, 1, null],
         barres: [],
@@ -5553,7 +5553,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Gm7-3-Root-4',
-        shapeName: 'Root-4',
+        shapeName: 'ルート4弦',
         frets: [6, 6, 7, 5, 'x', 'x'],
         fingers: [3, 2, 4, 1, null, null],
         barres: [],
@@ -5697,7 +5697,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Gsus4-5-Triad1',
-        shapeName: 'Triad-1',
+        shapeName: 'トライアド1',
         frets: [10, 13, 12, 'x', 'x', 'x'],
         fingers: [1, 4, 3, null, null, null],
         barres: [],
@@ -5705,7 +5705,7 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       },
       {
         id: 'Gsus4-6-Triad2',
-        shapeName: 'Triad-2',
+        shapeName: 'トライアド2',
         frets: ['x', 15, 17, 17, 'x', 'x'],
         fingers: [null, 1, 3, 4, null, null],
         barres: [],

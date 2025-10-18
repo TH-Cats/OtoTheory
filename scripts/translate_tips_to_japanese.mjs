@@ -12,6 +12,14 @@ const translations = {
   '4th string root | High position': '4弦ルート | 高音域ポジション',
   'Triad extracted from iOS (Triad-1)': 'iOSから抽出したトライアド（トライアド1）',
   'Triad extracted from iOS (Triad-2)': 'iOSから抽出したトライアド（トライアド2）',
+  'Triad-1': 'トライアド1',
+  'Triad-2': 'トライアド2',
+  'Root-6': 'ルート6弦',
+  'Root-5': 'ルート5弦',
+  'Root-4': 'ルート4弦',
+  'Root6': 'ルート6弦',
+  'Root5': 'ルート5弦',
+  'Root4': 'ルート4弦',
   '6th string root | Maj7 E-shape': '6弦ルート | Maj7 Eフォーム',
   '5th string root | Maj7 A-shape': '5弦ルート | Maj7 Aフォーム',
   '4th string root | High position': '4弦ルート | 高音域ポジション',
@@ -257,9 +265,18 @@ const lines = csvContent.split('\n');
 const header = lines[0];
 const dataLines = lines.slice(1).filter(line => line.trim());
 
-// Tips列を日本語に翻訳
+// Tips列とShapeName列を日本語に翻訳
 const translatedLines = dataLines.map(line => {
-  // CSVの最後の列（Tips列）を正しく抽出
+  const parts = line.split(',');
+  
+  // ShapeName列（6番目）を翻訳
+  if (parts.length >= 6) {
+    const shapeName = parts[5];
+    const translatedShapeName = translations[shapeName] || shapeName;
+    parts[5] = translatedShapeName;
+  }
+  
+  // Tips列（最後の列）を翻訳
   const lastQuoteIndex = line.lastIndexOf('"');
   const firstQuoteIndex = line.indexOf('"', line.lastIndexOf(','));
   
@@ -272,7 +289,7 @@ const translatedLines = dataLines.map(line => {
     return beforeTips + '"' + translatedTips + '"' + afterTips;
   }
   
-  return line;
+  return parts.join(',');
 });
 
 // ヘッダーと翻訳されたデータを結合

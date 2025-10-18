@@ -27,3 +27,4 @@ function append(csvPath,items){
 function main(){const sw=read(SWIFT_PATH);const items=parse(sw);append(CSV_PATH,items);console.log(`Appended m7 forms: ${items.length}`);}main();
 
 
+

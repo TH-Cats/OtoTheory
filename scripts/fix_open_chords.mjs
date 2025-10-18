@@ -49,3 +49,4 @@ const result = [header, ...correctedLines].join('\n');
 fs.writeFileSync(csvPath, result);
 
 console.log('Openコードのフレット配列を1フレットから始まるように修正しました');
+

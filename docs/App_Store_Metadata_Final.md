@@ -400,3 +400,4 @@ Pro機能（セクション編集、MIDI出力）はアプリ内課金が必要�
 **Status**: ✅ Ready for App Store Connect Upload
 **Next Steps**: Archive Build → TestFlight → Internal Testing
 
+

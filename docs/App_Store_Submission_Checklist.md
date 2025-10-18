@@ -388,3 +388,4 @@ open /Users/nh/App/OtoTheory/OtoTheory-iOS/OtoTheory.xcodeproj
 **Next Action**: Code Signing & Assets確認  
 **Target**: TestFlight配信 (2-3日以内)
 
+
