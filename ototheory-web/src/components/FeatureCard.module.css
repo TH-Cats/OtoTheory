@@ -1,0 +1,117 @@
+.featureCard {
+  display: block;
+  border-radius: 16px;
+  border: 1px solid var(--line, #E5E7EB);
+  background: var(--surface, #FFFFFF);
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.featureCard:hover {
+  background: rgba(0, 0, 0, 0.02);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: var(--brand-primary, #FF6B6B);
+}
+
+.dark .featureCard {
+  border-color: var(--line, #374151);
+  background: var(--surface, #1F2937);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.dark .featureCard:hover {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: var(--brand-primary, #FF6B6B);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.cardContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.iconContainer {
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, 
+    rgba(255, 107, 107, 0.1) 0%, 
+    rgba(78, 205, 196, 0.1) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.featureCard:hover .iconContainer {
+  background: linear-gradient(135deg, 
+    rgba(255, 107, 107, 0.2) 0%, 
+    rgba(78, 205, 196, 0.2) 100%
+  );
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--brand-primary, #FF6B6B);
+  transition: color 0.3s ease;
+}
+
+.featureCard:hover .icon {
+  color: var(--brand-secondary, #4ECDC4);
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin: 0 0 0.5rem 0;
+  transition: color 0.3s ease;
+}
+
+.featureCard:hover .title {
+  color: var(--brand-primary, #FF6B6B);
+}
+
+.catchphrase {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--brand-secondary, #4ECDC4);
+  margin: 0 0 0.75rem 0;
+  transition: color 0.3s ease;
+}
+
+.featureCard:hover .catchphrase {
+  color: var(--brand-primary, #FF6B6B);
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.descriptionLine {
+  font-size: 0.875rem;
+  opacity: 0.8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .featureCard {
+    padding: 1.5rem;
+  }
+}
