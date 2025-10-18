@@ -1,0 +1,8 @@
+fix(scale-names): resolve major scale lowercase display issue
+
+- Add normalizeScaleId function to handle Major/Minor aliases
+- Apply normalization in UI layer before scaleTypeLabel call
+- Add defensive alias handling in scaleTypeLabel function
+- Add console.log for debugging scale type values
+- Ensure Major -> Ionian and Minor -> Aeolian mapping
+- Fix scale name display consistency across the application

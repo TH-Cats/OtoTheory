@@ -1,0 +1,3 @@
+module.exports=[54665,a=>{"use strict";a.s(["default",()=>c,"metadata",()=>b]);let b={title:"Guitar Music Theory – Learn by Numbers | OtoTheory",description:"Complete music theory guide for guitarists. Learn degrees, chord construction, progressions, voicings, and advanced techniques. Each section includes practical 30-second recipes.",alternates:{canonical:"/resources/music-theory",languages:{en:"/resources/music-theory","ja-JP":"/ja/resources/music-theory","x-default":"/resources/music-theory"}},openGraph:{title:"Guitar Music Theory – Learn by Numbers",description:"Complete theory guide with practical recipes for immediate application on guitar."}};function c({children:a}){return a}}];
+
+//# sourceMappingURL=src_app_resources_music-theory_layout_tsx_7c6f45c0._.js.map
