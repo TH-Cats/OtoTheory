@@ -586,7 +586,9 @@ class ChordLibraryManager: ObservableObject {
                 }
                 
                 let entry = ChordEntry(root: root, quality: quality, shapes: shapes)
-                cache[key] = entry
+                Task { @MainActor in
+                    cache[key] = entry
+                }
                 return entry
             }
         }
@@ -597,7 +599,9 @@ class ChordLibraryManager: ObservableObject {
         if shapes.isEmpty { return nil }
         
         let entry = ChordEntry(root: root, quality: quality, shapes: shapes)
-        cache[key] = entry
+        Task { @MainActor in
+            cache[key] = entry
+        }
         
         return entry
     }
