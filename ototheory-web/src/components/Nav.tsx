@@ -30,7 +30,8 @@ export default function Nav() {
               </>
             ) : l.href === `${base}/find-chords` ? (
               <>
-                <span className="block leading-tight md:inline">{t.nav.findChords}</span>
+                <span className="block leading-none md:inline">{isJa ? 'コードを' : 'Find '}</span>
+                <span className="block leading-tight md:inline">{isJa ? '探す' : 'Chords'}</span>
               </>
             ) : l.href === `${base}/chord-library` ? (
               <>
