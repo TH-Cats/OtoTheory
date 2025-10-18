@@ -108,9 +108,32 @@ struct ChordBuilderView: View {
                 
                 // Quality Selection
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Quality")
-                        .font(.headline)
-                        .padding(.horizontal)
+                    HStack {
+                        Text("Quality")
+                            .font(.headline)
+                        
+                        Button(action: {
+                            // Show info alert
+                            let alert = UIAlertController(
+                                title: "Quality",
+                                message: "コードの「音の雰囲気」を決める要素。メジャーは明るく元気、マイナーは暗くて切ない、M7はジャズっぽくオシャレな響きに。同じルート音でも全く違う印象になります。",
+                                preferredStyle: .alert
+                            )
+                            alert.addAction(UIAlertAction(title: "OK", style: .default))
+                            
+                            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                               let window = windowScene.windows.first {
+                                window.rootViewController?.present(alert, animated: true)
+                            }
+                        }) {
+                            Image(systemName: "graduationcap.fill")
+                                .foregroundColor(.blue)
+                                .font(.caption)
+                        }
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 8) {

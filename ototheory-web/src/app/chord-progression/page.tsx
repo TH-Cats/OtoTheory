@@ -1049,7 +1049,17 @@ export default function FindKeyPage() {
               </div>
             </div>
             <div>
-              <div className="text-xs opacity-70 mb-0.5">Quality</div>
+              <div className="text-xs opacity-70 mb-0.5 flex items-center gap-1">
+                {isJapanese ? "コードタイプ" : "Quality"}
+                <InfoDot
+                  title={isJapanese ? "コードタイプ" : "Quality"}
+                  text={isJapanese 
+                    ? "コードの「音の雰囲気」を決める要素。メジャーは明るく元気、マイナーは暗くて切ない、M7はジャズっぽくオシャレな響きに。同じルート音でも全く違う印象になります。"
+                    : "Defines the \"mood\" of a chord. Major sounds bright and happy, minor sounds sad and emotional, M7 sounds jazzy and sophisticated. Even with the same root note, the quality completely changes the character."
+                  }
+                  icon="graduation"
+                />
+              </div>
               <div className="chips-row overflow-x-auto whitespace-nowrap">
                 {QUICK_QUALITIES.map(q => (
                   <button

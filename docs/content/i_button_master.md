@@ -194,7 +194,19 @@ Pro plan allows you to select more complex chord types.
 
 **English**:
 ```
-The fundamental note that serves as the basis of the chord and forms the root of the chord name. The root note of a C chord is "C (do)".
+The fundamental note that serves as the basis of the chord and forms the root of the chord name. The root note of a C chord is "C".
+```
+
+### 2.1.2 Quality解説
+
+**日本語**:
+```
+コードの「音の雰囲気」を決める要素。メジャーは明るく元気、マイナーは暗くて切ない、M7はジャズっぽくオシャレな響きに。同じルート音でも全く違う印象になります。
+```
+
+**English**:
+```
+Defines the "mood" of a chord. Major sounds bright and happy, minor sounds sad and emotional, M7 sounds jazzy and sophisticated. Even with the same root note, the quality completely changes the character.
 ```
 
 ### 2.2 フレットボード説明
