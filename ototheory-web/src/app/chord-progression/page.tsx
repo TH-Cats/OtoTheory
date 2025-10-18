@@ -44,9 +44,12 @@ import { exportPng } from "@/lib/export/png";
 import { chordToMidi } from "@/lib/music/chordParser";
 import Toast from "@/components/Toast.client";
 import { useCtaMessages } from "@/hooks/useCtaMessages";
+import { usePathname } from "next/navigation";
 
 export default function FindKeyPage() {
   const CTA_MESSAGES = useCtaMessages();
+  const pathname = usePathname();
+  const isJapanese = pathname.startsWith('/ja');
   const rootRowRef = useRef<HTMLDivElement | null>(null);
   useRovingTabs(rootRowRef, { orientation: "horizontal" });
   const fbToggleRef = useRef<HTMLDivElement | null>(null);
@@ -807,7 +810,10 @@ export default function FindKeyPage() {
               <H2 className="mb-0 text-left">Build progression</H2>
               <InfoDot
                 title="Build Progression"
-                text="Choose Chordsからコードを選んでスロットに追加ボタンから追加してください。上部のプリセットからコード進行を選択して追加することもできます。"
+                text={isJapanese 
+                  ? "Choose Chordsからコードを選んでスロットに追加ボタンから追加してください。上部のプリセットからコード進行を選択して追加することもできます。"
+                  : "Select chords from Choose Chords and add them using the slot add button. You can also select chord progressions from the presets at the top to add them."
+                }
               />
             </div>
           <div className="flex flex-wrap items-center gap-2 relative">
