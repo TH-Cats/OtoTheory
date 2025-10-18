@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
-import Image from "next/image";
-import Nav from "@/components/Nav";
+import Header from "@/components/Header.client";
 import { ProProvider } from "@/components/ProProvider";
 import AudioUnlocker from "./AudioUnlocker.client";
 import MobileStickyCta from "@/components/MobileStickyCta.client";
-import HeaderCta from "@/components/HeaderCta.client";
 import FooterCta from "@/components/FooterCta.client";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { GoogleTagManagerHead, GoogleTagManagerBody } from "@/components/GoogleTagManager";
 import Script from "next/script";
-import LangToggle from "@/components/LangToggle";
 import FooterNav from "@/components/FooterNav.client";
 import { HomePageStructuredData, AppStructuredData } from "@/components/StructuredData";
 
@@ -80,35 +76,7 @@ export default function RootLayout({
         <AudioUnlocker />
         <MobileStickyCta />
         <ProProvider>
-        <header className="border-b border-black/10 dark:border-white/10">
-          <div className="container flex items-center justify-between h-24">
-            <Link href="/" className="flex items-center gap-2">
-              {/* Light mode logo - hidden in dark mode */}
-              <Image 
-                src="/logo/logo-horizontal-light.png" 
-                alt="OtoTheory" 
-                width={280} 
-                height={84}
-                className="h-20 w-auto dark:hidden"
-                priority
-              />
-              {/* Dark mode logo - hidden in light mode */}
-              <Image 
-                src="/logo/logo-horizontal.png" 
-                alt="OtoTheory" 
-                width={280} 
-                height={84}
-                className="h-20 w-auto hidden dark:block"
-                priority
-              />
-            </Link>
-            <div className="flex items-center gap-4">
-              <Nav />
-              <HeaderCta />
-              <LangToggle />
-            </div>
-          </div>
-        </header>
+        <Header />
         <main className="pt-1 pb-4 sm:pt-2 sm:pb-6">
           {children}
         </main>
