@@ -65,7 +65,7 @@ export default function InfoDot({
       <button ref={btnRef} type="button" className="info-dot" aria-label={ariaLabel} onClick={() => setOpen((o) => !o)}>
         {icon === 'graduation' ? (
           <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M5.13 10.3c-.2-.2-.2-.5 0-.7l2.1-2.1c.2-.2.5-.2.7 0l2.1 2.1c.2.2.2.5 0 .7l-2.1 2.1c-.2.2-.5.2-.7 0l-2.1-2.1zM12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
           </svg>
         ) : (
           'i'
