@@ -1,3 +1,0 @@
-module.exports=[45206,a=>{"use strict";a.s(["default",()=>c,"metadata",()=>b]);let b={alternates:{canonical:"/ja/support",languages:{en:"/support","ja-JP":"/ja/support","x-default":"/support"}},openGraph:{locale:"ja_JP"}};function c({children:a}){return a}}];
-
-//# sourceMappingURL=src_app_ja_support_layout_tsx_a7c1b3e6._.js.map

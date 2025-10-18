@@ -1,8 +1,8 @@
-fix(scale-names): resolve major scale lowercase display issue
+Translate chord form tips to Japanese
 
-- Add normalizeScaleId function to handle Major/Minor aliases
-- Apply normalization in UI layer before scaleTypeLabel call
-- Add defensive alias handling in scaleTypeLabel function
-- Add console.log for debugging scale type values
-- Ensure Major -> Ionian and Minor -> Aeolian mapping
-- Fix scale name display consistency across the application
+- Add comprehensive Japanese translation for all chord form tips
+- Translate 573 chord forms from English to Japanese
+- Update master CSV with Japanese tips
+- Regenerate Web chord library with Japanese tips
+- Improve user experience for Japanese users
+- Maintain technical accuracy in translations
