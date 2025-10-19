@@ -14,6 +14,13 @@ struct AdvancedChordBuilderView: View {
     let isPro: Bool
     let onShowPaywall: () -> Void
     
+    // Quality info state
+    @State private var selectedInfo: QualityInfo? = nil
+    
+    var isPad: Bool {
+        UIDevice.current.userInterfaceIdiom == .pad
+    }
+    
     private let roots = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
     // Quality Master.csv based categories - only show if user has Pro
     private var proQualities: [(category: String, qualities: [String])] {
@@ -156,6 +163,11 @@ struct AdvancedChordBuilderView: View {
             }
         }
         .padding(.vertical, 8)
+        .sheet(item: $selectedInfo) { info in
+            QualityInfoView(info: info)
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
+        }
     }
     
     @ViewBuilder
@@ -171,39 +183,45 @@ struct AdvancedChordBuilderView: View {
                     ForEach(chords, id: \.self) { chord in
                         let qualityLabel = getQualityLabel(chord)
                         let isProQuality = QualityMaster.isProQuality(chord)
-                        let comment = QualityMaster.getQualityComment(for: chord, locale: "ja")
+                        let comment = QualityMaster.getQualityComment(for: chord, locale: Locale.current.language.languageCode?.identifier == "ja" ? "ja" : "en")
                         
-                        Button(action: {
+                        HStack(spacing: 6) {
+                            Text(qualityLabel)
+                                .font(.body)
+                                .fontWeight(.semibold)
+                            
+                            Spacer(minLength: 4)
+                            
+                            // 電球ボタン（独立したタップ領域）
+                            if !comment.isEmpty {
+                                Image(systemName: "lightbulb.fill")
+                                    .font(.caption)
+                                    .foregroundColor(.orange)
+                                    .padding(.horizontal, 4)
+                                    .padding(.vertical, 2)
+                                    .background(.orange.opacity(0.12), in: RoundedRectangle(cornerRadius: 6))
+                                    .accessibilityLabel("Show info")
+                                    .onTapGesture {
+                                        selectedInfo = QualityInfo(
+                                            title: qualityLabel,
+                                            body: comment
+                                        )
+                                    }
+                            }
+                        }
+                        .frame(minWidth: 80)
+                        .padding(.vertical, 12)
+                        .padding(.horizontal, 8)
+                        .background(selectedQuick == chord ? Color.blue : Color.gray.opacity(0.2))
+                        .foregroundColor(selectedQuick == chord ? .white : .primary)
+                        .cornerRadius(8)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
                             if isProQuality && !isPro {
                                 onShowPaywall()
                             } else {
                                 selectedQuick = chord
                                 selectedSlashBass = nil
-                            }
-                        }) {
-                            HStack(spacing: 4) {
-                                Text(qualityLabel)
-                                    .font(.body)
-                                    .fontWeight(.semibold)
-                                
-                                if isProQuality && !isPro {
-                                    Image(systemName: "crown.fill")
-                                        .font(.caption)
-                                        .foregroundColor(.orange)
-                                }
-                            }
-                            .frame(minWidth: 60)
-                            .padding(.vertical, 12)
-                            .padding(.horizontal, 8)
-                            .background(selectedQuick == chord ? Color.blue : Color.gray.opacity(0.2))
-                            .foregroundColor(selectedQuick == chord ? .white : .primary)
-                            .cornerRadius(8)
-                        }
-                        .contextMenu {
-                            // Empty context menu - just for preview
-                        } preview: {
-                            if !comment.isEmpty {
-                                QualityInfoView(bodyText: comment)
                             }
                         }
                     }

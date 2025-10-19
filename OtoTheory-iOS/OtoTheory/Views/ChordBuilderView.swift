@@ -22,6 +22,13 @@ struct ChordBuilderView: View {
     @State private var isAdding: Bool = false
     @State private var addButtonScale: CGFloat = 1.0
     
+    // Quality info state
+    @State private var selectedInfo: QualityInfo? = nil
+    
+    var isPad: Bool {
+        UIDevice.current.userInterfaceIdiom == .pad
+    }
+    
     private let roots = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
     
     // Quality Master.csv based qualities - ONLY Free qualities
@@ -203,40 +210,45 @@ struct ChordBuilderView: View {
                                     ForEach(categoryData.qualities, id: \.self) { quality in
                                         let qualityLabel = getQualityLabel(quality)
                                         let isProQuality = QualityMaster.isProQuality(quality)
-                                        let comment = QualityMaster.getQualityComment(for: quality, locale: "ja")
+                                        let comment = QualityMaster.getQualityComment(for: quality, locale: Locale.current.language.languageCode?.identifier == "ja" ? "ja" : "en")
                                         
-                                        Button(action: {
+                                        HStack(spacing: 6) {
+                                            Text(qualityLabel)
+                                                .font(.body)
+                                                .fontWeight(.semibold)
+                                            
+                                            Spacer(minLength: 4)
+                                            
+                                            // 電球ボタン（独立したタップ領域）
+                                            if !comment.isEmpty {
+                                                Image(systemName: "lightbulb.fill")
+                                                    .font(.caption)
+                                                    .foregroundColor(.orange)
+                                                    .padding(.horizontal, 4)
+                                                    .padding(.vertical, 2)
+                                                    .background(.orange.opacity(0.12), in: RoundedRectangle(cornerRadius: 6))
+                                                    .accessibilityLabel("Show info")
+                                                    .onTapGesture {
+                                                        selectedInfo = QualityInfo(
+                                                            title: qualityLabel,
+                                                            body: comment
+                                                        )
+                                                    }
+                                            }
+                                        }
+                                        .frame(minWidth: 80)
+                                        .padding(.vertical, 12)
+                                        .padding(.horizontal, 8)
+                                        .background(selectedQuick == quality ? Color.blue : Color.gray.opacity(0.2))
+                                        .foregroundColor(selectedQuick == quality ? .white : .primary)
+                                        .cornerRadius(8)
+                                        .contentShape(Rectangle())
+                                        .onTapGesture {
                                             if isProQuality && !isPro {
-                                                // Show Pro paywall
                                                 onShowPaywall()
                                             } else {
                                                 selectedQuick = quality
                                                 selectedSlashBass = nil
-                                            }
-                                        }) {
-                                            HStack(spacing: 4) {
-                                                Text(qualityLabel)
-                                                    .font(.body)
-                                                    .fontWeight(.semibold)
-                                                
-                                                if isProQuality && !isPro {
-                                                    Image(systemName: "crown.fill")
-                                                        .font(.caption)
-                                                        .foregroundColor(.orange)
-                                                }
-                                            }
-                                            .frame(minWidth: 60)
-                                            .padding(.vertical, 12)
-                                            .padding(.horizontal, 8)
-                                            .background(selectedQuick == quality ? Color.blue : Color.gray.opacity(0.2))
-                                            .foregroundColor(selectedQuick == quality ? .white : .primary)
-                                            .cornerRadius(8)
-                                        }
-                                        .contextMenu {
-                                            // Empty context menu - just for preview
-                                        } preview: {
-                                            if !comment.isEmpty {
-                                                QualityInfoView(bodyText: comment)
                                             }
                                         }
                                     }
@@ -328,6 +340,11 @@ struct ChordBuilderView: View {
                 }
                 .padding(.horizontal)
             }
+        }
+        .sheet(item: $selectedInfo) { info in
+            QualityInfoView(info: info)
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
         }
     }
     
