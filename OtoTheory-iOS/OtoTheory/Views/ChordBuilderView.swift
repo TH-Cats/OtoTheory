@@ -219,13 +219,10 @@ struct ChordBuilderView: View {
                                         }
                                         .contextMenu {
                                             if !comment.isEmpty {
-                                                VStack(alignment: .leading, spacing: 8) {
-                                                    Text(comment)
-                                                        .font(.caption)
-                                                        .multilineTextAlignment(.leading)
-                                                        .fixedSize(horizontal: false, vertical: true)
-                                                }
-                                                .padding()
+                                                Text(comment)
+                                                    .font(.caption)
+                                                    .multilineTextAlignment(.leading)
+                                                    .fixedSize(horizontal: false, vertical: true)
                                             }
                                         }
                                     }

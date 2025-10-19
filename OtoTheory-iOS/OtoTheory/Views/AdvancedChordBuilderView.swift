@@ -15,31 +15,59 @@ struct AdvancedChordBuilderView: View {
     let onShowPaywall: () -> Void
     
     private let roots = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-    private let extensionChords = ["6", "m6", "9", "m9", "11", "M11", "13", "M13"]
-    private let alteredDominant = ["7b5", "7#5", "7b9", "7#9", "7#11", "7b13", "7alt"]
-    private let diminishedVariants = ["dim7", "m7b5"]
-    private let suspensionsAdds = ["sus2", "add9", "add11", "add13", "6/9"]
-    private let augMM7 = ["aug", "mM7"]
+    // Quality Master.csv based categories - only show if user has Pro
+    private var proQualities: [(category: String, qualities: [String])] {
+        guard isPro else { return [] }
+        let proQualitiesData = QualityMaster.getQualitiesByCategory(tier: "Pro")
+        var result: [(category: String, qualities: [String])] = []
+        
+        for (category, qualityInfos) in proQualitiesData {
+            let englishCategory = getEnglishCategoryName(category)
+            result.append((category: englishCategory, qualities: qualityInfos.map { $0.quality }))
+        }
+        
+        return result
+    }
+    
+    private func getEnglishCategoryName(_ japaneseCategory: String) -> String {
+        switch japaneseCategory {
+        case "✨ キラキラ・浮遊感": return "✨ Sparkle & Float"
+        case "🌃 おしゃれ・都会的": return "🌃 Stylish & Urban"
+        case "⚡️ 緊張感・スパイス": return "⚡️ Tension & Spice"
+        default: return japaneseCategory
+        }
+    }
     
     var body: some View {
         DisclosureGroup(
             isExpanded: $showAdvanced,
             content: {
                 VStack(spacing: 16) {
-                    // Extensions
-                    chordCategory(title: "Extensions", chords: extensionChords)
-                    
-                    // Altered Dominant
-                    chordCategory(title: "Altered Dominant", chords: alteredDominant)
-                    
-                    // Diminished / Variants
-                    chordCategory(title: "Diminished / Variants", chords: diminishedVariants)
-                    
-                    // Suspensions / Adds
-                    chordCategory(title: "Suspensions / Adds", chords: suspensionsAdds)
-                    
-                    // Aug / mM7
-                    chordCategory(title: "Aug / mM7", chords: augMM7)
+                    if isPro {
+                        // Show Pro qualities from Quality Master.csv
+                        ForEach(proQualities, id: \.category) { categoryData in
+                            chordCategory(title: categoryData.category, chords: categoryData.qualities)
+                        }
+                    } else {
+                        // Show Pro paywall message
+                        VStack(spacing: 12) {
+                            Text("Pro features locked")
+                                .font(.headline)
+                                .foregroundColor(.secondary)
+                            
+                            Button(action: onShowPaywall) {
+                                Text("Upgrade to Pro")
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 10)
+                                    .background(Color.blue)
+                                    .cornerRadius(8)
+                            }
+                        }
+                        .padding()
+                    }
                     
                     // Slash Chords (On Bass)
                     VStack(alignment: .leading, spacing: 8) {
@@ -133,22 +161,60 @@ struct AdvancedChordBuilderView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
                     ForEach(chords, id: \.self) { chord in
+                        let qualityLabel = getQualityLabel(chord)
+                        let isProQuality = QualityMaster.isProQuality(chord)
+                        let comment = QualityMaster.getQualityComment(for: chord, locale: "ja")
+                        
                         Button(action: {
-                            selectedQuick = chord
-                            selectedSlashBass = nil
+                            if isProQuality && !isPro {
+                                onShowPaywall()
+                            } else {
+                                selectedQuick = chord
+                                selectedSlashBass = nil
+                            }
                         }) {
-                            Text(chord)
-                                .font(.caption)
-                                .fontWeight(.semibold)
-                                .frame(minWidth: 50)
-                                .padding(.vertical, 10)
-                                .background(selectedQuick == chord ? Color.blue : Color.gray.opacity(0.15))
-                                .foregroundColor(selectedQuick == chord ? .white : .primary)
-                                .cornerRadius(6)
+                            HStack(spacing: 4) {
+                                Text(qualityLabel)
+                                    .font(.caption)
+                                    .fontWeight(.semibold)
+                                
+                                if isProQuality && !isPro {
+                                    Image(systemName: "crown.fill")
+                                        .font(.system(size: 8))
+                                        .foregroundColor(.orange)
+                                }
+                            }
+                            .frame(minWidth: 50)
+                            .padding(.vertical, 10)
+                            .background(selectedQuick == chord ? Color.blue : Color.gray.opacity(0.15))
+                            .foregroundColor(selectedQuick == chord ? .white : .primary)
+                            .cornerRadius(6)
+                        }
+                        .contextMenu {
+                            if !comment.isEmpty {
+                                Text(comment)
+                                    .font(.caption)
+                                    .multilineTextAlignment(.leading)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
                         }
                     }
                 }
             }
+        }
+    }
+    
+    private func getQualityLabel(_ quality: String) -> String {
+        switch quality {
+        case "Major": return "M"
+        case "m (minor)": return "m"
+        case "maj7": return "M7"
+        case "M9 (maj9)": return "M9"
+        case "7(#9)": return "7(#9)"
+        case "7(b9)": return "7(b9)"
+        case "7(#5)": return "7(#5)"
+        case "7(b13)": return "7(b13)"
+        default: return quality
         }
     }
 }
