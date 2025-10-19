@@ -1738,17 +1738,21 @@ struct ProgressionView: View {
         ]
         
         // Handle slash chords (on chords) and compound qualities like 6/9
-        let parts = chordSymbol.split(separator: "/")
-        var mainChord = String(parts[0])
-        var slashBass = parts.count > 1 ? String(parts[1]) : nil
-        
-        print("🔍 Slash parsing: parts=\(parts), mainChord='\(mainChord)', slashBass='\(slashBass ?? "nil")'")
+        var mainChord = chordSymbol
+        var slashBass: String? = nil
         
         // Special case: 6/9 is a compound quality, not a slash chord
-        if mainChord.contains("6/9") {
-            slashBass = nil // Not a slash chord
-            print("🎯 Detected 6/9 compound quality")
+        if chordSymbol.contains("6/9") {
+            print("🎯 Detected 6/9 compound quality - treating as single chord")
+            // Don't split on slash for 6/9
+        } else {
+            // Regular slash chord handling
+            let parts = chordSymbol.split(separator: "/")
+            mainChord = String(parts[0])
+            slashBass = parts.count > 1 ? String(parts[1]) : nil
         }
+        
+        print("🔍 Chord parsing: chordSymbol='\(chordSymbol)', mainChord='\(mainChord)', slashBass='\(slashBass ?? "nil")'")
         
         // Extract root and quality from main chord
         var root = ""
