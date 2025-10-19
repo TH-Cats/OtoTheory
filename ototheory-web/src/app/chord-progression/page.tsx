@@ -810,7 +810,7 @@ export default function FindKeyPage() {
       <section id="progression" className={"ot-card prog-compact"}>
           <div className="flex items-center justify-between gap-4 sm:gap-3 mb-1 sm:mb-2">
             <div className="flex items-center gap-2">
-              <H2 className="mb-0 text-left">コード進行を作る</H2>
+              <H2 className="mb-0 text-left">Build progression</H2>
               <InfoDot
                 title="Build Progression"
                 text={isJapanese 
@@ -839,7 +839,7 @@ export default function FindKeyPage() {
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M12 5V2L7 7l5 5V9c2.76 0 5 2.24 5 5a5 5 0 1 1-5-5z"/>
                 </svg>
-                <span>リセット</span>
+                <span>Reset</span>
               </button>
               <button
                 type="button"
@@ -849,12 +849,12 @@ export default function FindKeyPage() {
                 aria-expanded={showSketchList}
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h12v2H3v-2z"/></svg>
-                My進行
+                Sketches
               </button>
               {showSketchList && (
                 <div ref={sketchesDropRef} className="fixed right-4 top-20 z-[10000] w-[320px] max-h-[70vh] overflow-auto rounded-md border bg-white dark:bg-neutral-900 shadow-2xl p-2 space-y-2">
                   {sketches.length === 0 ? (
-                    <div className="text-xs opacity-70 p-2">まだ進行がありません</div>
+                    <div className="text-xs opacity-70 p-2">No sketches yet</div>
                   ) : (
                     sketches.map((sk) => (
                       <div key={sk.id} className="flex items-center justify-between gap-2 px-2 py-1 rounded hover:bg-black/5 dark:hover:bg-white/10">
@@ -867,7 +867,7 @@ export default function FindKeyPage() {
                         </button>
                         <button
                           className="ot-btn-ghost text-xs"
-                          title="削除"
+                          title="Delete"
                           onClick={(e) => { e.stopPropagation(); deleteSketch(sk.id); loadSketches(); track('project_delete', { page: 'chord_progression', id: sk.id }); }}
                         >
                           🗑️
@@ -886,7 +886,7 @@ export default function FindKeyPage() {
                 <button
                   type="button"
                   className="chip-pressable text-sm px-3 py-1.5 inline-flex items-center gap-1.5 rounded-lg border"
-                  title={isPlaying ? "再生停止" : "進行を再生"}
+                  title={isPlaying ? "Stop playback" : "Play progression"}
                   onClick={togglePlayback}
                   disabled={progression.length === 0}
                   style={{ opacity: progression.length === 0 ? 0.5 : 1 }}
@@ -896,14 +896,14 @@ export default function FindKeyPage() {
                       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                         <rect x="5" y="5" width="14" height="14" rx="1"/>
                       </svg>
-                      <span>停止</span>
+                      <span>Stop</span>
                     </>
                   ) : (
                     <>
                       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M8 5v14l11-7z"/>
                       </svg>
-                      <span>再生</span>
+                      <span>Play</span>
                     </>
                   )}
                 </button>
@@ -928,13 +928,13 @@ export default function FindKeyPage() {
                 defaultValue={(typeof window!=="undefined" ? (localStorage.getItem('ot-instrument') || 'acoustic_guitar_steel') : 'acoustic_guitar_steel') as string}
                 onChange={async (e)=>{ const v = e.currentTarget.value as any; await player.setInstrument(v); }}
               >
-                <option value="acoustic_guitar_steel">アコースティックギター</option>
-                <option value="acoustic_guitar_nylon">クラシックギター</option>
-                <option value="electric_guitar_clean">クリーントーン（エレキ）</option>
-                <option value="distortion_guitar">ディストーション</option>
-                <option value="overdriven_guitar">オーバードライブ</option>
-                <option value="electric_guitar_muted">ミュート</option>
-                <option value="acoustic_grand_piano">ピアノ</option>
+                <option value="acoustic_guitar_steel">Acoustic Steel</option>
+                <option value="acoustic_guitar_nylon">Acoustic Nylon</option>
+                <option value="electric_guitar_clean">Electric Clean</option>
+                <option value="distortion_guitar">Distortion</option>
+                <option value="overdriven_guitar">Over Drive</option>
+                <option value="electric_guitar_muted">Muted</option>
+                <option value="acoustic_grand_piano">Piano</option>
               </select>
             </div>
           </div>
@@ -1002,7 +1002,7 @@ export default function FindKeyPage() {
       <section id="choose" ref={rightRef} className="ot-card right-panel">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
-              <H2 className="mb-0 text-left">コードを選ぶ</H2>
+              <H2 className="mb-0 text-left">Choose chords</H2>
               <InfoDot
                 title="Choose Chords"
                 text={isJapanese 
@@ -1019,7 +1019,7 @@ export default function FindKeyPage() {
               onClick={() => setShowPresetPopup(true)}
             >
               <span>📋</span>
-              <span>プリセット</span>
+              <span>Presets</span>
             </button>
         </div>
           {/* ChordBuilder component with Quality Master.csv integration */}
@@ -1121,22 +1121,22 @@ export default function FindKeyPage() {
                         </svg>
                         Analyzing…
                       </span>
-                    ) : '分析'}
+                    ) : 'Analyze'}
                   </button>
           </div>
       </section>
       <section id="result" ref={resultRef} className="ot-card">
         <div className="flex items-center justify-between">
-          <H2 className="text-left mb-0">結果</H2>
+          <H2 className="text-left mb-0">Result</H2>
           <div className="flex items-center gap-2">
             <button
               type="button"
               className="chip-pressable inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm border"
               onClick={() => setShowNamePrompt(true)}
-              title="進行を保存"
+              title="Save sketch"
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17 3H5a2 2 0 0 0-2 2v14l4-4h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>
-              保存
+              Save
             </button>
           </div>
         </div>
@@ -1144,7 +1144,7 @@ export default function FindKeyPage() {
           <div className="fixed inset-0 z-[10000]" role="dialog" aria-modal="true">
             <div className="absolute inset-0 bg-black/40" onClick={() => { setShowNamePrompt(false); setNameInput(""); }} />
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-neutral-900 border rounded-lg shadow-xl p-4 w-[92vw] max-w-[420px]">
-              <div className="text-base font-semibold mb-2">進行を保存</div>
+              <div className="text-base font-semibold mb-2">Save sketch</div>
               <input
                 type="text"
                 className="chip px-2 py-2 text-sm w-full"
@@ -1159,7 +1159,7 @@ export default function FindKeyPage() {
                   type="button"
                   className="chip-pressable inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm border"
                   onClick={() => { setShowNamePrompt(false); setNameInput(""); }}
-                >キャンセル</button>
+                >Cancel</button>
                 <button
                   type="button"
                   className="chip-pressable inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm border"
@@ -1200,7 +1200,7 @@ export default function FindKeyPage() {
                     } catch {}
                   }}
                 >
-                  編集
+                  Edit
                 </button>
                 <button
                   type="button"
@@ -1214,14 +1214,14 @@ export default function FindKeyPage() {
                     } catch {}
                   }}
                 >
-                  エクスポート
+                  Export
                 </button>
                 <button
                   type="button"
                   className="w-full chip-pressable inline-flex items-center justify-center gap-1 px-4 py-2 rounded-lg text-sm border"
                   onClick={() => setSelectedSketchForAction(null)}
                 >
-                  キャンセル
+                  Cancel
                 </button>
               </div>
             </div>
@@ -1316,7 +1316,7 @@ export default function FindKeyPage() {
                 </div>
               )}
               {/* === Key === */}
-              <H3>キー</H3>
+              <H3>Key</H3>
               <div className="flex items-center justify-between gap-2">
                 <div className="chip-row mb-2" role="tablist" aria-label="Key candidates">
                   {keyCandidates.map((k, idx) => {
@@ -1383,13 +1383,13 @@ export default function FindKeyPage() {
               </div>
             </div>
         ) : (
-          <div className="text-sm opacity-70">分析をクリックして結果を表示。</div>
+          <div className="text-sm opacity-70">Click Analyze to see results.</div>
         )}
       </section>
 
       {/* Tools セクション（Fretboard以下） */}
       <section className="ot-card mt-2">
-        <H2>ツール</H2>
+        <H2>Tools</H2>
         <div className="space-y-4">
               {/* === Fretboard === */}
               <div className="result-block">
@@ -1403,7 +1403,7 @@ export default function FindKeyPage() {
                         className={["chip","chip--key", fbDisplay === 'degrees' ? "chip--active" : ""].join(" ")}
                         onClick={()=>setFbDisplay('degrees')}
                         data-roving="item"
-                      >度数</button>
+                      >Degrees</button>
                       <button
                         role="tab"
                         aria-selected={fbDisplay === 'names'}
@@ -1412,11 +1412,11 @@ export default function FindKeyPage() {
                         className={["chip","chip--key", fbDisplay === 'names' ? "chip--active" : "", !isHeptatonic ? "chip--disabled" : ""].join(" ")}
                         onClick={()=>{ if (isHeptatonic) setFbDisplay('names'); }}
                         data-roving="item"
-                      >音名</button>
+                      >Names</button>
                       {/* Names右の音色選択は削除 */}
                     </div>
                   }
-                >フレットボード</H3>
+                >Fretboard</H3>
                 <div className="fret-wrap">
                   <div className="fret-inner">
                     {selectedScale ? (() => {
@@ -1441,7 +1441,7 @@ export default function FindKeyPage() {
                       );
                     })() : (
                       <div className="text-center text-sm opacity-50 py-8">
-                        分析をクリックしてフレットボードを表示
+                        Click Analyze to see fretboard
                       </div>
                     )}
                   </div>
@@ -1452,7 +1452,7 @@ export default function FindKeyPage() {
               <section className="result-block space-y-2">
                 <H3>
                   <span className="flex items-center gap-2">
-                    <span>ダイアトニック</span>
+                    <span>Diatonic</span>
                     <InfoDot
                       className="ml-1"
                       title="Diatonic chords"
@@ -1531,7 +1531,7 @@ export default function FindKeyPage() {
               {/* === Roman (hide for non-heptatonic scales) === */}
               {isHeptatonic && (
                 <>
-                  <H3>度数進行</H3>
+                  <H3>Roman</H3>
                   <div ref={romanBoxRef} className="rounded-md border px-3 py-2" aria-live="polite" data-testid="roman-row">
                     <div className="flex-1 overflow-x-auto whitespace-nowrap text-lg md:text-xl tracking-wide">
                       {romanLine.length === 0 ? (
@@ -1557,7 +1557,7 @@ export default function FindKeyPage() {
               {/* Patterns */}
               {patternHits.length > 0 && (
                 <div className="mt-2 flex flex-wrap items-center gap-2">
-                  <span className="text-xs opacity-70">パターン</span>
+                  <span className="text-xs opacity-70">Patterns</span>
                   {(() => {
                     const h = patternHits[0];
                     const idToEn: Record<string, any> = {
@@ -1607,7 +1607,7 @@ export default function FindKeyPage() {
               {/* Cadence row (keep label in sync with Patterns) */}
               {(cadences.length > 0 || fallbackCadence) && (
                 <div className="mt-2 flex flex-wrap items-center gap-2">
-                  <span className="text-xs opacity-70">カデンツ（終止形）</span>
+                  <span className="text-xs opacity-70">Cadence</span>
                   {(() => {
                     const c: any = cadences[0] ?? fallbackCadence;
                     const t = c?.type ?? c; // 'perfect' | 'deceptive' | 'half'
@@ -1638,11 +1638,11 @@ export default function FindKeyPage() {
       {showPresetPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40" style={{ backdropFilter: 'blur(4px)' }}>
           <div ref={presetPopupRef} className="bg-white dark:bg-gray-800 rounded-lg shadow-2xl p-6 max-w-md w-full mx-4">
-            <h3 className="text-lg font-semibold mb-4">プリセットを読み込み</h3>
+            <h3 className="text-lg font-semibold mb-4">Load Preset</h3>
             
             {/* Key selector */}
             <div className="mb-4">
-              <label className="text-xs opacity-70 mb-1 block">キー</label>
+              <label className="text-xs opacity-70 mb-1 block">Key</label>
               <div className="flex flex-wrap gap-1">
                 {['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'].map(k => (
                   <button
@@ -1808,7 +1808,7 @@ export default function FindKeyPage() {
               className="mt-4 w-full px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
               onClick={() => setShowPresetPopup(false)}
             >
-              キャンセル
+              Cancel
             </button>
           </div>
         </div>
