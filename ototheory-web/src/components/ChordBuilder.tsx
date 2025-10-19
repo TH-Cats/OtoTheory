@@ -224,8 +224,8 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
           if (!opts?.disabled && !opts?.locked) {
             onClick(); 
           } else if (opts?.locked) {
-            // Pro quality clicked in free plan
-            onBlock?.('pro_quality', label);
+            // Pro quality clicked in free plan - redirect to iOS coming soon page
+            window.open('https://www.ototheory.com/ios-coming-soon', '_blank');
           }
         }}
         title={opts?.locked ? 'iOS版でPro機能をお試しください！' : opts?.comment}
@@ -281,7 +281,7 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
       {/* Advanced (Pro) section - show for all users */}
       <details>
         <summary className="cursor-pointer text-sm">
-          Advanced (Pro)
+          Advanced (Pro) 👑
         </summary>
         <div className="mt-3 space-y-3">
           {/* Pro qualities grouped by category with custom order */}
@@ -299,7 +299,7 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
               return (
                 <div key={category}>
                   <div className="text-xs opacity-70 mb-0.5">{category}</div>
-                  <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
+            <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
                     {qualities.map(quality => {
                       const qualityLabel = quality.quality === 'M9 (maj9)' ? 'M9' : 
                                          quality.quality === 'm7b5' ? 'm7b5' :
@@ -324,13 +324,13 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
                           }, { 
                             comment: quality.commentEn,
                             locked: plan === 'free',
-                            showProBadge: plan === 'free'
+                            showProBadge: false // Remove crown from individual chips
                           })}
                         </div>
                       );
                     })}
-                  </div>
-                </div>
+            </div>
+          </div>
               );
             });
           })()}
@@ -347,7 +347,8 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
                 }`}
                 onClick={() => {
                   if (plan === 'free') {
-                    onBlock?.('pro_slash');
+                    // Redirect to iOS coming soon page
+                    window.open('https://www.ototheory.com/ios-coming-soon', '_blank');
                     return;
                   }
                   setSpec({ ...spec, slash: undefined });
@@ -367,7 +368,8 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
                   }`}
                   onClick={() => {
                     if (plan === 'free') {
-                      onBlock?.('pro_slash');
+                      // Redirect to iOS coming soon page
+                      window.open('https://www.ototheory.com/ios-coming-soon', '_blank');
                       return;
                     }
                     setSpec({ ...spec, slash: bassNote });
@@ -392,11 +394,11 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
           <button
             className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
             onClick={() => {
-              // iOS App Store link
-              window.open('https://apps.apple.com/app/ototheory/id1234567890', '_blank');
+              // iOS Coming Soon page
+              window.open('https://www.ototheory.com/ios-coming-soon', '_blank');
             }}
           >
-            Download on App Store
+            Try iOS Version
           </button>
         </div>
       )}
