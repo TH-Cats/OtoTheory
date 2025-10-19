@@ -1158,7 +1158,9 @@ struct ProgressionView: View {
                     chordNotes: overlayChordNotes.isEmpty ? nil : overlayChordNotes,
                     display: fbDisplay == .degrees ? .degrees : .names
                 )
-                print("🎯 Fretboard overlay: scale=\(scale.type), key=\(key.tonic), rootPc=\(rootPc), ghost=\(overlay.shouldShowGhost), hasScale=\(overlay.hasScale), hasChord=\(overlay.hasChord)")
+                
+                // Debug log moved outside ViewBuilder
+                let _ = print("🎯 Fretboard overlay: scale=\(scale.type), key=\(key.tonic), rootPc=\(rootPc), ghost=\(overlay.shouldShowGhost), hasScale=\(overlay.hasScale), hasChord=\(overlay.hasChord)")
                 
             // FretboardView already has horizontal scrolling built-in
             FretboardView(
