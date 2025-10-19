@@ -3551,6 +3551,7 @@ var OtoCore = (() => {
     PC_NAMES: () => PC_NAMES,
     parseChord: () => parseChord,
     scoreKeyCandidates: () => scoreKeyCandidates,
+    analyzeProgression: () => analyzeProgression,
     transpose: () => transpose
   });
 
@@ -3687,6 +3688,21 @@ var OtoCore = (() => {
     if (degPrev === 7 && degLast === 9) return "deceptive";
     if (degLast === 7) return "half";
     return null;
+  }
+  
+  function analyzeProgression(chords, opts = {}) {
+    try {
+      const candidates = scoreKeyCandidates(chords);
+      return candidates.map(c => ({
+        tonic: PC_NAMES[c.tonic],
+        mode: c.mode,
+        confidence: c.confidence,
+        reasons: c.reasons
+      }));
+    } catch (e) {
+      console.error("Error in analyzeProgression:", e);
+      return [];
+    }
   }
   return __toCommonJS(core_bridge_exports);
 })();
