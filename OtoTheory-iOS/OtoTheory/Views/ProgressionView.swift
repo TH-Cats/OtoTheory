@@ -171,7 +171,13 @@ struct ProgressionView: View {
     private let quicks = ["", "m", "7", "maj7", "m7", "dim", "sus4"] // Free版
     
     private var previewChord: String {
-        var chord = selectedRoot + selectedQuick
+        var chord = selectedRoot
+        
+        // Add quality suffix only if it's not Major
+        if selectedQuick != "Major" && !selectedQuick.isEmpty {
+            chord += selectedQuick
+        }
+        
         if let bass = selectedSlashBass {
             chord += "/\(bass)"
         }
