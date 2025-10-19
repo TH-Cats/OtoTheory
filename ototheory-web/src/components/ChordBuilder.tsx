@@ -240,27 +240,32 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
         </div>
       </div>
 
-      <div>
-        <div className="text-xs opacity-70 mb-0.5">クイック ({plan === 'free' ? qualityPresets.filter(p => !p.pro).length : qualityPresets.length}種類)</div>
-        <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
-          {qualityPresets
-            .filter(p => plan === 'free' ? !p.pro : true)
-            .map(p => {
-              // Check if this quality is currently selected
-              const currentQuality = spec ? getQualityFromSpec(spec) : null;
-              const isSelected = currentQuality === p.label;
-              return (
-                <div key={p.label} className="relative">
-                  {renderChip(p.label, isSelected, p.apply, { 
-                    locked: !!p.locked, 
-                    showProBadge: !!p.pro,
-                    comment: p.comment 
-                  })}
-                </div>
-              );
-            })}
-        </div>
-      </div>
+      {(() => {
+        const quick = (plan === 'free')
+          ? qualityPresets.filter(p => !p.pro) // ← Pro項目を隠す
+          : qualityPresets;
+        return (
+          <div>
+            <div className="text-xs opacity-70 mb-0.5">クイック ({quick.length}種類)</div>
+            <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
+              {quick.map(p => {
+                // Check if this quality is currently selected
+                const currentQuality = spec ? getQualityFromSpec(spec) : null;
+                const isSelected = currentQuality === p.label;
+                return (
+                  <div key={p.label} className="relative">
+                    {renderChip(p.label, isSelected, p.apply, {
+                      locked: plan === 'free' && !!p.pro,    // 念のため
+                      showProBadge: !!p.pro,
+                      comment: p.comment
+                    })}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })()}
 
       {/* Advanced (Pro) section - only show Pro qualities */}
       {plan === 'free' ? (
