@@ -29,7 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EDE222362E91490100C1D4EA /* ototheory-core.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "ototheory-core.js"; path = "ototheory-core.js"; sourceTree = "<group>"; };
+		EDE222362E91490100C1D4EA /* ototheory-core.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "ototheory-core.js"; sourceTree = "<group>"; };
 		EDE222502E91E3F800C1D4EA /* FluidR3_GM.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = FluidR3_GM.sf2; sourceTree = "<group>"; };
 		EDE23A752E90E7DF0055D129 /* OtoTheory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OtoTheory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE23A822E90E7E00055D129 /* OtoTheoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OtoTheoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
