@@ -8,16 +8,11 @@
 import SwiftUI
 
 struct QualityInfoView: View {
-    let title: String
     let bodyText: String
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 12) {
-                Text(title)
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                
                 Text(bodyText)
                     .font(.body)
                     .fixedSize(horizontal: false, vertical: true)
@@ -31,7 +26,6 @@ struct QualityInfoView: View {
 
 #Preview {
     QualityInfoView(
-        title: "M9 (maj9)",
         bodyText: "ポップス、R&Bの王道おしゃれサウンド。"
     )
 }

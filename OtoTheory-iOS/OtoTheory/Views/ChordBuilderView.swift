@@ -233,16 +233,10 @@ struct ChordBuilderView: View {
                                             .cornerRadius(8)
                                         }
                                         .contextMenu {
-                                            if !comment.isEmpty {
-                                                Button {
-                                                    UIPasteboard.general.string = comment
-                                                } label: {
-                                                    Label("説明文をコピー", systemImage: "doc.on.doc")
-                                                }
-                                            }
+                                            // Empty context menu - just for preview
                                         } preview: {
                                             if !comment.isEmpty {
-                                                QualityInfoView(title: qualityLabel, bodyText: comment)
+                                                QualityInfoView(bodyText: comment)
                                             }
                                         }
                                     }
