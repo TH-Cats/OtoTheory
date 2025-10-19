@@ -1343,7 +1343,7 @@ export default function FindKeyPage() {
               <div className="result-block">
                 <H3>
                   <span className="flex items-center gap-2">
-                    <span>スケール</span>
+                    <span>Scale</span>
                     {(() => {
                       const curId = (selectedScale?.type as any) ?? (scaleCandidates?.[0]?.type as any) ?? 'Ionian';
                       const cur = SCALE_CATALOG.find(s => s.id === (curId as any));
