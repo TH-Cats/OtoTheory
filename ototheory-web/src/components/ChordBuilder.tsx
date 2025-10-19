@@ -5,6 +5,7 @@ import { normalizeChordSpec } from "@/lib/chords/normalize";
 import { formatChordSymbol } from "@/lib/chords/format";
 import { canAddQuality, shouldShowProBadge } from "@/lib/pro/guard";
 import { QUALITY_MASTER, getQualityComment, getQualitiesByCategory, isProQuality } from "@/lib/quality-master";
+import QualityInfo from "./QualityInfo";
 
 type Props = {
   plan?: Plan;
@@ -38,6 +39,9 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
   
   // Session state for 11th warning (show once per session)
   const [has11thWarningShown, setHas11thWarningShown] = useState(false);
+  
+  // Quality info modal state
+  const [selectedQualityInfo, setSelectedQualityInfo] = useState<{ title: string; body: string } | null>(null);
 
   const { spec: norm, warnings } = useMemo(() => normalizeChordSpec(spec, ctx), [spec, ctx]);
   const symbol = useMemo(() => formatChordSymbol(norm, ctx), [norm, ctx]);
@@ -212,32 +216,45 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
     opts?: { disabled?: boolean; locked?: boolean; showProBadge?: boolean; comment?: string }
   ) => (
     <div key={label} className="relative inline-block">
-      <button
-        className={`h-9 px-3 rounded border text-xs transition-all ${
-          active 
-            ? 'bg-[var(--brand-primary)] text-white' 
-            : opts?.locked 
-              ? 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 border-gray-300 dark:border-gray-600 cursor-not-allowed hover:bg-gray-300 dark:hover:bg-gray-600' 
-              : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
-        }`}
-        onClick={() => { 
-          if (!opts?.disabled && !opts?.locked) {
-            onClick(); 
-          } else if (opts?.locked) {
-            // Pro quality clicked in free plan - redirect to iOS coming soon page
-            window.open('https://www.ototheory.com/ios-coming-soon', '_blank');
-          }
-        }}
-        title={opts?.locked ? 'iOS版でPro機能をお試しください！' : opts?.comment}
-        aria-disabled={opts?.disabled || opts?.locked}
-        onContextMenu={(e) => {
-          e.preventDefault();
-          if (opts?.comment) {
-            // Show comment tooltip on right-click/long-press
-            // For now, we'll use the title attribute, but this could be enhanced with a custom tooltip
-          }
-        }}
-      >{label}</button>
+      <div className="flex items-center gap-1">
+        <button
+          className={`h-9 px-3 rounded border text-xs transition-all ${
+            active 
+              ? 'bg-[var(--brand-primary)] text-white' 
+              : opts?.locked 
+                ? 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 border-gray-300 dark:border-gray-600 cursor-not-allowed hover:bg-gray-300 dark:hover:bg-gray-600' 
+                : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
+          }`}
+          onClick={() => { 
+            if (!opts?.disabled && !opts?.locked) {
+              onClick(); 
+            } else if (opts?.locked) {
+              // Pro quality clicked in free plan - redirect to iOS coming soon page
+              window.open('https://www.ototheory.com/ios-coming-soon', '_blank');
+            }
+          }}
+          title={opts?.locked ? 'Try Pro features on iOS!' : opts?.comment}
+          aria-disabled={opts?.disabled || opts?.locked}
+        >
+          {label}
+        </button>
+        
+        {/* Lightbulb icon for quality info */}
+        {opts?.comment && (
+          <button
+            className="h-9 w-6 flex items-center justify-center text-yellow-500 hover:text-yellow-600 transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedQualityInfo({ title: label, body: opts.comment! });
+            }}
+            title="Show quality info"
+          >
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"/>
+            </svg>
+          </button>
+        )}
+      </div>
       {opts?.showProBadge && plan === 'free' && <ProBadge />}
     </div>
   );
@@ -469,6 +486,16 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
           </button>
         </div>
       </div>
+      
+      {/* Quality Info Modal */}
+      {selectedQualityInfo && (
+        <QualityInfo
+          title={selectedQualityInfo.title}
+          body={selectedQualityInfo.body}
+          isOpen={true}
+          onClose={() => setSelectedQualityInfo(null)}
+        />
+      )}
     </div>
   );
 }
