@@ -31,10 +31,15 @@ struct ChordBuilderView: View {
         
         var result: [(category: String, qualities: [String])] = []
         
-        // Free qualities - show English category names
-        for (category, qualityInfos) in freeQualities {
-            let englishCategory = getEnglishCategoryName(category)
-            result.append((category: englishCategory, qualities: qualityInfos.map { $0.quality }))
+        // Define the desired order for free qualities
+        let freeCategoryOrder = ["基本の飾り付け", "基本"] // Essential Colors first, then Basics
+        
+        // Free qualities - show English category names in specified order
+        for category in freeCategoryOrder {
+            if let qualityInfos = freeQualities[category] {
+                let englishCategory = getEnglishCategoryName(category)
+                result.append((category: englishCategory, qualities: qualityInfos.map { $0.quality }))
+            }
         }
         
         // Pro qualities (only if user has Pro) - show English category names
