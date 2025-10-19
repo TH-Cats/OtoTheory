@@ -1722,7 +1722,7 @@ struct ProgressionView: View {
         }
     }
     
-    // Simple chord to MIDI conversion (basic triads)
+    // Comprehensive chord to MIDI conversion
     private func chordToMidi(_ chordSymbol: String) -> [UInt8] {
         // Parse root note
         let rootMap: [String: UInt8] = [
@@ -1735,16 +1735,21 @@ struct ProgressionView: View {
             "B": 71
         ]
         
-        // Extract root (first 1-2 chars)
+        // Handle slash chords (on chords)
+        let parts = chordSymbol.split(separator: "/")
+        let mainChord = String(parts[0])
+        let slashBass = parts.count > 1 ? String(parts[1]) : nil
+        
+        // Extract root and quality from main chord
         var root = ""
         var quality = ""
         
-        if chordSymbol.count >= 2 && (chordSymbol[chordSymbol.index(chordSymbol.startIndex, offsetBy: 1)] == "#" || chordSymbol[chordSymbol.index(chordSymbol.startIndex, offsetBy: 1)] == "b") {
-            root = String(chordSymbol.prefix(2))
-            quality = String(chordSymbol.dropFirst(2))
+        if mainChord.count >= 2 && (mainChord[mainChord.index(mainChord.startIndex, offsetBy: 1)] == "#" || mainChord[mainChord.index(mainChord.startIndex, offsetBy: 1)] == "b") {
+            root = String(mainChord.prefix(2))
+            quality = String(mainChord.dropFirst(2))
         } else {
-            root = String(chordSymbol.prefix(1))
-            quality = String(chordSymbol.dropFirst(1))
+            root = String(mainChord.prefix(1))
+            quality = String(mainChord.dropFirst(1))
         }
         
         guard let rootNote = rootMap[root] else {
@@ -1754,21 +1759,70 @@ struct ProgressionView: View {
         // Determine intervals based on quality
         var intervals: [UInt8] = [0, 4, 7] // Default: major triad
         
-        if quality.contains("m") && !quality.contains("maj") {
+        if quality.isEmpty || quality == "Major" {
+            intervals = [0, 4, 7] // Major triad
+        } else if quality == "m" || quality == "m (minor)" {
             intervals = [0, 3, 7] // Minor triad
-        } else if quality.contains("dim") {
+        } else if quality.contains("dim") && !quality.contains("7") {
             intervals = [0, 3, 6] // Diminished triad
+        } else if quality.contains("dim7") {
+            intervals = [0, 3, 6, 9] // Diminished 7th
         } else if quality.contains("aug") {
             intervals = [0, 4, 8] // Augmented triad
-        } else if quality.contains("7") && !quality.contains("maj") {
+        } else if quality == "7" {
             intervals = [0, 4, 7, 10] // Dominant 7th
         } else if quality.contains("maj7") || quality.contains("M7") {
             intervals = [0, 4, 7, 11] // Major 7th
-        } else if quality.contains("m7") {
+        } else if quality == "m7" {
             intervals = [0, 3, 7, 10] // Minor 7th
+        } else if quality.contains("m7b5") {
+            intervals = [0, 3, 6, 10] // Minor 7th flat 5
+        } else if quality.contains("mM7") {
+            intervals = [0, 3, 7, 11] // Minor major 7th
+        } else if quality == "sus4" {
+            intervals = [0, 5, 7] // Suspended 4th
+        } else if quality == "sus2" {
+            intervals = [0, 2, 7] // Suspended 2nd
+        } else if quality == "7sus4" {
+            intervals = [0, 5, 7, 10] // Dominant 7th suspended 4th
+        } else if quality.contains("add9") {
+            intervals = [0, 4, 7, 14] // Major add 9
+        } else if quality.contains("add#11") {
+            intervals = [0, 4, 7, 18] // Major add sharp 11
+        } else if quality.contains("M9") || quality.contains("maj9") {
+            intervals = [0, 4, 7, 11, 14] // Major 9th
+        } else if quality.contains("m9") {
+            intervals = [0, 3, 7, 10, 14] // Minor 9th
+        } else if quality.contains("m11") {
+            intervals = [0, 3, 7, 10, 14, 17] // Minor 11th
+        } else if quality == "6" {
+            intervals = [0, 4, 7, 9] // Major 6th
+        } else if quality.contains("6/9") {
+            intervals = [0, 4, 7, 9, 14] // Major 6/9
+        } else if quality.contains("m6") {
+            intervals = [0, 3, 7, 9] // Minor 6th
+        } else if quality.contains("7(#9)") {
+            intervals = [0, 4, 7, 10, 15] // Dominant 7th sharp 9
+        } else if quality.contains("7(b9)") {
+            intervals = [0, 4, 7, 10, 13] // Dominant 7th flat 9
+        } else if quality.contains("7(#5)") {
+            intervals = [0, 4, 8, 10] // Dominant 7th sharp 5
+        } else if quality.contains("7(b13)") {
+            intervals = [0, 4, 7, 10, 20] // Dominant 7th flat 13
         }
         
-        return intervals.map { rootNote + $0 }
+        // Convert intervals to MIDI notes
+        var midiNotes = intervals.map { rootNote + $0 }
+        
+        // Handle slash chord bass note
+        if let slashBass = slashBass, let bassNote = rootMap[slashBass] {
+            // Replace the lowest note with the bass note
+            midiNotes[0] = bassNote
+            // Ensure bass note is the lowest
+            midiNotes.sort()
+        }
+        
+        return midiNotes
     }
     
     private func addChordToProgression(_ chord: String) {
