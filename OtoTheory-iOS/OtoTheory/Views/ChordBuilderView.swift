@@ -234,10 +234,15 @@ struct ChordBuilderView: View {
                                         }
                                         .contextMenu {
                                             if !comment.isEmpty {
-                                                Text(comment)
-                                                    .font(.caption)
-                                                    .multilineTextAlignment(.leading)
-                                                    .fixedSize(horizontal: false, vertical: true)
+                                                VStack(alignment: .leading, spacing: 4) {
+                                                    Text(comment)
+                                                        .font(.caption)
+                                                        .multilineTextAlignment(.leading)
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                        .frame(maxWidth: 300, alignment: .leading)
+                                                }
+                                                .padding(.vertical, 8)
+                                                .padding(.horizontal, 12)
                                             }
                                         }
                                     }
