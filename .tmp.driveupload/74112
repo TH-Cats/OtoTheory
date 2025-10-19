@@ -1,5 +1,0 @@
-Clean up temporary files and update Xcode project state
-
-- Remove temporary .tmp.driveupload files
-- Update Xcode UserInterfaceState.xcuserstate
-- Prepare for deployment
