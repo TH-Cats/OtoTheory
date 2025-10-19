@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { cookies } from "next/headers";
 import "./globals.css";
 import Header from "@/components/Header.client";
 import { ProProvider } from "@/components/ProProvider";
@@ -61,6 +62,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Get initial isPro value from cookie for SSR consistency
+  const initialIsPro = cookies().get('isPro')?.value === '1';
+  
   return (
     <html lang="en">
       <GoogleTagManagerHead />
@@ -75,7 +79,7 @@ export default function RootLayout({
         <GoogleTagManagerBody />
         <AudioUnlocker />
         <MobileStickyCta />
-        <ProProvider>
+        <ProProvider initialIsPro={initialIsPro}>
         <Header />
         <main className="pt-1 pb-4 sm:pt-2 sm:pb-6">
           {children}
