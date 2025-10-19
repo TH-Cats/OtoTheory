@@ -116,7 +116,7 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
       category?: string;
     }> = [];
 
-    // Free qualities only - show Japanese category names for Japanese version
+    // Free qualities only
     Object.entries(freeQualities).forEach(([category, qualities]) => {
       qualities.forEach(quality => {
         const qualityLabel = quality.quality === 'm (minor)' ? 'm' : 
@@ -130,17 +130,16 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
             if (spec) setSpec(spec);
           },
           pro: false, // Free quality
-          comment: quality.commentJa,
-          category: category // Use Japanese category names
+          comment: quality.commentEn, // Use English comments for English version
+          category: category
         });
       });
     });
 
-    // Pro qualities - show Japanese category names, only if user has Pro
-    if (plan === 'pro') {
-      Object.entries(proQualities).forEach(([category, qualities]) => {
-        qualities.forEach(quality => {
-          const qualityLabel = quality.quality === 'M9 (maj9)' ? 'M9' : 
+    // Pro qualities - always add them but mark as pro
+    Object.entries(proQualities).forEach(([category, qualities]) => {
+      qualities.forEach(quality => {
+        const qualityLabel = quality.quality === 'M9 (maj9)' ? 'M9' : 
                              quality.quality === 'm7b5' ? 'm7b5' :
                              quality.quality === 'mM7' ? 'mM7' :
                              quality.quality === 'm6' ? 'm6' :
@@ -149,24 +148,28 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
                              quality.quality === '7(#5)' ? '7(#5)' :
                              quality.quality === '7(b13)' ? '7(b13)' :
                              quality.quality;
-          
-          presets.push({
-            label: qualityLabel,
-            apply: () => {
-              const spec = getSpecFromQuality(quality.quality);
-              if (spec) setSpec(spec);
-            },
-            pro: true,
-            comment: quality.commentJa,
-            category: category // Use Japanese category names
-          });
+        
+        presets.push({
+          label: qualityLabel,
+          apply: () => {
+            if (plan === 'free') {
+              // Show iOS promotion for free users
+              onBlock?.('pro_quality', quality.quality);
+              return;
+            }
+            const spec = getSpecFromQuality(quality.quality);
+            if (spec) setSpec(spec);
+          },
+          pro: true,
+          comment: quality.commentEn, // Use English comments for English version
+          category: category
         });
       });
-    }
+    });
 
     console.log('🔍 Final presets count:', presets.length, 'Free count:', presets.filter(p => !p.pro).length, 'Pro count:', presets.filter(p => p.pro).length);
     return presets;
-  }, [setSpec, plan]);
+  }, [setSpec, plan, onBlock]);
 
   // Helper function to convert quality string to ChordSpec
   const getSpecFromQuality = (quality: string): ChordSpec | null => {
@@ -249,22 +252,22 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
       </div>
 
       {(() => {
-        const quick = (plan === 'free')
-          ? qualityPresets.filter(p => !p.pro) // ← Pro項目を隠す
-          : qualityPresets;
+        const freeQualities = qualityPresets.filter(p => !p.pro);
+        const proQualities = qualityPresets.filter(p => p.pro);
+        
         return (
           <div>
-            <div className="text-xs opacity-70 mb-0.5">Quality ({quick.length} types)</div>
+            <div className="text-xs opacity-70 mb-0.5">Quality ({freeQualities.length} types)</div>
             <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
-              {quick.map(p => {
+              {freeQualities.map(p => {
                 // Check if this quality is currently selected
                 const currentQuality = spec ? getQualityFromSpec(spec) : null;
                 const isSelected = currentQuality === p.label;
                 return (
                   <div key={p.label} className="relative">
                     {renderChip(p.label, isSelected, p.apply, {
-                      locked: false,    // FreeプランではProクオリティは表示されないのでlockedは不要
-                      showProBadge: false,  // FreeプランではProクオリティは表示されないのでbadgeは不要
+                      locked: false,
+                      showProBadge: false,
                       comment: p.comment
                     })}
                   </div>
@@ -275,26 +278,28 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
         );
       })()}
 
-      {/* Advanced (Pro) section - only show for Pro users */}
-      {plan === 'pro' && (
-        <details>
-          <summary className="cursor-pointer text-sm">
-            Advanced (Pro)
-          </summary>
+      {/* Advanced (Pro) section - show for all users */}
+      <details>
+        <summary className="cursor-pointer text-sm">
+          Advanced (Pro)
+        </summary>
         <div className="mt-3 space-y-3">
           {/* Pro qualities grouped by category with custom order */}
           {(() => {
             const proQualities = getQualitiesByCategory('Pro');
-            const categoryOrder = ['✨ キラキラ・浮遊感', '🌃 おしゃれ・都会的', '⚡️ 緊張感・スパイス'];
+            const categoryOrder = ['✨ Sparkle & Float', '🌃 Stylish & Urban', '⚡️ Tension & Spice'];
             
             return categoryOrder.map(category => {
-              const qualities = proQualities[category];
+              const japaneseCategory = category === '✨ Sparkle & Float' ? '✨ キラキラ・浮遊感' :
+                                     category === '🌃 Stylish & Urban' ? '🌃 おしゃれ・都会的' :
+                                     category === '⚡️ Tension & Spice' ? '⚡️ 緊張感・スパイス' : category;
+              const qualities = proQualities[japaneseCategory];
               if (!qualities) return null;
               
               return (
                 <div key={category}>
                   <div className="text-xs opacity-70 mb-0.5">{category}</div>
-            <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
+                  <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
                     {qualities.map(quality => {
                       const qualityLabel = quality.quality === 'M9 (maj9)' ? 'M9' : 
                                          quality.quality === 'm7b5' ? 'm7b5' :
@@ -309,18 +314,23 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
                       return (
                         <div key={quality.quality} className="relative">
                           {renderChip(qualityLabel, false, () => {
+                            if (plan === 'free') {
+                              // Show iOS promotion for free users
+                              onBlock?.('pro_quality', quality.quality);
+                              return;
+                            }
                             const spec = getSpecFromQuality(quality.quality);
                             if (spec) setSpec(spec);
                           }, { 
-                            comment: quality.commentJa,
-                            locked: false,
-                            showProBadge: false
+                            comment: quality.commentEn,
+                            locked: plan === 'free',
+                            showProBadge: plan === 'free'
                           })}
                         </div>
                       );
                     })}
-            </div>
-          </div>
+                  </div>
+                </div>
               );
             });
           })()}
@@ -330,22 +340,36 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
             <div className="text-xs opacity-70 mb-0.5">Slash (On)</div>
             <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
               <button
-                className="h-9 px-3 rounded border text-xs bg-orange-500 text-white hover:bg-orange-600"
+                className={`h-9 px-3 rounded border text-xs ${
+                  plan === 'free' 
+                    ? 'bg-gray-400 text-gray-200 cursor-not-allowed opacity-60' 
+                    : 'bg-orange-500 text-white hover:bg-orange-600'
+                }`}
                 onClick={() => {
+                  if (plan === 'free') {
+                    onBlock?.('pro_slash');
+                    return;
+                  }
                   setSpec({ ...spec, slash: undefined });
                 }}
               >
-                クリア
+                Clear
               </button>
               {['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'].map(bassNote => (
                 <button
                   key={bassNote}
                   className={`h-9 px-3 rounded border text-xs ${
-                    spec?.slash === bassNote 
-                      ? 'bg-[var(--brand-primary)] text-white' 
-                      : 'bg-gray-600 text-white hover:bg-gray-500'
+                    plan === 'free'
+                      ? 'bg-gray-400 text-gray-200 cursor-not-allowed opacity-60'
+                      : spec?.slash === bassNote 
+                        ? 'bg-[var(--brand-primary)] text-white' 
+                        : 'bg-gray-600 text-white hover:bg-gray-500'
                   }`}
                   onClick={() => {
+                    if (plan === 'free') {
+                      onBlock?.('pro_slash');
+                      return;
+                    }
                     setSpec({ ...spec, slash: bassNote });
                   }}
                 >
@@ -357,7 +381,6 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
           
         </div>
       </details>
-      )}
       
       {/* Free plan Pro promotion */}
       {plan === 'free' && (
