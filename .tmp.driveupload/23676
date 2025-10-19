@@ -61,6 +61,39 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
     }
   };
 
+  const getQualityFromSpec = (spec: ChordSpec): string => {
+    if (!spec) return '';
+    
+    // Map spec properties to quality labels
+    if (spec.seventh === 'none' && spec.extMode === 'add' && spec.ext.add9) return 'add9';
+    if (spec.seventh === 'none' && spec.extMode === 'add' && spec.ext.add11) return 'add#11';
+    if (spec.seventh === 'sus4') return 'sus4';
+    if (spec.seventh === 'sus2') return 'sus2';
+    if (spec.family === 'maj' && spec.seventh === 'none') return 'M';
+    if (spec.family === 'min' && spec.seventh === 'none') return 'm';
+    if (spec.family === 'maj' && spec.seventh === '7') return 'M7';
+    if (spec.family === 'min' && spec.seventh === '7') return 'm7';
+    if (spec.family === 'dom' && spec.seventh === '7') return '7';
+    if (spec.family === 'dim' && spec.seventh === 'none') return 'dim';
+    if (spec.family === 'aug' && spec.seventh === 'none') return 'aug';
+    if (spec.family === 'maj' && spec.seventh === '9') return 'M9';
+    if (spec.family === 'min' && spec.seventh === '9') return 'm9';
+    if (spec.family === 'min' && spec.seventh === '11') return 'm11';
+    if (spec.family === 'min' && spec.seventh === '7b5') return 'm7b5';
+    if (spec.family === 'min' && spec.seventh === 'M7') return 'mM7';
+    if (spec.family === 'min' && spec.seventh === '6') return 'm6';
+    if (spec.family === 'maj' && spec.seventh === '6') return '6';
+    if (spec.family === 'maj' && spec.seventh === '6/9') return '6/9';
+    if (spec.family === 'dom' && spec.seventh === 'sus4') return '7sus4';
+    if (spec.family === 'dim' && spec.seventh === '7') return 'dim7';
+    if (spec.family === 'dom' && spec.seventh === '7' && spec.alt.s9) return '7(#9)';
+    if (spec.family === 'dom' && spec.seventh === '7' && spec.alt.b9) return '7(b9)';
+    if (spec.family === 'dom' && spec.seventh === '7' && spec.alt.s5) return '7(#5)';
+    if (spec.family === 'dom' && spec.seventh === '7' && spec.alt.b13) return '7(b13)';
+    
+    return '';
+  };
+
   // Quality presets based on Quality Master.csv
   const qualityPresets = useMemo(() => {
     console.log('🔍 ChordBuilder: Creating quality presets...');
@@ -129,8 +162,9 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
       });
     }
 
+    console.log('🔍 Final presets count:', presets.length, 'Free count:', presets.filter(p => !p.pro).length, 'Pro count:', presets.filter(p => p.pro).length);
     return presets;
-  }, [plan]);
+  }, [setSpec, plan]);
 
   // Helper function to convert quality string to ChordSpec
   const getSpecFromQuality = (quality: string): ChordSpec | null => {
@@ -142,8 +176,8 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
       case '7': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', extMode: 'tension' };
       case 'maj7': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'maj7', extMode: 'add' };
       case 'm7': return { ...baseSpec, root: 'C', family: 'min', seventh: 'm7', extMode: 'add' };
-      case 'sus4': return { ...baseSpec, root: 'C', family: 'sus', sus: 'sus4', seventh: 'none', extMode: 'add' };
-      case 'sus2': return { ...baseSpec, root: 'C', family: 'sus', sus: 'sus2', seventh: 'none', extMode: 'add' };
+      case 'sus4': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'sus4', extMode: 'add' };
+      case 'sus2': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'sus2', extMode: 'add' };
       case 'add9': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'none', extMode: 'add', ext: { add9: true } };
       case 'dim': return { ...baseSpec, root: 'C', family: 'dim', seventh: 'none', extMode: 'add' };
       case 'M9 (maj9)': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'maj7', extMode: 'add', ext: { add9: true } };
@@ -211,15 +245,20 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
         <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
           {qualityPresets
             .filter(p => plan === 'free' ? !p.pro : true)
-            .map(p => (
-            <div key={p.label} className="relative">
-              {renderChip(p.label, false, p.apply, { 
-                locked: !!p.locked, 
-                showProBadge: !!p.pro,
-                comment: p.comment 
-              })}
-            </div>
-          ))}
+            .map(p => {
+              // Check if this quality is currently selected
+              const currentQuality = spec ? getQualityFromSpec(spec) : null;
+              const isSelected = currentQuality === p.label;
+              return (
+                <div key={p.label} className="relative">
+                  {renderChip(p.label, isSelected, p.apply, { 
+                    locked: !!p.locked, 
+                    showProBadge: !!p.pro,
+                    comment: p.comment 
+                  })}
+                </div>
+              );
+            })}
         </div>
       </div>
 
@@ -277,10 +316,10 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
         </div>
       )}
 
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+      <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between mb-3">
           <div className="text-sm font-medium text-gray-700 dark:text-gray-300">プレビュー</div>
-          <div className="text-lg font-bold text-blue-600 dark:text-blue-400">
+          <div className="text-xl font-bold text-gray-900 dark:text-white bg-white dark:bg-gray-700 px-3 py-1 rounded border">
             {symbol || 'コードを選択してください'}
           </div>
         </div>
