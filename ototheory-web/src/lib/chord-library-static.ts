@@ -401,6 +401,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // A6/9 (6/9)
+  {
+    id: 'A6/9',
+    symbol: 'A6/9',
+    quality: '6/9',
+    forms: [
+      {
+        id: 'A6/9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 12, 11, 11, 12, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"ジャズやフュージョンで多用される、明るく豊かな響き。 | A bright and rich sound frequently used in Jazz and Fusion."']
+      }
+    ]
+  },
   // A7 (7)
   {
     id: 'A7',
@@ -438,6 +454,102 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [4, 2, 3, 1, null, null],
         barres: [],
         tips: ['Dominant 7th (extracted)']
+      }
+    ]
+  },
+  // A7#5 (7(#5))
+  {
+    id: 'A7#5',
+    symbol: 'A7#5',
+    quality: '7(#5)',
+    forms: [
+      {
+        id: 'A7#5-1-Root6',
+        shapeName: 'Root-6',
+        frets: [5, 'x', 5, 6, 7, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"augと同じ。解決先を強く示す。 | Same as augmented. Strongly indicates the point of resolution."']
+      }
+    ]
+  },
+  // A7#9 (7(#9))
+  {
+    id: 'A7#9',
+    symbol: 'A7#9',
+    quality: '7(#9)',
+    forms: [
+      {
+        id: 'A7#9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [5, 'x', 5, 6, 5, 'x'],
+        fingers: [1, null, 1, 2, 1, null],
+        barres: [],
+        tips: ['"ブルージーでロックな緊張感。 | A bluesy and rock-oriented tension."']
+      }
+    ]
+  },
+  // A7b13 (7(b13))
+  {
+    id: 'A7b13',
+    symbol: 'A7b13',
+    quality: '7(b13)',
+    forms: [
+      {
+        id: 'A7b13-1-Root6',
+        shapeName: 'Root-6',
+        frets: [5, 'x', 5, 6, 8, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"複雑でムーディーな緊張感。 | A complex and moody tension."']
+      }
+    ]
+  },
+  // A7b9 (7(b9))
+  {
+    id: 'A7b9',
+    symbol: 'A7b9',
+    quality: '7(b9)',
+    forms: [
+      {
+        id: 'A7b9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [5, 'x', 5, 6, 6, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"ジャズで多用される強い緊張感。 | A strong tension frequently used in Jazz."']
+      }
+    ]
+  },
+  // A7sus4 (7sus4)
+  {
+    id: 'A7sus4',
+    symbol: 'A7sus4',
+    quality: '7sus4',
+    forms: [
+      {
+        id: 'A7sus4-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 12, 12, 14, 15, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"V7の前に置くことで、解決感を劇的に高めるプロの技。 | A pro technique that dramatically enhances the feeling of resolution when placed before a V7 chord."']
+      }
+    ]
+  },
+  // Aadd#11 (add#11)
+  {
+    id: 'Aadd#11',
+    symbol: 'Aadd#11',
+    quality: 'add#11',
+    forms: [
+      {
+        id: 'Aadd#11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 12, 13, 13, 14, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"現代的でドリーミーな、まさに「浮遊感」のあるサウンド。 | A modern']
       }
     ]
   },
@@ -529,6 +641,198 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Ab6/9 (6/9)
+  {
+    id: 'Ab6/9',
+    symbol: 'Ab6/9',
+    quality: '6/9',
+    forms: [
+      {
+        id: 'Ab6/9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 11, 10, 10, 11, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"ジャズやフュージョンで多用される、明るく豊かな響き。 | A bright and rich sound frequently used in Jazz and Fusion."']
+      }
+    ]
+  },
+  // Ab7#5 (7(#5))
+  {
+    id: 'Ab7#5',
+    symbol: 'Ab7#5',
+    quality: '7(#5)',
+    forms: [
+      {
+        id: 'Ab7#5-1-Root6',
+        shapeName: 'Root-6',
+        frets: [4, 'x', 4, 5, 6, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"augと同じ。解決先を強く示す。 | Same as augmented. Strongly indicates the point of resolution."']
+      }
+    ]
+  },
+  // Ab7#9 (7(#9))
+  {
+    id: 'Ab7#9',
+    symbol: 'Ab7#9',
+    quality: '7(#9)',
+    forms: [
+      {
+        id: 'Ab7#9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [4, 'x', 4, 5, 4, 'x'],
+        fingers: [1, null, 1, 2, 1, null],
+        barres: [],
+        tips: ['"ブルージーでロックな緊張感。 | A bluesy and rock-oriented tension."']
+      }
+    ]
+  },
+  // Ab7b13 (7(b13))
+  {
+    id: 'Ab7b13',
+    symbol: 'Ab7b13',
+    quality: '7(b13)',
+    forms: [
+      {
+        id: 'Ab7b13-1-Root6',
+        shapeName: 'Root-6',
+        frets: [4, 'x', 4, 5, 7, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"複雑でムーディーな緊張感。 | A complex and moody tension."']
+      }
+    ]
+  },
+  // Ab7b9 (7(b9))
+  {
+    id: 'Ab7b9',
+    symbol: 'Ab7b9',
+    quality: '7(b9)',
+    forms: [
+      {
+        id: 'Ab7b9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [4, 'x', 4, 5, 5, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"ジャズで多用される強い緊張感。 | A strong tension frequently used in Jazz."']
+      }
+    ]
+  },
+  // Ab7sus4 (7sus4)
+  {
+    id: 'Ab7sus4',
+    symbol: 'Ab7sus4',
+    quality: '7sus4',
+    forms: [
+      {
+        id: 'Ab7sus4-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 11, 11, 13, 14, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"V7の前に置くことで、解決感を劇的に高めるプロの技。 | A pro technique that dramatically enhances the feeling of resolution when placed before a V7 chord."']
+      }
+    ]
+  },
+  // Abadd#11 (add#11)
+  {
+    id: 'Abadd#11',
+    symbol: 'Abadd#11',
+    quality: 'add#11',
+    forms: [
+      {
+        id: 'Abadd#11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 11, 12, 12, 13, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"現代的でドリーミーな、まさに「浮遊感」のあるサウンド。 | A modern']
+      }
+    ]
+  },
+  // Abdim7 (dim7)
+  {
+    id: 'Abdim7',
+    symbol: 'Abdim7',
+    quality: 'dim7',
+    forms: [
+      {
+        id: 'Abdim7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 11, 12, 10, 12, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"経過コードとして非常に便利。緊張感を一気に高める。 | Very useful as a passing chord to instantly increase tension."']
+      }
+    ]
+  },
+  // Abm11 (m11)
+  {
+    id: 'Abm11',
+    symbol: 'Abm11',
+    quality: 'm11',
+    forms: [
+      {
+        id: 'Abm11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 11, 11, 11, 12, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"Lo-fi Hip HopやR&Bで定番の、少しアンニュイなサウンド。 | A standard sound in Lo-fi Hip Hop and R&B']
+      }
+    ]
+  },
+  // Abm7b5 (m7b5)
+  {
+    id: 'Abm7b5',
+    symbol: 'Abm7b5',
+    quality: 'm7b5',
+    forms: [
+      {
+        id: 'Abm7b5-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 11, 12, 11, 12, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"マイナーキーのii-V-Iで必須。ジャズ、ボサノヴァへの入り口。 | Essential for minor key ii-V-I progressions. Your gateway to Jazz and Bossa Nova."']
+      }
+    ]
+  },
+  // AbM9 (M9)
+  {
+    id: 'AbM9',
+    symbol: 'AbM9',
+    quality: 'M9',
+    forms: [
+      {
+        id: 'AbM9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 11, 10, 12, 11, 'x'],
+        fingers: [null, 1, 2, 4, 3, null],
+        barres: [],
+        tips: ['"ポップス、R&Bの王道おしゃれサウンド。 | The quintessential stylish sound for Pop and R&B."']
+      }
+    ]
+  },
+  // Abmm7 (mM7)
+  {
+    id: 'Abmm7',
+    symbol: 'Abmm7',
+    quality: 'mM7',
+    forms: [
+      {
+        id: 'Abmm7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 11, 13, 12, 12, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"映画音楽のような、ミステリアスでドラマチックな響き。 | A mysterious and dramatic sound']
+      }
+    ]
+  },
   // Adim (dim)
   {
     id: 'Adim',
@@ -574,6 +878,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [null, 1, 2, 4, null, null],
         barres: [],
         tips: ['Diminished (auto from Cdim +9)']
+      }
+    ]
+  },
+  // Adim7 (dim7)
+  {
+    id: 'Adim7',
+    symbol: 'Adim7',
+    quality: 'dim7',
+    forms: [
+      {
+        id: 'Adim7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 12, 13, 11, 13, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"経過コードとして非常に便利。緊張感を一気に高める。 | Very useful as a passing chord to instantly increase tension."']
       }
     ]
   },
@@ -630,6 +950,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
         tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // Am11 (m11)
+  {
+    id: 'Am11',
+    symbol: 'Am11',
+    quality: 'm11',
+    forms: [
+      {
+        id: 'Am11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 12, 12, 12, 13, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"Lo-fi Hip HopやR&Bで定番の、少しアンニュイなサウンド。 | A standard sound in Lo-fi Hip Hop and R&B']
       }
     ]
   },
@@ -753,6 +1089,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Am7b5 (m7b5)
+  {
+    id: 'Am7b5',
+    symbol: 'Am7b5',
+    quality: 'm7b5',
+    forms: [
+      {
+        id: 'Am7b5-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 12, 13, 12, 13, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"マイナーキーのii-V-Iで必須。ジャズ、ボサノヴァへの入り口。 | Essential for minor key ii-V-I progressions. Your gateway to Jazz and Bossa Nova."']
+      }
+    ]
+  },
   // Am9 (m9)
   {
     id: 'Am9',
@@ -782,6 +1134,38 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [3, 4, 2, 1, null, null],
         barres: [],
         tips: ['"Aマイナー9ルート4（7-8-7-5-x-x）"']
+      }
+    ]
+  },
+  // AM9 (M9)
+  {
+    id: 'AM9',
+    symbol: 'AM9',
+    quality: 'M9',
+    forms: [
+      {
+        id: 'AM9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 12, 11, 13, 12, 'x'],
+        fingers: [null, 1, 2, 4, 3, null],
+        barres: [],
+        tips: ['"ポップス、R&Bの王道おしゃれサウンド。 | The quintessential stylish sound for Pop and R&B."']
+      }
+    ]
+  },
+  // Amm7 (mM7)
+  {
+    id: 'Amm7',
+    symbol: 'Amm7',
+    quality: 'mM7',
+    forms: [
+      {
+        id: 'Amm7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 12, 14, 13, 13, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"映画音楽のような、ミステリアスでドラマチックな響き。 | A mysterious and dramatic sound']
       }
     ]
   },
@@ -937,6 +1321,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // B6/9 (6/9)
+  {
+    id: 'B6/9',
+    symbol: 'B6/9',
+    quality: '6/9',
+    forms: [
+      {
+        id: 'B6/9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 2, 1, 1, 2, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"ジャズやフュージョンで多用される、明るく豊かな響き。 | A bright and rich sound frequently used in Jazz and Fusion."']
+      }
+    ]
+  },
   // B7 (7)
   {
     id: 'B7',
@@ -974,6 +1374,102 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [4, 2, 3, 1, null, null],
         barres: [],
         tips: ['Dominant 7th (extracted)']
+      }
+    ]
+  },
+  // B7#5 (7(#5))
+  {
+    id: 'B7#5',
+    symbol: 'B7#5',
+    quality: '7(#5)',
+    forms: [
+      {
+        id: 'B7#5-1-Root6',
+        shapeName: 'Root-6',
+        frets: [7, 'x', 7, 8, 9, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"augと同じ。解決先を強く示す。 | Same as augmented. Strongly indicates the point of resolution."']
+      }
+    ]
+  },
+  // B7#9 (7(#9))
+  {
+    id: 'B7#9',
+    symbol: 'B7#9',
+    quality: '7(#9)',
+    forms: [
+      {
+        id: 'B7#9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [7, 'x', 7, 8, 7, 'x'],
+        fingers: [1, null, 1, 2, 1, null],
+        barres: [],
+        tips: ['"ブルージーでロックな緊張感。 | A bluesy and rock-oriented tension."']
+      }
+    ]
+  },
+  // B7b13 (7(b13))
+  {
+    id: 'B7b13',
+    symbol: 'B7b13',
+    quality: '7(b13)',
+    forms: [
+      {
+        id: 'B7b13-1-Root6',
+        shapeName: 'Root-6',
+        frets: [7, 'x', 7, 8, 10, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"複雑でムーディーな緊張感。 | A complex and moody tension."']
+      }
+    ]
+  },
+  // B7b9 (7(b9))
+  {
+    id: 'B7b9',
+    symbol: 'B7b9',
+    quality: '7(b9)',
+    forms: [
+      {
+        id: 'B7b9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [7, 'x', 7, 8, 8, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"ジャズで多用される強い緊張感。 | A strong tension frequently used in Jazz."']
+      }
+    ]
+  },
+  // B7sus4 (7sus4)
+  {
+    id: 'B7sus4',
+    symbol: 'B7sus4',
+    quality: '7sus4',
+    forms: [
+      {
+        id: 'B7sus4-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 2, 2, 4, 5, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"V7の前に置くことで、解決感を劇的に高めるプロの技。 | A pro technique that dramatically enhances the feeling of resolution when placed before a V7 chord."']
+      }
+    ]
+  },
+  // Badd#11 (add#11)
+  {
+    id: 'Badd#11',
+    symbol: 'Badd#11',
+    quality: 'add#11',
+    forms: [
+      {
+        id: 'Badd#11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 2, 3, 3, 4, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"現代的でドリーミーな、まさに「浮遊感」のあるサウンド。 | A modern']
       }
     ]
   },
@@ -1113,6 +1609,134 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Bb6/9 (6/9)
+  {
+    id: 'Bb6/9',
+    symbol: 'Bb6/9',
+    quality: '6/9',
+    forms: [
+      {
+        id: 'Bb6/9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 1, 0, 0, 1, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"ジャズやフュージョンで多用される、明るく豊かな響き。 | A bright and rich sound frequently used in Jazz and Fusion."']
+      }
+    ]
+  },
+  // Bb7#5 (7(#5))
+  {
+    id: 'Bb7#5',
+    symbol: 'Bb7#5',
+    quality: '7(#5)',
+    forms: [
+      {
+        id: 'Bb7#5-1-Root6',
+        shapeName: 'Root-6',
+        frets: [6, 'x', 6, 7, 8, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"augと同じ。解決先を強く示す。 | Same as augmented. Strongly indicates the point of resolution."']
+      }
+    ]
+  },
+  // Bb7#9 (7(#9))
+  {
+    id: 'Bb7#9',
+    symbol: 'Bb7#9',
+    quality: '7(#9)',
+    forms: [
+      {
+        id: 'Bb7#9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [6, 'x', 6, 7, 6, 'x'],
+        fingers: [1, null, 1, 2, 1, null],
+        barres: [],
+        tips: ['"ブルージーでロックな緊張感。 | A bluesy and rock-oriented tension."']
+      }
+    ]
+  },
+  // Bb7b13 (7(b13))
+  {
+    id: 'Bb7b13',
+    symbol: 'Bb7b13',
+    quality: '7(b13)',
+    forms: [
+      {
+        id: 'Bb7b13-1-Root6',
+        shapeName: 'Root-6',
+        frets: [6, 'x', 6, 7, 9, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"複雑でムーディーな緊張感。 | A complex and moody tension."']
+      }
+    ]
+  },
+  // Bb7b9 (7(b9))
+  {
+    id: 'Bb7b9',
+    symbol: 'Bb7b9',
+    quality: '7(b9)',
+    forms: [
+      {
+        id: 'Bb7b9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [6, 'x', 6, 7, 7, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"ジャズで多用される強い緊張感。 | A strong tension frequently used in Jazz."']
+      }
+    ]
+  },
+  // Bb7sus4 (7sus4)
+  {
+    id: 'Bb7sus4',
+    symbol: 'Bb7sus4',
+    quality: '7sus4',
+    forms: [
+      {
+        id: 'Bb7sus4-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 1, 1, 3, 4, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"V7の前に置くことで、解決感を劇的に高めるプロの技。 | A pro technique that dramatically enhances the feeling of resolution when placed before a V7 chord."']
+      }
+    ]
+  },
+  // Bbadd#11 (add#11)
+  {
+    id: 'Bbadd#11',
+    symbol: 'Bbadd#11',
+    quality: 'add#11',
+    forms: [
+      {
+        id: 'Bbadd#11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 1, 2, 2, 3, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"現代的でドリーミーな、まさに「浮遊感」のあるサウンド。 | A modern']
+      }
+    ]
+  },
+  // Bbdim7 (dim7)
+  {
+    id: 'Bbdim7',
+    symbol: 'Bbdim7',
+    quality: 'dim7',
+    forms: [
+      {
+        id: 'Bbdim7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 1, 2, 0, 2, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"経過コードとして非常に便利。緊張感を一気に高める。 | Very useful as a passing chord to instantly increase tension."']
+      }
+    ]
+  },
   // Bbm (m)
   {
     id: 'Bbm',
@@ -1161,6 +1785,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Bbm11 (m11)
+  {
+    id: 'Bbm11',
+    symbol: 'Bbm11',
+    quality: 'm11',
+    forms: [
+      {
+        id: 'Bbm11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 1, 1, 1, 2, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"Lo-fi Hip HopやR&Bで定番の、少しアンニュイなサウンド。 | A standard sound in Lo-fi Hip Hop and R&B']
+      }
+    ]
+  },
   // BbM7 (M7)
   {
     id: 'BbM7',
@@ -1190,6 +1830,54 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [3, 2, 4, 1, null, null],
         barres: [],
         tips: ['"4弦ルート | 高音域ポジション"']
+      }
+    ]
+  },
+  // Bbm7b5 (m7b5)
+  {
+    id: 'Bbm7b5',
+    symbol: 'Bbm7b5',
+    quality: 'm7b5',
+    forms: [
+      {
+        id: 'Bbm7b5-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 1, 2, 1, 2, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"マイナーキーのii-V-Iで必須。ジャズ、ボサノヴァへの入り口。 | Essential for minor key ii-V-I progressions. Your gateway to Jazz and Bossa Nova."']
+      }
+    ]
+  },
+  // BbM9 (M9)
+  {
+    id: 'BbM9',
+    symbol: 'BbM9',
+    quality: 'M9',
+    forms: [
+      {
+        id: 'BbM9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 1, 0, 2, 1, 'x'],
+        fingers: [null, 1, 2, 4, 3, null],
+        barres: [],
+        tips: ['"ポップス、R&Bの王道おしゃれサウンド。 | The quintessential stylish sound for Pop and R&B."']
+      }
+    ]
+  },
+  // Bbmm7 (mM7)
+  {
+    id: 'Bbmm7',
+    symbol: 'Bbmm7',
+    quality: 'mM7',
+    forms: [
+      {
+        id: 'Bbmm7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 1, 3, 2, 2, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"映画音楽のような、ミステリアスでドラマチックな響き。 | A mysterious and dramatic sound']
       }
     ]
   },
@@ -1241,6 +1929,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Bdim7 (dim7)
+  {
+    id: 'Bdim7',
+    symbol: 'Bdim7',
+    quality: 'dim7',
+    forms: [
+      {
+        id: 'Bdim7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 2, 3, 1, 3, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"経過コードとして非常に便利。緊張感を一気に高める。 | Very useful as a passing chord to instantly increase tension."']
+      }
+    ]
+  },
   // Bm (m)
   {
     id: 'Bm',
@@ -1286,6 +1990,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
         tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // Bm11 (m11)
+  {
+    id: 'Bm11',
+    symbol: 'Bm11',
+    quality: 'm11',
+    forms: [
+      {
+        id: 'Bm11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 2, 2, 2, 3, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"Lo-fi Hip HopやR&Bで定番の、少しアンニュイなサウンド。 | A standard sound in Lo-fi Hip Hop and R&B']
       }
     ]
   },
@@ -1361,6 +2081,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Bm7b5 (m7b5)
+  {
+    id: 'Bm7b5',
+    symbol: 'Bm7b5',
+    quality: 'm7b5',
+    forms: [
+      {
+        id: 'Bm7b5-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 2, 3, 2, 3, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"マイナーキーのii-V-Iで必須。ジャズ、ボサノヴァへの入り口。 | Essential for minor key ii-V-I progressions. Your gateway to Jazz and Bossa Nova."']
+      }
+    ]
+  },
   // Bm9 (m9)
   {
     id: 'Bm9',
@@ -1398,6 +2134,38 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [4, 4, 2, 1, null, null],
         barres: [],
         tips: ['"Bマイナー9ルート4（12-12-10-7-x-x）"']
+      }
+    ]
+  },
+  // BM9 (M9)
+  {
+    id: 'BM9',
+    symbol: 'BM9',
+    quality: 'M9',
+    forms: [
+      {
+        id: 'BM9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 2, 1, 3, 2, 'x'],
+        fingers: [null, 1, 2, 4, 3, null],
+        barres: [],
+        tips: ['"ポップス、R&Bの王道おしゃれサウンド。 | The quintessential stylish sound for Pop and R&B."']
+      }
+    ]
+  },
+  // Bmm7 (mM7)
+  {
+    id: 'Bmm7',
+    symbol: 'Bmm7',
+    quality: 'mM7',
+    forms: [
+      {
+        id: 'Bmm7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 2, 4, 3, 3, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"映画音楽のような、ミステリアスでドラマチックな響き。 | A mysterious and dramatic sound']
       }
     ]
   },
@@ -1577,6 +2345,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // C#6/9 (6/9)
+  {
+    id: 'C#6/9',
+    symbol: 'C#6/9',
+    quality: '6/9',
+    forms: [
+      {
+        id: 'C#6/9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 4, 3, 3, 4, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"ジャズやフュージョンで多用される、明るく豊かな響き。 | A bright and rich sound frequently used in Jazz and Fusion."']
+      }
+    ]
+  },
   // C#7 (7)
   {
     id: 'C#7',
@@ -1606,6 +2390,102 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [4, 2, 3, 1, null, null],
         barres: [],
         tips: ['Dominant 7th (extracted)']
+      }
+    ]
+  },
+  // C#7#5 (7(#5))
+  {
+    id: 'C#7#5',
+    symbol: 'C#7#5',
+    quality: '7(#5)',
+    forms: [
+      {
+        id: 'C#7#5-1-Root6',
+        shapeName: 'Root-6',
+        frets: [9, 'x', 9, 10, 11, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"augと同じ。解決先を強く示す。 | Same as augmented. Strongly indicates the point of resolution."']
+      }
+    ]
+  },
+  // C#7#9 (7(#9))
+  {
+    id: 'C#7#9',
+    symbol: 'C#7#9',
+    quality: '7(#9)',
+    forms: [
+      {
+        id: 'C#7#9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [9, 'x', 9, 10, 9, 'x'],
+        fingers: [1, null, 1, 2, 1, null],
+        barres: [],
+        tips: ['"ブルージーでロックな緊張感。 | A bluesy and rock-oriented tension."']
+      }
+    ]
+  },
+  // C#7b13 (7(b13))
+  {
+    id: 'C#7b13',
+    symbol: 'C#7b13',
+    quality: '7(b13)',
+    forms: [
+      {
+        id: 'C#7b13-1-Root6',
+        shapeName: 'Root-6',
+        frets: [9, 'x', 9, 10, 12, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"複雑でムーディーな緊張感。 | A complex and moody tension."']
+      }
+    ]
+  },
+  // C#7b9 (7(b9))
+  {
+    id: 'C#7b9',
+    symbol: 'C#7b9',
+    quality: '7(b9)',
+    forms: [
+      {
+        id: 'C#7b9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [9, 'x', 9, 10, 10, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"ジャズで多用される強い緊張感。 | A strong tension frequently used in Jazz."']
+      }
+    ]
+  },
+  // C#7sus4 (7sus4)
+  {
+    id: 'C#7sus4',
+    symbol: 'C#7sus4',
+    quality: '7sus4',
+    forms: [
+      {
+        id: 'C#7sus4-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 4, 4, 6, 7, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"V7の前に置くことで、解決感を劇的に高めるプロの技。 | A pro technique that dramatically enhances the feeling of resolution when placed before a V7 chord."']
+      }
+    ]
+  },
+  // C#add#11 (add#11)
+  {
+    id: 'C#add#11',
+    symbol: 'C#add#11',
+    quality: 'add#11',
+    forms: [
+      {
+        id: 'C#add#11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 4, 5, 5, 6, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"現代的でドリーミーな、まさに「浮遊感」のあるサウンド。 | A modern']
       }
     ]
   },
@@ -1737,6 +2617,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // C#dim7 (dim7)
+  {
+    id: 'C#dim7',
+    symbol: 'C#dim7',
+    quality: 'dim7',
+    forms: [
+      {
+        id: 'C#dim7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 4, 5, 3, 5, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"経過コードとして非常に便利。緊張感を一気に高める。 | Very useful as a passing chord to instantly increase tension."']
+      }
+    ]
+  },
   // C#m (m)
   {
     id: 'C#m',
@@ -1782,6 +2678,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
         tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // C#m11 (m11)
+  {
+    id: 'C#m11',
+    symbol: 'C#m11',
+    quality: 'm11',
+    forms: [
+      {
+        id: 'C#m11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 4, 4, 4, 5, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"Lo-fi Hip HopやR&Bで定番の、少しアンニュイなサウンド。 | A standard sound in Lo-fi Hip Hop and R&B']
       }
     ]
   },
@@ -1854,6 +2766,54 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [3, 2, 4, 1, null, null],
         barres: [],
         tips: ['"4弦ルート | 高音域ポジション"']
+      }
+    ]
+  },
+  // C#m7b5 (m7b5)
+  {
+    id: 'C#m7b5',
+    symbol: 'C#m7b5',
+    quality: 'm7b5',
+    forms: [
+      {
+        id: 'C#m7b5-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 4, 5, 4, 5, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"マイナーキーのii-V-Iで必須。ジャズ、ボサノヴァへの入り口。 | Essential for minor key ii-V-I progressions. Your gateway to Jazz and Bossa Nova."']
+      }
+    ]
+  },
+  // C#M9 (M9)
+  {
+    id: 'C#M9',
+    symbol: 'C#M9',
+    quality: 'M9',
+    forms: [
+      {
+        id: 'C#M9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 4, 3, 5, 4, 'x'],
+        fingers: [null, 1, 2, 4, 3, null],
+        barres: [],
+        tips: ['"ポップス、R&Bの王道おしゃれサウンド。 | The quintessential stylish sound for Pop and R&B."']
+      }
+    ]
+  },
+  // C#mm7 (mM7)
+  {
+    id: 'C#mm7',
+    symbol: 'C#mm7',
+    quality: 'mM7',
+    forms: [
+      {
+        id: 'C#mm7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 4, 6, 5, 5, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"映画音楽のような、ミステリアスでドラマチックな響き。 | A mysterious and dramatic sound']
       }
     ]
   },
@@ -1945,6 +2905,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // C6/9 (6/9)
+  {
+    id: 'C6/9',
+    symbol: 'C6/9',
+    quality: '6/9',
+    forms: [
+      {
+        id: 'C6/9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 3, 2, 2, 3, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"ジャズやフュージョンで多用される、明るく豊かな響き。 | A bright and rich sound frequently used in Jazz and Fusion."']
+      }
+    ]
+  },
   // C7 (7)
   {
     id: 'C7',
@@ -1982,6 +2958,102 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [4, 2, 3, 1, null, null],
         barres: [],
         tips: ['Dominant 7th (extracted)']
+      }
+    ]
+  },
+  // C7#5 (7(#5))
+  {
+    id: 'C7#5',
+    symbol: 'C7#5',
+    quality: '7(#5)',
+    forms: [
+      {
+        id: 'C7#5-1-Root6',
+        shapeName: 'Root-6',
+        frets: [8, 'x', 8, 9, 10, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"augと同じ。解決先を強く示す。 | Same as augmented. Strongly indicates the point of resolution."']
+      }
+    ]
+  },
+  // C7#9 (7(#9))
+  {
+    id: 'C7#9',
+    symbol: 'C7#9',
+    quality: '7(#9)',
+    forms: [
+      {
+        id: 'C7#9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [8, 'x', 8, 9, 8, 'x'],
+        fingers: [1, null, 1, 2, 1, null],
+        barres: [],
+        tips: ['"ブルージーでロックな緊張感。 | A bluesy and rock-oriented tension."']
+      }
+    ]
+  },
+  // C7b13 (7(b13))
+  {
+    id: 'C7b13',
+    symbol: 'C7b13',
+    quality: '7(b13)',
+    forms: [
+      {
+        id: 'C7b13-1-Root6',
+        shapeName: 'Root-6',
+        frets: [8, 'x', 8, 9, 11, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"複雑でムーディーな緊張感。 | A complex and moody tension."']
+      }
+    ]
+  },
+  // C7b9 (7(b9))
+  {
+    id: 'C7b9',
+    symbol: 'C7b9',
+    quality: '7(b9)',
+    forms: [
+      {
+        id: 'C7b9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [8, 'x', 8, 9, 9, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"ジャズで多用される強い緊張感。 | A strong tension frequently used in Jazz."']
+      }
+    ]
+  },
+  // C7sus4 (7sus4)
+  {
+    id: 'C7sus4',
+    symbol: 'C7sus4',
+    quality: '7sus4',
+    forms: [
+      {
+        id: 'C7sus4-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 3, 3, 5, 6, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"V7の前に置くことで、解決感を劇的に高めるプロの技。 | A pro technique that dramatically enhances the feeling of resolution when placed before a V7 chord."']
+      }
+    ]
+  },
+  // Cadd#11 (add#11)
+  {
+    id: 'Cadd#11',
+    symbol: 'Cadd#11',
+    quality: 'add#11',
+    forms: [
+      {
+        id: 'Cadd#11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 3, 4, 4, 5, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"現代的でドリーミーな、まさに「浮遊感」のあるサウンド。 | A modern']
       }
     ]
   },
@@ -2145,6 +3217,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Cdim7 (dim7)
+  {
+    id: 'Cdim7',
+    symbol: 'Cdim7',
+    quality: 'dim7',
+    forms: [
+      {
+        id: 'Cdim7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 3, 4, 2, 4, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"経過コードとして非常に便利。緊張感を一気に高める。 | Very useful as a passing chord to instantly increase tension."']
+      }
+    ]
+  },
   // Cm (m)
   {
     id: 'Cm',
@@ -2190,6 +3278,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
         tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // Cm11 (m11)
+  {
+    id: 'Cm11',
+    symbol: 'Cm11',
+    quality: 'm11',
+    forms: [
+      {
+        id: 'Cm11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 3, 3, 3, 4, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"Lo-fi Hip HopやR&Bで定番の、少しアンニュイなサウンド。 | A standard sound in Lo-fi Hip Hop and R&B']
       }
     ]
   },
@@ -2297,6 +3401,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Cm7b5 (m7b5)
+  {
+    id: 'Cm7b5',
+    symbol: 'Cm7b5',
+    quality: 'm7b5',
+    forms: [
+      {
+        id: 'Cm7b5-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 3, 4, 3, 4, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"マイナーキーのii-V-Iで必須。ジャズ、ボサノヴァへの入り口。 | Essential for minor key ii-V-I progressions. Your gateway to Jazz and Bossa Nova."']
+      }
+    ]
+  },
   // Cm9 (m9)
   {
     id: 'Cm9',
@@ -2334,6 +3454,38 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [4, 4, 2, 1, null, null],
         barres: [],
         tips: ['"Cマイナー9ルート4（13-13-11-8-x-x）"']
+      }
+    ]
+  },
+  // CM9 (M9)
+  {
+    id: 'CM9',
+    symbol: 'CM9',
+    quality: 'M9',
+    forms: [
+      {
+        id: 'CM9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 3, 2, 4, 3, 'x'],
+        fingers: [null, 1, 2, 4, 3, null],
+        barres: [],
+        tips: ['"ポップス、R&Bの王道おしゃれサウンド。 | The quintessential stylish sound for Pop and R&B."']
+      }
+    ]
+  },
+  // Cmm7 (mM7)
+  {
+    id: 'Cmm7',
+    symbol: 'Cmm7',
+    quality: 'mM7',
+    forms: [
+      {
+        id: 'Cmm7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 3, 5, 4, 4, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"映画音楽のような、ミステリアスでドラマチックな響き。 | A mysterious and dramatic sound']
       }
     ]
   },
@@ -2873,6 +4025,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // D6/9 (6/9)
+  {
+    id: 'D6/9',
+    symbol: 'D6/9',
+    quality: '6/9',
+    forms: [
+      {
+        id: 'D6/9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 5, 4, 4, 5, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"ジャズやフュージョンで多用される、明るく豊かな響き。 | A bright and rich sound frequently used in Jazz and Fusion."']
+      }
+    ]
+  },
   // D7 (7)
   {
     id: 'D7',
@@ -2910,6 +4078,102 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [1, 1, 2, 3, null, null],
         barres: [],
         tips: ['"4弦ルート | 代替ボイシング"']
+      }
+    ]
+  },
+  // D7#5 (7(#5))
+  {
+    id: 'D7#5',
+    symbol: 'D7#5',
+    quality: '7(#5)',
+    forms: [
+      {
+        id: 'D7#5-1-Root6',
+        shapeName: 'Root-6',
+        frets: [10, 'x', 10, 11, 12, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"augと同じ。解決先を強く示す。 | Same as augmented. Strongly indicates the point of resolution."']
+      }
+    ]
+  },
+  // D7#9 (7(#9))
+  {
+    id: 'D7#9',
+    symbol: 'D7#9',
+    quality: '7(#9)',
+    forms: [
+      {
+        id: 'D7#9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [10, 'x', 10, 11, 10, 'x'],
+        fingers: [1, null, 1, 2, 1, null],
+        barres: [],
+        tips: ['"ブルージーでロックな緊張感。 | A bluesy and rock-oriented tension."']
+      }
+    ]
+  },
+  // D7b13 (7(b13))
+  {
+    id: 'D7b13',
+    symbol: 'D7b13',
+    quality: '7(b13)',
+    forms: [
+      {
+        id: 'D7b13-1-Root6',
+        shapeName: 'Root-6',
+        frets: [10, 'x', 10, 11, 13, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"複雑でムーディーな緊張感。 | A complex and moody tension."']
+      }
+    ]
+  },
+  // D7b9 (7(b9))
+  {
+    id: 'D7b9',
+    symbol: 'D7b9',
+    quality: '7(b9)',
+    forms: [
+      {
+        id: 'D7b9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [10, 'x', 10, 11, 11, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"ジャズで多用される強い緊張感。 | A strong tension frequently used in Jazz."']
+      }
+    ]
+  },
+  // D7sus4 (7sus4)
+  {
+    id: 'D7sus4',
+    symbol: 'D7sus4',
+    quality: '7sus4',
+    forms: [
+      {
+        id: 'D7sus4-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 5, 5, 7, 8, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"V7の前に置くことで、解決感を劇的に高めるプロの技。 | A pro technique that dramatically enhances the feeling of resolution when placed before a V7 chord."']
+      }
+    ]
+  },
+  // Dadd#11 (add#11)
+  {
+    id: 'Dadd#11',
+    symbol: 'Dadd#11',
+    quality: 'add#11',
+    forms: [
+      {
+        id: 'Dadd#11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 5, 6, 6, 7, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"現代的でドリーミーな、まさに「浮遊感」のあるサウンド。 | A modern']
       }
     ]
   },
@@ -3017,6 +4281,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Ddim7 (dim7)
+  {
+    id: 'Ddim7',
+    symbol: 'Ddim7',
+    quality: 'dim7',
+    forms: [
+      {
+        id: 'Ddim7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 5, 6, 4, 6, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"経過コードとして非常に便利。緊張感を一気に高める。 | Very useful as a passing chord to instantly increase tension."']
+      }
+    ]
+  },
   // Dm (m)
   {
     id: 'Dm',
@@ -3070,6 +4350,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
         tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // Dm11 (m11)
+  {
+    id: 'Dm11',
+    symbol: 'Dm11',
+    quality: 'm11',
+    forms: [
+      {
+        id: 'Dm11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 5, 5, 5, 6, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"Lo-fi Hip HopやR&Bで定番の、少しアンニュイなサウンド。 | A standard sound in Lo-fi Hip Hop and R&B']
       }
     ]
   },
@@ -3185,6 +4481,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Dm7b5 (m7b5)
+  {
+    id: 'Dm7b5',
+    symbol: 'Dm7b5',
+    quality: 'm7b5',
+    forms: [
+      {
+        id: 'Dm7b5-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 5, 6, 5, 6, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"マイナーキーのii-V-Iで必須。ジャズ、ボサノヴァへの入り口。 | Essential for minor key ii-V-I progressions. Your gateway to Jazz and Bossa Nova."']
+      }
+    ]
+  },
   // Dm9 (m9)
   {
     id: 'Dm9',
@@ -3222,6 +4534,38 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [4, 4, 2, 1, null, null],
         barres: [],
         tips: ['"Dマイナー9ルート4（15-15-13-10-x-x）"']
+      }
+    ]
+  },
+  // DM9 (M9)
+  {
+    id: 'DM9',
+    symbol: 'DM9',
+    quality: 'M9',
+    forms: [
+      {
+        id: 'DM9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 5, 4, 6, 5, 'x'],
+        fingers: [null, 1, 2, 4, 3, null],
+        barres: [],
+        tips: ['"ポップス、R&Bの王道おしゃれサウンド。 | The quintessential stylish sound for Pop and R&B."']
+      }
+    ]
+  },
+  // Dmm7 (mM7)
+  {
+    id: 'Dmm7',
+    symbol: 'Dmm7',
+    quality: 'mM7',
+    forms: [
+      {
+        id: 'Dmm7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 5, 7, 6, 6, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"映画音楽のような、ミステリアスでドラマチックな響き。 | A mysterious and dramatic sound']
       }
     ]
   },
@@ -3393,6 +4737,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // E6/9 (6/9)
+  {
+    id: 'E6/9',
+    symbol: 'E6/9',
+    quality: '6/9',
+    forms: [
+      {
+        id: 'E6/9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 7, 6, 6, 7, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"ジャズやフュージョンで多用される、明るく豊かな響き。 | A bright and rich sound frequently used in Jazz and Fusion."']
+      }
+    ]
+  },
   // E7 (7)
   {
     id: 'E7',
@@ -3430,6 +4790,102 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [null, 3, 1, 2, null, null],
         barres: [],
         tips: ['"4th string root | Low open voicing"']
+      }
+    ]
+  },
+  // E7#5 (7(#5))
+  {
+    id: 'E7#5',
+    symbol: 'E7#5',
+    quality: '7(#5)',
+    forms: [
+      {
+        id: 'E7#5-1-Root6',
+        shapeName: 'Root-6',
+        frets: [12, 'x', 12, 13, 14, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"augと同じ。解決先を強く示す。 | Same as augmented. Strongly indicates the point of resolution."']
+      }
+    ]
+  },
+  // E7#9 (7(#9))
+  {
+    id: 'E7#9',
+    symbol: 'E7#9',
+    quality: '7(#9)',
+    forms: [
+      {
+        id: 'E7#9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [12, 'x', 12, 13, 12, 'x'],
+        fingers: [1, null, 1, 2, 1, null],
+        barres: [],
+        tips: ['"ブルージーでロックな緊張感。 | A bluesy and rock-oriented tension."']
+      }
+    ]
+  },
+  // E7b13 (7(b13))
+  {
+    id: 'E7b13',
+    symbol: 'E7b13',
+    quality: '7(b13)',
+    forms: [
+      {
+        id: 'E7b13-1-Root6',
+        shapeName: 'Root-6',
+        frets: [12, 'x', 12, 13, 15, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"複雑でムーディーな緊張感。 | A complex and moody tension."']
+      }
+    ]
+  },
+  // E7b9 (7(b9))
+  {
+    id: 'E7b9',
+    symbol: 'E7b9',
+    quality: '7(b9)',
+    forms: [
+      {
+        id: 'E7b9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [12, 'x', 12, 13, 13, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"ジャズで多用される強い緊張感。 | A strong tension frequently used in Jazz."']
+      }
+    ]
+  },
+  // E7sus4 (7sus4)
+  {
+    id: 'E7sus4',
+    symbol: 'E7sus4',
+    quality: '7sus4',
+    forms: [
+      {
+        id: 'E7sus4-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 7, 7, 9, 10, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"V7の前に置くことで、解決感を劇的に高めるプロの技。 | A pro technique that dramatically enhances the feeling of resolution when placed before a V7 chord."']
+      }
+    ]
+  },
+  // Eadd#11 (add#11)
+  {
+    id: 'Eadd#11',
+    symbol: 'Eadd#11',
+    quality: 'add#11',
+    forms: [
+      {
+        id: 'Eadd#11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 7, 8, 8, 9, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"現代的でドリーミーな、まさに「浮遊感」のあるサウンド。 | A modern']
       }
     ]
   },
@@ -3577,6 +5033,134 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Eb6/9 (6/9)
+  {
+    id: 'Eb6/9',
+    symbol: 'Eb6/9',
+    quality: '6/9',
+    forms: [
+      {
+        id: 'Eb6/9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 6, 5, 5, 6, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"ジャズやフュージョンで多用される、明るく豊かな響き。 | A bright and rich sound frequently used in Jazz and Fusion."']
+      }
+    ]
+  },
+  // Eb7#5 (7(#5))
+  {
+    id: 'Eb7#5',
+    symbol: 'Eb7#5',
+    quality: '7(#5)',
+    forms: [
+      {
+        id: 'Eb7#5-1-Root6',
+        shapeName: 'Root-6',
+        frets: [11, 'x', 11, 12, 13, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"augと同じ。解決先を強く示す。 | Same as augmented. Strongly indicates the point of resolution."']
+      }
+    ]
+  },
+  // Eb7#9 (7(#9))
+  {
+    id: 'Eb7#9',
+    symbol: 'Eb7#9',
+    quality: '7(#9)',
+    forms: [
+      {
+        id: 'Eb7#9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [11, 'x', 11, 12, 11, 'x'],
+        fingers: [1, null, 1, 2, 1, null],
+        barres: [],
+        tips: ['"ブルージーでロックな緊張感。 | A bluesy and rock-oriented tension."']
+      }
+    ]
+  },
+  // Eb7b13 (7(b13))
+  {
+    id: 'Eb7b13',
+    symbol: 'Eb7b13',
+    quality: '7(b13)',
+    forms: [
+      {
+        id: 'Eb7b13-1-Root6',
+        shapeName: 'Root-6',
+        frets: [11, 'x', 11, 12, 14, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"複雑でムーディーな緊張感。 | A complex and moody tension."']
+      }
+    ]
+  },
+  // Eb7b9 (7(b9))
+  {
+    id: 'Eb7b9',
+    symbol: 'Eb7b9',
+    quality: '7(b9)',
+    forms: [
+      {
+        id: 'Eb7b9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [11, 'x', 11, 12, 12, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"ジャズで多用される強い緊張感。 | A strong tension frequently used in Jazz."']
+      }
+    ]
+  },
+  // Eb7sus4 (7sus4)
+  {
+    id: 'Eb7sus4',
+    symbol: 'Eb7sus4',
+    quality: '7sus4',
+    forms: [
+      {
+        id: 'Eb7sus4-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 6, 6, 8, 9, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"V7の前に置くことで、解決感を劇的に高めるプロの技。 | A pro technique that dramatically enhances the feeling of resolution when placed before a V7 chord."']
+      }
+    ]
+  },
+  // Ebadd#11 (add#11)
+  {
+    id: 'Ebadd#11',
+    symbol: 'Ebadd#11',
+    quality: 'add#11',
+    forms: [
+      {
+        id: 'Ebadd#11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 6, 7, 7, 8, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"現代的でドリーミーな、まさに「浮遊感」のあるサウンド。 | A modern']
+      }
+    ]
+  },
+  // Ebdim7 (dim7)
+  {
+    id: 'Ebdim7',
+    symbol: 'Ebdim7',
+    quality: 'dim7',
+    forms: [
+      {
+        id: 'Ebdim7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 6, 7, 5, 7, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"経過コードとして非常に便利。緊張感を一気に高める。 | Very useful as a passing chord to instantly increase tension."']
+      }
+    ]
+  },
   // Ebm (m)
   {
     id: 'Ebm',
@@ -3625,6 +5209,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Ebm11 (m11)
+  {
+    id: 'Ebm11',
+    symbol: 'Ebm11',
+    quality: 'm11',
+    forms: [
+      {
+        id: 'Ebm11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 6, 6, 6, 7, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"Lo-fi Hip HopやR&Bで定番の、少しアンニュイなサウンド。 | A standard sound in Lo-fi Hip Hop and R&B']
+      }
+    ]
+  },
   // EbM7 (M7)
   {
     id: 'EbM7',
@@ -3657,6 +5257,54 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Ebm7b5 (m7b5)
+  {
+    id: 'Ebm7b5',
+    symbol: 'Ebm7b5',
+    quality: 'm7b5',
+    forms: [
+      {
+        id: 'Ebm7b5-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 6, 7, 6, 7, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"マイナーキーのii-V-Iで必須。ジャズ、ボサノヴァへの入り口。 | Essential for minor key ii-V-I progressions. Your gateway to Jazz and Bossa Nova."']
+      }
+    ]
+  },
+  // EbM9 (M9)
+  {
+    id: 'EbM9',
+    symbol: 'EbM9',
+    quality: 'M9',
+    forms: [
+      {
+        id: 'EbM9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 6, 5, 7, 6, 'x'],
+        fingers: [null, 1, 2, 4, 3, null],
+        barres: [],
+        tips: ['"ポップス、R&Bの王道おしゃれサウンド。 | The quintessential stylish sound for Pop and R&B."']
+      }
+    ]
+  },
+  // Ebmm7 (mM7)
+  {
+    id: 'Ebmm7',
+    symbol: 'Ebmm7',
+    quality: 'mM7',
+    forms: [
+      {
+        id: 'Ebmm7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 6, 8, 7, 7, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"映画音楽のような、ミステリアスでドラマチックな響き。 | A mysterious and dramatic sound']
+      }
+    ]
+  },
   // Edim (dim)
   {
     id: 'Edim',
@@ -3670,6 +5318,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [null, 1, null, 2, null, null],
         barres: [],
         tips: ['Diminished (extracted)']
+      }
+    ]
+  },
+  // Edim7 (dim7)
+  {
+    id: 'Edim7',
+    symbol: 'Edim7',
+    quality: 'dim7',
+    forms: [
+      {
+        id: 'Edim7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 7, 8, 6, 8, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"経過コードとして非常に便利。緊張感を一気に高める。 | Very useful as a passing chord to instantly increase tension."']
       }
     ]
   },
@@ -3726,6 +5390,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
         tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // Em11 (m11)
+  {
+    id: 'Em11',
+    symbol: 'Em11',
+    quality: 'm11',
+    forms: [
+      {
+        id: 'Em11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 7, 7, 7, 8, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"Lo-fi Hip HopやR&Bで定番の、少しアンニュイなサウンド。 | A standard sound in Lo-fi Hip Hop and R&B']
       }
     ]
   },
@@ -3841,6 +5521,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Em7b5 (m7b5)
+  {
+    id: 'Em7b5',
+    symbol: 'Em7b5',
+    quality: 'm7b5',
+    forms: [
+      {
+        id: 'Em7b5-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 7, 8, 7, 8, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"マイナーキーのii-V-Iで必須。ジャズ、ボサノヴァへの入り口。 | Essential for minor key ii-V-I progressions. Your gateway to Jazz and Bossa Nova."']
+      }
+    ]
+  },
   // Em9 (m9)
   {
     id: 'Em9',
@@ -3878,6 +5574,38 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [4, 4, 2, 1, null, null],
         barres: [],
         tips: ['"Eマイナー9ルート4（17-17-15-12-x-x）"']
+      }
+    ]
+  },
+  // EM9 (M9)
+  {
+    id: 'EM9',
+    symbol: 'EM9',
+    quality: 'M9',
+    forms: [
+      {
+        id: 'EM9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 7, 6, 8, 7, 'x'],
+        fingers: [null, 1, 2, 4, 3, null],
+        barres: [],
+        tips: ['"ポップス、R&Bの王道おしゃれサウンド。 | The quintessential stylish sound for Pop and R&B."']
+      }
+    ]
+  },
+  // Emm7 (mM7)
+  {
+    id: 'Emm7',
+    symbol: 'Emm7',
+    quality: 'mM7',
+    forms: [
+      {
+        id: 'Emm7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 7, 9, 8, 8, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"映画音楽のような、ミステリアスでドラマチックな響き。 | A mysterious and dramatic sound']
       }
     ]
   },
@@ -4049,6 +5777,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // F#6/9 (6/9)
+  {
+    id: 'F#6/9',
+    symbol: 'F#6/9',
+    quality: '6/9',
+    forms: [
+      {
+        id: 'F#6/9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 9, 8, 8, 9, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"ジャズやフュージョンで多用される、明るく豊かな響き。 | A bright and rich sound frequently used in Jazz and Fusion."']
+      }
+    ]
+  },
   // F#7 (7)
   {
     id: 'F#7',
@@ -4086,6 +5830,102 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [4, 2, 3, 1, null, null],
         barres: [],
         tips: ['Dominant 7th (extracted)']
+      }
+    ]
+  },
+  // F#7#5 (7(#5))
+  {
+    id: 'F#7#5',
+    symbol: 'F#7#5',
+    quality: '7(#5)',
+    forms: [
+      {
+        id: 'F#7#5-1-Root6',
+        shapeName: 'Root-6',
+        frets: [2, 'x', 2, 3, 4, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"augと同じ。解決先を強く示す。 | Same as augmented. Strongly indicates the point of resolution."']
+      }
+    ]
+  },
+  // F#7#9 (7(#9))
+  {
+    id: 'F#7#9',
+    symbol: 'F#7#9',
+    quality: '7(#9)',
+    forms: [
+      {
+        id: 'F#7#9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [2, 'x', 2, 3, 2, 'x'],
+        fingers: [1, null, 1, 2, 1, null],
+        barres: [],
+        tips: ['"ブルージーでロックな緊張感。 | A bluesy and rock-oriented tension."']
+      }
+    ]
+  },
+  // F#7b13 (7(b13))
+  {
+    id: 'F#7b13',
+    symbol: 'F#7b13',
+    quality: '7(b13)',
+    forms: [
+      {
+        id: 'F#7b13-1-Root6',
+        shapeName: 'Root-6',
+        frets: [2, 'x', 2, 3, 5, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"複雑でムーディーな緊張感。 | A complex and moody tension."']
+      }
+    ]
+  },
+  // F#7b9 (7(b9))
+  {
+    id: 'F#7b9',
+    symbol: 'F#7b9',
+    quality: '7(b9)',
+    forms: [
+      {
+        id: 'F#7b9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [2, 'x', 2, 3, 3, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"ジャズで多用される強い緊張感。 | A strong tension frequently used in Jazz."']
+      }
+    ]
+  },
+  // F#7sus4 (7sus4)
+  {
+    id: 'F#7sus4',
+    symbol: 'F#7sus4',
+    quality: '7sus4',
+    forms: [
+      {
+        id: 'F#7sus4-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 9, 9, 11, 12, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"V7の前に置くことで、解決感を劇的に高めるプロの技。 | A pro technique that dramatically enhances the feeling of resolution when placed before a V7 chord."']
+      }
+    ]
+  },
+  // F#add#11 (add#11)
+  {
+    id: 'F#add#11',
+    symbol: 'F#add#11',
+    quality: 'add#11',
+    forms: [
+      {
+        id: 'F#add#11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 9, 10, 10, 11, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"現代的でドリーミーな、まさに「浮遊感」のあるサウンド。 | A modern']
       }
     ]
   },
@@ -4217,6 +6057,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // F#dim7 (dim7)
+  {
+    id: 'F#dim7',
+    symbol: 'F#dim7',
+    quality: 'dim7',
+    forms: [
+      {
+        id: 'F#dim7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 9, 10, 8, 10, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"経過コードとして非常に便利。緊張感を一気に高める。 | Very useful as a passing chord to instantly increase tension."']
+      }
+    ]
+  },
   // F#m (m)
   {
     id: 'F#m',
@@ -4262,6 +6118,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
         tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // F#m11 (m11)
+  {
+    id: 'F#m11',
+    symbol: 'F#m11',
+    quality: 'm11',
+    forms: [
+      {
+        id: 'F#m11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 9, 9, 9, 10, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"Lo-fi Hip HopやR&Bで定番の、少しアンニュイなサウンド。 | A standard sound in Lo-fi Hip Hop and R&B']
       }
     ]
   },
@@ -4326,6 +6198,54 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [3, 2, 4, 1, null, null],
         barres: [],
         tips: ['"4弦ルート | 高音域ポジション"']
+      }
+    ]
+  },
+  // F#m7b5 (m7b5)
+  {
+    id: 'F#m7b5',
+    symbol: 'F#m7b5',
+    quality: 'm7b5',
+    forms: [
+      {
+        id: 'F#m7b5-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 9, 10, 9, 10, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"マイナーキーのii-V-Iで必須。ジャズ、ボサノヴァへの入り口。 | Essential for minor key ii-V-I progressions. Your gateway to Jazz and Bossa Nova."']
+      }
+    ]
+  },
+  // F#M9 (M9)
+  {
+    id: 'F#M9',
+    symbol: 'F#M9',
+    quality: 'M9',
+    forms: [
+      {
+        id: 'F#M9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 9, 8, 10, 9, 'x'],
+        fingers: [null, 1, 2, 4, 3, null],
+        barres: [],
+        tips: ['"ポップス、R&Bの王道おしゃれサウンド。 | The quintessential stylish sound for Pop and R&B."']
+      }
+    ]
+  },
+  // F#mm7 (mM7)
+  {
+    id: 'F#mm7',
+    symbol: 'F#mm7',
+    quality: 'mM7',
+    forms: [
+      {
+        id: 'F#mm7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 9, 11, 10, 10, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"映画音楽のような、ミステリアスでドラマチックな響き。 | A mysterious and dramatic sound']
       }
     ]
   },
@@ -4417,6 +6337,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // F6/9 (6/9)
+  {
+    id: 'F6/9',
+    symbol: 'F6/9',
+    quality: '6/9',
+    forms: [
+      {
+        id: 'F6/9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 8, 7, 7, 8, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"ジャズやフュージョンで多用される、明るく豊かな響き。 | A bright and rich sound frequently used in Jazz and Fusion."']
+      }
+    ]
+  },
   // F7 (7)
   {
     id: 'F7',
@@ -4438,6 +6374,102 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [1, 1, 2, null, null, null],
         barres: [],
         tips: ['"4弦ルート | 低音域ポジション"']
+      }
+    ]
+  },
+  // F7#5 (7(#5))
+  {
+    id: 'F7#5',
+    symbol: 'F7#5',
+    quality: '7(#5)',
+    forms: [
+      {
+        id: 'F7#5-1-Root6',
+        shapeName: 'Root-6',
+        frets: [1, 'x', 1, 2, 3, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"augと同じ。解決先を強く示す。 | Same as augmented. Strongly indicates the point of resolution."']
+      }
+    ]
+  },
+  // F7#9 (7(#9))
+  {
+    id: 'F7#9',
+    symbol: 'F7#9',
+    quality: '7(#9)',
+    forms: [
+      {
+        id: 'F7#9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [1, 'x', 1, 2, 1, 'x'],
+        fingers: [1, null, 1, 2, 1, null],
+        barres: [],
+        tips: ['"ブルージーでロックな緊張感。 | A bluesy and rock-oriented tension."']
+      }
+    ]
+  },
+  // F7b13 (7(b13))
+  {
+    id: 'F7b13',
+    symbol: 'F7b13',
+    quality: '7(b13)',
+    forms: [
+      {
+        id: 'F7b13-1-Root6',
+        shapeName: 'Root-6',
+        frets: [1, 'x', 1, 2, 4, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"複雑でムーディーな緊張感。 | A complex and moody tension."']
+      }
+    ]
+  },
+  // F7b9 (7(b9))
+  {
+    id: 'F7b9',
+    symbol: 'F7b9',
+    quality: '7(b9)',
+    forms: [
+      {
+        id: 'F7b9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [1, 'x', 1, 2, 2, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"ジャズで多用される強い緊張感。 | A strong tension frequently used in Jazz."']
+      }
+    ]
+  },
+  // F7sus4 (7sus4)
+  {
+    id: 'F7sus4',
+    symbol: 'F7sus4',
+    quality: '7sus4',
+    forms: [
+      {
+        id: 'F7sus4-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 8, 8, 10, 11, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"V7の前に置くことで、解決感を劇的に高めるプロの技。 | A pro technique that dramatically enhances the feeling of resolution when placed before a V7 chord."']
+      }
+    ]
+  },
+  // Fadd#11 (add#11)
+  {
+    id: 'Fadd#11',
+    symbol: 'Fadd#11',
+    quality: 'add#11',
+    forms: [
+      {
+        id: 'Fadd#11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 8, 9, 9, 10, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"現代的でドリーミーな、まさに「浮遊感」のあるサウンド。 | A modern']
       }
     ]
   },
@@ -4569,6 +6601,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Fdim7 (dim7)
+  {
+    id: 'Fdim7',
+    symbol: 'Fdim7',
+    quality: 'dim7',
+    forms: [
+      {
+        id: 'Fdim7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 8, 9, 7, 9, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"経過コードとして非常に便利。緊張感を一気に高める。 | Very useful as a passing chord to instantly increase tension."']
+      }
+    ]
+  },
   // Fm (m)
   {
     id: 'Fm',
@@ -4614,6 +6662,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
         tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // Fm11 (m11)
+  {
+    id: 'Fm11',
+    symbol: 'Fm11',
+    quality: 'm11',
+    forms: [
+      {
+        id: 'Fm11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 8, 8, 8, 9, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"Lo-fi Hip HopやR&Bで定番の、少しアンニュイなサウンド。 | A standard sound in Lo-fi Hip Hop and R&B']
       }
     ]
   },
@@ -4689,6 +6753,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Fm7b5 (m7b5)
+  {
+    id: 'Fm7b5',
+    symbol: 'Fm7b5',
+    quality: 'm7b5',
+    forms: [
+      {
+        id: 'Fm7b5-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 8, 9, 8, 9, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"マイナーキーのii-V-Iで必須。ジャズ、ボサノヴァへの入り口。 | Essential for minor key ii-V-I progressions. Your gateway to Jazz and Bossa Nova."']
+      }
+    ]
+  },
   // Fm9 (m9)
   {
     id: 'Fm9',
@@ -4726,6 +6806,38 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [4, 4, 2, 1, null, null],
         barres: [],
         tips: ['"Fマイナー9ルート4（18-18-16-13-x-x）"']
+      }
+    ]
+  },
+  // FM9 (M9)
+  {
+    id: 'FM9',
+    symbol: 'FM9',
+    quality: 'M9',
+    forms: [
+      {
+        id: 'FM9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 8, 7, 9, 8, 'x'],
+        fingers: [null, 1, 2, 4, 3, null],
+        barres: [],
+        tips: ['"ポップス、R&Bの王道おしゃれサウンド。 | The quintessential stylish sound for Pop and R&B."']
+      }
+    ]
+  },
+  // Fmm7 (mM7)
+  {
+    id: 'Fmm7',
+    symbol: 'Fmm7',
+    quality: 'mM7',
+    forms: [
+      {
+        id: 'Fmm7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 8, 10, 9, 9, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"映画音楽のような、ミステリアスでドラマチックな響き。 | A mysterious and dramatic sound']
       }
     ]
   },
@@ -5257,6 +7369,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // G6/9 (6/9)
+  {
+    id: 'G6/9',
+    symbol: 'G6/9',
+    quality: '6/9',
+    forms: [
+      {
+        id: 'G6/9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 10, 9, 9, 10, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"ジャズやフュージョンで多用される、明るく豊かな響き。 | A bright and rich sound frequently used in Jazz and Fusion."']
+      }
+    ]
+  },
   // G7 (7)
   {
     id: 'G7',
@@ -5294,6 +7422,102 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [4, 2, 3, 1, null, null],
         barres: [],
         tips: ['Dominant 7th (extracted)']
+      }
+    ]
+  },
+  // G7#5 (7(#5))
+  {
+    id: 'G7#5',
+    symbol: 'G7#5',
+    quality: '7(#5)',
+    forms: [
+      {
+        id: 'G7#5-1-Root6',
+        shapeName: 'Root-6',
+        frets: [3, 'x', 3, 4, 5, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"augと同じ。解決先を強く示す。 | Same as augmented. Strongly indicates the point of resolution."']
+      }
+    ]
+  },
+  // G7#9 (7(#9))
+  {
+    id: 'G7#9',
+    symbol: 'G7#9',
+    quality: '7(#9)',
+    forms: [
+      {
+        id: 'G7#9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [3, 'x', 3, 4, 3, 'x'],
+        fingers: [1, null, 1, 2, 1, null],
+        barres: [],
+        tips: ['"ブルージーでロックな緊張感。 | A bluesy and rock-oriented tension."']
+      }
+    ]
+  },
+  // G7b13 (7(b13))
+  {
+    id: 'G7b13',
+    symbol: 'G7b13',
+    quality: '7(b13)',
+    forms: [
+      {
+        id: 'G7b13-1-Root6',
+        shapeName: 'Root-6',
+        frets: [3, 'x', 3, 4, 6, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"複雑でムーディーな緊張感。 | A complex and moody tension."']
+      }
+    ]
+  },
+  // G7b9 (7(b9))
+  {
+    id: 'G7b9',
+    symbol: 'G7b9',
+    quality: '7(b9)',
+    forms: [
+      {
+        id: 'G7b9-1-Root6',
+        shapeName: 'Root-6',
+        frets: [3, 'x', 3, 4, 4, 'x'],
+        fingers: [1, null, 1, 2, 3, null],
+        barres: [],
+        tips: ['"ジャズで多用される強い緊張感。 | A strong tension frequently used in Jazz."']
+      }
+    ]
+  },
+  // G7sus4 (7sus4)
+  {
+    id: 'G7sus4',
+    symbol: 'G7sus4',
+    quality: '7sus4',
+    forms: [
+      {
+        id: 'G7sus4-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 10, 10, 12, 13, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"V7の前に置くことで、解決感を劇的に高めるプロの技。 | A pro technique that dramatically enhances the feeling of resolution when placed before a V7 chord."']
+      }
+    ]
+  },
+  // Gadd#11 (add#11)
+  {
+    id: 'Gadd#11',
+    symbol: 'Gadd#11',
+    quality: 'add#11',
+    forms: [
+      {
+        id: 'Gadd#11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 10, 11, 11, 12, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"現代的でドリーミーな、まさに「浮遊感」のあるサウンド。 | A modern']
       }
     ]
   },
@@ -5441,6 +7665,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Gdim7 (dim7)
+  {
+    id: 'Gdim7',
+    symbol: 'Gdim7',
+    quality: 'dim7',
+    forms: [
+      {
+        id: 'Gdim7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 10, 11, 9, 11, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"経過コードとして非常に便利。緊張感を一気に高める。 | Very useful as a passing chord to instantly increase tension."']
+      }
+    ]
+  },
   // Gm (m)
   {
     id: 'Gm',
@@ -5486,6 +7726,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         fingers: [null, 1, 1, 3, null, null],
         barres: [],
         tips: ['Triad extracted from iOS (Triad-2)']
+      }
+    ]
+  },
+  // Gm11 (m11)
+  {
+    id: 'Gm11',
+    symbol: 'Gm11',
+    quality: 'm11',
+    forms: [
+      {
+        id: 'Gm11-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 10, 10, 10, 11, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"Lo-fi Hip HopやR&Bで定番の、少しアンニュイなサウンド。 | A standard sound in Lo-fi Hip Hop and R&B']
       }
     ]
   },
@@ -5601,6 +7857,22 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
       }
     ]
   },
+  // Gm7b5 (m7b5)
+  {
+    id: 'Gm7b5',
+    symbol: 'Gm7b5',
+    quality: 'm7b5',
+    forms: [
+      {
+        id: 'Gm7b5-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 10, 11, 10, 11, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"マイナーキーのii-V-Iで必須。ジャズ、ボサノヴァへの入り口。 | Essential for minor key ii-V-I progressions. Your gateway to Jazz and Bossa Nova."']
+      }
+    ]
+  },
   // Gm9 (m9)
   {
     id: 'Gm9',
@@ -5637,7 +7909,39 @@ export const ALL_STATIC_CHORDS: StaticChord[] = [
         frets: [20, 20, 18, 15, 'x', 'x'],
         fingers: [4, 4, 2, 1, null, null],
         barres: [],
-        tips: ['"Gマイナー9ルート4（20-20-18-15-x-x）"']
+        tips: ['"Gマイナー9ルート4（20-20-18-15-x-x）"# Format: Chord']
+      }
+    ]
+  },
+  // GM9 (M9)
+  {
+    id: 'GM9',
+    symbol: 'GM9',
+    quality: 'M9',
+    forms: [
+      {
+        id: 'GM9-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 10, 9, 11, 10, 'x'],
+        fingers: [null, 1, 2, 4, 3, null],
+        barres: [],
+        tips: ['"ポップス、R&Bの王道おしゃれサウンド。 | The quintessential stylish sound for Pop and R&B."']
+      }
+    ]
+  },
+  // Gmm7 (mM7)
+  {
+    id: 'Gmm7',
+    symbol: 'Gmm7',
+    quality: 'mM7',
+    forms: [
+      {
+        id: 'Gmm7-1-Root5',
+        shapeName: 'Root-5',
+        frets: ['x', 10, 12, 11, 11, 'x'],
+        fingers: [null, 1, 2, 3, 4, null],
+        barres: [],
+        tips: ['"映画音楽のような、ミステリアスでドラマチックな響き。 | A mysterious and dramatic sound']
       }
     ]
   },

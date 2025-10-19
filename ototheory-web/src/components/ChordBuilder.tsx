@@ -4,6 +4,7 @@ import { DEFAULT_CONTEXT, type ChordContext, type ChordSpec, type Family, type P
 import { normalizeChordSpec } from "@/lib/chords/normalize";
 import { formatChordSymbol } from "@/lib/chords/format";
 import { canAddQuality, shouldShowProBadge } from "@/lib/pro/guard";
+import { QUALITY_MASTER, getQualityComment, getQualitiesByCategory, isProQuality } from "@/lib/quality-master";
 
 type Props = {
   plan?: Plan;
@@ -48,36 +49,129 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
     }
   }, [norm.ext.eleven, norm.family, has11thWarningShown]);
 
-  // Quick presets (follow root)
-  const quickPresets = useMemo(() => {
-    const presets: Array<{ label: string; apply: () => void; pro?: boolean; locked?: boolean }>= [
-      { label: 'M', apply: () => setSpec(s => ({ ...s, family: 'maj', seventh: 'none', ext: {}, extMode: 'add', alt: {}, sus: null })) },
-      { label: 'm', apply: () => setSpec(s => ({ ...s, family: 'min', seventh: 'none', ext: {}, extMode: 'add', alt: {}, sus: null })) },
-      { label: 'M7', apply: () => setSpec(s => ({ ...s, family: 'maj', seventh: 'maj7', extMode: 'add', ext: {}, alt: {}, sus: null })) },
-      { label: 'm7', apply: () => setSpec(s => ({ ...s, family: 'min', seventh: 'm7', extMode: 'add', ext: {}, alt: {}, sus: null })) },
-      { label: '7', apply: () => setSpec(s => ({ ...s, family: 'dom', seventh: '7', extMode: 'tension', ext: {}, alt: {}, sus: null })) },
-      { label: 'sus4', apply: () => setSpec(s => ({ ...s, family: 'sus', sus: 'sus4', seventh: 'none', extMode: 'add', ext: {}, alt: {} })) },
-      { label: 'dim', apply: () => setSpec(s => ({ ...s, family: 'dim', seventh: 'none', ext: {}, extMode: 'add', alt: {}, sus: null })) },
-      { label: 'aug', apply: () => setSpec(s => ({ ...s, family: 'aug', seventh: 'none', ext: {}, extMode: 'add', alt: {}, sus: null })) },
-      { label: 'add9', apply: () => setSpec(s => ({ ...s, extMode: 'add', ext: { ...s.ext, add9: true } })) },
-    ];
-    // Pro-only 6/9 (locked in free)
-    presets.push({ label: '6/9', pro: true, locked: plan==='free', apply: () => setSpec(s => ({ ...s, family: 'maj', seventh: '6', extMode: 'add', ext: { ...s.ext, add9: true } })) });
+  // Quality presets based on Quality Master.csv
+  const qualityPresets = useMemo(() => {
+    const freeQualities = getQualitiesByCategory('Free');
+    const proQualities = getQualitiesByCategory('Pro');
+    
+    const presets: Array<{ 
+      label: string; 
+      apply: () => void; 
+      pro?: boolean; 
+      locked?: boolean;
+      comment?: string;
+      category?: string;
+    }> = [];
+
+    // Free qualities
+    Object.entries(freeQualities).forEach(([category, qualities]) => {
+      qualities.forEach(quality => {
+        const qualityLabel = quality.quality === 'm (minor)' ? 'm' : 
+                           quality.quality === 'Major' ? 'M' : 
+                           quality.quality === 'maj7' ? 'M7' : quality.quality;
+        
+        presets.push({
+          label: qualityLabel,
+          apply: () => {
+            const spec = getSpecFromQuality(quality.quality);
+            if (spec) setSpec(spec);
+          },
+          comment: quality.commentJa,
+          category
+        });
+      });
+    });
+
+    // Pro qualities
+    Object.entries(proQualities).forEach(([category, qualities]) => {
+      qualities.forEach(quality => {
+        const qualityLabel = quality.quality === 'M9 (maj9)' ? 'M9' : 
+                           quality.quality === 'm7b5' ? 'm7b5' :
+                           quality.quality === 'mM7' ? 'mM7' :
+                           quality.quality === 'm6' ? 'm6' :
+                           quality.quality === '7(#9)' ? '7(#9)' :
+                           quality.quality === '7(b9)' ? '7(b9)' :
+                           quality.quality === '7(#5)' ? '7(#5)' :
+                           quality.quality === '7(b13)' ? '7(b13)' :
+                           quality.quality;
+        
+        presets.push({
+          label: qualityLabel,
+          apply: () => {
+            const spec = getSpecFromQuality(quality.quality);
+            if (spec) setSpec(spec);
+          },
+          pro: true,
+          locked: plan === 'free',
+          comment: quality.commentJa,
+          category
+        });
+      });
+    });
+
     return presets;
   }, [plan]);
+
+  // Helper function to convert quality string to ChordSpec
+  const getSpecFromQuality = (quality: string): ChordSpec | null => {
+    const baseSpec = { ext: {}, alt: {}, sus: null, slash: null };
+    
+    switch (quality) {
+      case 'Major': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'none', extMode: 'add' };
+      case 'm (minor)': return { ...baseSpec, root: 'C', family: 'min', seventh: 'none', extMode: 'add' };
+      case '7': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', extMode: 'tension' };
+      case 'maj7': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'maj7', extMode: 'add' };
+      case 'm7': return { ...baseSpec, root: 'C', family: 'min', seventh: 'm7', extMode: 'add' };
+      case 'sus4': return { ...baseSpec, root: 'C', family: 'sus', sus: 'sus4', seventh: 'none', extMode: 'add' };
+      case 'sus2': return { ...baseSpec, root: 'C', family: 'sus', sus: 'sus2', seventh: 'none', extMode: 'add' };
+      case 'add9': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'none', extMode: 'add', ext: { add9: true } };
+      case 'dim': return { ...baseSpec, root: 'C', family: 'dim', seventh: 'none', extMode: 'add' };
+      case 'M9 (maj9)': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'maj7', extMode: 'add', ext: { add9: true } };
+      case '6': return { ...baseSpec, root: 'C', family: 'maj', seventh: '6', extMode: 'add' };
+      case '6/9': return { ...baseSpec, root: 'C', family: 'maj', seventh: '6', extMode: 'add', ext: { add9: true } };
+      case 'add#11': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'none', extMode: 'add', ext: { add11: true, sharp11: true } };
+      case 'm9': return { ...baseSpec, root: 'C', family: 'min', seventh: 'm7', extMode: 'add', ext: { add9: true } };
+      case 'm11': return { ...baseSpec, root: 'C', family: 'min', seventh: 'm7', extMode: 'add', ext: { add9: true, add11: true } };
+      case 'm7b5': return { ...baseSpec, root: 'C', family: 'min', seventh: 'm7b5', extMode: 'add' };
+      case 'mM7': return { ...baseSpec, root: 'C', family: 'min', seventh: 'maj7', extMode: 'add' };
+      case 'm6': return { ...baseSpec, root: 'C', family: 'min', seventh: '6', extMode: 'add' };
+      case '7sus4': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', sus: 'sus4', extMode: 'tension' };
+      case 'aug': return { ...baseSpec, root: 'C', family: 'aug', seventh: 'none', extMode: 'add' };
+      case 'dim7': return { ...baseSpec, root: 'C', family: 'dim', seventh: 'dim7', extMode: 'add' };
+      case '7(#9)': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', extMode: 'tension', alt: { sharp9: true } };
+      case '7(b9)': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', extMode: 'tension', alt: { flat9: true } };
+      case '7(#5)': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', extMode: 'tension', alt: { sharp5: true } };
+      case '7(b13)': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', extMode: 'tension', alt: { flat13: true } };
+      default: return null;
+    }
+  };
 
   const renderChip = (
     label: string, 
     active: boolean, 
     onClick: () => void, 
-    opts?: { disabled?: boolean; locked?: boolean; showProBadge?: boolean }
+    opts?: { disabled?: boolean; locked?: boolean; showProBadge?: boolean; comment?: string }
   ) => (
     <div key={label} className="relative inline-block">
       <button
         className={`h-9 px-3 rounded border text-xs ${active ? 'bg-[var(--brand-primary)] text-white' : ''} ${opts?.locked ? 'opacity-50' : ''}`}
-        onClick={() => { if (!opts?.disabled && !opts?.locked) onClick(); }}
-        title={opts?.locked ? 'Proで解放' : undefined}
+        onClick={() => { 
+          if (!opts?.disabled && !opts?.locked) {
+            onClick(); 
+          } else if (opts?.locked) {
+            // Pro quality clicked in free plan
+            onBlock?.('pro_quality', label);
+          }
+        }}
+        title={opts?.locked ? 'Proで解放' : opts?.comment}
         aria-disabled={opts?.disabled || opts?.locked}
+        onContextMenu={(e) => {
+          e.preventDefault();
+          if (opts?.comment) {
+            // Show comment tooltip on right-click/long-press
+            // For now, we'll use the title attribute, but this could be enhanced with a custom tooltip
+          }
+        }}
       >{label}</button>
       {opts?.showProBadge && plan === 'free' && <ProBadge />}
     </div>
@@ -95,9 +189,13 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
       <div>
         <div className="text-xs opacity-70 mb-0.5">Quick</div>
         <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
-          {quickPresets.map(p => (
+          {qualityPresets.map(p => (
             <div key={p.label} className="relative">
-              {renderChip(p.label, false, p.apply, { locked: !!p.locked })}
+              {renderChip(p.label, false, p.apply, { 
+                locked: !!p.locked, 
+                showProBadge: !!p.pro,
+                comment: p.comment 
+              })}
             </div>
           ))}
         </div>

@@ -1,0 +1,26 @@
+Tier,カテゴリ (日本語),カテゴリ (English),クオリティ (Quality),日本語コメント,English Comment
+Free,基本,Basics,Major,明るく、ハッピーな響きの基本となるコード。,The fundamental chord for a bright and happy sound.
+Free,基本,Basics,m (minor),少し切なく、落ち着いた響きの基本となるコード。,The fundamental chord for a slightly sad and calm sound.
+Free,基本,Basics,7,次のコードへ進みたくなるような、少し不安定でおしゃれな響き。,A slightly unstable and stylish sound that creates a sense of resolution to the next chord.
+Free,基本,Basics,maj7,明るく、洗練された都会的な響き。,"A bright, sophisticated, and urban sound."
+Free,基本,Basics,m7,切なさの中に、おしゃれな雰囲気が加わった響き。,A sound that adds a stylish atmosphere to sadness.
+Free,基本の飾り付け,Essential Colors,sus4,メジャーでもマイナーでもない、解決を待つ浮遊感のある響き。,"A sound with a floating feel, neither major nor minor, awaiting resolution."
+Free,基本の飾り付け,Essential Colors,sus2,sus4よりも、より明るく爽やかな浮遊感を持つ響き。,A sound with a brighter and fresher floating feel than sus4.
+Free,基本の飾り付け,Essential Colors,add9,通常のコードにキラキラした透明感を加える、現代ポップスの定番。,"The go-to chord in modern pop, adding a sparkling transparency to a basic chord."
+Free,基本の飾り付け,Essential Colors,dim,不気味で緊張感のある響き。コードとコードを繋ぐ時に便利。,"A spooky and tense sound, useful for connecting one chord to another."
+Pro,✨ キラキラ・浮遊感,Sparkle & Float,M9 (maj9),ポップス、R&Bの王道おしゃれサウンド。,The quintessential stylish sound for Pop and R&B.
+Pro,✨ キラキラ・浮遊感,Sparkle & Float,6,maj7より少しレトロで温かい響き。,A slightly more retro and warmer sound than maj7.
+Pro,✨ キラキラ・浮遊感,Sparkle & Float,6/9,ジャズやフュージョンで多用される、明るく豊かな響き。,A bright and rich sound frequently used in Jazz and Fusion.
+Pro,✨ キラキラ・浮遊感,Sparkle & Float,add#11,現代的でドリーミーな、まさに「浮遊感」のあるサウンド。,"A modern, dreamy sound that truly gives a ""floating"" feel."
+Pro,🌃 おしゃれ・都会的,Stylish & Urban,m9,m7をさらにスムーズで洗練させた響き。,An even smoother and more refined sound than m7.
+Pro,🌃 おしゃれ・都会的,Stylish & Urban,m11,Lo-fi Hip HopやR&Bで定番の、少しアンニュイなサウンド。,"A standard sound in Lo-fi Hip Hop and R&B, with a slightly melancholic vibe."
+Pro,🌃 おしゃれ・都会的,Stylish & Urban,m7b5,マイナーキーのii-V-Iで必須。ジャズ、ボサノヴァへの入り口。,Essential for minor key ii-V-I progressions. Your gateway to Jazz and Bossa Nova.
+Pro,🌃 おしゃれ・都会的,Stylish & Urban,mM7,映画音楽のような、ミステリアスでドラマチックな響き。,"A mysterious and dramatic sound, reminiscent of a movie soundtrack."
+Pro,⚡️ 緊張感・スパイス,Tension & Spice,7sus4,V7の前に置くことで、解決感を劇的に高めるプロの技。,A pro technique that dramatically enhances the feeling of resolution when placed before a V7 chord.
+Pro,⚡️ 緊張感・スパイス,Tension & Spice,aug,不安定で、次のコードへ進む推進力が強い。,An unstable sound with a strong drive to move to the next chord.
+Pro,⚡️ 緊張感・スパイス,Tension & Spice,dim7,経過コードとして非常に便利。緊張感を一気に高める。,Very useful as a passing chord to instantly increase tension.
+Pro,⚡️ 緊張感・スパイス,Tension & Spice,7(#9),ブルージーでロックな緊張感。,A bluesy and rock-oriented tension.
+Pro,⚡️ 緊張感・スパイス,Tension & Spice,7(b9),ジャズで多用される強い緊張感。,A strong tension frequently used in Jazz.
+Pro,⚡️ 緊張感・スパイス,Tension & Spice,7(#5),augと同じ。解決先を強く示す。,Same as augmented. Strongly indicates the point of resolution.
+Pro,⚡️ 緊張感・スパイス,Tension & Spice,7(b13),複雑でムーディーな緊張感。,A complex and moody tension.
+Pro,🌃 おしゃれ・都会的,Stylish & Urban,m6,ジャズや映画音楽で耳にする、少しレトロでミステリアスな響き。,A slightly retro and mysterious sound, often heard in jazz and film scores.
