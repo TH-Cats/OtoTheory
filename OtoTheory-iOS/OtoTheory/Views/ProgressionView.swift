@@ -1798,7 +1798,8 @@ struct ProgressionView: View {
         } else if quality == "6" {
             intervals = [0, 4, 7, 9] // Major 6th (根音、3度、5度、6度)
         } else if quality.contains("6/9") {
-            intervals = [0, 4, 7, 14] // Major 6/9 (根音、3度、5度、9度) - 6度は9度に置き換え
+            intervals = [0, 4, 7, 9, 14] // Major 6/9 (根音、3度、5度、6度、9度)
+            // 6度と9度の両方を含む豊かな響き
         } else if quality.contains("m6") {
             intervals = [0, 3, 7, 9] // Minor 6th
         } else if quality.contains("7(#9)") {
@@ -1821,6 +1822,13 @@ struct ProgressionView: View {
             // Ensure bass note is the lowest
             midiNotes.sort()
         }
+        
+        // Debug log for chord generation
+        let noteNames = midiNotes.map { note in
+            let noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+            return noteNames[Int(note) % 12]
+        }
+        print("🎵 Generated chord: \(chordSymbol) -> MIDI: \(midiNotes) -> Notes: \(noteNames)")
         
         return midiNotes
     }
