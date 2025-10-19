@@ -31,19 +31,32 @@ struct ChordBuilderView: View {
         
         var result: [(category: String, qualities: [String])] = []
         
-        // Free qualities
+        // Free qualities - show English category names
         for (category, qualityInfos) in freeQualities {
-            result.append((category: category, qualities: qualityInfos.map { $0.quality }))
+            let englishCategory = getEnglishCategoryName(category)
+            result.append((category: englishCategory, qualities: qualityInfos.map { $0.quality }))
         }
         
-        // Pro qualities (only if user has Pro)
+        // Pro qualities (only if user has Pro) - show English category names
         if isPro {
             for (category, qualityInfos) in proQualities {
-                result.append((category: category, qualities: qualityInfos.map { $0.quality }))
+                let englishCategory = getEnglishCategoryName(category)
+                result.append((category: englishCategory, qualities: qualityInfos.map { $0.quality }))
             }
         }
         
         return result
+    }
+    
+    private func getEnglishCategoryName(_ japaneseCategory: String) -> String {
+        switch japaneseCategory {
+        case "基本": return "Basics"
+        case "基本の飾り付け": return "Essential Colors"
+        case "✨ キラキラ・浮遊感": return "✨ Sparkle & Float"
+        case "🌃 おしゃれ・都会的": return "🌃 Stylish & Urban"
+        case "⚡️ 緊張感・スパイス": return "⚡️ Tension & Spice"
+        default: return japaneseCategory
+        }
     }
     
     var body: some View {
@@ -206,9 +219,13 @@ struct ChordBuilderView: View {
                                         }
                                         .contextMenu {
                                             if !comment.isEmpty {
-                                                Button(action: {}) {
-                                                    Label(comment, systemImage: "info.circle")
+                                                VStack(alignment: .leading, spacing: 8) {
+                                                    Text(comment)
+                                                        .font(.caption)
+                                                        .multilineTextAlignment(.leading)
+                                                        .fixedSize(horizontal: false, vertical: true)
                                                 }
+                                                .padding()
                                             }
                                         }
                                     }

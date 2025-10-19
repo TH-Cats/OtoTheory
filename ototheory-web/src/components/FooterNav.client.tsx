@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -16,10 +17,10 @@ export default function FooterNav() {
   return (
     <nav className="flex items-center justify-center gap-3 flex-wrap">
       {items.map((it, i) => (
-        <>
-          <Link key={it.href} href={it.href} className="hover:underline">{it.label}</Link>
-          {i < items.length - 1 ? <span key={`${it.href}-sep`}>•</span> : null}
-        </>
+        <React.Fragment key={it.href}>
+          <Link href={it.href} className="hover:underline">{it.label}</Link>
+          {i < items.length - 1 ? <span>•</span> : null}
+        </React.Fragment>
       ))}
     </nav>
   );

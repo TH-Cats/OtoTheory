@@ -49,6 +49,18 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
     }
   }, [norm.ext.eleven, norm.family, has11thWarningShown]);
 
+  // Helper function to convert Japanese category names to English
+  const getEnglishCategoryName = (japaneseCategory: string): string => {
+    switch (japaneseCategory) {
+      case '基本': return 'Basics';
+      case '基本の飾り付け': return 'Essential Colors';
+      case '✨ キラキラ・浮遊感': return '✨ Sparkle & Float';
+      case '🌃 おしゃれ・都会的': return '🌃 Stylish & Urban';
+      case '⚡️ 緊張感・スパイス': return '⚡️ Tension & Spice';
+      default: return japaneseCategory;
+    }
+  };
+
   // Quality presets based on Quality Master.csv
   const qualityPresets = useMemo(() => {
     console.log('🔍 ChordBuilder: Creating quality presets...');
@@ -69,8 +81,9 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
       category?: string;
     }> = [];
 
-    // Free qualities
+    // Free qualities - show English category names
     Object.entries(freeQualities).forEach(([category, qualities]) => {
+      const englishCategory = getEnglishCategoryName(category);
       qualities.forEach(quality => {
         const qualityLabel = quality.quality === 'm (minor)' ? 'm' : 
                            quality.quality === 'Major' ? 'M' : 
@@ -83,37 +96,39 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
             if (spec) setSpec(spec);
           },
           comment: quality.commentJa,
-          category
+          category: englishCategory
         });
       });
     });
 
-    // Pro qualities
-    Object.entries(proQualities).forEach(([category, qualities]) => {
-      qualities.forEach(quality => {
-        const qualityLabel = quality.quality === 'M9 (maj9)' ? 'M9' : 
-                           quality.quality === 'm7b5' ? 'm7b5' :
-                           quality.quality === 'mM7' ? 'mM7' :
-                           quality.quality === 'm6' ? 'm6' :
-                           quality.quality === '7(#9)' ? '7(#9)' :
-                           quality.quality === '7(b9)' ? '7(b9)' :
-                           quality.quality === '7(#5)' ? '7(#5)' :
-                           quality.quality === '7(b13)' ? '7(b13)' :
-                           quality.quality;
-        
-        presets.push({
-          label: qualityLabel,
-          apply: () => {
-            const spec = getSpecFromQuality(quality.quality);
-            if (spec) setSpec(spec);
-          },
-          pro: true,
-          locked: plan === 'free',
-          comment: quality.commentJa,
-          category
+    // Pro qualities - show English category names, only if user has Pro
+    if (plan === 'pro') {
+      Object.entries(proQualities).forEach(([category, qualities]) => {
+        const englishCategory = getEnglishCategoryName(category);
+        qualities.forEach(quality => {
+          const qualityLabel = quality.quality === 'M9 (maj9)' ? 'M9' : 
+                             quality.quality === 'm7b5' ? 'm7b5' :
+                             quality.quality === 'mM7' ? 'mM7' :
+                             quality.quality === 'm6' ? 'm6' :
+                             quality.quality === '7(#9)' ? '7(#9)' :
+                             quality.quality === '7(b9)' ? '7(b9)' :
+                             quality.quality === '7(#5)' ? '7(#5)' :
+                             quality.quality === '7(b13)' ? '7(b13)' :
+                             quality.quality;
+          
+          presets.push({
+            label: qualityLabel,
+            apply: () => {
+              const spec = getSpecFromQuality(quality.quality);
+              if (spec) setSpec(spec);
+            },
+            pro: true,
+            comment: quality.commentJa,
+            category: englishCategory
+          });
         });
       });
-    });
+    }
 
     return presets;
   }, [plan]);

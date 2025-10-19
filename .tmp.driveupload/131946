@@ -1,3 +1,0 @@
-module.exports=[71905,a=>{"use strict";a.s(["default",()=>c,"metadata",()=>b]);let b={title:"Chord Progression Builder & Key Analyzer – OtoTheory",description:"Build chord progressions and instantly analyze the key. See Roman numeral analysis, diatonic chords, and discover perfect chord sequences.",alternates:{canonical:"/chord-progression",languages:{en:"/chord-progression","ja-JP":"/ja/chord-progression","x-default":"/chord-progression"}},openGraph:{title:"Chord Progression Builder & Key Analyzer",description:"Build chord progressions and instantly analyze the key. See Roman numeral analysis, diatonic chords, and discover perfect chord sequences."}};function c({children:a}){return a}}];
-
-//# sourceMappingURL=src_app_chord-progression_layout_tsx_c252bf69._.js.map
