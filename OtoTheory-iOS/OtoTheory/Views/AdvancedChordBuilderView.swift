@@ -44,48 +44,54 @@ struct AdvancedChordBuilderView: View {
             content: {
                 VStack(spacing: 16) {
                     if isPro {
-                        // Show Pro qualities from Quality Master.csv
-                        ForEach(proQualities, id: \.category) { categoryData in
+                        // Show Pro qualities from Quality Master.csv with custom order
+                        let sortedProQualities = proQualities.sorted { first, second in
+                            // Define custom order: Sparkle & Float, Stylish & Urban, Tension & Spice
+                            let order = ["✨ Sparkle & Float", "🌃 Stylish & Urban", "⚡️ Tension & Spice"]
+                            let firstIndex = order.firstIndex(of: first.category) ?? 999
+                            let secondIndex = order.firstIndex(of: second.category) ?? 999
+                            return firstIndex < secondIndex
+                        }
+                        
+                        ForEach(sortedProQualities, id: \.category) { categoryData in
                             chordCategory(title: categoryData.category, chords: categoryData.qualities)
+                        }
+                        
+                        // Add Slash (On) section after all categories
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Slash (On)")
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.secondary)
                             
-                            // Add Slash (On) section after Stylish & Urban category
-                            if categoryData.category == "🌃 Stylish & Urban" {
-                                VStack(alignment: .leading, spacing: 8) {
-                                    Text("Slash (On)")
-                                        .font(.subheadline)
-                                        .fontWeight(.semibold)
-                                        .foregroundColor(.secondary)
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 8) {
+                                    // Clear button
+                                    Button(action: {
+                                        selectedSlashBass = nil
+                                    }) {
+                                        Text("Clear")
+                                            .font(.caption)
+                                            .fontWeight(.semibold)
+                                            .frame(minWidth: 50)
+                                            .padding(.vertical, 10)
+                                            .background(selectedSlashBass == nil ? Color.orange : Color.gray.opacity(0.15))
+                                            .foregroundColor(selectedSlashBass == nil ? .white : .primary)
+                                            .cornerRadius(6)
+                                    }
                                     
-                                    ScrollView(.horizontal, showsIndicators: false) {
-                                        HStack(spacing: 8) {
-                                            // Clear button
-                                            Button(action: {
-                                                selectedSlashBass = nil
-                                            }) {
-                                                Text("Clear")
-                                                    .font(.caption)
-                                                    .fontWeight(.semibold)
-                                                    .frame(minWidth: 50)
-                                                    .padding(.vertical, 10)
-                                                    .background(selectedSlashBass == nil ? Color.orange : Color.gray.opacity(0.15))
-                                                    .foregroundColor(selectedSlashBass == nil ? .white : .primary)
-                                                    .cornerRadius(6)
-                                            }
-                                            
-                                            ForEach(roots, id: \.self) { bass in
-                                                Button(action: {
-                                                    selectedSlashBass = bass
-                                                }) {
-                                                    Text(bass)
-                                                        .font(.caption)
-                                                        .fontWeight(.semibold)
-                                                        .frame(minWidth: 40)
-                                                        .padding(.vertical, 10)
-                                                        .background(selectedSlashBass == bass ? Color.blue : Color.gray.opacity(0.15))
-                                                        .foregroundColor(selectedSlashBass == bass ? .white : .primary)
-                                                        .cornerRadius(6)
-                                                }
-                                            }
+                                    ForEach(roots, id: \.self) { bass in
+                                        Button(action: {
+                                            selectedSlashBass = bass
+                                        }) {
+                                            Text(bass)
+                                                .font(.caption)
+                                                .fontWeight(.semibold)
+                                                .frame(minWidth: 40)
+                                                .padding(.vertical, 10)
+                                                .background(selectedSlashBass == bass ? Color.blue : Color.gray.opacity(0.15))
+                                                .foregroundColor(selectedSlashBass == bass ? .white : .primary)
+                                                .cornerRadius(6)
                                         }
                                     }
                                 }

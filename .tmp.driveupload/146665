@@ -6472,127 +6472,139 @@ function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPreview }) {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "mt-3 space-y-3",
                         children: [
-                            Object.entries((0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$quality$2d$master$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getQualitiesByCategory"])('Pro')).map(([category, qualities])=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "text-xs opacity-70 mb-0.5",
-                                            children: category
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/ChordBuilder.tsx",
-                                            lineNumber: 287,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2",
-                                            children: qualities.map((quality)=>{
-                                                const qualityLabel = quality.quality === 'M9 (maj9)' ? 'M9' : quality.quality === 'm7b5' ? 'm7b5' : quality.quality === 'mM7' ? 'mM7' : quality.quality === 'm6' ? 'm6' : quality.quality === '7(#9)' ? '7(#9)' : quality.quality === '7(b9)' ? '7(b9)' : quality.quality === '7(#5)' ? '7(#5)' : quality.quality === '7(b13)' ? '7(b13)' : quality.quality;
-                                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "relative",
-                                                    children: renderChip(qualityLabel, false, ()=>{
+                            (()=>{
+                                const proQualities = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$quality$2d$master$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getQualitiesByCategory"])('Pro');
+                                const categoryOrder = [
+                                    '✨ キラキラ・浮遊感',
+                                    '🌃 おしゃれ・都会的',
+                                    '⚡️ 緊張感・スパイス'
+                                ];
+                                return categoryOrder.map((category)=>{
+                                    const qualities = proQualities[category];
+                                    if (!qualities) return null;
+                                    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "text-xs opacity-70 mb-0.5",
+                                                children: category
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/ChordBuilder.tsx",
+                                                lineNumber: 295,
+                                                columnNumber: 19
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2",
+                                                children: qualities.map((quality)=>{
+                                                    const qualityLabel = quality.quality === 'M9 (maj9)' ? 'M9' : quality.quality === 'm7b5' ? 'm7b5' : quality.quality === 'mM7' ? 'mM7' : quality.quality === 'm6' ? 'm6' : quality.quality === '7(#9)' ? '7(#9)' : quality.quality === '7(b9)' ? '7(b9)' : quality.quality === '7(#5)' ? '7(#5)' : quality.quality === '7(b13)' ? '7(b13)' : quality.quality;
+                                                    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "relative",
+                                                        children: renderChip(qualityLabel, false, ()=>{
+                                                            if (plan === 'free') {
+                                                                // Show iOS promotion instead of blocking
+                                                                onBlock?.('pro_quality', quality.quality);
+                                                                return;
+                                                            }
+                                                            const spec = getSpecFromQuality(quality.quality);
+                                                            if (spec) setSpec(spec);
+                                                        }, {
+                                                            comment: quality.commentJa,
+                                                            locked: plan === 'free',
+                                                            showProBadge: plan === 'free'
+                                                        })
+                                                    }, quality.quality, false, {
+                                                        fileName: "[project]/src/components/ChordBuilder.tsx",
+                                                        lineNumber: 309,
+                                                        columnNumber: 25
+                                                    }, this);
+                                                })
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/ChordBuilder.tsx",
+                                                lineNumber: 296,
+                                                columnNumber: 19
+                                            }, this)
+                                        ]
+                                    }, category, true, {
+                                        fileName: "[project]/src/components/ChordBuilder.tsx",
+                                        lineNumber: 294,
+                                        columnNumber: 17
+                                    }, this);
+                                });
+                            })(),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "mt-3",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-xs opacity-70 mb-0.5",
+                                        children: "Slash (On)"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/ChordBuilder.tsx",
+                                        lineNumber: 334,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                className: `h-9 px-3 rounded border text-xs ${plan === 'free' ? 'bg-gray-400 text-gray-200 cursor-not-allowed opacity-60' : 'bg-orange-500 text-white hover:bg-orange-600'}`,
+                                                onClick: ()=>{
+                                                    if (plan === 'free') {
+                                                        onBlock?.('pro_slash');
+                                                        return;
+                                                    }
+                                                    setSpec({
+                                                        ...spec,
+                                                        slash: undefined
+                                                    });
+                                                },
+                                                children: "クリア"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/ChordBuilder.tsx",
+                                                lineNumber: 336,
+                                                columnNumber: 15
+                                            }, this),
+                                            [
+                                                'C',
+                                                'C#',
+                                                'D',
+                                                'D#',
+                                                'E',
+                                                'F',
+                                                'F#',
+                                                'G',
+                                                'G#',
+                                                'A',
+                                                'A#',
+                                                'B'
+                                            ].map((bassNote)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                    className: `h-9 px-3 rounded border text-xs ${plan === 'free' ? 'bg-gray-400 text-gray-200 cursor-not-allowed opacity-60' : spec?.slash === bassNote ? 'bg-[var(--brand-primary)] text-white' : 'bg-gray-600 text-white hover:bg-gray-500'}`,
+                                                    onClick: ()=>{
                                                         if (plan === 'free') {
-                                                            // Show iOS promotion instead of blocking
-                                                            onBlock?.('pro_quality', quality.quality);
+                                                            onBlock?.('pro_slash');
                                                             return;
                                                         }
-                                                        const spec = getSpecFromQuality(quality.quality);
-                                                        if (spec) setSpec(spec);
-                                                    }, {
-                                                        comment: quality.commentJa,
-                                                        locked: plan === 'free',
-                                                        showProBadge: plan === 'free'
-                                                    })
-                                                }, quality.quality, false, {
+                                                        setSpec({
+                                                            ...spec,
+                                                            slash: bassNote
+                                                        });
+                                                    },
+                                                    children: bassNote
+                                                }, bassNote, false, {
                                                     fileName: "[project]/src/components/ChordBuilder.tsx",
-                                                    lineNumber: 301,
-                                                    columnNumber: 21
-                                                }, this);
-                                            })
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/ChordBuilder.tsx",
-                                            lineNumber: 288,
-                                            columnNumber: 15
-                                        }, this),
-                                        category === '🌃 おしゃれ・都会的' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "mt-3",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "text-xs opacity-70 mb-0.5",
-                                                    children: "Slash (On)"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/components/ChordBuilder.tsx",
-                                                    lineNumber: 323,
-                                                    columnNumber: 19
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                            className: `h-9 px-3 rounded border text-xs ${plan === 'free' ? 'bg-gray-400 text-gray-200 cursor-not-allowed opacity-60' : 'bg-orange-500 text-white hover:bg-orange-600'}`,
-                                                            onClick: ()=>{
-                                                                if (plan === 'free') {
-                                                                    onBlock?.('pro_slash');
-                                                                    return;
-                                                                }
-                                                                setSpec({
-                                                                    ...spec,
-                                                                    slash: undefined
-                                                                });
-                                                            },
-                                                            children: "クリア"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/components/ChordBuilder.tsx",
-                                                            lineNumber: 325,
-                                                            columnNumber: 21
-                                                        }, this),
-                                                        [
-                                                            'C',
-                                                            'C#',
-                                                            'D',
-                                                            'D#',
-                                                            'E',
-                                                            'F',
-                                                            'F#',
-                                                            'G',
-                                                            'G#',
-                                                            'A',
-                                                            'A#',
-                                                            'B'
-                                                        ].map((bassNote)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                                className: `h-9 px-3 rounded border text-xs ${plan === 'free' ? 'bg-gray-400 text-gray-200 cursor-not-allowed opacity-60' : spec?.slash === bassNote ? 'bg-[var(--brand-primary)] text-white' : 'bg-gray-600 text-white hover:bg-gray-500'}`,
-                                                                onClick: ()=>{
-                                                                    if (plan === 'free') {
-                                                                        onBlock?.('pro_slash');
-                                                                        return;
-                                                                    }
-                                                                    setSpec({
-                                                                        ...spec,
-                                                                        slash: bassNote
-                                                                    });
-                                                                },
-                                                                children: bassNote
-                                                            }, bassNote, false, {
-                                                                fileName: "[project]/src/components/ChordBuilder.tsx",
-                                                                lineNumber: 342,
-                                                                columnNumber: 23
-                                                            }, this))
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/components/ChordBuilder.tsx",
-                                                    lineNumber: 324,
-                                                    columnNumber: 19
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/src/components/ChordBuilder.tsx",
-                                            lineNumber: 322,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, category, true, {
-                                    fileName: "[project]/src/components/ChordBuilder.tsx",
-                                    lineNumber: 286,
-                                    columnNumber: 13
-                                }, this)),
+                                                    lineNumber: 353,
+                                                    columnNumber: 17
+                                                }, this))
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/ChordBuilder.tsx",
+                                        lineNumber: 335,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/ChordBuilder.tsx",
+                                lineNumber: 333,
+                                columnNumber: 11
+                            }, this),
                             plan === 'free' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "mt-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg border border-blue-200 dark:border-blue-800",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6603,7 +6615,7 @@ function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPreview }) {
                                             children: "📱"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ChordBuilder.tsx",
-                                            lineNumber: 372,
+                                            lineNumber: 380,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6614,7 +6626,7 @@ function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPreview }) {
                                                     children: "iOS版でPro機能をお試しください！"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/ChordBuilder.tsx",
-                                                    lineNumber: 374,
+                                                    lineNumber: 382,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6622,7 +6634,7 @@ function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPreview }) {
                                                     children: "上記のコード品質とSlash機能は、iOS版のPro機能でご利用いただけます。"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/ChordBuilder.tsx",
-                                                    lineNumber: 377,
+                                                    lineNumber: 385,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -6635,7 +6647,7 @@ function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPreview }) {
                                                             children: "App Storeでダウンロード"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/ChordBuilder.tsx",
-                                                            lineNumber: 386,
+                                                            lineNumber: 394,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -6646,35 +6658,35 @@ function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPreview }) {
                                                                 d: "M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/ChordBuilder.tsx",
-                                                                lineNumber: 388,
+                                                                lineNumber: 396,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/ChordBuilder.tsx",
-                                                            lineNumber: 387,
+                                                            lineNumber: 395,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/ChordBuilder.tsx",
-                                                    lineNumber: 380,
+                                                    lineNumber: 388,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/ChordBuilder.tsx",
-                                            lineNumber: 373,
+                                            lineNumber: 381,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/ChordBuilder.tsx",
-                                    lineNumber: 371,
+                                    lineNumber: 379,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/ChordBuilder.tsx",
-                                lineNumber: 370,
+                                lineNumber: 378,
                                 columnNumber: 13
                             }, this)
                         ]
@@ -6694,7 +6706,7 @@ function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPreview }) {
                 children: warnings[0]
             }, void 0, false, {
                 fileName: "[project]/src/components/ChordBuilder.tsx",
-                lineNumber: 399,
+                lineNumber: 407,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6708,7 +6720,7 @@ function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPreview }) {
                                 children: "プレビュー"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/ChordBuilder.tsx",
-                                lineNumber: 406,
+                                lineNumber: 414,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6716,13 +6728,13 @@ function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPreview }) {
                                 children: symbol || 'コードを選択してください'
                             }, void 0, false, {
                                 fileName: "[project]/src/components/ChordBuilder.tsx",
-                                lineNumber: 407,
+                                lineNumber: 415,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/ChordBuilder.tsx",
-                        lineNumber: 405,
+                        lineNumber: 413,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6741,19 +6753,19 @@ function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPreview }) {
                                             d: "M8 5v10l8-5-8-5z"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ChordBuilder.tsx",
-                                            lineNumber: 418,
+                                            lineNumber: 426,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/ChordBuilder.tsx",
-                                        lineNumber: 417,
+                                        lineNumber: 425,
                                         columnNumber: 13
                                     }, this),
                                     "再生"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/ChordBuilder.tsx",
-                                lineNumber: 412,
+                                lineNumber: 420,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6762,7 +6774,7 @@ function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPreview }) {
                                 children: "クリア"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/ChordBuilder.tsx",
-                                lineNumber: 422,
+                                lineNumber: 430,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6799,19 +6811,19 @@ function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPreview }) {
                                 children: "追加"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/ChordBuilder.tsx",
-                                lineNumber: 428,
+                                lineNumber: 436,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/ChordBuilder.tsx",
-                        lineNumber: 411,
+                        lineNumber: 419,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/ChordBuilder.tsx",
-                lineNumber: 404,
+                lineNumber: 412,
                 columnNumber: 7
             }, this)
         ]
