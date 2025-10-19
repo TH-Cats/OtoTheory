@@ -54,6 +54,10 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
     const freeQualities = getQualitiesByCategory('Free');
     const proQualities = getQualitiesByCategory('Pro');
     
+    // Debug: Log the qualities
+    console.log('Free qualities:', freeQualities);
+    console.log('Pro qualities:', proQualities);
+    
     const presets: Array<{ 
       label: string; 
       apply: () => void; 
@@ -187,7 +191,7 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
       </div>
 
       <div>
-        <div className="text-xs opacity-70 mb-0.5">Quick</div>
+        <div className="text-xs opacity-70 mb-0.5">Quick ({qualityPresets.length} qualities)</div>
         <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
           {qualityPresets.map(p => (
             <div key={p.label} className="relative">
