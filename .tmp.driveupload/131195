@@ -1,0 +1,7 @@
+(globalThis.TURBOPACK_CHUNK_LISTS || (globalThis.TURBOPACK_CHUNK_LISTS = [])).push({
+    script: typeof document === "object" ? document.currentScript : undefined,
+    chunks: [
+  "static/chunks/[next]_internal_font_google_noto_sans_jp_8e2bc04_module_facbab2e.css"
+],
+    source: "dynamic"
+});
