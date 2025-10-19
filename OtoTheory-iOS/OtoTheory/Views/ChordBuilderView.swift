@@ -23,7 +23,28 @@ struct ChordBuilderView: View {
     @State private var addButtonScale: CGFloat = 1.0
     
     private let roots = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-    private let quicks = ["", "m", "7", "maj7", "m7", "dim", "sus4"]
+    
+    // Quality Master.csv based qualities
+    private var qualityPresets: [(category: String, qualities: [String])] {
+        let freeQualities = QualityMaster.getQualitiesByCategory(tier: "Free")
+        let proQualities = QualityMaster.getQualitiesByCategory(tier: "Pro")
+        
+        var result: [(category: String, qualities: [String])] = []
+        
+        // Free qualities
+        for (category, qualityInfos) in freeQualities {
+            result.append((category: category, qualities: qualityInfos.map { $0.quality }))
+        }
+        
+        // Pro qualities (only if user has Pro)
+        if isPro {
+            for (category, qualityInfos) in proQualities {
+                result.append((category: category, qualities: qualityInfos.map { $0.quality }))
+            }
+        }
+        
+        return result
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -106,8 +127,8 @@ struct ChordBuilderView: View {
                     }
                 }
                 
-                // Quality Selection
-                VStack(alignment: .leading, spacing: 8) {
+                // Quality Selection - Quality Master.csv based
+                VStack(alignment: .leading, spacing: 12) {
                     HStack {
                         Text("Quality")
                             .font(.headline)
@@ -135,25 +156,66 @@ struct ChordBuilderView: View {
                     }
                     .padding(.horizontal)
                     
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 8) {
-                            ForEach(quicks, id: \.self) { quick in
-                                Button(action: {
-                                    selectedQuick = quick
-                                    selectedSlashBass = nil
-                                }) {
-                                    Text(quick.isEmpty ? "Major" : quick)
-                                        .font(.body)
-                                        .fontWeight(.semibold)
-                                        .frame(minWidth: 60)
-                                        .padding(.vertical, 12)
-                                        .background(selectedQuick == quick ? Color.blue : Color.gray.opacity(0.2))
-                                        .foregroundColor(selectedQuick == quick ? .white : .primary)
-                                        .cornerRadius(8)
+                    // Quality categories from Quality Master.csv
+                    ForEach(qualityPresets, id: \.category) { categoryData in
+                        VStack(alignment: .leading, spacing: 8) {
+                            // Category header
+                            HStack {
+                                Text(categoryData.category)
+                                    .font(.subheadline)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(.secondary)
+                                Spacer()
+                            }
+                            .padding(.horizontal)
+                            
+                            // Quality chips
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 8) {
+                                    ForEach(categoryData.qualities, id: \.self) { quality in
+                                        let qualityLabel = getQualityLabel(quality)
+                                        let isProQuality = QualityMaster.isProQuality(quality)
+                                        let comment = QualityMaster.getQualityComment(for: quality, locale: "ja")
+                                        
+                                        Button(action: {
+                                            if isProQuality && !isPro {
+                                                // Show Pro paywall
+                                                onShowPaywall()
+                                            } else {
+                                                selectedQuick = quality
+                                                selectedSlashBass = nil
+                                            }
+                                        }) {
+                                            HStack(spacing: 4) {
+                                                Text(qualityLabel)
+                                                    .font(.body)
+                                                    .fontWeight(.semibold)
+                                                
+                                                if isProQuality && !isPro {
+                                                    Image(systemName: "crown.fill")
+                                                        .font(.caption)
+                                                        .foregroundColor(.orange)
+                                                }
+                                            }
+                                            .frame(minWidth: 60)
+                                            .padding(.vertical, 12)
+                                            .padding(.horizontal, 8)
+                                            .background(selectedQuick == quality ? Color.blue : Color.gray.opacity(0.2))
+                                            .foregroundColor(selectedQuick == quality ? .white : .primary)
+                                            .cornerRadius(8)
+                                        }
+                                        .contextMenu {
+                                            if !comment.isEmpty {
+                                                Button(action: {}) {
+                                                    Label(comment, systemImage: "info.circle")
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
+                                .padding(.horizontal)
                             }
                         }
-                        .padding(.horizontal)
                     }
                 }
                 
@@ -238,6 +300,38 @@ struct ChordBuilderView: View {
                 }
                 .padding(.horizontal)
             }
+        }
+    }
+    
+    // Helper function to get display label for quality
+    private func getQualityLabel(_ quality: String) -> String {
+        switch quality {
+        case "Major": return "Major"
+        case "m (minor)": return "m"
+        case "7": return "7"
+        case "maj7": return "maj7"
+        case "m7": return "m7"
+        case "sus4": return "sus4"
+        case "sus2": return "sus2"
+        case "add9": return "add9"
+        case "dim": return "dim"
+        case "M9 (maj9)": return "M9"
+        case "6": return "6"
+        case "6/9": return "6/9"
+        case "add#11": return "add#11"
+        case "m9": return "m9"
+        case "m11": return "m11"
+        case "m7b5": return "m7b5"
+        case "mM7": return "mM7"
+        case "m6": return "m6"
+        case "7sus4": return "7sus4"
+        case "aug": return "aug"
+        case "dim7": return "dim7"
+        case "7(#9)": return "7(#9)"
+        case "7(b9)": return "7(b9)"
+        case "7(#5)": return "7(#5)"
+        case "7(b13)": return "7(b13)"
+        default: return quality
         }
     }
 }
