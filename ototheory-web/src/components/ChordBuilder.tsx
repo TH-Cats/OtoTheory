@@ -210,7 +210,13 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
   ) => (
     <div key={label} className="relative inline-block">
       <button
-        className={`h-9 px-3 rounded border text-xs ${active ? 'bg-[var(--brand-primary)] text-white' : ''} ${opts?.locked ? 'opacity-50' : ''}`}
+        className={`h-9 px-3 rounded border text-xs transition-all ${
+          active 
+            ? 'bg-[var(--brand-primary)] text-white' 
+            : opts?.locked 
+              ? 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 border-gray-300 dark:border-gray-600 cursor-not-allowed hover:bg-gray-300 dark:hover:bg-gray-600' 
+              : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
+        }`}
         onClick={() => { 
           if (!opts?.disabled && !opts?.locked) {
             onClick(); 
@@ -219,7 +225,7 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
             onBlock?.('pro_quality', label);
           }
         }}
-        title={opts?.locked ? 'Proで解放' : opts?.comment}
+        title={opts?.locked ? 'iOS版でPro機能をお試しください！' : opts?.comment}
         aria-disabled={opts?.disabled || opts?.locked}
         onContextMenu={(e) => {
           e.preventDefault();
@@ -269,81 +275,125 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
         );
       })()}
 
-      {/* Advanced (Pro) section - only show Pro qualities */}
-      {plan === 'free' ? (
-        <details>
-          <summary className="cursor-pointer text-sm">高度な機能 (Pro) 👑</summary>
-          <div className="mt-3 space-y-3">
-            <div className="text-sm opacity-70 p-4 bg-gray-50 rounded-lg">
-              Pro版では、より高度なコード品質をご利用いただけます。
-            </div>
-          </div>
-        </details>
-      ) : (
-        <details>
-          <summary className="cursor-pointer text-sm">高度な機能 (Pro)</summary>
-          <div className="mt-3 space-y-3">
-            {/* Pro qualities grouped by category */}
-            {Object.entries(getQualitiesByCategory('Pro')).map(([category, qualities]) => (
-              <div key={category}>
-                <div className="text-xs opacity-70 mb-0.5">{category}</div>
-                <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
-                  {qualities.map(quality => {
-                    const qualityLabel = quality.quality === 'M9 (maj9)' ? 'M9' : 
-                                       quality.quality === 'm7b5' ? 'm7b5' :
-                                       quality.quality === 'mM7' ? 'mM7' :
-                                       quality.quality === 'm6' ? 'm6' :
-                                       quality.quality === '7(#9)' ? '7(#9)' :
-                                       quality.quality === '7(b9)' ? '7(b9)' :
-                                       quality.quality === '7(#5)' ? '7(#5)' :
-                                       quality.quality === '7(b13)' ? '7(b13)' :
-                                       quality.quality;
-                    
-                    return (
-                      <div key={quality.quality} className="relative">
-                        {renderChip(qualityLabel, false, () => {
-                          const spec = getSpecFromQuality(quality.quality);
-                          if (spec) setSpec(spec);
-                        }, { 
-                          comment: quality.commentJa 
-                        })}
-                      </div>
-                    );
-                  })}
-                </div>
-                
-                {/* Add Slash (On) section after Stylish & Urban category */}
-                {category === '🌃 おしゃれ・都会的' && (
-                  <div className="mt-3">
-                    <div className="text-xs opacity-70 mb-0.5">Slash (On)</div>
-                    <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
+      {/* Advanced (Pro) section - show Pro qualities with iOS promotion */}
+      <details>
+        <summary className="cursor-pointer text-sm">
+          {plan === 'free' ? '高度な機能 (Pro) 👑' : '高度な機能 (Pro)'}
+        </summary>
+        <div className="mt-3 space-y-3">
+          {/* Pro qualities grouped by category */}
+          {Object.entries(getQualitiesByCategory('Pro')).map(([category, qualities]) => (
+            <div key={category}>
+              <div className="text-xs opacity-70 mb-0.5">{category}</div>
+              <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
+                {qualities.map(quality => {
+                  const qualityLabel = quality.quality === 'M9 (maj9)' ? 'M9' : 
+                                     quality.quality === 'm7b5' ? 'm7b5' :
+                                     quality.quality === 'mM7' ? 'mM7' :
+                                     quality.quality === 'm6' ? 'm6' :
+                                     quality.quality === '7(#9)' ? '7(#9)' :
+                                     quality.quality === '7(b9)' ? '7(b9)' :
+                                     quality.quality === '7(#5)' ? '7(#5)' :
+                                     quality.quality === '7(b13)' ? '7(b13)' :
+                                     quality.quality;
+                  
+                  return (
+                    <div key={quality.quality} className="relative">
+                      {renderChip(qualityLabel, false, () => {
+                        if (plan === 'free') {
+                          // Show iOS promotion instead of blocking
+                          onBlock?.('pro_quality', quality.quality);
+                          return;
+                        }
+                        const spec = getSpecFromQuality(quality.quality);
+                        if (spec) setSpec(spec);
+                      }, { 
+                        comment: quality.commentJa,
+                        locked: plan === 'free',
+                        showProBadge: plan === 'free'
+                      })}
+                    </div>
+                  );
+                })}
+              </div>
+              
+              {/* Add Slash (On) section after Stylish & Urban category */}
+              {category === '🌃 おしゃれ・都会的' && (
+                <div className="mt-3">
+                  <div className="text-xs opacity-70 mb-0.5">Slash (On)</div>
+                  <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
+                    <button
+                      className={`h-9 px-3 rounded border text-xs ${
+                        plan === 'free' 
+                          ? 'bg-gray-400 text-gray-200 cursor-not-allowed opacity-60' 
+                          : 'bg-orange-500 text-white hover:bg-orange-600'
+                      }`}
+                      onClick={() => {
+                        if (plan === 'free') {
+                          onBlock?.('pro_slash');
+                          return;
+                        }
+                        setSpec({ ...spec, slash: undefined });
+                      }}
+                    >
+                      クリア
+                    </button>
+                    {['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'].map(bassNote => (
                       <button
-                        className="h-9 px-3 rounded border text-xs bg-orange-500 text-white"
-                        onClick={() => setSpec({ ...spec, slash: undefined })}
-                      >
-                        クリア
-                      </button>
-                      {['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'].map(bassNote => (
-                        <button
-                          key={bassNote}
-                          className={`h-9 px-3 rounded border text-xs ${
-                            spec?.slash === bassNote 
+                        key={bassNote}
+                        className={`h-9 px-3 rounded border text-xs ${
+                          plan === 'free'
+                            ? 'bg-gray-400 text-gray-200 cursor-not-allowed opacity-60'
+                            : spec?.slash === bassNote 
                               ? 'bg-[var(--brand-primary)] text-white' 
                               : 'bg-gray-600 text-white hover:bg-gray-500'
-                          }`}
-                          onClick={() => setSpec({ ...spec, slash: bassNote })}
-                        >
-                          {bassNote}
-                        </button>
-                      ))}
-                    </div>
+                        }`}
+                        onClick={() => {
+                          if (plan === 'free') {
+                            onBlock?.('pro_slash');
+                            return;
+                          }
+                          setSpec({ ...spec, slash: bassNote });
+                        }}
+                      >
+                        {bassNote}
+                      </button>
+                    ))}
                   </div>
-                )}
+                </div>
+              )}
+            </div>
+          ))}
+          
+          {/* iOS promotion message for Free users */}
+          {plan === 'free' && (
+            <div className="mt-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+              <div className="flex items-center gap-3">
+                <div className="text-2xl">📱</div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-1">
+                    iOS版でPro機能をお試しください！
+                  </h4>
+                  <p className="text-sm text-blue-700 dark:text-blue-300 mb-2">
+                    上記のコード品質とSlash機能は、iOS版のPro機能でご利用いただけます。
+                  </p>
+                  <a 
+                    href="https://apps.apple.com/app/ototheory/id1234567890" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 transition-colors"
+                  >
+                    <span>App Storeでダウンロード</span>
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"/>
+                    </svg>
+                  </a>
+                </div>
               </div>
-            ))}
-          </div>
-        </details>
-      )}
+            </div>
+          )}
+        </div>
+      </details>
 
       {warnings.length > 0 && (
         <div className="text-xs text-yellow-600 dark:text-yellow-400">

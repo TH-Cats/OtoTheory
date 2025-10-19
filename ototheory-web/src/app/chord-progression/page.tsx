@@ -1040,9 +1040,13 @@ export default function FindKeyPage() {
                 player.playChord(midis, 'lightStrum', 300);
               } catch {}
             }}
-            onBlock={(reason) => {
-              // Pro限定（/bass など）に当たったときは課金モーダルを開く
-              setShowUpgrade(true);
+            onBlock={(reason, quality) => {
+              // Show iOS promotion instead of upgrade modal
+              if (reason === 'pro_quality') {
+                alert(`「${quality}」はPro機能です。\n\niOS版のOtoTheoryアプリでPro機能をお試しください！\n\nApp Storeでダウンロードできます。`);
+              } else if (reason === 'pro_slash') {
+                alert('Slash機能はPro機能です。\n\niOS版のOtoTheoryアプリでPro機能をお試しください！\n\nApp Storeでダウンロードできます。');
+              }
             }}
             onConfirm={(symbol) => {
               // 12スロットに追加（最初の空きに入れてカーソルを進める）
