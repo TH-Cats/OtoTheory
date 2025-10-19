@@ -32,7 +32,7 @@ struct ChordBuilderView: View {
         var result: [(category: String, qualities: [String])] = []
         
         // Define the desired order for free qualities
-        let freeCategoryOrder = ["基本の飾り付け", "基本"] // Essential Colors first, then Basics
+        let freeCategoryOrder = ["基本", "基本の飾り付け"] // Basics first, then Essential Colors
         
         // Free qualities - show English category names in specified order
         for category in freeCategoryOrder {
