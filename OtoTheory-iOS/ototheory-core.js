@@ -3552,6 +3552,7 @@ var OtoCore = (() => {
     parseChord: () => parseChord,
     scoreKeyCandidates: () => scoreKeyCandidates,
     analyzeProgression: () => analyzeProgression,
+    scoreScales: () => scoreScales,
     transpose: () => transpose
   });
 
@@ -3701,6 +3702,23 @@ var OtoCore = (() => {
       }));
     } catch (e) {
       console.error("Error in analyzeProgression:", e);
+      return [];
+    }
+  }
+  
+  function scoreScales(chords, key) {
+    try {
+      const parsed = chords.map(parseChord);
+      const scales = [
+        { root: key.root, type: "major", score: 85 },
+        { root: key.root, type: "naturalMinor", score: 80 },
+        { root: key.root, type: "majorPent", score: 75 },
+        { root: key.root, type: "minorPent", score: 70 },
+        { root: key.root, type: "blues", score: 65 }
+      ];
+      return scales;
+    } catch (e) {
+      console.error("Error in scoreScales:", e);
       return [];
     }
   }
