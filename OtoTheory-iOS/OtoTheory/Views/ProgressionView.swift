@@ -498,9 +498,15 @@ struct ProgressionView: View {
                             
                             Button(action: {
                                 // Show info alert
+                                let isJapanese = Locale.current.language.languageCode?.identifier == "ja"
+                                let title = "Build Progression"
+                                let message = isJapanese ? 
+                                    "Choose Chordsからコードを選んでスロットに追加ボタンから追加してください。上部のプリセットからコード進行を選択して追加することもできます。" :
+                                    "Select chords from Choose Chords and add them using the slot add button. You can also select chord progressions from the presets at the top to add them."
+                                
                                 let alert = UIAlertController(
-                                    title: "Build Progression",
-                                    message: "Choose Chordsからコードを選んでスロットに追加ボタンから追加してください。上部のプリセットからコード進行を選択して追加することもできます。",
+                                    title: title,
+                                    message: message,
                                     preferredStyle: .alert
                                 )
                                 alert.addAction(UIAlertAction(title: "OK", style: .default))

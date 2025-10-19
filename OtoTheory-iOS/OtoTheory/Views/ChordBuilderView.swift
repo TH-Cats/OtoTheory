@@ -68,9 +68,15 @@ struct ChordBuilderView: View {
                 
                 Button(action: {
                     // Show info alert
+                    let isJapanese = Locale.current.language.languageCode?.identifier == "ja"
+                    let title = "Choose Chords"
+                    let message = isJapanese ? 
+                        "ルートとコードタイプを選んでください。追加ボタンでコード進行のスロットに追加できます。\nProプランの場合、より複雑なコードタイプを選ぶことができます。" :
+                        "Select a root note and chord type. Use the Add button to add to chord progression slots.\nPro plan allows you to select more complex chord types."
+                    
                     let alert = UIAlertController(
-                        title: "Choose Chords",
-                        message: "ルートとコードタイプを選んでください。追加ボタンでコード進行のスロットに追加できます。\nProプランの場合、より複雑なコードタイプを選ぶことができます。",
+                        title: title,
+                        message: message,
                         preferredStyle: .alert
                     )
                     alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -98,9 +104,15 @@ struct ChordBuilderView: View {
                         
                         Button(action: {
                             // Show info alert
+                            let isJapanese = Locale.current.language.languageCode?.identifier == "ja"
+                            let title = "Root"
+                            let message = isJapanese ? 
+                                "コードの基準となる音で、コード名の元になります。Cコードのルート音は「C（ド）」。" :
+                                "The fundamental note that serves as the basis of the chord and forms the root of the chord name. The root note of a C chord is \"C\"."
+                            
                             let alert = UIAlertController(
-                                title: "Root",
-                                message: "コードの基準となる音で、コード名の元になります。Cコードのルート音は「C（ド）」。",
+                                title: title,
+                                message: message,
                                 preferredStyle: .alert
                             )
                             alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -148,9 +160,15 @@ struct ChordBuilderView: View {
                         
                         Button(action: {
                             // Show info alert
+                            let isJapanese = Locale.current.language.languageCode?.identifier == "ja"
+                            let title = "Quality"
+                            let message = isJapanese ? 
+                                "コードの「音の雰囲気」を決める要素。メジャーは明るく元気、マイナーは暗くて切ない、M7はジャズっぽくオシャレな響きに。同じルート音でも全く違う印象になります。" :
+                                "Defines the \"mood\" of a chord. Major sounds bright and happy, minor sounds sad and emotional, M7 sounds jazzy and sophisticated. Even with the same root note, the quality completely changes the character."
+                            
                             let alert = UIAlertController(
-                                title: "Quality",
-                                message: "コードの「音の雰囲気」を決める要素。メジャーは明るく元気、マイナーは暗くて切ない、M7はジャズっぽくオシャレな響きに。同じルート音でも全く違う印象になります。",
+                                title: title,
+                                message: message,
                                 preferredStyle: .alert
                             )
                             alert.addAction(UIAlertAction(title: "OK", style: .default))
