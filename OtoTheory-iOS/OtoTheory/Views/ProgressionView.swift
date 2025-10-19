@@ -1756,6 +1756,9 @@ struct ProgressionView: View {
             return [60, 64, 67] // Default to C major
         }
         
+        // Debug log for quality parsing
+        print("🔍 Parsed chord: root='\(root)', quality='\(quality)'")
+        
         // Determine intervals based on quality
         var intervals: [UInt8] = [0, 4, 7] // Default: major triad
         
