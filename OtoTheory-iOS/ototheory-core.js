@@ -3710,11 +3710,11 @@ var OtoCore = (() => {
     try {
       const parsed = chords.map(parseChord);
       const scales = [
-        { root: key.root, type: "major", score: 85 },
-        { root: key.root, type: "naturalMinor", score: 80 },
-        { root: key.root, type: "majorPent", score: 75 },
-        { root: key.root, type: "minorPent", score: 70 },
-        { root: key.root, type: "blues", score: 65 }
+        { root: key.root, type: "Ionian", score: 85 },
+        { root: key.root, type: "Aeolian", score: 80 },
+        { root: key.root, type: "MajorPentatonic", score: 75 },
+        { root: key.root, type: "MinorPentatonic", score: 70 },
+        { root: key.root, type: "Blues", score: 65 }
       ];
       return scales;
     } catch (e) {

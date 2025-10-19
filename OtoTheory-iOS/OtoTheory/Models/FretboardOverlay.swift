@@ -47,9 +47,9 @@ struct FretboardOverlay {
         !(chordNotes?.isEmpty ?? true)
     }
     
-    /// Whether to show ghost notes (scale layer visible + chord layer present)
+    /// Whether to show ghost notes (scale layer visible)
     var shouldShowGhost: Bool {
-        showScaleGhost && hasScale && hasChord
+        showScaleGhost && hasScale
     }
     
     // MARK: - Factory Methods
