@@ -201,15 +201,15 @@ struct AdvancedChordBuilderView: View {
                         }
                         .contextMenu {
                             if !comment.isEmpty {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(comment)
-                                        .font(.caption)
-                                        .multilineTextAlignment(.leading)
-                                        .fixedSize(horizontal: false, vertical: true)
-                                        .frame(maxWidth: 300, alignment: .leading)
+                                Button {
+                                    UIPasteboard.general.string = comment
+                                } label: {
+                                    Label("説明文をコピー", systemImage: "doc.on.doc")
                                 }
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 12)
+                            }
+                        } preview: {
+                            if !comment.isEmpty {
+                                QualityInfoView(title: chord, bodyText: comment)
                             }
                         }
                     }
