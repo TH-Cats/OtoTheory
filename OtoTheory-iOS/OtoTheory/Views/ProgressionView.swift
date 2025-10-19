@@ -1724,6 +1724,8 @@ struct ProgressionView: View {
     
     // Comprehensive chord to MIDI conversion
     private func chordToMidi(_ chordSymbol: String) -> [UInt8] {
+        // Debug log for input chord symbol
+        print("🎼 Input chordSymbol: '\(chordSymbol)'")
         // Parse root note
         let rootMap: [String: UInt8] = [
             "C": 60, "C#": 61, "Db": 61,
@@ -1740,9 +1742,12 @@ struct ProgressionView: View {
         var mainChord = String(parts[0])
         var slashBass = parts.count > 1 ? String(parts[1]) : nil
         
+        print("🔍 Slash parsing: parts=\(parts), mainChord='\(mainChord)', slashBass='\(slashBass ?? "nil")'")
+        
         // Special case: 6/9 is a compound quality, not a slash chord
         if mainChord.contains("6/9") {
             slashBass = nil // Not a slash chord
+            print("🎯 Detected 6/9 compound quality")
         }
         
         // Extract root and quality from main chord
