@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/nh/App/OtoTheory/ototheory-web/src/app/ja/about/layout.tsx"],"sourcesContent":["import type { Metadata } from \"next\";\nimport { BreadcrumbStructuredData } from \"@/components/StructuredData\";\n\nexport const metadata: Metadata = {\n  alternates: {\n    canonical: \"/ja/about\",\n    languages: { en: \"/about\", \"ja-JP\": \"/ja/about\", \"x-default\": \"/about\" },\n  },\n  openGraph: { locale: \"ja_JP\" },\n};\n\nexport default function Layout({ children }: { children: React.ReactNode }) {\n  return (\n    <>\n      <BreadcrumbStructuredData\n        lang=\"ja\"\n        items={[\n          { name: \"Home\", url: \"https://www.ototheory.com/ja\" },\n          { name: \"About\", url: \"https://www.ototheory.com/ja/about\" },\n        ]}\n      />\n      {children}\n    </>\n  );\n}\n\n\n"],"names":[],"mappings":";;;;;;;AACA;;;AAEO,MAAM,WAAqB;IAChC,YAAY;QACV,WAAW;QACX,WAAW;YAAE,IAAI;YAAU,SAAS;YAAa,aAAa;QAAS;IACzE;IACA,WAAW;QAAE,QAAQ;IAAQ;AAC/B;AAEe,SAAS,OAAO,EAAE,QAAQ,EAAiC;IACxE,qBACE;;0BACE,8OAAC,gKAAwB;gBACvB,MAAK;gBACL,OAAO;oBACL;wBAAE,MAAM;wBAAQ,KAAK;oBAA+B;oBACpD;wBAAE,MAAM;wBAAS,KAAK;oBAAqC;iBAC5D;;;;;;YAEF;;;AAGP","debugId":null}}]
+}

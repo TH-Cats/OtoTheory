@@ -1,0 +1,287 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    },
+    {
+      "source": "/reference",
+      "destination": "/resources",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/reference(?:/)?$"
+    },
+    {
+      "source": "/reference/guitarist",
+      "destination": "/resources/music-theory",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/reference/guitarist(?:/)?$"
+    },
+    {
+      "source": "/reference/chords",
+      "destination": "/resources/chord-library",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/reference/chords(?:/)?$"
+    },
+    {
+      "source": "/find-key",
+      "destination": "/chord-progression",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/find-key(?:/)?$"
+    },
+    {
+      "source": "/progression",
+      "destination": "/chord-progression",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/progression(?:/)?$"
+    },
+    {
+      "source": "/analyze",
+      "destination": "/chord-progression",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/analyze(?:/)?$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/about",
+      "regex": "^/about(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about(?:/)?$"
+    },
+    {
+      "page": "/analyze",
+      "regex": "^/analyze(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/analyze(?:/)?$"
+    },
+    {
+      "page": "/chord-library",
+      "regex": "^/chord\\-library(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/chord\\-library(?:/)?$"
+    },
+    {
+      "page": "/chord-progression",
+      "regex": "^/chord\\-progression(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/chord\\-progression(?:/)?$"
+    },
+    {
+      "page": "/faq",
+      "regex": "^/faq(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/faq(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/find-chords",
+      "regex": "^/find\\-chords(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/find\\-chords(?:/)?$"
+    },
+    {
+      "page": "/getting-started",
+      "regex": "^/getting\\-started(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/getting\\-started(?:/)?$"
+    },
+    {
+      "page": "/ios-coming-soon",
+      "regex": "^/ios\\-coming\\-soon(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ios\\-coming\\-soon(?:/)?$"
+    },
+    {
+      "page": "/ja",
+      "regex": "^/ja(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ja(?:/)?$"
+    },
+    {
+      "page": "/ja/about",
+      "regex": "^/ja/about(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ja/about(?:/)?$"
+    },
+    {
+      "page": "/ja/analyze",
+      "regex": "^/ja/analyze(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ja/analyze(?:/)?$"
+    },
+    {
+      "page": "/ja/chord-library",
+      "regex": "^/ja/chord\\-library(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ja/chord\\-library(?:/)?$"
+    },
+    {
+      "page": "/ja/chord-progression",
+      "regex": "^/ja/chord\\-progression(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ja/chord\\-progression(?:/)?$"
+    },
+    {
+      "page": "/ja/faq",
+      "regex": "^/ja/faq(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ja/faq(?:/)?$"
+    },
+    {
+      "page": "/ja/find-chords",
+      "regex": "^/ja/find\\-chords(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ja/find\\-chords(?:/)?$"
+    },
+    {
+      "page": "/ja/getting-started",
+      "regex": "^/ja/getting\\-started(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ja/getting\\-started(?:/)?$"
+    },
+    {
+      "page": "/ja/pricing",
+      "regex": "^/ja/pricing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ja/pricing(?:/)?$"
+    },
+    {
+      "page": "/ja/privacy",
+      "regex": "^/ja/privacy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ja/privacy(?:/)?$"
+    },
+    {
+      "page": "/ja/resources",
+      "regex": "^/ja/resources(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ja/resources(?:/)?$"
+    },
+    {
+      "page": "/ja/resources/glossary",
+      "regex": "^/ja/resources/glossary(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ja/resources/glossary(?:/)?$"
+    },
+    {
+      "page": "/ja/resources/music-theory",
+      "regex": "^/ja/resources/music\\-theory(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ja/resources/music\\-theory(?:/)?$"
+    },
+    {
+      "page": "/ja/support",
+      "regex": "^/ja/support(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ja/support(?:/)?$"
+    },
+    {
+      "page": "/ja/terms",
+      "regex": "^/ja/terms(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ja/terms(?:/)?$"
+    },
+    {
+      "page": "/pricing",
+      "regex": "^/pricing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/pricing(?:/)?$"
+    },
+    {
+      "page": "/privacy",
+      "regex": "^/privacy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/privacy(?:/)?$"
+    },
+    {
+      "page": "/resources",
+      "regex": "^/resources(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/resources(?:/)?$"
+    },
+    {
+      "page": "/resources/glossary",
+      "regex": "^/resources/glossary(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/resources/glossary(?:/)?$"
+    },
+    {
+      "page": "/resources/music-theory",
+      "regex": "^/resources/music\\-theory(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/resources/music\\-theory(?:/)?$"
+    },
+    {
+      "page": "/robots.txt",
+      "regex": "^/robots\\.txt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/robots\\.txt(?:/)?$"
+    },
+    {
+      "page": "/sitemap.xml",
+      "regex": "^/sitemap\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sitemap\\.xml(?:/)?$"
+    },
+    {
+      "page": "/support",
+      "regex": "^/support(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/support(?:/)?$"
+    },
+    {
+      "page": "/terms",
+      "regex": "^/terms(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/terms(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

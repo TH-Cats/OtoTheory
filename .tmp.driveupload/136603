@@ -1,0 +1,17 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/telemetry/route": "app/api/telemetry/route.js",
+  "/chord-progression/page": "app/chord-progression/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/ios-coming-soon/page": "app/ios-coming-soon/page.js",
+  "/ja/about/page": "app/ja/about/page.js",
+  "/ja/chord-library/page": "app/ja/chord-library/page.js",
+  "/ja/chord-progression/page": "app/ja/chord-progression/page.js",
+  "/ja/faq/page": "app/ja/faq/page.js",
+  "/ja/find-chords/page": "app/ja/find-chords/page.js",
+  "/ja/page": "app/ja/page.js",
+  "/ja/privacy/page": "app/ja/privacy/page.js",
+  "/ja/resources/page": "app/ja/resources/page.js",
+  "/ja/support/page": "app/ja/support/page.js",
+  "/ja/terms/page": "app/ja/terms/page.js"
+}

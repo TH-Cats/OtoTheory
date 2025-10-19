@@ -45,6 +45,7 @@ import { chordToMidi } from "@/lib/music/chordParser";
 import Toast from "@/components/Toast.client";
 import { useCtaMessages } from "@/hooks/useCtaMessages";
 import { usePathname } from "next/navigation";
+import ChordBuilder from "@/components/ChordBuilder";
 
 export default function FindKeyPage() {
   const CTA_MESSAGES = useCtaMessages();
@@ -1019,238 +1020,96 @@ export default function FindKeyPage() {
               <span>Presets</span>
             </button>
         </div>
-          {/* 説明テキストは非表示に変更（直感UIへ） */}
-          {/* 例は非表示にする */}
-          {/* <div className="text-[11px] text-gray-400 mb-2">{copy.progression.example}</div> */}
-          <div className="mt-1 sm:mt-2 space-y-1">
-            <div>
-              <div className="text-xs opacity-70 mb-0.5 flex items-center gap-1">
-                Root
-                <InfoDot
-                  title="Root"
-                  text={isJapanese 
-                    ? "コードの基準となる音で、コード名の元になります。Cコードのルート音は「C（ド）」。"
-                    : "The fundamental note that serves as the basis of the chord and forms the root of the chord name. The root note of a C chord is \"C\"."
+          {/* ChordBuilder component with Quality Master.csv integration */}
+          <ChordBuilder
+            plan={isPro ? 'pro' : 'free'}
+            onPreview={async (symbol) => {
+              // 既存の簡易プレビューと同等：symbol → MIDI 変換して再生
+              try {
+                await player.resume();
+                const midis = chordToMidi(symbol); // 既存ユーティリティ
+                player.playChord(midis, 'lightStrum', 300);
+              } catch {}
+            }}
+            onBlock={(reason) => {
+              // Pro限定（/bass など）に当たったときは課金モーダルを開く
+              setShowUpgrade(true);
+            }}
+            onConfirm={(symbol) => {
+              // 12スロットに追加（最初の空きに入れてカーソルを進める）
+              setSlots(prev => {
+                const arr = [...prev];
+                let idx = arr.findIndex(s => !s);
+                if (idx === -1) idx = 0;
+                arr[idx] = symbol;
+                return arr;
+              });
+              setCursorIndex(prev => {
+                // 直感的に "次の空スロット" へ
+                const arr = [...slots];
+                let i = arr.findIndex(s => !s);
+                return i === -1 ? 0 : i;
+              });
+              setAddedFlash(true); // 既存の "Added" 演出があるなら
+            }}
+          />
+          
+          {/* Analyze button */}
+          <div className="mt-4">
+            <button
+              className={`w-full px-6 py-2 text-base rounded-lg font-semibold text-white transition-transform active:scale-[.98] active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 ${isAnalyzing ? 'bg-rose-400/70 cursor-wait' : 'bg-rose-400 hover:bg-rose-500'}`}
+              onClick={() => {
+                const items = parseProg(progression);
+                const hasAdv = items.some((i) => ADVANCED_QUALITIES.some((a) => i.quality.includes(a)));
+                if (hasAdv && !isPro) {
+                  if (typeof window !== 'undefined') window.alert('Advanced chords detected. Remove them or upgrade to Pro.');
+                  return;
+                }
+                startAnalyze(() => {
+                  // Run analysis without auto-scroll (analyze function has its own scroll)
+                  const res = analyzeChordProgression(progression);
+                  setResult(res);
+                  const ranked = rankKeys(progression);
+                  setKeys(ranked.slice(0,4));
+                  if (ranked.length > 0) {
+                    const mode: RomanMode = ranked[0].mode === "Major" ? "major" : "minor";
+                    const keyName = ranked[0].label.split(" ")[0];
+                    const sel = { tonic: keyName, mode } as const;
+                    setSelectedKey(sel);
+                    setRomanLine(progression.map(c => toRoman(c, sel.tonic, sel.mode, { showQuality: true, uppercase: true })));
+                  } else {
+                    setScales([]);
+                    setSelectedKey(null);
+                    setRomanLine([]);
                   }
-                  icon="graduation"
-                />
-              </div>
-              <div ref={rootRowRef} className="chips-row overflow-x-auto whitespace-nowrap" role="tablist" aria-orientation="horizontal" aria-label="Select key">
-                {ROOTS.map(rt => (
-                  <button
-                    role="tab"
-                    aria-selected={rootSel === rt}
-                    tabIndex={rootSel === rt ? 0 : -1}
-                    key={rt}
-                    className={`chip ${rootSel === rt ? 'chip--active' : ''}`}
-                    onClick={() => setRootSel(rt)}
-                  >{rt}</button>
-                ))}
-              </div>
-            </div>
-            <div>
-              <div className="text-xs opacity-70 mb-0.5 flex items-center gap-1">
-                {isJapanese ? "コードタイプ" : "Quality"}
-                <InfoDot
-                  title={isJapanese ? "コードタイプ" : "Quality"}
-                  text={isJapanese 
-                    ? "コードの「音の雰囲気」を決める要素。メジャーは明るく元気、マイナーは暗くて切ない、M7はジャズっぽくオシャレな響きに。同じルート音でも全く違う印象になります。"
-                    : "Defines the \"mood\" of a chord. Major sounds bright and happy, minor sounds sad and emotional, M7 sounds jazzy and sophisticated. Even with the same root note, the quality completely changes the character."
-                  }
-                  icon="graduation"
-                />
-              </div>
-              <div className="chips-row overflow-x-auto whitespace-nowrap">
-                {QUICK_QUALITIES.map(q => (
-                  <button
-                    key={`quick-${q}`}
-                    className={`chip ${qualitySel===q ? 'chip--active' : ''}`}
-                    onClick={() => onPickBase(q)}
-                  >{q}</button>
-                ))}
-              </div>
-              {/* Quick下のAnalyzeはsticky領域へ移動 */}
-            </div>
-            <div className="mt-1">
-              <button
-                data-testid="adv-toggle"
-                className={`adv-toggle ${showAdv ? 'is-open' : ''}`}
-                onClick={() => setShowAdv(v => !v)}
-                aria-expanded={showAdv}
-              >
-                <span className="caret" aria-hidden />
-                <span className="spark" aria-hidden>
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.9 4.6L18.5 8 13.9 9.4 12 14l-1.9-4.6L5.5 8l4.6-1.4L12 2zm6 9l.95 2.3L21 14l-2.05.7L18 17l-.95-2.3L15 14l2.05-.7L18 11zM5 12l.8 1.9L8 14l-2.2.8L5 17l-.8-2.2L2 14l2.2-.8L5 12z"/></svg>
-                </span>
-                <span className="label">Advanced</span>
-              </button>
-              {isPro && showAdv && (
-                <div className="mt-2 space-y-3">
-                  <AdvSection title="Extensions">
-                    {ADV_EXTENSIONS.map(q => {
-                      const disabled = !isCompatible(getBaseKind(qualitySel), q);
-                      const active = modifiers.includes(q);
-                      return <Chip key={`adv-${q}`} label={q} onClick={() => toggleModifier(q)} disabled={disabled} active={active} />;
-                    })}
-                  </AdvSection>
-                  <AdvSection title="Altered Dominant">
-                    {ADV_ALTERED_DOM.map(q => {
-                      const disabled = !isCompatible(getBaseKind(qualitySel), q);
-                      const active = modifiers.includes(q);
-                      return <Chip key={`adv-${q}`} label={q} onClick={() => toggleModifier(q)} disabled={disabled} active={active} />;
-                    })}
-                  </AdvSection>
-                  <AdvSection title="Diminished / Variants">
-                    {ADV_DIM_VARIANTS.map(q => {
-                      const disabled = !isCompatible(getBaseKind(qualitySel), q);
-                      const active = modifiers.includes(q);
-                      return <Chip key={`adv-${q}`} label={q} onClick={() => toggleModifier(q)} disabled={disabled} active={active} />;
-                    })}
-                  </AdvSection>
-                  <AdvSection title="Suspensions / Adds">
-                    {ADV_SUS_ADDS.map(q => {
-                      const disabled = !isCompatible(getBaseKind(qualitySel), q);
-                      const active = modifiers.includes(q);
-                      return <Chip key={`adv-${q}`} label={q} onClick={() => toggleModifier(q)} disabled={disabled} active={active} />;
-                    })}
-                  </AdvSection>
-                  <AdvSection title="Aug / mM7">
-                    {ADV_AUG_MAJMIN.map(q => {
-                      const active = qualitySel === q;
-                      return <Chip key={`adv-${q}`} label={q} onClick={() => onPickBase(q)} active={active} />;
-                    })}
-                  </AdvSection>
-                  <AdvSection title="Slash (On)">
-                    <div className="adv-grid">
-                      {BASS_NOTES.map((n) => (
-                        <button key={`bass-${n}`} className={`chip ${bassSel === n ? 'chip--active' : ''}`} onClick={() => onPickBass(n)}>{n}</button>
-                      ))}
-                    </div>
-                  </AdvSection>
-                </div>
-              )}
-              {!isPro && showAdv && (
-                <div className="mt-2">
-                  <ProGate title="Advanced — Pro (preview)">
-                    <div className="space-y-3 grayscale opacity-40">
-                      <AdvSection title="Extensions">
-                        {ADV_EXTENSIONS.map(q => (<Chip key={`adv-${q}`} label={q} disabled />))}
-                      </AdvSection>
-                      <AdvSection title="Altered Dominant">
-                        {ADV_ALTERED_DOM.map(q => (<Chip key={`adv-${q}`} label={q} disabled />))}
-                      </AdvSection>
-                      <AdvSection title="Diminished / Variants">
-                        {ADV_DIM_VARIANTS.map(q => (<Chip key={`adv-${q}`} label={q} disabled />))}
-                      </AdvSection>
-                      <AdvSection title="Suspensions / Adds">
-                        {ADV_SUS_ADDS.map(q => (<Chip key={`adv-${q}`} label={q} disabled />))}
-                      </AdvSection>
-                      <AdvSection title="Aug / mM7">
-                        {ADV_AUG_MAJMIN.map(q => (<Chip key={`adv-${q}`} label={q} disabled />))}
-                      </AdvSection>
-                      <AdvSection title="Slash (On)">
-                        <div className="adv-grid">
-                          {BASS_NOTES.map(n => (
-                            <button key={`bass-${n}`} className="chip chip--disabled">{n}</button>
-                          ))}
-                        </div>
-                      </AdvSection>
-                    </div>
-                  </ProGate>
-                </div>
-              )}
-              <UpgradeModal open={showUpgrade} onClose={() => setShowUpgrade(false)} />
-
-              {/* Sticky Preview + Add/Analyze */}
-              <div className="preview-sticky mt-2 mb-[6px]">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <div className="text-sm flex items-center gap-2">
-                    <span className="opacity-70">Preview:</span>
-                    <button
-                      type="button"
-                      className="preview-chord inline-flex items-center gap-1 px-2 py-1 rounded border border-emerald-400/60 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 hover:border-emerald-500 dark:text-emerald-100 dark:bg-emerald-900/40 dark:border-emerald-500/80 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
-                      title="Click to preview chord"
-                      onClick={previewPlay}
-                    >
-                      <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M8 5v14l11-7z"/>
-                      </svg>
-                      {previewLabel || '-'}
-                    </button>
-                    <button
-                      className={`rounded-lg px-4 py-2 text-sm ml-1 border transition-all active:scale-[.98] active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 ${addedFlash ? 'bg-emerald-100 border-emerald-300 text-emerald-900' : 'bg-emerald-500 border-emerald-600 text-white hover:bg-emerald-600'}`}
-                      onClick={() => {
-                        const chord = previewLabel;
-                        if (chord) {
-                          // カーソル位置に上書き
-                          setSlots(prev => { const arr = prev.slice(); arr[cursorIndex] = chord; return arr; });
-                          setModifiers([]);
-                          setBassSel('');
-                          setAddedFlash(true);
-                          window.setTimeout(() => setAddedFlash(false), 600);
-                          setCursorIndex(i => Math.min(11, i + 1));
-                        }
-                      }}
-                      aria-live="polite"
-                    >{addedFlash ? 'Added ✓' : 'Add'}</button>
-                  </div>
-                  <button
-                    className={`w-full sm:w-auto sm:ml-auto mt-2 sm:mt-0 px-6 py-2 text-base min-w-0 sm:min-w-[220px] rounded-lg font-semibold text-white transition-transform active:scale-[.98] active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 ${isAnalyzing ? 'bg-rose-400/70 cursor-wait' : 'bg-rose-400 hover:bg-rose-500'}`}
-                    onClick={() => {
-                      const items = parseProg(progression);
-                      const hasAdv = items.some((i) => ADVANCED_QUALITIES.some((a) => i.quality.includes(a)));
-                      if (hasAdv && !isPro) {
-                        if (typeof window !== 'undefined') window.alert('Advanced chords detected. Remove them or upgrade to Pro.');
-                        return;
-                      }
-                      startAnalyze(() => {
-                        // Run analysis without auto-scroll (analyze function has its own scroll)
-                        const res = analyzeChordProgression(progression);
-                        setResult(res);
-                        const ranked = rankKeys(progression);
-                        setKeys(ranked.slice(0,4));
-                        if (ranked.length > 0) {
-                          const mode: RomanMode = ranked[0].mode === "Major" ? "major" : "minor";
-                          const keyName = ranked[0].label.split(" ")[0];
-                          const sel = { tonic: keyName, mode } as const;
-                          setSelectedKey(sel);
-                          setRomanLine(progression.map(c => toRoman(c, sel.tonic, sel.mode, { showQuality: true, uppercase: true })));
-                        } else {
-                          setScales([]);
-                          setSelectedKey(null);
-                          setRomanLine([]);
-                        }
-                        // store-based analysis for Top3 candidates
-                        runAnalyze(progression);
-                        
-                        // Auto-scroll to result section
-                        setTimeout(() => {
-                          const resultElement = document.getElementById('result');
-                          if (resultElement) {
-                            resultElement.scrollIntoView({ 
-                              behavior: 'smooth', 
-                              block: 'start' 
-                            });
-                          }
-                        }, 100);
+                  // store-based analysis for Top3 candidates
+                  runAnalyze(progression);
+                  
+                  // Auto-scroll to result section
+                  setTimeout(() => {
+                    const resultElement = document.getElementById('result');
+                    if (resultElement) {
+                      resultElement.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
                       });
-                    }}
-                    disabled={isAnalyzing}
-                    aria-busy={isAnalyzing}
-                  >
-                    {isAnalyzing ? (
-                      <span className="inline-flex items-center gap-2">
-                        <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" aria-hidden="true">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"/>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8v4a4 4 0 0 0-4 4H4z"/>
-                        </svg>
-                        Analyzing…
-                      </span>
-                    ) : 'Analyze'}
-                  </button>
-                </div>
-              </div>
-            </div>
+                    }
+                  }, 100);
+                });
+              }}
+              disabled={isAnalyzing}
+              aria-busy={isAnalyzing}
+            >
+              {isAnalyzing ? (
+                <span className="inline-flex items-center gap-2">
+                  <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"/>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8v4a4 4 0 0 0-4 4H4z"/>
+                  </svg>
+                  Analyzing…
+                </span>
+              ) : 'Analyze'}
+            </button>
           </div>
       </section>
       <section id="result" ref={resultRef} className="ot-card">

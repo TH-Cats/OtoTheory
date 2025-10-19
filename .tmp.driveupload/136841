@@ -1,0 +1,30 @@
+module.exports = [
+"[project]/src/app/ja/privacy/layout.tsx [app-rsc] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>Layout,
+    "metadata",
+    ()=>metadata
+]);
+const metadata = {
+    alternates: {
+        canonical: "/ja/privacy",
+        languages: {
+            en: "/privacy",
+            "ja-JP": "/ja/privacy",
+            "x-default": "/privacy"
+        }
+    },
+    openGraph: {
+        locale: "ja_JP"
+    }
+};
+function Layout({ children }) {
+    return children;
+}
+}),
+];
+
+//# sourceMappingURL=src_app_ja_privacy_layout_tsx_2e402864._.js.map

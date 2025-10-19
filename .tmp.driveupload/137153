@@ -1,0 +1,30 @@
+module.exports = [
+"[project]/src/app/ja/resources/layout.tsx [app-rsc] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>Layout,
+    "metadata",
+    ()=>metadata
+]);
+const metadata = {
+    alternates: {
+        canonical: "/ja/resources",
+        languages: {
+            en: "/resources",
+            "ja-JP": "/ja/resources",
+            "x-default": "/resources"
+        }
+    },
+    openGraph: {
+        locale: "ja_JP"
+    }
+};
+function Layout({ children }) {
+    return children;
+}
+}),
+];
+
+//# sourceMappingURL=src_app_ja_resources_layout_tsx_72446856._.js.map

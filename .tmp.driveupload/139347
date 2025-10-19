@@ -1,0 +1,3 @@
+module.exports=[17397,a=>{"use strict";a.s(["default",()=>c,"metadata",()=>b]);let b={title:"Guitar Chord Library – Forms & Voicings | OtoTheory",description:"Comprehensive guitar chord library with diagrams, voicings, and fingering patterns. Find the perfect chord shape for any progression.",alternates:{canonical:"/chord-library",languages:{en:"/chord-library","ja-JP":"/ja/chord-library","x-default":"/chord-library"}},openGraph:{title:"Guitar Chord Library – Forms & Voicings",description:"Complete chord library with diagrams and fingering patterns for every situation."}};function c({children:a}){return a}}];
+
+//# sourceMappingURL=src_app_chord-library_layout_tsx_38313161._.js.map
