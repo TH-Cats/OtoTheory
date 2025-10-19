@@ -94,6 +94,7 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
             const spec = getSpecFromQuality(quality.quality);
             if (spec) setSpec(spec);
           },
+          pro: false, // Free quality
           comment: quality.commentJa,
           category: category // Use Japanese category names
         });
@@ -206,9 +207,11 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
       </div>
 
       <div>
-        <div className="text-xs opacity-70 mb-0.5">クイック ({qualityPresets.length}種類)</div>
+        <div className="text-xs opacity-70 mb-0.5">クイック ({plan === 'free' ? qualityPresets.filter(p => !p.pro).length : qualityPresets.length}種類)</div>
         <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
-          {qualityPresets.map(p => (
+          {qualityPresets
+            .filter(p => plan === 'free' ? !p.pro : true)
+            .map(p => (
             <div key={p.label} className="relative">
               {renderChip(p.label, false, p.apply, { 
                 locked: !!p.locked, 
@@ -223,7 +226,7 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
       {/* Advanced (Pro) section - only show Pro qualities */}
       {plan === 'free' ? (
         <details>
-          <summary className="cursor-pointer text-sm">Advanced (Pro) 👑</summary>
+          <summary className="cursor-pointer text-sm">高度な機能 (Pro) 👑</summary>
           <div className="mt-3 space-y-3">
             <div className="text-sm opacity-70 p-4 bg-gray-50 rounded-lg">
               Pro版では、より高度なコード品質をご利用いただけます。
@@ -232,7 +235,7 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
         </details>
       ) : (
         <details>
-          <summary className="cursor-pointer text-sm">Advanced (Pro)</summary>
+          <summary className="cursor-pointer text-sm">高度な機能 (Pro)</summary>
           <div className="mt-3 space-y-3">
             {/* Pro qualities grouped by category */}
             {Object.entries(getQualitiesByCategory('Pro')).map(([category, qualities]) => (
@@ -274,24 +277,32 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
         </div>
       )}
 
-      <div className="flex items-center justify-between">
-        <div className="text-sm">Preview: {symbol || '-'}</div>
-        <div className="flex gap-2">
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-sm font-medium text-gray-700 dark:text-gray-300">プレビュー</div>
+          <div className="text-lg font-bold text-blue-600 dark:text-blue-400">
+            {symbol || 'コードを選択してください'}
+          </div>
+        </div>
+        <div className="flex gap-2 justify-center">
           <button 
-            className="rounded border px-2 py-1.5 text-xs hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="flex items-center gap-1 rounded-lg bg-green-500 hover:bg-green-600 text-white px-4 py-2 text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={() => onPreview?.(symbol)}
             disabled={!symbol}
           >
-            ▶ Play
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M8 5v10l8-5-8-5z"/>
+            </svg>
+            再生
           </button>
           <button 
-            className="rounded border px-2 py-1.5 text-xs" 
+            className="rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" 
             onClick={() => setSpec(baseSpec)}
           >
-            Clear
+            クリア
           </button>
           <button
-            className="rounded bg-[var(--brand-primary)] text-white px-3 py-2 text-xs hover:opacity-90"
+            className="rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-2 text-sm font-medium transition-all transform hover:scale-105"
             onClick={() => {
               // Check if chord can be added
               const isPro = plan === 'pro';
@@ -322,7 +333,7 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
               }
             }}
           >
-            Add
+            追加
           </button>
         </div>
       </div>

@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/nh/App/OtoTheory/ototheory-web/src/app/ja/terms/layout.tsx"],"sourcesContent":["import type { Metadata } from \"next\";\n\nexport const metadata: Metadata = {\n  alternates: {\n    canonical: \"/ja/terms\",\n    languages: { en: \"/terms\", \"ja-JP\": \"/ja/terms\", \"x-default\": \"/terms\" },\n  },\n  openGraph: { locale: \"ja_JP\" },\n};\n\nexport default function Layout({ children }: { children: React.ReactNode }) {\n  return children;\n}\n\n\n\n"],"names":[],"mappings":";;;;;;AAEO,MAAM,WAAqB;IAChC,YAAY;QACV,WAAW;QACX,WAAW;YAAE,IAAI;YAAU,SAAS;YAAa,aAAa;QAAS;IACzE;IACA,WAAW;QAAE,QAAQ;IAAQ;AAC/B;AAEe,SAAS,OAAO,EAAE,QAAQ,EAAiC;IACxE,OAAO;AACT","debugId":null}}]
-}
