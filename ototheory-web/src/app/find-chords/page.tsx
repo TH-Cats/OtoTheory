@@ -8,7 +8,6 @@ import Fretboard from "@/components/Fretboard";
 import { OverlayProvider } from "@/state/overlay";
 import DiatonicCapoTable from "@/components/DiatonicCapoTable";
 import { useRovingTabs } from "@/hooks/useRovingTabs";
-import InfoDot from "@/components/ui/InfoDot";
 import { useAnalysisStore } from "@/store/analysisStore";
 import { getScalePitchesById } from "@/lib/scales";
 import { SCALE_CATALOG, type ScaleId } from "@/lib/scaleCatalog";
@@ -18,6 +17,11 @@ import ScaleTable from "@/components/ScaleTable";
 import { ChordFormsPopover } from "@/components/ChordFormsPopover";
 import { buildForm, type FormKind, type FormShape, type Quality } from "@/lib/chordForms";
 import SubstituteCard from "@/components/SubstituteCard";
+import { SCALE_MASTER, getScaleById, getScaleDisplayName, getScalesByCategory, getAllCategories, getCategoryDisplayName, type ScaleId as NewScaleId } from "@/lib/scalesMaster";
+import { getCategoryIcon } from "@/lib/scaleCategoryIcons";
+import ScaleInfoBody from "@/components/ScaleInfoBody";
+import { ChevronDown, ChevronRight } from "lucide-react";
+import InfoDot from "@/components/ui/InfoDot";
 
 export default function FindChordsPage() {
   return (
@@ -35,6 +39,32 @@ function FindChordsContent() {
   const [keyTonic, setKeyTonic] = useState<NoteLetter>((params.get('key') as NoteLetter) || 'C');
   const initialMode: ScaleId = (params.get('mode') === 'minor') ? 'Aeolian' : 'Ionian';
   const [selScaleId, setSelScaleId] = useState<ScaleId>(initialMode);
+
+  // 古いスケールIDを新しいスケールIDにマッピング
+  const mapOldScaleToNewId = (oldId: string): NewScaleId => {
+    const mapping: Record<string, NewScaleId> = {
+      'Ionian': 'major',
+      'Aeolian': 'naturalMinor',
+      'Dorian': 'dorian',
+      'Phrygian': 'phrygian',
+      'Lydian': 'lydian',
+      'Mixolydian': 'mixolydian',
+      'Locrian': 'locrian',
+      'MajorPentatonic': 'majPent',
+      'MinorPentatonic': 'minPent',
+      'Blues': 'bluesMinor',
+      'HarmonicMinor': 'harmonicMinor',
+      'MelodicMinor': 'melodicMinor',
+      'DiminishedWH': 'dimWholeHalf',
+      'DiminishedHW': 'dimHalfWhole',
+      'Lydianb7': 'lydianb7',
+      'Mixolydianb6': 'mixolydianb6',
+      'PhrygianDominant': 'phrygDominant',
+      'Altered': 'altered',
+      'WholeTone': 'wholeTone'
+    };
+    return mapping[oldId] || 'major';
+  };
   const isHept = useMemo(() => {
     const def = UI_SCALES.find(s => s.id === selScaleId);
     return (def?.degrees.length ?? 7) === 7;
@@ -211,17 +241,10 @@ function FindChordsContent() {
               );
             })()}
           </label>
-          <select
-            id="scale"
-            name="scale"
-            className="w-full rounded border px-3 py-2 text-sm bg-transparent"
-            value={selScaleId}
-            onChange={(e) => onPickScale(e.target.value as ScaleId)}
-          >
-            {UI_SCALES.map((s) => (
-              <option key={s.id} value={s.id}>{s.display.en}</option>
-            ))}
-          </select>
+          <CategoryBasedScalePicker
+            selectedScaleId={selScaleId}
+            onScaleSelect={onPickScale}
+          />
         </div>
         </div>
       </section>
@@ -328,6 +351,8 @@ function FindChordsContent() {
       <section className="ot-card ad-placeholder" aria-label="Ad">
         <AdSlot page="find_chords" format="horizontal" />
       </section>
+      
+      
       {formsPop && (
         <ChordFormsPopover
           at={formsPop.at}
@@ -341,6 +366,7 @@ function FindChordsContent() {
           onClose={()=> setFormsPop(null)}
         />
       )}
+
     </main>
     </OverlayProvider>
   );
@@ -357,5 +383,117 @@ function detectQualityFromPcs(pcs:number[]): 'maj'|'min'|'dom7'|'m7b5'|'dim' {
   if (set.has(0) && set.has(3) && set.has(6) && set.has(10)) return 'm7b5';
   return 'maj';
 }
+
+// Category-based Scale Picker Component
+function CategoryBasedScalePicker({ 
+  selectedScaleId, 
+  onScaleSelect
+}: { 
+  selectedScaleId: ScaleId; 
+  onScaleSelect: (scaleId: ScaleId) => void; 
+}) {
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['Basic']));
+  
+  const categories = getAllCategories();
+  
+  const toggleCategory = (category: string) => {
+    setExpandedCategories(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(category)) {
+        newSet.delete(category);
+      } else {
+        newSet.add(category);
+      }
+      return newSet;
+    });
+  };
+
+  return (
+    <div className="space-y-2">
+      {categories.map(category => {
+        const scales = getScalesByCategory(category);
+        const isExpanded = expandedCategories.has(category);
+        const categoryIcon = getCategoryIcon(category);
+        const IconComponent = categoryIcon.icon;
+        
+        return (
+          <div key={category} className="border rounded-lg">
+            <button
+              className="w-full flex items-center justify-between p-3 text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              onClick={() => toggleCategory(category)}
+            >
+              <div className="flex items-center gap-3">
+                <div className={`p-2 rounded-lg ${categoryIcon.bgColor}`}>
+                  <IconComponent className={`w-5 h-5 ${categoryIcon.color}`} />
+                </div>
+                <div>
+                  <div className="font-medium">{getCategoryDisplayName(category, 'en')}</div>
+                  <div className="text-sm text-gray-500">{scales.length} scales</div>
+                </div>
+              </div>
+              {isExpanded ? <ChevronDown size={20} /> : <ChevronRight size={20} />}
+            </button>
+            
+            {isExpanded && (
+              <div className="border-t p-2 space-y-1">
+                {scales.map(scale => {
+                  const oldScaleId = mapOldScaleToNewId(scale.id);
+                  const isSelected = selectedScaleId === scale.id;
+                  
+                  return (
+                    <div key={scale.id} className="relative inline-block">
+                      <button
+                        className={`flex-1 text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center gap-2 ${
+                          isSelected 
+                            ? 'bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100' 
+                            : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+                        }`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onScaleSelect(scale.id as ScaleId);
+                        }}
+                      >
+                        <span>{(() => {
+                          // 言語判定（URLパスベース）
+                          const isJapanese = typeof window !== 'undefined' && window.location.pathname.startsWith('/ja/');
+                          const language = isJapanese ? 'ja' : 'en';
+                          return getScaleDisplayName(scale, language);
+                        })()}</span>
+                      </button>
+                      <div className="absolute -top-1 -right-1">
+                        <InfoDot
+                          title={(() => {
+                            const isJapanese = typeof window !== 'undefined' && window.location.pathname.startsWith('/ja/');
+                            const language = isJapanese ? 'ja' : 'en';
+                            return getScaleDisplayName(scale, language);
+                          })()}
+                          placement="top"
+                          trigger={
+                            <button
+                              type="button"
+                              className="w-6 h-6 rounded-full bg-amber-50/90 hover:bg-amber-100 ring-1 ring-amber-300/60 shadow-sm flex items-center justify-center"
+                              aria-label="Scale info"
+                            >
+                              <svg className="w-4 h-4 text-amber-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"/>
+                              </svg>
+                            </button>
+                          }
+                        >
+                          <ScaleInfoBody scaleId={scale.id} />
+                        </InfoDot>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 
 

@@ -14,11 +14,14 @@ import { useAnalysisStore } from "@/store/analysisStore";
 import { formatCadenceLabel, cadenceTooltip, formatCadenceShort } from "@/lib/ui/cadence";
 import type { CadenceType } from "@/lib/ui/cadence";
 import SectionTitle from "@/components/SectionTitle";
-import InfoDot from "@/components/ui/InfoDot";
 import { H2, H3 } from "@/components/ui/Heading";
+import InfoDot from "@/components/ui/InfoDot";
  
 import { inferScaleIdFromLabel, scaleNotes, SCALE_DEFS, type ScaleId } from "@/lib/theory/scales";
 import ScaleChip from "@/components/ScaleChip";
+import { SCALE_MASTER, getScaleById, getScaleDisplayName, type ScaleId as NewScaleId } from "@/lib/scalesMaster";
+import { getCategoryIcon } from "@/lib/scaleCategoryIcons";
+import ScaleInfoBody from "@/components/ScaleInfoBody";
 import { analyzeChordProgression } from "@/lib/music-theory";
 import {
   ADVANCED_QUALITIES,
@@ -125,6 +128,32 @@ export default function FindKeyPage() {
   const [formsPop, setFormsPop] = useState<null | { at:{x:number;y:number}; rootPc:number; quality:Quality }>(null);
   const [formShape, setFormShape] = useState<FormShape | null>(null);
   const resetForms = useCallback(() => { setFormsPop(null); setFormShape(null); }, []);
+
+  // 古いスケールIDを新しいスケールIDにマッピング
+  const mapOldScaleToNewId = (oldId: string): NewScaleId => {
+    const mapping: Record<string, NewScaleId> = {
+      'Ionian': 'major',
+      'Aeolian': 'naturalMinor',
+      'Dorian': 'dorian',
+      'Phrygian': 'phrygian',
+      'Lydian': 'lydian',
+      'Mixolydian': 'mixolydian',
+      'Locrian': 'locrian',
+      'MajorPentatonic': 'majPent',
+      'MinorPentatonic': 'minPent',
+      'Blues': 'bluesMinor',
+      'HarmonicMinor': 'harmonicMinor',
+      'MelodicMinor': 'melodicMinor',
+      'DiminishedWH': 'dimWholeHalf',
+      'DiminishedHW': 'dimHalfWhole',
+      'Lydianb7': 'lydianb7',
+      'Mixolydianb6': 'mixolydianb6',
+      'PhrygianDominant': 'phrygDominant',
+      'Altered': 'altered',
+      'WholeTone': 'wholeTone'
+    };
+    return mapping[oldId] || 'major';
+  };
   const isHeptatonic = useMemo(() => {
     const t = selectedScale?.type as any;
     const ivs = t ? (SCALE_INTERVALS as any)[t] : null;
@@ -1037,7 +1066,9 @@ export default function FindKeyPage() {
               try {
                 await player.resume();
                 const midis = chordToMidi(symbol); // 既存ユーティリティ
-                player.playChord(midis, 'lightStrum', 300);
+                if (midis) {
+                  player.playChord(midis, 'lightStrum', 300);
+                }
               } catch {}
             }}
             onBlock={(reason, quality) => {
@@ -1341,42 +1372,58 @@ export default function FindKeyPage() {
               </div>
               {/* === Scale === */}
               <div className="result-block">
-                <H3>
-                  <span className="flex items-center gap-2">
-                    <span>Scale</span>
-                    {(() => {
-                      const curId = (selectedScale?.type as any) ?? (scaleCandidates?.[0]?.type as any) ?? 'Ionian';
-                      const cur = SCALE_CATALOG.find(s => s.id === (curId as any));
-                      if (!cur) return null;
-                      const notesInC = getScalePitchesById(0, cur.id).map(pc => PITCHES[pc]).join(' ');
-                      return (
-                        <InfoDot title={cur.display.en} className="ml-1" linkHref="/resources/glossary" linkLabel="Glossary">
-                          <div className="text-sm">
-                            <div className="mb-1"><b>Degrees:</b> {cur.degrees.join(' ')}</div>
-                            <div className="mb-1"><b>Notes in C:</b> {notesInC}</div>
-                            {cur.info?.oneLiner && (<div className="mb-1"><b>About:</b> {cur.info.oneLiner}</div>)}
-                          </div>
-                        </InfoDot>
-                      );
-                    })()}
-                  </span>
-                </H3>
+                <H3>Scale</H3>
                 <div className="chip-row mb-2" role="tablist" aria-label="Scale candidates">
                   {scaleCandidates.map((s, idx) => {
                     const type = normalizeScaleId(s.type as any);
                     const active = selectedScale?.type === type && selectedScale?.root === s.root;
-                    const label = `${PITCHES[s.root]} ${scaleTypeLabel(type as any)}`;
+                    const newScaleId = mapOldScaleToNewId(s.type as string);
+                    const scaleInfo = getScaleById(newScaleId);
+                    // 言語判定（URLパスベース）
+                    const isJapanese = typeof window !== 'undefined' && window.location.pathname.startsWith('/ja/');
+                    const language = isJapanese ? 'ja' : 'en';
+                    const label = `${PITCHES[s.root]} ${scaleInfo ? getScaleDisplayName(scaleInfo, language) : scaleTypeLabel(type as any)}`;
                     return (
-                      <button
-                        key={`${label}-${idx}`}
-                        role="tab"
-                        aria-selected={active}
-                        className={["chip", "chip--key", active ? "chip--active" : ""].join(" ")}
-                        onClick={() => { selectScale(s); track('scale_pick', { page:'find-key', scale: s.type, key: PITCHES[s.root] }); }}
-                        data-roving="item"
-                      >
-                        {label} {Math.round(s.score)}%
-                      </button>
+                      <div key={`${label}-${idx}`} className="relative inline-block">
+                        <button
+                          role="tab"
+                          aria-selected={active}
+                          className={["chip", "chip--key", active ? "chip--active" : "", "flex items-center gap-2"].join(" ")}
+                          onClick={(e) => { 
+                            e.stopPropagation();
+                            selectScale(s); 
+                            track('scale_pick', { page:'find-key', scale: s.type, key: PITCHES[s.root] }); 
+                          }}
+                          data-roving="item"
+                        >
+                          <span>{label} {Math.round(s.score)}%</span>
+                        </button>
+                        {scaleInfo && (
+                          <div className="absolute -top-1 -right-1">
+                            <InfoDot
+                              title={(() => {
+                                const isJapanese = typeof window !== 'undefined' && window.location.pathname.startsWith('/ja/');
+                                const language = isJapanese ? 'ja' : 'en';
+                                return getScaleDisplayName(scaleInfo, language);
+                              })()}
+                              placement="top"
+                              trigger={
+                                <button
+                                  type="button"
+                                  className="w-6 h-6 rounded-full bg-amber-50/90 hover:bg-amber-100 ring-1 ring-amber-300/60 shadow-sm flex items-center justify-center"
+                                  aria-label="Scale info"
+                                >
+                                  <svg className="w-4 h-4 text-amber-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"/>
+                                  </svg>
+                                </button>
+                              }
+                            >
+                              <ScaleInfoBody scaleId={newScaleId} />
+                            </InfoDot>
+                          </div>
+                        )}
+                      </div>
                     );
                   })}
                 </div>
@@ -1825,6 +1872,8 @@ export default function FindKeyPage() {
           onClose={() => setToastConfig(null)}
         />
       )}
+
+
     </main>
   );
 }
@@ -1849,6 +1898,5 @@ const Chip: React.FC<{label:string; onClick?:()=>void; disabled?:boolean; active
 );
 
 // moved to components/ui/InfoDot
-
 
 

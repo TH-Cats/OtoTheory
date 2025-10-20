@@ -57,13 +57,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   // Get initial isPro value from cookie for SSR consistency
-  const initialIsPro = cookies().get('isPro')?.value === '1';
+  const cookieStore = await cookies();
+  const initialIsPro = cookieStore.get('isPro')?.value === '1';
   
   return (
     <html lang="en">
