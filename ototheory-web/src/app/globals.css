@@ -169,8 +169,8 @@ button.chip{
 button.chip.chip--active{border-color:var(--chip-active-bc);background:var(--chip-active-bg)}
 button.chip.chip--disabled{opacity:.45;pointer-events:none;cursor:not-allowed}
 
-/* Chips（Degrees/Names/Reset を同一寸法に） */
-.chip{display:inline-flex;align-items:center;gap:.5rem;padding:.375rem .75rem;border-radius:9999px;font-size:.875rem;border:1px solid var(--line);background:var(--surface)}
+/* iOS風Chips：より丸みを帯びたデザイン */
+.chip{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .875rem;border-radius:9999px;font-size:.875rem;border:1px solid rgba(0,0,0,0.1);background:var(--surface);transition:all 0.2s ease}
 .chip--on{background:rgba(16,185,129,.1);border-color:#10b981}
 /* a11y: focus-visible ring with high contrast */
 .chip:focus-visible, .btn-ghost:focus-visible, button:focus-visible, [role="tab"]:focus-visible, [data-roving="item"]:focus-visible{
@@ -187,9 +187,9 @@ button.chip.chip--disabled{opacity:.45;pointer-events:none;cursor:not-allowed}
 .ot-page{ max-width:64rem; margin-inline:auto; padding-inline:1rem; }
 @media (min-width:768px){ .ot-page{ padding-inline:1.5rem } }
 
-/* セクション間の縦リズム：24 / 32 px */
-.ot-stack{ display:flex; flex-direction:column; gap: var(--stack-gap, 1.5rem); }
-@media (min-width:768px){ .ot-stack{ gap: var(--stack-gap, 2rem) } }
+/* iOS風セクション間隔：より広いスペーシング */
+.ot-stack{ display:flex; flex-direction:column; gap: var(--stack-gap, 2rem); }
+@media (min-width:768px){ .ot-stack{ gap: var(--stack-gap, 2.5rem) } }
 
 /* === tight stack: gap=12px (SP/MDとも) ======================= */
 .ot-stack--tight { gap: .75rem !important; }
@@ -198,9 +198,9 @@ button.chip.chip--disabled{opacity:.45;pointer-events:none;cursor:not-allowed}
 /* (removed conflicting earlier page-scoped overrides) */
 
 /* === Page-scoped rhythm via token (SSOT) ===================== */
-main[data-page="find-key"]{ --stack-gap: 6px; }
-main[data-page="find-chords"]{ --stack-gap: 6px; }
-main[data-page="analyze"]{ --stack-gap: 6px; }
+main[data-page="find-key"]{ --stack-gap: 1.5rem; }
+main[data-page="find-chords"]{ --stack-gap: 1.5rem; }
+main[data-page="analyze"]{ --stack-gap: 1.5rem; }
 /* stray margin 打ち消し（gap 主導） */
 main.ot-page.ot-stack[data-page="find-key"] > * { margin-block: 0 !important; }
 main.ot-page.ot-stack[data-page="find-chords"] > * { margin-block: 0 !important; }
@@ -210,14 +210,15 @@ main.ot-page.ot-stack[data-page="find-key"] > .ot-card,
 main.ot-page.ot-stack[data-page="find-chords"] > .two-col,
 main.ot-page.ot-stack[data-page="find-chords"] > .ot-card { overflow: hidden; }
 
-/* カード：角丸16px + 1px実線ボーダー + 背景 */
+/* iOS風カード：角丸20px + より控えめなボーダー + 背景 */
 .ot-card{
-  border-radius:16px;
-  border:1px solid var(--border-color, var(--line));
+  border-radius:20px;
+  border:1px solid var(--border-color, rgba(0,0,0,0.1));
   background:var(--card-bg, var(--surface));
-  padding:1rem;
+  padding:1.25rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-@media (min-width:768px){ .ot-card{ padding:1.5rem } }
+@media (min-width:768px){ .ot-card{ padding:1.75rem } }
 
 .ot-h1{ font-weight:700; letter-spacing:-.01em; font-size:24px; line-height:34px; margin:0 }
 @media (min-width:768px){ .ot-h1{ font-size:28px; line-height:34px } }
@@ -229,7 +230,9 @@ main.ot-page.ot-stack[data-page="find-chords"] > .ot-card { overflow: hidden; }
 /* Key chips should size to content (override fixed chip width) */
 .chip--key{white-space:nowrap;padding:0 10px !important;gap:6px}
 
-.btn-primary{height:40px;padding:0 14px;border-radius:10px;background:#ff6b6b;color:#fff}
+/* iOS風ボタン：より大きなパディングと丸み */
+.btn-primary{height:48px;padding:0 20px;border-radius:12px;background:#007AFF;color:#fff;font-weight:600;transition:all 0.2s ease;border:none;cursor:pointer}
+.btn-primary:hover{background:#0056CC;transform:translateY(-1px)}
 
 /* Root/Quick rows */
 .chips-row{display:flex;flex-wrap:wrap;gap:var(--chip-gap)}

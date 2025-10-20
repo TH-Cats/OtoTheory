@@ -835,10 +835,10 @@ export default function FindKeyPage() {
   };
   return (
     <main ref={exportRef as any} className="ot-page ot-stack" data-page="find-key">
-      {/* Progression card: full-width at top */}
-      <section id="progression" className={"ot-card prog-compact"}>
-          <div className="flex items-center justify-between gap-4 sm:gap-3 mb-1 sm:mb-2">
-            <div className="flex items-center gap-2">
+      {/* Progression card: iOS風シンプルデザイン */}
+      <section id="progression" className={"ot-card"}>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
               <H2 className="mb-0 text-left">{isJapanese ? "コード進行を作る" : "Build progression"}</H2>
               <InfoDot
                 title="Build Progression"
@@ -848,11 +848,11 @@ export default function FindKeyPage() {
                 }
               />
             </div>
-          <div className="flex flex-wrap items-center gap-2 relative">
-              {/* Reset, Sketches */}
+          <div className="flex items-center gap-3">
+              {/* Reset, Sketches - iOS風ボタン */}
             <button
                 type="button"
-                className="btn-ghost btn-reset chip-pressable text-sm px-3 py-1 inline-flex items-center gap-1"
+                className="chip text-sm px-4 py-2 inline-flex items-center gap-2"
                 title="Reset progression"
                 onClick={() => {
                   setSlots(Array(12).fill(""));
@@ -872,7 +872,7 @@ export default function FindKeyPage() {
               </button>
               <button
                 type="button"
-                className="chip-pressable inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs border"
+                className="chip inline-flex items-center gap-2 px-4 py-2"
                 title="Show sketches"
                 onClick={() => setShowSketchList(v=>!v)}
                 aria-expanded={showSketchList}
@@ -910,11 +910,11 @@ export default function FindKeyPage() {
               {/* スペース */}
               <div className="w-4" aria-hidden="true"></div>
               
-              {/* 右グループ: Playback controls */}
-              <div className="inline-flex items-center gap-2">
+              {/* iOS風再生コントロール */}
+              <div className="flex items-center gap-3">
                 <button
                   type="button"
-                  className="chip-pressable text-sm px-3 py-1.5 inline-flex items-center gap-1.5 rounded-lg border"
+                  className="chip px-4 py-2 inline-flex items-center gap-2"
                   title={isPlaying ? "Stop playback" : "Play progression"}
                   onClick={togglePlayback}
                   disabled={progression.length === 0}
@@ -936,8 +936,8 @@ export default function FindKeyPage() {
                     </>
                   )}
                 </button>
-                <div className="inline-flex items-center gap-1.5">
-                  <label htmlFor="bpm-input" className="text-xs opacity-70">BPM:</label>
+                <div className="flex items-center gap-2">
+                  <label htmlFor="bpm-input" className="text-sm font-medium">BPM:</label>
                   <input
                     id="bpm-input"
                     type="number"
@@ -945,14 +945,14 @@ export default function FindKeyPage() {
                     max="240"
                     value={bpm}
                     onChange={(e) => setBpm(Math.max(40, Math.min(240, parseInt(e.target.value) || 120)))}
-                    className="w-16 px-2 py-1 text-sm rounded border bg-transparent"
+                    className="w-20 px-3 py-1 text-sm rounded-lg border bg-transparent"
                     disabled={isPlaying}
                   />
                 </div>
               </div>
               
               <select
-                className="chip"
+                className="chip px-4 py-2"
                 aria-label="Instrument"
                 defaultValue={(typeof window!=="undefined" ? (localStorage.getItem('ot-instrument') || 'acoustic_guitar_steel') : 'acoustic_guitar_steel') as string}
                 onChange={async (e)=>{ const v = e.currentTarget.value as any; await player.setInstrument(v); }}
@@ -969,8 +969,8 @@ export default function FindKeyPage() {
           </div>
           {/* 上段の旧進行チップ行は廃止 */}
 
-          {/* 12-slot grid（番号 or コード）。クリックでカーソル、filledはクリックで再生・×で削除。D&Dで入れ替え */}
-          <div className="prog-slots mt-2 flex flex-wrap gap-1" aria-label="Progression slots">
+          {/* iOS風12スロットグリッド */}
+          <div className="prog-slots mt-6 flex flex-wrap gap-3" aria-label="Progression slots">
             {Array.from({ length: 12 }).map((_, i) => {
               const filled = Boolean(slots[i]);
               const tone = 16; // emerald hue base
@@ -983,20 +983,19 @@ export default function FindKeyPage() {
                   key={`slot-${i}`}
                   data-slot-index={i}
                   className={[
-                    "inline-flex items-center justify-center rounded border text-xs select-none relative chip-pressable",
-                    filled ? "bg-black/5 dark:bg-white/10" : "bg-transparent",
-                    active ? "ring-2 ring-emerald-400/60" : "",
+                    "inline-flex items-center justify-center rounded-xl border text-sm select-none relative chip-pressable",
+                    filled ? "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800" : "bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700",
+                    active ? "ring-2 ring-blue-400/60" : "",
                     isCurrentlyPlaying ? "ring-4 ring-blue-500/80 shadow-lg" : "",
                     dragIndex === i ? "opacity-50 scale-105" : "",
                     touchDragTarget === i ? "ring-2 ring-blue-400" : ""
                   ].join(" ")}
                   style={{ 
-                    padding: '6px 10px', 
-                    minWidth: 72, 
-                    minHeight: 36, 
+                    padding: '12px 16px', 
+                    minWidth: 80, 
+                    minHeight: 48, 
                     background: filled ? undefined : bg, 
-                    borderColor: 'var(--line)',
-                    transition: 'opacity 0.15s, transform 0.15s, box-shadow 0.15s',
+                    transition: 'all 0.2s ease',
                     touchAction: filled ? 'none' : 'auto'
                   }}
                   onClick={() => { if (filled) { playChordSymbol(slots[i]); } else { setCursorIndex(i); } }}
@@ -1008,14 +1007,14 @@ export default function FindKeyPage() {
                   onTouchMove={(e) => handleTouchMoveDrag(e, i)}
                   onTouchEnd={handleTouchEndDrag}
                 >
-                  {/* corner numbering (always visible) */}
-                  <span className="absolute left-1 top-1 text-[10px] opacity-70 select-none pointer-events-none">{String(i+1)}</span>
+                  {/* iOS風番号表示 */}
+                  <span className="absolute left-2 top-2 text-xs opacity-60 select-none pointer-events-none font-medium">{String(i+1)}</span>
                   {filled ? (
                     <>
                       <span>{slots[i]}</span>
                 <button
                   aria-label="Remove chord"
-                        className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-black/50 text-white text-[10px] leading-4 hover:bg-black/70"
+                        className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-red-500 text-white text-xs leading-6 hover:bg-red-600 transition-colors"
                         onClick={(e)=>{ e.stopPropagation(); removeSlot(i); }}
                 >×</button>
                     </>
@@ -1027,10 +1026,10 @@ export default function FindKeyPage() {
           </section>
       
       {/* Sketch Library セクションはドロップダウンに移行 */}
-      {/* Choose chords card: full-width below */}
-      <section id="choose" ref={rightRef} className="ot-card right-panel">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-2">
+      {/* Choose chords card: iOS風シンプルデザイン */}
+      <section id="choose" ref={rightRef} className="ot-card">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
               <H2 className="mb-0 text-left">{isJapanese ? "コードを選ぶ" : "Choose chords"}</H2>
               <InfoDot
                 title="Choose Chords"
@@ -1040,10 +1039,10 @@ export default function FindKeyPage() {
                 }
               />
             </div>
-            {/* Preset button moved from Build progression */}
+            {/* iOS風プリセットボタン */}
             <button
               type="button"
-              className="chip-pressable text-sm px-3 py-1 inline-flex items-center gap-1 rounded-lg border"
+              className="chip px-4 py-2 inline-flex items-center gap-2"
               title="Load preset progression"
               onClick={() => setShowPresetPopup(true)}
             >
@@ -1098,10 +1097,10 @@ export default function FindKeyPage() {
             }}
           />
           
-          {/* Analyze button */}
-          <div className="mt-4">
+          {/* iOS風分析ボタン */}
+          <div className="mt-6">
                     <button
-              className={`w-full px-6 py-2 text-base rounded-lg font-semibold text-white transition-transform active:scale-[.98] active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 ${isAnalyzing ? 'bg-rose-400/70 cursor-wait' : 'bg-rose-400 hover:bg-rose-500'}`}
+              className={`w-full px-6 py-3 text-base rounded-xl font-semibold text-white transition-all duration-200 active:scale-[.98] active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 ${isAnalyzing ? 'bg-gray-400 cursor-wait' : 'bg-blue-500 hover:bg-blue-600 shadow-lg'}`}
                     onClick={() => {
                       const items = parseProg(progression);
                       const hasAdv = items.some((i) => ADVANCED_QUALITIES.some((a) => i.quality.includes(a)));
@@ -1157,12 +1156,12 @@ export default function FindKeyPage() {
           </div>
       </section>
       <section id="result" ref={resultRef} className="ot-card">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-6">
           <H2 className="text-left mb-0">{isJapanese ? "結果" : "Result"}</H2>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <button
               type="button"
-              className="chip-pressable inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm border"
+              className="chip px-4 py-2 inline-flex items-center gap-2"
               onClick={() => setShowNamePrompt(true)}
               title="Save sketch"
             >
@@ -1434,10 +1433,10 @@ export default function FindKeyPage() {
         )}
       </section>
 
-      {/* Tools セクション（Fretboard以下） */}
-      <section className="ot-card mt-2">
+      {/* Tools セクション（iOS風シンプルデザイン） */}
+      <section className="ot-card">
         <H2>{isJapanese ? "ツール" : "Tools"}</H2>
-        <div className="space-y-4">
+        <div className="space-y-6">
               {/* === Fretboard === */}
               <div className="result-block">
                 <H3
