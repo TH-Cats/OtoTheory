@@ -80,12 +80,12 @@ export default function QualityInfo({ title, body, isOpen, onClose }: QualityInf
           
           <div className="p-3 overflow-y-auto max-h-[50vh]">
             {sections.length > 0 ? (
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {sections.map((section, index) => (
-                  <div key={index} className="space-y-1">
+                  <div key={index} className="space-y-[3px]">
                     <div className="flex items-center gap-1">
-                      <span className="text-orange-500 font-bold text-xs">•</span>
-                      <h4 className="font-bold text-orange-500 text-xs">{section.title}</h4>
+                      <span className="text-orange-500 font-bold text-[11px]">•</span>
+                      <h4 className="font-extrabold text-orange-500 text-[13px]">{section.title}</h4>
                     </div>
                     <p className="text-gray-700 dark:text-gray-300 text-xs leading-relaxed pl-4">
                       {section.content}

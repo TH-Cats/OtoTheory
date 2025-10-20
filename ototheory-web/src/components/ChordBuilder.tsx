@@ -36,6 +36,8 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
   }), []);
   const [spec, setSpec] = useState<ChordSpec>(baseSpec);
   const ctx: ChordContext = { ...DEFAULT_CONTEXT, plan };
+  // Locale: auto-detect from pathname (/ja/* -> ja)
+  const locale: 'ja' | 'en' = typeof window !== 'undefined' && window.location.pathname.startsWith('/ja') ? 'ja' : 'en';
   
   // Session state for 11th warning (show once per session)
   const [has11thWarningShown, setHas11thWarningShown] = useState(false);
@@ -134,7 +136,7 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
             if (spec) setSpec(spec);
           },
           pro: false, // Free quality
-          comment: quality.commentEn, // Use English comments for English version
+          comment: getQualityComment(quality.quality, locale),
           category: category
         });
       });
@@ -165,7 +167,7 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
             if (spec) setSpec(spec);
           },
           pro: true,
-          comment: quality.commentEn, // Use English comments for English version
+          comment: getQualityComment(quality.quality, locale),
           category: category
         });
       });
