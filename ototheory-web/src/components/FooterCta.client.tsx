@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import AppleIcon from '@/components/ui/AppleIcon';
+import PhoneIcon from '@/components/ui/PhoneIcon';
 import { useCtaMessages } from '@/hooks/useCtaMessages';
 
 /**
@@ -18,7 +18,7 @@ export default function FooterCta() {
         href="/ios-coming-soon"
         className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-gradient-to-r from-purple-600 to-blue-600 hover:opacity-90 text-white rounded-lg transition-opacity relative"
       >
-        <AppleIcon />
+        <PhoneIcon />
         <span>{CTA_MESSAGES.footer.button}</span>
         <span className="ml-1 px-2 py-0.5 text-xs font-bold bg-yellow-400 text-black rounded">
           Coming Soon
