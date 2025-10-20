@@ -24,6 +24,7 @@ const ProBadge = () => (
 export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPreview }: Props){
   // Debug: Log plan value
   console.log('[debug] plan in ChordBuilder:', plan);
+  console.log('[debug] Slash On buttons should be disabled for plan:', plan);
   const baseSpec: ChordSpec = useMemo(() => ({
     root: 'C',
     family: 'maj',
@@ -365,6 +366,8 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
                   }
                   setSpec({ ...spec, slash: undefined });
                 }}
+                disabled={plan === 'free'}
+                title={plan === 'free' ? 'Try Pro features on iOS!' : undefined}
               >
                 Clear
               </button>
@@ -386,6 +389,8 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
                     }
                     setSpec({ ...spec, slash: bassNote });
                   }}
+                  disabled={plan === 'free'}
+                  title={plan === 'free' ? 'Try Pro features on iOS!' : undefined}
                 >
                   {bassNote}
                 </button>
