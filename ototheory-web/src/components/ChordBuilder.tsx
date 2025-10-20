@@ -329,16 +329,11 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
                       return (
                         <div key={quality.quality} className="relative">
                           {renderChip(qualityLabel, false, () => {
-                            if (plan === 'free') {
-                              // Show iOS promotion for free users
-                              onBlock?.('pro_quality', quality.quality);
-                              return;
-                            }
-                            const spec = getSpecFromQuality(quality.quality);
-                            if (spec) setSpec(spec);
+                            // Pro qualities should not be clickable for free users
+                            console.log('Pro quality clicked:', quality.quality, 'Plan:', plan);
                           }, { 
                             comment: quality.commentEn,
-                            locked: plan === 'free',
+                            locked: true, // Always locked for Pro qualities in Web version
                             showProBadge: false // Remove crown from individual chips
                           })}
                         </div>
