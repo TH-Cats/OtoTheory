@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "iOS App Coming Soon – OtoTheory",
-  description: "OtoTheory iOS app with Pro features is coming soon. Try the web version now for free!",
+  title: "iOSアプリ近日公開 – OtoTheory",
+  description: "OtoTheoryのPro機能を搭載したiOSアプリが近日公開予定です。今すぐ無料でWeb版をお試しください！",
 };
 
 export default function iOSComingSoonPage() {
@@ -12,56 +12,56 @@ export default function iOSComingSoonPage() {
       {/* Header */}
       <section className="ot-card text-center py-10" style={{background: 'linear-gradient(90deg, var(--brand-primary), var(--brand-secondary))'}}>
         <div className="text-6xl mb-4">📱</div>
-        <h1 className="text-3xl font-bold text-white mb-3">iOS App Coming Soon</h1>
+        <h1 className="text-3xl font-bold text-white mb-3">iOSアプリ近日公開</h1>
         <p className="text-lg text-white/90 max-w-xl mx-auto">
-          We&apos;re working hard to bring OtoTheory Pro to iOS. Stay tuned!
+          OtoTheory ProをiOSにてお届けするため、鋭意開発中です。お楽しみに！
         </p>
       </section>
 
       {/* What to Expect */}
       <section className="ot-card">
-        <h2 className="text-xl font-semibold mb-4">What to Expect in iOS Pro</h2>
+        <h2 className="text-xl font-semibold mb-4">iOS Proで期待できる機能</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
           <div className="flex items-start gap-2">
             <span className="text-purple-600 dark:text-purple-400">★</span>
             <div>
-              <p className="font-semibold">5-Track MIDI Export (SMF Type-1)</p>
-              <p className="opacity-80">Guitar, Bass, Scale Guide×2, Guide Tones</p>
+              <p className="font-semibold">5トラックMIDIエクスポート（SMF Type-1）</p>
+              <p className="opacity-80">ギター、ベース、スケールガイド×2、ガイドトーン</p>
             </div>
           </div>
           <div className="flex items-start gap-2">
             <span className="text-purple-600 dark:text-purple-400">★</span>
             <div>
-              <p className="font-semibold">Section Markers & Arrangements</p>
-              <p className="opacity-80">Export song structure directly to your DAW</p>
+              <p className="font-semibold">セクションマーカー＆アレンジメント</p>
+              <p className="opacity-80">楽曲構造をDAWに直接エクスポート</p>
             </div>
           </div>
           <div className="flex items-start gap-2">
             <span className="text-purple-600 dark:text-purple-400">★</span>
             <div>
-              <p className="font-semibold">50 Genre-Specific Presets</p>
-              <p className="opacity-80">Pop, Rock, Jazz, Blues, R&amp;B/Soul, Acoustic</p>
+              <p className="font-semibold">50種類のジャンル別プリセット</p>
+              <p className="opacity-80">ポップ、ロック、ジャズ、ブルース、R&amp;B/ソウル、アコースティック</p>
             </div>
           </div>
           <div className="flex items-start gap-2">
             <span className="text-purple-600 dark:text-purple-400">★</span>
             <div>
-              <p className="font-semibold">Advanced Voicings & Alterations</p>
-              <p className="opacity-80">7♭9, 7#9, 7#11, 13th, slash chords</p>
+              <p className="font-semibold">高度なボイシング＆オルタレーション</p>
+              <p className="opacity-80">7♭9、7#9、7#11、13th、スラッシュコード</p>
             </div>
           </div>
           <div className="flex items-start gap-2">
             <span className="text-purple-600 dark:text-purple-400">★</span>
             <div>
-              <p className="font-semibold">Guide Tone Track for Improv</p>
-              <p className="opacity-80">3rd/7th melodic line to guide solos</p>
+              <p className="font-semibold">即興演奏用ガイドトーントラック</p>
+              <p className="opacity-80">3rd/7thのメロディックラインでソロをガイド</p>
             </div>
           </div>
           <div className="flex items-start gap-2">
             <span className="text-purple-600 dark:text-purple-400">★</span>
             <div>
-              <p className="font-semibold">Unlimited Cloud Projects</p>
-              <p className="opacity-80">Seamless sync across iPhone, iPad, Mac</p>
+              <p className="font-semibold">無制限クラウドプロジェクト</p>
+              <p className="opacity-80">iPhone、iPad、Mac間でシームレス同期</p>
             </div>
           </div>
         </div>
@@ -69,81 +69,81 @@ export default function iOSComingSoonPage() {
 
       {/* Meanwhile */}
       <section className="ot-card text-center">
-        <h2 className="text-xl font-semibold mb-3">Meanwhile, Try the Web Version!</h2>
+        <h2 className="text-xl font-semibold mb-3">その間、Web版をお試しください！</h2>
         <p className="mb-6 opacity-90">
-          OtoTheory&apos;s core features are available now on the web, completely free.
+          OtoTheoryのコア機能は、今すぐWebで無料でご利用いただけます。
         </p>
         <div className="space-y-3">
           <Link 
             href="/chord-progression" 
             className="inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold hover:opacity-90 transition-opacity"
           >
-            🌐 Try Web Version (Free)
+            🌐 Web版をお試し（無料）
           </Link>
-          <p className="text-sm opacity-70">No signup required • Works on any device</p>
+          <p className="text-sm opacity-70">登録不要 • あらゆるデバイスで動作</p>
         </div>
       </section>
 
       {/* Web Features */}
       <section className="ot-card">
-        <h2 className="text-xl font-semibold mb-4">Available Now on Web (Free)</h2>
+        <h2 className="text-xl font-semibold mb-4">Web版で今すぐ利用可能（無料）</h2>
         <ul className="space-y-2 text-sm">
           <li className="flex items-start gap-2">
             <span>✅</span>
-            <span><strong>Find Chords</strong> - Discover chords from any key &amp; scale</span>
+            <span><strong>コードを探す</strong> - 任意のキー・スケールからコードを発見</span>
           </li>
           <li className="flex items-start gap-2">
             <span>✅</span>
-            <span><strong>Visual Fretboard</strong> - Two-layer display (scales + chords)</span>
+            <span><strong>ビジュアルフレットボード</strong> - 2層表示（スケール + コード）</span>
           </li>
           <li className="flex items-start gap-2">
             <span>✅</span>
-            <span><strong>Capo Suggestions</strong> - Top 2 capo positions</span>
+            <span><strong>カポ提案</strong> - 上位2つのカポ位置</span>
           </li>
           <li className="flex items-start gap-2">
             <span>✅</span>
-            <span><strong>Build Progressions</strong> - Up to 12 chords</span>
+            <span><strong>コード進行を作る</strong> - 最大12コード</span>
           </li>
           <li className="flex items-start gap-2">
             <span>✅</span>
-            <span><strong>20 Presets</strong> - Common progression patterns</span>
+            <span><strong>20プリセット</strong> - 一般的な進行パターン</span>
           </li>
           <li className="flex items-start gap-2">
             <span>✅</span>
-            <span><strong>Auto-playback</strong> - Hear your progressions instantly</span>
+            <span><strong>自動再生</strong> - 進行を即座に聴く</span>
           </li>
           <li className="flex items-start gap-2">
             <span>✅</span>
-            <span><strong>3 Sketch Saves</strong> - Save locally in your browser</span>
+            <span><strong>3スケッチ保存</strong> - ブラウザにローカル保存</span>
           </li>
           <li className="flex items-start gap-2">
             <span>✅</span>
-            <span><strong>PNG &amp; Text Export</strong> - Share your progressions</span>
+            <span><strong>PNG &amp; テキストエクスポート</strong> - 進行を共有</span>
           </li>
         </ul>
       </section>
 
       {/* Stay Updated */}
       <section className="ot-card text-center">
-        <h2 className="text-xl font-semibold mb-3">Want to be notified when iOS launches?</h2>
+        <h2 className="text-xl font-semibold mb-3">iOS版リリース時に通知を受け取りませんか？</h2>
         <p className="mb-4 opacity-90">
-          Email us at <a href="mailto:support@ototheory.com" className="underline hover:no-underline">support@ototheory.com</a> with the subject &quot;iOS Launch Notification&quot;
+          件名「iOS Launch Notification」で <a href="mailto:support@ototheory.com" className="underline hover:no-underline">support@ototheory.com</a> までメールをお送りください
         </p>
         <p className="text-sm opacity-70">
-          We&apos;ll send you a quick email when the iOS app is available on the App Store.
+          iOSアプリがApp Storeで利用可能になった際に、簡単なメールをお送りします。
         </p>
       </section>
 
       {/* Learn More */}
       <section className="ot-card text-center text-sm">
         <div className="flex flex-wrap justify-center gap-3">
-          <Link href="/about" className="underline hover:no-underline">About OtoTheory</Link>
+          <Link href="/about" className="underline hover:no-underline">OtoTheoryについて</Link>
           <span>•</span>
-          <Link href="/pricing" className="underline hover:no-underline">Pricing Plans</Link>
+          <Link href="/pricing" className="underline hover:no-underline">料金プラン</Link>
           <span>•</span>
-          <Link href="/faq" className="underline hover:no-underline">FAQ</Link>
+          <Link href="/faq" className="underline hover:no-underline">よくある質問</Link>
           <span>•</span>
-          <Link href="/support" className="underline hover:no-underline">Support</Link>
+          <Link href="/support" className="underline hover:no-underline">サポート</Link>
         </div>
       </section>
     </div>
