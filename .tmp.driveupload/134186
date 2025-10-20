@@ -1,0 +1,832 @@
+# OtoTheory v3.2 — Implementation SSOT（実装正本 / Web Lite & iOS収益軸）
+
+*最終更新: 2025/10/20*
+
+> 本書は v3.1 をベースに、v3.2ビジネスプラン（サウンドパレット、Android計画、日英同時リリース）を反映した差分統合版です。
+> 今後は本v3.2を正として作業を進めます。v3.1は参考資料として扱います。
+> v3.2ビジネスプラン（/docs/SSOT/v3.2_Business_Plan.md）を最優先とし、本書と矛盾する場合はビジネスプランを優先します。
+
+## 🔄 最新更新（2025-10-20）
+
+### コードクオリティコメント表示機能 ✅ 完了
+
+#### 概要
+`Quality new commnt_v2.csv`の長文・構造化されたコメント（雰囲気・特徴・Try・理論）をiOSアプリで美しく表示する機能を実装。電球マークタップで詳細コメントを表示し、アプリの言語設定に従って日本語/英語を自動切替。
+
+#### 実装統計
+- **更新ファイル**: 5個（QualityMaster.swift, QualityInfoView.swift, QualityInfo.swift, ChordBuilderView.swift, AdvancedChordBuilderView.swift）
+- **新規ファイル**: 1個（QualityInfo.swift）
+- **対応クオリティ**: 全25クオリティ（Free 9 + Pro 16）
+- **実装期間**: 2025-10-19〜2025-10-20（2日）
+- **ビルド状態**: ✅ BUILD SUCCEEDED
+
+#### 実装内容
+
+**1. データ更新**:
+- **CSVデータ更新**: `Quality new commnt_v2.csv`の構造化コメント（120文字程度）を全25クオリティに適用
+- **自動Markdown変換**: `toMarkdown()`ヘルパー関数で見出しを太字化（「雰囲気:」→「**雰囲気:**」）
+- **正規表現対応**: 半角/全角コロン、前後の空白、既存の箇条書き記号を柔軟に処理
+- **言語判定機能**: `getQualityComment(for:locale:)`で日本語/英語を自動選択
+
+**2. UI実装**:
+- **NavigationStack対応**: iOS 16+の最新APIを使用
+- **構造化表示**: 4セクション（雰囲気・特徴・Try・理論）を視覚的に区別
+- **カスタムレンダリング**: `parseSections()`でテキストを解析し、SwiftUIで美しく表示
+- **視覚的デザイン**:
+  - セクションタイトル: 太字・オレンジ色・18pt
+  - 段落間マージン: 8pt（読みやすい区切り）
+  - 項目内間隔: 3pt（適度な詰め）
+  - 箇条書き記号: オレンジ色の「•」
+- **閉じる機能**: 閉じるボタンとスワイプダウンの両方で閉じられる
+
+**3. 統合実装**:
+- **電球アイコン**: 各クオリティチップに`lightbulb.fill`アイコンを配置
+- **Sheet表示**: 電球タップで`QualityInfoView`をモーダル表示
+- **言語自動切替**: デバイスの言語設定に基づいてコメント言語を決定
+- **Proバッジ削除**: セクション見出しに王冠マークがあるため、個別ボタンから削除
+
+#### DoD
+- ✅ 全25クオリティのコメント表示
+- ✅ 構造化表示（4セクション）
+- ✅ 視覚的デザイン（太字・オレンジ色・適切な間隔）
+- ✅ 言語自動切替（日本語/英語）
+- ✅ 電球マークタップ機能
+- ✅ Sheet/Popover表示
+- ✅ 閉じる機能（ボタン + スワイプ）
+- ✅ NavigationStack対応
+- ✅ ビルドエラーなし
+
+---
+
+## 🔄 過去の更新（2025-01-19）
+
+### v3.2 Implementation SSOT 作成 ✅ 完了
+
+#### 概要
+v3.1 Implementation SSOTをベースに、v3.2ビジネスプランの新機能（サウンドパレット、Android版計画、日英同時リリース）を反映した実装基準ドキュメントを作成。
+
+#### 主な更新内容
+- **サウンドパレット実装方針**：カテゴリ別コード選択UI、感情語説明、2タップ追加フロー
+- **Android版実装計画**：Free機能のみ、広告統合、iOS Pro誘導
+- **日英同時リリース対応**：EN/JAマスター準拠の翻訳体制
+- **v3.2ビジネスプラン整合**：最優先参照として明記
+
+---
+
+## 🔄 過去の更新（2025-10-18）
+
+### コードライブラリマスターCSV完全拡張 ✅ 完了
+
+#### 概要
+コードライブラリのマスターCSVファイルを単一の真実の源（SSOT）として確立し、Major/minorコードの包括的なフォーム拡張を実装。全12キーに対応したRoot-6, Root-5, Root-4フォームを追加し、iOS版とWeb版の両方に反映。
+
+#### 実装統計
+- **更新ファイル**: 3個（マスターCSV、iOS Swift、Web TypeScript）
+- **新規コード**: 137コード（+3コード追加）
+- **新規フォーム**: 573フォーム（+32フォーム追加）
+- **対応キー**: 全12キー（C, C#, D, D#, Eb, E, F, F#, G, G#, A, A#, Bb, B）
+- **実装期間**: 2025-10-18（1日）
+- **ビルド状態**: ✅ BUILD SUCCEEDED
+
+#### 実装内容
+
+**1. マスターCSV拡張**:
+- **Majorコード**: 全12キーにRoot-6, Root-5, Root-4フォームを追加
+- **minorコード**: 全12キーにRoot-6, Root-5, Root-4フォームを追加
+- **Eb minor**: D#m相当のエントリを追加
+- **A#m, Bbm**: 異名同音コードのエントリを追加
+- **F Major Open**: 存在しないフォームを削除
+
+**2. 特定フォーム修正**:
+- **A Major Root-5**: バレー情報を追加
+- **Am Root-5**: バレー情報を追加
+- **Cm Root-5**: 正しいフレット配列に修正
+- **C#m Root-5**: 正しいフレット配列に修正
+- **D#m Root-5**: 基準フォームとして完全なフォームセットを追加
+
+**3. 並行移動による効率化**:
+- D#m Root-5を基準とした並行移動で他のminorコードを生成
+- フレット配列: x,6,7,8,8,6,x（基準）
+- 指配列: -,1,2,4,3,1,-（基準）
+- バレー: 6フレットで1-5弦
+
+**4. 技術的修正**:
+- **Web TypeScript生成**: 無効なバレー値の処理を修正
+- **iOS Swift生成**: エスケープ処理とバレー情報の修正
+- **バリデーション**: フォーム順序、構成音、重複チェック
+
+**5. デプロイ**:
+- **iOS版**: StaticChordProvider.swift更新完了
+- **Web版**: ビルド成功、GitHubにプッシュ完了
+- **Vercel**: 自動デプロイがトリガーされ、本番環境に反映
+
+#### ファイル構成
+```
+/Users/nh/App/OtoTheory/docs/content/Chord Library Mastar.csv  # マスターCSV（SSOT）
+├── scripts/csv_to_ios_swift.mjs                               # iOS生成スクリプト
+├── scripts/csv_to_web_ts.mjs                                  # Web生成スクリプト
+├── scripts/validate_chord_csv.mjs                             # バリデーションスクリプト
+├── OtoTheory-iOS/OtoTheory/Services/StaticChordProvider.swift # iOS版
+└── ototheory-web/src/lib/chord-library-static.ts              # Web版
+```
+
+#### 更新フロー
+1. マスターCSVを編集
+2. `node scripts/validate_chord_csv.mjs`でバリデーション
+3. `node scripts/csv_to_ios_swift.mjs`でiOS版を生成
+4. `node scripts/csv_to_web_ts.mjs`でWeb版を生成
+5. ビルドテスト実行
+6. Gitコミット・プッシュ
+7. Vercel自動デプロイ
+
+---
+
+## 0. v3.2 の主要差分（v3.1 → v3.2）
+
+* **サウンドパレット（v3.2新機能）**：**"音の雰囲気"でコードを選ぶ**体験をPro機能として提供。3つのカテゴリ（キラキラ・浮遊感、おしゃれ・都会的、緊張感・スパイス）で分類。
+* **Android版計画**：**Pro機能なし**、初心者特化の**広告モデル（AdSense/AdMob中心）**でマネタイズし、iOS Proへ誘導。
+* **日英同時リリース**：**10月中TestFlight開始→11/15正式リリース**。EN/JAマスター準拠の翻訳体制。
+* **WebはM3完了のLiteをGA**：録音メニューを撤去（Flag OFF継続）、**Chord Progression中心**の体験を公開。
+* **iOSを収益主軸**：M4で **セクション編集／MIDI出力（Chord Track＋Section Markers＋Guide Tones）／Sketch無制限（クラウド）／IAP（¥490/月）** を実装。
+* **Undoは非搭載（キャンセル確定）**：個別削除・並べ替えで代替。DoD/Telemetryから"undo"を削除。
+* **PNGは白背景固定**：v3.1の「テーマ自動反転」は停止。`export_png` は成功/失敗に関わらず**1回のみ**発火。
+* **録音UIは非露出（Flag OFF）**：将来ON時のみメニュー露出／サーバ解析（/api/analyze）設計は温存。
+
+---
+
+## 1. スコープ & 非スコープ
+
+**In（v3.2）**
+
+* **Web Lite GA（M3.5）**：Analyze撤去、6面CTA、計測追加。
+* **iOS v1（M4）**：Free=M3パリティ、Pro=セクション編集＋MIDI（Chord+Markers+Guide）＋無制限保存＋IAP＋**サウンドパレット**。
+* **サウンドパレット**：**"音の雰囲気"でコードを選ぶ**体験（Pro機能）
+* **Android版計画**：**Pro機能なし**、**広告モデル**、iOS Pro誘導
+* **PNG出力**：白背景固定。**Undoなし**。
+
+**Out / vNext**
+
+* 録音系（Analyze）機能の公開。
+* Split Bar（1小節2コード）、Groove/ミニベース、MIDI多トラック拡張（Drum/Bass）はM4.1+。
+* テーマ自動反転PNGの再開。
+
+---
+
+## 2. 画面・機能別 実装要件
+
+### 2.1 Find Chords（Web: M3完了／iOS: Phase E実装完了）
+
+**Web版（完了）**:
+* **即時反映**：Key/Scale選択→**Diatonic→Fretboard（二層）**更新。Resetは**Chord層のみ**解除、Degrees/Namesトグルは最小構成。
+* **Scale Table**（11種・Why文・ⓘGlossary・アルペジオ試聴）／**Chord Forms**（Open/Barre＋試聴）／**基礎代理**（2–3提案＋試聴/＋Add）。
+* **Capo提案**：Diatonic折りたたみ内に**Top2（Shaped表記）**。**音は鳴らさない**。*Shaped/Sounding*注記を併記。
+* **非ヘプタ**：Roman非表示（Pent/Bluesのみ例外表示）。
+
+**iOS版（Phase E-1 ~ E-4A完了）**:
+
+*最終更新: 2025-10-12（Phase E-1 ~ E-4A実装完了）*
+
+#### Fretboard（二層Overlay） ✅ 完了
+* **レイアウト**: 6弦×15フレット、Open string、フレット番号ドット（0,1,3,5,7,9,12,15）、ナット線（太線）
+* **二層Overlay システム**:
+  - **Scale層**（ゴースト）: 小さい、薄い、輪郭のみ
+  - **Chord層**（メイン）: 大きい、塗りつぶし、ラベル付き
+* **表示モード**: Degrees（度数）/ Names（音名）切り替え（°/♪ボタン）
+* **色システム**: Root（特別色）、3rd/5th/7th（段階的）、その他スケール音
+* **インタラクション**: タップで単音試聴、Reset（Chordのみ）、長押し未実装
+* **Landscape Full-Screen**: 
+  - OrientationManager統合（強制横向き）
+  - タブバー自動非表示
+  - Chord/Scale情報トップバー表示
+  - 2段階Reset（Preview Scale → Chord → Scale Only）
+* **技術**: SwiftUI Canvas描画、AVAudioEngine連携、Web版準拠デザイン（弦線なし）
+
+#### Diatonic Table ✅ 完了
+* **Roman数字表示**: I-VII、Major/Minor/Diminished表記
+* **Open行**: 
+  - タップで和音試聴、Fretboard Chord層更新、視覚的選択フィードバック
+  - 再タップで選択解除
+  - **長押し**でChord Progressionに追加（Toast通知＋ハプティク）
+* **Capo行**: Top 2表示、Shaped表記（C, G, D, A, E）、音鳴らさない
+* **Synchronized Scrolling**: Roman数字、Open、Capo行すべて同期
+* **Enharmonic Key対応**: Eb, Ab, Bb → D#, G#, A#へマッピング
+* **TheoryBridge連携**: `getDiatonicChords`でI-VII取得
+
+#### Suggested Scales for this chord ✅ 完了
+* **Chord Quality判定**: Major, Minor, Dom7, Dim, m7b5を自動認識
+* **スケール提案**:
+  - Major → Major Scale, Lydian
+  - Minor → Natural Minor, Dorian, Phrygian
+  - Dom7 → Mixolydian, Altered, Diminished
+* **インタラクション**:
+  - タップでアルペジオ試聴（ScalePreviewPlayer）
+  - Fretboardドットが提案スケールに更新
+  - Reset機能で元のスケールに戻す
+
+#### Substitute Chords ✅ 完了
+* **和声理論ベース**: Same function, Modal interchange, Secondary dominants, Tritone sub
+* **提案内容**: 代理コード名、理由、使用例
+* **インタラクション**:
+  - ▶ボタンで和音試聴
+  - **長押し**でChord Progressionに追加（Toast通知＋ハプティク）
+
+#### コード追加機能 ✅ 完了（Phase E-4A）
+* **ProgressionStore**: Singleton共有ストア、`slots`管理、ハイライト機能
+* **長押しジェスチャー**: Diatonic/Substitute chords → Progression追加（0.5秒）
+* **視覚的フィードバック**:
+  - チップ縮小アニメーション（80% + 半透明）
+  - スロットハイライト（緑枠、"New!"バッジ、1.05倍拡大、2秒自動消滅）
+  - Toast通知（"Added C → Slot 3"、アイコン＋色分け）
+* **ハプティクフィードバック**: 成功振動/警告振動（UINotificationFeedbackGenerator）
+* **メモリ管理**: ScalePreviewPlayer二重初期化防止、非同期処理でUIフリーズ回避
+
+#### Fretboard & Diatonic & Roman in Chord Progression ✅ 完了（Phase E-6）
+
+*最終更新: 2025-10-13*
+
+**Phase E-6A: Fretboard表示問題の完全解決** ✅ 完了
+* **問題修正**:
+  - 6弦下の横線問題（Divider削除）
+  - 横スクロール不可問題（verticalSizeClass判定、scrollDisabled(false)）
+  - 窮屈な表示問題（Canvas高さクランプ、Row高さ最適化）
+* **技術改善**:
+  - `isLandscape` → `verticalSizeClass` ベースの判定
+  - Canvas高さを親にクランプ（geometry.size.height固定）
+  - 背景矩形を6弦下端までピクセルスナップ（ヘアライン解消）
+  - Row高さ計算を親に収まるように修正
+
+**Phase E-6B: 全モード対応のダイアトニックコード実装** ✅ 完了
+* **対応スケール**: 
+  - Ionian (Major), Dorian, Phrygian, Lydian, Mixolydian, Aeolian (Minor), Locrian
+  - HarmonicMinor, MelodicMinor
+  - MajorPentatonic, MinorPentatonic
+* **Capo提案**: 全モード対応（Open chordに基づく提案）
+
+**Phase E-6C: Roman Numerals実装** ✅ 完了
+* **機能**: コード進行をスケールの度数で表示
+* **表示例**: `I – vi – IV – V`
+* **Quality対応**: Major（大文字）/ Minor（小文字）/ Diminished（°）
+
+**Phase E-6D: Patterns実装** ✅ 完了
+* **検出パターン**:
+  - Canon Progression (I-V-vi-IV)
+  - Doo-wop (I-vi-IV-V)
+  - Blues I-IV-V (I-IV-V-IV)
+  - Pop Progression (vi-IV-I-V)
+  - ii-V-I (Jazz) (ii-V-I)
+  - 50s Progression (I-vi-ii-V)
+* **表示**: パターン名、Roman Pattern、Bars位置
+
+**Phase E-6E: Cadence実装** ✅ 完了
+* **検出カデンツ**:
+  - Perfect Cadence (V→I) - 完全終止
+  - Plagal Cadence (IV→I) - アーメン終止
+  - Deceptive Cadence (V→vi) - 偽終止
+  - Half Cadence (...→V) - 半終止
+* **表示**: カデンツ名、Roman Pattern、Bars位置
+
+#### 統合 ✅ 完了
+* **FindChordsView**: 
+  - Key/Scale選択（12キー×14スケール）
+  - Diatonic Table → Fretboard → Suggested Scales → Substitute Chords
+  - Full-Screen Fretboard Mode（Chord/Preview Scale情報表示）
+* **ProgressionView**: 
+  - ProgressionStore統合
+  - スロットハイライト機能
+  - 将来：結果カード下にFretboard統合予定
+
+**DoD（共通）**
+
+* ✅ Key/Scale→結果更新が**1操作**で完了
+* ✅ 和音試聴は**完全同時発音（0ms）**で鳴る
+* ✅ Fretboard二層Overlay動作
+* ✅ Degrees/Names切り替え
+* ✅ Diatonic Table統合（Open + Capo Top2）
+* ✅ Landscape Full-Screen（強制横向き）
+* ✅ Suggested Scales（アルペジオ試聴）
+* ✅ Substitute Chords（和声理論ベース）
+* ✅ 長押しでProgression追加
+* ✅ Toast通知＋ハプティクフィードバック
+* ✅ Advanced Chord Builder（Phase E-4B）
+* ✅ Slash Chord Editor（Phase E-4C）
+* ✅ Section別コード進行（Phase E-5A~F）
+* ✅ PlaybackOrderEditor（Phase E-5C）
+* ✅ Fretboard & Diatonic in Chord Progression（Phase E-6A~B）
+* ✅ Roman Numerals（Phase E-6C）
+* ✅ Patterns自動検出（Phase E-6D）
+* ✅ Cadence自動検出（Phase E-6E）
+* ✅ Sketch保存機能（Phase E-7）
+
+#### Sketch保存機能 ✅ 完了（Phase E-7）
+
+*最終更新: 2025-10-13*
+
+**Phase E-7: Sketch保存機能の完全統合**
+* **Sketchモデル拡張**: Fretboard表示モード、セクション情報保存
+* **保存ボタン**: Tools Sectionの最後に配置
+* **保存・復元ロジック**: 全状態の保存・復元
+* **通知ベース読み込み**: SketchTabViewからの読み込み対応
+* **MIDIエクスポート槽合**: セクションモード対応
+* **LRU方式**: Free版は最大3件（ローカル保存）
+
+---
+
+### 2.2 Chord Progression（Lite / Pro）
+
+**共通（Lite）**
+
+* **12コード上限**、**プリセットFree 20種**、4拍カウントイン→4/4自動ループ、BPM 40–240、音色5種（Distortion/Over Drive は一時除外）。**Undoなし**（削除＋D&Dで代替）。
+* **結果カード→Diatonic→Fretboard（二層）→Patterns/Cadence/基礎代理**で、**「試聴→＋Add→即ループ」**の2タップ原則を厳守。
+
+**Pro（iOS）**
+
+* **プリセット50種（Free 20＋Pro 30）**：Free 20種（Rock 5＋Pop 5＋Blues 2＋Ballad 4＋Jazz 4）＋Pro 30種（Rock 6＋Pop 8＋Ballad 5＋Jazz 5＋Blues 2＋Other 4）。詳細は `docs/data/presets_pro_pack.md` を参照。
+* **セクション編集**（Verse/Chorus/Bridge…）：**各セクションが独立したコード進行を持つ**、追加・削除・並べ替え・名称変更／セクション単位ループ／リピート回数。
+  - **データ構造**: `SectionDefinition { id, name, type, chords: [String?] }`、`PlaybackOrder { items: [PlaybackItem] }`
+  - **PlaybackItem**: `{ id, sectionId, repeatCount }`
+  - **例**: Verse ["C","Am","F","G"] ×2、Chorus ["F","G","C","Am"] ×1、Bridge ["Dm","Em","Am","G"] ×1
+  - **PlaybackOrderEditor** ✅ 完了（2025-10-13）:
+    * ドラッグ&ドロップでセクション順序変更
+    * ±ボタンで繰り返し回数調整（1-99回）
+    * プレビューヘッダー（総セクション数、総コード数）
+    * AddToPlaybackOrderSheet（セクション選択UI）
+    * 削除されたセクションの検出（Orphaned item表示）
+  - **SectionType拡張** ✅ 完了（2025-10-13）:
+    * Post-chorusセクションタイプを追加（`postChorus`）
+    * アイコン: `star.circle.fill`
+  - **Fretboard & Diatonic & Roman（Chord Progression）** ✅ 完了（2025-10-13）:
+    * **Phase E-6**: Result下のToolsセクションに統合（Web版同様の構成）
+    * **Fretboard Section**:
+      - FretboardView統合（15フレット、6弦）
+      - Degrees/Names toggle（状態管理: `fbDisplay: FretboardDisplay`）
+      - Overlay表示（`overlayChordNotes: [String]`でダイアトニックコード選択時に自動表示）
+      - FretboardOverlay構造体を使用（scaleRootPc, scaleType, chordNotes, display）
+    * **Diatonic Table Section**:
+      - DiatonicTableView統合
+      - タップで再生（`onChordTap`）
+      - 長押しで進行に追加（`onChordLongPress`、Phase E-4A連携）
+      - `selectedDiatonicChord: String?`で選択状態管理
+    * **Roman Numerals Section**:
+      - 進行をローマ数字表記で表示（I, ii, iii, IV, V, vi, vii°）
+      - 横スクロール対応（長い進行でも全表示）
+      - `getRomanNumeral(for:key:scale:)` ヘルパー関数でコードをローマ数字変換
+      - コードのquality（major/minor/dim/7/maj7）を反映
+    * **Helper Functions**:
+      - `noteToMidi(_:)`: 音名→MIDIノート番号変換
+      - `getChordNotes(chord:key:)`: コード名→音名配列変換（Fretboard overlay用）
+      - `keyToPitchClass(_:)`: 音名→ピッチクラス（0-11）変換
+      - `getRomanNumeral(for:key:scale:)`: コード→ローマ数字変換
+    * **コンパイル最適化**:
+      - `toolsSection` @ViewBuilderで分離（コンパイラタイムアウト回避）
+      - `fretboardSection`, `diatonicSection`, `romanSection`に細分化
+* **MIDI出力**（**SMF Type‑1**）：*最終更新: 2025-10-12（5トラック構成、DAW対応完全強化）*
+
+  * **Tempo Track** (Track 0):
+    - **Tempo**（BPM 120）
+    - **Key Signature** (FF 59 02 sf mi) - Major/Minor判定、調号自動表示
+    - **Time Signature** (FF 58 04 04 02 18 08) - 4/4拍子
+    - **Chord Symbols**（Marker Type 6、タイムライン表示）
+    - **Section Markers**（Marker Type 6）
+  * **Track 1: Guitar** [Program 24: Nylon String Guitar] (Channel 0)
+    - **Block Chords**（Root+3rd+5th+7th、全音符、Close Voicing）
+    - **Close Voicing Algorithm**: 前のコードからの最小移動距離を計算
+    - 音域: C3-C5 (MIDI 48-72)
+    - Velocity: 80
+  * **Track 2: Bass** [Program 33: Acoustic Bass] (Channel 1)
+    - **Root-5th-Root-5th パターン**（4分音符）
+    - 音域: C2-C3 (MIDI 36-48)
+    - Velocity: 90
+  * **Track 3: Scale Guide (Bass)** [Program 33] (Channel 2)
+    - スケール構成音（低音域 C2-C3、1オクターブ、ベース作成用、Velocity 20）
+    - Pattern: 上昇→下降（1小節で往復、125ms間隔）
+    - ★OtoTheory独自機能
+  * **Track 4: Scale Guide (Middle)** [Program 24] (Channel 3)
+    - スケール構成音（中音域 C3-C5、**2オクターブ連続**、メロディ作成用、Velocity 20）
+    - Pattern: 上昇C3→C5、下降C5→C3（広い音域でスケールを可視化）
+    - ★OtoTheory独自機能
+  * **Track 5: Guide Tones (3rd/7th)** [Program 24] (Channel 4)
+    - 各コードの3度と7度のみ（ジャズ/ポップアレンジ用）
+    - 音域: C3-C4 (MIDI 48-60)
+    - Velocity: 30
+  * **音楽理論エンジン**:
+    - 27種類のスケール対応（Diatonic Modes, Pentatonic, Blues, Harmonic/Melodic Minor）
+    - Key Signature自動判定（Scale type優先、相対長調計算）
+    - Close Voicing: 12パターンの転回形を試行、最小移動距離を選択
+* **サウンドパレット（v3.2新機能）**：**"音の雰囲気"でコードを選ぶ**体験
+  - **カテゴリカード**：✨キラキラ・浮遊感、🌃おしゃれ・都会的、⚡️緊張感・スパイス
+  - **2タップ原則**：カテゴリカード→試聴→**＋Add**の**2タップ以内**
+  - **感情語説明**：理論的説明ではなく、情景語で説明（例：**mM7＝「映画音楽のような、ミステリアスでドラマチック」**）
+  - **Free制限**：チップ表示のみ（タップでPro誘導トースト）
+* **Sketch無制限（クラウド）**、**IAP（¥490/月）**、**Paywall**実装。
+
+**DoD**
+
+* セクション別コード進行がMIDI Markersに反映。
+* 5トラック生成（Guitar/Bass/Scale Guide×2/Guide Tones）。
+* Key Signature / Time Signature正しく表示。
+* Block Chords（全音符）+ Close Voicing（最小移動距離）。
+* Bass Line: Root-5th-Root-5th パターン。
+* Scale Guide適切な音域（Bass: C2-C3 [1oct], Middle: C3-C5 [2oct連続]）。
+* DAWでの動作確認完了（GarageBand/Logic Pro）。
+* 生成MIDIをDAWに読み込むだけで**即編集可能な高品質素材**が再現される。
+* **サウンドパレット**：カテゴリカード→試聴→**＋Add**が2タップ以内、感情語説明表示、Free制限時はPro誘導トースト。
+
+---
+
+### 2.3 Sketch（保存・呼び出し）
+
+* **Free**：ローカル3件（LRU上書き／自動保存3秒）
+* **Pro**：無制限（クラウド同期）
+* **保存項目**：Key/Scale、進行（≤12）、Capo（Shaped基準）、Fretboard表示（Degrees/Names/ガイド）。
+
+**DoD**
+
+* Sketch復元で**即ループ再生**＆表示状態まで完全復元。
+
+---
+
+### 2.4 出力（PNG/テキスト/MIDI）
+
+* **PNG（Free）**：**白背景固定**・視認性最適化（タイトル24px/700、Key/Progression/Scale 18–16px、黒字、要素の青強調 #1e40af）。`export_png` は**1操作=1発火**。
+* **テキスト（Free）**：Key/Scale、Diatonic、進行（Roman/実音）、Capo注記をコピー。
+* **MIDI（iOS Pro）**：**Chord＋Markers＋Guide** を出力（SMF Type‑1）。
+
+---
+
+### 2.5 サウンドパレット（v3.2新機能）
+
+**目的**: **"音の雰囲気"でコードを選ぶ**体験をPro機能として提供
+
+#### 実装方針
+
+**カテゴリ別UI設計**:
+* **カテゴリA｜✨ キラキラ・浮遊感（Sparkle & Float）**
+  - M9（maj9）／6／6/9／add#11
+  - *おしゃれ・現代的・ドリーミー。R&B/ポップの王道、レトロな温かさ、ジャズ/フュージョンの豊かさ、浮遊感の演出。*
+
+* **カテゴリB｜🌃 おしゃれ・都会的（Stylish & Urban）**
+  - m9／m11／m7b5／mM7（m/maj7）／m6
+  - *Lo‑fi〜R&B定番のアンニュイ、ジャズ/ボサの入口、映画音楽のようなドラマ感。*
+
+* **カテゴリC｜⚡️ 緊張感・スパイス（Tension & Spice）**
+  - 7sus4／aug／dim7／7(#9)／7(b9)／7(#5)／7(b13)
+  - *解決前の高揚、推進力、経過緊張、ジャズ/ブルースの"プロのスパイス"。*
+
+#### 実装要件
+
+**iOS版（Pro機能）**:
+* **カテゴリカード表示**：3つのカテゴリを大きなカードで表示
+* **2タップ原則**：カテゴリカード→試聴→**＋Add**の**2タップ以内**
+* **感情語説明**：理論的説明ではなく、情景語で説明
+* **Pro制限**：Free版ではチップ表示のみ、タップでPro誘導トースト
+
+**Web版（送客強化）**:
+* **カテゴリカード表示**（非アクティブ）
+* **Pro誘導トースト**（タップでApp Store CTA）
+* **6面CTAとの一貫性**（サウンドパレット誘導）
+
+#### Telemetry
+
+**新規イベント**:
+* `sound_palette_category_view`: カテゴリカード表示時
+* `sound_palette_code_preview`: コード試聴時
+* `sound_palette_code_add`: コード追加時
+* `sound_palette_pro_prompt`: Pro誘導トースト表示時
+
+#### DoD
+
+* ✅ カテゴリカード表示（3カテゴリ）
+* ✅ 2タップ追加フロー（カテゴリ→試聴→＋Add）
+* ✅ 感情語説明表示（hover/長押し）
+* ✅ Free制限時のPro誘導トースト
+* ✅ Telemetry実装（`sound_palette_category_view`等）
+
+---
+
+### 2.6 Android版計画（v3.2新機能）
+
+**目的**: 初心者特化の**広告モデル**でマネタイズし、iOS Proへ誘導
+
+#### 機能範囲
+
+**搭載機能**:
+* 基本コード進行（12コード上限）
+* Find Chords（Scale Table、基礎代理）
+* プリセット20種（Free版と同等）
+* Sketch保存3件（ローカル）
+* PNG出力（白背景固定）
+
+**非搭載機能**:
+* セクション編集
+* MIDI出力
+* サウンドパレット（Pro専用コード）
+* クラウド同期
+* プリセット拡張（Pro30種）
+
+#### 広告戦略
+
+**AdSense/AdMob統合**:
+* バナー広告（ページ下部、非侵入的）
+* インタースティシャル（アプリ起動時、適度な頻度）
+* リワード広告（追加機能アンロック、オプション）
+
+**UX配慮**:
+* CLS（Cumulative Layout Shift）回避
+* 高速描画、プレースホルダー使用
+* 表示点数上限設定（ページ品質維持）
+* 広告ブロッカー対応
+
+#### iOS Pro誘導
+
+* アプリ内CTA（「より高度な機能はiOS Proで」）
+* 広告表示時のPro機能紹介
+* 制限到達時のiOS Pro案内
+
+#### DoD
+
+* ✅ Android Studio環境構築
+* ✅ 基本UI実装（Free機能のみ）
+* ✅ 広告統合（AdSense/AdMob）
+* ✅ iOS Pro誘導導線
+* ✅ CLS回避実装
+* ✅ プレースホルダー設計
+* ✅ 表示頻度最適化
+* ✅ ページ品質維持
+
+---
+
+## 3. Web Lite GA（M3.5）— 実装完了 ✅
+
+**実装日**: 2025/10/04  
+**ステータス**: 完了
+
+**A. UI/ナビ** ✅
+
+* ✅ メニューから **Analyze（録音）** を撤去（Flag OFF）。`/analyze` は `/chord-progression` へリダイレクト実装。
+* ✅ **6面CTA実装**：
+  1. ヘッダーCTA（デスクトップ常設）
+  2. モバイル下部スティッキー（スクロール200px後表示）
+  3. 9コード到達トースト（info）
+  4. 12コード到達トースト（warning）
+  5. Sketch 4件目保存ブロック（warning）
+  6. PNG出力後トースト（success）
+  7. フッターQR CTA
+
+**B. 計測** ✅
+
+* ✅ 追加：`cta_appstore_click{place}`（`header|sticky|limit_toast|png_toast|qr`）
+* ✅ 既存：`progression_play / preset_inserted / export_png / toast_shown(kind)` を継続。
+* ✅ 実装：`trackCtaClick(place, extra)` 関数、各CTA箇所から発火確認。
+
+**C. DoD（GA）** ✅
+
+* ✅ **プリセット→即ループ→PNG出力**を**3クリック以内**で完了できる。
+* ✅ CTAクリックが計測でき、Web→iOSファネルがダッシュボードで見える。
+* ✅ `export_png`は成功/失敗に関わらず1回のみ発火（`toastShownRef`で制御）。
+* ✅ Free制限（3 sketches, 12 chords）が正しく動作。
+
+**D. 実装詳細**
+
+#### 新規コンポーネント
+- `src/components/Toast.client.tsx`: Toast通知システム（3種: info/warning/success）
+- `src/components/HeaderCta.client.tsx`: ヘッダーCTA
+- `src/components/FooterCta.client.tsx`: フッターCTA
+- `src/components/MobileStickyCta.client.tsx`: モバイルスティッキーCTA
+
+#### 主要更新
+- `src/app/find-key/page.tsx`: 
+  - 制限チェック（localStorage直接読み取り）
+  - Toast表示ロジック
+  - Export名修正（`currentExportName` state追加）
+- `src/app/analyze/page.tsx`: リダイレクト実装
+- `src/components/Nav.tsx`: Melody/Solo Analyze削除
+- `src/app/layout.tsx`: CTA統合
+- `src/lib/telemetry.ts`: `cta_appstore_click` / `trackCtaClick` 追加
+- `src/app/globals.css`: Toast/CTA用アニメーション
+
+#### バグ修正
+- ✅ Sketch 4件目が保存できてしまう問題（localStorage直接読み取りで解決）
+- ✅ PNG Exportでsketch名が反映されない問題（`currentExportName` state追加で解決）
+
+**E. 統計**
+
+| 項目 | 数値 |
+|-----|------|
+| **新規コンポーネント** | 4個 |
+| **新規Telemetryイベント** | 1個（cta_appstore_click） |
+| **CTA箇所** | 6箇所 |
+| **制限チェック箇所** | 3箇所 |
+
+**F. リリース状態**
+
+✅ **Web Lite GAリリース準備完了**  
+次はM4: iOS v1（Proの核）に進む。
+
+---
+
+## 4. iOS v1（M4）— 実装方針
+
+**M4-A（Freeパリティ）**
+
+* 結果カード〜Fretboard二層、プリセット、自動ループ、Sketch3件までを実装。録音UIは**非露出**。
+
+**M4-B（Pro核）** ✅ **完了**（Phase 1-3、2025-10-11）
+
+* ✅ IAP & Paywall（¥490/月）
+* ✅ セクション編集（UI実装済み）
+* ✅ MIDI出力（4トラック構成: Guitar/Bass/Scale Guide×2）
+* 🔜 Sketch無制限（クラウド同期、Phase 4）
+* **計測**：`paywall_view / purchase_success / midi_export` を実装。
+
+**M4-C（MIDI大幅強化）** ✅ **完了**（2025-10-11）
+
+* ✅ **Scale Guide Track**（OtoTheory独自機能）
+  - 2音域（Middle: C4周辺、Bass: C3周辺）
+  - 15種類のスケール対応
+  - DAWでゴーストノートとして表示
+* ✅ **Program Change**（楽器自動選択）
+* ✅ **コードボイシング**（Root+3rd+5th+7th）
+* ✅ **リズムパターン**（4拍子ストラム）
+* ✅ **ベースライン**（Root-Root-5th-Root(Oct)）
+* ✅ **UI再設計**（Sketch Export方式）
+
+**M4-D（UI改善）** ✅ **完了**（2025-10-11）
+
+* ✅ **キー候補拡張**（3→5）
+* ✅ **スケール候補拡張**（無制限→5）
+* ✅ **スケール音プレビュー**（新機能）
+  - ScalePreviewPlayer.swift（AVAudioEngine + Sampler）
+  - 15種類のスケール対応
+  - 上昇→下降パターン（200ms per note）
+  - UI: 各スケール候補に緑色の🔊ボタン
+
+**技術メモ（推奨）**
+
+* 進行・スケール・代理・MIDIライターは共通のTSパッケージ化（`packages/core`）でWeb/iOS共有。
+* オーディオは**完全同時発音（0ms）**を実現（Release=80ms、最大6声、4拍リズム）。
+
+---
+
+## 5. データ契約（概念TS）
+
+```ts
+// Sketch（永続化）
+interface SketchV1 {
+  id: string;
+  name: string;
+  createdAt: string; updatedAt: string;
+  schema: 'sketch_v1'; appVersion: string;
+  key: { tonic: string; scaleId: string }; // 例: C, ionian
+  capo: { capoFret: number; notation: 'Shaped' }; // Shaped基準で保存
+  progression: { bars: BarV1[]; maxBars: 12 }; // Lite
+  fretboardView: { mode: 'Degrees'|'Names'; showGuides: boolean };
+}
+
+interface BarV1 {
+  chord: string; // 例: Cmaj7
+  beats: 4;      // Liteは常に4
+}
+```
+
+---
+
+## 6. Telemetry（イベント仕様）
+
+**共通**
+
+* `page_view, key_pick, scale_pick, diatonic_pick, overlay_shown(初回のみ), fb_toggle, overlay_reset, play_note, play_chord, export_png(常に1回), instrument_change`。
+
+**進行**
+
+* `progression_play{bpm, chordCount}`／`preset_inserted{name}`／`toast_shown{kind=limit_warn|limit_block|low_conf}`（**undoは廃止**）。
+* **Web→iOS**：`cta_appstore_click{place}` を新設。
+* **iOS Pro**：`paywall_view`／`purchase_success`／`midi_export{tracks,sections,bpm}`。
+
+**保存**
+
+* `save_project, open_project, project_rename, project_delete, project_duplicate, project_limit_warn, project_limit_block`。
+
+**録音（将来）**
+
+* `audio_record_start/stop, audio_analyze_ok, audio_analyze_conf(engine, conf)`（Flag OFF 継続）。
+
+**サウンドパレット（v3.2新機能）**
+
+* `sound_palette_category_view, sound_palette_code_preview, sound_palette_code_add, sound_palette_pro_prompt`。
+
+---
+
+## 7. 受け入れ基準（DoD）
+
+1. **Find Chords**：Key/Scale選択のみでResult更新。Open行タップで和音再生＆Chord層強調。ResetでScale保持。
+2. **Capo**：折りたたみ内にTop2（Shaped）＋注記。音は鳴らさない。
+3. **Progression**：**ドラッグ並べ替え**／**プリセット→自動ループ**が動作（**Undoなし**）。
+4. **提案追加**：Patterns/Cadence/基礎代理は**試聴→＋Add**を2タップ以内、直後に自動再生。
+5. **Sketch**：Key/Scale・Capo（Shaped）・進行・Overlay表示が完全復元。Free=3件、Pro=無制限。
+6. **出力**：Free＝PNG（白固定）/テキスト、Pro＝MIDI（Chord+Markers+Guide）。`export_png`は必ず1回。
+7. **Web GA**：プリセット→即ループ→PNG出力が3クリック以内／`cta_appstore_click` が計測可能。
+8. **iOS Pro**：MIDIをDAWに読み込むだけで構成・Chord・Guideが再現、`paywall_view/purchase_success` が発火。
+9. **サウンドパレット**：カテゴリカード→試聴→**＋Add**が2タップ以内、感情語説明表示、Free制限時はPro誘導トースト。
+10. **Android版**：Free機能のみ、広告統合、iOS Pro誘導、CLS回避。
+11. **M4 Week 1 完了（2025-10-04）**：Xcode環境構築・`packages/core`（2.2KB）・`parseChord`/`getDiatonicChords` 動作・Audio Engine 音出し確認。
+12. **M4 Week 2 完了（2025-10-04）**：Tab Bar Navigation（3画面）・12-Slot UI・Root+Quick選択・Preview+Add常時表示・削除ボタン・コード再生（12キー×7種類）・Web版UX完全準拠・NavigationTitle削除。
+13. **M4 Week 3 完了（2025-10-10）**：Hybrid Audio Architecture（Phase A & B）実装完了。ストローク0ms・フェードアウト80ms・4拍リズム・UI同期（Timer方式）・ループ機能。もたつきゼロ、コードの変わり目クリア。
+
+---
+
+## 8. Feature Flags / 環境変数
+
+* `RECORDING_UI_ENABLED = false`（既定）
+* `PNG_THEME_AUTO_INVERT = false`（v3.2）
+* `UNDO_ENABLED = false`（v3.2）
+* `CTA_APPSTORE_ENABLED = true`（Webの6面CTA）
+* `SOUND_PALETTE_ENABLED = true`（v3.2新機能）
+
+---
+
+## 9. QA / A11y / NFR
+
+* **TTFI ≤ 2s**（Web）、Overlay再描画≤16ms（p95）。
+* **A11y**：roving-tablist／focus-visible／色以外の手掛かり。
+* **PNG**：ライト/ダーク双方で可読（白背景固定・黒字）。**export_pngは一度のみ**。
+* **サウンドパレット**：感情語説明の品質向上、カテゴリ分類の最適化。
+
+---
+
+## 10. リリース & 運用
+
+* **Web GA（M3.5）**：Analyze非露出、6面CTA、計測導入→ダッシュボードでWeb→iOSファネル監視。
+* **iOS v1（M4）**：Freeパリティ→Rro機能（MIDI/セクション/IAP）→App Review。
+* **サウンドパレット（M5）**：カテゴリ別UI実装、感情語説明、2タップ追加フロー。
+* **Android版（M6）**：Free機能のみ、広告統合、iOS Pro誘導。
+* **ロールバック**：CTAの場所別ON/OFF／Paywall文言のサーバ駆動（Remote Config推奨）。
+
+---
+
+## 11. 付録：用語
+
+* **Sketch**：進行＋Key/Scale＋Capo（Shaped）＋Fretboard表示の保存単位。
+* **Guide Tones**：主に3rd/7th。MIDIでは別トラックに出力。
+* **Shaped/Sounding**：押さえ方と実音の区別。Capo注記に併記。
+* **サウンドパレット**：音の雰囲気でコードを選ぶ機能。カテゴリ別に分類されたコードクオリティ。
+
+---
+
+## 12. iOS 日本語ローカライズ規範（v3.2）
+
+変更履歴: v3.2 JP terminology alignment
+
+### 基本方針
+- 端末のシステム言語に追従（iOS標準ローカライズ）。
+- `en.lproj/ja.lproj` の `Localizable.strings` / `Localizable.stringsdict` を使用（必要に応じ `String Catalog(.xcstrings)`）。
+- 用語は SSOT に準拠：My進行（EN: My Sketches）/ Myコード（EN: My Chords）/ プリセット進行（EN: Preset Progressions）/ サウンドパレット（EN: Sound Palette）。
+
+### 表示規則（度数表記 含む）
+- Roman（Chord Progression の度数表記）: Major=大文字（I, IV, V）/ minor=小文字（ii, iii, vi）/ diminished=小文字+°（vii°）/ augmented=大文字+augまたは+（III+）。
+  - 例（Cメジャーのダイアトニック）: I (C), ii (Dm), iii (Em), IV (F), V (G), vi (Am), vii° (Bdim)
+
+## 13. コード名コンテキストメニュー機能
+
+### 実装済み（Phase 1）
+- コード名を長押しでコンテキストメニュー表示
+- "フォームを確認"でコード辞典に遷移
+- ダイアトニックコード: "スロットに追加"オプションも表示
+- 自動スクロール＆ハイライト表示
+- コード辞典存在チェック（事前チェック方式）
+
+### 将来の拡張機能
+- **フォーム固有の音声再生**: コード辞典からコード進行に追加する際、特定フォームの音声特性を保持して再生
+  - 現在: すべての進行で標準フォームの音声を使用
+  - 将来: フォームIDをコードと共に保存し、再生時にフォーム固有の音声を使用
+  - 検討事項: パフォーマンスへの影響、メンテナンスの複雑さ
+- Intervals（Scale/音程の度数表記）: P=Perfect（大文字P）, M=Major（大文字M）, m=minor（小文字m）, A=Augmented（大文字A）, d=diminished（小文字d）。
+  - 例: Major Scale = 1 - M2 - M3 - P4 - P5 - M6 - M7／Natural Minor = 1 - M2 - m3 - P4 - P5 - m6 - m7／Dorian = 1 - M2 - m3 - P4 - P5 - M6 - m7
+- 非ヘプタ系では Roman を非表示（従来ルール継続）。
+- Capo 注記 "Shaped=fingered / Sounding=actual" を UI / 保存 / 出力の全箇所で併記。
+- スケール名統一：Ionian→Major Scale、Aeolian→Natural Minor。
+
+### 計測 / 価格 / 録音UI
+- Telemetry イベント名は SSOT の最小セット＋購入系（`paywall_view` / `purchase_success` / `midi_export{...}`）に完全準拠。
+- 価格は StoreKit のローカライズ結果に依存（固定"税込"は記載しない）。
+- 録音 UI は非露出（Flag OFF）。関連文言は将来フラグ配下。
+
+### 訳語マスター
+- 管理ファイル参照：`docs/SSOT/terminology/v3.2_ja_master_terms.md` / `.csv`
+- 矛盾時は本 Implementation SSOT と正本 SSOT を優先し、マスターを更新。
+
+---
+
+## 更新履歴
+
+| 日付 | バージョン | 変更内容 |
+|------|-----------|---------|
+| 2025/10/20 | 3.2 | コードクオリティコメント表示機能実装（電球マークタップ、構造化コメント、言語自動切替） |
+| 2025/01/19 | 3.2 | v3.1をベースに、サウンドパレット、Android版計画、日英同時リリースを反映。v3.2を正として採用。 |
+| 2025/10/18 | 3.1 | コードライブラリマスターCSV完全拡張、Major/minorコードの包括的フォーム拡張 |
+| 2025/10/16 | 3.1 | Chord Library Static v0、My Forms保存機能、Web版静的データ統合 |
+| 2025/10/14 | 3.1 | Advanced Chords Pro制限、Chord Library CM7修正、プリセット拡張 |
+| 2025/10/13 | 3.1 | Sketch保存機能、Fretboard & Diatonic統合、Roman Numerals、Patterns、Cadence |
+| 2025/10/12 | 3.1 | Fretboard二層Overlay、Diatonic Table、Suggested Scales、Substitute Chords |
+| 2025/10/11 | 3.1 | MIDI大幅強化、UI改善、スケール音プレビュー |
+| 2025/10/10 | 3.1 | Hybrid Audio Architecture、ベース実装、ドラム削除 |
+| 2025/10/04 | 3.1 | Web Lite GA、6面CTA、iOS基盤構築、Tab Bar Navigation |
