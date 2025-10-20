@@ -1,0 +1,42 @@
+# Vercel設定情報の取得方法
+
+GitHub ActionsでVercelにデプロイするために、以下の情報をGitHubのSecretsに設定する必要があります。
+
+## 必要な情報の取得方法
+
+### 1. VERCEL_TOKEN の取得
+1. Vercelダッシュボードにログイン
+2. Settings → Tokens に移動
+3. "Create Token" をクリック
+4. Token名を入力（例: "GitHub Actions"）
+5. Scope: "Full Account" を選択
+6. "Create" をクリック
+7. 生成されたトークンをコピー
+
+### 2. VERCEL_ORG_ID の取得
+1. Vercelダッシュボードでプロジェクトを選択
+2. Settings → General に移動
+3. "Project ID" の下に "Team ID" が表示される
+4. この値が VERCEL_ORG_ID
+
+### 3. VERCEL_PROJECT_ID の取得
+1. Vercelダッシュボードでプロジェクトを選択
+2. Settings → General に移動
+3. "Project ID" をコピー
+4. この値が VERCEL_PROJECT_ID
+
+## GitHub Secretsの設定
+
+1. GitHubリポジトリページに移動
+2. Settings → Secrets and variables → Actions に移動
+3. "New repository secret" をクリック
+4. 以下の3つのSecretsを追加：
+   - `VERCEL_TOKEN`: 上記で取得したトークン
+   - `VERCEL_ORG_ID`: 上記で取得したOrg ID
+   - `VERCEL_PROJECT_ID`: 上記で取得したProject ID
+
+## 注意事項
+
+- VERCEL_TOKENは機密情報なので、絶対にコードに直接書かないでください
+- トークンは定期的に更新することをお勧めします
+- プロジェクトIDやOrg IDは変更されることはほとんどありません
