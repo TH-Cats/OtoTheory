@@ -258,8 +258,18 @@ final class BassBounceService {
     }
     
     /// コードシンボルからベースルート音を抽出（C2 = 36 ベース）
+    /// スラッシュコードの場合はベース音を使用
     private func chordToBassRoot(_ chord: String) -> UInt8 {
-        // ルート音抽出（例: "Cmaj7" → "C", "F#m" → "F#"）
+        // ✅ スラッシュコードの場合はベース音を抽出
+        if chord.contains("/") {
+            let parts = chord.split(separator: "/")
+            if parts.count > 1 {
+                let bassStr = String(parts[1]).trimmingCharacters(in: .whitespaces)
+                return noteNameToMIDI(bassStr, octave: 2)  // C2 = 36
+            }
+        }
+        
+        // 通常のコード：ルート音抽出
         let rootMatch = chord.range(of: "^[A-G][#b]?", options: .regularExpression)
         guard let range = rootMatch else {
             print("⚠️ BassBounce: Failed to parse chord '\(chord)', using C")
@@ -267,8 +277,11 @@ final class BassBounceService {
         }
         
         let rootStr = String(chord[range])
-        
-        // ルート音 → MIDI番号（C2 = 36 ベース）
+        return noteNameToMIDI(rootStr, octave: 2)
+    }
+    
+    /// ノート名をMIDI番号に変換（オクターブ指定）
+    private func noteNameToMIDI(_ noteName: String, octave: Int) -> UInt8 {
         let pcMap: [String: Int] = [
             "C": 0, "C#": 1, "Db": 1,
             "D": 2, "D#": 3, "Eb": 3,
@@ -279,12 +292,12 @@ final class BassBounceService {
             "B": 11
         ]
         
-        guard let pc = pcMap[rootStr] else {
-            print("⚠️ BassBounce: Unknown root '\(rootStr)', using C")
-            return 36
+        guard let pc = pcMap[noteName] else {
+            print("⚠️ BassBounce: Unknown note '\(noteName)', using C")
+            return UInt8(12 * octave)  // C at specified octave
         }
         
-        return UInt8(36 + pc)  // C2 = 36
+        return UInt8(12 * octave + pc)
     }
 }
 

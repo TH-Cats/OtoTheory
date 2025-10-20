@@ -16,6 +16,22 @@
 
 この手順により、一貫した翻訳品質と用語統一を保証します。
 
+## スケールコメント翻訳ルール
+
+スケール情報のコメントセクション名の翻訳ルール：
+
+| 英語 | 日本語 |
+|------|--------|
+| Degrees | 構成度数 |
+| Vibe | 雰囲気 |
+| Usage | 利用シーン |
+| Try | 使ってみよう |
+| Theory | 理論 |
+
+**参照ファイル**: `/Users/nh/App/OtoTheory/docs/content/OtoTheory Scale v.3.csv`
+
+この翻訳ルールは、WebアプリケーションのScaleInfoBodyコンポーネントとCSVファイルの両方で使用されます。
+
 ## メニュー
 
 | key | EN | JA | notes |

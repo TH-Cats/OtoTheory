@@ -843,7 +843,7 @@ struct ProgressionView: View {
                                     HStack {
                                         // Key & Mode
                                         VStack(alignment: .leading, spacing: 4) {
-                                            Text("\(candidate.tonic) \(scaleTypeToDisplayName(candidate.mode))")
+                                            Text(candidate.mode == "Major" ? candidate.tonic : "\(candidate.tonic)m")
                                                 .font(.body)
                                                 .fontWeight(selectedKeyIndex == index ? .bold : .semibold)
                                                 .foregroundColor(.primary)
@@ -894,6 +894,9 @@ struct ProgressionView: View {
                                                 onTap: {
                                                     playScalePreview(candidate)
                                                     selectedScaleIndex = index
+                                                },
+                                                onInfoTap: {
+                                                    // Info tap handled by ScaleCandidateButton itself
                                                 }
                                             )
                                         }
@@ -2721,6 +2724,9 @@ struct ScaleCandidateButton: View {
     let isPlaying: Bool
     let progress: Double
     let onTap: () -> Void
+    let onInfoTap: () -> Void
+    
+    @State private var showScaleInfo = false
     
     var body: some View {
         Button(action: onTap) {
@@ -2752,6 +2758,17 @@ struct ScaleCandidateButton: View {
                         .fontWeight(.bold)
                         .foregroundColor(fitColor(candidate.score))
                     
+                    // Lightbulb info button
+                    Button(action: {
+                        onInfoTap()
+                        showScaleInfo = true
+                    }) {
+                        Image(systemName: "lightbulb.fill")
+                            .foregroundColor(.orange)
+                            .font(.system(size: 16))
+                    }
+                    .buttonStyle(.plain)
+                    
                     // Selection indicator
                     if isSelected {
                         Image(systemName: "checkmark.circle.fill")
@@ -2765,6 +2782,9 @@ struct ScaleCandidateButton: View {
             .cornerRadius(8)
         }
         .buttonStyle(.plain)
+        .sheet(isPresented: $showScaleInfo) {
+            ScaleInfoSheet(scaleId: candidate.type)
+        }
     }
     
     private func fitColor(_ score: Int) -> Color {
@@ -2778,19 +2798,38 @@ struct ScaleCandidateButton: View {
 // MARK: - Helper Functions
 
 private func scaleTypeToDisplayName(_ type: String) -> String {
+    // Map old scale types to new IDs for backward compatibility
+    let scaleId = mapOldScaleTypeToNewId(type)
+    
+    if let scale = ScaleMaster.scaleById(scaleId) {
+        let isJapanese = Bundle.main.preferredLocalizations.first == "ja"
+        return isJapanese ? scale.scaleJa : scale.scaleEn
+    }
+    
+    return type
+}
+
+private func mapOldScaleTypeToNewId(_ type: String) -> String {
     switch type {
-    case "Ionian": return "Major Scale"
-    case "Dorian": return "Dorian"
-    case "Phrygian": return "Phrygian"
-    case "Lydian": return "Lydian"
-    case "Mixolydian": return "Mixolydian"
-    case "Aeolian": return "Natural Minor"
-    case "Locrian": return "Locrian"
-    case "HarmonicMinor": return "Harmonic Minor"
-    case "MelodicMinor": return "Melodic Minor"
-    case "MajorPentatonic": return "Major Pentatonic"
-    case "MinorPentatonic": return "Minor Pentatonic"
-    case "Blues": return "Blues"
+    case "Ionian": return "major"
+    case "Aeolian": return "naturalMinor"
+    case "Dorian": return "dorian"
+    case "Phrygian": return "phrygian"
+    case "Lydian": return "lydian"
+    case "Mixolydian": return "mixolydian"
+    case "Locrian": return "locrian"
+    case "HarmonicMinor": return "harmonicMinor"
+    case "MelodicMinor": return "melodicMinor"
+    case "MajorPentatonic": return "majPent"
+    case "MinorPentatonic": return "minPent"
+    case "Blues": return "bluesMinor"
+    case "DiminishedWH": return "dimWholeHalf"
+    case "DiminishedHW": return "dimHalfWhole"
+    case "Lydianb7": return "lydianb7"
+    case "Mixolydianb6": return "mixolydianb6"
+    case "PhrygianDominant": return "phrygDominant"
+    case "Altered": return "altered"
+    case "WholeTone": return "wholeTone"
     default: return type
     }
 }
@@ -2953,6 +2992,153 @@ enum FretboardDisplay {
         switch self {
         case .degrees: return "circle.grid.cross"
         case .names: return "textformat.abc"
+        }
+    }
+}
+
+// MARK: - Scale Info Sheet
+
+struct ScaleInfoSheet: View {
+    let scaleId: String
+    @Environment(\.dismiss) private var dismiss
+    
+    private var scale: ScaleMasterItem? {
+        let mappedId = mapOldScaleTypeToNewId(scaleId)
+        return ScaleMaster.scaleById(mappedId)
+    }
+    
+    private var isJapanese: Bool {
+        Bundle.main.preferredLocalizations.first == "ja"
+    }
+    
+    var body: some View {
+        NavigationView {
+            if let scale = scale {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        // Scale header
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(isJapanese ? scale.scaleJa : scale.scaleEn)
+                                .font(.title2)
+                                .fontWeight(.bold)
+                            
+                            if !scale.aliasEn.isEmpty {
+                                Text(scale.aliasEn.joined(separator: ", "))
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            Text(isJapanese ? scale.categoryJa : scale.categoryEn)
+                                .font(.caption)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 4)
+                                .background(ScaleCategoryIcons.colorForCategory(scale.categoryEn).opacity(0.2))
+                                .foregroundColor(ScaleCategoryIcons.colorForCategory(scale.categoryEn))
+                                .cornerRadius(4)
+                        }
+                        
+                        // Scale degrees
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(isJapanese ? "構成音" : "Scale Degrees")
+                                .font(.headline)
+                                .foregroundColor(.orange)
+                                .fontWeight(.bold)
+                            
+                            Text(scale.degrees.joined(separator: " - "))
+                                .font(.body)
+                                .foregroundColor(.primary)
+                        }
+                        
+                        // Comments sections
+                        VStack(alignment: .leading, spacing: 16) {
+                            let comments = isJapanese ? scale.comments.ja : scale.comments.en
+                            
+                            CommentSection(
+                                title: isJapanese ? "雰囲気" : "Vibe",
+                                content: comments.vibe
+                            )
+                            
+                            CommentSection(
+                                title: isJapanese ? "特徴" : "Usage",
+                                content: comments.use
+                            )
+                            
+                            CommentSection(
+                                title: "Try",
+                                content: comments.`try`
+                            )
+                            
+                            CommentSection(
+                                title: isJapanese ? "理論" : "Theory",
+                                content: comments.theory
+                            )
+                        }
+                        
+                        // Non-heptatonic note
+                        if !scale.heptatonic {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(isJapanese ? "注意" : "Note")
+                                    .font(.headline)
+                                    .foregroundColor(.blue)
+                                    .fontWeight(.bold)
+                                
+                                Text(isJapanese ? 
+                                     "このスケールは\(scale.tones)音スケールです。表示は7音として見せますが、実際の音数は\(scale.tones)音です。" :
+                                     "This is a \(scale.tones)-note scale. Displayed as 7 notes but actually contains \(scale.tones) notes."
+                                )
+                                .font(.body)
+                                .foregroundColor(.primary)
+                            }
+                            .padding()
+                            .background(Color.blue.opacity(0.1))
+                            .cornerRadius(8)
+                        }
+                    }
+                    .padding()
+                }
+                .navigationTitle(isJapanese ? "スケール情報" : "Scale Info")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(isJapanese ? "閉じる" : "Done") {
+                            dismiss()
+                        }
+                    }
+                }
+            } else {
+                VStack {
+                    Text(isJapanese ? "スケール情報が見つかりません" : "Scale info not found")
+                        .foregroundColor(.secondary)
+                }
+                .navigationTitle(isJapanese ? "スケール情報" : "Scale Info")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(isJapanese ? "閉じる" : "Done") {
+                            dismiss()
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct CommentSection: View {
+    let title: String
+    let content: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(title)
+                .font(.headline)
+                .foregroundColor(.orange)
+                .fontWeight(.bold)
+            
+            Text(content)
+                .font(.body)
+                .foregroundColor(.primary)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 }

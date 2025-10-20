@@ -9,6 +9,13 @@ import Foundation
 import AVFoundation
 import CoreMIDI
 
+/// Parsed chord structure for unified parsing
+struct ParsedChord {
+    let mainRoot: String   // "C"
+    let quality: String    // "maj7", "m7", "7", ...
+    let onBass: String?    // "E" in "C/E"
+}
+
 /// MIDI export service for chord progressions
 class MIDIExportService {
     
@@ -304,7 +311,8 @@ class MIDIExportService {
     ///   - key: Key name
     /// - Returns: Array of MIDI note numbers for 3rd and 7th
     private func extractGuideTones(_ chord: String, key: String) -> [UInt8] {
-        let root = parseChordRoot(chord, key: key)
+        let parsed = parseChordSymbol(chord)
+        let root = parseNoteToMIDI(parsed.mainRoot, octave: 4)  // C4 = 60
         let chordLower = chord.lowercased()
         
         var guideTones: [UInt8] = []
@@ -341,17 +349,47 @@ class MIDIExportService {
             guard !chord.isEmpty else { continue }
             
             let barStart = MusicTimeStamp(index) * barDuration
-            let root = parseChordRoot(chord, key: key)
-            let rootLow = root - 24 // Two octaves lower for proper bass range (C2-E2)
-            let fifth = rootLow + 7 // Perfect 5th
+            let parsed = parseChordSymbol(chord)
             
-            // Bass pattern: Root → 5th → Root → 5th (Simple alternating pattern)
-            let bassPattern: [(note: UInt8, beat: Int)] = [
-                (rootLow, 0),  // Beat 1: Root
-                (fifth, 1),    // Beat 2: 5th
-                (rootLow, 2),  // Beat 3: Root
-                (fifth, 3)     // Beat 4: 5th
-            ]
+            // Determine bass note: onBass ?? mainRoot
+            let bassNote = parsed.onBass ?? parsed.mainRoot
+            let bassLow = parseNoteToMIDI(bassNote, octave: 2)  // C2 = 36
+            
+            // Get main root for 5th calculation
+            let mainRoot = parseNoteToMIDI(parsed.mainRoot, octave: 2)
+            let mainFifth = mainRoot + 7  // Perfect 5th of main root
+            
+            // Three-tier safety system for bass pattern
+            let bassPattern: [(note: UInt8, beat: Int)]
+            
+            if let onBass = parsed.onBass {
+                // Slash chord: check if on-bass is within chord tones
+                if isBassInChordTones(onBass, mainRoot: parsed.mainRoot, quality: parsed.quality) {
+                    // Tier 1: On-bass ↔ Main root's 5th (C/E → E ↔ G)
+                    bassPattern = [
+                        (bassLow, 0),      // Beat 1: On-bass
+                        (mainFifth, 1),    // Beat 2: Main root's 5th
+                        (bassLow, 2),      // Beat 3: On-bass
+                        (mainFifth, 3)     // Beat 4: Main root's 5th
+                    ]
+                } else {
+                    // Tier 2: Non-chord tone → On-bass 4-beat pattern
+                    bassPattern = [
+                        (bassLow, 0),      // Beat 1: On-bass
+                        (bassLow, 1),      // Beat 2: On-bass
+                        (bassLow, 2),      // Beat 3: On-bass
+                        (bassLow, 3)       // Beat 4: On-bass
+                    ]
+                }
+            } else {
+                // Regular chord: Root ↔ 5th pattern
+                bassPattern = [
+                    (bassLow, 0),      // Beat 1: Root
+                    (mainFifth, 1),    // Beat 2: 5th
+                    (bassLow, 2),      // Beat 3: Root
+                    (mainFifth, 3)     // Beat 4: 5th
+                ]
+            }
             
             for (note, beat) in bassPattern {
                 let timestamp = barStart + (MusicTimeStamp(beat) * quarterNote)
@@ -868,40 +906,141 @@ class MIDIExportService {
         return totalDistance
     }
     
+    // MARK: - Unified Chord Parsing
+    
+    /// Parse chord symbol into structured components
+    private func parseChordSymbol(_ symbol: String) -> ParsedChord {
+        if symbol.contains("/") {
+            let parts = symbol.split(separator: "/")
+            let mainChord = String(parts[0])
+            let onBass = parts.count > 1 ? String(parts[1]).trimmingCharacters(in: .whitespaces) : nil
+            
+            // Extract root and quality from main chord
+            let rootMatch = mainChord.range(of: "^[A-G][#b]?", options: .regularExpression)
+            let root = rootMatch.map { String(mainChord[$0]) } ?? "C"
+            let quality = rootMatch.map { String(mainChord[$0.upperBound...]) } ?? ""
+            
+            return ParsedChord(mainRoot: root, quality: quality, onBass: onBass)
+        } else {
+            // Regular chord
+            let rootMatch = symbol.range(of: "^[A-G][#b]?", options: .regularExpression)
+            let root = rootMatch.map { String(symbol[$0]) } ?? "C"
+            let quality = rootMatch.map { String(symbol[$0.upperBound...]) } ?? ""
+            
+            return ParsedChord(mainRoot: root, quality: quality, onBass: nil)
+        }
+    }
+    
+    /// Parse note name to MIDI number with octave specification
+    private func parseNoteToMIDI(_ noteName: String, octave: Int = 4) -> UInt8 {
+        let rootMap: [String: UInt8] = [
+            "C": 60, "C#": 61, "Db": 61,
+            "D": 62, "D#": 63, "Eb": 63,
+            "E": 64,
+            "F": 65, "F#": 66, "Gb": 66,
+            "G": 67, "G#": 68, "Ab": 68,
+            "A": 69, "A#": 70, "Bb": 70,
+            "B": 71
+        ]
+        
+        // Extract note name (1-2 characters)
+        var root = String(noteName.prefix(1))
+        if noteName.count > 1 {
+            let second = String(noteName[noteName.index(noteName.startIndex, offsetBy: 1)])
+            if second == "#" || second == "b" {
+                root += second
+            }
+        }
+        
+        let baseNote = rootMap[root] ?? 60  // Default to C4
+        return UInt8(Int(baseNote) + (octave - 4) * 12)
+    }
+    
+    /// Apply octave clamping for guitar bass notes to avoid collision with real bass
+    private func clampGuitarBass(_ guitarBass: UInt8, realBass: UInt8) -> UInt8 {
+        // If guitar bass is too close to real bass (< 7 semitones), move up one octave
+        if guitarBass - realBass < 7 {
+            return guitarBass + 12
+        }
+        return guitarBass
+    }
+    
+    /// Check if bass note is within chord tones
+    private func isBassInChordTones(_ bass: String, mainRoot: String, quality: String) -> Bool {
+        let bassPc = parseNoteToMIDI(bass, octave: 0) % 12
+        let rootPc = parseNoteToMIDI(mainRoot, octave: 0) % 12
+        
+        // Get chord intervals
+        var intervals: [Int] = [0]  // Root
+        let qualityLower = quality.lowercased()
+        
+        if qualityLower.contains("maj7") || qualityLower.contains("major7") {
+            intervals = [0, 4, 7, 11]  // Root, 3rd, 5th, 7th
+        } else if qualityLower.contains("m7") || qualityLower.contains("min7") {
+            intervals = [0, 3, 7, 10]
+        } else if qualityLower.contains("7") {
+            intervals = [0, 4, 7, 10]
+        } else if qualityLower.contains("dim") {
+            intervals = [0, 3, 6]
+        } else if qualityLower.contains("aug") {
+            intervals = [0, 4, 8]
+        } else if qualityLower.contains("m") || qualityLower.contains("min") {
+            intervals = [0, 3, 7]
+        } else {
+            intervals = [0, 4, 7]  // Major triad
+        }
+        
+        // Check if bass pitch class matches any chord tone
+        return intervals.contains { (Int(rootPc) + $0) % 12 == Int(bassPc) }
+    }
+    
     // MARK: - Chord Parsing
     
     /// Parse chord full voicing (root + 3rd + 5th + 7th if applicable)
+    /// Voice Leading: Upper voices only, on-bass is fixed
     private func parseChordVoicing(_ chord: String, key: String) -> [UInt8] {
-        let root = parseChordRoot(chord, key: key)
-        let chordLower = chord.lowercased()
+        let parsed = parseChordSymbol(chord)
+        let root = parseNoteToMIDI(parsed.mainRoot, octave: 4)  // C4 = 60
+        let qualityLower = parsed.quality.lowercased()
         
-        var voicing: [UInt8] = [root] // Always include root
+        var voicing: [UInt8] = []
         
-        // Determine chord quality and build voicing
-        if chordLower.contains("maj7") || chordLower.contains("major7") {
+        // Add on-bass as lowest note if present and different from root
+        if let onBass = parsed.onBass {
+            let bassNote = parseNoteToMIDI(onBass, octave: 3)  // C3 = 48
+            if bassNote != root {
+                voicing.append(bassNote)
+            }
+        }
+        
+        // Add root
+        voicing.append(root)
+        
+        // Determine chord quality and build voicing (upper voices only)
+        if qualityLower.contains("maj7") || qualityLower.contains("major7") {
             // Major 7th: Root + 3rd + 5th + 7th
             voicing.append(root + 4)  // Major 3rd
             voicing.append(root + 7)  // Perfect 5th
             voicing.append(root + 11) // Major 7th
-        } else if chordLower.contains("m7") || chordLower.contains("min7") {
+        } else if qualityLower.contains("m7") || qualityLower.contains("min7") {
             // Minor 7th: Root + 3rd + 5th + 7th
             voicing.append(root + 3)  // Minor 3rd
             voicing.append(root + 7)  // Perfect 5th
             voicing.append(root + 10) // Minor 7th
-        } else if chordLower.contains("7") {
+        } else if qualityLower.contains("7") {
             // Dominant 7th: Root + 3rd + 5th + 7th
             voicing.append(root + 4)  // Major 3rd
             voicing.append(root + 7)  // Perfect 5th
             voicing.append(root + 10) // Minor 7th
-        } else if chordLower.contains("dim") {
+        } else if qualityLower.contains("dim") {
             // Diminished: Root + 3rd + 5th
             voicing.append(root + 3)  // Minor 3rd
             voicing.append(root + 6)  // Diminished 5th
-        } else if chordLower.contains("aug") {
+        } else if qualityLower.contains("aug") {
             // Augmented: Root + 3rd + 5th
             voicing.append(root + 4)  // Major 3rd
             voicing.append(root + 8)  // Augmented 5th
-        } else if chordLower.contains("m") || chordLower.contains("min") {
+        } else if qualityLower.contains("m") || qualityLower.contains("min") {
             // Minor triad: Root + 3rd + 5th
             voicing.append(root + 3)  // Minor 3rd
             voicing.append(root + 7)  // Perfect 5th

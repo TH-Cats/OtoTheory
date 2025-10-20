@@ -356,8 +356,32 @@ final class ChordSequencer: ObservableObject {
     // MARK: - Chord to MIDI
     
     private func chordToMidi(_ symbol: String) -> [UInt8] {
-        let parts = symbol.split(separator: "/")
-        let mainChord = String(parts[0])
+        // ✅ スラッシュコードのベース音を抽出
+        let bassNote: UInt8?
+        let mainChord: String
+        
+        if symbol.contains("/") {
+            let parts = symbol.split(separator: "/")
+            mainChord = String(parts[0])
+            if parts.count > 1 {
+                let bassStr = String(parts[1]).trimmingCharacters(in: .whitespaces)
+                let rootMap: [String: UInt8] = [
+                    "C": 60, "C#": 61, "Db": 61,
+                    "D": 62, "D#": 63, "Eb": 63,
+                    "E": 64,
+                    "F": 65, "F#": 66, "Gb": 66,
+                    "G": 67, "G#": 68, "Ab": 68,
+                    "A": 69, "A#": 70, "Bb": 70,
+                    "B": 71
+                ]
+                bassNote = rootMap[String(bassStr.prefix(2))] ?? rootMap[String(bassStr.prefix(1))]
+            } else {
+                bassNote = nil
+            }
+        } else {
+            mainChord = symbol
+            bassNote = nil
+        }
         
         // Root note
         let rootMap: [String: UInt8] = [
@@ -397,7 +421,14 @@ final class ChordSequencer: ObservableObject {
             intervals = [0, 5, 7]
         }
         
-        return intervals.map { root + UInt8($0) }
+        var result = intervals.map { root + UInt8($0) }
+        
+        // スラッシュコードの場合はベース音を最低音として追加
+        if let bass = bassNote, bass != root {
+            result.insert(bass, at: 0)
+        }
+        
+        return result
     }
     
 }

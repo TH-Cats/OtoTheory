@@ -196,6 +196,24 @@ class ScalePreviewPlayer: ObservableObject {
         case "Blues":
             return [0, 3, 5, 6, 7, 10]
         
+        // Diminished (Symmetrical)
+        case "DiminishedWH":
+            return [0, 2, 3, 5, 6, 8, 9, 11]  // Whole-Half Diminished
+        case "DiminishedHW":
+            return [0, 1, 3, 4, 6, 7, 9, 10]  // Half-Whole Diminished
+        
+        // Advanced scales
+        case "Lydianb7":
+            return [0, 2, 4, 6, 7, 9, 10]      // R, 2, 3, #4, 5, 6, b7
+        case "Mixolydianb6":
+            return [0, 2, 4, 5, 7, 8, 10]      // R, 2, 3, 4, 5, b6, b7
+        case "PhrygianDominant":
+            return [0, 1, 4, 5, 7, 8, 10]      // R, b2, 3, 4, 5, b6, b7
+        case "Altered":
+            return [0, 1, 3, 4, 6, 8, 10]      // R, b2, #2, 3, b5, b6, b7
+        case "WholeTone":
+            return [0, 2, 4, 6, 8, 10]         // R, 2, 3, #4, #5, b7
+        
         default:
             return nil
         }

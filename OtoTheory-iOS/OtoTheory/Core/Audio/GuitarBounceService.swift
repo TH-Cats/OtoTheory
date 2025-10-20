@@ -111,10 +111,10 @@ final class GuitarBounceService {
         print("✅ GuitarBounce: CC initialized")
         
         // 出力バッファ準備
-        guard let renderBuffer = AVAudioPCMBuffer(
+        guard AVAudioPCMBuffer(
             pcmFormat: engine.manualRenderingFormat,
             frameCapacity: totalFrames
-        ) else {
+        ) != nil else {
             throw NSError(
                 domain: "GuitarBounceService",
                 code: -1,
@@ -314,45 +314,75 @@ final class GuitarBounceService {
     }
     
     /// コードシンボル → MIDIノート番号配列
-    /// （既存のChordSequencer.chordToMidiと同じロジック）
+    /// スラッシュコードの場合はベース音を最低音として含める（クランプ機能付き）
     private func chordToMidi(_ symbol: String) -> [UInt8] {
-        let parts = symbol.split(separator: "/")
-        let mainChord = String(parts[0])
+        // ✅ スラッシュコードのベース音を抽出
+        let bassNote: UInt8?
+        let mainChord: String
         
-        // ルート音抽出
-        let rootMatch = mainChord.range(of: "^[A-G][#b]?", options: .regularExpression)
-        guard let rootRange = rootMatch else { return [] }
-        let rootStr = String(mainChord[rootRange])
-        let quality = String(mainChord[rootRange.upperBound...])
-        
-        let rootPc = noteNameToPitchClass(rootStr)
-        let basePitch: UInt8 = 48 + UInt8(rootPc)  // C3=48
-        
-        // コード構成音
-        var intervals: [Int] = [0]  // ルート
-        if quality.contains("m") && !quality.contains("maj") {
-            intervals.append(3)  // m3
-        } else {
-            intervals.append(4)  // M3
-        }
-        
-        if quality.contains("dim") {
-            intervals.append(6)  // dim5
-        } else if quality.contains("aug") {
-            intervals.append(8)  // aug5
-        } else {
-            intervals.append(7)  // P5
-        }
-        
-        if quality.contains("7") {
-            if quality.contains("maj7") {
-                intervals.append(11)  // M7
+        if symbol.contains("/") {
+            let parts = symbol.split(separator: "/")
+            mainChord = String(parts[0])
+            if parts.count > 1 {
+                let bassStr = String(parts[1]).trimmingCharacters(in: .whitespaces)
+                bassNote = UInt8(noteNameToPitchClass(bassStr) + 48)  // C3 = 48
             } else {
-                intervals.append(10)  // m7
+                bassNote = nil
+            }
+        } else {
+            mainChord = symbol
+            bassNote = nil
+        }
+        
+        // Root note
+        let rootMap: [String: UInt8] = [
+            "C": 60, "C#": 61, "Db": 61,
+            "D": 62, "D#": 63, "Eb": 63,
+            "E": 64,
+            "F": 65, "F#": 66, "Gb": 66,
+            "G": 67, "G#": 68, "Ab": 68,
+            "A": 69, "A#": 70, "Bb": 70,
+            "B": 71
+        ]
+        
+        var root: UInt8 = 60
+        for (key, val) in rootMap {
+            if mainChord.hasPrefix(key) {
+                root = val
+                break
             }
         }
         
-        return intervals.map { basePitch + UInt8($0) }
+        // Quality
+        var intervals: [Int] = [0, 4, 7]  // Major triad
+        
+        if mainChord.contains("m7") {
+            intervals = [0, 3, 7, 10]
+        } else if mainChord.contains("maj7") || mainChord.contains("M7") {
+            intervals = [0, 4, 7, 11]
+        } else if mainChord.contains("7") {
+            intervals = [0, 4, 7, 10]
+        } else if mainChord.contains("m") {
+            intervals = [0, 3, 7]
+        } else if mainChord.contains("dim") {
+            intervals = [0, 3, 6]
+        } else if mainChord.contains("aug") {
+            intervals = [0, 4, 8]
+        } else if mainChord.contains("sus4") {
+            intervals = [0, 5, 7]
+        }
+        
+        var result = intervals.map { root + UInt8($0) }
+        
+        // スラッシュコードの場合はベース音を最低音として追加（クランプ機能付き）
+        if let bass = bassNote, bass != root {
+            // Apply octave clamping to avoid collision with real bass (C2 = 36)
+            let realBass = bass - 12  // Assume real bass is one octave lower
+            let clampedBass = (bass - realBass < 7) ? bass + 12 : bass
+            result.insert(clampedBass, at: 0)
+        }
+        
+        return result
     }
     
     private func noteNameToPitchClass(_ name: String) -> Int {

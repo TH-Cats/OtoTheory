@@ -1352,7 +1352,7 @@ export default function FindKeyPage() {
                 <div className="chip-row mb-2" role="tablist" aria-label="Key candidates">
                   {keyCandidates.map((k, idx) => {
                     const active = selFromStore && selFromStore.tonic === k.tonic && selFromStore.mode === k.mode;
-                    const label = `${PITCHES[k.tonic]} ${k.mode}`;
+                    const label = k.mode === 'Major' ? PITCHES[k.tonic] : `${PITCHES[k.tonic]}m`;
                     const reasons = k.reasons.join("\n");
                     return (
                       <button

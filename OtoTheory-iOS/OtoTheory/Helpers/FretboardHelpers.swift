@@ -25,7 +25,14 @@ struct FretboardHelpers {
         "HarmonicMinor": [0, 2, 3, 5, 7, 8, 11],
         "MelodicMinor": [0, 2, 3, 5, 7, 9, 11],
         "DiminishedWH": [0, 2, 3, 5, 6, 8, 9, 11],  // Whole-Half Diminished
-        "DiminishedHW": [0, 1, 3, 4, 6, 7, 9, 10]   // Half-Whole Diminished
+        "DiminishedHW": [0, 1, 3, 4, 6, 7, 9, 10],  // Half-Whole Diminished
+        
+        // Advanced scales
+        "Lydianb7": [0, 2, 4, 6, 7, 9, 10],          // R, 2, 3, #4, 5, 6, b7
+        "Mixolydianb6": [0, 2, 4, 5, 7, 8, 10],      // R, 2, 3, 4, 5, b6, b7
+        "PhrygianDominant": [0, 1, 4, 5, 7, 8, 10],  // R, b2, 3, 4, 5, b6, b7
+        "Altered": [0, 1, 3, 4, 6, 8, 10],           // R, b2, #2, 3, b5, b6, b7
+        "WholeTone": [0, 2, 4, 6, 8, 10]             // R, 2, 3, #4, #5, b7
     ]
     
     // MARK: - Degree Labels

@@ -14,52 +14,88 @@ struct ScaleSuggestion {
 }
 
 func suggestScalesForChord(quality: ChordQuality, chordIndex: Int = 0) -> [ScaleSuggestion] {
+    let suggestions: [ScaleSuggestion]
+    
     switch quality {
     case .major:
-        return [
+        suggestions = [
             ScaleSuggestion(
-                scaleId: "Ionian",
-                label: "Major Scale",
-                reason: "Foundation for major chords – fits all diatonic tones"
+                scaleId: "major",
+                label: getScaleDisplayName("major"),
+                reason: getScaleReason("major")
             ),
             ScaleSuggestion(
-                scaleId: "Lydian",
-                label: "Lydian (#4 Color)",
-                reason: "Bright color with raised 4th (#11) – jazz/modern sound"
+                scaleId: "lydian",
+                label: getScaleDisplayName("lydian"),
+                reason: getScaleReason("lydian")
+            ),
+            ScaleSuggestion(
+                scaleId: "majPent",
+                label: getScaleDisplayName("majPent"),
+                reason: getScaleReason("majPent")
             )
         ]
     case .minor:
-        return [
+        suggestions = [
             ScaleSuggestion(
-                scaleId: "Aeolian",
-                label: "Natural Minor",
-                reason: "Natural minor foundation – matches all minor scale tones"
+                scaleId: "naturalMinor",
+                label: getScaleDisplayName("naturalMinor"),
+                reason: getScaleReason("naturalMinor")
             ),
             ScaleSuggestion(
-                scaleId: "Dorian",
-                label: "Dorian (Bright Minor)",
-                reason: "Brighter minor with natural 6th – popular in jazz and funk"
+                scaleId: "dorian",
+                label: getScaleDisplayName("dorian"),
+                reason: getScaleReason("dorian")
             ),
             ScaleSuggestion(
-                scaleId: "Phrygian",
-                label: "Phrygian (Dark Minor)",
-                reason: "Dark minor with flat 2nd – Spanish/flamenco character"
+                scaleId: "minPent",
+                label: getScaleDisplayName("minPent"),
+                reason: getScaleReason("minPent")
             )
         ]
     case .diminished:
-        return [
+        suggestions = [
             ScaleSuggestion(
-                scaleId: "DiminishedWholeHalf",
-                label: "Whole–Half Dim",
-                reason: "Symmetrical whole-half pattern – creates tension over diminished chords"
+                scaleId: "dimWholeHalf",
+                label: getScaleDisplayName("dimWholeHalf"),
+                reason: getScaleReason("dimWholeHalf")
             ),
             ScaleSuggestion(
-                scaleId: "Locrian",
-                label: "Locrian",
-                reason: "Outlines half-diminished chord – starts on the 7th degree"
+                scaleId: "locrian",
+                label: getScaleDisplayName("locrian"),
+                reason: getScaleReason("locrian")
+            ),
+            ScaleSuggestion(
+                scaleId: "dimHalfWhole",
+                label: getScaleDisplayName("dimHalfWhole"),
+                reason: getScaleReason("dimHalfWhole")
             )
         ]
     }
+    
+    // Limit to maximum 3 suggestions
+    return Array(suggestions.prefix(3))
+}
+
+private func getScaleDisplayName(_ scaleId: String) -> String {
+    guard let scale = ScaleMaster.scaleById(scaleId) else {
+        return scaleId
+    }
+    
+    let isJapanese = Bundle.main.preferredLocalizations.first == "ja"
+    return isJapanese ? scale.scaleJa : scale.scaleEn
+}
+
+private func getScaleReason(_ scaleId: String) -> String {
+    guard let scale = ScaleMaster.scaleById(scaleId) else {
+        return "Scale information not available"
+    }
+    
+    let isJapanese = Bundle.main.preferredLocalizations.first == "ja"
+    let comments = isJapanese ? scale.comments.ja : scale.comments.en
+    
+    // Use the "use" section as the reason
+    return comments.use
 }
 
 enum ChordQuality {

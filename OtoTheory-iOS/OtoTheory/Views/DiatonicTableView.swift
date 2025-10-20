@@ -18,11 +18,74 @@ struct DiatonicTableView: View {
     @State private var diatonicChords: [DiatonicChord] = []
     @State private var capoSuggestions: [CapoSuggestion] = []
     
+    // Non-heptatonic scale detection (SSOT v3.2)
+    private var isHeptatonicScale: Bool {
+        let scaleId = mapOldScaleTypeToNewId(scale)
+        return ScaleMaster.scaleById(scaleId)?.heptatonic ?? true
+    }
+    
+    private var isJapanese: Bool {
+        Bundle.main.preferredLocalizations.first == "ja"
+    }
+    
+    private var nonHeptatonicNote: String {
+        let scaleId = mapOldScaleTypeToNewId(scale)
+        guard let scale = ScaleMaster.scaleById(scaleId) else {
+            return isJapanese ? "スケール情報が見つかりません" : "Scale information not found"
+        }
+        
+        return isJapanese ? 
+            "このスケールは\(scale.tones)音スケールです。表示は7音として見せますが、実際の音数は\(scale.tones)音です。" :
+            "This is a \(scale.tones)-note scale. Displayed as 7 notes but actually contains \(scale.tones) notes."
+    }
+    
+    private func mapOldScaleTypeToNewId(_ type: String) -> String {
+        switch type {
+        case "Ionian": return "major"
+        case "Aeolian": return "naturalMinor"
+        case "Dorian": return "dorian"
+        case "Phrygian": return "phrygian"
+        case "Lydian": return "lydian"
+        case "Mixolydian": return "mixolydian"
+        case "Locrian": return "locrian"
+        case "HarmonicMinor": return "harmonicMinor"
+        case "MelodicMinor": return "melodicMinor"
+        case "MajorPentatonic": return "majPent"
+        case "MinorPentatonic": return "minPent"
+        case "Blues": return "bluesMinor"
+        case "DiminishedWH": return "dimWholeHalf"
+        case "DiminishedHW": return "dimHalfWhole"
+        case "Lydianb7": return "lydianb7"
+        case "Mixolydianb6": return "mixolydianb6"
+        case "PhrygianDominant": return "phrygDominant"
+        case "Altered": return "altered"
+        case "WholeTone": return "wholeTone"
+        default: return type
+        }
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             // Header
             Text("Diatonic")
                 .font(.headline)
+            
+            // Non-heptatonic note (SSOT v3.2)
+            if !isHeptatonicScale {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(isJapanese ? "注意" : "Note")
+                        .font(.headline)
+                        .foregroundColor(.blue)
+                        .fontWeight(.bold)
+                    
+                    Text(nonHeptatonicNote)
+                        .font(.body)
+                        .foregroundColor(.primary)
+                }
+                .padding()
+                .background(Color.blue.opacity(0.1))
+                .cornerRadius(8)
+            }
             
             // Diatonic table (Web-style with unified scrolling)
             ScrollView(.horizontal, showsIndicators: false) {
@@ -163,6 +226,27 @@ struct DiatonicTableView: View {
             // Blues → Mixolydian (Dominant)
             diatonicChords = getMixolydianDiatonicChords(root: key)
             print("✅ Loaded \(diatonicChords.count) diatonic chords for Blues (parent: Mixolydian)")
+        }
+        // Advanced scales
+        else if scaleLower == "lydianb7" || scaleLower == "lydian b7" || scaleLower == "lydian dominant" {
+            diatonicChords = getLydianb7DiatonicChords(root: key)
+            print("✅ Loaded \(diatonicChords.count) diatonic chords for Lydian b7")
+        }
+        else if scaleLower == "mixolydianb6" || scaleLower == "mixolydian b6" {
+            diatonicChords = getMixolydianb6DiatonicChords(root: key)
+            print("✅ Loaded \(diatonicChords.count) diatonic chords for Mixolydian b6")
+        }
+        else if scaleLower == "phrygiandominant" || scaleLower == "phrygian dominant" || scaleLower == "spanish phrygian" {
+            diatonicChords = getPhrygianDominantDiatonicChords(root: key)
+            print("✅ Loaded \(diatonicChords.count) diatonic chords for Phrygian Dominant")
+        }
+        else if scaleLower == "altered" || scaleLower == "super locrian" {
+            diatonicChords = getAlteredDiatonicChords(root: key)
+            print("✅ Loaded \(diatonicChords.count) diatonic chords for Altered")
+        }
+        else if scaleLower == "wholetone" || scaleLower == "whole tone" {
+            diatonicChords = getWholeToneDiatonicChords(root: key)
+            print("✅ Loaded \(diatonicChords.count) diatonic chords for Whole-Tone")
         }
         else {
             // For other non-heptatonic scales, show no diatonic table
@@ -479,6 +563,20 @@ struct DiatonicTableView: View {
             return getMajorDiatonicChords(root: shapedKey)
         } else if scaleLower == "minorpentatonic" {
             return getMinorDiatonicChords(root: shapedKey)
+        } else if scaleLower == "blues" {
+            return getMixolydianDiatonicChords(root: shapedKey)
+        }
+        // Advanced scales
+        else if scaleLower == "lydianb7" || scaleLower == "lydian b7" || scaleLower == "lydian dominant" {
+            return getLydianb7DiatonicChords(root: shapedKey)
+        } else if scaleLower == "mixolydianb6" || scaleLower == "mixolydian b6" {
+            return getMixolydianb6DiatonicChords(root: shapedKey)
+        } else if scaleLower == "phrygiandominant" || scaleLower == "phrygian dominant" || scaleLower == "spanish phrygian" {
+            return getPhrygianDominantDiatonicChords(root: shapedKey)
+        } else if scaleLower == "altered" || scaleLower == "super locrian" {
+            return getAlteredDiatonicChords(root: shapedKey)
+        } else if scaleLower == "wholetone" || scaleLower == "whole tone" {
+            return getWholeToneDiatonicChords(root: shapedKey)
         } else {
             return []
         }
@@ -583,5 +681,175 @@ struct CapoChordButton: View {
         }
     )
     .padding()
+}
+
+// MARK: - Advanced Scale Diatonic Chords
+
+extension DiatonicTableView {
+    
+    private func getLydianb7DiatonicChords(root: String) -> [DiatonicChord] {
+        let notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+        
+        let keyMap: [String: String] = [
+            "Db": "C#", "Eb": "D#", "Gb": "F#", "Ab": "G#", "Bb": "A#"
+        ]
+        let normalizedRoot = keyMap[root] ?? root
+        
+        guard let rootIndex = notes.firstIndex(of: normalizedRoot) else {
+            print("❌ Invalid root note: \(root)")
+            return []
+        }
+        
+        // Lydian b7 intervals: R, 2, 3, #4, 5, 6, b7
+        let intervals = [0, 2, 4, 6, 7, 9, 10]
+        let qualities: [DiatonicChord.ChordQuality] = [.major, .minor, .minor, .augmented, .major, .minor, .minor]
+        let romanNumerals = ["I", "ii", "iii", "IV+", "V", "vi", "vii"]
+        
+        return intervals.enumerated().map { index, interval in
+            let noteIndex = (rootIndex + interval) % 12
+            let noteName = notes[noteIndex]
+            let quality = qualities[index]
+            let romanNumeral = romanNumerals[index]
+            
+            return DiatonicChord(
+                degree: index + 1,
+                romanNumeral: romanNumeral,
+                chordName: "\(noteName)\(quality.symbol)",
+                quality: quality
+            )
+        }
+    }
+    
+    private func getMixolydianb6DiatonicChords(root: String) -> [DiatonicChord] {
+        let notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+        
+        let keyMap: [String: String] = [
+            "Db": "C#", "Eb": "D#", "Gb": "F#", "Ab": "G#", "Bb": "A#"
+        ]
+        let normalizedRoot = keyMap[root] ?? root
+        
+        guard let rootIndex = notes.firstIndex(of: normalizedRoot) else {
+            print("❌ Invalid root note: \(root)")
+            return []
+        }
+        
+        // Mixolydian b6 intervals: R, 2, 3, 4, 5, b6, b7
+        let intervals = [0, 2, 4, 5, 7, 8, 10]
+        let qualities: [DiatonicChord.ChordQuality] = [.major, .minor, .diminished, .major, .major, .minor, .minor]
+        let romanNumerals = ["I", "ii", "iii°", "IV", "V", "vi", "vii"]
+        
+        return intervals.enumerated().map { index, interval in
+            let noteIndex = (rootIndex + interval) % 12
+            let noteName = notes[noteIndex]
+            let quality = qualities[index]
+            let romanNumeral = romanNumerals[index]
+            
+            return DiatonicChord(
+                degree: index + 1,
+                romanNumeral: romanNumeral,
+                chordName: "\(noteName)\(quality.symbol)",
+                quality: quality
+            )
+        }
+    }
+    
+    private func getPhrygianDominantDiatonicChords(root: String) -> [DiatonicChord] {
+        let notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+        
+        let keyMap: [String: String] = [
+            "Db": "C#", "Eb": "D#", "Gb": "F#", "Ab": "G#", "Bb": "A#"
+        ]
+        let normalizedRoot = keyMap[root] ?? root
+        
+        guard let rootIndex = notes.firstIndex(of: normalizedRoot) else {
+            print("❌ Invalid root note: \(root)")
+            return []
+        }
+        
+        // Phrygian Dominant intervals: R, b2, 3, 4, 5, b6, b7
+        let intervals = [0, 1, 4, 5, 7, 8, 10]
+        let qualities: [DiatonicChord.ChordQuality] = [.major, .diminished, .diminished, .major, .major, .minor, .minor]
+        let romanNumerals = ["I", "ii°", "iii°", "IV", "V", "vi", "vii"]
+        
+        return intervals.enumerated().map { index, interval in
+            let noteIndex = (rootIndex + interval) % 12
+            let noteName = notes[noteIndex]
+            let quality = qualities[index]
+            let romanNumeral = romanNumerals[index]
+            
+            return DiatonicChord(
+                degree: index + 1,
+                romanNumeral: romanNumeral,
+                chordName: "\(noteName)\(quality.symbol)",
+                quality: quality
+            )
+        }
+    }
+    
+    private func getAlteredDiatonicChords(root: String) -> [DiatonicChord] {
+        let notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+        
+        let keyMap: [String: String] = [
+            "Db": "C#", "Eb": "D#", "Gb": "F#", "Ab": "G#", "Bb": "A#"
+        ]
+        let normalizedRoot = keyMap[root] ?? root
+        
+        guard let rootIndex = notes.firstIndex(of: normalizedRoot) else {
+            print("❌ Invalid root note: \(root)")
+            return []
+        }
+        
+        // Altered intervals: R, b2, #2, 3, b5, b6, b7
+        let intervals = [0, 1, 3, 4, 6, 8, 10]
+        let qualities: [DiatonicChord.ChordQuality] = [.major, .diminished, .augmented, .diminished, .diminished, .minor, .minor]
+        let romanNumerals = ["I", "ii°", "iii+", "iv°", "v°", "vi", "vii"]
+        
+        return intervals.enumerated().map { index, interval in
+            let noteIndex = (rootIndex + interval) % 12
+            let noteName = notes[noteIndex]
+            let quality = qualities[index]
+            let romanNumeral = romanNumerals[index]
+            
+            return DiatonicChord(
+                degree: index + 1,
+                romanNumeral: romanNumeral,
+                chordName: "\(noteName)\(quality.symbol)",
+                quality: quality
+            )
+        }
+    }
+    
+    private func getWholeToneDiatonicChords(root: String) -> [DiatonicChord] {
+        let notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+        
+        let keyMap: [String: String] = [
+            "Db": "C#", "Eb": "D#", "Gb": "F#", "Ab": "G#", "Bb": "A#"
+        ]
+        let normalizedRoot = keyMap[root] ?? root
+        
+        guard let rootIndex = notes.firstIndex(of: normalizedRoot) else {
+            print("❌ Invalid root note: \(root)")
+            return []
+        }
+        
+        // Whole-Tone intervals: R, 2, 3, #4, #5, b7
+        let intervals = [0, 2, 4, 6, 8, 10]
+        let qualities: [DiatonicChord.ChordQuality] = [.major, .major, .major, .augmented, .augmented, .major]
+        let romanNumerals = ["I", "II", "III", "IV+", "V+", "VII"]
+        
+        return intervals.enumerated().map { index, interval in
+            let noteIndex = (rootIndex + interval) % 12
+            let noteName = notes[noteIndex]
+            let quality = qualities[index]
+            let romanNumeral = romanNumerals[index]
+            
+            return DiatonicChord(
+                degree: index + 1,
+                romanNumeral: romanNumeral,
+                chordName: "\(noteName)\(quality.symbol)",
+                quality: quality
+            )
+        }
+    }
 }
 
