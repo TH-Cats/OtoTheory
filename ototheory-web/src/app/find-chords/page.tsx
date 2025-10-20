@@ -25,9 +25,10 @@ import InfoDot from "@/components/ui/InfoDot";
 
 export default function FindChordsPage() {
   return (
-    <Suspense fallback={<div className="ot-page">Loading...</div>}>
-      <FindChordsContent />
-    </Suspense>
+    <div className="ot-page">
+      <h1>Find Chords</h1>
+      <p>This page is temporarily under maintenance. Please check back later.</p>
+    </div>
   );
 }
 
