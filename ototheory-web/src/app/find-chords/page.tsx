@@ -1,25 +1,25 @@
 "use client";
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
-// import AdSlot from "@/components/AdSlot.client";
+import AdSlot from "@/components/AdSlot.client";
 import { getDiatonicChordsFor, type NoteLetter } from "@/lib/music-theory";
 import { toRoman, type Mode } from "@/lib/theory/roman";
 import { useSearchParams } from "next/navigation";
-// import Fretboard from "@/components/Fretboard";
+import Fretboard from "@/components/Fretboard";
 // import { OverlayProvider } from "@/state/overlay";
-// import DiatonicCapoTable from "@/components/DiatonicCapoTable";
+import DiatonicCapoTable from "@/components/DiatonicCapoTable";
 // import { useRovingTabs } from "@/hooks/useRovingTabs";
 // import { useAnalysisStore } from "@/store/analysisStore";
 import { getScalePitchesById } from "@/lib/scales";
 import { SCALE_CATALOG, type ScaleId } from "@/lib/scaleCatalog";
 import { PC_NAMES } from "@/lib/music/constants";
 // import { track } from "@/lib/telemetry";
-// import ScaleTable from "@/components/ScaleTable";
+import ScaleTable from "@/components/ScaleTable";
 // import { ChordFormsPopover } from "@/components/ChordFormsPopover";
 // import { buildForm, type FormKind, type FormShape, type Quality } from "@/lib/chordForms";
-// import SubstituteCard from "@/components/SubstituteCard";
+import SubstituteCard from "@/components/SubstituteCard";
 import { SCALE_MASTER, getScaleById, getScaleDisplayName, getScalesByCategory, getAllCategories, getCategoryDisplayName, type ScaleId as NewScaleId } from "@/lib/scalesMaster";
 import { getCategoryIcon } from "@/lib/scaleCategoryIcons";
-// import ScaleInfoBody from "@/components/ScaleInfoBody";
+import ScaleInfoBody from "@/components/ScaleInfoBody";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import InfoDot from "@/components/ui/InfoDot";
 
@@ -265,7 +265,7 @@ function FindChordsContent() {
               </p>
             )}
             <div data-testid={isHept ? undefined : "diatonic-open-only"}>
-            {/* <DiatonicCapoTable selectedId={selectedCellId} onSelectId={(id)=>{
+            <DiatonicCapoTable selectedId={selectedCellId} onSelectId={(id)=>{
               // 再クリック（同じセル）は状態を変えない（プレビューはResetを使用）
               if (selectedCellId === id) { return; }
               setSelectedCellId(id);
@@ -273,16 +273,13 @@ function FindChordsContent() {
               const mainNotes = pcs.map(pc => PC_NAMES[pc] as string);
               setOverlayNotes(mainNotes);
               setLastPickedPcs(pcs);
-              resetForms();
-              track('diatonic_pick', { page:'find-chords', id:selectedCellId, scale: selScaleId, key: keyTonic });
-            }} /> */}
-            <div className="p-4 text-center text-gray-500">
-              Diatonic table temporarily disabled
-            </div>
+              // resetForms();
+              // track('diatonic_pick', { page:'find-chords', id:selectedCellId, scale: selScaleId, key: keyTonic });
+            }} />
             </div>
           </div>
           {/* Scale table (MVP): show 2-scale suggestions for the selected chord */}
-          {/* {selectedCellId && lastPickedPcs && (
+          {selectedCellId && lastPickedPcs && (
             <div className="mt-2">
               <ScaleTable
                 chordQuality={detectQualityFromPcs(lastPickedPcs)}
@@ -293,9 +290,9 @@ function FindChordsContent() {
                 activeScaleId={previewScaleId as any}
               />
             </div>
-          )} */}
+          )}
           {/* Substitute Chords: show alternative chords */}
-          {/* {selectedCellId && lastPickedPcs && (
+          {selectedCellId && lastPickedPcs && (
             <SubstituteCard
               rootPc={scaleRootPc as any}
               quality={detectQualityFromPcs(lastPickedPcs) as any}
@@ -310,7 +307,7 @@ function FindChordsContent() {
               }}
               page="find-chords"
             />
-          )} */}
+          )}
           <div>
             <h3 className="ot-h3 flex items-center justify-between">
               <span>Fretboard</span>
@@ -322,7 +319,7 @@ function FindChordsContent() {
               )}
               </span>
             </h3>
-            {/* <Fretboard
+            <Fretboard
               overlay={{
                 viewMode: 'sounding' as any,
                 capo: fbCapo,
@@ -340,22 +337,21 @@ function FindChordsContent() {
                   })(),
                 },
               }}
-              onRequestForms={(at, ctx)=>{
-                setFormsPop({ at, rootPc: ctx.rootPc, quality: ctx.quality });
-              }}
-              formShape={formShape}
-            /> */}
-            <div className="p-4 text-center text-gray-500">
-              Fretboard temporarily disabled
-            </div>
+              // onPick={({ pcs }: { pcs: number[] })=>{
+              //   const notes = pcs.map((pc: number) => PC_NAMES[pc] as string);
+              //   setOverlayNotes(notes);
+              //   setLastPickedPcs(pcs);
+              //   // track('fretboard_pick', { page:'find-chords', pcs, quality: detectQualityFromPcs(pcs), key: keyTonic });
+              // }}
+            />
           </div>
         </div>
       </section>
 
       {/* Ad Placeholder (card participates in page rhythm) */}
-      {/* <section className="ot-card ad-placeholder" aria-label="Ad">
+      <section className="ot-card ad-placeholder" aria-label="Ad">
         <AdSlot page="find_chords" format="horizontal" />
-      </section> */}
+      </section>
       
       
 
@@ -471,10 +467,7 @@ function CategoryBasedScalePicker({
                             </button>
                           }
                         >
-                          {/* <ScaleInfoBody scaleId={scale.id} /> */}
-                          <div className="p-2 text-sm text-gray-600">
-                            Scale info temporarily disabled
-                          </div>
+                          <ScaleInfoBody scaleId={scale.id} />
                         </InfoDot>
                       </div>
                     </div>
