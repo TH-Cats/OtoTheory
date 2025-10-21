@@ -25,9 +25,14 @@ import InfoDot from "@/components/ui/InfoDot";
 
 export default function FindChordsPage() {
   return (
-    <Suspense fallback={<div className="ot-page">Loading...</div>}>
-      <FindChordsContent />
-    </Suspense>
+    <main className="ot-page">
+      <h1>Find Chords by Key & Scale – Diatonic Chord Finder</h1>
+      <div className="ot-card">
+        <h2>Temporarily Under Maintenance</h2>
+        <p>The Find Chords feature is currently being updated. Please check back later.</p>
+        <p>We're working on improving the chord analysis and scale detection functionality.</p>
+      </div>
+    </main>
   );
 }
 
