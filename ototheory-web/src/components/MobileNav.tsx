@@ -3,14 +3,15 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { messages, type Locale } from "@/lib/i18n/messages";
+import { useLocale } from "@/contexts/LocaleContext";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const isJa = pathname?.startsWith('/ja');
-  const base = isJa ? '/ja' : '';
-  const locale: Locale = isJa ? 'ja' : 'en';
+  const { isJapanese } = useLocale();
+  const base = isJapanese ? '/ja' : '';
+  const locale: Locale = isJapanese ? 'ja' : 'en';
   const t = messages[locale];
   
   const links = [

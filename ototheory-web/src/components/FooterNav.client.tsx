@@ -2,17 +2,18 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLocale } from "@/contexts/LocaleContext";
 
 export default function FooterNav() {
   const pathname = usePathname() || "/";
-  const isJa = pathname.startsWith('/ja');
-  const base = isJa ? '/ja' : '';
+  const { isJapanese } = useLocale();
+  const base = isJapanese ? '/ja' : '';
   const items = [
-    { href: `${base}/about`, label: isJa ? 'About' : 'About' },
-    { href: `${base}/privacy`, label: isJa ? 'Privacy' : 'Privacy' },
-    { href: `${base}/terms`, label: isJa ? 'Terms' : 'Terms' },
-    { href: `${base}/faq`, label: isJa ? 'FAQ' : 'FAQ' },
-    { href: `${base}/support`, label: isJa ? 'Support' : 'Support' },
+    { href: `${base}/about`, label: 'About' },
+    { href: `${base}/privacy`, label: 'Privacy' },
+    { href: `${base}/terms`, label: 'Terms' },
+    { href: `${base}/faq`, label: 'FAQ' },
+    { href: `${base}/support`, label: 'Support' },
   ];
   return (
     <nav className="flex items-center justify-center gap-3 flex-wrap">

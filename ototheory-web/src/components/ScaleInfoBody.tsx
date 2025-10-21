@@ -1,5 +1,6 @@
 "use client";
 import { getScaleById, type ScaleId } from "@/lib/scalesMaster";
+import { useLocale } from "@/contexts/LocaleContext";
 
 interface ScaleInfoBodyProps {
   scaleId: ScaleId;
@@ -9,8 +10,8 @@ export default function ScaleInfoBody({ scaleId }: ScaleInfoBodyProps) {
   const scale = getScaleById(scaleId);
   if (!scale) return null;
   
-  // 言語判定（URLパスベース）
-  const isJapanese = typeof window !== 'undefined' && window.location.pathname.startsWith('/ja/');
+  // 言語判定（LocaleContextベース）
+  const { isJapanese } = useLocale();
   const lang = isJapanese ? 'ja' : 'en';
   const c = scale.comments[lang];
 

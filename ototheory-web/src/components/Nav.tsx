@@ -2,13 +2,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { messages, type Locale } from "@/lib/i18n/messages";
+import { useLocale } from "@/contexts/LocaleContext";
 
 export default function Nav() {
   const pathname = usePathname();
+  const { isJapanese } = useLocale();
   // M3.5: Analyze (録音) メニュー撤去
-  const isJa = pathname?.startsWith('/ja');
-  const base = isJa ? '/ja' : '';
-  const locale: Locale = isJa ? 'ja' : 'en';
+  const base = isJapanese ? '/ja' : '';
+  const locale: Locale = isJapanese ? 'ja' : 'en';
   const t = messages[locale];
   const links = [
     { href: `${base}/chord-progression`, label: t.nav.chordProgression, aria: "Build Chord Progressions" },
@@ -25,18 +26,18 @@ export default function Nav() {
           <Link prefetch href={l.href} aria-label={l.aria} className="hover:underline whitespace-pre md:whitespace-nowrap">
             {l.href === `${base}/chord-progression` ? (
               <>
-                <span className="block leading-none md:inline">{isJa ? 'コード' : 'Chord'} </span>
-                <span className="block leading-tight md:inline">{isJa ? '進行' : 'Progression'}</span>
+                <span className="block leading-none md:inline">{isJapanese ? 'コード' : 'Chord'} </span>
+                <span className="block leading-tight md:inline">{isJapanese ? '進行' : 'Progression'}</span>
               </>
             ) : l.href === `${base}/find-chords` ? (
               <>
-                <span className="block leading-none md:inline">{isJa ? 'コードを' : 'Find '}</span>
-                <span className="block leading-tight md:inline">{isJa ? '探す' : 'Chords'}</span>
+                <span className="block leading-none md:inline">{isJapanese ? 'コードを' : 'Find '}</span>
+                <span className="block leading-tight md:inline">{isJapanese ? '探す' : 'Chords'}</span>
               </>
             ) : l.href === `${base}/chord-library` ? (
               <>
-                <span className="block leading-none md:inline">{isJa ? 'コード' : 'Chord '}</span>
-                <span className="block leading-tight md:inline">{isJa ? '辞典' : 'Library'}</span>
+                <span className="block leading-none md:inline">{isJapanese ? 'コード' : 'Chord '}</span>
+                <span className="block leading-tight md:inline">{isJapanese ? '辞典' : 'Library'}</span>
               </>
             ) : (
               l.label
