@@ -93,8 +93,12 @@ function FindChordsContentJA() {
   }, [selScaleId]);
 
   const scaleNotesForCurrentKey = () => {
-    const pcs = getScalePitchesById(scaleRootPc as any, scaleTypeForUI as any);
-    return pcs.map(pc => PC_NAMES[pc] as string);
+    try {
+      const pcs = getScalePitchesById(scaleRootPc as any, scaleTypeForUI as any);
+      return pcs.map(pc => PC_NAMES[pc] as string);
+    } catch (e) {
+      return [];
+    }
   };
 
   // Reset overlay to current scale and clear selection
@@ -166,10 +170,16 @@ function FindChordsContentJA() {
             <span>スケール</span>
             {(() => {
               const cur = UI_SCALES.find(s => s.id === selScaleId)!;
-              const notesInC = getScalePitchesById(0, cur.id).map(pc => PC_NAMES[pc]).join(' ');
+              const notesInC = (() => {
+                try {
+                  return getScalePitchesById(0, cur.id).map(pc => PC_NAMES[pc]).join(' ');
+                } catch (e) {
+                  return 'N/A';
+                }
+              })();
               const defaultAbout = `${cur.group} スケール — ${cur.degrees.length}音パターン。`;
               return (
-                <InfoDot title={cur.display.ja} className="ml-2" linkHref="/resources/glossary" linkLabel="用語集">
+                <InfoDot title={cur.display?.ja || cur.display?.en || cur.id} className="ml-2" linkHref="/resources/glossary" linkLabel="用語集">
                   <div className="text-sm">
                     <div className="mb-1"><b>度数:</b> {cur.degrees.join(' ')}</div>
                     <div className="mb-1"><b>Cでの音:</b> {notesInC}</div>
@@ -350,7 +360,7 @@ function CategoryBasedScalePickerJA({
                   <IconComponent className={`w-5 h-5 ${categoryIcon.color}`} />
                 </div>
                 <div>
-                  <div className="font-medium">{getCategoryDisplayName(category, 'ja')}</div>
+                  <div className="font-medium">{category}</div>
                   <div className="text-sm text-gray-500">{scales.length} スケール</div>
                 </div>
               </div>
@@ -375,19 +385,18 @@ function CategoryBasedScalePickerJA({
                           onScaleSelect(scale.id as ScaleId);
                         }}
                       >
-                        <span>{getScaleDisplayName(scale, 'ja')}</span>
+                        <span>{scale.display?.ja || scale.display?.en || scale.id}</span>
                       </button>
                       <div className="absolute -top-1 -right-1">
                         <InfoDot
-                          title={(() => {
-                            const isJapanese = typeof window !== 'undefined' && window.location.pathname.startsWith('/ja/');
-                            const language = isJapanese ? 'ja' : 'en';
-                            return getScaleDisplayName(scale, language);
-                          })()}
+                          title={scale.display?.ja || scale.display?.en || scale.id}
                           linkHref="/resources/glossary"
                           linkLabel="用語集"
                         >
-                          <ScaleInfoBody scaleId={scale.id} />
+                          {/* <ScaleInfoBody scaleId={scale.id} /> */}
+                          <div className="p-2 text-sm text-gray-600">
+                            スケール情報を読み込み中...
+                          </div>
                         </InfoDot>
                       </div>
                     </div>
