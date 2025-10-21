@@ -8,7 +8,7 @@ export type ScaleId =
   | 'dimWholeHalf' | 'dimHalfWhole'
   | 'lydianb7' | 'mixolydianb6' | 'phrygDominant' | 'altered' | 'wholeTone';
 
-export type ScaleCategory = 'Basic' | 'Modes' | 'Pentatonic & Blues' | 'Minor family' | 'Symmetrical' | 'Advanced';
+export type ScaleCategory = 'Basic' | 'Modes' | 'Pentatonic & Blues' | 'Minor family' | 'Advanced';
 
 export interface ScaleComments {
   vibe: string;
@@ -342,8 +342,8 @@ export const SCALE_MASTER: ScaleMeta[] = [
   },
   {
     id: 'dimWholeHalf',
-    categoryEn: 'Symmetrical',
-    categoryJa: '対称系',
+    categoryEn: 'Advanced',
+    categoryJa: '高度',
     scaleEn: 'Diminished Scale (Whole–Half)',
     scaleJa: 'ディミニッシュド（全–半）',
     degrees: ['R', '2', 'b3', '4', 'b5', 'b6', '6', '7'],
@@ -367,8 +367,8 @@ export const SCALE_MASTER: ScaleMeta[] = [
   },
   {
     id: 'dimHalfWhole',
-    categoryEn: 'Symmetrical',
-    categoryJa: '対称系',
+    categoryEn: 'Advanced',
+    categoryJa: '高度',
     scaleEn: 'Diminished Scale (Half–Whole)',
     scaleJa: 'ディミニッシュド（半–全）',
     degrees: ['R', 'b2', 'b3', '3', '#4/b5', '5', '6', 'b7'],
@@ -546,7 +546,6 @@ export function getCategoryDisplayName(category: ScaleCategory, locale: 'en' | '
     'Modes': 'モード',
     'Pentatonic & Blues': 'ペンタ＆ブルース',
     'Minor family': 'マイナー系',
-    'Symmetrical': '対称系',
     'Advanced': '高度'
   };
   

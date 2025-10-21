@@ -3,12 +3,11 @@ import {
   Zap, 
   Palette, 
   Heart, 
-  Hexagon, 
   Star,
   type LucideIcon 
 } from 'lucide-react';
 
-export type ScaleCategory = 'Basic' | 'Modes' | 'Pentatonic & Blues' | 'Minor family' | 'Symmetrical' | 'Advanced';
+export type ScaleCategory = 'Basic' | 'Modes' | 'Pentatonic & Blues' | 'Minor family' | 'Advanced';
 
 export interface CategoryIconInfo {
   icon: LucideIcon;
@@ -36,11 +35,6 @@ export const SCALE_CATEGORY_ICONS: Record<ScaleCategory, CategoryIconInfo> = {
     icon: Heart,
     color: 'text-red-600',
     bgColor: 'bg-red-50'
-  },
-  'Symmetrical': {
-    icon: Hexagon,
-    color: 'text-green-600',
-    bgColor: 'bg-green-50'
   },
   'Advanced': {
     icon: Star,

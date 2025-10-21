@@ -21,8 +21,6 @@ struct ScaleCategoryIcons {
             return "music.note"
         case "Minor family":
             return "moon.fill"
-        case "Symmetrical":
-            return "grid"
         case "Advanced":
             return "bolt.fill"
         default:
@@ -43,8 +41,6 @@ struct ScaleCategoryIcons {
                 return "ペンタ＆ブルース"
             case "Minor family":
                 return "マイナー系"
-            case "Symmetrical":
-                return "対称系"
             case "Advanced":
                 return "高度"
             default:
@@ -67,8 +63,6 @@ struct ScaleCategoryIcons {
             return .green
         case "Minor family":
             return .indigo
-        case "Symmetrical":
-            return .orange
         case "Advanced":
             return .red
         default:
@@ -79,7 +73,7 @@ struct ScaleCategoryIcons {
     // MARK: - Helper Methods
     
     static func allCategories() -> [String] {
-        return ["Basic", "Modes", "Pentatonic & Blues", "Minor family", "Symmetrical", "Advanced"]
+        return ["Basic", "Modes", "Pentatonic & Blues", "Minor family", "Advanced"]
     }
     
     static func categoryInfo() -> [(category: String, icon: String, color: Color)] {

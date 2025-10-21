@@ -381,11 +381,11 @@ struct ScaleMaster {
             )
         ),
         
-        // Symmetrical
+        // Advanced (formerly Symmetrical)
         ScaleMasterItem(
             id: "dimWholeHalf",
-            categoryEn: "Symmetrical",
-            categoryJa: "対称系",
+            categoryEn: "Advanced",
+            categoryJa: "高度",
             scaleEn: "Diminished Scale (Whole–Half)",
             scaleJa: "ディミニッシュド（全–半）",
             aliasEn: [],
@@ -412,8 +412,8 @@ struct ScaleMaster {
         
         ScaleMasterItem(
             id: "dimHalfWhole",
-            categoryEn: "Symmetrical",
-            categoryJa: "対称系",
+            categoryEn: "Advanced",
+            categoryJa: "高度",
             scaleEn: "Diminished Scale (Half–Whole)",
             scaleJa: "ディミニッシュド（半–全）",
             aliasEn: [],
