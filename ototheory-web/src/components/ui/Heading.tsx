@@ -9,7 +9,7 @@ export function H2({
   children: React.ReactNode;
   className?: string;
   right?: React.ReactNode;
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof React.JSX.IntrinsicElements;
 }) {
   return (
     <div className={`mb-2 flex items-center gap-2 ${className}`}>
@@ -30,7 +30,7 @@ export function H3({
   children: React.ReactNode;
   className?: string;
   right?: React.ReactNode;
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof React.JSX.IntrinsicElements;
 }) {
   return (
     <div className={`mb-1.5 flex items-center gap-2 ${className}`}>

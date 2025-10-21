@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import "./globals.css";
 import Header from "@/components/Header.client";
 import { ProProvider } from "@/components/ProProvider";
+import { LocaleProvider } from "@/contexts/LocaleContext";
 import AudioUnlocker from "./AudioUnlocker.client";
 import MobileStickyCta from "@/components/MobileStickyCta.client";
 import FooterCta from "@/components/FooterCta.client";
@@ -56,8 +57,13 @@ export default async function RootLayout({
   const cookieStore = await cookies();
   const initialIsPro = cookieStore.get('isPro')?.value === '1';
   
+  // Get initial locale from headers for SSR consistency
+  const headersList = await headers();
+  const pathname = headersList.get('x-pathname') || '/';
+  const initialLocale = pathname.startsWith('/ja') ? 'ja' : 'en';
+  
   return (
-    <html lang="en">
+    <html lang={initialLocale}>
       <GoogleTagManagerHead />
       {/* Google AdSense */}
       <Script
@@ -70,23 +76,25 @@ export default async function RootLayout({
         <GoogleTagManagerBody />
         <AudioUnlocker />
         <MobileStickyCta />
-        <ProProvider initialIsPro={initialIsPro}>
-        <Header />
-        <main className="pt-1 pb-4 sm:pt-2 sm:pb-6">
-          {children}
-        </main>
-        <footer className="mt-16 py-8 text-center text-xs text-black/60 dark:text-white/60 border-t border-black/10 dark:border-white/10">
-          <div className="container space-y-3">
-            <FooterCta />
-            <FooterNav />
-            <div>© {new Date().getFullYear()} OtoTheory</div>
-          </div>
-        </footer>
+        <LocaleProvider initialLocale={initialLocale}>
+          <ProProvider initialIsPro={initialIsPro}>
+            <Header />
+            <main className="pt-1 pb-4 sm:pt-2 sm:pb-6">
+              {children}
+            </main>
+            <footer className="mt-16 py-8 text-center text-xs text-black/60 dark:text-white/60 border-t border-black/10 dark:border-white/10">
+              <div className="container space-y-3">
+                <FooterCta />
+                <FooterNav />
+                <div>© {new Date().getFullYear()} OtoTheory</div>
+              </div>
+            </footer>
 
-        <GoogleAnalytics />
-        <HomePageStructuredData />
-        <AppStructuredData />
-        </ProProvider>
+            <GoogleAnalytics />
+            <HomePageStructuredData />
+            <AppStructuredData />
+          </ProProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

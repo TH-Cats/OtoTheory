@@ -72,7 +72,7 @@ export function ChordDiagram({ frets, fingers, barres = [], root, displayMode, w
   // Strings go top to bottom (1st string at top, 6th string at bottom)
   const yForString = (sIdx:number) => PAD.top + stringH * sIdx;
 
-  const grid: JSX.Element[] = [];
+  const grid: React.ReactElement[] = [];
   // Draw strings (horizontal lines)
   for (let s=0; s<numStrings; s++) {
     grid.push(<line key={`s${s}`} x1={PAD.left} y1={yForString(s)} x2={PAD.left+innerW} y2={yForString(s)} stroke="#575a5f" strokeWidth={1} />);
@@ -87,7 +87,7 @@ export function ChordDiagram({ frets, fingers, barres = [], root, displayMode, w
     : <text x={PAD.left-8} y={PAD.top-6} fontSize="12" textAnchor="end" fill="#9aa0a6">{baseFret}fr</text>;
 
   // Fret numbers at bottom
-  const fretNumbers: JSX.Element[] = [];
+  const fretNumbers: React.ReactElement[] = [];
   for (let f=1; f<=maxFrets; f++) {
     const displayFret = baseFret + f - 1;
     fretNumbers.push(
@@ -108,7 +108,7 @@ export function ChordDiagram({ frets, fingers, barres = [], root, displayMode, w
     return <rect key={`barre${i}`} x={x-10} y={y} width={20} height={h} rx={10} fill="#2dd4bf" opacity={0.3} />;
   });
 
-  const markers: JSX.Element[] = [];
+  const markers: React.ReactElement[] = [];
   for (let s=0; s<6; s++) {
     const f = frets[s];
     const finger = fingers?.[s] ?? null;

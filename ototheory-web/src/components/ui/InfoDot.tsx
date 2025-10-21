@@ -72,7 +72,7 @@ export default function InfoDot({
 
   // trigger があればそれを"正規トリガー"として内包
   const triggerEl = trigger
-    ? cloneElement(trigger, {
+    ? cloneElement(trigger as React.ReactElement<any>, {
         ref: setBtnRef,
         onClick: (e: any) => { e.stopPropagation(); setOpen(v => !v); },
         'aria-label': ariaLabel
