@@ -8,17 +8,25 @@ export function middleware(req: NextRequest) {
 
   // Pass-through for static assets and Next internals
   if (pathname.startsWith('/_next') || pathname.match(/\.[a-zA-Z0-9]+$/)) {
-    return NextResponse.next();
+    const response = NextResponse.next();
+    response.headers.set('x-pathname', pathname);
+    return response;
   }
 
   // Already on JA path
   if (pathname.startsWith('/ja')) {
-    return NextResponse.next();
+    const response = NextResponse.next();
+    response.headers.set('x-pathname', pathname);
+    return response;
   }
 
   // Do not redirect bots/crawlers
   const ua = req.headers.get('user-agent') || '';
-  if (BOT_UA.test(ua)) return NextResponse.next();
+  if (BOT_UA.test(ua)) {
+    const response = NextResponse.next();
+    response.headers.set('x-pathname', pathname);
+    return response;
+  }
 
   // One-time redirect for Japanese users
   const cookie = req.cookies.get('ot_locale')?.value;
@@ -32,7 +40,9 @@ export function middleware(req: NextRequest) {
     res.cookies.set('ot_locale', 'ja', { maxAge: 60 * 60 * 24 * 365, path: '/', sameSite: 'lax' });
     return res;
   }
-  return NextResponse.next();
+  const response = NextResponse.next();
+  response.headers.set('x-pathname', pathname);
+  return response;
 }
 
 export const config = {

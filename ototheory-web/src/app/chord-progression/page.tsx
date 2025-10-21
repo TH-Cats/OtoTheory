@@ -54,6 +54,9 @@ export default function FindKeyPage() {
   const CTA_MESSAGES = useCtaMessages();
   const { isJapanese } = useLocale();
   const searchParams = useSearchParams();
+  
+  // Debug: Log locale information
+  console.log('[DEBUG] FindKeyPage - isJapanese:', isJapanese);
   const rootRowRef = useRef<HTMLDivElement | null>(null);
   useRovingTabs(rootRowRef, { orientation: "horizontal" });
   const fbToggleRef = useRef<HTMLDivElement | null>(null);
