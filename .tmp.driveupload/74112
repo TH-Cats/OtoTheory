@@ -1,6 +1,6 @@
-fix: Remove English terms from Japanese tooltips and add tooltip translation rules
+fix: Localize tooltip titles to Japanese
 
-- Fix 'Choose Chords' to 'コードを選ぶ' in Japanese tooltip text
-- Add tooltip translation rules to EN_JA_language_SSOT.md
-- Create tooltip translation table for consistent terminology
-- Ensure complete language separation in tooltip content
+- Change 'Build Progression' to 'コード進行を作る' in tooltip title
+- Change 'Choose Chords' to 'コードを選ぶ' in tooltip title
+- Change 'Diatonic chords' to 'ダイアトニックコード' in tooltip title
+- Ensure all tooltip titles are properly localized based on language

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 type QualityInfoProps = {
   title: string;
@@ -10,6 +11,9 @@ type QualityInfoProps = {
 
 export default function QualityInfo({ title, body, isOpen, onClose }: QualityInfoProps) {
   if (!isOpen) return null;
+  
+  const pathname = usePathname() || "/";
+  const isJa = pathname.startsWith('/ja');
 
   // Parse sections from the body text
   const parseSections = (text: string) => {
@@ -89,7 +93,26 @@ export default function QualityInfo({ title, body, isOpen, onClose }: QualityInf
                   <div key={index} className="space-y-[3px]">
                     <div className="flex items-center gap-1">
                       <span className="text-orange-500 font-bold text-[11px]">•</span>
-                      <h4 className="font-extrabold text-orange-500 text-[13px]">{section.title}</h4>
+                      <h4 className="font-extrabold text-orange-500 text-[13px]">
+                        {(() => {
+                          const sectionTitleMap: Record<string, { ja: string; en: string }> = {
+                            '雰囲気': { ja: '雰囲気', en: 'Vibe' },
+                            '利用シーン': { ja: '利用シーン', en: 'Usage' },
+                            '使ってみよう': { ja: '使ってみよう', en: 'Try' },
+                            '理論': { ja: '理論', en: 'Theory' },
+                            'Vibe': { ja: '雰囲気', en: 'Vibe' },
+                            'Usage': { ja: '利用シーン', en: 'Usage' },
+                            'Try': { ja: '使ってみよう', en: 'Try' },
+                            'Theory': { ja: '理論', en: 'Theory' }
+                          };
+                          
+                          const mapping = sectionTitleMap[section.title];
+                          if (mapping) {
+                            return isJa ? mapping.ja : mapping.en;
+                          }
+                          return section.title;
+                        })()}
+                      </h4>
                     </div>
                     <p className="text-gray-700 dark:text-gray-300 text-xs leading-relaxed pl-4">
                       {section.content}

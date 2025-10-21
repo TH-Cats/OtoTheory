@@ -280,3 +280,5 @@ cce2c622d5ebc3c38d2f03b568fd871a9dfbbeb8 3b0ff8a20794d13954454cac9bb19f4a8522049
 3b0ff8a20794d13954454cac9bb19f4a85220490 d0c209cd9c50034933a10d5d3018440a4a2c52a4 Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1761032606 +0900	commit: cleanup: 一時ファイルを削除
 d0c209cd9c50034933a10d5d3018440a4a2c52a4 2d634103fc136250e98a6b7d72e0af176641f454 Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1761043823 +0900	commit: fix: スケールコメントのダークモード文字色を修正（text-zinc-200追加）
 2d634103fc136250e98a6b7d72e0af176641f454 fdcd9884f8bd4de32b1d06fc3c0c1a24e48f97cb Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1761044296 +0900	commit: fix: Remove English terms from Japanese tooltips and add tooltip translation rules
+fdcd9884f8bd4de32b1d06fc3c0c1a24e48f97cb 3ce53d853fcab2519ec8f231ec50e691fb712438 Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1761044356 +0900	commit: feat: クオリティコメントセクション名を日本語化
+3ce53d853fcab2519ec8f231ec50e691fb712438 b3ef80f0a101f0d0f26ef053f6ebe9b0dbf50fdc Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1761044510 +0900	commit: fix: Localize tooltip titles to Japanese
