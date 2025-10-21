@@ -4,6 +4,8 @@ import { SCALE_CATALOG } from "@/lib/scaleCatalog";
 import { degreeLabelFor, degreeRomanFor, getScalePitches, type ScaleType } from "@/lib/scales";
 import { player } from "@/lib/audio/player";
 import type { FormShape, Quality } from "@/lib/chordForms";
+import { useLocale } from "@/contexts/LocaleContext";
+import { getFretboardLabel, getFretboardTooltip } from "@/lib/i18n/fretboard";
 const PITCHES12 = ['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B'] as const;
 
 type FretboardProps = {

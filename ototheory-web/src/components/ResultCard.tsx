@@ -6,6 +6,8 @@ import CapoFold from "./CapoFold";
 import { useOverlay } from "@/state/overlay";
 import { useAnalysisStore } from "@/store/analysisStore";
 import { romanDegreeLabelsForScale, type ScaleType } from "@/lib/scales";
+import { useLocale } from "@/contexts/LocaleContext";
+import { getFretboardLabel, getFretboardTooltip } from "@/lib/i18n/fretboard";
 
 const PITCHES12 = ['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B'] as const;
 
@@ -41,6 +43,7 @@ export default function ResultCard({ onAddToProgression }: { onAddToProgression?
   const selectedKey = useAnalysisStore(s => (s as any).selectedKey);
   const selectedScale = useAnalysisStore(s => (s as any).selectedScale);
   const { viewMode, scale, chord, setViewMode, setScale, setChordFromUser, resetChord } = useOverlay();
+  const { locale } = useLocale();
 
   // Mock key candidates for display (実際はストアから取得)
   const keyCandidates = selectedKey ? [{ label: `${selectedKey.tonic} ${selectedScale?.name || ''}`, conf: 95 }] : [];
@@ -78,8 +81,12 @@ export default function ResultCard({ onAddToProgression }: { onAddToProgression?
         <div className="ot-block">
           <div className="ot-section-head">
             <h3 className="ot-h3">Fretboard</h3>
-            <div className="ot-chip" onClick={() => setViewMode(viewMode === 'Degrees' ? 'Names' : 'Degrees')}>
-              {viewMode}
+            <div 
+              className="ot-chip" 
+              onClick={() => setViewMode(viewMode === 'Degrees' ? 'Names' : 'Degrees')}
+              title={getFretboardTooltip(locale)}
+            >
+              {getFretboardLabel(viewMode.toLowerCase() as 'degrees' | 'names', locale)}
             </div>
           </div>
           <Fretboard
