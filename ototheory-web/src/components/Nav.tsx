@@ -8,7 +8,8 @@ export default function Nav() {
   const pathname = usePathname();
   const { isJapanese } = useLocale();
   // M3.5: Analyze (録音) メニュー撤去
-  const base = isJapanese ? '/ja' : '';
+  // 現在のパスから適切なベースを抽出（重複を避ける）
+  const base = pathname.startsWith('/ja') ? '/ja' : '';
   const locale: Locale = isJapanese ? 'ja' : 'en';
   const t = messages[locale];
   const links = [

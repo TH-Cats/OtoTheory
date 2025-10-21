@@ -7,7 +7,8 @@ import { useLocale } from "@/contexts/LocaleContext";
 export default function FooterNav() {
   const pathname = usePathname() || "/";
   const { isJapanese } = useLocale();
-  const base = isJapanese ? '/ja' : '';
+  // 現在のパスから適切なベースを抽出（重複を避ける）
+  const base = pathname.startsWith('/ja') ? '/ja' : '';
   const items = [
     { href: `${base}/about`, label: 'About' },
     { href: `${base}/privacy`, label: 'Privacy' },

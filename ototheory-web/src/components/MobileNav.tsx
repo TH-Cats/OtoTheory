@@ -10,7 +10,8 @@ export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const { isJapanese } = useLocale();
-  const base = isJapanese ? '/ja' : '';
+  // 現在のパスから適切なベースを抽出（重複を避ける）
+  const base = pathname.startsWith('/ja') ? '/ja' : '';
   const locale: Locale = isJapanese ? 'ja' : 'en';
   const t = messages[locale];
   
