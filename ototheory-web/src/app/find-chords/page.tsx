@@ -22,6 +22,8 @@ import { getCategoryIcon } from "@/lib/scaleCategoryIcons";
 import ScaleInfoBody from "@/components/ScaleInfoBody";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import InfoDot from "@/components/ui/InfoDot";
+import { useLocale } from "@/contexts/LocaleContext";
+import { messages } from "@/lib/i18n/messages";
 
 export default function FindChordsPage() {
   return (
@@ -33,6 +35,8 @@ export default function FindChordsPage() {
 
 function FindChordsContent() {
   const params = useSearchParams();
+  const { locale } = useLocale();
+  const t = messages[locale];
   const KEY_OPTIONS: NoteLetter[] = useMemo(() => PC_NAMES as unknown as NoteLetter[], []);
   const UI_SCALES = SCALE_CATALOG; // SSOT カタログ
 
@@ -187,10 +191,10 @@ function FindChordsContent() {
       <h1 className="sr-only">Find Chords</h1>
       {/* Select Key & Scale */}
       <section className="ot-card">
-        <h2 className="ot-h2">Select Key &amp; Scale</h2>
+        <h2 className="ot-h2">{t.findChords.selectKeyScale}</h2>
         <div className="mt-3 grid sm:grid-cols-2 gap-3">
         <div>
-          <label className="block text-sm mb-1">Key</label>
+          <label className="block text-sm mb-1">{t.findChords.key}</label>
           <div className="flex flex-col gap-2" role="tablist" aria-label="Select key" ref={keyRowRef}>
             {[["C","C#","D","Eb","E","F"],["F#","G","Ab","A","Bb","B"]].map((row, ri)=> (
               <div key={`krow-${ri}`} ref={ri===0?keyRowRef as any:undefined} className="flex flex-wrap gap-2">
@@ -212,7 +216,7 @@ function FindChordsContent() {
         </div>
         <div>
           <label htmlFor="scale" className="block text-sm mb-1">
-            <span>Scale</span>
+            <span>{t.findChords.scale}</span>
             {(() => {
               const cur = UI_SCALES.find(s => s.id === selScaleId)!;
               const notesInC = getScalePitchesById(0, cur.id).map(pc => PC_NAMES[pc]).join(' ');
@@ -250,10 +254,10 @@ function FindChordsContent() {
       </section>
       {/* Result: Diatonic → Fretboard */}
       <section className="ot-card">
-        <h2 className="ot-h2">Result</h2>
+        <h2 className="ot-h2">{t.findChords.result}</h2>
         <div className="ot-stack">
           <div>
-            <h3 className="ot-h3 flex items-center gap-2"><span>Diatonic</span>
+            <h3 className="ot-h3 flex items-center gap-2"><span>{t.findChords.diatonic}</span>
               <InfoDot title="Diatonic chords" linkHref="/resources/glossary" linkLabel="Glossary">
                 <p className="text-sm">Chords built only from the key’s scale tones (I–ii–iii–IV–V–vi–vii°).</p>
                 <p className="text-sm mt-2">Capo rows show the shapes you fret. The sounding chord tones on the fretboard are the same as the Open row.</p>
@@ -311,10 +315,10 @@ function FindChordsContent() {
           )}
           <div>
             <h3 className="ot-h3 flex items-center justify-between">
-              <span>Fretboard</span>
+              <span>{t.findChords.fretboard}</span>
               <span ref={fbToggleRef} className="flex items-center gap-2" role="tablist" aria-orientation="horizontal" aria-label="Fretboard notation">
-              <button role="tab" aria-selected={display==='degrees'} tabIndex={display==='degrees'?0:-1} className={["chip", display==='degrees'?"chip--on":""].join(" ")} data-roving="item" onClick={()=>{ resetForms(); setDisplay('degrees'); }}>Degrees</button>
-              <button role="tab" aria-selected={display==='names'} tabIndex={display==='names'?0:-1} className={["chip", display==='names'?"chip--on":""].join(" ")} data-roving="item" onClick={()=>{ resetForms(); setDisplay('names'); }}>Names</button>
+              <button role="tab" aria-selected={display==='degrees'} tabIndex={display==='degrees'?0:-1} className={["chip", display==='degrees'?"chip--on":""].join(" ")} data-roving="item" onClick={()=>{ resetForms(); setDisplay('degrees'); }}>{t.findChords.degrees}</button>
+              <button role="tab" aria-selected={display==='names'} tabIndex={display==='names'?0:-1} className={["chip", display==='names'?"chip--on":""].join(" ")} data-roving="item" onClick={()=>{ resetForms(); setDisplay('names'); }}>{t.findChords.names}</button>
               {selectedCellId && (
                 <button role="tab" aria-selected={false} tabIndex={-1} className="chip" onClick={resetToScale} aria-label="Reset">Reset</button>
               )}
@@ -392,6 +396,8 @@ function CategoryBasedScalePicker({
   selectedScaleId: ScaleId; 
   onScaleSelect: (scaleId: ScaleId) => void; 
 }) {
+  const { locale } = useLocale();
+  const t = messages[locale];
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['Basic']));
   
   const categories = getAllCategories();
@@ -453,7 +459,7 @@ function CategoryBasedScalePicker({
                   <IconComponent className={`w-5 h-5 ${categoryIcon.color}`} />
                 </div>
                 <div>
-                  <div className="font-medium">{getCategoryDisplayName(category, 'en')}</div>
+                  <div className="font-medium">{getCategoryDisplayName(category, locale)}</div>
                   <div className="text-sm text-gray-500">{scales.length} scales</div>
                 </div>
               </div>
