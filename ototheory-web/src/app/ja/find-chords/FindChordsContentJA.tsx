@@ -91,7 +91,8 @@ function FindChordsContentJA() {
   };
 
   const onPickScale = (id: ScaleId) => {
-    setSelScaleId(id);
+    const normalized = mapOldScaleToNewId(id as unknown as string) as unknown as ScaleId;
+    setSelScaleId(normalized);
     const tonicPc = KEY_OPTIONS.indexOf(keyTonic);
     void refreshDiatonicAndOverlay();
   };

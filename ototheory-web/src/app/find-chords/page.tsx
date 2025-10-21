@@ -22,11 +22,14 @@ import { getCategoryIcon } from "@/lib/scaleCategoryIcons";
 import ScaleInfoBody from "@/components/ScaleInfoBody";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import InfoDot from "@/components/ui/InfoDot";
+import ErrorBoundary from "@/components/dev/ErrorBoundary";
 
 export default function FindChordsPage() {
   return (
     <Suspense fallback={<div className="ot-page">Loading...</div>}>
-      <FindChordsContent />
+      <ErrorBoundary>
+        <FindChordsContent />
+      </ErrorBoundary>
     </Suspense>
   );
 }
@@ -114,7 +117,8 @@ function FindChordsContent() {
   };
 
   const onPickScale = (id: ScaleId) => {
-    setSelScaleId(id);
+    const normalized = mapOldScaleToNewId(id as unknown as string) as unknown as ScaleId;
+    setSelScaleId(normalized);
     const tonicPc = KEY_OPTIONS.indexOf(keyTonic);
     // track('scale_pick', { page: 'find-chords', scale: id, key: keyTonic });
     void refreshDiatonicAndOverlay();
