@@ -32,6 +32,25 @@
 
 この翻訳ルールは、WebアプリケーションのScaleInfoBodyコンポーネントとCSVファイルの両方で使用されます。
 
+## コードクオリティ翻訳ルール
+
+コードクオリティのコメントセクション名の翻訳ルール：
+
+| 英語 | 日本語 |
+|------|--------|
+| Vibe | 雰囲気 |
+| Usage | 利用シーン |
+| Try | 使ってみよう |
+| Theory | 理論 |
+
+**参照ファイル**: `/Users/nh/App/OtoTheory/docs/content/Quality Master.csv`
+
+**重要**: 
+- **コードクオリティの日英翻訳は、Quality Master.csvを唯一の情報源（SSOT）とする**
+- iOS版・Web版ともに、Quality Master.csvに定義された日本語コメント（commentJa）と英語コメント（commentEn）を使用
+- カテゴリ名の日英翻訳も同様に、Quality Master.csvのcategoryJa/categoryEnを参照
+- 個別の翻訳ファイルやハードコードされた翻訳は禁止
+
 ## メニュー
 
 | key | EN | JA | notes |
