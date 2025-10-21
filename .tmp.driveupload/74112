@@ -1,5 +1,5 @@
-fix: 英語ページでクオリティコメントが正しい言語で表示されるよう修正
+fix: Advancedクオリティのコメントが正しい言語で表示されるよう修正
 
-- ChordBuilderコンポーネントでusePathnameを使用して言語判定を改善
-- 英語ページでは英語のコメント、日本語ページでは日本語のコメントを表示
-- 既存のlocale定義をusePathnameベースに統一
+- qualityPresetsのuseMemo依存配列にlocaleを追加
+- 言語変更時にqualityPresetsが再計算されるよう修正
+- Pro qualitiesのコメントも正しい言語で表示されるよう改善
