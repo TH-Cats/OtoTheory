@@ -843,7 +843,7 @@ export default function FindKeyPage() {
               <InfoDot
                 title="Build Progression"
                 text={isJapanese 
-                  ? "Choose Chordsからコードを選んでスロットに追加ボタンから追加してください。上部のプリセットからコード進行を選択して追加することもできます。"
+                  ? "コードを選ぶからコードを選んでスロットに追加ボタンから追加してください。上部のプリセットからコード進行を選択して追加することもできます。"
                   : "Select chords from Choose Chords and add them using the slot add button. You can also select chord progressions from the presets at the top to add them."
                 }
               />
