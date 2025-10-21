@@ -6,6 +6,7 @@ import { useRovingTabs } from "@/hooks/useRovingTabs";
 import Fretboard from "@/components/Fretboard";
 import CapoFold from "@/components/CapoFold";
 import { rankKeys, rankScales, type ScaleRank, PITCHES, detectCadence, noteToPc, romanToChordSymbol, type Mode } from "@/lib/theory";
+import { PC_NAMES } from "@/lib/music/constants";
 import { getScalePitchesById, getScalePitches, scaleTypeLabel, normalizeScaleId, SCALE_INTERVALS, parentModeOf } from "@/lib/scales";
 import { diatonicTriads, triadToChordSym } from "@/lib/theory/diatonic";
 import { SCALE_CATALOG } from "@/lib/scaleCatalog";
@@ -972,60 +973,98 @@ export default function FindKeyPage() {
           </div>
           {/* 上段の旧進行チップ行は廃止 */}
 
-          {/* iOS風12スロットグリッド */}
-          <div className="prog-slots mt-6 flex flex-wrap gap-3" aria-label="Progression slots">
-            {Array.from({ length: 12 }).map((_, i) => {
-              const filled = Boolean(slots[i]);
-              const tone = 16; // emerald hue base
-              const alpha = i < 8 ? 0 : (i - 7) * 0.08; // 0,0.08,0.16,0.24 for 8..11
-              const bg = `rgba(16,185,129,${alpha.toFixed(2)})`;
-              const active = cursorIndex === i;
-              const isCurrentlyPlaying = currentChordIndex === i && isPlaying;
-              return (
-                <div
-                  key={`slot-${i}`}
-                  data-slot-index={i}
-                  className={[
-                    "inline-flex items-center justify-center rounded-xl border text-sm select-none relative chip-pressable",
-                    filled ? "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800" : "bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700",
-                    active ? "ring-2 ring-blue-400/60" : "",
-                    isCurrentlyPlaying ? "ring-4 ring-blue-500/80 shadow-lg" : "",
-                    dragIndex === i ? "opacity-50 scale-105" : "",
-                    touchDragTarget === i ? "ring-2 ring-blue-400" : ""
-                  ].join(" ")}
-                  style={{ 
-                    padding: '12px 16px', 
-                    minWidth: 80, 
-                    minHeight: 48, 
-                    background: filled ? undefined : bg, 
-                    transition: 'all 0.2s ease',
-                    touchAction: filled ? 'none' : 'auto'
-                  }}
-                  onClick={() => { if (filled) { playChordSymbol(slots[i]); } else { setCursorIndex(i); } }}
-                  draggable={filled}
-                  onDragStart={() => setDragIndex(i)}
-                  onDragOver={(e) => e.preventDefault()}
-                  onDrop={() => { if (dragIndex !== null) { moveSlot(dragIndex, i); setDragIndex(null); } }}
-                  onTouchStart={(e) => handleTouchStartDrag(e, i)}
-                  onTouchMove={(e) => handleTouchMoveDrag(e, i)}
-                  onTouchEnd={handleTouchEndDrag}
-                >
-                  {/* iOS風番号表示 */}
-                  <span className="absolute left-2 top-2 text-xs opacity-60 select-none pointer-events-none font-medium">{String(i+1)}</span>
-                  {filled ? (
-                    <>
-                      <span>{slots[i]}</span>
-                <button
-                  aria-label="Remove chord"
-                        className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-red-500 text-white text-xs leading-6 hover:bg-red-600 transition-colors"
-                        onClick={(e)=>{ e.stopPropagation(); removeSlot(i); }}
-                >×</button>
-                    </>
-                  ) : null}
+          {/* iOS風シンプルなコード進行プレビュー */}
+          <div className="mt-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                {isJapanese ? "コード進行プレビュー" : "Chord Progression Preview"}
+              </h3>
+              {progression.length > 0 && (
+                <span className="text-sm text-gray-500 dark:text-gray-400">
+                  {progression.length} {isJapanese ? "コード" : "chords"}
+                </span>
+              )}
+            </div>
+            
+            {/* iOS風のシンプルなスロット表示 */}
+            <div className="grid grid-cols-4 sm:grid-cols-6 gap-3 mb-4">
+              {Array.from({ length: 12 }).map((_, i) => {
+                const filled = Boolean(slots[i]);
+                const active = cursorIndex === i;
+                const isCurrentlyPlaying = currentChordIndex === i && isPlaying;
+                return (
+                  <div
+                    key={`slot-${i}`}
+                    className={[
+                      "relative aspect-square rounded-2xl border-2 flex items-center justify-center text-sm font-medium transition-all duration-200",
+                      filled 
+                        ? "bg-blue-500 text-white border-blue-500 shadow-lg" 
+                        : "bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500",
+                      active ? "ring-4 ring-blue-300 dark:ring-blue-600" : "",
+                      isCurrentlyPlaying ? "scale-105 shadow-xl" : "",
+                      "hover:scale-105 cursor-pointer"
+                    ].join(" ")}
+                    onClick={() => { 
+                      if (filled) { 
+                        playChordSymbol(slots[i]); 
+                      } else { 
+                        setCursorIndex(i); 
+                      } 
+                    }}
+                  >
+                    {filled ? (
+                      <span className="text-center">
+                        {slots[i]}
+                      </span>
+                    ) : (
+                      <span className="text-xs opacity-60">
+                        {i + 1}
+                      </span>
+                    )}
+                    
+                    {/* 削除ボタン */}
+                    {filled && (
+                      <button
+                        className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full text-xs flex items-center justify-center hover:bg-red-600 transition-colors"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const newSlots = [...slots];
+                          newSlots[i] = "";
+                          setSlots(newSlots);
+                          resetAnalysis();
+                        }}
+                      >
+                        ×
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            
+            {/* プレビューテキスト */}
+            {progression.length > 0 ? (
+              <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 mb-4">
+                <div className="text-center">
+                  <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                    {isJapanese ? "現在の進行" : "Current Progression"}
+                  </div>
+                  <div className="text-lg font-mono font-medium text-gray-800 dark:text-gray-200">
+                    {progression.join(" → ")}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 mb-4 text-center">
+                <div className="text-gray-400 dark:text-gray-500 mb-2">
+                  {isJapanese ? "コードを選んで追加してください" : "Select chords to add to progression"}
+                </div>
+                <div className="text-sm text-gray-300 dark:text-gray-600">
+                  {isJapanese ? "下の「コードを選ぶ」セクションからコードを選択" : "Choose chords from the section below"}
+                </div>
+              </div>
+            )}
           </div>
-              );
-            })}
-        </div>
           </section>
       
       {/* Sketch Library セクションはドロップダウンに移行 */}
@@ -1173,6 +1212,65 @@ export default function FindKeyPage() {
             </button>
           </div>
         </div>
+        
+        {/* iOS風の結果表示 */}
+        {result ? (
+          <div className="space-y-4">
+            {/* キー検出結果 */}
+            {keys.length > 0 && (
+              <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                    {isJapanese ? "検出されたキー" : "Detected Key"}
+                  </h3>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">
+                    {Math.round(keys[0].pct * 100)}% {isJapanese ? "信頼度" : "confidence"}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-xl font-bold">
+                    {PC_NAMES[keys[0].keyRoot]}
+                  </div>
+                  <div>
+                    <div className="text-lg font-medium text-gray-800 dark:text-gray-200">
+                      {PC_NAMES[keys[0].keyRoot]} {keys[0].mode}
+                    </div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">
+                      {Math.round(keys[0].pct * 100)}% {isJapanese ? "マッチ" : "match"}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {/* 分析結果 */}
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-4">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                {isJapanese ? "分析結果" : "Analysis"}
+              </h3>
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <span className="text-gray-600 dark:text-gray-400">
+                    {isJapanese ? "進行の長さ" : "Progression Length"}
+                  </span>
+                  <span className="font-medium text-gray-800 dark:text-gray-200">
+                    {progression.length} {isJapanese ? "コード" : "chords"}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 text-center">
+            <div className="text-gray-400 dark:text-gray-500 mb-2">
+              {isJapanese ? "分析結果がここに表示されます" : "Analysis results will appear here"}
+            </div>
+            <div className="text-sm text-gray-300 dark:text-gray-600">
+              {isJapanese ? "「分析」ボタンを押してコード進行を分析してください" : "Click 'Analyze' to analyze your chord progression"}
+            </div>
+          </div>
+        )}
+        
         {showNamePrompt && (
           <div className="fixed inset-0 z-[10000]" role="dialog" aria-modal="true">
             <div className="absolute inset-0 bg-black/40" onClick={() => { setShowNamePrompt(false); setNameInput(""); }} />
