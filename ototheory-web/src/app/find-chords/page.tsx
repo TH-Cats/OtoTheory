@@ -5,31 +5,28 @@ import { getDiatonicChordsFor, type NoteLetter } from "@/lib/music-theory";
 import { toRoman, type Mode } from "@/lib/theory/roman";
 import { useSearchParams } from "next/navigation";
 import Fretboard from "@/components/Fretboard";
-// import { OverlayProvider } from "@/state/overlay";
+import { OverlayProvider } from "@/state/overlay";
 import DiatonicCapoTable from "@/components/DiatonicCapoTable";
-// import { useRovingTabs } from "@/hooks/useRovingTabs";
-// import { useAnalysisStore } from "@/store/analysisStore";
+import { useRovingTabs } from "@/hooks/useRovingTabs";
+import { useAnalysisStore } from "@/store/analysisStore";
 import { getScalePitchesById } from "@/lib/scales";
 import { SCALE_CATALOG, type ScaleId } from "@/lib/scaleCatalog";
 import { PC_NAMES } from "@/lib/music/constants";
-// import { track } from "@/lib/telemetry";
+import { track } from "@/lib/telemetry";
 import ScaleTable from "@/components/ScaleTable";
-// import { ChordFormsPopover } from "@/components/ChordFormsPopover";
-// import { buildForm, type FormKind, type FormShape, type Quality } from "@/lib/chordForms";
+import { ChordFormsPopover } from "@/components/ChordFormsPopover";
+import { buildForm, type FormKind, type FormShape, type Quality } from "@/lib/chordForms";
 import SubstituteCard from "@/components/SubstituteCard";
 import { SCALE_MASTER, getScaleById, getScaleDisplayName, getScalesByCategory, getAllCategories, getCategoryDisplayName, type ScaleId as NewScaleId } from "@/lib/scalesMaster";
 import { getCategoryIcon } from "@/lib/scaleCategoryIcons";
 import ScaleInfoBody from "@/components/ScaleInfoBody";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import InfoDot from "@/components/ui/InfoDot";
-import ErrorBoundary from "@/components/dev/ErrorBoundary";
 
 export default function FindChordsPage() {
   return (
     <Suspense fallback={<div className="ot-page">Loading...</div>}>
-      <ErrorBoundary>
-        <FindChordsContent />
-      </ErrorBoundary>
+      <FindChordsContent />
     </Suspense>
   );
 }
@@ -78,31 +75,29 @@ function FindChordsContent() {
     const sevenNote = sel.degrees.length === 7;
     if (!sevenNote) return [] as any[];
     const quality = (sel.id==='Aeolian' ? 'minor' : 'major') as any;
-    // SCALE_CATALOGの型に合わせて変換
-    const scaleType = sel.id === 'Aeolian' ? 'minor' : 'major';
-    return getDiatonicChordsFor({ tonic: keyTonic, quality, scale: scaleType as any } as any).chords;
+    return getDiatonicChordsFor({ tonic: keyTonic, quality, scale: sel.id as any } as any).chords;
   }, [keyTonic, selScaleId]);
 
   const mode: Mode = useMemo(() => (selScaleId === 'Aeolian' ? 'minor' : 'major'), [selScaleId]);
 
   type Display = 'degrees'|'names';
   const keyRowRef = useRef<HTMLDivElement | null>(null);
-  // useRovingTabs(keyRowRef, { orientation: "horizontal" });
+  useRovingTabs(keyRowRef, { orientation: "horizontal" });
   const fbToggleRef = useRef<HTMLSpanElement | null>(null);
-  // useRovingTabs(fbToggleRef, { orientation: "horizontal" });
+  useRovingTabs(fbToggleRef, { orientation: "horizontal" });
   const [display, setDisplay] = useState<Display>('degrees');
   const [fbCapo, setFbCapo] = useState<number>(0);
   const [overlayNotes, setOverlayNotes] = useState<string[]|null>(null);
   const [previewScaleId, setPreviewScaleId] = useState<ScaleId | null>(null);
   const [selectedCellId, setSelectedCellId] = useState<string | null>(null);
   const [lastPickedPcs, setLastPickedPcs] = useState<number[]|null>(null);
-  // const [formsPop, setFormsPop] = useState<null | { at:{x:number;y:number}; rootPc:number; quality:Quality }>(null);
-  // const [formShape, setFormShape] = useState<FormShape | null>(null);
-  // const resetForms = useCallback(() => { setFormsPop(null); setFormShape(null); }, []);
+  const [formsPop, setFormsPop] = useState<null | { at:{x:number;y:number}; rootPc:number; quality:Quality }>(null);
+  const [formShape, setFormShape] = useState<FormShape | null>(null);
+  const resetForms = useCallback(() => { setFormsPop(null); setFormShape(null); }, []);
 
   // Debug quick-check: ensure overlay wiring is correct
   useEffect(() => {}, [display, overlayNotes]);
-  // const { selectKey } = useAnalysisStore();
+  const { selectKey } = useAnalysisStore();
   // auto-refresh; no manual "Show Chords" button
 
   const onPickKey = (k: NoteLetter) => {
@@ -110,17 +105,16 @@ function FindChordsContent() {
     const q = (selScaleId === 'Aeolian') ? 'minor' : 'major';
     const modeLabel = q === 'major' ? 'Major' : 'Minor';
     const tonicPc = KEY_OPTIONS.indexOf(k);
-    // selectKey({ tonic: tonicPc as any, mode: modeLabel as any });
-    // track('key_pick', { page: 'find-chords', key: k, mode: modeLabel });
+    selectKey({ tonic: tonicPc as any, mode: modeLabel as any });
+    track('key_pick', { page: 'find-chords', key: k, mode: modeLabel });
     // local-only; store scale is not required here
     void refreshDiatonicAndOverlay();
   };
 
   const onPickScale = (id: ScaleId) => {
-    const normalized = mapOldScaleToNewId(id as unknown as string) as unknown as ScaleId;
-    setSelScaleId(normalized);
+    setSelScaleId(id);
     const tonicPc = KEY_OPTIONS.indexOf(keyTonic);
-    // track('scale_pick', { page: 'find-chords', scale: id, key: keyTonic });
+    track('scale_pick', { page: 'find-chords', scale: id, key: keyTonic });
     void refreshDiatonicAndOverlay();
   };
 
@@ -129,7 +123,7 @@ function FindChordsContent() {
     const tonicPc = KEY_OPTIONS.indexOf(keyTonic);
     const uiScale = (selScaleId === 'Aeolian') ? 'minor' : 'major';
     const modeLabel = uiScale === 'major' ? 'Major' : 'Minor';
-    // selectKey({ tonic: tonicPc as any, mode: modeLabel as any });
+    selectKey({ tonic: tonicPc as any, mode: modeLabel as any });
     // local-only; store scale is not required here
     // base view: show only page scale; no chord overlay yet
     setOverlayNotes(null);
@@ -142,10 +136,7 @@ function FindChordsContent() {
   }, []);
 
   const scaleRootPc = useMemo(()=> KEY_OPTIONS.indexOf(keyTonic), [keyTonic]);
-  const scaleTypeForUI = useMemo(()=> {
-    // SCALE_CATALOGの型に合わせて変換
-    return selScaleId === 'Aeolian' ? 'minor' : 'major';
-  }, [selScaleId]);
+  const scaleTypeForUI = useMemo(()=> selScaleId, [selScaleId]);
 
   const scaleNotesForCurrentKey = () => {
     const pcs = getScalePitchesById(scaleRootPc as any, scaleTypeForUI as any);
@@ -160,9 +151,9 @@ function FindChordsContent() {
     setPreviewScaleId(null);
     setSelectedCellId(null);
     setLastPickedPcs(null);
-    // resetForms();
-    // track('overlay_reset', { page: 'find-chords', scale: selScaleId, key: keyTonic });
-  }, [scaleRootPc, scaleTypeForUI]);
+    resetForms();
+    track('overlay_reset', { page: 'find-chords', scale: selScaleId, key: keyTonic });
+  }, [scaleRootPc, scaleTypeForUI, resetForms]);
 
   // Esc key to reset back to scale view
   useEffect(() => {
@@ -191,8 +182,9 @@ function FindChordsContent() {
   }
 
   return (
+    <OverlayProvider>
     <main className="ot-page ot-stack" data-page="find-chords">
-      <h1>Find Chords by Key & Scale – Diatonic Chord Finder</h1>
+      <h1 className="sr-only">Find Chords</h1>
       {/* Select Key & Scale */}
       <section className="ot-card">
         <h2 className="ot-h2">Select Key &amp; Scale</h2>
@@ -223,14 +215,7 @@ function FindChordsContent() {
             <span>Scale</span>
             {(() => {
               const cur = UI_SCALES.find(s => s.id === selScaleId)!;
-              const notesInC = (() => {
-                try {
-                  const normalizedId = mapOldScaleToNewId(cur.id);
-                  return getScalePitchesById(0, normalizedId as any).map(pc => PC_NAMES[pc]).join(' ');
-                } catch (e) {
-                  return 'N/A';
-                }
-              })();
+              const notesInC = getScalePitchesById(0, cur.id).map(pc => PC_NAMES[pc]).join(' ');
               const defaultAbout = `${cur.group} scale — ${cur.degrees.length}-note pattern.`;
               return (
                 <InfoDot title={cur.display.en} className="ml-2" linkHref="/resources/glossary" linkLabel="Glossary">
@@ -289,8 +274,8 @@ function FindChordsContent() {
               const mainNotes = pcs.map(pc => PC_NAMES[pc] as string);
               setOverlayNotes(mainNotes);
               setLastPickedPcs(pcs);
-              // resetForms();
-              // track('diatonic_pick', { page:'find-chords', id:selectedCellId, scale: selScaleId, key: keyTonic });
+              resetForms();
+              track('diatonic_pick', { page:'find-chords', id:selectedCellId, scale: selScaleId, key: keyTonic });
             }} />
             </div>
           </div>
@@ -328,8 +313,8 @@ function FindChordsContent() {
             <h3 className="ot-h3 flex items-center justify-between">
               <span>Fretboard</span>
               <span ref={fbToggleRef} className="flex items-center gap-2" role="tablist" aria-orientation="horizontal" aria-label="Fretboard notation">
-              <button role="tab" aria-selected={display==='degrees'} tabIndex={display==='degrees'?0:-1} className={["chip", display==='degrees'?"chip--on":""].join(" ")} data-roving="item" onClick={()=>{ setDisplay('degrees'); }}>Degrees</button>
-              <button role="tab" aria-selected={display==='names'} tabIndex={display==='names'?0:-1} className={["chip", display==='names'?"chip--on":""].join(" ")} data-roving="item" onClick={()=>{ setDisplay('names'); }}>Names</button>
+              <button role="tab" aria-selected={display==='degrees'} tabIndex={display==='degrees'?0:-1} className={["chip", display==='degrees'?"chip--on":""].join(" ")} data-roving="item" onClick={()=>{ resetForms(); setDisplay('degrees'); }}>Degrees</button>
+              <button role="tab" aria-selected={display==='names'} tabIndex={display==='names'?0:-1} className={["chip", display==='names'?"chip--on":""].join(" ")} data-roving="item" onClick={()=>{ resetForms(); setDisplay('names'); }}>Names</button>
               {selectedCellId && (
                 <button role="tab" aria-selected={false} tabIndex={-1} className="chip" onClick={resetToScale} aria-label="Reset">Reset</button>
               )}
@@ -353,12 +338,10 @@ function FindChordsContent() {
                   })(),
                 },
               }}
-              // onPick={({ pcs }: { pcs: number[] })=>{
-              //   const notes = pcs.map((pc: number) => PC_NAMES[pc] as string);
-              //   setOverlayNotes(notes);
-              //   setLastPickedPcs(pcs);
-              //   // track('fretboard_pick', { page:'find-chords', pcs, quality: detectQualityFromPcs(pcs), key: keyTonic });
-              // }}
+              onRequestForms={(at, ctx)=>{
+                setFormsPop({ at, rootPc: ctx.rootPc, quality: ctx.quality });
+              }}
+              formShape={formShape}
             />
           </div>
         </div>
@@ -370,8 +353,22 @@ function FindChordsContent() {
       </section>
       
       
+      {formsPop && (
+        <ChordFormsPopover
+          at={formsPop.at}
+          quality={formsPop.quality}
+          rootPc={formsPop.rootPc}
+          page="find-chords"
+          onPick={(kind: FormKind)=>{
+            const shape = buildForm(kind, formsPop.quality, formsPop.rootPc);
+            setFormShape(shape);
+          }}
+          onClose={()=> setFormsPop(null)}
+        />
+      )}
 
     </main>
+    </OverlayProvider>
   );
 }
 
@@ -440,8 +437,8 @@ function CategoryBasedScalePicker({
             {isExpanded && (
               <div className="border-t p-2 space-y-1">
                 {scales.map(scale => {
-                  // const oldScaleId = mapOldScaleToNewId(scale.id);
-                  const isSelected = selectedScaleId === scale.id as any;
+                  const oldScaleId = mapOldScaleToNewId(scale.id);
+                  const isSelected = selectedScaleId === scale.id;
                   
                   return (
                     <div key={scale.id} className="relative inline-block">
@@ -456,7 +453,12 @@ function CategoryBasedScalePicker({
                           onScaleSelect(scale.id as ScaleId);
                         }}
                       >
-                        <span>{getScaleDisplayName(scale, 'en')}</span>
+                        <span>{(() => {
+                          // 言語判定（URLパスベース）
+                          const isJapanese = typeof window !== 'undefined' && window.location.pathname.startsWith('/ja/');
+                          const language = isJapanese ? 'ja' : 'en';
+                          return getScaleDisplayName(scale, language);
+                        })()}</span>
                       </button>
                       <div className="absolute -top-1 -right-1">
                         <InfoDot
