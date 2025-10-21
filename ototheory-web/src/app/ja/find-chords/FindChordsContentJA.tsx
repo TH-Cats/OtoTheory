@@ -53,6 +53,32 @@ function FindChordsContentJA() {
   const [selectedCellId, setSelectedCellId] = useState<string | null>(null);
   const [lastPickedPcs, setLastPickedPcs] = useState<number[]|null>(null);
 
+  // Map old scale IDs to new scale IDs to prevent crashes
+  const mapOldScaleToNewId = (oldId: string): NewScaleId => {
+    const mapping: Record<string, NewScaleId> = {
+      'Ionian': 'major',
+      'Aeolian': 'naturalMinor',
+      'Dorian': 'dorian',
+      'Phrygian': 'phrygian',
+      'Lydian': 'lydian',
+      'Mixolydian': 'mixolydian',
+      'Locrian': 'locrian',
+      'MajorPentatonic': 'majPent',
+      'MinorPentatonic': 'minPent',
+      'Blues': 'bluesMinor',
+      'HarmonicMinor': 'harmonicMinor',
+      'MelodicMinor': 'melodicMinor',
+      'DiminishedWH': 'dimWholeHalf',
+      'DiminishedHW': 'dimHalfWhole',
+      'Lydianb7': 'lydianb7',
+      'Mixolydianb6': 'mixolydianb6',
+      'PhrygianDominant': 'phrygDominant',
+      'Altered': 'altered',
+      'WholeTone': 'wholeTone'
+    };
+    return mapping[oldId] || 'major';
+  };
+
   // Debug quick-check: ensure overlay wiring is correct
   useEffect(() => {}, [display, overlayNotes]);
 
@@ -172,7 +198,8 @@ function FindChordsContentJA() {
               const cur = UI_SCALES.find(s => s.id === selScaleId)!;
               const notesInC = (() => {
                 try {
-                  return getScalePitchesById(0, cur.id).map(pc => PC_NAMES[pc]).join(' ');
+                  const normalizedId = mapOldScaleToNewId(cur.id);
+                  return getScalePitchesById(0, normalizedId as any).map(pc => PC_NAMES[pc]).join(' ');
                 } catch (e) {
                   return 'N/A';
                 }

@@ -25,14 +25,9 @@ import InfoDot from "@/components/ui/InfoDot";
 
 export default function FindChordsPage() {
   return (
-    <main className="ot-page">
-      <h1>Find Chords by Key & Scale – Diatonic Chord Finder</h1>
-      <div className="ot-card">
-        <h2>Temporarily Under Maintenance</h2>
-        <p>The Find Chords feature is currently being updated. Please check back later.</p>
-        <p>We're working on improving the chord analysis and scale detection functionality.</p>
-      </div>
-    </main>
+    <Suspense fallback={<div className="ot-page">Loading...</div>}>
+      <FindChordsContent />
+    </Suspense>
   );
 }
 
@@ -224,7 +219,14 @@ function FindChordsContent() {
             <span>Scale</span>
             {(() => {
               const cur = UI_SCALES.find(s => s.id === selScaleId)!;
-              const notesInC = getScalePitchesById(0, cur.id).map(pc => PC_NAMES[pc]).join(' ');
+              const notesInC = (() => {
+                try {
+                  const normalizedId = mapOldScaleToNewId(cur.id);
+                  return getScalePitchesById(0, normalizedId as any).map(pc => PC_NAMES[pc]).join(' ');
+                } catch (e) {
+                  return 'N/A';
+                }
+              })();
               const defaultAbout = `${cur.group} scale — ${cur.degrees.length}-note pattern.`;
               return (
                 <InfoDot title={cur.display.en} className="ml-2" linkHref="/resources/glossary" linkLabel="Glossary">
