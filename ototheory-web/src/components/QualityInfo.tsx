@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { useLocale } from "@/contexts/LocaleContext";
 
 type QualityInfoProps = {
   title: string;
@@ -12,8 +12,7 @@ type QualityInfoProps = {
 export default function QualityInfo({ title, body, isOpen, onClose }: QualityInfoProps) {
   if (!isOpen) return null;
   
-  const pathname = usePathname() || "/";
-  const isJa = pathname.startsWith('/ja');
+  const { isJapanese } = useLocale();
 
   // Parse sections from the body text
   const parseSections = (text: string) => {
@@ -108,7 +107,7 @@ export default function QualityInfo({ title, body, isOpen, onClose }: QualityInf
                           
                           const mapping = sectionTitleMap[section.title];
                           if (mapping) {
-                            return isJa ? mapping.ja : mapping.en;
+                            return isJapanese ? mapping.ja : mapping.en;
                           }
                           return section.title;
                         })()}

@@ -1,11 +1,11 @@
 "use client";
 import { useMemo, useState, useRef, useEffect } from "react";
-import { usePathname } from "next/navigation";
 import { DEFAULT_CONTEXT, type ChordContext, type ChordSpec, type Family, type Plan } from "@/lib/chords/types";
 import { normalizeChordSpec } from "@/lib/chords/normalize";
 import { formatChordSymbol } from "@/lib/chords/format";
 import { canAddQuality, shouldShowProBadge } from "@/lib/pro/guard";
 import { QUALITY_MASTER, getQualityComment, getQualitiesByCategory, isProQuality } from "@/lib/quality-master";
+import { useLocale } from "@/contexts/LocaleContext";
 import QualityInfo from "./QualityInfo";
 
 type Props = {
@@ -38,9 +38,8 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
   }), []);
   const [spec, setSpec] = useState<ChordSpec>(baseSpec);
   const ctx: ChordContext = { ...DEFAULT_CONTEXT, plan };
-  // Locale: auto-detect from pathname (/ja/* -> ja)
-  const pathname = usePathname() || "/";
-  const locale: 'ja' | 'en' = pathname.startsWith('/ja') ? 'ja' : 'en';
+  // Locale: use LocaleContext instead of pathname detection
+  const { locale } = useLocale();
   
   // Session state for 11th warning (show once per session)
   const [has11thWarningShown, setHas11thWarningShown] = useState(false);
