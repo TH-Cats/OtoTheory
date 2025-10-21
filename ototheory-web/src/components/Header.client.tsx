@@ -1,16 +1,15 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import Nav from "@/components/Nav";
 import MobileNav from "@/components/MobileNav";
 import HeaderCta from "@/components/HeaderCta.client";
 import LangToggle from "@/components/LangToggle";
+import { useLocale } from "@/contexts/LocaleContext";
 
 export default function Header() {
-  const pathname = usePathname();
-  const isJa = pathname?.startsWith('/ja');
-  const homeHref = isJa ? '/ja' : '/';
+  const { isJapanese } = useLocale();
+  const homeHref = isJapanese ? '/ja' : '/';
 
   return (
     <header className="border-b border-black/10 dark:border-white/10">

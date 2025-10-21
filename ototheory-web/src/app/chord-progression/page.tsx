@@ -46,14 +46,14 @@ import { exportPng } from "@/lib/export/png";
 import { chordToMidi } from "@/lib/music/chordParser";
 import Toast from "@/components/Toast.client";
 import { useCtaMessages } from "@/hooks/useCtaMessages";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { useLocale } from "@/contexts/LocaleContext";
 import ChordBuilder from "@/components/ChordBuilder";
 
 export default function FindKeyPage() {
   const CTA_MESSAGES = useCtaMessages();
-  const pathname = usePathname();
+  const { isJapanese } = useLocale();
   const searchParams = useSearchParams();
-  const isJapanese = pathname.startsWith('/ja');
   const rootRowRef = useRef<HTMLDivElement | null>(null);
   useRovingTabs(rootRowRef, { orientation: "horizontal" });
   const fbToggleRef = useRef<HTMLDivElement | null>(null);
@@ -1378,8 +1378,7 @@ export default function FindKeyPage() {
                     const active = selectedScale?.type === type && selectedScale?.root === s.root;
                     const newScaleId = mapOldScaleToNewId(s.type as string);
                     const scaleInfo = getScaleById(newScaleId);
-                    // 言語判定（URLパスベース）
-                    const isJapanese = typeof window !== 'undefined' && window.location.pathname.startsWith('/ja/');
+                    // 言語判定（LocaleContextベース）
                     const language = isJapanese ? 'ja' : 'en';
                     const label = `${PITCHES[s.root]} ${scaleInfo ? getScaleDisplayName(scaleInfo, language) : scaleTypeLabel(type as any)}`;
                     return (
@@ -1401,7 +1400,6 @@ export default function FindKeyPage() {
                           <div className="absolute -top-1 -right-1">
                             <InfoDot
                               title={(() => {
-                                const isJapanese = typeof window !== 'undefined' && window.location.pathname.startsWith('/ja/');
                                 const language = isJapanese ? 'ja' : 'en';
                                 return getScaleDisplayName(scaleInfo, language);
                               })()}
