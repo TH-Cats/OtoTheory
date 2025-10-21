@@ -90,6 +90,9 @@
 | fb.open | Open | オープン | |
 | section.roman | Roman | 度数進行 | 非ヘプタ時は非表示（SSOT準拠） |
 | section.cadence | Cadence | カデンツ（終止形） | |
+| chordBuilder.root | Root | ルート | |
+| chordBuilder.quality | Quality | コードタイプ | |
+| chordBuilder.preview | Preview | プレビュー | |
 
 ## スケール名
 
