@@ -1,0 +1,6 @@
+fix: Remove English terms from Japanese tooltips and add tooltip translation rules
+
+- Fix 'Choose Chords' to 'コードを選ぶ' in Japanese tooltip text
+- Add tooltip translation rules to EN_JA_language_SSOT.md
+- Create tooltip translation table for consistent terminology
+- Ensure complete language separation in tooltip content
