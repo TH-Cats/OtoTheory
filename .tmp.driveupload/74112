@@ -1,6 +1,0 @@
-fix: Localize tooltip titles to Japanese
-
-- Change 'Build Progression' to 'コード進行を作る' in tooltip title
-- Change 'Choose Chords' to 'コードを選ぶ' in tooltip title
-- Change 'Diatonic chords' to 'ダイアトニックコード' in tooltip title
-- Ensure all tooltip titles are properly localized based on language

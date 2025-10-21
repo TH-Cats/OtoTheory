@@ -56,3 +56,4 @@ export function getCategoryIcon(category: ScaleCategory): CategoryIconInfo {
 export function getAllCategories(): ScaleCategory[] {
   return Object.keys(SCALE_CATEGORY_ICONS) as ScaleCategory[];
 }
+

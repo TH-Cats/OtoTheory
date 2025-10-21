@@ -5,3 +5,4 @@ struct QualityInfo: Identifiable, Equatable {
     let title: String
     let body: String
 }
+

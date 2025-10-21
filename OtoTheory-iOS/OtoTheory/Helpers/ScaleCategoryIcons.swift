@@ -125,3 +125,4 @@ struct ScaleCategoryIcons_Previews: PreviewProvider {
         .padding()
     }
 }
+

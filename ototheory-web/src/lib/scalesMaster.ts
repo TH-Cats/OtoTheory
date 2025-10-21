@@ -555,3 +555,4 @@ export function getCategoryDisplayName(category: ScaleCategory, locale: 'en' | '
   }
   return category;
 }
+
