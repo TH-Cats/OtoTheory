@@ -3,9 +3,12 @@ import { useOverlay } from '@/state/overlay';
 import * as t from '@/lib/telemetry';
 import { isHeptatonic, isPentOrBlues } from '@/lib/scaleCatalog';
 import { player } from '@/lib/audio/player';
+import { useLocale } from '@/contexts/LocaleContext';
+import { getDiatonicLabel, getDiatonicTooltip } from '@/lib/i18n/diatonic';
 
 export function DiatonicTable({scaleId, rows, onAddToProgression}:{scaleId:string, rows:{id:string, kind:'Open'|'Capo', notes:number[]}[], onAddToProgression?: (degree: string, quality?: string) => void}) {
   const { setChordFromUser, resetChord } = useOverlay();
+  const { locale } = useLocale();
   const hepta = isHeptatonic(scaleId);
   // Triad interval tables（簡易）
   const TRIAD_MAJOR = [0,4,7] as const;
@@ -25,8 +28,15 @@ export function DiatonicTable({scaleId, rows, onAddToProgression}:{scaleId:strin
       <div className="ot-dia" role="table" aria-label="Diatonic chords">
         <div className="ot-dia-row" role="row">
           <div className="ot-dia-th" role="columnheader" aria-hidden></div>
-          {['I','II','III','IV','V','VI','VII'].map(r => (
-            <div key={r} className="ot-dia-th" role="columnheader">{r}</div>
+          {[1,2,3,4,5,6,7].map(degree => (
+            <div 
+              key={degree} 
+              className="ot-dia-th" 
+              role="columnheader"
+              title={getDiatonicTooltip(degree, locale)}
+            >
+              {getDiatonicLabel(degree, locale)}
+            </div>
           ))}
         </div>
         {rows.map(r=>{
