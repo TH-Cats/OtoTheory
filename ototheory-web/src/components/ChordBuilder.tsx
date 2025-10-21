@@ -178,7 +178,7 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
 
     console.log('🔍 Final presets count:', presets.length, 'Free count:', presets.filter(p => !p.pro).length, 'Pro count:', presets.filter(p => p.pro).length);
     return presets;
-  }, [setSpec, plan, onBlock]);
+  }, [setSpec, plan, onBlock, locale]);
 
   // Helper function to convert quality string to ChordSpec
   const getSpecFromQuality = (quality: string): ChordSpec | null => {
