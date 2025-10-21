@@ -20,31 +20,31 @@ export default function ScaleInfoBody({ scaleId }: ScaleInfoBodyProps) {
         <div className="font-semibold text-amber-600 text-sm mb-1">
           {isJapanese ? '構成度数' : 'Degrees'}
         </div>
-        <div className="text-zinc-800 text-sm">{scale.degrees.join(' - ')}</div>
+        <div className="text-zinc-800 dark:text-zinc-200 text-sm">{scale.degrees.join(' - ')}</div>
       </div>
       <div>
         <div className="font-semibold text-amber-600 text-sm mb-1">
           {isJapanese ? '雰囲気' : 'Vibe'}
         </div>
-        <div className="text-zinc-800 text-sm">{c.vibe}</div>
+        <div className="text-zinc-800 dark:text-zinc-200 text-sm">{c.vibe}</div>
       </div>
       <div>
         <div className="font-semibold text-amber-600 text-sm mb-1">
           {isJapanese ? '利用シーン' : 'Usage'}
         </div>
-        <div className="text-zinc-800 text-sm">{c.use}</div>
+        <div className="text-zinc-800 dark:text-zinc-200 text-sm">{c.use}</div>
       </div>
       <div>
         <div className="font-semibold text-amber-600 text-sm mb-1">
           {isJapanese ? '使ってみよう' : 'Try'}
         </div>
-        <div className="text-zinc-800 text-sm">{c.try}</div>
+        <div className="text-zinc-800 dark:text-zinc-200 text-sm">{c.try}</div>
       </div>
       <div>
         <div className="font-semibold text-amber-600 text-sm mb-1">
           {isJapanese ? '理論' : 'Theory'}
         </div>
-        <div className="text-zinc-800 text-sm">{c.theory}</div>
+        <div className="text-zinc-800 dark:text-zinc-200 text-sm">{c.theory}</div>
       </div>
     </div>
   );
