@@ -1,6 +1,5 @@
 "use client";
 import React, { createContext, useContext, useState, useMemo } from "react";
-import { usePathname } from "next/navigation";
 
 type Locale = 'ja' | 'en';
 
@@ -13,22 +12,13 @@ const LocaleContext = createContext<LocaleContextValue | null>(null);
 
 interface LocaleProviderProps {
   children: React.ReactNode;
-  initialLocale?: Locale;
+  initialLocale: Locale;
 }
 
 export function LocaleProvider({ children, initialLocale }: LocaleProviderProps) {
-  const pathname = usePathname() || "/";
-  
-  // SSRセーフな実装：サーバーサイドのpathnameから初期化されたuseStateを使用
-  // ハイドレーションエラーを避けるため、useEffectやisInitialized状態は使わない
-  const [locale] = useState<Locale>(() => {
-    // 初期値が提供されている場合はそれを使用（SSR時）
-    if (initialLocale) {
-      return initialLocale;
-    }
-    // クライアントサイドではpathnameから判定
-    return pathname.startsWith('/ja') ? 'ja' : 'en';
-  });
+  // サーバーから渡された initialLocale を直接 useState の初期値として使用する
+  // これにより、SSRとクライアントの初回レンダリングが必ず一致する
+  const [locale] = useState<Locale>(initialLocale);
 
   const isJapanese = locale === 'ja';
 
