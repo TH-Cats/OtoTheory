@@ -841,7 +841,7 @@ export default function FindKeyPage() {
             <div className="flex items-center gap-3">
               <H2 className="mb-0 text-left">{isJapanese ? "コード進行を作る" : "Build progression"}</H2>
               <InfoDot
-                title="Build Progression"
+                title={isJapanese ? "コード進行を作る" : "Build Progression"}
                 text={isJapanese 
                   ? "コードを選ぶからコードを選んでスロットに追加ボタンから追加してください。上部のプリセットからコード進行を選択して追加することもできます。"
                   : "Select chords from Choose Chords and add them using the slot add button. You can also select chord progressions from the presets at the top to add them."
@@ -1032,7 +1032,7 @@ export default function FindKeyPage() {
             <div className="flex items-center gap-3">
               <H2 className="mb-0 text-left">{isJapanese ? "コードを選ぶ" : "Choose chords"}</H2>
               <InfoDot
-                title="Choose Chords"
+                title={isJapanese ? "コードを選ぶ" : "Choose Chords"}
                 text={isJapanese 
                   ? "ルートとコードタイプを選んでください。追加ボタンでコード進行のスロットに追加できます。\nProプランの場合、より複雑なコードタイプを選ぶことができます。"
                   : "Select a root note and chord type. Use the Add button to add to chord progression slots.\nPro plan allows you to select more complex chord types."
@@ -1501,7 +1501,7 @@ export default function FindKeyPage() {
                     <span>{isJapanese ? "ダイアトニック" : "Diatonic"}</span>
                     <InfoDot
                       className="ml-1"
-                      title="Diatonic chords"
+                      title={isJapanese ? "ダイアトニックコード" : "Diatonic chords"}
                       linkHref="/resources/glossary"
                       linkLabel="Glossary"
                     >
