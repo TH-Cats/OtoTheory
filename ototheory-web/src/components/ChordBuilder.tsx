@@ -7,6 +7,7 @@ import { canAddQuality, shouldShowProBadge } from "@/lib/pro/guard";
 import { QUALITY_MASTER, getQualityComment, getQualitiesByCategory, isProQuality } from "@/lib/quality-master";
 import { useLocale } from "@/contexts/LocaleContext";
 import QualityInfo from "./QualityInfo";
+import InfoDot from "./ui/InfoDot";
 
 type Props = {
   plan?: Plan;
@@ -264,7 +265,17 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
   return (
     <div className="space-y-4">
       <div>
-        <div className="text-xs opacity-70 mb-0.5">{locale === 'ja' ? 'ルート' : 'Root'}</div>
+        <div className="text-xs opacity-70 mb-0.5 flex items-center gap-1">
+          {locale === 'ja' ? 'ルート' : 'Root'}
+          <InfoDot
+            title={locale === 'ja' ? 'ルート' : 'Root'}
+            text={locale === 'ja' 
+              ? "コードの基準となる音で、コード名の元になります。Cコードのルート音は「C（ド）」。"
+              : "The fundamental note that serves as the basis of the chord and forms the root of the chord name. The root note of a C chord is \"C\"."
+            }
+            icon="graduation"
+          />
+        </div>
         <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
           {ROOTS.map(r => renderChip(r, norm.root === r, () => setRoot(r)))}
         </div>
@@ -276,7 +287,17 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
         
         return (
           <div>
-            <div className="text-xs opacity-70 mb-0.5">{locale === 'ja' ? 'コードタイプ' : 'Quality'} ({freeQualities.length} types)</div>
+            <div className="text-xs opacity-70 mb-0.5 flex items-center gap-1">
+              {locale === 'ja' ? 'コードタイプ' : 'Quality'} ({freeQualities.length} types)
+              <InfoDot
+                title={locale === 'ja' ? 'コードタイプ' : 'Quality'}
+                text={locale === 'ja' 
+                  ? "コードの「音の雰囲気」を決める要素。メジャーは明るく元気、マイナーは暗くて切ない、M7はジャズっぽくオシャレな響きに。同じルート音でも全く違う印象になります。"
+                  : "Defines the \"mood\" of a chord. Major sounds bright and happy, minor sounds sad and emotional, M7 sounds jazzy and sophisticated. Even with the same root note, the quality completely changes the character."
+                }
+                icon="graduation"
+              />
+            </div>
             <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
               {freeQualities.map(p => {
                 // Check if this quality is currently selected
