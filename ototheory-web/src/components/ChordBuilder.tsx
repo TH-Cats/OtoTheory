@@ -263,7 +263,7 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
   return (
     <div className="space-y-4">
       <div>
-        <div className="text-xs opacity-70 mb-0.5">ルート</div>
+        <div className="text-xs opacity-70 mb-0.5">{locale === 'ja' ? 'ルート' : 'Root'}</div>
         <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
           {ROOTS.map(r => renderChip(r, norm.root === r, () => setRoot(r)))}
         </div>
@@ -275,7 +275,7 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
         
         return (
           <div>
-            <div className="text-xs opacity-70 mb-0.5">コードタイプ ({freeQualities.length} types)</div>
+            <div className="text-xs opacity-70 mb-0.5">{locale === 'ja' ? 'コードタイプ' : 'Quality'} ({freeQualities.length} types)</div>
             <div className="flex gap-1 overflow-x-auto whitespace-nowrap py-0 -mx-2 px-2">
               {freeQualities.map(p => {
                 // Check if this quality is currently selected
@@ -428,7 +428,7 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
 
       <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between mb-3">
-          <div className="text-sm font-medium text-gray-700 dark:text-gray-300">プレビュー</div>
+          <div className="text-sm font-medium text-gray-700 dark:text-gray-300">{locale === 'ja' ? 'プレビュー' : 'Preview'}</div>
           <div className="text-xl font-bold text-gray-900 dark:text-white bg-white dark:bg-gray-700 px-3 py-1 rounded border">
             {symbol || 'Select a chord'}
           </div>
