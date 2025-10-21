@@ -63,7 +63,9 @@
 }
 .animate-slide-up{ animation: slide-up .3s ease-out; }
 
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
@@ -104,8 +106,8 @@
   --color-accent: var(--brand-accent);
   --color-dark: var(--brand-dark);
   --color-light: var(--brand-light);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 @media (prefers-color-scheme: dark) {

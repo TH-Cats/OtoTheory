@@ -76,28 +76,28 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
     // Map spec properties to quality labels
     if (spec.seventh === 'none' && spec.extMode === 'add' && spec.ext.add9) return 'add9';
     if (spec.seventh === 'none' && spec.extMode === 'add' && spec.ext.add11) return 'add#11';
-    if (spec.seventh === 'sus4') return 'sus4';
-    if (spec.seventh === 'sus2') return 'sus2';
+    if (spec.sus === 'sus4') return 'sus4';
+    if (spec.sus === 'sus2') return 'sus2';
     if (spec.family === 'maj' && spec.seventh === 'none') return 'M';
     if (spec.family === 'min' && spec.seventh === 'none') return 'm';
-    if (spec.family === 'maj' && spec.seventh === '7') return 'M7';
-    if (spec.family === 'min' && spec.seventh === '7') return 'm7';
+    if (spec.family === 'maj' && spec.seventh === 'maj7') return 'M7';
+    if (spec.family === 'min' && spec.seventh === 'm7') return 'm7';
     if (spec.family === 'dom' && spec.seventh === '7') return '7';
     if (spec.family === 'dim' && spec.seventh === 'none') return 'dim';
     if (spec.family === 'aug' && spec.seventh === 'none') return 'aug';
-    if (spec.family === 'maj' && spec.seventh === '9') return 'M9';
-    if (spec.family === 'min' && spec.seventh === '9') return 'm9';
-    if (spec.family === 'min' && spec.seventh === '11') return 'm11';
-    if (spec.family === 'min' && spec.seventh === '7b5') return 'm7b5';
-    if (spec.family === 'min' && spec.seventh === 'M7') return 'mM7';
+    if (spec.family === 'maj' && spec.seventh === 'maj7' && spec.ext.add9) return 'M9';
+    if (spec.family === 'min' && spec.seventh === 'm7' && spec.ext.add9) return 'm9';
+    if (spec.family === 'min' && spec.seventh === 'm7' && spec.ext.add9 && spec.ext.add11) return 'm11';
+    if (spec.family === 'min' && spec.seventh === 'm7b5') return 'm7b5';
+    if (spec.family === 'min' && spec.seventh === 'maj7') return 'mM7';
     if (spec.family === 'min' && spec.seventh === '6') return 'm6';
     if (spec.family === 'maj' && spec.seventh === '6') return '6';
-    if (spec.family === 'maj' && spec.seventh === '6/9') return '6/9';
-    if (spec.family === 'dom' && spec.seventh === 'sus4') return '7sus4';
-    if (spec.family === 'dim' && spec.seventh === '7') return 'dim7';
+    if (spec.family === 'maj' && spec.seventh === '6' && spec.ext.add9) return '6/9';
+    if (spec.family === 'dom' && spec.seventh === '7' && spec.sus === 'sus4') return '7sus4';
+    if (spec.family === 'dim' && spec.seventh === 'dim7') return 'dim7';
     if (spec.family === 'dom' && spec.seventh === '7' && spec.alt.s9) return '7(#9)';
     if (spec.family === 'dom' && spec.seventh === '7' && spec.alt.b9) return '7(b9)';
-    if (spec.family === 'dom' && spec.seventh === '7' && spec.alt.s5) return '7(#5)';
+    if (spec.family === 'dom' && spec.seventh === '7' && spec.alt.s11) return '7(#5)';
     if (spec.family === 'dom' && spec.seventh === '7' && spec.alt.b13) return '7(b13)';
     
     return '';
@@ -188,8 +188,8 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
       case '7': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', extMode: 'tension' };
       case 'maj7': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'maj7', extMode: 'add' };
       case 'm7': return { ...baseSpec, root: 'C', family: 'min', seventh: 'm7', extMode: 'add' };
-      case 'sus4': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'sus4', extMode: 'add' };
-      case 'sus2': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'sus2', extMode: 'add' };
+      case 'sus4': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'none', sus: 'sus4', extMode: 'add' };
+      case 'sus2': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'none', sus: 'sus2', extMode: 'add' };
       case 'add9': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'none', extMode: 'add', ext: { add9: true } };
       case 'dim': return { ...baseSpec, root: 'C', family: 'dim', seventh: 'none', extMode: 'add' };
       case 'M9 (maj9)': return { ...baseSpec, root: 'C', family: 'maj', seventh: 'maj7', extMode: 'add', ext: { add9: true } };
@@ -204,10 +204,10 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
       case '7sus4': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', sus: 'sus4', extMode: 'tension' };
       case 'aug': return { ...baseSpec, root: 'C', family: 'aug', seventh: 'none', extMode: 'add' };
       case 'dim7': return { ...baseSpec, root: 'C', family: 'dim', seventh: 'dim7', extMode: 'add' };
-      case '7(#9)': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', extMode: 'tension', alt: { sharp9: true } };
-      case '7(b9)': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', extMode: 'tension', alt: { flat9: true } };
-      case '7(#5)': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', extMode: 'tension', alt: { sharp5: true } };
-      case '7(b13)': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', extMode: 'tension', alt: { flat13: true } };
+      case '7(#9)': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', extMode: 'tension', alt: { s9: true } };
+      case '7(b9)': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', extMode: 'tension', alt: { b9: true } };
+      case '7(#5)': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', extMode: 'tension', alt: { s11: true } };
+      case '7(b13)': return { ...baseSpec, root: 'C', family: 'dom', seventh: '7', extMode: 'tension', alt: { b13: true } };
       default: return null;
     }
   };

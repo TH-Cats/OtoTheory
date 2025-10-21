@@ -9,7 +9,7 @@ import { rankKeys, rankScales, type ScaleRank, PITCHES, detectCadence, noteToPc,
 import { getScalePitchesById, getScalePitches, scaleTypeLabel, normalizeScaleId, SCALE_INTERVALS, parentModeOf } from "@/lib/scales";
 import { diatonicTriads, triadToChordSym } from "@/lib/theory/diatonic";
 import { SCALE_CATALOG } from "@/lib/scaleCatalog";
-import { toRoman, type Mode as RomanMode } from "@/lib/theory/roman";
+import { toRoman, type RomanMode } from "@/lib/theory/roman";
 import { useAnalysisStore } from "@/store/analysisStore";
 import { formatCadenceLabel, cadenceTooltip, formatCadenceShort } from "@/lib/ui/cadence";
 import type { CadenceType } from "@/lib/ui/cadence";
@@ -1384,19 +1384,19 @@ export default function FindKeyPage() {
                     const label = `${PITCHES[s.root]} ${scaleInfo ? getScaleDisplayName(scaleInfo, language) : scaleTypeLabel(type as any)}`;
                     return (
                       <div key={`${label}-${idx}`} className="relative inline-block">
-                        <button
-                          role="tab"
-                          aria-selected={active}
+                      <button
+                        role="tab"
+                        aria-selected={active}
                           className={["chip", "chip--key", active ? "chip--active" : "", "flex items-center gap-2"].join(" ")}
                           onClick={(e) => { 
                             e.stopPropagation();
                             selectScale(s); 
                             track('scale_pick', { page:'find-key', scale: s.type, key: PITCHES[s.root] }); 
                           }}
-                          data-roving="item"
-                        >
+                        data-roving="item"
+                      >
                           <span>{label} {Math.round(s.score)}%</span>
-                        </button>
+                      </button>
                         {scaleInfo && (
                           <div className="absolute -top-1 -right-1">
                             <InfoDot
