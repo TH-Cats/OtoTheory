@@ -75,7 +75,9 @@ function FindChordsContent() {
     const sevenNote = sel.degrees.length === 7;
     if (!sevenNote) return [] as any[];
     const quality = (sel.id==='Aeolian' ? 'minor' : 'major') as any;
-    return getDiatonicChordsFor({ tonic: keyTonic, quality, scale: sel.id as any } as any).chords;
+    // SCALE_CATALOGの型に合わせて変換
+    const scaleType = sel.id === 'Aeolian' ? 'minor' : 'major';
+    return getDiatonicChordsFor({ tonic: keyTonic, quality, scale: scaleType as any } as any).chords;
   }, [keyTonic, selScaleId]);
 
   const mode: Mode = useMemo(() => (selScaleId === 'Aeolian' ? 'minor' : 'major'), [selScaleId]);
@@ -136,7 +138,10 @@ function FindChordsContent() {
   }, []);
 
   const scaleRootPc = useMemo(()=> KEY_OPTIONS.indexOf(keyTonic), [keyTonic]);
-  const scaleTypeForUI = useMemo(()=> selScaleId, [selScaleId]);
+  const scaleTypeForUI = useMemo(()=> {
+    // SCALE_CATALOGの型に合わせて変換
+    return selScaleId === 'Aeolian' ? 'minor' : 'major';
+  }, [selScaleId]);
 
   const scaleNotesForCurrentKey = () => {
     const pcs = getScalePitchesById(scaleRootPc as any, scaleTypeForUI as any);
@@ -440,12 +445,7 @@ function CategoryBasedScalePicker({
                           onScaleSelect(scale.id as ScaleId);
                         }}
                       >
-                        <span>{(() => {
-                          // 言語判定（URLパスベース）
-                          const isJapanese = typeof window !== 'undefined' && window.location.pathname.startsWith('/ja/');
-                          const language = isJapanese ? 'ja' : 'en';
-                          return getScaleDisplayName(scale, language);
-                        })()}</span>
+                        <span>{getScaleDisplayName(scale, 'en')}</span>
                       </button>
                       <div className="absolute -top-1 -right-1">
                         <InfoDot
