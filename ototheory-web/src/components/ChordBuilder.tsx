@@ -337,7 +337,7 @@ export default function ChordBuilder({ plan = 'free', onConfirm, onBlock, onPrev
                             // Pro qualities should not be clickable for free users
                             console.log('Pro quality clicked:', quality.quality, 'Plan:', plan);
                           }, { 
-                            comment: quality.commentJa,
+                            comment: getQualityComment(quality.quality, locale),
                             locked: true, // Always locked for Pro qualities in Web version
                             showProBadge: false // Remove crown from individual chips
                           })}
