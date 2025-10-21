@@ -1,12 +1,5 @@
 /* /app/resources/chord-library/chords.module.css */
-:root {
-  --chord-bg: #0f1114;
-  --chord-panel: #161a1f;
-  --chord-text: #e8e8ea;
-  --chord-muted: #9aa0a6;
-  --chord-accent: #2dd4bf;
-  --chord-line: #2a2f35;
-}
+/* CSS Variables moved to globals.css */
 
 .chord-page {
   color: var(--chord-text);

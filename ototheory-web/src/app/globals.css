@@ -1,7 +1,18 @@
 /* Page gap: use --stack-gap tokens below (legacy overrides removed) */
 
 /* ---------- Tone colors (used via currentColor on ghost dots) ---------- */
-:root{ --tone-1:#ef4444; --tone-2:#14b8a6; --tone-3:#3b82f6; --tone-4:#8b5cf6; --tone-5:#22c55e; --tone-6:#ec4899; --tone-7:#f59e0b; --form-dot-fill: rgba(80,160,255,0.35); --form-dot-ring: rgba(80,160,255,0.95); --focus-ring: 0 0 0 2px rgba(88,155,255,.95); --focus-shadow: 0 0 0 4px rgba(88,155,255,.25); }
+:root{ 
+  --tone-1:#ef4444; --tone-2:#14b8a6; --tone-3:#3b82f6; --tone-4:#8b5cf6; --tone-5:#22c55e; --tone-6:#ec4899; --tone-7:#f59e0b; 
+  --form-dot-fill: rgba(80,160,255,0.35); --form-dot-ring: rgba(80,160,255,0.95); 
+  --focus-ring: 0 0 0 2px rgba(88,155,255,.95); --focus-shadow: 0 0 0 4px rgba(88,155,255,.25); 
+  /* Chord Library CSS Variables */
+  --chord-bg: #0f1114;
+  --chord-panel: #161a1f;
+  --chord-text: #e8e8ea;
+  --chord-muted: #9aa0a6;
+  --chord-accent: #2dd4bf;
+  --chord-line: #2a2f35;
+}
 .tone-1{ color: var(--tone-1) }
 .tone-3{ color: var(--tone-3) }
 .tone-5{ color: var(--tone-5) }
