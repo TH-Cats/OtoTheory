@@ -100,7 +100,7 @@ function FindChordsContent() {
   const resetForms = useCallback(() => { setFormsPop(null); setFormShape(null); }, []);
 
   // Debug quick-check: ensure overlay wiring is correct
-  useEffect(() => {}, [display, overlayNotes]);
+  // useEffect(() => {}, [display, overlayNotes]);
   const { selectKey } = useAnalysisStore();
   // auto-refresh; no manual "Show Chords" button
 
@@ -122,7 +122,7 @@ function FindChordsContent() {
     void refreshDiatonicAndOverlay();
   };
 
-  async function refreshDiatonicAndOverlay() {
+  const refreshDiatonicAndOverlay = useCallback(async () => {
     // Recompute store to refresh diatonic/capo table and set a base overlay
     const tonicPc = KEY_OPTIONS.indexOf(keyTonic);
     const uiScale = (selScaleId === 'Aeolian') ? 'minor' : 'major';
@@ -131,13 +131,12 @@ function FindChordsContent() {
     // local-only; store scale is not required here
     // base view: show only page scale; no chord overlay yet
     setOverlayNotes(null);
-  }
+  }, [keyTonic, selScaleId, selectKey]);
 
   useEffect(() => {
     // 初期表示でも現在のKey/Scaleに合わせてベースを反映
     void refreshDiatonicAndOverlay();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [refreshDiatonicAndOverlay]);
 
   const scaleRootPc = useMemo(()=> KEY_OPTIONS.indexOf(keyTonic), [keyTonic]);
   const scaleTypeForUI = useMemo(()=> selScaleId, [selScaleId]);
