@@ -328,7 +328,7 @@ export default function PricingPage() {
         <ul className="space-y-1">
           <li>• App Store（Apple ID）経由で支払い</li>
           <li>• 期間終了の24時間前にキャンセルしない限り自動更新</li>
-          <li>• 設定 > Apple ID > サブスクリプションからいつでもキャンセル可能</li>
+          <li>• 設定 &gt; Apple ID &gt; サブスクリプションからいつでもキャンセル可能</li>
           <li>• 返金は<a href="https://support.apple.com/ja-jp/HT204084" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">Appleの返金ポリシー</a>に従います</li>
         </ul>
       </section>
