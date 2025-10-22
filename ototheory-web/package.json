@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "npm run generate-articles && next dev",
+    "build": "npm run generate-articles && next build",
     "start": "next start",
     "lint": "eslint",
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "generate-articles": "node scripts/generate-articles.js",
+    "prebuild": "npm run generate-articles",
+    "predev": "npm run generate-articles"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
