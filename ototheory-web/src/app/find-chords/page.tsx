@@ -37,9 +37,6 @@ function FindChordsContent() {
   const params = useSearchParams();
   const { locale } = useLocale();
   const t = messages[locale];
-  
-  // Debug: Log locale information
-  console.log('[DEBUG] FindChordsContent - locale:', locale);
   const KEY_OPTIONS: NoteLetter[] = useMemo(() => PC_NAMES as unknown as NoteLetter[], []);
   const UI_SCALES = SCALE_CATALOG; // SSOT カタログ
 
@@ -251,6 +248,7 @@ function FindChordsContent() {
           <CategoryBasedScalePicker
             selectedScaleId={selScaleId}
             onScaleSelect={onPickScale}
+            locale={locale}
           />
         </div>
         </div>
@@ -394,12 +392,13 @@ function detectQualityFromPcs(pcs:number[]): 'maj'|'min'|'dom7'|'m7b5'|'dim' {
 // Category-based Scale Picker Component
 function CategoryBasedScalePicker({ 
   selectedScaleId, 
-  onScaleSelect
+  onScaleSelect,
+  locale
 }: { 
   selectedScaleId: ScaleId; 
-  onScaleSelect: (scaleId: ScaleId) => void; 
+  onScaleSelect: (scaleId: ScaleId) => void;
+  locale: 'en' | 'ja';
 }) {
-  const { locale } = useLocale();
   const t = messages[locale];
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['Basic']));
   
