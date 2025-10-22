@@ -491,7 +491,7 @@ function CategoryBasedScalePicker({
                       <div className="absolute -top-1 -right-1">
                         <InfoDot
                           title={getScaleDisplayName(scale, locale)}
-                          placement="top"
+                          placement="bottom"
                           trigger={
                             <button
                               type="button"
