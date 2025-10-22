@@ -11,20 +11,7 @@
  */
 
 import { Article, validateArticle } from './schemas/article.schema';
-
-// ビルド時に生成される静的データをインポート
-// このファイルはgenerate-articles.jsスクリプトによって自動生成されます
-let articlesData: Record<'ja' | 'en', ArticleWithContent[]> = { ja: [], en: [] };
-
-try {
-  // 動的インポートでエラーハンドリング
-  const data = require('./articlesData');
-  articlesData = data.articlesData;
-} catch (error) {
-  console.warn('[articles.ts] articlesData.ts not found. Run npm run generate-articles');
-  // フォールバック: 空の配列を返す
-  articlesData = { ja: [], en: [] };
-}
+import { articlesData } from './articlesData';
 
 export interface ArticleWithContent extends Article {
   content: string;

@@ -104,13 +104,13 @@ export type ArticleData = typeof articlesData;
     console.log(`✨ Processed ${articlesData[lang].length} ${lang} articles`);
   });
 
-  // TypeScriptファイルとして出力
+  // TypeScriptファイルとして出力（ESM形式）
   const output = `
 // This file is auto-generated. Do not edit manually.
 // Generated at: ${new Date().toISOString()}
 // Source: ${CONTENT_DIR}
 
-import { Article } from './schemas/article.schema';
+import type { Article } from './schemas/article.schema';
 
 export interface ArticleWithContent extends Article {
   content: string;

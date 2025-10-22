@@ -1,9 +1,9 @@
 
 // This file is auto-generated. Do not edit manually.
-// Generated at: 2025-10-22T14:19:22.362Z
+// Generated at: 2025-10-22T14:38:32.598Z
 // Source: /Users/nh/App/OtoTheory/ototheory-web/docs/content/resources/learn
 
-import { Article } from './schemas/article.schema';
+import type { Article } from './schemas/article.schema';
 
 export interface ArticleWithContent extends Article {
   content: string;
