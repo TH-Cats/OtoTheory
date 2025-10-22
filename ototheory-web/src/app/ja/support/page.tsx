@@ -80,7 +80,7 @@ export default function SupportPage() {
             <div className="text-sm space-y-2 opacity-90">
               <div>
                 <p className="font-medium">Q. サブスクリプションをキャンセルしたい</p>
-                <p>→ Apple ID > サブスクリプション > OtoTheoryでキャンセルしてください。</p>
+                <p>→ Apple ID &gt; サブスクリプション &gt; OtoTheoryでキャンセルしてください。</p>
               </div>
               <div>
                 <p className="font-medium">Q. 返金したい</p>
@@ -105,7 +105,7 @@ export default function SupportPage() {
             <div className="text-sm space-y-2 opacity-90">
               <div>
                 <p className="font-medium">Q. アカウントを削除したい</p>
-                <p>→ アプリ内で設定 > アカウント削除に移動するか、support@ototheory.comまでメールでお問い合わせください。</p>
+                <p>→ アプリ内で設定 &gt; アカウント削除に移動するか、support@ototheory.comまでメールでお問い合わせください。</p>
               </div>
               <div>
                 <p className="font-medium">Q. データをバックアップできますか？</p>

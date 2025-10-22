@@ -12,6 +12,7 @@
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "autoprefixer": "^10.4.21",
+    "gray-matter": "^4.0.3",
     "html-to-image": "^1.11.13",
     "lucide-react": "^0.546.0",
     "next": "14.2.5",
@@ -19,6 +20,7 @@
     "react-dom": "18.3.1",
     "soundfont-player": "^0.12.0",
     "tonal": "^6.4.2",
+    "zod": "^4.1.12",
     "zustand": "^5.0.8"
   },
   "devDependencies": {

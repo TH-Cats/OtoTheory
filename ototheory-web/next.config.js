@@ -26,6 +26,27 @@ const nextConfig = {
         destination: '/resources/chord-library',
         permanent: true,
       },
+      // Resources Learn Section redirects
+      {
+        source: '/resources/glossary',
+        destination: '/resources/learn/intervals',
+        permanent: true,
+      },
+      {
+        source: '/resources/music-theory',
+        destination: '/resources/learn/theory-intro',
+        permanent: true,
+      },
+      {
+        source: '/ja/resources/glossary',
+        destination: '/ja/resources/learn/intervals',
+        permanent: true,
+      },
+      {
+        source: '/ja/resources/music-theory',
+        destination: '/ja/resources/learn/theory-intro',
+        permanent: true,
+      },
       // Legacy URL redirects
       {
         source: '/find-key',
