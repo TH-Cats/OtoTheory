@@ -139,12 +139,27 @@ sources: [
 ---
 
 ## 6. 基礎記事の要件（/learn）
+
+### 6.1 記事タイトル・サブタイトル（確定版）
+
+| # | 日本語タイトル        | サブタイトル（直感的説明）        | 英語タイトル                          | 英語サブタイトル                                           |
+| - | -------------- | -------------------- | ------------------------------- | -------------------------------------------------- |
+| 1 | **音楽理論とは？**    | 「感覚で作る」を言葉にできるようになる  | **What Is Music Theory?**       | Turn your musical instinct into understanding.     |
+| 2 | **度数とは？**      | 音の"距離"がわかると、耳コピが速くなる | **What Are Intervals?**         | Hear distance — and copy melodies faster.          |
+| 3 | **コードとは？**     | 音の"色"を混ぜて、曲の雰囲気を作る   | **What Are Chords?**            | Paint emotions with the colors of sound.           |
+| 4 | **キーとは？**      | 曲の"重力"を知ると、進行の流れが見える | **What Is a Key?**              | Feel the gravity that holds music together.        |
+| 5 | **スケールとは？**    | アドリブやメロディの"地図"になる    | **What Are Scales?**            | Discover the map that guides your improvisation.   |
+| 6 | **ダイアトニックとは？** | "外さない"コードの家族を見つける    | **What Is Diatonic?**           | Meet the family of chords that always fit.         |
+| 7 | **耳コピの科学**     | 感覚を理論で磨く、音の聴き方トレーニング | **The Science of Ear Training** | Train your ears to think — and play what you hear. |
+| 8 | **アドリブの仕組み**   | 理論で"自由に弾く"を手に入れる     | **How to Improvise**            | Use theory to play freely, not fearfully.          |
+
+### 6.2 記事内容要件
 - **theory-intro**：理論＝感性を再現可能にする**翻訳ツール**であることを明示。  
-- **intervals**：度数＝音の“距離”。階段の比喩。耳コピの速度向上を例示。  
+- **intervals**：度数＝音の"距離"。階段の比喩。耳コピの速度向上を例示。  
 - **chords**：和音＝色。1・3・5（+7/9…）で色が変わる。実演イメージを文章で。  
-- **key-center**：キー＝重力。主音に“帰る”感覚。耳コピ時の主音特定。  
+- **key-center**：キー＝重力。主音に"帰る"感覚。耳コピ時の主音特定。  
 - **scales**：スケール＝アドリブの材料箱。どの音を使うかの枠。  
-- **diatonic**：ダイアトニック＝“外さない家族”。進行の自然な流れの理由。  
+- **diatonic**：ダイアトニック＝"外さない家族"。進行の自然な流れの理由。  
 - **ear-training**：ベース→主音→度数→コードの順で聴き取る手順を明文化。  
 - **improvisation**：ターゲットノート→フレーズ化→変化（リズム/跳躍/張力）の3ステップ。
 
@@ -226,4 +241,6 @@ sources: [
 ---
 
 ## 13. 変更履歴（Changelog）
+- **v1.2（2025‑01‑22）** Resources Learn Section実装完了：Web版・iOS版両対応、8記事構成、Coming Soon対応、301リダイレクト設定
+- **v1.1（2025‑01‑XX）** 基礎理論記事のタイトル・サブタイトル（日英）を確定版として追加
 - **v1.0（2025‑10‑18）** 初版作成：基礎IA／テンプレ／出典方針／SEO／リリース計画を定義。

@@ -1,0 +1,51 @@
+# OtoTheory 開発ルール
+
+## 必須確認事項
+- すべての作業前に `/Users/nh/App/OtoTheory/docs/SSOT/v3.2_SSOT.md` を必ず確認
+- 言語仕様は `/Users/nh/App/OtoTheory/docs/SSOT/EN_JA_language_SSOT.md` に従う
+- 実装仕様は `/Users/nh/App/OtoTheory/docs/SSOT/v3.2_Implementation_SSOT.md` に従う
+- ビジネスプランは `/Users/nh/App/OtoTheory/docs/SSOT/v3.2_Business_Plan.md` に従う
+- リソース仕様は `/Users/nh/App/OtoTheory/docs/SSOT/RESOURCES_SSOT_v1.md` に従う
+
+## 禁止事項
+- SSOTを確認せずに実装を開始すること
+- 既存の仕様と矛盾する変更を行うこと
+- 一貫性のない命名や構造を使用すること
+- 言語仕様に従わない翻訳やUI表示を行うこと
+
+## 作業手順
+1. 関連するSSOT文書を読み込み
+2. 現在の実装状況を確認
+3. 変更内容をSSOTと照合
+4. 実装実行
+5. 必要に応じてSSOT更新
+
+## 言語仕様
+- 日本語UI: `/ja/` パスで日本語表示
+- 英語UI: ルートパスで英語表示
+- 用語は言語相対表に準拠
+- iOSアプリはデバイスの言語設定に従う
+
+## 命名規則
+- ファイル名: kebab-case
+- コンポーネント名: PascalCase
+- 変数名: camelCase
+- 定数名: UPPER_SNAKE_CASE
+
+## 実装方針
+- Web版: Next.js App Router使用
+- iOS版: SwiftUI + Markdownレンダリング
+- 記事管理: Markdown + Front-Matter
+- 多言語対応: フォルダ分離（ja/en）
+
+## 品質基準
+- すべてのコードは型安全であること
+- エラーハンドリングを適切に実装すること
+- アクセシビリティを考慮すること
+- パフォーマンスを最適化すること
+
+## 変更時の注意
+- 既存機能に影響がないことを確認
+- 言語一貫性を保持
+- SEO設定を適切に更新
+- テストを実行して動作確認
