@@ -37,6 +37,9 @@ function FindChordsContent() {
   const params = useSearchParams();
   const { locale } = useLocale();
   const t = messages[locale];
+  
+  // Debug: Log locale information
+  console.log('[DEBUG] FindChordsContent - locale:', locale);
   const KEY_OPTIONS: NoteLetter[] = useMemo(() => PC_NAMES as unknown as NoteLetter[], []);
   const UI_SCALES = SCALE_CATALOG; // SSOT カタログ
 
