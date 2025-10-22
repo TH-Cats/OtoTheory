@@ -544,9 +544,9 @@ export function getCategoryDisplayName(category: ScaleCategory, locale: 'en' | '
   const categoryMap = {
     'Basic': '基本',
     'Modes': 'モード',
-    'Pentatonic & Blues': 'ペンタ＆ブルース',
+    'Pentatonic & Blues': 'ペンタトニック & ブルース',
     'Minor family': 'マイナー系',
-    'Advanced': '高度'
+    'Advanced': '発展系'
   };
   
   if (locale === 'ja') {

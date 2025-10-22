@@ -1,0 +1,46 @@
+# Documentation and guides
+docs/
+*.md
+!README.md
+
+# Screenshots and images
+screenshots/
+*.psd
+*.ai
+*.sketch
+
+# Audio files
+*.wav
+*.mp3
+*.aiff
+*.flac
+
+# Temporary files
+.tmp.*
+*.tmp
+.tmp.driveupload/
+
+# Xcode project files
+*.xcodeproj/
+*.xcworkspace/
+
+# Large CSV files that might be imported
+*.csv
+!src/lib/quality-master.ts
+
+# Reports and logs
+reports/
+*.log
+
+# Development files
+.env.local
+.env.*.local
+
+# Next.js cache and build artifacts (should not be deployed)
+.next/cache/
+.next/static/chunks/
+.next/server/chunks/
+.next/trace
+.next/traces/
+.next/analyze/
+.next/trace.json

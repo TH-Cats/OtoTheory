@@ -486,20 +486,11 @@ function CategoryBasedScalePicker({
                           onScaleSelect(scale.id as ScaleId);
                         }}
                       >
-                        <span>{(() => {
-                          // 言語判定（URLパスベース）
-                          const isJapanese = typeof window !== 'undefined' && window.location.pathname.startsWith('/ja/');
-                          const language = isJapanese ? 'ja' : 'en';
-                          return getScaleDisplayName(scale, language);
-                        })()}</span>
+                        <span>{getScaleDisplayName(scale, locale)}</span>
                       </button>
                       <div className="absolute -top-1 -right-1">
                         <InfoDot
-                          title={(() => {
-                            const isJapanese = typeof window !== 'undefined' && window.location.pathname.startsWith('/ja/');
-                            const language = isJapanese ? 'ja' : 'en';
-                            return getScaleDisplayName(scale, language);
-                          })()}
+                          title={getScaleDisplayName(scale, locale)}
                           placement="top"
                           trigger={
                             <button
