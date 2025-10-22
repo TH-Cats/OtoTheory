@@ -13,6 +13,10 @@
 import Link from 'next/link';
 import { getAllArticles } from '@/lib/articles';
 
+// 強制的に静的化してビルド時に記事を読み込む
+export const dynamic = 'force-static';
+export const revalidate = false;
+
 export default function LearnPageJa() {
   const articles = getAllArticles('ja');
 

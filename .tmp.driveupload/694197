@@ -1,6 +1,0 @@
-{
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/resources/learn/page": "app/resources/learn/page.js",
-  "/ja/resources/learn/page": "app/ja/resources/learn/page.js",
-  "/resources/learn/[slug]/page": "app/resources/learn/[slug]/page.js"
-}

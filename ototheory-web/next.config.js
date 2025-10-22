@@ -8,6 +8,13 @@ const nextConfig = {
     // ビルド時にTypeScriptエラーをチェック
     ignoreBuildErrors: false,
   },
+  // Vercelにデプロイする際に docs ディレクトリ全体を
+  // ビルド成果物に含めるように Next.js に指示する
+  experimental: {
+    outputFileTracingIncludes: {
+      '/*': ['./docs/content/resources/learn/**/*'], // docs 内の記事ファイルを全て含める
+    },
+  },
   async redirects() {
     return [
       // Reference → Resources migration (301 permanent redirects for SEO)

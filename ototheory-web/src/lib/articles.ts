@@ -14,7 +14,22 @@ import path from 'path';
 import matter from 'gray-matter';
 import { Article, validateArticle } from './schemas/article.schema';
 
-const ARTICLES_DIR = path.join(process.cwd(), 'docs', 'content', 'resources', 'learn');
+const BASE_DIR = process.cwd();
+const ARTICLES_DIR = path.join(BASE_DIR, 'docs', 'content', 'resources', 'learn');
+
+// デバッグ用ログ（本番環境でのファイル存在確認）
+console.log('[articles.ts] process.cwd():', BASE_DIR);
+console.log('[articles.ts] ARTICLES_DIR:', ARTICLES_DIR);
+try {
+  console.log('[articles.ts] Files in process.cwd():', fs.readdirSync(BASE_DIR).slice(0, 10));
+  if (fs.existsSync(path.join(BASE_DIR, 'docs'))) {
+    console.log('[articles.ts] Files in docs/:', fs.readdirSync(path.join(BASE_DIR, 'docs')));
+  } else {
+    console.log('[articles.ts] docs/ directory NOT FOUND at root.');
+  }
+} catch (e) {
+  console.error('[articles.ts] Error reading directories:', e);
+}
 
 export interface ArticleWithContent extends Article {
   content: string;
@@ -23,12 +38,15 @@ export interface ArticleWithContent extends Article {
 
 export function getAllArticles(lang: 'ja' | 'en' = 'ja'): ArticleWithContent[] {
   const langDir = path.join(ARTICLES_DIR, lang);
+  console.log(`[articles.ts] Checking langDir: ${langDir}`);
   
   if (!fs.existsSync(langDir)) {
+    console.error(`[articles.ts] Lang directory NOT FOUND: ${langDir}`);
     return [];
   }
 
   const files = fs.readdirSync(langDir);
+  console.log(`[articles.ts] Files found in ${lang}:`, files);
   const articles: ArticleWithContent[] = [];
 
   for (const file of files) {
