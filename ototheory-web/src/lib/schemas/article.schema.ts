@@ -1,3 +1,14 @@
+/**
+ * @fileoverview Article Schema - Front-Matter validation
+ * 
+ * SSOT参照:
+ * - メイン仕様: /docs/SSOT/v3.2_SSOT.md
+ * - 実装仕様: /docs/SSOT/v3.2_Implementation_SSOT.md
+ * - リソース仕様: /docs/SSOT/RESOURCES_SSOT_v1.md
+ * 
+ * 変更時は必ずSSOTとの整合性を確認すること
+ */
+
 import { z } from 'zod';
 
 export const SourceSchema = z.object({
