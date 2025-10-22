@@ -23,6 +23,8 @@ export interface ArticleWithContent extends Article {
  */
 export function getAllArticles(lang: 'ja' | 'en' = 'ja'): ArticleWithContent[] {
   console.log(`[articles.ts] Getting articles for ${lang}`);
+  console.log(`[articles.ts] articlesData keys:`, Object.keys(articlesData));
+  console.log(`[articles.ts] articlesData[${lang}] length:`, articlesData[lang]?.length || 0);
   
   const articles = articlesData[lang] || [];
   console.log(`[articles.ts] Found ${articles.length} ${lang} articles from static data`);
