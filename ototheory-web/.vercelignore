@@ -1,7 +1,9 @@
 # Documentation and guides
 docs/
+!docs/content/resources/learn/
 *.md
 !README.md
+!docs/content/resources/learn/**/*.md
 
 # Screenshots and images
 screenshots/
