@@ -1,0 +1,966 @@
+exports.id=8078,exports.ids=[8078],exports.modules={5303:()=>{},7045:(e,t,o)=>{"use strict";o.d(t,{zC:()=>l,fq:()=>d,XC:()=>c,A:()=>u,jl:()=>h});var n=o(6263);let i=n.Ryn({type:n.KmV(["book","interview","article","website","video"]),title:n.Z_8(),author:n.Z_8().optional(),year:n.Rxh().optional(),url:n.Z_8().url().optional(),date:n.Z_8().optional(),citation:n.Z_8().optional()}),r=n.Ryn({title:n.Z_8(),subtitle:n.Z_8(),lang:n.KmV(["ja","en"]),slug:n.Z_8(),order:n.Rxh().int().min(1).max(8),status:n.KmV(["draft","published","scheduled"]),readingTime:n.Z_8(),updated:n.Z_8().regex(/^\d{4}-\d{2}-\d{2}$/),keywords:n.IXX(n.Z_8()),related:n.IXX(n.Z_8()),sources:n.IXX(i)}),a=e=>r.parse(e),s={ja:[{title:"コードとは？",subtitle:'音の"色"を混ぜて、曲の雰囲気を作る',lang:"ja",slug:"chords",order:3,status:"published",readingTime:"4min",updated:"2025-01-22",keywords:["コード","和音","作曲","ギター"],related:["theory-intro","intervals"],sources:[],content:`
+# 🎵 コードとは？
+
+### 音の"色"を混ぜて、曲の雰囲気を作る
+
+---
+
+> **Coming Soon**
+
+この記事は現在準備中です。近日公開予定です。
+
+---
+
+## 🎧 音の色を理解する
+
+コード（和音）は、複数の音を同時に鳴らすことで生まれる"色"や"雰囲気"です。
+
+## 🧠 コードを知るメリット
+
+* **作曲の幅が広がる**
+* **曲の雰囲気をコントロールできる**
+* **アドリブの材料が増える**
+
+## 🎸 実践的な活用法
+
+コードを理解することで、より表現豊かな音楽を作れるようになります。
+
+---
+
+## 🪶 まとめ
+
+1. コードは音の色を表現する
+2. 作曲の表現力を高める
+3. 音楽の基礎となる要素
+
+---
+
+## 🎯 今日のミニ課題
+
+🎸 **準備中**
+
+近日公開予定です。
+`,htmlContent:""},{title:"ダイアトニックとは？",subtitle:'"外さない"コードの家族を見つける',lang:"ja",slug:"diatonic",order:6,status:"published",readingTime:"4min",updated:"2025-01-22",keywords:["ダイアトニック","自然音階","コード進行","調性"],related:["key-center","scales","chords"],sources:[],content:`
+# 🎵 ダイアトニックとは？
+
+### "外さない"コードの家族を見つける
+
+---
+
+> **Coming Soon**
+
+この記事は現在準備中です。近日公開予定です。
+
+---
+
+## 🎧 調和する音の家族
+
+ダイアトニックは、同じキーに属する"調和する音の家族"です。
+
+## 🧠 ダイアトニックを知るメリット
+
+* **自然なコード進行が作れる**
+* **音の選択に迷わなくなる**
+* **調性の理解が深まる**
+
+## 🎸 実践的な活用法
+
+ダイアトニックを理解することで、より自然で美しい音楽を作れるようになります。
+
+---
+
+## 🪶 まとめ
+
+1. ダイアトニックは調和する音の家族
+2. 自然なコード進行の基礎
+3. 調性理解の鍵
+
+---
+
+## 🎯 今日のミニ課題
+
+🎸 **準備中**
+
+近日公開予定です。
+`,htmlContent:""},{title:"耳コピの科学",subtitle:"感覚を理論で磨く、音の聴き方トレーニング",lang:"ja",slug:"ear-training",order:7,status:"published",readingTime:"5min",updated:"2025-01-22",keywords:["耳コピ","聴音","音感","トレーニング"],related:["intervals","scales","improvisation"],sources:[],content:`
+# 🎵 耳コピの科学
+
+### 感覚を理論で磨く、音の聴き方トレーニング
+
+---
+
+> **Coming Soon**
+
+この記事は現在準備中です。近日公開予定です。
+
+---
+
+## 🎧 耳を鍛える科学的方法
+
+耳コピは感覚だけでなく、理論的なアプローチで大幅に向上させることができます。
+
+## 🧠 耳コピの科学を知るメリット
+
+* **聴き取る速度が格段に上がる**
+* **音の関係性が理解できる**
+* **アドリブの精度が向上する**
+
+## 🎸 実践的な活用法
+
+科学的な耳コピトレーニングで、音楽をより深く理解できるようになります。
+
+---
+
+## 🪶 まとめ
+
+1. 耳コピは科学的方法で向上可能
+2. 理論と感覚の組み合わせが効果的
+3. 継続的な練習が重要
+
+---
+
+## 🎯 今日のミニ課題
+
+🎸 **準備中**
+
+近日公開予定です。
+`,htmlContent:""},{title:"アドリブの仕組み",subtitle:'理論で"自由に弾く"を手に入れる',lang:"ja",slug:"improvisation",order:8,status:"published",readingTime:"5min",updated:"2025-01-22",keywords:["アドリブ","即興","フレーズ","表現"],related:["scales","ear-training","theory-intro"],sources:[],content:`
+# 🎵 アドリブの仕組み
+
+### 理論で"自由に弾く"を手に入れる
+
+---
+
+> **Coming Soon**
+
+この記事は現在準備中です。近日公開予定です。
+
+---
+
+## 🎧 自由な表現のための理論
+
+アドリブは感覚だけでなく、理論的な理解によってより自由になります。
+
+## 🧠 アドリブの理論を知るメリット
+
+* **迷いなく音を選べる**
+* **表現の幅が広がる**
+* **即興の精度が向上する**
+
+## 🎸 実践的な活用法
+
+理論を理解することで、より自由で表現豊かなアドリブができるようになります。
+
+---
+
+## 🪶 まとめ
+
+1. アドリブは理論でより自由になる
+2. 感覚と理論のバランスが重要
+3. 継続的な練習で上達する
+
+---
+
+## 🎯 今日のミニ課題
+
+🎸 **準備中**
+
+近日公開予定です。
+`,htmlContent:""},{title:"度数とは？（初級編）",subtitle:'音の"距離"がわかると、耳コピが速くなる',lang:"ja",slug:"intervals",order:2,status:"published",readingTime:"5min",updated:"2025-01-22",keywords:["度数","音程","耳コピ","ギター"],related:["theory-intro","chords"],sources:[],content:`
+# 🎼 度数とは？（初級編）
+
+> **度数＝音と音の距離をあらわす単位**。
+> 音と音の関係を「どれくらい離れているか」で考えると、耳コピ・作曲・分析が一気に分かりやすくなります。
+
+---
+
+## 1) 音の距離を知ると、何が便利なの？
+
+メロディやリフを耳で覚えるとき、私たちは無意識に「距離」を感じています。
+「少し上がった」「だいぶ下がった」――その感覚を数字で表すのが**度数**です。
+度数を知っていると、音の関係を**数字で再現**できるようになります。
+
+* 耳コピ：音の動きを数字で記録できる。
+* 作曲：上がる／下がる距離を設計して、狙った雰囲気を出せる。
+* 楽曲分析：コード進行やメロディの"流れ"を数値で整理できる。
+
+度数を理解することは、今後学ぶ**コード（和音）やスケール（音階）**の理論を理解するための**共通の基礎**になります。
+
+例えば、Cメジャーのコードの構成音はド・ミ・ソ、Eメジャーの構成音はミ・ソ♯・シです。じゃあDは？Aは？F♯は？と全部を覚えるのは大変ですが、度数で考えるととてもシンプルです。
+メジャーコードは**ルート・3度・5度**でできています。
+ルートにCやF♯を当てはめれば、あとはルートから3度と5度離れた音を選ぶだけでメジャーコードの構成音になります。
+つまり、度数を理解していれば、どんなキーでも**理論的にすぐに構成音を導ける**のです。
+
+---
+
+## 2) ドレミファソラシドを度数で表すと？
+
+Cメジャースケール（ドレミファソラシド）を例にすると：
+
+| 音  | ド  | レ  | ミ  | ファ | ソ  | ラ  | シ  | ド           |
+| -- | -- | -- | -- | -- | -- | -- | -- | ----------- |
+| 度数 | 1度 | 2度 | 3度 | 4度 | 5度 | 6度 | 7度 | 8度（1オクターブ上） |
+
+つまり、「ド」から見て「レ」は**2度上**、「ミ」は**3度上**という関係になります。
+ここで大切なのは、「ド」＝**基準となる音（ルート）**を**1度**として数えることです。
+
+---
+
+## 3) ルートとは？ 度数の数え方の基本ルール
+
+度数を数えるうえで最も大切なルールは：
+
+> **基準となる音（ルート）も1番目として数えること。**
+
+たとえば、ルートをド（C）とすれば、ド→レ→ミ…と数えます。
+でも、ルートをレ（D）にすれば、同じ「レミファソラシドレ」も度数がすべて**1つずつずれる**。
+
+| ルート    | 1度 | 2度 | 3度  | 4度 | 5度 | 6度 | 7度 |
+| ------ | -- | -- | --- | -- | -- | -- | -- |
+| ド（C）基準 | ド  | レ  | ミ   | ファ | ソ  | ラ  | シ  |
+| レ（D）基準 | レ  | ミ  | ファ♯ | ソ  | ラ  | シ  | ド♯ |
+
+聞いた印象はほぼ同じですが、**全体が1音高い**だけ。
+これは音の"距離"が同じだから。ルートが変わっても**間の距離が変わらない**と、同じような響きに感じるのです。
+
+つまり、ドレミファソラシドは「ルートがドのときの音の並び」に過ぎません。ルートを変えれば**曲のキー（調）**も変わります。
+
+---
+
+## 4) ギターにおける半音と全音
+
+度数を理解するには、この半音と全音の感覚がとても大事。
+たとえば「ド→レ」は**全音（2フレット分）**、「ミ→ファ」は**半音（1フレット分）**。
+この音の違いが、メジャーとマイナーなど、音楽の明るさや緊張感を作り出します。
+ギターは、**度数を可視化しやすい**という特徴があります。
+ルートの位置がわかると、自然にどこに2度・3度の音があるのかが**視覚的に把握できる**のです。
+
+---
+
+## 5) まとめ：度数は音楽の"共通単位"
+
+* **度数＝音の距離**。耳コピ・作曲・アドリブ・分析すべての基礎。
+* コードやスケールを音名でなく**度数**で把握すると、どんなキーでも仕組みを共通の基準で理解できるようになり、全体像がぐっと掴みやすくなります。
+* ギターは度数を可視化しやすく、ルートの位置さえわかれば、どこに他の度数があるのかも一目で把握できます。
+* ドレミファソラシドも、ルートCを基準にしたスケールの一例にすぎない。
+* 度数が分かると、音楽理論が一気に見通せるようになります。
+
+> 次の記事では、この度数を使って音を重ねた**「コード（和音）」**について学びます。
+> OtoTheoryのアプリでは、フレットボードやコード辞典など、色んなところで度数を把握できるようになっていて便利ですよ。試してみてください。`,htmlContent:""},{title:"キーとは？",subtitle:'曲の"重力"を知ると、進行の流れが見える',lang:"ja",slug:"key-center",order:4,status:"published",readingTime:"4min",updated:"2025-01-22",keywords:["キー","調性","主音","コード進行"],related:["theory-intro","chords","diatonic"],sources:[],content:`
+# 🎵 キーとは？
+
+### 曲の"重力"を知ると、進行の流れが見える
+
+---
+
+> **Coming Soon**
+
+この記事は現在準備中です。近日公開予定です。
+
+---
+
+## 🎧 音楽の重力を感じる
+
+キー（調性）は、曲全体を支配する"重力"のような存在です。
+
+## 🧠 キーを知るメリット
+
+* **コード進行が理解できる**
+* **メロディの方向性が見える**
+* **転調の仕組みがわかる**
+
+## 🎸 実践的な活用法
+
+キーを理解することで、より自然で説得力のある音楽を作れるようになります。
+
+---
+
+## 🪶 まとめ
+
+1. キーは音楽の重力を決める
+2. コード進行の流れを理解する鍵
+3. 音楽の方向性を決める要素
+
+---
+
+## 🎯 今日のミニ課題
+
+🎸 **準備中**
+
+近日公開予定です。
+`,htmlContent:""},{title:"スケールとは？",subtitle:'アドリブやメロディの"地図"になる',lang:"ja",slug:"scales",order:5,status:"published",readingTime:"4min",updated:"2025-01-22",keywords:["スケール","音階","アドリブ","メロディ"],related:["intervals","key-center","improvisation"],sources:[],content:`
+# 🎵 スケールとは？
+
+### アドリブやメロディの"地図"になる
+
+---
+
+> **Coming Soon**
+
+この記事は現在準備中です。近日公開予定です。
+
+---
+
+## 🎧 音の地図を理解する
+
+スケール（音階）は、使える音の"地図"を提供してくれます。
+
+## 🧠 スケールを知るメリット
+
+* **アドリブが自由になる**
+* **メロディの材料が増える**
+* **音の選択に迷わなくなる**
+
+## 🎸 実践的な活用法
+
+スケールを理解することで、より表現豊かな演奏ができるようになります。
+
+---
+
+## 🪶 まとめ
+
+1. スケールは音の地図
+2. アドリブの材料を提供
+3. メロディ創作の基礎
+
+---
+
+## 🎯 今日のミニ課題
+
+🎸 **準備中**
+
+近日公開予定です。
+`,htmlContent:""},{title:"音楽理論とは？",subtitle:"感覚で作るを言葉にできるようになる",lang:"ja",slug:"theory-intro",order:1,status:"published",readingTime:"3min",updated:"2025-01-22",keywords:["音楽理論","耳コピ","アドリブ","ギター"],related:["intervals","chords"],sources:[{type:"book",title:"Many Years From Now",author:"Barry Miles",year:1997,citation:"Chapter 5, p.123"},{type:"interview",title:"Rolling Stone Interview",url:"https://www.rollingstone.com/music/music-news/paul-mccartney-rolling-stone-interview-1984-11-15/",date:"1984-11"}],content:`
+# 🎵 音楽理論とは？
+
+---
+
+> **"理論は知らなくても曲は作れる。でも、知るともっと自由になれる。"**
+
+「理論って難しそう」「感覚でやってるから大丈夫」──そう思ったこと、ありませんか？
+実は、**あのビートルズのメンバーも最初は全員"感覚派"**でした。
+ポール・マッカートニーはこう語っています。
+
+:::fact source="Many Years From Now (1997), Barry Miles"
+"I don't read music. I just know what sounds right."
+（僕は楽譜は読めない。でも、何が正しい響きかはわかるんだ）
+:::
+
+彼らは理論を知らずに世界を変えた。
+でも、彼らの音楽を分析してみると、**理論的に説明できる"共通の仕組み"**がたくさん見つかります。
+それが、音楽理論の入り口です。
+
+---
+
+## 🎧 感覚の中にある「ルール」
+
+ポールやジョンは、感覚で**トニック（帰る音）**と**ドミナント（引っ張る音）**を感じ取っていました。
+彼らがCからGに進むときのあの高揚感は、理論で言えば「Ⅴ→Ⅰ」。
+つまり、「帰りたい音と、帰る音」の関係なんです。
+
+理論を学ぶというのは、**その"心地よさの理由"を言葉で説明できるようになること**。
+感性を縛るためではなく、**再現できるようにするため**の地図です。
+
+---
+
+## 🧠 理論は"耳の翻訳装置"
+
+音楽理論を知ると、今まで感覚でしか扱えなかったことが整理できます。
+
+| 感覚的な理解    | 理論的な言葉   |
+| --------- | -------- |
+| 明るい響き     | メジャーコード  |
+| 悲しい響き     | マイナーコード  |
+| 落ち着く感じ    | トニック（I）  |
+| 不安で進みたい感じ | ドミナント（V） |
+
+たとえば「この曲の2つ目のコードが不安っぽくて好き」と思ったとき、
+理論を知っていれば「あれはドミナントマイナーだな」と整理できる。
+それだけで、**次に自分が作る曲で"再現"できるようになります。**
+
+---
+
+## 🎸 理論を学ぶとできること
+
+* **耳コピが速くなる**（聴こえた音の"距離"がわかる）
+* **アドリブが自然になる**（使える音が見えてくる）
+* **作曲に迷わなくなる**（「どこに帰るか」がわかる）
+
+理論は公式ではなく、**耳の中にある感覚を整理するツール**。
+あなたが感じている"いい音"の理由を、再現できる形にするのが目的です。
+
+---
+
+## 🪶 まとめ（3行）
+
+1. 理論は感性を言葉にするための道具。
+2. 感覚でできたことを再現・応用できるようになる。
+3. 理論を学ぶことは、自由になること。
+
+---
+
+## 🎯 今日のミニ課題
+
+🎸 **「Let It Be」を聴いてみよう。**
+
+1. サビで"帰ってくる感じ"がする音（トニック）を探す。
+2. その前の"引っ張られる感じ"（ドミナント）を聴き取る。
+3. それが理論でいう「Ⅴ→Ⅰ」だと気づけたら、もう第一歩です。
+
+---
+
+# 🎵 What Is Music Theory?
+
+### Turn your musical instinct into understanding.
+
+---
+
+> **"You can make music without theory. But with theory, you can make sense of your music."**
+
+Most musicians start with their ears — not with textbooks.
+Even The Beatles did.
+Paul McCartney once said:
+
+:::fact source="Many Years From Now (1997), Barry Miles"
+"I don't read music. I just know what sounds right."
+:::
+
+They wrote songs by instinct, but when you analyze them,
+you'll find the same patterns that music theory describes.
+That's what theory is: **a way to name what your ears already know.**
+
+---
+
+## 🎧 The Hidden Logic of Sound
+
+When Paul moves from C to G, you feel a lift — a pull and a release.
+In theory, that's a **Ⅴ → Ⅰ** movement: tension and resolution.
+Learning theory means learning to describe why something feels good.
+It doesn't cage your creativity — it **maps it**.
+
+---
+
+## 🧠 Theory as Ear Translator
+
+Theory gives names to feelings you already understand.
+
+| What you feel           | What theory calls it |
+| ----------------------- | -------------------- |
+| Bright                  | Major chord          |
+| Sad                     | Minor chord          |
+| Stable                  | Tonic (I)            |
+| Tense / wanting to move | Dominant (V)         |
+
+Once you can name what you hear, you can recreate it —
+and suddenly your **intuition becomes a repeatable skill.**
+
+---
+
+## 🎸 What You Gain
+
+* Faster **ear training** — you hear distance and direction.
+* Better **improvisation** — you know which notes belong.
+* Easier **songwriting** — you see how progressions resolve.
+
+Theory doesn't limit your creativity.
+It's the **language of your ear**.
+
+---
+
+## 🪶 Summary
+
+1. Theory turns feeling into understanding.
+2. It helps you recreate and grow your instinct.
+3. Learning theory is learning freedom.
+
+---
+
+## 🎯 Mini Practice
+
+🎧 Listen to **"Let It Be."**
+Find the moment where the song feels like "coming home."
+That's the tonic.
+The chord right before it — that's the dominant.
+Congratulations, you just learned your first piece of theory.
+`,htmlContent:""}],en:[{title:"What Are Chords?",subtitle:"Paint emotions with the colors of sound",lang:"en",slug:"chords",order:3,status:"published",readingTime:"4min",updated:"2025-01-22",keywords:["chords","harmony","songwriting","guitar"],related:["theory-intro","intervals"],sources:[],content:`
+# 🎵 What Are Chords?
+
+### Paint emotions with the colors of sound
+
+---
+
+> **Coming Soon**
+
+This article is currently being prepared. Coming soon.
+
+---
+
+## 🎧 Understanding Sound Colors
+
+Chords are the "colors" or "moods" created by playing multiple notes simultaneously.
+
+## 🧠 Benefits of Understanding Chords
+
+* **Expands songwriting possibilities**
+* **Controls musical atmosphere**
+* **Provides improvisation materials**
+
+## 🎸 Practical Applications
+
+Understanding chords helps you create more expressive music.
+
+---
+
+## 🪶 Summary
+
+1. Chords express the colors of sound
+2. They enhance compositional expression
+3. They are fundamental musical elements
+
+---
+
+## 🎯 Mini Practice
+
+🎸 **Coming Soon**
+
+This content will be available soon.
+`,htmlContent:""},{title:"What Is Diatonic?",subtitle:"Meet the family of chords that always fit",lang:"en",slug:"diatonic",order:6,status:"published",readingTime:"4min",updated:"2025-01-22",keywords:["diatonic","natural scale","chord progression","tonality"],related:["key-center","scales","chords"],sources:[],content:`
+# 🎵 What Is Diatonic?
+
+### Meet the family of chords that always fit
+
+---
+
+> **Coming Soon**
+
+This article is currently being prepared. Coming soon.
+
+---
+
+## 🎧 Understanding Harmonic Families
+
+Diatonic refers to the "harmonic family" of notes that belong to the same key.
+
+## 🧠 Benefits of Understanding Diatonic
+
+* **Create natural chord progressions**
+* **Eliminate note selection confusion**
+* **Deepen tonal understanding**
+
+## 🎸 Practical Applications
+
+Understanding diatonic helps you create more natural and beautiful music.
+
+---
+
+## 🪶 Summary
+
+1. Diatonic is a harmonic family of notes
+2. It's the foundation of natural chord progressions
+3. It's key to understanding tonality
+
+---
+
+## 🎯 Mini Practice
+
+🎸 **Coming Soon**
+
+This content will be available soon.
+`,htmlContent:""},{title:"The Science of Ear Training",subtitle:"Train your ears to think — and play what you hear",lang:"en",slug:"ear-training",order:7,status:"published",readingTime:"5min",updated:"2025-01-22",keywords:["ear training","aural skills","pitch recognition","training"],related:["intervals","scales","improvisation"],sources:[],content:`
+# 🎵 The Science of Ear Training
+
+### Train your ears to think — and play what you hear
+
+---
+
+> **Coming Soon**
+
+This article is currently being prepared. Coming soon.
+
+---
+
+## 🎧 Scientific Methods for Ear Development
+
+Ear training can be dramatically improved through systematic, theoretical approaches.
+
+## 🧠 Benefits of Understanding Ear Training Science
+
+* **Dramatically faster recognition**
+* **Understanding of musical relationships**
+* **Improved improvisation accuracy**
+
+## 🎸 Practical Applications
+
+Scientific ear training methods help you understand music more deeply.
+
+---
+
+## 🪶 Summary
+
+1. Ear training can be improved through scientific methods
+2. Combining theory with intuition is most effective
+3. Consistent practice is essential
+
+---
+
+## 🎯 Mini Practice
+
+🎸 **Coming Soon**
+
+This content will be available soon.
+`,htmlContent:""},{title:"How to Improvise",subtitle:"Use theory to play freely, not fearfully",lang:"en",slug:"improvisation",order:8,status:"published",readingTime:"5min",updated:"2025-01-22",keywords:["improvisation","freedom","phrases","expression"],related:["scales","ear-training","theory-intro"],sources:[],content:`
+# 🎵 How to Improvise
+
+### Use theory to play freely, not fearfully
+
+---
+
+> **Coming Soon**
+
+This article is currently being prepared. Coming soon.
+
+---
+
+## 🎧 Theory for Free Expression
+
+Improvisation becomes more free through theoretical understanding, not just intuition.
+
+## 🧠 Benefits of Understanding Improvisation Theory
+
+* **Confident note selection**
+* **Expanded expressive range**
+* **Improved improvisation accuracy**
+
+## 🎸 Practical Applications
+
+Understanding theory helps you create more free and expressive improvisations.
+
+---
+
+## 🪶 Summary
+
+1. Theory makes improvisation more free
+2. Balance between intuition and theory is key
+3. Consistent practice leads to improvement
+
+---
+
+## 🎯 Mini Practice
+
+🎸 **Coming Soon**
+
+This content will be available soon.
+`,htmlContent:""},{title:"What Are Intervals? (Beginner Level)",subtitle:"Hear distance — and copy melodies faster",lang:"en",slug:"intervals",order:2,status:"published",readingTime:"5min",updated:"2025-01-22",keywords:["intervals","ear training","guitar","music theory"],related:["theory-intro","chords"],sources:[],content:`
+# 🎼 What Are Intervals? (Beginner Level)
+
+> **Intervals = the unit of distance between notes.**
+> When you think in terms of how far sounds are from each other, ear training, songwriting, and analysis become much clearer.
+
+---
+
+## 1) Why knowing distances helps
+
+When you learn a melody or riff by ear, you're already sensing **distance** without realizing it.
+"Up a little," "down a lot" — that sense of movement can be described with **numbers**, and that's what intervals are for.
+Once you know them, you can **recreate musical relationships** easily with numbers.
+
+* **Ear training:** write down what you hear as distances.
+* **Composition:** design melodic rises and drops to shape emotion.
+* **Analysis:** describe chord progressions or melodies as measurable movements.
+
+Intervals form the **foundation** for understanding **chords (harmony)** and **scales (pitch collections)** later on.
+
+For example, the C major chord contains C–E–G, and E major contains E–G♯–B. Remembering every chord by note is hard—but interval thinking simplifies it.
+A **major chord** always uses **root, 3rd, and 5th**.
+If your root is C or F♯, just take the notes that are a 3rd and 5th above the root—that's your major chord.
+With intervals, you can **build any chord logically**, no memorization required.
+
+---
+
+## 2) C–D–E–F–G–A–B–C in intervals
+
+Using the C major scale as an example:
+
+| Note     | C   | D   | E   | F   | G   | A   | B   | C            |
+| -------- | --- | --- | --- | --- | --- | --- | --- | ------------ |
+| Interval | 1st | 2nd | 3rd | 4th | 5th | 6th | 7th | 8th (octave) |
+
+"D" is two steps (a 2nd) above "C," and "E" is three steps (a 3rd) above.
+The key point: **count the starting note (the root) as 1st.**
+
+---
+
+## 3) What's the root? The counting rule
+
+When measuring intervals, always remember:
+
+> **Count the starting note (the root) as the first one.**
+
+If your root is C, you count C→D→E… and so on.
+If the root is D, the same shape (D–E–F♯–G–A–B–C♯) shifts up a whole tone.
+
+| Root   | 1st | 2nd | 3rd | 4th | 5th | 6th | 7th |
+| ------ | --- | --- | --- | --- | --- | --- | --- |
+| C root | C   | D   | E   | F   | G   | A   | B   |
+| D root | D   | E   | F♯  | G   | A   | B   | C♯  |
+
+They sound nearly the same, just **one whole tone higher** overall, because the **distances remain identical**.
+That's why C–D–E–F–G–A–B–C is simply "the pattern starting from C." Change the root, and you change the **key**.
+
+---
+
+## 4) Half steps and whole steps on guitar
+
+Understanding **half steps** and **whole steps** is essential.
+"C→D" is a **whole step (2 frets)**, "E→F" is a **half step (1 fret)**.
+This difference shapes the bright or tense feel of music—major vs. minor, resolution vs. tension.
+The guitar is especially good at **visualizing intervals**: once you know the root, you can **see where the 2nd, 3rd, and other intervals** lie instantly on the fretboard.
+
+---
+
+## 5) Summary: Intervals are music's universal measurement
+
+* **Intervals = distance between notes.** They're the foundation of ear training, composition, and improvisation.
+* Thinking in **intervals instead of note names** helps you see structure consistently across all keys.
+* The guitar makes intervals visible—knowing the root shows you where every other degree lies.
+* C–D–E–F–G–A–B–C is just one example based on the root C.
+* Once you grasp intervals, music theory becomes much easier to see and hear.
+
+> In the next article, you'll learn how these distances combine to form **chords (harmony)**.
+> In the OtoTheory app, you can explore intervals visually through fretboards, chord dictionaries, and other tools—give it a try!`,htmlContent:""},{title:"What Is a Key?",subtitle:"Feel the gravity that holds music together",lang:"en",slug:"key-center",order:4,status:"published",readingTime:"4min",updated:"2025-01-22",keywords:["key","tonality","tonic","chord progression"],related:["theory-intro","chords","diatonic"],sources:[],content:`
+# 🎵 What Is a Key?
+
+### Feel the gravity that holds music together
+
+---
+
+> **Coming Soon**
+
+This article is currently being prepared. Coming soon.
+
+---
+
+## 🎧 Understanding Musical Gravity
+
+A key is like the "gravity" that governs the entire song.
+
+## 🧠 Benefits of Understanding Keys
+
+* **Understand chord progressions**
+* **See melodic direction**
+* **Grasp modulation concepts**
+
+## 🎸 Practical Applications
+
+Understanding keys helps you create more natural and compelling music.
+
+---
+
+## 🪶 Summary
+
+1. Keys determine musical gravity
+2. They're the key to understanding chord flow
+3. They define musical direction
+
+---
+
+## 🎯 Mini Practice
+
+🎸 **Coming Soon**
+
+This content will be available soon.
+`,htmlContent:""},{title:"What Are Scales?",subtitle:"Discover the map that guides your improvisation",lang:"en",slug:"scales",order:5,status:"published",readingTime:"4min",updated:"2025-01-22",keywords:["scales","improvisation","melody","notes"],related:["intervals","key-center","improvisation"],sources:[],content:`
+# 🎵 What Are Scales?
+
+### Discover the map that guides your improvisation
+
+---
+
+> **Coming Soon**
+
+This article is currently being prepared. Coming soon.
+
+---
+
+## 🎧 Understanding the Musical Map
+
+Scales provide a "map" of available notes.
+
+## 🧠 Benefits of Understanding Scales
+
+* **Freedom in improvisation**
+* **More melodic materials**
+* **Clear note selection**
+
+## 🎸 Practical Applications
+
+Understanding scales helps you create more expressive performances.
+
+---
+
+## 🪶 Summary
+
+1. Scales are musical maps
+2. They provide improvisation materials
+3. They're the foundation of melody creation
+
+---
+
+## 🎯 Mini Practice
+
+🎸 **Coming Soon**
+
+This content will be available soon.
+`,htmlContent:""},{title:"What Is Music Theory?",subtitle:"Turn your musical instinct into understanding",lang:"en",slug:"theory-intro",order:1,status:"published",readingTime:"3min",updated:"2025-01-22",keywords:["music theory","ear training","improvisation","guitar"],related:["intervals","chords"],sources:[{type:"book",title:"Many Years From Now",author:"Barry Miles",year:1997,citation:"Chapter 5, p.123"},{type:"interview",title:"Rolling Stone Interview",url:"https://www.rollingstone.com/music/music-news/paul-mccartney-rolling-stone-interview-1984-11-15/",date:"1984-11"}],content:`
+# 🎵 What Is Music Theory?
+
+---
+
+> **"You can make music without theory. But with theory, you can make sense of your music."**
+
+Most musicians start with their ears — not with textbooks.
+Even The Beatles did.
+Paul McCartney once said:
+
+:::fact source="Many Years From Now (1997), Barry Miles"
+"I don't read music. I just know what sounds right."
+:::
+
+They wrote songs by instinct, but when you analyze them,
+you'll find the same patterns that music theory describes.
+That's what theory is: **a way to name what your ears already know.**
+
+---
+
+## 🎧 The Hidden Logic of Sound
+
+When Paul moves from C to G, you feel a lift — a pull and a release.
+In theory, that's a **Ⅴ → Ⅰ** movement: tension and resolution.
+Learning theory means learning to describe why something feels good.
+It doesn't cage your creativity — it **maps it**.
+
+---
+
+## 🧠 Theory as Ear Translator
+
+Theory gives names to feelings you already understand.
+
+| What you feel           | What theory calls it |
+| ----------------------- | -------------------- |
+| Bright                  | Major chord          |
+| Sad                     | Minor chord          |
+| Stable                  | Tonic (I)            |
+| Tense / wanting to move | Dominant (V)         |
+
+Once you can name what you hear, you can recreate it —
+and suddenly your **intuition becomes a repeatable skill.**
+
+---
+
+## 🎸 What You Gain
+
+* Faster **ear training** — you hear distance and direction.
+* Better **improvisation** — you know which notes belong.
+* Easier **songwriting** — you see how progressions resolve.
+
+Theory doesn't limit your creativity.
+It's the **language of your ear**.
+
+---
+
+## 🪶 Summary
+
+1. Theory turns feeling into understanding.
+2. It helps you recreate and grow your instinct.
+3. Learning theory is learning freedom.
+
+---
+
+## 🎯 Mini Practice
+
+🎧 Listen to **"Let It Be."**
+Find the moment where the song feels like "coming home."
+That's the tonic.
+The chord right before it — that's the dominant.
+Congratulations, you just learned your first piece of theory.
+
+---
+
+# 🎵 音楽理論とは？
+
+### 感覚で作るを言葉にできるようになる
+
+---
+
+> **"理論は知らなくても曲は作れる。でも、知るともっと自由になれる。"**
+
+「理論って難しそう」「感覚でやってるから大丈夫」──そう思ったこと、ありませんか？
+実は、**あのビートルズのメンバーも最初は全員"感覚派"**でした。
+ポール・マッカートニーはこう語っています。
+
+:::fact source="Many Years From Now (1997), Barry Miles"
+"I don't read music. I just know what sounds right."
+（僕は楽譜は読めない。でも、何が正しい響きかはわかるんだ）
+:::
+
+彼らは理論を知らずに世界を変えた。
+でも、彼らの音楽を分析してみると、**理論的に説明できる"共通の仕組み"**がたくさん見つかります。
+それが、音楽理論の入り口です。
+
+---
+
+## 🎧 感覚の中にある「ルール」
+
+ポールやジョンは、感覚で**トニック（帰る音）**と**ドミナント（引っ張る音）**を感じ取っていました。
+彼らがCからGに進むときのあの高揚感は、理論で言えば「Ⅴ→Ⅰ」。
+つまり、「帰りたい音と、帰る音」の関係なんです。
+
+理論を学ぶというのは、**その"心地よさの理由"を言葉で説明できるようになること**。
+感性を縛るためではなく、**再現できるようにするため**の地図です。
+
+---
+
+## 🧠 理論は"耳の翻訳装置"
+
+音楽理論を知ると、今まで感覚でしか扱えなかったことが整理できます。
+
+| 感覚的な理解    | 理論的な言葉   |
+| --------- | -------- |
+| 明るい響き     | メジャーコード  |
+| 悲しい響き     | マイナーコード  |
+| 落ち着く感じ    | トニック（I）  |
+| 不安で進みたい感じ | ドミナント（V） |
+
+たとえば「この曲の2つ目のコードが不安っぽくて好き」と思ったとき、
+理論を知っていれば「あれはドミナントマイナーだな」と整理できる。
+それだけで、**次に自分が作る曲で"再現"できるようになります。**
+
+---
+
+## 🎸 理論を学ぶとできること
+
+* **耳コピが速くなる**（聴こえた音の"距離"がわかる）
+* **アドリブが自然になる**（使える音が見えてくる）
+* **作曲に迷わなくなる**（「どこに帰るか」がわかる）
+
+理論は公式ではなく、**耳の中にある感覚を整理するツール**。
+あなたが感じている"いい音"の理由を、再現できる形にするのが目的です。
+
+---
+
+## 🪶 まとめ（3行）
+
+1. 理論は感性を言葉にするための道具。
+2. 感覚でできたことを再現・応用できるようになる。
+3. 理論を学ぶことは、自由になること。
+
+---
+
+## 🎯 今日のミニ課題
+
+🎸 **「Let It Be」を聴いてみよう。**
+
+1. サビで"帰ってくる感じ"がする音（トニック）を探す。
+2. その前の"引っ張られる感じ"（ドミナント）を聴き取る。
+3. それが理論でいう「Ⅴ→Ⅰ」だと気づけたら、もう第一歩です。
+`,htmlContent:""}]};function l(e="ja"){console.log(`[articles.ts] Getting articles for ${e}`),console.log("[articles.ts] articlesData keys:",Object.keys(s)),console.log(`[articles.ts] articlesData[${e}] length:`,s[e]?.length||0);let t=s[e]||[];return console.log(`[articles.ts] Found ${t.length} ${e} articles from static data`),t.map(e=>{try{return{...a({title:e.title,subtitle:e.subtitle,lang:e.lang,slug:e.slug,order:e.order,status:e.status,readingTime:e.readingTime,updated:e.updated,keywords:e.keywords,related:e.related,sources:e.sources}),content:e.content||"",htmlContent:e.htmlContent||""}}catch(t){return console.error(`[articles.ts] Error validating article ${e.slug}:`,t),null}}).filter(e=>null!==e).sort((e,t)=>e.order-t.order)}function d(e,t="ja"){return l(t).find(t=>t.slug===e)||null}function h(e="ja"){return l(e).filter(e=>"published"===e.status)}function c(e,t="ja"){return h(t).find(t=>t.order===e+1)||null}function u(e,t="ja"){return h(t).find(t=>t.order===e-1)||null}}};

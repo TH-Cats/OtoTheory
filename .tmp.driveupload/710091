@@ -1,0 +1,7 @@
+{
+  "/ja/page": "app/ja/page.js",
+  "/ja/resources/page": "app/ja/resources/page.js",
+  "/ja/chord-progression/page": "app/ja/chord-progression/page.js",
+  "/ja/resources/learn/page": "app/ja/resources/learn/page.js",
+  "/ja/resources/learn/[slug]/page": "app/ja/resources/learn/[slug]/page.js"
+}
