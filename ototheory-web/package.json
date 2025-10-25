@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "e2e": "playwright test",
-    "sync:articles": "cd .. && npm run sync:articles",
+    "sync:articles": "node ../scripts/sync-articles.mjs",
     "generate-articles": "node scripts/generate-articles.js",
     "prebuild": "npm run sync:articles",
     "predev": "npm run sync:articles"
@@ -17,6 +17,7 @@
     "@heroicons/react": "^2.2.0",
     "autoprefixer": "^10.4.21",
     "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0",
     "html-to-image": "^1.11.13",
     "lucide-react": "^0.546.0",
     "next": "14.2.5",
