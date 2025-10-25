@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "e2e": "playwright test",
-    "sync:articles": "node ../scripts/sync-articles.mjs",
+    "sync:articles": "node scripts/sync-articles.mjs",
     "generate-articles": "node scripts/generate-articles.js",
     "prebuild": "npm run sync:articles",
     "predev": "npm run sync:articles"
