@@ -240,7 +240,86 @@ sources: [
 
 ---
 
-## 13. 変更履歴（Changelog）
+## 13. 記事管理とプラットフォーム配信
+
+### 13.1 統一コンテンツ管理システム（SSOT）
+
+**マスター記事の場所**
+- 全記事のマスターは `/docs/content/resources/learn/` に統一
+- 言語別フォルダ構成：`ja/`（日本語）、`en/`（英語）
+- ファイル命名規則：`{slug}_{lang}.md`（例：`theory-intro_ja.md`）
+
+**必須front-matter**
+```yaml
+---
+title: "記事タイトル"
+subtitle: "サブタイトル（任意）"
+lang: ja  # または en（クォート不要）
+slug: "url-slug"
+order: 1  # 表示順序
+status: published  # published, draft, coming
+readingTime: "5min"
+updated: "2025-10-25"
+keywords: ["キーワード1", "キーワード2"]
+related: ["関連記事1", "関連記事2"]
+sources: ["出典1", "出典2"]
+---
+```
+
+### 13.2 自動配信システム
+
+**同期スクリプト**
+- 実行コマンド：`npm run sync:articles`
+- 機能：
+  - マスター記事の読み込み・検証
+  - 言語混在チェック（品質保証）
+  - Web版への配信（`articlesData.ts`生成）
+  - iOS版への配信（Markdownファイルコピー）
+  - 自動バックアップ・ロールバック
+
+**配信先**
+- **Web版**：`/ototheory-web/src/lib/articlesData.ts`（TypeScript）
+- **iOS版**：`/OtoTheory-iOS/OtoTheory/Articles/`（Markdown）
+
+### 13.3 記事公開ルール
+
+**現在の公開記事（2つのみ）**
+1. `theory-intro` - 音楽理論とは何か
+2. `intervals` - インターバル（初級レベル）
+
+**Coming Soon表示**
+- `status: draft` または `status: coming` の記事は「Coming Soon」バッジ付きで表示
+- タップ不可、半透明表示でユーザーに状態を明示
+
+### 13.4 言語分離ルール
+
+**厳格な言語分離**
+- 日本語記事（`lang: ja`）に英語が30%を超える場合は警告
+- 英語記事（`lang: en`）に日本語が50文字を超える場合は警告
+- 固有名詞（Beatles、Paul McCartney等）は除外
+
+**品質チェック**
+- 同期実行時に自動で言語純度を検証
+- 問題がある場合は `--force` オプションで強制実行可能
+
+### 13.5 運用フロー
+
+**記事更新手順**
+1. マスター記事を `/docs/content/resources/learn/` で編集
+2. `npm run sync:articles` で自動配信
+3. Web版・iOS版で動作確認
+4. Gitコミット・プッシュでVercel自動デプロイ
+
+**新記事追加手順**
+1. マスター記事を作成（front-matter必須）
+2. 同期スクリプトで配信
+3. 必要に応じて `status` を `published` に変更
+4. 公開確認
+
+---
+
+## 14. 変更履歴（Changelog）
+- **v1.3（2025‑10‑25）** 記事管理システム統一：SSOT実装、自動配信、言語分離、Coming Soon表示
 - **v1.2（2025‑01‑22）** Resources Learn Section実装完了：Web版・iOS版両対応、8記事構成、Coming Soon対応、301リダイレクト設定
 - **v1.1（2025‑01‑XX）** 基礎理論記事のタイトル・サブタイトル（日英）を確定版として追加
 - **v1.0（2025‑10‑18）** 初版作成：基礎IA／テンプレ／出典方針／SEO／リリース計画を定義。
