@@ -1,16 +1,17 @@
 ---
-title: 度数とは？（初級編）
-subtitle: 音の"距離"を理解すると、再現と応用がしやすくなる
-lang: ja
-slug: intervals
+title: "度数とは？（初級編）"
+subtitle: "音の"距離"を理解すると、再現と応用がしやすくなる"
+lang: "ja"
+slug: "intervals"
 order: 2
-status: published
-readingTime: 5min
-updated: 2025-01-25
-keywords: [度数, インターバル, 耳コピ, 音程]
-related: [theory-intro, chords]
+status: "published"
+readingTime: "5min"
+updated: "Sat Jan 25 2025 09:00:00 GMT+0900 (Japan Standard Time)"
+keywords: ["度数","インターバル","耳コピ","音程"]
+related: ["theory-intro","chords"]
 sources: []
 ---
+
 
 # 度数とは？（初級編）
 

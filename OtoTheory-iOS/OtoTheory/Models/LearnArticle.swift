@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum ArticleStatus: String, Codable, CaseIterable {
+    case published = "published"
+    case draft = "draft"
+    case coming = "coming"
+}
+
 struct LearnArticle: Identifiable, Codable {
     let id: String
     let title: String
@@ -14,7 +20,7 @@ struct LearnArticle: Identifiable, Codable {
     let lang: String
     let slug: String
     let order: Int
-    let status: String
+    let status: ArticleStatus
     let readingTime: String
     let updated: String
     let keywords: [String]
@@ -23,7 +29,7 @@ struct LearnArticle: Identifiable, Codable {
     let content: String
     
     var isPublished: Bool {
-        return status == "published"
+        return status == .published
     }
     
     var displayOrder: Int {
@@ -51,7 +57,7 @@ extension LearnArticle {
             lang: "ja",
             slug: "theory-intro",
             order: 1,
-            status: "published",
+            status: .published,
             readingTime: "3min",
             updated: "2025-01-22",
             keywords: ["音楽理論", "耳コピ", "アドリブ", "ギター"],
@@ -76,7 +82,7 @@ extension LearnArticle {
             lang: "ja",
             slug: "intervals",
             order: 2,
-            status: "draft",
+            status: .draft,
             readingTime: "4min",
             updated: "2025-01-22",
             keywords: ["度数", "インターバル", "耳コピ", "音程"],

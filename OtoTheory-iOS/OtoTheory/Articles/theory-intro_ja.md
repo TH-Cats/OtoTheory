@@ -1,20 +1,17 @@
 ---
-title: 音楽理論とは？
-subtitle: 感覚で作るを言葉にできるようになる
-lang: ja
-slug: theory-intro
+title: "音楽理論とは？"
+subtitle: "感覚で作るを言葉にできるようになる"
+lang: "ja"
+slug: "theory-intro"
 order: 1
-status: published
-readingTime: 5min
-updated: 2025-01-25
-keywords: [音楽理論, レシピ, 再現性, ビートルズ]
-related: [intervals]
-sources:
-  - type: book
-    title: Many Years From Now
-    author: Barry Miles
-    year: 1997
+status: "published"
+readingTime: "5min"
+updated: "Sat Jan 25 2025 09:00:00 GMT+0900 (Japan Standard Time)"
+keywords: ["音楽理論","レシピ","再現性","ビートルズ"]
+related: ["intervals"]
+sources: [{"type":"book","title":"Many Years From Now","author":"Barry Miles","year":1997}]
 ---
+
 
 # 🎵 音楽理論とは？
 

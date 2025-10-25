@@ -1,20 +1,17 @@
 ---
-title: What Is Music Theory?
-subtitle: Turn your musical instinct into understanding
-lang: en
-slug: theory-intro
+title: "What Is Music Theory?"
+subtitle: "Turn your musical instinct into understanding"
+lang: "en"
+slug: "theory-intro"
 order: 1
-status: published
-readingTime: 5min
-updated: 2025-01-25
-keywords: [music theory, recipe, repeatability, Beatles]
-related: [intervals]
-sources:
-  - type: book
-    title: Many Years From Now
-    author: Barry Miles
-    year: 1997
+status: "published"
+readingTime: "5min"
+updated: "Sat Jan 25 2025 09:00:00 GMT+0900 (Japan Standard Time)"
+keywords: ["music theory","recipe","repeatability","Beatles"]
+related: ["intervals"]
+sources: [{"type":"book","title":"Many Years From Now","author":"Barry Miles","year":1997}]
 ---
+
 
 # 🎵 What Is Music Theory?
 

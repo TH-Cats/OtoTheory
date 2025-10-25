@@ -61,13 +61,24 @@ struct LearnListView: View {
                     } else {
                         List {
                             ForEach(articles) { article in
-                                if article.status == "published" {
+                                if article.status == .published {
                                     NavigationLink(destination: LearnArticleView(article: article)) {
                                         ArticleRowView(article: article)
                                     }
                                 } else {
                                     ArticleRowView(article: article)
+                                        .overlay(alignment: .trailing) {
+                                            Text(currentLang == .ja ? "近日公開" : "Coming Soon")
+                                                .font(.caption)
+                                                .padding(.horizontal, 6)
+                                                .padding(.vertical, 2)
+                                                .background(.ultraThinMaterial)
+                                                .clipShape(Capsule())
+                                        }
+                                        .contentShape(Rectangle())
+                                        .disabled(true)
                                         .opacity(0.6)
+                                        .accessibilityHint(currentLang == .ja ? "近日公開" : "Coming Soon")
                                 }
                             }
                         }
@@ -119,7 +130,7 @@ struct ArticleRowView: View {
                         .font(.caption)
                         .foregroundColor(.secondary)
                     
-                    if article.status == "draft" {
+                    if article.status == .draft {
                         Text(article.lang == "ja" ? "近日公開" : "Coming Soon")
                             .font(.caption2)
                             .padding(.horizontal, 6)

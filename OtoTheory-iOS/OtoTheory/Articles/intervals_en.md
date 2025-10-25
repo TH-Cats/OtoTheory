@@ -1,16 +1,17 @@
 ---
-title: What Are Intervals? (Beginner Level)
-subtitle: Understanding the "distance" between notes makes it easier to recreate and expand musical ideas
-lang: en
-slug: intervals
+title: "What Are Intervals? (Beginner Level)"
+subtitle: "Understanding the "distance" between notes makes it easier to recreate and expand musical ideas"
+lang: "en"
+slug: "intervals"
 order: 2
-status: published
-readingTime: 5min
-updated: 2025-01-25
-keywords: [intervals, ear training, songwriting, analysis]
-related: [theory-intro, chords]
+status: "published"
+readingTime: "5min"
+updated: "Sat Jan 25 2025 09:00:00 GMT+0900 (Japan Standard Time)"
+keywords: ["intervals","ear training","songwriting","analysis"]
+related: ["theory-intro","chords"]
 sources: []
 ---
+
 
 # What Are Intervals? (Beginner Level)
 

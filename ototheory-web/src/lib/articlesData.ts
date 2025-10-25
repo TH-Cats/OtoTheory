@@ -1,6 +1,6 @@
 
 // This file is auto-generated. Do not edit manually.
-// Generated at: 2025-10-22T14:48:56.785Z
+// Generated at: 2025-10-25T15:10:47.175Z
 // Source: /Users/nh/App/OtoTheory/ototheory-web/docs/content/resources/learn
 
 import type { Article } from './schemas/article.schema';
