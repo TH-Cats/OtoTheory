@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  },
+  "scripts": {
+    "sync:articles": "node scripts/sync-articles.mjs",
+    "sync:articles:dry": "node scripts/sync-articles.mjs --dry-run",
+    "sync:articles:force": "node scripts/sync-articles.mjs --force",
+    "sync:articles:verbose": "node scripts/sync-articles.mjs --verbose"
+  }
+}

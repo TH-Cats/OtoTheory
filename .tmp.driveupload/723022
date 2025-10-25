@@ -1,0 +1,324 @@
+exports.id=8078,exports.ids=[8078],exports.modules={5303:()=>{},7045:(e,t,a)=>{"use strict";a.d(t,{zC:()=>l,fq:()=>h,XC:()=>u,A:()=>c,jl:()=>d});var n=a(6263);let o=n.Ryn({type:n.KmV(["book","interview","article","website","video"]),title:n.Z_8(),author:n.Z_8().optional(),year:n.Rxh().optional(),url:n.Z_8().url().optional(),date:n.Z_8().optional(),citation:n.Z_8().optional()}),r=n.Ryn({title:n.Z_8(),subtitle:n.Z_8(),lang:n.KmV(["ja","en"]),slug:n.Z_8(),order:n.Rxh().int().min(1).max(8),status:n.KmV(["draft","published","scheduled"]),readingTime:n.Z_8(),updated:n.Z_8().regex(/^\d{4}-\d{2}-\d{2}$/),keywords:n.IXX(n.Z_8()),related:n.IXX(n.Z_8()),sources:n.IXX(o)}),s=e=>r.parse(e),i={ja:[{title:"音楽理論とは？",subtitle:"感覚で作るを言葉にできるようになる",lang:"ja",slug:"theory-intro",order:1,status:"published",readingTime:"5min",updated:"2025-01-25",keywords:["音楽理論","レシピ","再現性","ビートルズ"],related:["intervals"],sources:[{type:"book",title:"Many Years From Now",author:"Barry Miles",year:1997}],content:`
+# 🎵 音楽理論とは？
+
+### 感覚で作るを言葉にできるようになる
+
+> **「理論は知らなくても音楽は作れる。でも、知ると、もっと自由になれる。」**
+
+多くの人は**耳と直感**から始めます。それで十分。
+ただ、「この"いい感じ"を**もう一度**、**狙って**出したい」と思った瞬間に、理論が力になります。
+理論は"正解を押しつける教科書"ではなく、**あなたの感覚を再現可能にする言葉**です。
+
+---
+
+## 🎙️ ポールの"感覚"は言葉にできる
+
+> "I don't read music. I just know what sounds right."
+> （楽譜は読めないけど、何が正しい響きかはわかる）
+> — *Paul McCartney: Many Years From Now*
+
+ビートルズは理論を勉強していなくても、曲を眺めれば**一定の流れや関係**が見つかります。
+たとえば〈Let It Be〉（C–G–Am–F）。聴いていると、**落ち着く場所と前へ進む力**のバランスが心地よい。
+彼らはそれを**耳で掴んでいた**。理論は、その"掴んだもの"を**誰もが再現できる言葉にする**ための道具です。
+
+---
+
+## 🍝 レシピとしての理論
+
+例えば、美味しいパスタを作ろうと思った時、いろいろなパスタを食べて「この味はどうやって出すんだろう」と試行錯誤して、ようやく自分の理想の味にたどり着くものです。でももし、最初からレシピがあったらどうでしょう？まずはその通りに作って味を再現し、そこからニンニクを足したり、火加減を変えたり、素材を変えて自分の個性を出していくでしょう。
+音楽理論というのは、まさにその**レシピ**なんです。
+
+音楽も同じで、理論というレシピがあると、
+
+* まず**同じ仕上がり**にたどり着ける（再現性）
+* そこから**少し変えて試す**ことができる（発展性）
+
+「今日は香りを控えめに」「もう少しコクを」──そんな微調整が、曲づくりでも可能になります。
+**理論があるから、再現できて、再現できるから、発展させやすい。**
+
+---
+
+## 🚀 "再現できると、発展できる"という実益
+
+直感だけに頼ると、**一度きりの偶然**になりがち。
+理論で言葉を付けると、「前回うまくいったあの感じ」を**同じ条件で呼び出し**、
+そこに**小さな変化**（和音の厚み、進行の方向、ひとさじの意外性）を安全に加えられます。
+結果として、**自分のスタイル**が育ちます。
+
+---
+
+## 🎼 ビートルズの楽曲を"レシピ化"してみる
+
+たとえば〈**Hey Jude**〉を料理のレシピのように分析してみましょう。
+
+* **キー**：Fメジャー
+
+* **コード進行**：F → C → C7 → F → Bb → F → C（I–V–V7–I–IV–I–V）
+  　→ トニック（F）・サブドミナント（Bb）・ドミナント（C）の役割が明確で、曲の基盤を安定させています。
+  　また、サビやブリッジで現れる **C7** は、Fメジャー内では借用的なコードとして機能しています。C7 の構成音 Bb は Fメジャーには含まれない♭7で、これが**モード借用（Fミクソリディアン的）**な響きを生み、ブルース的で温かいトーンを加えています。
+  　最後のリフレインでは I–V の繰り返しが高揚感を生み、リスナーを自然に引き込む構造です。
+
+* **メロディ**：Fメジャースケールを基調としながら、コード同様に♭7（E♭）を取り入れることで、**ブルース的な緩さや開放感**を生んでいます。特にサビやアウトロの"na-na-na"リフレインで顕著で、このE♭がポール特有の**温かくも少し哀愁を帯びたムード**を作り出しています。
+
+この曲の"レシピ"をまとめると──
+
+> **「オーソドックスなメジャースケールに♭7のスパイスを加え、I–Vの反復で感情を高める」**
+
+というシンプルながら深い構成です。
+このレシピを応用すれば、**Hey Judeのように温かく伸びやかな楽曲**を自分でも再現できるでしょう。
+
+---
+
+## ✅ いま分からなくても大丈夫
+
+OtoTheoryは、**見て・聴いて・触って**いるうちに自然と理解が深まる設計です。
+最初は**感覚で十分**。言葉やルールは、あとから"腑に落ちる"タイミングで出会えばOK。
+
+* 「コードって何？」→ **『コードとは？』**でやさしく解説します。
+* 「キーって何？」→ **『キーとは？』**で"帰る感じ"を言葉にします。
+* 「スケールがまだ不安」→ **『スケールとは？』**で"使いやすい音のまとまり"を体験的に学べます。
+
+> ※記事はアプリ内の「参考 → 学ぶ」にまとまっています。順番に読まなくても大丈夫。
+> 今は**気になったところだけ**つまみ読みして、**アプリで試す**のが最短です。`,htmlContent:""},{title:"度数とは？（初級編）",subtitle:'音の"距離"を理解すると、再現と応用がしやすくなる',lang:"ja",slug:"intervals",order:2,status:"published",readingTime:"5min",updated:"2025-01-25",keywords:["度数","インターバル","耳コピ","音程"],related:["theory-intro","chords"],sources:[],content:`
+# 度数とは？（初級編）
+
+### 音の"距離"を理解すると、再現と応用がしやすくなる
+
+> **度数＝音と音の距離をあらわす単位**。
+> 音と音の関係を「どれくらい離れているか」で考えると、耳コピ・作曲・分析が一気に分かりやすくなります。
+
+---
+
+## 1) 音の距離を知ると、何が便利なの？
+
+メロディやリフを耳で覚えるとき、私たちは無意識に「距離」を感じています。
+「少し上がった」「だいぶ下がった」――その感覚を数字で表すのが**度数**です。
+度数を知っていると、音の関係を**数字で再現**できるようになります。
+
+音楽理論を"レシピ"に例えるなら、度数はその中の**「大さじ」「小さじ」**のようなもの。
+誰もが同じ単位で話せるからこそ、**同じ響きを再現できる**ようになります。
+つまり、度数は音楽を共通言語として扱うための**"計量スプーン"のような存在**なのです。
+
+* 耳コピ：音の動きを数字で記録できる。
+* 作曲：上がる／下がる距離を設計して、狙った雰囲気を出せる。
+* 楽曲分析：コード進行やメロディの"流れ"を数値で整理できる。
+
+度数を理解することは、今後学ぶ**コード（和音）やスケール（音階）**の理論を理解するための**共通の基礎**になります。
+
+例えば、Cメジャーのコードの構成音はド・ミ・ソ、Eメジャーの構成音はミ・ソ♯・シです。じゃあDは？Aは？F♯は？と全部を覚えるのは大変ですが、度数で考えるととてもシンプルです。
+メジャーコードは**ルート・3度・5度**でできています。
+ルートにCやF♯を当てはめれば、あとはルートから3度と5度離れた音を選ぶだけでメジャーコードの構成音になります。
+つまり、度数を理解していれば、どんなキーでも**理論的にすぐに構成音を導ける**のです。
+
+---
+
+## 2) ドレミファソラシドと度数、ルートの考え方
+
+Cメジャースケール（ドレミファソラシド）を例にして、度数と音の関係を見てみましょう。
+
+| 音  | ド       | レ  | ミ  | ファ | ソ  | ラ  | シ  | ド           |
+| -- | ------- | -- | -- | -- | -- | -- | -- | ----------- |
+| 度数 | 1度（ルート） | 2度 | 3度 | 4度 | 5度 | 6度 | 7度 | 8度（1オクターブ上） |
+
+ここで大切なのは、**ルート（基準となる音）を1度として数える**こと。
+つまり「ド」がルートなら「レ」は2度上、「ミ」は3度上という関係になります。
+
+### 🎶 音階上のルール（ここが半音！）
+
+ドレミファソラシドの中で、音と音の間が半音になるのは次の2か所だけです👇
+
+| 間の関係           | 間隔 | 度数の関係          |
+| -------------- | -- | -------------- |
+| 3度（ミ）と4度（ファ）の間 | 半音 | 3 → 4          |
+| 7度（シ）とルート（ド）の間 | 半音 | 7 → 1（次のオクターブ） |
+
+それ以外の音の間はすべて**全音（1度）**。
+この法則を覚えておくと、どのキーでもスケールやコードを**ルートからの距離（度数）**で理解できるようになります。
+
+### 🎸 ルートを変えるとどうなる？
+
+ルートをCからDに変えると、音はすべて1音高くなります。
+
+| ルート    | 1度 | 2度 | 3度  | 4度 | 5度 | 6度 | 7度 |
+| ------ | -- | -- | --- | -- | -- | -- | -- |
+| C（ド）基準 | ド  | レ  | ミ   | ファ | ソ  | ラ  | シ  |
+| D（レ）基準 | レ  | ミ  | ファ♯ | ソ  | ラ  | シ  | ド♯ |
+
+聞いた印象はほぼ同じですが、**全体が1音高い**だけ。
+これは音の距離（度数）の関係が同じだからです。
+ドレミファソラシドは、あくまで「ルートCを基準にしたスケールの形」であり、ルートを変えれば**キー（調）**も変わります。
+
+---
+
+## 3) ギターにおける半音と全音
+
+ギターでは、**1フレット移動すると半音**音が変わります。つまり、**2フレット移動すると1音上がる**ということです。度数で言えば「1度」変わることになります。
+
+この仕組みのおかげで、指板上でルート（基準となる音）を決めると、自然とどこに2度・3度の音があるのかが視覚的にわかります。
+だからギターは、**度数を可視化しやすい楽器**といえるのです。
+
+---
+
+## 4) まとめ：度数は音楽の"共通単位"
+
+* **度数＝音の距離**。耳コピ・作曲・アドリブ・分析すべての基礎。
+* コードやスケールを音名でなく**度数**で把握すると、どんなキーでも仕組みを共通の基準で理解できるようになり、全体像がぐっと掴みやすくなります。
+* ギターは度数を可視化しやすく、ルートの位置さえわかれば、どこに他の度数があるのかも一目で把握できます。
+* 度数が分かると、音楽理論が一気に見通せるようになります。
+
+> 次の記事では、この度数を使って音を重ねた**「コード（和音）」**について学びます。
+> OtoTheoryのアプリでは、フレットボードやコード辞典など、色んなところで度数を把握できるようになっていて便利ですよ。試してみてください。`,htmlContent:""}],en:[{title:"What Is Music Theory?",subtitle:"Turn your musical instinct into understanding",lang:"en",slug:"theory-intro",order:1,status:"published",readingTime:"5min",updated:"2025-01-25",keywords:["music theory","recipe","repeatability","Beatles"],related:["intervals"],sources:[{type:"book",title:"Many Years From Now",author:"Barry Miles",year:1997}],content:`
+# 🎵 What Is Music Theory?
+
+### Turn your musical instinct into understanding
+
+> "You can make music by instinct. **With theory, you can make it repeatable—and grow it.**"
+
+Starting from **ears and instinct** is perfect.
+The moment you want to **bring back the same magic on purpose**, theory helps.
+It isn't a rulebook; it's the **words that let your instincts be repeated**.
+
+---
+
+## 🎙️ Paul's instinct, put into words
+
+> "I don't read music. I just know what sounds right."
+> — *Paul McCartney: Many Years From Now*
+
+Even without formal study, songs like "Let It Be" (C–G–Am–F) reveal a balance you can feel:
+a **place that feels like home** and a **push that moves you forward**.
+They **felt** it. Theory **names** it so **anyone** can do it again.
+
+---
+
+## 🍝 Think of theory as a simple recipe
+
+It's like this: imagine you want to cook delicious pasta. You might experiment by tasting many versions, wondering how each flavor is made, and finally discover how to cook it your way. But if a **recipe** already exists, you'd probably start by following it—then add garlic, adjust the heat, or change the ingredients to make it your own.
+
+Music theory is exactly that **recipe**.
+
+Music theory works the same way:
+
+* First, you reach the **same result** again (repeatability).
+* Then, you **tweak safely**—a little richer, a little lighter (evolution).
+
+Because you can reproduce the base, small changes become **creative, not risky**.
+
+---
+
+## 🎼 Turning a Beatles song into a "recipe"
+
+Let's analyze **Hey Jude** as if it were a cooking recipe.
+
+* **Key**: F Major
+
+* **Chord progression**: F → C → C7 → F → Bb → F → C (I–V–V7–I–IV–I–V)
+   → The tonic (F), subdominant (Bb), and dominant (C) each play a clear role, forming a stable harmonic foundation.
+   The appearance of **C7** in the chorus and bridge acts as a kind of *borrowed chord*: its Bb note isn't part of the F major scale, introducing a **Mixolydian flavor** that gives the song its warm, blues‑tinged tone.
+   The melody is built on the F major scale but occasionally features the ♭7 (E♭), which adds a **loose, open blues feel**. This sound, especially in the "na‑na‑na" refrain, creates Paul's signature blend of warmth and wistful brightness.
+
+In short:
+
+> **"Start from a classic major scale, season it with a ♭7 for color, and repeat I–V to raise the emotion."**
+
+This simple but expressive "recipe" can help you write songs that capture the same open, heartfelt spirit as *Hey Jude*.
+
+---
+
+## 🚀 Repeat, then evolve — the real payoff
+
+Rely only on instinct and success can be a **one-off accident**.
+Name what worked, and you can **set up the same conditions** next time—
+then add **tiny changes** (a touch more harmony, a brief detour, a new texture) with confidence.
+That's how a **personal style** emerges.
+
+---
+
+## ✅ It's okay not to get it yet
+
+OtoTheory is designed so you **see, hear, and try** first; the words click **later**.
+Start with your **feelings**, and let the app do the gentle teaching.
+
+* New to harmony? Read **"What Are Chords?"**
+* Unsure about key? Try **"What Is a Key?"**
+* Not ready for scales? See **"What Are Scales?"** — you'll learn by trying.
+
+> You don't have to read everything in order. Pick what you need, **try it in the app**, and the ideas will stick.`,htmlContent:""},{title:"What Are Intervals? (Beginner Level)",subtitle:'Understanding the "distance" between notes makes it easier to recreate and expand musical ideas',lang:"en",slug:"intervals",order:2,status:"published",readingTime:"5min",updated:"2025-01-25",keywords:["intervals","ear training","songwriting","analysis"],related:["theory-intro","chords"],sources:[],content:`
+# What Are Intervals? (Beginner Level)
+
+### Understanding the "distance" between notes makes it easier to recreate and expand musical ideas
+
+> **Interval = the unit that shows the distance between notes.**
+> When you think in terms of "how far apart" notes are, ear training, songwriting, and analysis all become clearer.
+
+---
+
+## 1) Why knowing distances helps
+
+When you learn a melody or riff by ear, you're already sensing the *distance* between notes — "a little higher," "a lot lower."
+Intervals turn that feeling into **numbers you can understand and reproduce**.
+
+If music theory were a recipe, intervals would be your **tablespoons and teaspoons** — a common unit everyone understands.
+That shared language lets you **recreate the same flavor** of sound.
+In other words, intervals are the **measuring tools** that make music a shared language.
+
+* **Ear training:** You can write down what you hear as steps or jumps.
+* **Composition:** Design melodic motion to create specific moods.
+* **Analysis:** Describe progressions and melodies in measurable terms.
+
+Understanding intervals builds the **foundation** for learning chords and scales later.
+
+For example, a C major chord is made of C–E–G, and an E major chord is E–G#–B. Remembering every note of every chord is hard, but in intervals, it's simple:
+A **major chord** = **Root + 3rd + 5th**.
+Plug in any root (C, F#, etc.), and just move up a 3rd and a 5th — that's your chord.
+
+---
+
+## 2) C–D–E–F–G–A–B–C and the concept of the root
+
+Let's use the C major scale to see how intervals relate to notes:
+
+| Note     | C          | D   | E   | F   | G   | A   | B   | C            |
+| -------- | ---------- | --- | --- | --- | --- | --- | --- | ------------ |
+| Interval | 1st (Root) | 2nd | 3rd | 4th | 5th | 6th | 7th | 8th (Octave) |
+
+The key rule: **Count the root note as "1."**
+So if C is the root, D is 2nd, E is 3rd, and so on.
+
+### 🎶 Where the half steps are
+
+In C major, there are only two places where the interval is a *half step*:
+
+| Between                   | Distance  | Interval relationship |
+| ------------------------- | --------- | --------------------- |
+| 3rd (E) and 4th (F)       | Half step | 3 → 4                 |
+| 7th (B) and next root (C) | Half step | 7 → 1 (next octave)   |
+
+All other steps are **whole steps (1 tone)**.
+Knowing this pattern lets you understand any key by the *distance* from its root.
+
+### 🎸 What happens when you change the root
+
+If you move the root from C to D, all notes shift up by one whole step — everything sounds higher, but the *relationships* stay the same.
+That's why "C–D–E–F–G–A–B–C" and "D–E–F#–G–A–B–C#–D" sound similar — the intervals between notes are identical.
+
+---
+
+## 3) Half steps and whole steps on the guitar
+
+On the guitar, **moving up one fret = a half step**. Move up **two frets = one whole step (1 tone)** — that's a change of **one interval degree**.
+
+Because of this, once you know your **root note** on the fretboard, you can easily *see* where the 2nd, 3rd, 4th, and other intervals lie.
+That's why the guitar is an instrument where **intervals are visible** — theory literally appears under your fingers.
+
+---
+
+## 4) Summary: Intervals are music's shared unit
+
+* **Intervals = distance between notes.** They're the foundation for ear training, composition, and improvisation.
+* Thinking in intervals (instead of note names) helps you recognize the same patterns in any key.
+* On the guitar, once you know your root, you can *see* where every interval sits.
+* Mastering intervals will make the rest of music theory much easier to understand.
+
+> In the next article, we'll use these intervals to build **chords (harmony)**.
+> In the OtoTheory app, you can explore intervals on the fretboard and in the chord dictionary — give it a try!`,htmlContent:""}]};function l(e="ja"){console.log(`[articles.ts] Getting articles for ${e}`),console.log("[articles.ts] articlesData keys:",Object.keys(i)),console.log(`[articles.ts] articlesData[${e}] length:`,i[e]?.length||0);let t=i[e]||[];return console.log(`[articles.ts] Found ${t.length} ${e} articles from static data`),t.map(e=>{try{return{...s({title:e.title,subtitle:e.subtitle,lang:e.lang,slug:e.slug,order:e.order,status:e.status,readingTime:e.readingTime,updated:e.updated,keywords:e.keywords,related:e.related,sources:e.sources}),content:e.content||"",htmlContent:e.htmlContent||""}}catch(t){return console.error(`[articles.ts] Error validating article ${e.slug}:`,t),null}}).filter(e=>null!==e).sort((e,t)=>e.order-t.order)}function h(e,t="ja"){return l(t).find(t=>t.slug===e)||null}function d(e="ja"){return l(e).filter(e=>"published"===e.status)}function u(e,t="ja"){return d(t).find(t=>t.order===e+1)||null}function c(e,t="ja"){return d(t).find(t=>t.order===e-1)||null}}};

@@ -371,3 +371,10 @@ b7863eefb56b2ce833e2cf985fbb3ab87cac2fb8 61b8fc207a85df36886e5668a2f01fc8f0b1843
 61b8fc207a85df36886e5668a2f01fc8f0b18430 9aff90a2c8fab8943c435b8d2cd137bd221c6e4d Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1761232483 +0900	commit: fix: Remove duplicate title and subtitle display from article pages
 9aff90a2c8fab8943c435b8d2cd137bd221c6e4d 997b429438b2ee43b06dee2f0869854428313fd6 Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1761232601 +0900	commit: Update articles data after Resources page heading removal
 997b429438b2ee43b06dee2f0869854428313fd6 58c4edc0c8d1461958dc89c45c49a71ba025fc73 Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1761235028 +0900	reset: moving to 58c4edc0
+58c4edc0c8d1461958dc89c45c49a71ba025fc73 98bcd79e2d9f97ce9ebb66bc06e9de96862a9820 Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1761269609 +0900	commit: Before fixing Multiple commands produce error
+98bcd79e2d9f97ce9ebb66bc06e9de96862a9820 29769122fa0cb1f58d6a989209ca8491531844dc Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1761356847 +0900	commit: feat: 音楽理論とはの内容を新しいレシピ・再現性重視の内容に更新
+29769122fa0cb1f58d6a989209ca8491531844dc 185203b7e52e2b61498d523406584fe8d7446c01 Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1761356870 +0900	commit: chore: 不要な.tmp.driveuploadファイルを削除
+185203b7e52e2b61498d523406584fe8d7446c01 d496a5ef7f9217df330deff0b4855555f25165fc Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1761357117 +0900	commit: fix: iOSビルドエラーを修正 - リソースファイル名を言語別に分離
+d496a5ef7f9217df330deff0b4855555f25165fc 98bcd79e2d9f97ce9ebb66bc06e9de96862a9820 Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1761357381 +0900	reset: moving to 98bcd79e
+98bcd79e2d9f97ce9ebb66bc06e9de96862a9820 abab49f262a8ceabe1fc669b7e7b395e7199feaa Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1761405318 +0900	commit: feat: 記事管理システムの統一とSSOT実装
+abab49f262a8ceabe1fc669b7e7b395e7199feaa ce606dffbf10d72daafe599d2517a1ad3e7eccca Norito Harada <YOUR_GITHUB_EMAIL@example.com> 1761405353 +0900	commit: docs: SSOTに記事管理システム統一を文書化

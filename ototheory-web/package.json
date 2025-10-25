@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm run generate-articles && next dev",
-    "build": "npm run generate-articles && next build",
+    "dev": "npm run sync:articles && next dev",
+    "build": "npm run sync:articles && next build",
     "start": "next start",
     "lint": "eslint",
     "e2e": "playwright test",
+    "sync:articles": "cd .. && npm run sync:articles",
     "generate-articles": "node scripts/generate-articles.js",
-    "prebuild": "npm run generate-articles",
-    "predev": "npm run generate-articles"
+    "prebuild": "npm run sync:articles",
+    "predev": "npm run sync:articles"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

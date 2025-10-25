@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ED6150892EAB080C00A4D209 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = ED6150762EAB013400A4D209 /* Resources */; };
-		ED61508C2EAB0CB600A4D209 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = ED6150762EAB013400A4D209 /* Resources */; };
 		EDE222372E91490100C1D4EA /* ototheory-core.js in Resources */ = {isa = PBXBuildFile; fileRef = EDE222362E91490100C1D4EA /* ototheory-core.js */; };
 		EDE222512E91E3F800C1D4EA /* FluidR3_GM.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = EDE222502E91E3F800C1D4EA /* FluidR3_GM.sf2 */; };
 /* End PBXBuildFile section */
@@ -31,7 +29,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		ED6150762EAB013400A4D209 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resources; path = OtoTheory/Resources; sourceTree = "<group>"; };
 		EDE222362E91490100C1D4EA /* ototheory-core.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "ototheory-core.js"; sourceTree = "<group>"; };
 		EDE222502E91E3F800C1D4EA /* FluidR3_GM.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = FluidR3_GM.sf2; sourceTree = "<group>"; };
 		EDE23A752E90E7DF0055D129 /* OtoTheory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OtoTheory.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +82,6 @@
 		EDE23A6C2E90E7DF0055D129 = {
 			isa = PBXGroup;
 			children = (
-				ED6150762EAB013400A4D209 /* Resources */,
 				EDE222502E91E3F800C1D4EA /* FluidR3_GM.sf2 */,
 				EDE222362E91490100C1D4EA /* ototheory-core.js */,
 				EDE23A772E90E7DF0055D129 /* OtoTheory */,
@@ -225,7 +221,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED6150892EAB080C00A4D209 /* Resources in Resources */,
 				EDE222372E91490100C1D4EA /* ototheory-core.js in Resources */,
 				EDE222512E91E3F800C1D4EA /* FluidR3_GM.sf2 in Resources */,
 			);
@@ -235,7 +230,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED61508C2EAB0CB600A4D209 /* Resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
